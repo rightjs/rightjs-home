@@ -1,0 +1,13 @@
+.DS_Store
+*/**/.DS_Store
+
+log/*.log
+tmp/**/*
+db/*.sqlite3
+config/database.yml
+public/uploads/**/*
+
+nbproject
+
+doc/api
+doc/app
