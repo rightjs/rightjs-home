@@ -1,0 +1,123 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  font-family: Verdana;
+  font-size: 10pt;
+  background: #DDD;
+  height: 100%;
+}
+
+a {
+  color: brown;
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
+
+h1, h2, h3, h4 {
+  margin-top: 0;
+  font-weight: normal;
+  font-family: Georgia;
+  color: grey;
+}
+
+label {
+  font-weight: bold;
+  font-family: Verdana;
+  display: block;
+  color: grey;
+}
+
+
+/* BEGIN Layout */
+div#body {
+  height: 100%;
+  background: white;
+  margin: 0 100pt;
+}
+
+div#head, div#main, div#foot {
+  padding: 20pt;
+}
+
+div#head {
+  background: #DED;
+}
+
+a#logo {
+  font-size: 4em;
+  font-family: Georgia;
+}
+div#head div#slogan {
+  margin-left: 20pt;
+}
+
+div#main-menu {
+  float: right;
+  margin-top: -2em;
+  margin-right: -10pt;
+  font-size: 1.1em;
+}
+
+div#main-menu ul {
+  list-style: none;
+}
+div#main-menu ul li {
+  float: left;
+}
+div#main-menu ul li a {
+  padding: 5pt 10pt;
+}
+div#main-menu ul li a:hover,
+div#main-menu ul li.current a {
+  background: #FDD;
+  text-decoration: none;
+}
+
+div#lang-switch {
+  position: absolute;
+  right: 120pt;
+  top: 20pt;
+}
+div#lang-switch a {
+  margin-left: 5pt;
+}
+
+div#sidebar {
+  width: 200pt;
+  float: right;
+  margin-right: -20pt;
+}
+div#info {
+  margin-right: 200pt;
+}
+
+div#foot {
+  color: grey;
+}
+
+/* END Layout */
+
+
+div#sidebar label {
+  font-weight: normal;
+  font-family: Georgia;
+  font-size: 1.6em;
+}
+
+div#api-search {
+  margin-bottom: 20pt;
+}
+
+div#api-search input {
+  border: 2px solid #DDD;
+  padding: 5pt;
+  font-size: 1.4em;
+  font-weight: bold;
+  display: block;
+  width: 170pt;
+}
+div#api-search input:active {
+  background-color: #FEE;
+}
