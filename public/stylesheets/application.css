@@ -32,7 +32,7 @@ label {
 
 /* BEGIN Layout */
 div#body {
-  height: 100%;
+  min-height: 100%;
   background: white;
   margin: 0 100pt;
 }
