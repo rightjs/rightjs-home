@@ -1,10 +1,16 @@
 <div id="sidebar">
-  <div id="api-search">
+  <div id="api-search" class="box">
     <label>API-Search</label>
-    <input type="text" value="Search" />
+    <input type="text" value="Search" disabled="true" />
   </div>
   
-  <div>
+<% if request.request_uri.starts_with?('/docs') %>
+  <div class="box">
+    <label>Classes</label>
+    <%= right_js_classes_menu %>
+  </div>
+<% else -%>
+  <div class="box">
     <label>Links</label>
     <ul>
       <%= menu_link_to 'Tutorials', '/tutorials' %>
@@ -12,4 +18,12 @@
       <%= menu_link_to 'Showcases', '/showcases' %>
     </ul>
   </div>
+  
+  <div class="box">
+    <label>Community</label>
+    <ul>
+      <%= menu_link_to 'Google group', 'google/group'%>
+    </ul>
+  </div>
+<% end -%>
 </div>

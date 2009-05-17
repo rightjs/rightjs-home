@@ -16,10 +16,14 @@ a:hover {
 }
 
 h1, h2, h3, h4 {
-  margin-top: 0;
+  margin-top: 20pt;
   font-weight: normal;
   font-family: Georgia;
   color: grey;
+}
+
+div#info > h1:first-child {
+  margin-top: 0;
 }
 
 label {
@@ -79,6 +83,7 @@ div#lang-switch {
   position: absolute;
   right: 120pt;
   top: 20pt;
+  display: none;
 }
 div#lang-switch a {
   margin-left: 5pt;
@@ -89,6 +94,10 @@ div#sidebar {
   float: right;
   margin-right: -20pt;
 }
+div#sidebar div.box {
+  margin-bottom: 20pt;
+}
+
 div#info {
   margin-right: 200pt;
 }
@@ -106,10 +115,6 @@ div#sidebar label {
   font-size: 1.6em;
 }
 
-div#api-search {
-  margin-bottom: 20pt;
-}
-
 div#api-search input {
   border: 2px solid #DDD;
   padding: 5pt;
@@ -119,5 +124,5 @@ div#api-search input {
   width: 170pt;
 }
 div#api-search input:active {
-  background-color: #FEE;
+  background-color: #FFD;
 }
