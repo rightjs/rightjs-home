@@ -53,7 +53,7 @@ namespace :rightjs do
       methods = source.split('###')
       
       description = p.to_html(methods.shift.strip)
-      puts description
+      
       unit = Unit.create({
         :name => name,
         :package => pack,
