@@ -33,7 +33,10 @@ namespace :rightjs do
       self.convert(source, SM::ToHtml.new).
         gsub("&quot;", '"'). # getting quotes back
         gsub("<p>\n&lt;code&gt;\n</p>\n<pre>", "<code>").
-        gsub("</pre>\n<p>\n&lt;/code&gt;\n</p>", "</code>")
+        gsub("</pre>\n<p>\n&lt;/code&gt;\n</p>", "</code>").
+        gsub(/(<code>)(.+?)(<\/code>)/im) {
+          "#{$1}#{$2.gsub("\n  ", "\n")}</code>"
+        }
     end
     
     Unit.destroy_all
@@ -50,7 +53,7 @@ namespace :rightjs do
       methods = source.split('###')
       
       description = p.to_html(methods.shift.strip)
-      
+      puts description
       unit = Unit.create({
         :name => name,
         :package => pack,
