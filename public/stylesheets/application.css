@@ -126,3 +126,97 @@ div#api-search input {
 div#api-search input:active {
   background-color: #FFD;
 }
+
+div#sidebar ul {
+  padding-left: 20pt;
+}
+
+div#sidebar ul li {}
+div#sidebar ul li a {}
+
+div#sidebar ul li.current {
+  list-style: circle;
+  font-weight: bold;
+}
+
+div.method {
+}
+div.method > h2 {
+  border-bottom: 1px solid brown;
+  margin-top: 30pt;
+}
+div.method > h2 a:hover {
+  text-decoration: none;
+}
+
+div.method p.semantic code {
+  background: transparent;
+  padding: 0;
+}
+
+/* BEGIN code hightlightning */
+code {
+  font-family: monospace;
+  white-space: pre;
+  overflow: auto;
+  display: block;
+  padding: 10pt;
+  background: #EEE;
+}
+
+code s, code i, code u, code b {
+  font-weight: normal !important;
+  text-decoration: none !important;
+}
+
+code s, code s * { /* string */
+  color: green !important;
+}
+
+code s.re {
+  color: #880 !important;
+}
+
+code s.int { /* number */
+  color: blue !important;
+}
+
+code s.float {
+  color: brown !important;
+}
+
+code s.key { /* hash keys */
+  color: #880 !important;
+}
+
+code i { /* comments */
+  color: gray !important;
+}
+
+code b { /* function return for if else ... */
+  font-weight: bold;
+  color: #808;
+}
+
+code b.var { /* var new this self */
+  color: #EE82EE;
+  font-weight: bold;
+}
+
+code b.rest { /* null false true undefined */
+  color: #A52A2A;
+}
+
+code b.unit { /* class names */
+  color: #088;
+}
+
+code u { /* attribute */
+  color: #880;
+}
+code u.method {
+  color: #008;
+}
+
+
+/* END code hightlightning */

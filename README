@@ -1,5 +1,13 @@
-== RightJS Home
+= RightJS Home
 
 This is the RightJS framework home page project.
 
 Nothing big, just a news feed, some templates work and automatic api-documentation building.
+
+== NOTE
+
+Don't forget to run on update
+
+  <tt>rake rightjs:update</tt>
+  
+It will rebuild the database of the API

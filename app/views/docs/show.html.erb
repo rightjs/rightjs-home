@@ -1,0 +1,12 @@
+<%= @unit.description %>
+
+<% unless @unit.unit_methods.blank? -%>
+<h1>Methods</h1>
+<p>
+  <%= @unit.unit_methods.map { |method|
+    link_to_unit_method method
+  }.join(', ') %>
+</p>
+
+<%= render :partial => 'method', :collection => @unit.unit_methods %>
+<% end -%>

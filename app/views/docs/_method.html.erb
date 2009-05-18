@@ -1,0 +1,22 @@
+<div class="method">
+  <a name="<%= method.name %>"></a>
+  <h2><%= link_to_unit_method method %></h2>
+  
+  <p class="semantic">
+    <code><%= method.semantic%></code>
+  </p>
+
+<% unless method.description.blank? %>
+  <h4>Description</h4>
+  <p>
+    <%= method.description %>
+  </p>
+<% end %>
+  
+<% unless method.example.blank? %>
+  <h4>Example</h4>
+  <p>
+    <code><%= method.example %></code>
+  </p>
+<% end %>
+</div>
