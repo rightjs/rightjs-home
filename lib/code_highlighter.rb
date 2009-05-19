@@ -32,7 +32,7 @@ protected
     # keywords
     [/([^a-z0-9_]|^)(function|return|for|if|else|while|do|throw|try|catch)(?![a-z0-9_])/, '<b>\2</b>'],
     [/([^a-z0-9_]|^)(var|new|this|self)(?![a-z0-9_])/,          '<b class="var">\2</b>'],
-    [/([^a-z0-9_]|^)(true|false|null|undefined)(?![^a-z0-9_])/, '<b class="rest">\2</b>'],
+    [/([^a-z0-9_]|^)(true|false|null|undefined)(?![a-z0-9_])/, '<b class="rest">\2</b>'],
     
     # classes
     [/([^a-zA-Z0-9_]|^)([A-Z][a-zA-Z_0-9]+)(?![a-zA-Z0-9_])/, '<b class="unit">\2</b>'],
