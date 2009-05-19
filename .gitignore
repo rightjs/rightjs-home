@@ -5,6 +5,7 @@ log/*.log
 tmp/**/*
 db/*.sqlite3
 config/database.yml
+config/initializers/session_store.rb
 public/uploads/**/*
 
 nbproject
