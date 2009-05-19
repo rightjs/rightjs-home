@@ -5,8 +5,8 @@ describe "/posts/index.html.erb" do
   
   before(:each) do
     assigns[:posts] = [
-      stub_model(Post),
-      stub_model(Post)
+      mock_model(Post, :uri_name => 'one', :created_at => Time.now, :title => 'one', :anonse => 'one'),
+      mock_model(Post, :uri_name => 'two', :created_at => Time.now, :title => 'two', :anonse => 'two')
     ]
   end
 

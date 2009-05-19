@@ -1,5 +1,12 @@
 ActionController::Routing::Routes.draw do |map|
   
+  map.with_options :controller => 'sessions' do |s_map|
+    s_map.login  '/login',  :action => 'new',     :conditions => { :method => :get  }
+    s_map.login  '/login',  :action => 'create',  :conditions => { :method => :post }
+    s_map.logout '/logout', :action => 'destroy'
+  end
+  
+  
   map.resources :posts, :as => :blog
   
   map.with_options :controller => 'docs' do |docs|

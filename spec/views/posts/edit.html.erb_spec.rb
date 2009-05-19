@@ -4,8 +4,13 @@ describe "/posts/edit.html.erb" do
   include PostsHelper
   
   before(:each) do
-    assigns[:post] = @post = stub_model(Post,
-      :new_record? => false
+    assigns[:post] = @post = mock_model(Post,
+      :new_record? => false,
+      :uri_name    => 'one',
+      :created_at  => Time.now,
+      :title       => 'one',
+      :anonse      => 'one',
+      :text        => 'one'
     )
   end
 

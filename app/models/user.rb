@@ -19,7 +19,7 @@ class User < ActiveRecord::Base
   end
   
   def encrypt(string)
-    4.times do
+    SECURITY_NUMBER.times do
       string = Digest::SHA1.hexdigest("#{SECURE_KEY}--#{string}--#{salt}")
     end
     string

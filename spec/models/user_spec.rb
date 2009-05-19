@@ -28,6 +28,7 @@ end
 
 describe User, "authentication" do
   before :all do
+    User.destroy_all
     @user = User.create :login => 'login', :password => 'password'
   end
   

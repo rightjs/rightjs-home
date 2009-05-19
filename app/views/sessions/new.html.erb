@@ -1,0 +1,18 @@
+<h1>Log Yourself In</h1>
+<%= stylesheet_link_tag 'scaffold' %>
+
+<p>
+  <% form_tag login_path, :method => :post do %>
+  <p class="required">
+    <%= label_tag :login %>
+    <%= text_field_tag :login, params[:login], :size => 32 %>
+  </p>
+  <p class="required">
+    <%= label_tag :password %>
+    <%= password_field_tag :password, '', :size => 32 %>
+  </p>
+  <p class="buttons">
+    <%= submit_tag 'Login' %>
+  </p>
+  <% end -%>
+</p>

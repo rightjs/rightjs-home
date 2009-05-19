@@ -154,6 +154,14 @@ div.method p.semantic code {
   padding: 0;
 }
 
+div.post > h2:first-child {
+  border-bottom: 1px solid #EEE;
+}
+
+div.post h2 span.date {
+  float: right;
+}
+
 div.post h2 a:hover {
   text-decoration: none;
 }

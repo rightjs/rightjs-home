@@ -1,6 +1,10 @@
 require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
 
 describe PostsController do
+  
+  before :each do 
+    @controller.stub!(:current_user).and_return(mock_model(User, :id => 44))
+  end
 
   def mock_posts(stubs={})
     @mock_posts ||= mock_model(Post, stubs)
