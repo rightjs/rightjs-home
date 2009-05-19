@@ -1,5 +1,7 @@
 ActionController::Routing::Routes.draw do |map|
   
+  map.resources :posts, :as => :blog
+  
   map.with_options :controller => 'docs' do |docs|
     docs.connect 'docs/:path', :action => 'show', :requirements => {:path => /[\w\d\/]+/}
   end
@@ -13,7 +15,5 @@ ActionController::Routing::Routes.draw do |map|
       show.pages '*path'
     end
   end
-  
-  
   
 end

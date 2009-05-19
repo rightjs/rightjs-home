@@ -1,0 +1,26 @@
+<%= stylesheet_link_tag 'scaffold' %>
+
+<% form_for(@post) do |f| %>
+  <%= f.error_messages %>
+  
+  <p class="required">
+    <%= f.label :title %>
+    <%= f.text_field :title, :size => 60 %>
+  </p>
+  
+  <p class="required">
+    <%= f.label :anonse %>
+    <%= f.text_area :anonse, :rows => 8, :cols => 60 %>
+  </p>
+  
+  <p>
+    <%= f.label :text %>
+    <%= f.text_area :text, :rows => 20, :cols => 60 %>
+  </p>
+
+  <p class="buttons">
+    <%= f.submit @post.new_record? ? 'Create' : 'Update' %>
+  </p>
+<% end %>
+
+

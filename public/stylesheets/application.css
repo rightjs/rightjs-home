@@ -154,6 +154,15 @@ div.method p.semantic code {
   padding: 0;
 }
 
+div.post h2 a:hover {
+  text-decoration: none;
+}
+
+p.action-links {
+  margin-top: 20pt;
+}
+
+
 /* BEGIN code hightlightning */
 code {
   font-family: monospace;

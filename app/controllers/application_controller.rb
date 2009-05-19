@@ -15,7 +15,8 @@ protected
 
   class NotFound < StandardError; end
   
-  rescue_from NotFound, :with => :render_not_found
+  rescue_from NotFound,                     :with => :render_not_found
+  rescue_from ActiveRecord::RecordNotFound, :with => :render_not_found
   
   def render_not_found
     render "pages/not_found.html.erb", :status => 404

@@ -1,3 +1,6 @@
 [submodule "lib/right_js"]
 	path = lib/right_js
 	url = git://github.com/MadRabbit/right_js.git
+[submodule "vendor/plugins/acts_as_uri_named"]
+	path = vendor/plugins/acts_as_uri_named
+	url = git://github.com/MadRabbit/acts_as_uri_named.git

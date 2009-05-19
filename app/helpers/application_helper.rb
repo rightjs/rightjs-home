@@ -38,5 +38,12 @@ module ApplicationHelper
   def link_to_unit_method(method)
     link_to method.name, method
   end
-
+  
+  def format_text(text)
+    simple_format(text).gsub('<br />', "");
+  end
+  
+  def d(date)
+    date.to_s(:db).split(' ').first if date
+  end
 end

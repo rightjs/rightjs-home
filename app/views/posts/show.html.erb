@@ -1,0 +1,9 @@
+<h1><%= @post.title %></h1>
+
+<p class="text">
+  <%= format_text @post.text.blank? ? @post.anonse : @post.text %>
+</p>
+
+<p class="action-links">
+  <%= link_to 'Back to the news', posts_path %>
+</p>
