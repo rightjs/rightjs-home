@@ -1,4 +1,5 @@
 class PagesController < ApplicationController
+  caches_page :show
   
   def show
     @path = params[:path].blank? ? 'home' : params[:path].join('/')

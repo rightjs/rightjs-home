@@ -8,6 +8,9 @@ config/database.yml
 config/initializers/session_store.rb
 public/uploads/**/*
 
+public/*.html
+public/**/*.html
+
 nbproject
 
 doc/api

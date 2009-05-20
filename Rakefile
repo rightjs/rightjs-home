@@ -84,6 +84,9 @@ namespace :rightjs do
         })
       end
     end
+    
+    FileUtils.rm_rf "#{RAILS_ROOT}/public/docs"
+    
     puts "\nDone\n"
   end
   

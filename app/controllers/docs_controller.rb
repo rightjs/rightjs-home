@@ -1,4 +1,5 @@
 class DocsController < ApplicationController
+  caches_page :show
   
   def show
     @unit = Unit.find_by_uri_name(params[:path])
