@@ -7,7 +7,7 @@ module ApplicationHelper
   
   # common menu link builder
   def menu_link_to(text, url, options={})
-    content_tag :li, link_to(text, url, options={}), :class => part_of_current_url?(url) ? 'current' : nil
+    content_tag :li, link_to(text, url, options), :class => part_of_current_url?(url) ? 'current' : nil
   end
   
   # builds a menu list with RightJS main classes and links to the documentation
