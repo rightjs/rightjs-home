@@ -1,0 +1,88 @@
+<h1>Performance Benchmarks</h1>
+
+<p>
+  To give you some ideas about the project quality and abilities, some performance measurements took place. All the tests were done by using the 'TaskSpeed' util. The version which contains tests for RightJS can be found in here <%= link_to 'http://github.com/MadRabbit/taskspeed', :target => :_blank %>.
+</p>
+
+<p>
+  For the tests the following browsers were used.
+  <ul>
+    <li><a href="#safari">Safari</a> Version 4 Public Beta (5528.17) OS X 10.5.7</li>
+    <li><a href="#firefox">Firefox</a> 3.0.10 (Gecko/2009042315 ) OS X 10.5.7</li>
+    <li><a href="#opera">Opera</a> 9.62 (Build 5256) OS X 10.5.7</li>
+    <li><a href="#ie7">Internet Explorer</a> 7.0.5730.13 Windows XP SP2 on VMWare Fusion</li>
+    <li><a href="#chrome">Google Chrome</a> 1.0.154.65 Windows XP SP2 on VMWare Fusion</li>
+  </ul>
+</p>
+
+<p>
+  <b style="color: grey">Impotant Note</b>: There is a difference between tests for RightJS/Prototype/MooTools and tests for jQuery/Dojo/YUI. In all the cases when elements building was involved the first group was honestly building all the elements as the documentation for the test says, but the second group, partly because of lack of functionality, partly I don't know why, they are just feeding their methods with strings of HTML which already contains all the necessary arguments and constructions.
+</p>
+<p>
+  They probably could do the things in pure JavaScript/DOM right in the tests, it would not affect the performance a lot but definitely would look ugly. The point is that you should keep in mind that the first group has additional functionality and nice interfaces and as the result does more work than the second group. So the results for those cases can not be directly compared.
+</p>
+<p>
+  But that all is not much interesting, because RightJS is a real fighter and beats 'em all even on those tough conditions.
+</p>
+
+<a name="safari"></a>
+<h1>Safari</h1>
+<p>
+  More than twice faster than Prototype, MooTools or YUI and crazy 4.5 time faster than jQuery
+</p>
+<p>
+  <div class="shot">
+    <a href="/images/benchmarks/safari.gif" target="_blank"><%= image_tag 'benchmarks/safari-thmb.gif' %></a>
+  </div>
+</p>
+
+<a name="firefox"></a>
+<h1>Firefox</h1>
+<p>
+  Faster than MooTools or YUI, twice faster than jQuery and almost four times faster than Prototype
+</p>
+<p>
+  <div class="shot">
+    <a href="/images/benchmarks/ff.gif" target="_blank"><%= image_tag 'benchmarks/ff-thmb.gif' %></a>
+  </div>
+</p>
+
+<a name="opera"></a>
+<h1>Opera</h1>
+<p>
+  Faster than MooTools or YUI, twice faster than jQuery or Prototype
+</p>
+<p>
+  <div class="shot">
+    <a href="/images/benchmarks/opera.gif" target="_blank"><%= image_tag 'benchmarks/opera-thmb.gif' %></a>
+  </div>
+</p>
+
+<a name="ie7"></a>
+<h1>Internet Explorer 7</h1>
+<p>
+  Faster than jQuery, twice faster than MooTools and almost three times faster than Prototype
+</p>
+<p>
+  <div class="shot">
+    <a href="/images/benchmarks/ie7.gif" target="_blank"><%= image_tag 'benchmarks/ie7-thmb.gif' %></a>
+  </div>
+</p>
+
+<a name="chrome"></a>
+<h1>Google Chrome</h1>
+<p>
+  Google Chrome based on the same WebKit engine as Safari, so the result is predictable, five times faster
+  than jQuery and twice as fast as Prototype or MooTools.
+</p>
+<p>
+  <div class="shot">
+    <a href="/images/benchmarks/chrome.gif" target="_blank"><%= image_tag 'benchmarks/chrome-thmb.gif' %></a>
+  </div>
+</p>
+
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>
+  PS: This is sure not the final result. RightJS is still a young project and we are still optimizing things here and there, so it will be even better over the time!
+</p>

@@ -170,6 +170,17 @@ p.action-links {
   margin-top: 20pt;
 }
 
+div.shot {
+  text-align: center;
+}
+div.shot a, div.shot a:hover {
+  text-decoration: none;
+}
+div.shot img {
+  border: 1px solid #DDD;
+  padding: 5pt;
+}
+
 
 /* BEGIN code hightlightning */
 code {
