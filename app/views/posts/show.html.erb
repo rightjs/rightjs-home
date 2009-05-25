@@ -1,4 +1,4 @@
-<h1><%= @post.title %></h1>
+<h1><%= @post.title %></h1><% @title_text = "News: #{@post.title}" %>
 
 <p class="text">
   <%= format_text @post.text.blank? ? @post.anonse : @post.text %>

@@ -40,6 +40,7 @@ namespace :rightjs do
     end
     
     Unit.destroy_all
+    UnitMethod.destroy_all
     
     FileList["#{RIGHTJS_ROOT}/doc/**/*.rd"].each do |file_name|
       name = File.basename(file_name).split('.rd').first.split('.').collect(&:capitalize).join('.')
