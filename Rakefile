@@ -14,14 +14,26 @@ require File.dirname(__FILE__) + "/config/environment"
 namespace :rightjs do
   
   RIGHTJS_ROOT = "#{RAILS_ROOT}/lib/right_js"
+  RIGHTJS_BUILD = "#{RAILS_ROOT}/public/builds/current"
   
   desc 'Updates documentation and build'
   task :update do
-    
+    Rake::Task['rightjs:update_src'].invoke
+    Rake::Task['rightjs:update_docs'].invoke
+    Rake::Task['rightjs:update_build'].invoke
+  end
+  
+  desc 'Updates the rightjs source code library'
+  task :update_src do
+    puts "Updating the RightJS source\n"
+    system "cd #{RIGHTJS_ROOT}; git pull"
+    puts 
   end
   
   desc 'Updates the units database out of the RightJS source repository'
   task :update_docs do
+    
+    
     puts "Rebuilding documentation\n\n"
     
     require 'rdoc/markup/simple_markup'
@@ -30,6 +42,8 @@ namespace :rightjs do
     p = SM::SimpleMarkup.new
     
     def p.to_html(source)
+      source = source.gsub(/\n +\*/, "\n*")
+      
       self.convert(source, SM::ToHtml.new).
         gsub("&quot;", '"'). # getting quotes back
         gsub("<p>\n&lt;code&gt;\n</p>\n<pre>", "<code>").
@@ -86,14 +100,21 @@ namespace :rightjs do
       end
     end
     
+    puts "\nCleaning cache\n\n"
     FileUtils.rm_rf "#{RAILS_ROOT}/public/docs"
-    
-    puts "\nDone\n"
   end
   
   desc 'Updates the rightjs build'
   task :update_build do
+    puts "Updating the build\n\n"
     
+    system "cd #{RIGHTJS_ROOT}; rake build"
+    
+    puts "\nCopying files"
+    
+    system "cp #{RIGHTJS_ROOT}/build/right.js #{RIGHTJS_BUILD}/right.js"
+    system "cp #{RIGHTJS_ROOT}/build/right-full.js #{RIGHTJS_BUILD}/right-full.js"
+    puts
   end
 end
 
