@@ -181,6 +181,14 @@ div.shot img {
   padding: 5pt;
 }
 
+div#rss-feed {
+  padding: 5pt;
+}
+
+div#rss-feed img {
+  vertical-align: top;
+}
+
 
 /* BEGIN code hightlightning */
 code {

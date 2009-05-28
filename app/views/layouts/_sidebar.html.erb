@@ -34,4 +34,11 @@
     </ul>
   </div-->
 <% end -%>
+
+  <div class="box">
+    <div id="rss-feed">
+      <%= image_tag 'rss.png' %>
+      <%= link_to "RSS Feed", posts_path(:format => :rss) %>
+    </div>
+  </div>
 </div>
