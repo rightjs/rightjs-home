@@ -108,6 +108,8 @@ namespace :rightjs do
   task :update_build do
     puts "Updating the build\n\n"
     
+    FileUtils.mkdir_p RIGHTJS_BUILD
+    
     system "cd #{RIGHTJS_ROOT}; rake build"
     
     puts "\nCopying files"
