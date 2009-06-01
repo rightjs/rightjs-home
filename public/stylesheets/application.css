@@ -33,6 +33,10 @@ label {
   color: grey;
 }
 
+ul#classes-list li label {
+  font-size: 1.1em;
+}
+
 
 /* BEGIN Layout */
 div#body {

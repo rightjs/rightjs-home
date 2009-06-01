@@ -12,10 +12,21 @@ module ApplicationHelper
   
   # builds a menu list with RightJS main classes and links to the documentation
   def right_js_classes_menu
-    content_tag :ul, Unit.all.collect { |unit|
-      menu_link_to(unit.name, unit)+
-        (@unit == unit ? right_js_unit_menu(unit) : '')
-    }
+    packs = {}
+    Unit.all.each do |unit|
+      packs[unit.package] ||= []
+      packs[unit.package] << unit
+    end
+    
+    content_tag :ul, packs.keys.sort.collect { |package|
+      content_tag(:li, 
+        content_tag(:label, package.capitalize) +
+        content_tag(:ul, packs[package].collect { |unit|
+          menu_link_to(unit.name, unit)+
+            (@unit == unit ? right_js_unit_menu(unit) : '')
+        })
+      )
+    }, :id => 'classes-list'
   end
   
   # builds a particular unit methods menu
