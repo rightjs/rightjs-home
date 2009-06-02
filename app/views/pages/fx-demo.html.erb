@@ -14,6 +14,9 @@ function reset(id) {
 function runfx(id) {
   $eval($(id+'-script').value);
 }
+if (Browser.Opera) {
+  document.write('<st'+'yle>div.fx-right {   margin-top: 1em; }</st'+'yle>');
+}
 // -->
 </script>
 
