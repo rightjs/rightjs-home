@@ -12,7 +12,9 @@ function reset(id) {
   $(id).replace('<div id="'+id+'" class="'+$(id).className+'">'+$(id).innerHTML+'</div>');
 }
 function runfx(id) {
-  $eval($(id+'-script').value);
+  try {
+    $eval($(id+'-script').value);
+  } catch(e) {}
 }
 if (Browser.Opera) {
   document.write('<st'+'yle>div.fx-right {   margin-top: 1em; }</st'+'yle>');
