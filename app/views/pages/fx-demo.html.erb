@@ -1,0 +1,96 @@
+<h1>Visual Effects Demo</h1><% @title_text = 'Visual Effects Demo' %>
+
+<p>
+  By default RightJS comes with some basic visual effects library and here are some
+  demos and a playground where you can test them. Please take a look at the documentation
+  for more info and use-cases.
+</p>
+
+<script type="text/javascript">
+// <!--
+function reset(id) {
+  $(id).replace('<div id="'+id+'" class="'+$(id).className+'">'+$(id).innerHTML+'</div>');
+}
+function runfx(id) {
+  $eval($(id+'-script').value);
+}
+// -->
+</script>
+
+
+<h2>Fx.Morph</h2>
+<p>
+  Fx.Morph is the basic visual effects interface. It allows you to gradually morph
+  your element appearance from the current state to the given style or css-class.
+</p>
+
+<p>
+  <div id="morph-test" class="fx-test">How are ya mate?</div>
+</p>
+<p class="fx-handler">
+<textarea id="morph-test-script">
+new Fx.Morph('morph-test', {duration: 'long'}).start({
+  width: '400px',
+  fontSize: '40px',
+  background: 'green',
+  color: 'yellow'
+});
+</textarea>
+  <div class="fx-starter">
+    <a href="" onclick="reset('morph-test'); return false;">Reset</a>
+    <a href="" onclick="runfx('morph-test'); return false;">Start</a>
+  </div>
+</p>
+
+<h2>Fx.Highlight</h2>
+<p>
+  Fx.Highlight is the generic highlighter effect. You can specify start and end colors if you like.
+</p>
+<p>
+  <div id="highlight-test" class="fx-test fx-no-bg fx-right">How are ya mate?</div>
+</p>
+<p class="fx-handler">
+<textarea id="highlight-test-script">
+new Fx.Highlight('highlight-test').start();
+</textarea>
+  <div class="fx-starter">
+    <a href="" onclick="reset('highlight-test'); return false;">Reset</a>
+    <a href="" onclick="runfx('highlight-test'); return false;">Start</a>
+  </div>
+</p>
+
+<h2>Fx.Fade</h2>
+<p>
+  Fx.Fade is the opacity effects handler.
+</p>
+<p>
+  <div id="fade-test" class="fx-test fx-right">How are ya mate?</div>
+</p>
+<p class="fx-handler">
+<textarea id="fade-test-script">
+new Fx.Fade('fade-test').start();
+</textarea>
+  <div class="fx-starter">
+    <a href="" onclick="reset('fade-test'); return false;">Reset</a>
+    <a href="" onclick="runfx('fade-test'); return false;">Start</a>
+  </div>
+</p>
+
+<h2>Fx.Slide</h2>
+<p>
+  Fx.Slide is the slider effect. By default it works from the top, but
+  might work from any position, see the documentation for more details.
+</p>
+<p>
+  <div id="slide-test" class="fx-test fx-right">How are ya mate?</div>
+</p>
+<p class="fx-handler">
+<textarea id="slide-test-script">
+new Fx.Slide('slide-test').start();
+</textarea>
+  <div class="fx-starter">
+    <a href="" onclick="reset('slide-test'); return false;">Reset</a>
+    <a href="" onclick="runfx('slide-test'); return false;">Start</a>
+  </div>
+</p>
+

@@ -19,7 +19,10 @@ h1, h2, h3, h4 {
   margin-top: 20pt;
   font-weight: normal;
   font-family: Georgia;
-  color: grey;
+}
+
+h1, h2, h3, h4, label {
+  color: #8A7;
 }
 
 div#info > h1:first-child {
@@ -30,13 +33,11 @@ label {
   font-weight: bold;
   font-family: Verdana;
   display: block;
-  color: grey;
 }
 
 ul#classes-list li label {
   font-size: 1.1em;
 }
-
 
 /* BEGIN Layout */
 div#body {
@@ -73,6 +74,7 @@ div#main-menu ul {
 }
 div#main-menu ul li {
   float: left;
+  margin-right: 1px;
 }
 div#main-menu ul li a {
   padding: 5pt 10pt;
@@ -192,6 +194,30 @@ div#rss-feed {
 div#rss-feed img {
   vertical-align: top;
 }
+
+div.fx-test {
+  width: 200px;
+  height: 100px;
+  line-height: 100px;
+  text-align: center;
+  background: orange;
+  color: brown;
+}
+
+div.fx-no-bg {
+  background: transparent;
+  border: 1px solid #EEE;
+}
+div.fx-right {
+  position: absolute;
+  margin-left: 440px;
+}
+
+p.fx-handler textarea {
+  height: 98px;
+  width: 398px;
+}
+
 
 
 /* BEGIN code hightlightning */
