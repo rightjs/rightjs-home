@@ -13,9 +13,6 @@ require File.dirname(__FILE__) + "/config/environment"
 
 namespace :rightjs do
   
-  RIGHTJS_ROOT = "#{RAILS_ROOT}/lib/right_js"
-  RIGHTJS_BUILD = "#{RAILS_ROOT}/public/builds/current"
-  
   desc 'Updates documentation and build'
   task :update do
     Rake::Task['rightjs:update_src'].invoke
@@ -108,6 +105,7 @@ namespace :rightjs do
   task :update_build do
     puts "Updating the build\n\n"
     
+    FileUtils.rm_rf   RIGHTJS_BUILD
     FileUtils.mkdir_p RIGHTJS_BUILD
     
     system "cd #{RIGHTJS_ROOT}; rake build"
@@ -115,7 +113,33 @@ namespace :rightjs do
     puts "\nCopying files"
     
     system "cp #{RIGHTJS_ROOT}/build/right.js #{RIGHTJS_BUILD}/right.js"
-    system "cp #{RIGHTJS_ROOT}/build/right-full.js #{RIGHTJS_BUILD}/right-full.js"
+    system "cp #{RIGHTJS_ROOT}/build/right-src.js #{RIGHTJS_BUILD}/right-src.js"
+    
+    puts "\nCreating custom builds\n"
+    
+    FileUtils.mkdir_p RIGHTJS_BUILD + "/custom"
+    
+    (0..31).each do |i|
+      id = "%05d" % i.to_s(2)
+      
+      options = []
+      
+      id.split('').each_with_index do |value, index|
+        if value == '0'
+          options << "no-#{RIGHTJS_BUILD_OPTIONS[index]}"
+        end
+      end
+      
+      options = options.join(',')
+      
+      puts " * #{options.blank? ? 'full build' : options}"
+      
+      system "cd #{RIGHTJS_ROOT}; rake build OPTIONS=#{options} &> /dev/null"
+      
+      system "cp #{RIGHTJS_ROOT}/build/right.js     #{RIGHTJS_BUILD_CUSTOM}/right-#{id}1.js"
+      system "cp #{RIGHTJS_ROOT}/build/right-src.js #{RIGHTJS_BUILD_CUSTOM}/right-#{id}0.js"
+    end
+    
     puts
   end
 end

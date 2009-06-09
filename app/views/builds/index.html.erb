@@ -1,0 +1,108 @@
+<h1>Custom Build Creating</h1><% @title_text = 'Custom Build'%>
+
+<p>
+  You are free to create your own built of RightJS which most fits your needs.
+</p>
+<p>
+  To create the builds we are using the <a href="http://github.com/MadRabbit/frontcompiler" target="_blank">Front Compiler</a>,
+  the most effective javascript compressing library written in Ruby.
+</p>
+
+<h2>Custom Builder</h2>
+<form action="<%= builds_path %>" id="custom-build-form" method="post">
+  <p>
+    <ul>
+      <%= [
+        ['form',     'Form Additional Features'],
+        ['cookie',   'Cookies Support'],
+        ['xhr',      'Ajax Features'],
+        ['fx',       'Basic Visual Effects'],
+        ['compress', 'Compress Source Code'],
+        ['build',    'Create Self-Build Script']
+      ].collect do |options|
+        content_tag :li,
+          check_box_tag("options[#{options.first}]", 1, true) +
+          label_tag("options_#{options.first}", options.last)
+      end.join("\n")
+      %>
+    </ul>
+  </p>
+  
+  <p class="buttons">
+    <input type="submit" value="Create" />
+    <input type="reset"  value="Reset" id="form-reset" />
+  </p>
+</form>
+
+<p style="color: gray; margin-top: 20pt; font-size: 80%">
+  <b>NOTE:</b> The self-building feature creates a self-building javascript code
+  which reconstructs itself on the browser side. It gives additionally about 25-30%
+  of compression and prepares the script for better server-side gzip compression,
+  but in exchange it takes about 20-100 ms on reconstruction.
+  <br/><br/>
+  In most of the cases of real live applications it is practically invisible for the
+  user, but if you are creating an extremely light-weight application and care about the
+  user experience you might consider to switch the feature off.
+</p>
+
+<script type="text/javascript">
+// <!--
+
+// some nice looking calculator method
+
+var build_sizes = <%= @build_sizes.to_json %>;
+var build_keys  = <%= (RIGHTJS_BUILD_OPTIONS + ['compress']).to_json %>;
+var max_size    = Math.max.apply(null, Object.values(build_sizes));
+var min_size    = Math.min.apply(null, Object.values(build_sizes));
+
+var build_form  = $('custom-build-form');
+
+var calc     = $E('div', {id: 'calc'});
+var calc_bar = $E('div', {id: 'bar'}).insertTo(calc);
+var calc_num = $E('div', {id: 'num'}).insertTo(calc_bar);
+
+build_form.insert(calc, 'top');
+
+var CalcFx = new Class(Fx.Morph, {
+  start: function(start_size, end_size) {
+    this.startSize = start_size;
+    this.endSize   = end_size;
+    
+    this.element.highlight('brown', '#8A7');
+    
+    this.$super({height: (calc.sizes().y * (end_size / max_size)) + 'px'});
+  },
+  
+  render: function(delta) {
+    var size = this.startSize + (this.endSize - this.startSize) * delta;
+    size = ((size/100).round()/10).toString();
+    if (!size.includes('.')) size += ".0";
+    calc_num.update(size + 'k');
+    
+    this.$super(delta);
+  }
+});
+
+var prev_size = 0;
+var update_calc = function() {
+  var options = build_keys.map(function(key) {
+    return $("options_"+key).checked ? 1 : 0;
+  }).join('');
+  var new_size = build_sizes[options];
+  if (new_size) {
+    new CalcFx(calc_bar).start(prev_size, new_size);
+    prev_size = new_size;
+  }
+};
+
+build_form.inputs().each(function(input) {
+  if (input.type == 'checkbox') {
+    input.on('click', update_calc);
+  }
+});
+$('form-reset').on('click', function() { update_calc.delay(50); });
+
+document.onReady(update_calc);
+
+// -->
+</script>
