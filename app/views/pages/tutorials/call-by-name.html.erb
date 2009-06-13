@@ -1,0 +1,90 @@
+<h1>Call By Name</h1>
+
+<p>
+  <u>Call By Name</u> is one of the key features of RightJS and works in many
+   places in the framework.
+</p>
+
+<p>
+  The idea is really simple. It brings the dynamic functions involvement 
+  similar to the method <tt>invoke</tt> in some programming languages. You
+  just pass a method name and some optional arguments into the method of 
+  collection and it will call for the method by name.
+</p>
+<code>
+['foo', 'boo', 'moo'].invoke('replace', 'oo', 'aa');
+</code>
+<p>
+  But instead of creating such additional methods, RightJS extends the idea
+  and basically lets you feed all the generic methods with method names.
+</p>
+<p>
+  Say you could collect disabled elements like this.
+</p>
+<code>
+inputs.filter(function(input) {
+  return input.disabled;
+});
+</code>
+<p>
+  Or you could do just the same thing calling the method/attribute by name
+</p>
+<code>
+  inputs.filter('disabled');
+</code>
+<p>
+  RightJS works perfectly with both method or attribute names. There are some
+  use cases.
+</p>
+<code>
+var lowercased = strings.map('toLowerCase');
+var uppercased = strings.map('toUpperCase');
+var trimmed    = strings.map('trimmed');
+var blanks     = strings.filter('blank');
+var replaced   = strings.map('replace', 'some', 'another');
+
+// collecting the element ids
+var ids = elements.map('id');
+
+// disabling all the elements
+elements.each('disable');
+
+// adding a class to every element
+elements.each('addClass', 'marked');
+
+// attaching event listener
+elements.each('on', 'click', 'toggleClass', 'marked');
+
+// or like this
+element.on('click', 'toggleClass', 'marked');
+</code>
+
+<h2>Why Do That?</h2>
+<p>
+  If you still didn't get it try to read the piece of code above. Just as a 
+  plain English text. The feature is really natural. There are lots and lots
+  of cases like this, when you just need to call a method or grab an attribute
+  on a collection, or attach an object method to an event.
+</p>
+<p>
+  Instead of writing dummy functions you just feed the generic method with a 
+  name and RightJS do all the rest for you. As the result you write more
+  compact and readable code. And compacter code means less misprints and bugs.
+</p>
+
+<h2>Is There Performance Overhead?</h2>
+<p>
+  Practically not. Yes there will be a tiny overhead if you process
+  thousands of arrays with just few elements in each. But you should not do 
+  that with the methods anyway. And you will need the good old <tt>for</tt> 
+  loop.
+</p>
+<p>
+  But in real cases there are practically no difference. In many cases it 
+  works event faster, because you don't initialize a new function, but just 
+  refer the existing one. And modern browsers optimize such requests pretty 
+  well.
+</p>
+<p>
+  Take a look at the <a href="/benchmarks">Benchmarks Page</a> and you'll see.
+</p>
