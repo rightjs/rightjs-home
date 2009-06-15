@@ -94,6 +94,8 @@ namespace :rightjs do
           :description => description,
           :example     => example
         })
+        
+        puts method.type
       end
     end
     
