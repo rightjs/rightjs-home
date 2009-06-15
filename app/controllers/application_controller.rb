@@ -1,14 +1,11 @@
-# Filters added to this controller apply to all controllers in the application.
-# Likewise, all the methods added will be available for all controllers.
-
 class ApplicationController < ActionController::Base
-  helper :all # include all helpers, all the time
-  protect_from_forgery # See ActionController::RequestForgeryProtection for details
+  helper :all
+  protect_from_forgery
 
-  # Scrub sensitive parameters from your log
-  # filter_parameter_logging :password
+  filter_parameter_logging :password
   
   include CodeHighlighter
+  include CrossReferences
   include AuthenticatedSystem
   
 protected
@@ -39,26 +36,5 @@ protected
   end
   
   helper_method :unit_path, :unit_method_path
-  
-  
-  #
-  # Documentation postprocessing
-  #
-  
-  after_filter :hook_api_references
-  
-  def hook_api_references
-    response.body.gsub! /\{([a-z]?)(\.|\#)([a-z]+)\}/i do
-      replacement = $1.blank? ? "#{$3}" : "#{$1}#{$2}#{$3}"
-      
-      if unit = (Unit.find_by_name($1) || @unit) and
-        method = unit.unit_methods.find_by_name($3)
-        
-        replacement = "<a href='/docs/#{unit.uri_name}##{method.name}'>#{replacement}</a>"
-      end
-      
-      replacement
-    end
-  end
   
 end
