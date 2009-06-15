@@ -1,0 +1,41 @@
+<h1>Assignments And Chains</h1><% @title_text = "Tutorials: Assignmens and Chains" %>
+
+<p>
+  RightJS designed in such a way, that anytime you change an object by method
+  this method will return a reference to the object it belongs. Simply saying
+  whenever you change an object as the result you have the object again and
+  free to call other its methods.
+</p>
+<p>
+  For example instead of this code
+</p>
+<code>
+var element = new Element('div');
+element.update('text');
+element.insertTo(document.body);
+element.hightlight();
+</code>
+<p>
+  You could write everything in a single line.
+</p>
+<code>
+new Element('div').insertTo(document.body).update('text').highlight();
+</code>
+<p>
+  Generally anytime you do something with objects in RightJS, change or get,
+  you end up with some data, there are almost no methods which returns
+  <tt>void</tt>, and this gives you an opportunity to chain just anything
+  you want.
+</p>
+<code>
+var classes = elements.map('className').map('split', ' ').flatten().uniq();
+
+elements.each('enable').each('on', 'click', 'radioClass', 'marked');
+
+new Xhr('/url').setOptions({..}).send({..}).cancel();
+
+new Fx.Morph('element').start({...}).pause().resume().cancel();
+</code>
+<p>
+  Think you've got the idea.
+</p>

@@ -1,45 +1,50 @@
-<h1>Call By Name</h1>
+<h1>Call By Name</h1><% @title_text = "Tutorials: Call By Name" %>
 
 <p>
-  <u>Call By Name</u> is one of the key features of RightJS and works in many
-   places in the framework.
+  Call By Name is one of the major features of RightJS and works in 
+  many places in the framework.
 </p>
 
 <p>
   The idea is really simple. It brings the dynamic functions involvement 
-  similar to the method <tt>invoke</tt> in some programming languages. You
-  just pass a method name and some optional arguments into the method of 
-  collection and it will call for the method by name.
+  similar to the method <tt>invoke</tt> in some programming languages. 
 </p>
 <code>
 ['foo', 'boo', 'moo'].invoke('replace', 'oo', 'aa');
+
+// -> ['faa', 'baa', 'maa']
 </code>
+<p>
+  You just pass a method name and some optional arguments into the method of 
+  collection and it will call for the method by name.
+</p>
 <p>
   But instead of creating such additional methods, RightJS extends the idea
   and basically lets you feed all the generic methods with method names.
 </p>
 <p>
-  Say you could collect disabled elements like this.
+  Say you could strip tags in each string in a list of strings like this
 </p>
 <code>
-inputs.filter(function(input) {
-  return input.disabled;
+strings.each(function(string) {
+  return string.stripTags();
 });
 </code>
 <p>
-  Or you could do just the same thing calling the method/attribute by name
+  Or you could do just the same thing calling the method by name
 </p>
 <code>
-  inputs.filter('disabled');
+strings.each('stripTags');
 </code>
 <p>
   RightJS works perfectly with both method or attribute names. There are some
   use cases.
 </p>
 <code>
+// some strings processing example
 var lowercased = strings.map('toLowerCase');
 var uppercased = strings.map('toUpperCase');
-var trimmed    = strings.map('trimmed');
+var trimmed    = strings.map('trim');
 var blanks     = strings.filter('blank');
 var replaced   = strings.map('replace', 'some', 'another');
 
@@ -52,10 +57,10 @@ elements.each('disable');
 // adding a class to every element
 elements.each('addClass', 'marked');
 
-// attaching event listener
+// attaching event listener to every element in a list
 elements.each('on', 'click', 'toggleClass', 'marked');
 
-// or like this
+// or you could do the same with a single element
 element.on('click', 'toggleClass', 'marked');
 </code>
 
@@ -69,22 +74,19 @@ element.on('click', 'toggleClass', 'marked');
 <p>
   Instead of writing dummy functions you just feed the generic method with a 
   name and RightJS do all the rest for you. As the result you write more
-  compact and readable code. And compacter code means less misprints and bugs.
+  compact and readable code. And more compact code means less misprints and 
+  bugs.
 </p>
 
 <h2>Is There Performance Overhead?</h2>
 <p>
-  Practically not. Yes there will be a tiny overhead if you process
-  thousands of arrays with just few elements in each. But you should not do 
-  that with the methods anyway. And you will need the good old <tt>for</tt> 
-  loop.
+  Practically there is no difference between specifying a real function or a
+  name. As the matter of fact it will work even faster than if you just create
+  a dummy function, bind it to the object and call it's method manually.
+  Because you eliminate the dummy and bind functions, and specify your method
+  by reference without actually initializing new function.
 </p>
 <p>
-  But in real cases there are practically no difference. In many cases it 
-  works event faster, because you don't initialize a new function, but just 
-  refer the existing one. And modern browsers optimize such requests pretty 
-  well.
-</p>
-<p>
-  Take a look at the <a href="/benchmarks">Benchmarks Page</a> and you'll see.
+  As the result, in many cases of routine operations, it works faster. Take a
+  look at the <a href="/benchmarks">Benchmarks Page</a> and you'll see.
 </p>

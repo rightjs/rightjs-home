@@ -43,7 +43,8 @@ module ApplicationHelper
   end
   
   def link_to_unit(unit)
-    linkt_to unit.name, unit
+    unit = Unit.find_by_name(unit) if unit.is_a?(String)
+    link_to unit.name, unit
   end
   
   def link_to_unit_method(method)
