@@ -1681,7 +1681,7 @@ var Event = new Class(Event, {
 Event.Base = new Class(Event.NATIVE, {
   extend: {
     // basic default events options
-    OPTIONS: {
+    Options: {
       bubbles:    true,
       cancelable: true,
       altKey:     false,
@@ -1765,7 +1765,7 @@ Event.Base = new Class(Event.NATIVE, {
    * @return Object clean options
    */
   options: function(name, options) {
-    options = Object.merge({}, Event.Base.OPTIONS, this.OPTIONS, options);
+    options = Object.merge({}, Event.Base.Options, this.Options, options);
     options.name = name;
     
     return options;
@@ -1812,7 +1812,7 @@ Event.Mouse = new Class(Event.Base, {
   },
   
   // default mouse events related options
-  OPTIONS: {
+  Options: {
     pointerX: 0,
     pointerY: 0,
     button:   0
@@ -1890,7 +1890,7 @@ Event.Keyboard = new Class(Event.Base, {
   },
   
   // default keyboard related events options
-  OPTIONS: {
+  Options: {
     keyCode:  0,
     charCode: 0
   },
@@ -3866,7 +3866,7 @@ var Xhr = new Class(Observer, {
     EVENTS: $w('success failure complete request cancel create'),
     
     // default options
-    OPTIONS: {
+    Options: {
       headers: {
         'X-Requested-With': 'XMLHttpRequest',
         'Accept': 'text/javascript, text/html, application/xml, text/xml, */*'
@@ -3905,7 +3905,7 @@ var Xhr = new Class(Observer, {
     this.$super(options);
     
     // copying some options to the instance level attributes
-    for (var key in Xhr.OPTIONS)
+    for (var key in Xhr.Options)
       this[key] = this.options[key];
       
     this.initCallbacks();
@@ -4076,7 +4076,7 @@ var Xhr = new Class(Observer, {
   // initializes the request callbacks
   initCallbacks: function() {
     // global spinners are handled separately
-    if (this.spinner == Xhr.OPTIONS.spinner) this.spinner = null;
+    if (this.spinner == Xhr.Options.spinner) this.spinner = null;
     
     // creating an automatical spinner handling
     this.onCreate('showSpinner').onComplete('hideSpinner').onCancel('hideSpinner');
@@ -4100,10 +4100,10 @@ Observer.create(Xhr);
 $ext(Xhr, {
   counter: 0,
   showSpinner: function() {
-    if (this.OPTIONS.spinner) $(this.OPTIONS.spinner).show();
+    if (this.Options.spinner) $(this.Options.spinner).show();
   },
   hideSpinner: function() {
-    if (this.OPTIONS.spinner) $(this.OPTIONS.spinner).hide();
+    if (this.Options.spinner) $(this.Options.spinner).hide();
   }
 });
 
@@ -4254,18 +4254,18 @@ var Fx = new Class(Observer, {
   extend: {
     EVENTS: $w('start finish cancel'),
     
-    // default options
-    OPTIONS: {
-      fps:        60,
-      duration:   'normal',
-      transition: 'Cos'
-    },
-
     // named durations
-    DURATIONS: {
+    Durations: {
       short:  200,
       normal: 400,
       long:   800
+    },
+    
+    // default options
+    Options: {
+      fps:        60,
+      duration:   'normal',
+      transition: 'Cos'
     },
 
     // list of basic transitions
@@ -4304,9 +4304,10 @@ var Fx = new Class(Observer, {
    */
   start: function() {
     if (this.queue(arguments)) return this;
+    this.prepare.apply(this, arguments);
     
     this.transition = Fx.Transitions[this.options.transition] || this.options.transition;
-    var duration    = Fx.DURATIONS[this.options.duration]     || this.options.duration;
+    var duration    = Fx.Durations[this.options.duration]     || this.options.duration;
     
     this.steps  = (duration / 1000 * this.options.fps * (Browser.IE ? 0.5 : 1)).ceil();
     this.number = 1;
@@ -4320,7 +4321,7 @@ var Fx = new Class(Observer, {
    * @return Fx this
    */
   finish: function() {
-    return this.stopTimer().fire('finish', this);
+    return this.stopTimer().fire('finish').next();
   },
   
   /**
@@ -4329,7 +4330,7 @@ var Fx = new Class(Observer, {
    * @return Fx this
    */
   cancel: function() {
-    return this.stopTimer().fire('cancel', this);
+    return this.stopTimer().fire('cancel').next();
   },
   
   /**
@@ -4351,6 +4352,8 @@ var Fx = new Class(Observer, {
   },
   
 // protected
+  // dummy method, should be implemented in a subclass
+  prepare: function() {},
 
   // dummy method, should implement the actual things happenning
   render: function(value) {},
@@ -4394,15 +4397,21 @@ var Fx = new Class(Observer, {
     chain = this.constructor.$chains[uid];
 
     chain.push([args, this]);
-    this.onFinish(function() {
+    
+    this.next = function() {
       var next = chain.shift(); next = chain[0];
       if (next) {
         next[1].$chained = true;
         next[1].start.apply(next[1], next[0]);
       }
-    });
+      return this;
+    };
 
     return chain[0][1] !== this;
+  },
+  
+  next: function() {
+    return this;
   }
   
   
@@ -4513,6 +4522,8 @@ Fx.Morph = new Class(Fx, {
     this.$super(options);
     this.element = $(element);
   },
+
+// protected
   
   /**
    * starts the effect
@@ -4520,7 +4531,7 @@ Fx.Morph = new Class(Fx, {
    * @param mixed an Object with an end style or a string with the end class-name(s)
    * @return Fx this
    */
-  start: function(style) {
+  prepare: function(style) {
     this.endStyle   = this._findStyle(style);
     this.startStyle = this._getStyle(this.element, Object.keys(this.endStyle));
 
@@ -4529,7 +4540,6 @@ Fx.Morph = new Class(Fx, {
     return Object.keys(this.endStyle).length ? this.$super() : this.finish();
   },
   
-// protected
   render: function(delta) {
     var style = {}, value;
     
@@ -4668,11 +4678,13 @@ Fx.Morph = new Class(Fx, {
  */
 Fx.Highlight = new Class(Fx.Morph, {
   extend: {
-    OPTIONS: Object.merge(Fx.OPTIONS, {
+    Options: Object.merge(Fx.Options, {
       color:      '#FF8',
       transition: 'Sin'
     })
   },
+  
+// protected
   
   /**
    * starts the transition
@@ -4681,7 +4693,7 @@ Fx.Highlight = new Class(Fx.Morph, {
    * @param String optional fallback color
    * @return self
    */
-  start: function(start, end) {
+  prepare: function(start, end) {
     var end_color = end || this._getStyle(this.element, 'backgroundColor');
     
     if (end_color == 'transparent' || end_color == 'rgba(0, 0, 0, 0)') {
@@ -4737,12 +4749,13 @@ Fx.Tween = new Class(Fx.Morph, {
  */
 Fx.Slide = new Class(Fx.Tween, {
   extend: {
-    OPTIONS: Object.merge(Fx.OPTIONS, {
+    Options: Object.merge(Fx.Options, {
       direction: 'top'
     })
   },
   
-  start: function(how) {
+// protected  
+  prepare: function(how) {
     this.setHow(how);
 
     this.element.show();
@@ -4755,7 +4768,6 @@ Fx.Slide = new Class(Fx.Tween, {
     return this.$super(this._endStyle(this.options.direction));
   },
 
-// protected
   _getBack: function() {
     this.element.setStyle(this.styles);
   },
@@ -4802,13 +4814,13 @@ Fx.Slide = new Class(Fx.Tween, {
  * Copyright (C) 2008-2009 Nikolay V. Nemshilov aka St. <nemshilov#gma-ilc-om>
  */
 Fx.Fade = new Class(Fx.Tween, {
-  start: function(how) {
+  prepare: function(how) {
     this.setHow(how);
     
     if (this.how == 'in')
       this.element.setOpacity(0).show();
     
-    this.$super({opacity: typeof(how) == 'number' ? how : this.how == 'in' ? 1 : 0});
+    return this.$super({opacity: typeof(how) == 'number' ? how : this.how == 'in' ? 1 : 0});
   }
 });
 
@@ -4874,7 +4886,7 @@ Element.addMethods({
    * @return Element self
    */
   morph: function(style, options) {
-    return this.fx('morph', [style, options]);
+    return this.fx('morph', [style, options || {}]); // <- don't replace with arguments
   },
   
   /**

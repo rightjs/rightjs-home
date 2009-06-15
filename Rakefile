@@ -144,5 +144,14 @@ namespace :rightjs do
     
     puts
   end
+  
+  desc 'Cleans up the pages cache'
+  task :clean_cache do
+    Dir.open("#{RAILS_ROOT}/public").each do |entry|
+      if %w(tutorials blog).include?(entry) or entry =~ /[a-z\-_]+\.html/
+        FileUtils.rm_rf "#{RAILS_ROOT}/public/#{entry}"
+      end
+    end
+  end
 end
 
