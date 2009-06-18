@@ -11,11 +11,9 @@
   </div>
 <% else -%>
   <div class="box">
-    <label>About Project</label>
+    <label>Get Latest Version</label>
     <ul>
-      <%= menu_link_to 'Philosophy', '/philosophy' %>
-      <%= menu_link_to 'Benchmarks', '/benchmarks' %>
-      <%= menu_link_to 'Credits',    '/credits' %>
+      <%= menu_link_to "RightJS v#{RIGHTJS_VERSION}", "/builds/current/right.js" %>
     </ul>
   </div>
   <div class="box">
@@ -27,6 +25,15 @@
       <!--%= menu_link_to 'Showcases', '/showcases' %-->
     </ul>
   </div>
+  <div class="box">
+    <label>About Project</label>
+    <ul>
+      <%= menu_link_to 'Philosophy', '/philosophy' %>
+      <%= menu_link_to 'Benchmarks', '/benchmarks' %>
+      <%= menu_link_to 'Credits',    '/credits' %>
+    </ul>
+  </div>
+  
   
   <div class="box">
     <label>Community</label>

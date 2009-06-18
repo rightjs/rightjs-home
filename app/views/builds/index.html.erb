@@ -64,7 +64,7 @@ var calc_num = $E('div', {id: 'num'}).insertTo(calc_bar);
 build_form.insert(calc, 'top');
 
 var CalcFx = new Class(Fx.Morph, {
-  start: function(start_size, end_size) {
+  prepare: function(start_size, end_size) {
     this.startSize = start_size;
     this.endSize   = end_size;
     
