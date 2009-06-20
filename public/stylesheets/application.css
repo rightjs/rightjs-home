@@ -210,11 +210,12 @@ div.shot img {
   padding: 5pt;
 }
 
-div#rss-feed {
+div#rss-feed, div#twitter {
   padding: 5pt;
+  padding-bottom: 0;
 }
 
-div#rss-feed img {
+div#rss-feed img, div#twitter img {
   vertical-align: top;
 }
 
