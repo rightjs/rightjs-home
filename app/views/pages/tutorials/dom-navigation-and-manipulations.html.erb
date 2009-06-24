@@ -1,0 +1,124 @@
+<h1>DOM Navigation And Manipulations</h1><% @title_text = 'DOM Navigation And Manipulations' %>
+<% controller.instance_eval{ @unit = Unit.find_by_name('Element')}%>
+<p>
+  RightJS inherits its dom-navigation principles from the Prototype and MooTools projects. As for the dom-manipulations it is  mix of ideas from Prototype, MooTools and jQuery.
+</p>
+
+<h2>Basic Elements Selection</h2>
+<p>
+  RightJS provide two pretty much standard methods to select elements on the page, <tt>$('element-id')</tt> and <tt>$$('css rule')</tt>. The first one finds an element by its <tt>ID</tt> and the second one selects all the elements on the page which fits given css-rule.
+</p>
+<code>
+var element = $('element-id');
+var elements = $('div > div.foo + div.bar');
+</code>
+<p>
+  RightJS supports all the CSS selectors up to the  Level 3. If the browsers supports the native css-selectors functionality then it will be used, otherwise all the queries will be simultaneously handled by an internal javascript based selector engine. This is a cross-browser feature and works everywhere starting from IE6.
+</p>
+
+<h2>Sub-Nodes Selection</h2>
+<p>
+  RightJS provides a number of methods to perform various selections starting from a given element.
+  <table>
+    <tr><th>Method</th>                <th>Description</th></tr>
+    <tr><td>{Element#parent}</td>      <td>the parent element</td></tr>
+    <tr><td>{Element#parents}</td>     <td>all the parent elements</td></tr>
+    <tr><td>{Element#subNodes}</td>    <td>first level descendants</td></tr>
+    <tr><td>{Element#siblings}</td>    <td>all the siblings</td></tr>
+    <tr><td>{Element#nextSiblings}</td><td>next siblings</td></tr>
+    <tr><td>{Element#prevSiblings}</td><td>previous siblings</td></tr>
+    <tr><td>{Element#next}</td>        <td>next sibling</td></tr>
+    <tr><td>{Element#prev}</td>        <td>previous sibling</td></tr>
+    <tr><td>{Element#first}</td>       <td>first matching descendant at any level</td></tr>
+    <tr><td>{Element#select}</td>      <td>all the matching descendants at any levels</td></tr>
+  </table>
+</p>
+<p>
+  All the methods can receive a css-rule as an argument. If such a css-rule was specified then the result will be altered according to the rule, collections will be filtered out keeping only the matching elements and methods which supposed to receive a single element will skip elements until find the first matching one, then return it.
+</p>
+<code>
+/*
+<div id="top">
+  <div id="second-1">
+    <div id="third-1"></div>
+  </div>
+  <div id="second-2"></div>
+  <div id="second-3"></div>
+</div>
+*/
+$('third-1').parent();       // -> div#second-1
+$('third-1').parent('#top'); // -> div#top
+
+$('top').select('div');      // -> all the subdivs
+
+$('top').first('div');       // -> div#second-1
+</code>
+<p>
+  As usual you can use all the CSS Level 3 magic in your selectors.
+</p>
+
+<h2>Basic Manipulations</h2>
+<p>
+  There's just one generic method which, depends on the data provided, handles all the possible element manipulations.
+</p>
+<p><tt>{Element#insert}(mixed content[, String position])</tt></p>
+<p>
+  Content might be one of the following
+  <ul>
+    <li>A string html content</li>
+    <li>An element instance</li>
+    <li>An iterable object of any kind, Array, NodeList, arguments, etc.
+  </ul>
+</p>
+<p>
+  And the <tt>position</tt> argument might be one of the following
+  <ul>
+    <li>top</li>
+    <li>bottom - default</li>
+    <li>before</li>
+    <li>after</li>
+    <li>instead</li>
+  </ul>
+</p>
+<code>
+$('element').insert('<div>some html code</div>');
+
+$('element').insert(another_element, 'top');
+
+$('element').insert([element1, element2], 'after');
+
+$('element').insert(anther_element.childNodes, 'before');
+</code>
+<p>
+  Additionally you can send to the method a hash where the keys will be the position and the values are the content
+</p>
+<code>
+$('element').insert({
+  top:    element1,
+  bottom: [element2, element3],
+  after:  element4.childNodes
+});
+</code>
+
+<h2>DOM Manipulation Shortcuts And Additional Methods</h2>
+<p>
+  There are a few nice shortcuts and additional methods for most of the dom-mainpulation operations which will make your application code more compact and readable
+  
+  <table>
+    <tr><th>Method</th><th>Description</th></tr>
+    <tr><td>{Element#insertTo}</td><td>inserts the element into given one</td></tr>
+    <tr><td>{Element#replace}</td> <td>replaces the element with given content</td></tr>
+    <tr><td>{Element#update}</td>  <td>updates the element content with the given one</td></tr>
+    <tr><td>{Element#wrap}</td>    <td>wraps the element with another element</td></tr>
+    <tr><td>{Element#clean}</td>   <td>removes all the child nodes out of the element</td></tr>
+    <tr><td>{Element#empty}</td>   <td>checks if the element has no text or sub-elements</td></tr>
+  </table>
+</p>
+<code>
+var element = $E('div').insertTo(document.body).update('some html');
+
+element.empty();         // -> false
+element.clean().empty(); // -> true
+
+element.replace('here was the element');
+</code>
