@@ -293,6 +293,10 @@ form#custom-build-form div#calc div#num {
 
 
 /* BEGIN code hightlightning */
+tt {
+  background: #EEE;
+  padding: 0 4pt;
+}
 code {
   font-family: monospace;
   white-space: pre;
@@ -300,6 +304,7 @@ code {
   display: block;
   padding: 10pt;
   background: #EEE;
+  color: #444;
 }
 
 code s, code i, code u, code b {

@@ -1,0 +1,167 @@
+<h1>Visual Effects</h1><% @title_text = 'Tutorials: Visual Effects' %>
+
+<p>
+  In the default build, RightJS provides basic visual effects support. This includes the generic elements morphing interface and several shortcuts for the most common operations.
+</p>
+
+<h2>Generic Elements Morphing Interface</h2>
+<p>
+  {Fx.Morph} is the basic class for all the element visual effects. It provides a generic interface where you can morph your elements from their current conditions to any other. There is nothing tricky, you just specify the end style and optionally duration and transition type, and then the things happen automatically.
+</p>
+<code>
+new Fx.Morph('element').start({
+  background: 'yellow',
+  width: '200px'
+});
+
+new Fx.Morph('element', {
+  duration: 'short', transition: 'Sin'
+}).start({...});
+</code>
+<p>
+  You free to use any standard css notation in your styles, colors in short or long hex form, colors in rgb form, or any of the 12 standard color names. Dimensions might be in any units, but it's better if you keep them consistent everything in pixels or points. And yes you can use the one-line definitions like <tt>border: '10px solid yellow'</tt>
+</p>
+<p>
+  Additionally instead of specifying a particular style, you can specify one or several of your css classes. RightJS will figure out the end style anyway.
+</p>
+<code>
+new Fx.Morph('element').start('end-class');
+
+new Fx.Morph('element').start('marked big special');
+</code>
+
+<h2>Options</h2>
+<p>
+  The duration option might be one of the following
+  <ul>
+    <li>'short'  - 200 ms</li>
+    <li>'normal' - 400 ms (default)</li>
+    <li>'long'   - 800 ms</li>
+    <li>Any number value representing the duration in milliseconds</li>
+  </ul>
+</p>
+<p>
+  The transition option might be one of the following
+  <ul>
+    <li>'Cos' - slow at the beginning and the end, and fast in the middle</li>
+    <li>'Sin' - fast at the beginning and the end, and slow in the middle</li>
+    <li>'Exp' - slow at the beginning and rapidly throttles to the end</li>
+    <li>'Log' - fast at the beginning and rapidly slows down to the end</li>
+    <li>Any function which represents your own custom transition</li>
+  </ul>
+</p>
+<p>
+  Additionally visual effects support the events handling and you can pass the following options to attach some callbacks on instance
+  <ul>
+    <li>onStart</li>
+    <li>onFinish</li>
+    <li>onCancel</li>
+  </ul>
+</p>
+
+<h2>Frequently Used Visual Effects</h2>
+<p>
+  In the default package RightJS provides several frequently used visual effects
+  <ul>
+    <li>{Fx.Highlight}</li>
+    <li>{Fx.Fade}</li>
+    <li>{Fx.Slide}</li>
+  </ul>
+  The use cases are pretty much similar to the basic <tt>Fx.Morph</tt> interface
+</p>
+<code>
+new Fx.Highlight('element').start();
+
+new Fx.Fade('element').start();
+
+new Fx.Slide('element').start();
+</code>
+
+<h2>Bidirectional Effects</h2>
+<p>
+  The {Fx.Fade} and {Fx.Slide} effects belong to the family of bidirectional or twin effects. Those effects might work in both back and forth directions. By default the effects will check the element state and determine the direction automatically, but you can specify the direction manually if you need.
+</p>
+<code>
+// hide -> show -> hide -> show
+new Fx.Fade('element').start();
+new Fx.Fade('element').start();
+new Fx.Fade('element').start();
+new Fx.Fade('element').start();
+
+
+// hide -> hide -> show -> show
+new Fx.Slide('element').start('out');
+new Fx.Slide('element').start('out');
+new Fx.Slide('element').start('in');
+new Fx.Slide('element').start('in');
+</code>
+
+<h2>DOM Level Visual Effect Shortcuts</h2>
+<% controller.instance_eval{ @unit = Unit.find_by_name('Fx.Element')} %>
+<p>
+  There are several shortcuts which let you run visual effects directly from the dom-element instances, without manual effects creation.
+  <ul>
+    <li>{Fx.Element#morph}(mixed style[, Object fx_options])</li>
+    <li>{Fx.Element#highlight}([end_color[, start_color[, Object fx_options]]])</li>
+    <li>{Fx.Element#fade}([String direction[, Object fx_options]])</li>
+    <li>{Fx.Element#slide}([String direction[, Object fx_options]])</li>
+  </ul>
+</p>
+<code>
+$('element').morph({background: 'green'});
+
+$('element').highlight();
+
+$('element').fade();
+
+$('element').slide();
+</code>
+<p>
+  Additionally you can send effect name and options directly into the element <tt>hide/show/toggle/radio</tt> methods.
+</p>
+<code>
+$('element').hide('slide');
+$('element').show('fade');
+
+$('element').toggle('slide', {
+  direction: 'left', duration: 'long'
+});
+</code>
+
+<h2>Custom Visual Effects</h2>
+<p>
+  With RightJS it is really simple to create your own reusable visual effects, which do precisely what you need in your application.
+</p>
+<p>
+  For example take a look at the <%= link_to 'custom build page', builds_path %>. There is some sort of sleek progress bar which shows you the size of the result build. This is basically a morph effect, but then it nicely changes the size number while the effect running, plus there is a fancy highlighting happens at the same time.
+</p>
+<p>
+  You can do such things real simple. There are two methods in every visual effect which needs to be implemented <tt>prepare</tt> and <tt>render</tt>, first one gets called right before the effect runs and receives all the same arguments you send into the <tt>start</tt> method when you start the effect, and the <tt>render</tt> method is where you calculate and make all the changes in the element at every step, during the effect run this method will receive float numbers from <tt>0</tt> to <tt>1</tt> which you can use to calculate your current state.
+</p>
+<p>
+  Then you just use the exceptional OOP abilities of RightJS, inherit the basic visual effect class and do whatever you need. The build calculator visual effect looks like that.
+</p>
+<code>
+var CalcFx = new Class(Fx.Morph, {
+  prepare: function(start_size, end_size) {
+    this.startSize = start_size;
+    this.endSize   = end_size;
+
+    this.element.highlight('brown', '#8A7');
+
+    this.$super({
+      height: $('calc-box').sizes().y * (end_size/max_size) + 'px'
+    });
+  },
+
+  render: function(delta) {
+    var size = this.startSize + (this.endSize - this.startSize) * delta;
+    
+    $('calc-num').update(((size/100).round()/10).toString() + 'k');
+
+    this.$super(delta);
+  }
+});
+
+new CalcFx('calc-bar').start(prev_size, new_size);
+</code>
