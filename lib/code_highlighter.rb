@@ -38,8 +38,8 @@ protected
     [/([^a-zA-Z0-9_]|^)([A-Z][a-zA-Z_0-9]+)(?![a-zA-Z0-9_])/, '<b class="unit">\2</b>'],
     
     # attributes and methods
-    [/(\.)([a-z_][a-z0-9_]*)(?![a-z0-9_\(])/i, '<u>\2</u>'],
-    [/(\.)([a-z_][a-z0-9_]*)(\()/i, '<u class="method">\2</u>\3']
+    [/(\.)([a-z_$][a-z0-9_]*)(?![a-z0-9_\(])/i, '<u>\2</u>'],
+    [/(\.)([a-z_$][a-z0-9_]*)(\()/i, '<u class="method">\2</u>\3']
   ]
 
   def hightlight_code

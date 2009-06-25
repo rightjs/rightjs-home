@@ -9,21 +9,24 @@ module CrossReferences
   end
   
   def hook_api_references
-    response.body.gsub! /\{([a-z]*)((\.|\#)?)([a-z_]*)\}/i do |match|
-      unit   = $1.blank? ? @unit : Unit.find_by_name($1) || $1.dup
-      method = $4.blank? ? nil : unit.is_a?(Unit) ? unit.unit_methods.find_by_name($4) || $4.dup : $4.dup
-      type   = $2.dup
+    response.body.gsub! /\{([a-z\.#]+[a-z])\}/i do |match|
+      desc = $1.dup
       
-      unless match =~ /^\{\s*\}$/
-        match = unit == @unit ? "#{method.is_a?(UnitMethod) ? method.name : method}" :
-          "#{unit.is_a?(Unit) ? unit.name : unit}#{type}#{method.is_a?(UnitMethod) ? method.name : method}"
-        
-        match = if unit.is_a?(Unit) && method.is_a?(UnitMethod)
+      unit = Unit.find_by_name(desc) || Unit.find_by_name(desc.slice(0, desc.rindex(/\.|#[a-z]+$/))) || @unit
+      
+      match = if unit
+        if unit.name == desc
+          "<a href='#{unit_path(unit)}' class='api-ref'>#{unit.name}</a>"
+        elsif method = unit.unit_methods.find_by_name(desc.slice(desc.rindex(/\.|#/)+1, desc.size))
+          match = unit == @unit ? method.name : "#{unit.name}#{desc.slice(unit.name.size, 1)}#{method.name}"
           "<a href='#{unit_method_path(method)}' class='api-ref'>#{match}</a>"
-        elsif unit.is_a?(Unit) && method.blank?
-          "<a href='#{unit_path(unit)}' class='api-ref'>#{match}</a>"
+        else
+          desc
         end
+      else
+        desc
       end
+      
       match
     end
   end
