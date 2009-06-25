@@ -2,7 +2,7 @@
 # represents a blog post
 #
 class Post < ActiveRecord::Base
-  acts_as_uri_named :uri_name_field => :title, :validate => false
+  acts_as_uri_named :create_from => :title
   
   validates_presence_of :title, :anonse
   
