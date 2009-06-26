@@ -32,6 +32,14 @@ new Fx.Morph('element').start('marked big special');
 
 <h2>Options</h2>
 <p>
+  The basic visual effects constructor might receive an options object with the following keys
+  <ul>
+    <li>duration - the effect duration</li>
+    <li>transition - type of effect transition</li>
+    <li>queue - marker if the effect should be queued (true by default)</li>
+  </ul>
+</p>
+<p>
   The duration option might be one of the following
   <ul>
     <li>'short'  - 200 ms</li>
@@ -128,6 +136,29 @@ $('element').toggle('slide', {
 });
 </code>
 
+<h2>Effects Queueing</h2>
+<p>
+  By default RightJS will queue all the visual effects you run on any elements, so you could safely define an element effects chain from your code like that.
+</p>
+<code>
+$('element').morph({
+  width: '400px', fontSize: '40px'
+}).highlight();
+
+$('element').show('fade').highlight();
+
+// etc.
+</code>
+<p>
+  But if you need two or more effects were running at the same time, you can specify the option <tt>queue: false</tt> with your effect options and then this effect won't get queued and will start immediately. 
+</p>
+<code>
+new Fx.Morph('element').start({width: '400px'});
+new Fx.Highlight('element', {queue: false});
+
+$('element').fade('out', {queue: false});
+</code>
+
 <h2>Custom Visual Effects</h2>
 <p>
   With RightJS it is really simple to create your own reusable visual effects, which do precisely what you need in your application.
@@ -147,7 +178,7 @@ var CalcFx = new Class(Fx.Morph, {
     this.startSize = start_size;
     this.endSize   = end_size;
 
-    this.element.highlight('brown', '#8A7');
+    this.element.highlight('brown', '#8A7', {queue: false});
 
     this.$super({
       height: $('calc-box').sizes().y * (end_size/max_size) + 'px'

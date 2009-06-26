@@ -68,7 +68,7 @@ var CalcFx = new Class(Fx.Morph, {
     this.startSize = start_size;
     this.endSize   = end_size;
     
-    this.element.highlight('brown', '#8A7');
+    this.element.highlight('brown', '#8A7', {queue: false});
     
     this.$super({height: (calc.sizes().y * (end_size / max_size)) + 'px'});
   },
