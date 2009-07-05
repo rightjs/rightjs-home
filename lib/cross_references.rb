@@ -12,7 +12,7 @@ module CrossReferences
     response.body.gsub! /\{([a-z\.#]+[a-z])\}/i do |match|
       desc = $1.dup
       
-      unit = Unit.find_by_name(desc) || Unit.find_by_name(desc.slice(0, desc.rindex(/\.|#[a-z]+$/))) || @unit
+      unit = Unit.find_by_name(desc) || Unit.find_by_name(desc.slice(0, desc.rindex(/\.|#[a-z]+$/i) || 0)) || @unit
       
       match = if unit
         if unit.name == desc
