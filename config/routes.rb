@@ -1,6 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
   
-  map.resources :builds
+  map.resources :builds, :collection => { :custom => :post }
   map.resources :posts, :as => :blog
   
   map.with_options :controller => 'sessions' do |s_map|

@@ -1,7 +1,7 @@
 class BuildsController < ApplicationController
   skip_before_filter :verify_authenticity_token
   
-  #caches_page :index
+  caches_page :index
   
   def index
     # grabbing the custom build sizes for some javascript nice effects
@@ -27,6 +27,10 @@ class BuildsController < ApplicationController
     end
     
     send_file(options.join)
+  end
+  
+  def custom
+    create
   end
   
 protected

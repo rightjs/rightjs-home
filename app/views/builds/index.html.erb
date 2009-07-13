@@ -9,10 +9,11 @@
 </p>
 
 <h2>Custom Builder</h2>
-<form action="<%= builds_path %>" id="custom-build-form" method="post">
+<form action="<%= custom_builds_path %>" id="custom-build-form" method="post">
   <p>
     <ul>
       <%= [
+        ['cookie',   'Cookies support'],
         ['form',     'Form Additional Features'],
         ['xhr',      'Ajax Features'],
         ['fx',       'Basic Visual Effects'],

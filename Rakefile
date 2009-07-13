@@ -119,8 +119,8 @@ namespace :rightjs do
     
     FileUtils.mkdir_p RIGHTJS_BUILD + "/custom"
     
-    (0..15).each do |i|
-      id = "%04d" % i.to_s(2)
+    (0..31).each do |i|
+      id = "%05d" % i.to_s(2)
       
       options = []
       
