@@ -58,4 +58,12 @@ module ApplicationHelper
   def d(date)
     date.to_s(:db).split(' ').first if date
   end
+  
+  def set_title(text)
+    @title_text = text
+  end
+  
+  def set_unit_scope(name)
+    controller.instance_eval{ @unit = Unit.find_by_name(name)}
+  end
 end

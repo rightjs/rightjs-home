@@ -52,6 +52,20 @@ label {
   display: block;
 }
 
+dl {
+  
+}
+
+dl dt {
+  font-weight: normal;
+  font-family: Georgia;
+  color: #8A7;
+  font-size: 1.4em;
+}
+
+dl#tutorials-index {
+  margin: 20pt;
+}
 
 ul#classes-list li label {
   font-size: 1.1em;
