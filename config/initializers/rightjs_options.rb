@@ -2,7 +2,7 @@
 # Here are the global site level options
 #
 
-RIGHTJS_VERSION       = "1.2.0"
+RIGHTJS_VERSION       = "1.2.1"
 
 RIGHTJS_ROOT          = "#{RAILS_ROOT}/lib/right_js"
 RIGHTJS_BUILD         = "#{RAILS_ROOT}/public/builds/current"
