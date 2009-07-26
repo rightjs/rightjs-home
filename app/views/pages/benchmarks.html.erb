@@ -7,31 +7,18 @@
 <p>
   For the tests the following browsers were used.
   <ul>
-    <li><a href="#safari">Safari</a> Version 4 Public Beta (5528.17) OS X 10.5.7</li>
-    <li><a href="#firefox">Firefox</a> 3.0.10 (Gecko/2009042315 ) OS X 10.5.7</li>
+    <li><a href="#safari">Safari</a> Version 4.0.2 (5530.19) OS X 10.5.7</li>
+    <li><a href="#firefox">Firefox</a> 3.0.12 (Gecko/2009070609 ) OS X 10.5.7</li>
     <li><a href="#opera">Opera</a> 9.62 (Build 5256) OS X 10.5.7</li>
     <li><a href="#ie6">Internet Explorer</a> 6.0.2900.2180 Windows XP SP2 on VMWare Fusion</li>
     <li><a href="#ie7">Internet Explorer</a> 7.0.5730.13 Windows XP SP2 on VMWare Fusion</li>
     <li><a href="#ie8">Internet Explorer</a> 8.0.6001.18702 Windows XP SP3 on VMWare Fusion</li>
-    <li><a href="#chrome">Google Chrome</a> 1.0.154.65 Windows XP SP2 on VMWare Fusion</li>
+    <li><a href="#chrome">Google Chrome</a> 2.0.172.73 Windows XP SP3 on VMWare Fusion</li>
   </ul>
-</p>
-
-<p>
-  <b style="color: grey">Impotant Note</b>: There is a difference between tests for RightJS/Prototype/MooTools and tests for jQuery/Dojo/YUI. In all the cases when elements building was involved the first group was honestly building all the elements as the documentation for the test says, but the second group, partly because of lack of functionality, partly I don't know why, they are just feeding their methods with strings of HTML which already contains all the necessary arguments and constructions.
-</p>
-<p>
-  They probably could do the things in pure JavaScript/DOM right in the tests; it would not affect the performance a lot but definitely would look ugly. The point is that you should keep in mind that the first group has additional functionality and nice interfaces and as the result does more work than the second group. So the results for those cases cannot be directly compared.
-</p>
-<p>
-  But that all is not much interesting, because RightJS is a real fighter and beats 'em all even on those tough conditions.
 </p>
 
 <a name="safari"></a>
 <h1>Safari</h1>
-<p>
-  More than twice faster than Prototype, MooTools or YUI and crazy 4.5 time faster than jQuery
-</p>
 <p>
   <div class="shot">
     <a href="/images/benchmarks/safari.png" target="_blank"><%= image_tag 'benchmarks/safari-thmb.png' %></a>
@@ -41,19 +28,21 @@
 <a name="firefox"></a>
 <h1>Firefox</h1>
 <p>
-  Faster than MooTools or YUI, twice faster than jQuery and almost four times faster than Prototype
-</p>
-<p>
   <div class="shot">
     <a href="/images/benchmarks/ff.png" target="_blank"><%= image_tag 'benchmarks/ff-thmb.png' %></a>
   </div>
 </p>
 
+<a name="chrome"></a>
+<h1>Google Chrome</h1>
+<p>
+  <div class="shot">
+    <a href="/images/benchmarks/chrome.png" target="_blank"><%= image_tag 'benchmarks/chrome-thmb.png' %></a>
+  </div>
+</p>
+
 <a name="opera"></a>
 <h1>Opera</h1>
-<p>
-  Faster than MooTools or YUI, twice faster than jQuery or Prototype
-</p>
 <p>
   <div class="shot">
     <a href="/images/benchmarks/opera.png" target="_blank"><%= image_tag 'benchmarks/opera-thmb.png' %></a>
@@ -62,9 +51,6 @@
 
 <a name="ie6"></a>
 <h1>Internet Explorer 6</h1>
-<p>
-  Faster than jQuery, more than twice faster than MooTools or Prototype
-</p>
 <p>
   <div class="shot">
     <a href="/images/benchmarks/ie6.png" target="_blank"><%= image_tag 'benchmarks/ie6-thmb.png' %></a>
@@ -75,9 +61,6 @@
 <a name="ie7"></a>
 <h1>Internet Explorer 7</h1>
 <p>
-  Faster than jQuery, twice faster than MooTools and almost three times faster than Prototype
-</p>
-<p>
   <div class="shot">
     <a href="/images/benchmarks/ie7.png" target="_blank"><%= image_tag 'benchmarks/ie7-thmb.png' %></a>
   </div>
@@ -86,26 +69,11 @@
 <a name="ie8"></a>
 <h1>Internet Explorer 8</h1>
 <p>
-  Faster than jQuery, twice faster than MooTools and more than five times faster than Prototype
-</p>
-<p>
   <div class="shot">
     <a href="/images/benchmarks/ie8.png" target="_blank"><%= image_tag 'benchmarks/ie8-thmb.png' %></a>
   </div>
 </p>
 
-
-<a name="chrome"></a>
-<h1>Google Chrome</h1>
-<p>
-  Google Chrome based on the same WebKit engine as Safari, so the result is predictable, five times faster
-  than jQuery and twice as fast as Prototype or MooTools.
-</p>
-<p>
-  <div class="shot">
-    <a href="/images/benchmarks/chrome.png" target="_blank"><%= image_tag 'benchmarks/chrome-thmb.png' %></a>
-  </div>
-</p>
 
 <p>&nbsp;</p>
 <p>&nbsp;</p>
