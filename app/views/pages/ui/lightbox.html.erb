@@ -1,0 +1,138 @@
+<h1>Right Lightbox</h1><% @title_text = 'UI: Lightbox' %>
+
+<p>
+  Right Lightbox is the standard lightbox feature for RightJS
+</p>
+
+<p>
+  Get the latest version right here
+  <ul>
+    <li><a href="/builds/ui/right-lightbox.js" target="_blank">right-lightbox.js</a> - fully compressed build</li>
+    <li><a href="/builds/ui/right-lightbox-src.js" target="_blank">right-lightbox-src.js</a> - uncompressed source code with comments</li>
+  </ul>
+</p>
+
+<p>
+  All the source code of the project are available under terms of the MIT license
+</p>
+<p>
+  <a href="http://github.com/rightjs/rightjs-ui" target="_blank">http://github.com/rightjs/rightjs-ui</a>
+</p>
+
+<h2>What's Up?</h2>
+<p>
+  Right Lightbox has the following features
+  <ul>
+    <li>Support of any html content displaying</li>
+    <li>Support of content loading via ajax requests</li>
+    <li>Road trips support</li>
+    <li>Content auto discovery via the <tt>rel="lightbox"</tt> attribute</li>
+    <li>It has really tiny size of just 8.5k and doesn't need any images</li>
+    <li>Everything is included in a single file</li>
+    <li>i18n support</li>
+  </ul>
+</p>
+<p>
+  You can play with the thing right here: <%= link_to 'Right Lightbox Live Demo', '/ui/lightbox/demo' %>
+</p>
+
+<h2>Usage</h2>
+<p>
+  The usage of Right Lightbox is really simple. Just grab the file above, include it on your page and you are good to go
+</p>
+<code>
+<script src="/javascripts/right-lightbox.js" type="text/javascript"></script>
+</code>
+<p>
+  Right Lightbox does not require any images and all the styles are inlined inside the javascript file
+</p>
+<p>
+  See the <%= link_to 'live demo', '/ui/lightbox/demo' %> page for some common use cases
+</p>
+
+
+<h2>API-Reference</h2>
+<p>
+  Right Lightbox has a really simple interface
+  <table>
+    <tr><th>Method</th>                             <th>Description</th></tr>
+    <tr><td>show(mixed content[, Object size])</td> <td>shows any given content</td></tr>
+    <tr><td>load(String url[, Object options])</td> <td>loads content via an ajax request</td></tr>
+    <tr><td>hide</td>                               <td>hides the lightbox</td></tr>
+  </table>
+</p>
+
+<p>
+  You can use those methods to work with Lightbox as with a single class
+</p>
+<code>
+Lightbox.show('some content');
+Lightbox.load('/some/address');
+Lightbox.hide();
+</code>
+<p>
+  Or you can have usual instances of the Lightbox class
+</p>
+<code>
+var box = new Lightbox();
+box.show('some content');
+box.load('/some/url');
+box.hide();
+</code>
+
+<h2>Options</h2>
+<p>
+  There are several options when you are using Right Lightbox
+  <table>
+    <tr><th>Name</th>            <th>Default</th> <th>Description</th></tr>
+    <tr><td>endOpacity</td>      <td>0.8</td>     <td>the locker end opacity</td></tr>
+    <tr><td>fxDuration</td>      <td>200</td>     <td>the visual effects duration</td></tr>
+    <tr><td>hideOnEsc</td>       <td>true</td>    <td>should the lightbox be closed on the Esc button</td></tr>
+    <tr><td>showCloseButton</td> <td>true</td>    <td>should the close button be available</td></tr>
+    <tr><td>blockContent</td>    <td>false</td>   <td>if true, the box content will be covered with a transparent div tag and will not be clickable</td></tr>
+  </table>
+</p>
+<p>
+  You can pass those options as a hash for the constructor, or change them globally at the <tt>Lightbox.Options</tt> object
+</p>
+<code>
+var hard_box = new Lightbox({hideOnEsc: false, showCloseButton: false});
+hard_box.setTitle('Fill It Up');
+hard_box.show('some required form');
+</code>
+
+<h2>Links Automatic Processing</h2>
+<p>
+  When you pass a link node into the <tt>show</tt> method, Lightbox will automatically grab its url address and title, then load the 
+  content referred by the link, show it and set the link's title on the box.
+</p>
+<code>
+// <a href="/some/url" title="Some Content" id="the-link">click me</a>
+
+Lightbox.show($('the-link'));
+</code>
+<p>
+  Right Lightbox will automatically check the url address extension and if it is an image, then the reference will be handled like an image loading.
+  You don't need to do anything about it.
+</p>
+<p>
+  And you don't need to do those things manually. In similarity with the
+  <a href="http://www.huddletogether.com/projects/lightbox2" target="_blank">Lightbox 2</a> project, you can set the attribute
+  <tt>rel="lightbox"</tt> and Lightbox will automatically hook those links to be shown in the lightboxes.
+</p>
+<p>
+  The roadtrips with the <tt>rel="lightbox[roadtrip]"</tt> attribute work too
+</p>
+
+<h2>Internationalization</h2>
+<p>
+  If you need to translate titles on the lightbox buttons, you can simply alter the <tt>Ligthbox.i18n</tt> object like that
+</p>
+<code>
+Lightbox.i18n = {
+  Close: 'Закрыть',
+  Prev:  'Предыдущая',
+  Next:  'Следующая'
+};
+</code>
+

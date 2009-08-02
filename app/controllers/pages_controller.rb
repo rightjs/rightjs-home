@@ -7,6 +7,6 @@ class PagesController < ApplicationController
     
     raise NotFound if !File.exists?("#{RAILS_ROOT}/app/views/#{@file}")
     
-    render @file
+    render @file, :layout => request.xhr? ? false : 'application'
   end
 end

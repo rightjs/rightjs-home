@@ -63,6 +63,11 @@ dl dt {
   font-size: 1.4em;
 }
 
+a img {
+  border: 1px solid #DDD;
+  padding: .4em;
+}
+
 dl#tutorials-index {
   margin: 20pt;
 }
