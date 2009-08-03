@@ -5,14 +5,15 @@
 
 <h2>Standalone Images Displaying</h2>
 <p>
-  Displaying of standalone images in the lightbox does not requires any javascript coding.
+  In similarity to the <a href="http://www.huddletogether.com/projects/lightbox2" target="_blank">Lightbox 2</a>
+  project, displaying of standalone images in the lightbox does not requires any javascript coding.
   All you need is to specify the <tt>rel="lightbox"</tt> attribute at the link. When page
   is loaded Lightbox will automatically find the links and perform all necessary
   initializations, grab the titles, etc.
 </p>
 <code>
-<a href="1.jpg" rel="lighbox"><img src="1-thmb.jpg"></a>
-<a href="2.jpg" rel="lighbox" title="Some title"><img src="2-thmb.jpg"></a>
+<a href="1.jpg" rel="lightbox"><img src="1-thmb.jpg"></a>
+<a href="2.jpg" rel="lightbox" title="Some title"><img src="2-thmb.jpg"></a>
 </code>
 <p>
   <a href="/images/test/1.jpg" rel="lightbox" title="Watson's Bay"><img src="/images/test/1-thmb.jpg" /></a>
@@ -22,13 +23,13 @@
 
 <h2>Images Road Trip Displaying</h2>
 <p>
-  If you want to display some collection of images as an album without making the user click each
+  If you want to display some collection of images as an album, without making the user to click each
   link, then you are specifying a slightly different attribute <tt>rel="lightbox[roadtrip]"</tt>.
   All the other principles are the same
 </p>
 <code>
-<a href="1.jpg" rel="lighbox[roadtrip]"><img src="1-thmb.jpg"></a>
-<a href="2.jpg" rel="lighbox[roadtrip]"><img src="2-thmb.jpg"></a>
+<a href="1.jpg" rel="lightbox[roadtrip]"><img src="1-thmb.jpg"></a>
+<a href="2.jpg" rel="lightbox[roadtrip]"><img src="2-thmb.jpg"></a>
 </code>
 <p>
   <a href="/images/test/4.jpg" rel="lightbox[roadtrip]" title="Darling Harbour"><img src="/images/test/4-thmb.jpg" /></a>
@@ -55,7 +56,7 @@ Lightbox.show($('lorem-block').innerHTML, {width: '20em'});
 
 <h2>Content Loading Via Ajax</h2>
 <p>
-  To load some content via an xhr request just pass it to the <tt>load</tt> method. You can also pass any standard {Xhr} class options as the second argument.
+  To load some content via an xhr request just pass its url address to the <tt>load</tt> method. You can also pass any standard {Xhr} class options as the second argument.
 </p>
 <code>
 Lightbox.load('/ui/lightbox/lorem');
