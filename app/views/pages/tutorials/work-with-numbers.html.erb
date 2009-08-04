@@ -1,0 +1,92 @@
+<h1>Work With Numbers</h1><% @title_text = "Tutorials: Work With Numbers" %>
+
+<p>
+  RightJS provides several small but handy features that might make the work with numbers
+  easier and more natural for object oriented programmers
+</p>
+
+<h2>Strings To Numbers Conversion</h2>
+<p>
+  The {String} class has two methods to convert its instances to numbers, {String#toInt} and {String#toFloat}. The usage is simple
+</p>
+<code>
+'10px'.toInt();    // -> 10
+'0.001'.toFloat(); // -> 0.001
+</code>
+<p>
+  You also can use the {String#toInt} method to convert hex values into decimal numbers
+</p>
+<code>
+'FF'.toInt(16);  // -> 255
+'8B'.toInt(16);  // -> 139
+</code>
+<p>
+  The {String#toFloat} method will also automatically recognize comma and dash symbols as the decimal point.
+</p>
+<code>
+'0.01'.toFloat(); // -> 0.01
+'0,02'.toFloat(); // -> 0.02
+'0-03'.toFloat(); // -> 0.03
+</code>
+<p>
+  If you want to disable the feature, just pass <tt>true</tt> as the argument
+</p>
+<code>
+'0.01'.toFloat(true); // -> 0.01
+'0,02'.toFloat(true); // -> 0
+'0-03'.toFloat(true); // -> 0
+</code>
+
+<h2>Number Extensions</h2>
+<p>
+  The {Number} class has most of the <tt>Math</tt> module methods like <tt>abs</tt>, <tt>floor</tt>,
+  <tt>ceil</tt>, <tt>round</tt>. attached to the instance level, so that you can work with them
+  directly without calling the <tt>Math</tt> module.
+</p>
+<code>
+var num = 15.4;
+
+num.abs();   // -> 15.4
+num.round(); // -> 15
+num.ceil();  // -> 16
+num.floor(); // -> 15
+</code>
+
+<h2>Ruby Style Loops</h2>
+<p>
+  In additional the {Number} class supports the Ruby language style loops for the numbers:
+  {Number#times}, {Number#downto} and {Number#upto}
+</p>
+<code>
+var num = 4;
+
+num.times(function(i) {
+  // ....
+});
+
+num.downto(2, function(i) {
+  // ....
+});
+
+num.upto(8, function(i) {
+  // ....
+});
+</code>
+
+<h2>Random Numbers Generator</h2>
+<p>
+  By default the {Math.random} method returns float numbers between 0 and 1. RigthJS extends the method
+  and makes it generate integer numbers in a given range, if specified.
+</p>
+<code>
+Math.random();    // a Float    between 0 and 1
+
+Math.random(8);   // an Integer between 0 and 8
+
+Math.random(1,4); // an Integer between 1 and 4
+</code>
+
+<p>&nbsp;</p>
+<p>
+  That's it. Have fun!
+</p>
