@@ -1,7 +1,7 @@
 <h1>DOM Events Handling Basics</h1><% set_title('Tutorials: Visual Effects'); set_unit_scope('Element') %>
 
 <p>
-  In general, dom-events handling with RightJS is a pretty much standard thing. There is the
+  Generally, dom-events handling with RightJS is a pretty much standard thing. There is the
   basic interface with methods {#observe}, {#observes} and {#stopObserving} that you might see in
   most of the JavaScript frameworks and the use cases for them are quite usual.
 </p>
@@ -58,8 +58,8 @@ $('element').observe('click', function(event) {
 
 <h2>Event Listeners Connection Additionals</h2>
 <p>
-  I'm sure there was a moment when you felt tired of writing <tt>observe('blablabla')</tt> all the time. So lets help you
-  a little bit. First of all there is a short alias for the {#observe} method called {#on}. The code with the thing sounds quite natural
+  I'm sure there was a moment when you felt tired of writing <tt>observe('blablabla')</tt> continually. So lets help you
+  a little bit. First, there is a short alias for the {#observe} method called {#on}. The code with the thing sounds quite natural
 </p>
 <code>
 $('element').on('click', function() {...});
@@ -73,7 +73,7 @@ $('element').onClick(function() {...});
 $('element').onKeydown(function() {...});
 </code>
 <p>
-  This thing might sound a bit dangerous, because there are properties of the element with just the same name but downcased,
+  This thing might sound a bit dangerous, because there are properties of the element with just the same name but down cased,
   which you can assign to callbacks. But that's not so scary in reality. You won't be able to break your logic with this
   feature, because if you won't be able to call the native properties as methods and will have a runtime error.
 </p>
@@ -84,7 +84,7 @@ $('element').onKeydown(function() {...});
 
 <h2>Attaching Several Event Listeners In A Single Call</h2>
 <p>
-  Additionally you might specify several event handlers in a single call
+  Additionally, you might specify several event handlers in a single call
 </p>
 <code>
 $('element').on({
@@ -128,12 +128,12 @@ new Element('div', {
 </code>
 <p>
   The second version is not just shorter and more readable, but will actually work faster, because there will be no
-  additional binding wrapper. Instead of that the callback will be called directly with those arguments.
+  additional binding wrapper. Instead of that, the callback will be called directly with those arguments.
 </p>
 
 <h2>Listeners Assignment By Name</h2>
 <p>
-  I'm sure there heaps and heaps of cases when what you need from a listener is just to call the same element method
+  I'm sure there are heaps and heaps of cases when what you need from a listener is just to call the same element method
 </p>
 <code>
 $('element').on('click', function() {
@@ -166,15 +166,15 @@ $E('div').inserTo(document.body
   ).onClick('highlight', 'blue');
 </code>
 <p>
-  Those things are not just short and much more readable, but they will work faster than if you did the same thing
+  Those things are not just short and more readable, but they will work faster than if you did the same thing
   the old way with a proxy function, because there will be no proxy function, element methods will get
   called directly.
 </p>
 
 <h2>Callbacks Attachment Check</h2>
 <p>
-  To check if an element observes a particular callback, there is the method called {#observes}, in general case
-  it is get called the following way.
+  To check if an element observes a particular callback, there is the method called {#observes}, generally
+  it is getting called the following way.
 </p>
 <code>
 var callback1 = function() {};
@@ -186,7 +186,7 @@ $('element').observes(callback1); // -> true
 $('element').observes(callback2); // -> false
 </code>
 <p>
-  But you can use just the same method to check if and element has listeners for some event name
+  But you can use just the same method to check if an element has listeners for some event name
 </p>
 <code>
 $('element').on('click', function() {....});
@@ -288,8 +288,8 @@ $('input').keypress({keyCode: 22});
 
 <h2>Custom Events Support</h2>
 <p>
-  With RightJS you are free to define any custom events you want for your elements. And basically
-  there are no difference between the native and custom events, you can handle them transparently
+  With RightJS you are free to define any custom events you want for your elements. And generally
+  there is no difference between the native and custom events, you can handle them transparently
   through just the same interface.
 </p>
 <code>
@@ -307,6 +307,6 @@ $('element').onMouseout(function() {
   the listeners of the <tt>'myevent'</tt> event.
 </p>
 <p>
-  Basically you use the feature when you need to split and separate some logic and notify
+  Generally you use the feature when you need to split and separate some logic and notify
   listeners only on some conditions.
 </p>

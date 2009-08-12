@@ -20,7 +20,7 @@
 </p>
 <p>
   But instead of creating such additional methods, RightJS extends the idea
-  and basically lets you feed all the generic methods with method names.
+  and generally lets you feed all the generic methods with method names.
 </p>
 <p>
   Say you could strip tags in each string in a list of strings like this
@@ -72,17 +72,17 @@ element.on('click', 'toggleClass', 'marked');
   on a collection, or attach an object method to an event.
 </p>
 <p>
-  Instead of writing dummy functions you just feed the generic method with a 
-  name and RightJS do all the rest for you. As the result you write more
-  compact and readable code. And more compact code means less misprints and 
+  Instead of writing dummy functions you just  feed the generic methods with a 
+ name and RightJS do all the rest for you. As the result you write more
+  compact and readable code. And more compact code means fewer misprints and 
   bugs.
 </p>
 
-<h2>Is There Performance Overhead?</h2>
+<h2>Is There A Performance Overhead?</h2>
 <p>
   Practically there is no difference between specifying a real function or a
   name. As the matter of fact it will work even faster than if you just create
-  a dummy function, bind it to the object and call it's method manually.
+  a dummy function, bind it to the object and call its method manually.
   Because you eliminate the dummy and bind functions, and specify your method
   by reference without actually initializing new function.
 </p>

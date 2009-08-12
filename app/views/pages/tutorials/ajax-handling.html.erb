@@ -1,11 +1,11 @@
 <h1>Ajax Handling</h1><% @title_text = "Tutorials: Ajax Handling" %>
 
 <p>
-  As any modern JavaScript frameworks RightJS comes with crossbrowser Ajax
+  As any modern JavaScript frameworks RightJS comes with cross browser Ajax
   functionality.
 </p>
 <p>
-  Basically there is just one simple class called {Xhr} which responsible for
+  Generally there is just one simple class called {Xhr} that responsible for
   almost all the ajax functionality.
 </p>
 <p>
@@ -111,7 +111,7 @@ xhr.onComplete(some_function);
 xhr.stopObserving(some_function);
 </code>
 <p>
-  Certainly you can add your own events if you need so
+  Surely you can add your own events if you need so
 </p>
 <code>
 var xhr = new Xhr('/some/url');
@@ -133,7 +133,7 @@ xhr.onComplete('checkMyEvent');
 
 <h2>Spinners</h2>
 <p>
-  {Xhr} class in RightJS has a built in support of spinners handling. You
+  {Xhr} class in RightJS has a built-in support of spinners handling. You
   don't need to attach event listeners to show and hide them. You just specify
   reference to your spinner and {Xhr} will do it for you automatically.
 </p>
@@ -187,8 +187,8 @@ new Xhr('/some.url').send('some=params&more=options');
 new Xhr('/some.url').send({some: 'params', more: 'options'});
 </code>
 <p>
-  Additionally you can send a form element instance to the {Xhr#send} method,
-  {Xhr} will automatically grab the form data, convert it into parameters and
+  Additionally, you can send a form element instance to the {Xhr#send} method,
+  {Xhr} will automatically grab the form data, convert it into parameters, and
   send.
 </p>
 <code>
@@ -215,11 +215,11 @@ new Xhr('/some.json', {
 
 <h2>Shortcuts and DOM support</h2>
 <p>
-  There are view shortcuts and additional methods which will make your live
+  There are view shortcuts and additional methods that will make your live
   easier when you implement an ajax application.
 </p>
 <p>
-  To shortify {Xhr} instancing you can use the {Xhr.load} method which will
+  To shortify {Xhr} instancing you can use the {Xhr.load} method that will
   create an {Xhr} instance and send the request.
 </p>
 <code>
@@ -239,7 +239,7 @@ new Xhr('/some/url').update('element');
 </code>
 <p>
   You can initiate the xhr-request directly from the element instance by
-  calling the {Element#load} method. This will initiate appropriate xhr
+  calling the {Element#load} method. This will initiate applicable xhr
   request and update the element content when the request is complete
 </p>
 <code>
