@@ -11,20 +11,19 @@
     <li>Safari versions > 3 and the mobile version</li>
     <li>Google Chrome versions 1 and 2</li>
     <li>Internet Explorer versions 6,7,8</li>
-    <li>Opera version > 9</li>
+    <li>Opera version > 9.5</li>
     <li>Konqueror versions 3 and 4</li>
   </ul>
 </p>
 
 <h2>Quirks Mode</h2>
 <p>
-  To make RightJS work correctly with Internet Explorer and Opera browsers you have to
-  specify the document type definition on your page.
+  To make RightJS work correctly with styles and dimensions in the Internet Explorer and Opera
+  browsers you have to specify the document type definition on your page.
 </p>
 <p>
   RightJS has no intention to fix the non-standard quirks mode behavior.
 </p>
-
 
 <h2>The Old Browsers</h2>
 
@@ -33,4 +32,29 @@
   despite it provides the basic support of the old browsers like IE 6 and Konq 3, those
   browsers will have low priority in things like performance optimizations and 
   specific browser problems patching.
+</p>
+
+<h2>Internet Explorer 8</h2>
+<p>
+  IE8 has the native css-selectors interface support. In most cases of correct XHTML documents
+  the interface is available by default, but if you have some hacks and non standards you
+  might need to specify the following entry in your document header
+</p>
+<p>
+  <tt>&lt;meta http-equiv="X-UA-Compatible" content="IE=8"&gt;</tt>
+</p>
+<p>
+  Otherwise the interface won't be available and RightJS will use its own manual css-selectors
+  engine.
+</p>
+
+<h2>Konqueror 3</h2>
+<p>
+  Most of the features of RightJS should be working perfectly on Konq 3, but it has it's own
+  limitations in the computed styles handling. The later versions had some backports from the
+  4 version and seems like working fine now, but the older versions might still have problems
+  with the visual effects library.
+</p>
+<p>
+  All the other features should be working fine.
 </p>
