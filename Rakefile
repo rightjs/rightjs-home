@@ -58,7 +58,7 @@ namespace :rightjs do
       
       puts " * #{name}"
       
-      pack = file_name.split('doc/api/').last.split("/").first
+      pack = file_name.split('doc/').last.split("/").first
       
       source = File.read(file_name)
       
