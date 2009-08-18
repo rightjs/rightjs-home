@@ -1,0 +1,160 @@
+<h1>Right Calendar</h1><% @title_text = 'UI: Calendar' %>
+<p>
+  Right Calendar is the standard calendar/datepicker feature for RightJS
+</p>
+
+<p>
+  Get the latest version right here
+  <ul>
+    <li><a href="/builds/ui/right-calendar.js" target="_blank">right-calendar.js</a> - fully compressed build</li>
+    <li><a href="/builds/ui/right-calendar-src.js" target="_blank">right-calendar-src.js</a> - uncompressed source code with comments</li>
+  </ul>
+</p>
+
+<p>
+  All the source code of the project are available under terms of the MIT license
+</p>
+<p>
+  <a href="http://github.com/rightjs/rightjs-ui" target="_blank">http://github.com/rightjs/rightjs-ui</a>
+</p>
+
+<h2>What's Up?</h2>
+<p>
+  Right Calendar has the following features:
+  <ul>
+    <li>Dates and times picking</li>
+    <li>Multiple months and greed support</li>
+    <li>Date limits support</li>
+    <li>Inline displaying support</li>
+    <li>Auto-appearance at input elements</li>
+    <li>Auto-initialization by the <tt>rel="calendar"</tt> attribute</li>
+    <li>Tiny (less than 10k) size, no image dependencies, fully css-based design</li>
+    <li>Everything is included in a single file</li>
+    <li>i18n support</li>
+  </ul>
+</p>
+<p>
+  You can play with the thing right here: <%= link_to 'Right Calendar Live Demo', '/ui/calendar/demo' %>
+</p>
+
+<h2>Usage</h2>
+<p>
+  The usage of Right Calendar is really simple. Just grab the file above, include it on your page and you are good to go
+</p>
+<code>
+&lt;script src="/javascripts/right-calendar.js" type="text/javascript"&gt;&lt;/script&gt;
+</code>
+<p>
+  Right Calendar does not require any images and all the styles are inlined inside the javascript file
+</p>
+<p>
+  See the <%= link_to 'live demo', '/ui/calendar/demo' %> page for some common use cases
+</p>
+
+
+<h2>Inputs Auto-Discovery</h2>
+<p>
+  If you want right calendar do all the initialization work for you, then just specify the <tt>rel="calendar"</tt>
+  attribute on your <tt>INPUT</tt> element and when the page's loaded right calendar will automatically find the
+  element and initialize all the things.
+</p>
+<p>
+  You also can use the <tt>rel="calendar[input_field_id]"</tt> attribute if you want to use a trigger
+  element, like an image, that will show the calendar up.
+</p>
+
+
+<h2>API-Reference</h2>
+<p>
+  Right Calendar has a simple interface:
+  <table>
+    <tr><th>Method</th>                      <th>Description</th></tr>
+    <tr><td>setDate(date)</td>               <td>sets the date, the date might be a Date instance or a String</td></tr>
+    <tr><td>getDate()</td>                   <td>returns the current date</td></tr>
+    <tr><td>format([String format])</td>     <td>returns a string representation of the selected date</td></tr>
+    <tr><td>insertTo(element)</td>           <td>makes the calendar inlined into the element</td></tr>
+    <tr><td>assignTo(element[,trigger])</td><td>assigns the calendar to auto appear at the element; if the trigger is specified the the calendar will appear only by clicking on the trigger element</td></tr>
+    <tr><td>hide()</td>                      <td>hides the calendar block</td></tr>
+    <tr><td>show()</td>                      <td>shows the calendar block</td></tr>
+    <tr><td>showAt(Element)</td>             <td>assigns the calendar to work with the element and shows it at the bottom of the element</td></tr>
+  </table>
+</p>
+
+<h2>Options</h2>
+<p>
+  There are several options you can pass into the <tt>Calendar</tt> constructor.
+  <table>
+    <tr><th>Name</th>           <th>Default</th> <th>Description</th></tr>
+    <tr><td>format</td>         <td>ISO</td>     <td>one of the predefined formats name or a format string</td></tr>
+    <tr><td>showTime</td>       <td>false</td>   <td>a marker if the time picker should be displayed </td></tr>
+    <tr><td>showButtons</td>    <td>false</td>   <td>a marker if the bottom buttons should be displayed</td></tr>
+    <tr><td>minDate</td>        <td>null</td>    <td>the minimum date you can select</td></tr>
+    <tr><td>maxDate</td>        <td>null</td>    <td>the maximum date you can select</td></tr>
+    <tr><td>firstDay</td>       <td>1</td>       <td>1 for Monday, 0 for Sunday</td></tr>
+    <tr><td>numberOfMonths</td> <td>1</td>       <td>a number of month to display, or a [x,y] months greed definition</td></tr>
+    <tr><td>fxDuration</td>     <td>200</td>     <td>the visual effects duration (if Fx is available)</td></tr>
+  </table>
+</p>
+<p>
+  You also can alter the <tt>Calendar.Options</tt> object to make the changes global.
+</p>
+
+<h2>Dates Formatting</h2>
+<p>
+  Right Calendar uses the <a href="http://www.gnu.org/software/libc/manual/html%5Fnode/Formatting-Calendar-Time.html#index-strftime-2660" target="_blank">GNU strftime</a> formatting system and there are the following placeholders available:
+  <table>
+    <tr><th>Key</th> <th>Description</th></tr>
+    <tr><td>%a</td>  <td>The abbreviated weekday name (`Sun')</td></tr>
+    <tr><td>%A</td>  <td>The  full  weekday  name (`Sunday')</td></tr>
+    <tr><td>%b</td>  <td>The abbreviated month name (`Jan')</td></tr>
+    <tr><td>%B</td>  <td>The  full  month  name (`January')</td></tr>
+    <tr><td>%d</td>  <td>Day of the month (01..31)</td></tr>
+    <tr><td>%e</td>  <td>Day of the month without leading zero (1..31)</td></tr>
+    <tr><td>%m</td>  <td>Month of the year (01..12)</td></tr>
+    <tr><td>%y</td>  <td>Year without a century (00..99)</td></tr>
+    <tr><td>%Y</td>  <td>Year with century</td></tr>
+    <tr><td>%H</td>  <td>Hour of the day, 24-hour clock (00..23)</td></tr>
+    <tr><td>%k</td>  <td>Hour of the day, 24-hour clock without leading zero (0..23)</td></tr>
+    <tr><td>%I</td>  <td>Hour of the day, 12-hour clock (01..12)</td></tr>
+    <tr><td>%l</td>  <td>Hour of the day, 12-hour clock without leading zer (0..12)</td></tr>
+    <tr><td>%p</td>  <td>Meridian indicator (`AM'  or  `PM')</td></tr>
+    <tr><td>%P</td>  <td>Meridian indicator (`pm'  or  `pm')</td></tr>
+    <tr><td>%M</td>  <td>Minute of the hour (00..59)</td></tr>
+    <tr><td>%S</td>  <td>Second of the minute (00..59)</td></tr>
+    <tr><td>%%</td>  <td>Literal `%' character</td></tr>
+  </table>
+</p>
+<p>
+  There are also few predefined date formats are available:
+  <table>
+    <tr><th>Name</th>  <th>Format</th>     <th>Example</th></tr>
+    <tr><td>ISO</td>   <td>'%Y-%m-%d'</td> <td>2009-08-18</td></tr>
+    <tr><td>POSIX</td> <td>'%Y/%m/%d'</td> <td>2009/08/18</td></tr>
+    <tr><td>EUR</td>   <td>'%d-%m-%Y'</td> <td>18-08-2009</td></tr>
+    <tr><td>US</td>    <td>'%m/%d/%Y'</td> <td>08/18/2009</td></tr>
+  </table>
+</p>
+
+<h2>Internationalization</h2>
+<p>
+  You can alter the <tt>Calendar.i18n</tt> object to change the calendar texts. For example:
+</p>
+<code>
+Calendar.i18n = {
+  Done:  'Готово',
+  Now:   'Сейчас',
+  Next:  'Следующий месяц',
+  Prev:  'Предыдущий месяц',
+  
+  dayNames:        $w('Вокскресенье Понедельник Вторник Среда Четверг Пятница Суббота'),
+  dayNamesShort:   $w('Вск Пнд Втр Срд Чтв Птн Сбт'),
+  dayNamesMin:     $w('Вс Пн Вт Ср Чт Пт Сб'),
+  monthNames:      $w('Январь Февраль Март Аперль Май Инюнь Июль Август Сентябрь Октябрь Ноябрь Декабрь'),
+  monthNamesShort: $w('Янв Фев Мар Апр Май Инь Иль Авг Сен Окт Ноя Дек')
+};
+</code>
+
+<p>&nbsp;</p>
+<p>
+  This is pretty much it.
+</p>

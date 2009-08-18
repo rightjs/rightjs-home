@@ -63,9 +63,18 @@ dl dt {
   font-size: 1.4em;
 }
 
+dl ul {
+  margin: .5em 0;
+}
+
 a img {
   border: 1px solid #DDD;
   padding: .4em;
+}
+
+input[type="image"] {
+  position: relative;
+  top: 3px;
 }
 
 dl#tutorials-index {

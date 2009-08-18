@@ -1,0 +1,149 @@
+<h1>Right Calendar Demo</h1><% @title_text = 'UI: Calendar: Demo' %>
+<script src="/builds/ui/right-calendar.js" type="text/javascript"></script>
+
+<p>
+  There are some standard use cases for the <%= link_to 'Right Calendar', '/ui/calendar' %> widget.
+</p>
+
+<h2>On Form Date-Time Picking</h2>
+<p>
+  <p>
+    <label>Simple Date:</label>
+    <input type="text" id="date-simple" size="32" />
+  </p>
+  <p>
+    <label>With Trigger:</label>
+    <input type="text" id="date-triggered" size="32" />
+    <input type="image" id="date-trigger" src="/images/calendar.png" />
+  </p>
+  <p>
+    <label>With Time:</label>
+    <input type="text" id="date-with-time" size="32" />
+  </p>
+  <p>
+    <label>With Bottom Buttons:</label>
+    <input type="text" id="date-with-buttons" size="32" />
+  </p>
+  <p>
+    <label>With Fancy Formatting:</label>
+    <input type="text" id="date-with-formatting" size="32" />
+  </p>
+  <p>
+    <label>With Date Limits:</label>
+    <input type="text" id="date-with-limits" size="32" />
+  </p>
+</p>
+<script type="text/javascript">
+// <![CDATA[
+  new Calendar().assignTo('date-simple');
+  new Calendar().assignTo('date-triggered', 'date-trigger');
+  new Calendar({showTime: true, format: "%Y-%m-%d %H:%M"}).assignTo('date-with-time');
+  new Calendar({showButtons: true}).assignTo('date-with-buttons');
+  new Calendar({
+    format: "%B %d, %Y %l:%M%P", showTime: true
+  }).assignTo('date-with-formatting');
+  var min_date = new Date();
+  var max_date = new Date();
+  min_date.setMonth(min_date.getMonth() - 1);
+  max_date.setMonth(max_date.getMonth() + 1);
+
+  new Calendar({
+    minDate: min_date, maxDate: max_date
+  }).assignTo('date-with-limits');
+// ]]>
+</script>
+<p>
+  The code of the fields initiation looks like this:
+<code>
+// simple calendars
+new Calendar().assignTo('date-simple');
+new Calendar().assignTo('date-triggered', 'date-trigger');
+
+
+// calendar with the time-picker
+new Calendar({
+  showTime: true, format: "%Y-%m-%d %H:%M"
+}).assignTo('date-with-time');
+
+
+// calendar with the bottom buttons
+new Calendar({
+  showButtons: true
+}).assignTo('date-with-buttons');
+
+
+// calendar with fancy formatting
+new Calendar({
+  format: "%Y-%m-%d %l:%M", showTime: true
+}).assignTo('date-with-formatting');
+
+
+// calendar with dates limit
+var min_date = new Date();
+var max_date = new Date();
+min_date.setMonth(min_date.getMonth() - 1);
+max_date.setMonth(max_date.getMonth() + 1);
+
+new Calendar({
+  minDate: min_date, maxDate: max_date
+}).assignTo('date-with-limits');
+</code>
+</p>
+
+<h2>Fields Auto-Discovery</h2>
+<p>
+  In simple cases you don't need to assign calendar instances to the input fields manually.
+  All you need to specify the <tt>rel="calendar"</tt> attribute on your input-text field and
+  the right calendar will do all the assignments automatically when the page is loaded.
+</p>
+<p>
+  You also can specify an input-trigger pair with the <tt>rel="calendar[input_field_id]"</tt>
+  attribute on the trigger element.
+</p>
+<p>
+  For example:
+<code>
+&lt;input type="text" rel="calendar" /&gt;
+  
+&lt;input type="text" id="input-field" /&gt;
+&lt;input type="image" rel="calendar[input-field]" /&gt;
+</code>
+</p>
+<p>
+  <p>
+    <label>Simple Date:</label>
+    <input type="text" rel="calendar" size="32" />
+  </p>
+  <p>
+    <label>With Trigger:</label>
+    <input type="text" id="input-field" size="32" />
+    <input type="image" rel="calendar[input-field]" src="/images/calendar.png" />
+  </p>
+</p>
+
+<h2>Inlined Calendars</h2>
+<p>
+  You can inline your calendars right onto your page using the <tt>insertTo</tt> method
+</p>
+<p><div id="simple-calendar"></div></p>
+<p><div id="simple-calendar-with-time"></div></p>
+<p><div id="simple-calendar-with-buttons"></div></p>
+<script type="text/javascript">
+//<![CDATA[
+new Calendar().insertTo('simple-calendar');
+new Calendar({showTime: true}).insertTo('simple-calendar-with-time');
+new Calendar({showButtons: true}).insertTo('simple-calendar-with-buttons');
+//]]>
+</script>
+<p>
+  You also can build several months calendars and calendar greed by defining the
+  <tt>numberOfMonths</tt> option
+</p>
+<p><div id="two-calendars"></div></p>
+<p><div id="calendar-greed"></div></p>
+<script type="text/javascript">
+//<![CDATA[
+new Calendar({numberOfMonths: 2}).insertTo('two-calendars');
+new Calendar({numberOfMonths: [2,2]}).insertTo('calendar-greed');
+//]]>
+</script>
