@@ -62,6 +62,10 @@
   You also can use the <tt>rel="calendar[input_field_id]"</tt> attribute if you want to use a trigger
   element, like an image, that will show the calendar up.
 </p>
+<p>
+  If you need the auto-discovery calendars has some specific settings, like custom formatting etc. 
+  you can adjust the global <tt>Calendar.Options</tt> object to have the default values you need.
+</p>
 
 
 <h2>API-Reference</h2>
@@ -97,6 +101,21 @@
 </p>
 <p>
   You also can alter the <tt>Calendar.Options</tt> object to make the changes global.
+</p>
+
+<h2>Events</h2>
+<p>
+  Right calendar supports the following list of events
+  <ul>
+    <li>show   - the calendar element was shown</li>
+    <li>hide   - the calendar element was hidden</li>
+    <li>select - user selects a date or time</li>
+    <li>done   - user hits the `done' button</li>
+  </ul>
+</p>
+<p>
+  You can use any standard {Observer} methods to process those events. Shortcuts like <tt>onSelect</tt>,
+  <tt>onDone</tt> are also available.
 </p>
 
 <h2>Dates Formatting</h2>
@@ -152,6 +171,52 @@ Calendar.i18n = {
   monthNames:      $w('Январь Февраль Март Аперль Май Инюнь Июль Август Сентябрь Октябрь Ноябрь Декабрь'),
   monthNamesShort: $w('Янв Фев Мар Апр Май Инь Иль Авг Сен Окт Ноя Дек')
 };
+</code>
+
+<h2>Style Adjustments</h2>
+<p>
+  If you need to alter the calendar view to make it fit your design, please use the following
+  elements structure description as a guidance.
+</p>
+<code>
+<div class="right-calendar">
+  <div class="right-ui-button right-calendar-next-button">&lsaquo;</div>
+  <div class="right-ui-button right-calendar-prev-button">&rsaquo;</div>
+
+  <table class="right-calendar-greed">
+    <tr><td>
+
+      <div class="right-calendar-month">
+        <div class="right-calendar-month-caption"></div>
+        
+        <table>
+          <thead><tr>
+            <th>Mo<th>Tu<th>...
+          </tr><&#x2F;thead>
+          <tbody>
+            <tr>
+              <td class="right-calendar-day-blank">
+              <td class="right-calendar-day-selected">
+              <td class="right-calendar-day-disabled">
+              <td><td><td><td>...
+            </tr>
+            .....
+          </tbody>
+        </table>
+      </div>
+
+    </td><&#x2F;tr>
+  </table>
+
+  <div class="right-calendar-time">
+    <select></select> : <select><&#x2F;select>
+  </div>
+
+  <div class="right-ui-buttons right-calendar-buttons">
+    <input type="button" value="Done" class="right-ui-button right-calendar-done-button" />
+    <input type="button" value="Now" class="right-ui-button right-calendar-now-button" />
+  </div>
+</div>
 </code>
 
 <p>&nbsp;</p>
