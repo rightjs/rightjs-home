@@ -1,57 +1,115 @@
-<h1>Project Philosophy</h1><% @title_text = 'Project Philosophy' %>
+<h1>The Project Philosophy</h1><% @title_text = 'Project Philosophy' %>
 
 <p>
-  RightJS is a developer oriented framework.
+  "Right" means "do it right". And this defines the idea behind the framework.
+</p>
+<p>
+  RightJS does not intend to provide a lot of new features. Although it has some new things
+  here and there, the main idea of the framework is to collect already existing features in
+  the JavaScript development field. Refine and systemize them, make them closer to standards
+  and more comfortable to use. And as the result make the developer's live easier.
 </p>
 
+<h2>It Does What It Says</h2>
 <p>
-  That might sound strange for a piece of software that normally used by developers, but this defines the priorities. And the main priority for RightJS is the developer, his needs and comfort for everyday work.
+  One of the most important goals of RightJS is to provide you an ability to write a compact and
+  easy to understand applications code.
+</p>
+<p>
+  In most of the cases you don't need to be an expert in RightJS to understand someone-else's work and ideas.
+  When you see something like this:
+</p>
+<code>
+$(element).update('with text').highlight();
+
+$(element).onClick('addClass', 'clicked');
+
+$$('li').each('onClick', 'toggleClass', 'marked');
+</code>
+<p>
+  You can be sure, the code does exactly what it says.
 </p>
 
-<h2>Stick to Standards</h2>
+<h2>Close To The Standards</h2>
 <p>
-  RightJS tries to provide as much standard API as possible. All the names and basic behaviors are pretty much standard and predictable. If you have experience with dynamic languages and other JavaScript frameworks, most of the things will be pretty much natural and usually you won't need to get to the documentation.
+  There are several official, semi-official and non-official standards in the naming principles and functionality
+  behavior in the JavaScript development area. Following the "less surprise" principle, RightJS tries to pick the most
+  common/standard names and behavior for its methods and functions.
+</p>
+<p>
+  And it always keeps the original, pure JavaScript functionality intact.
 </p>
 
+
+<h2>Low Entry Level</h2>
 <p>
-  RightJS tries to have as less local tricks and features as possible. All the features it provides are working globally over the framework with the same conventions and principles.
+  Because of its tendency to stick to the standards and provide simple interfaces, it is really easy to
+  use RightJS.
+</p>
+<p>
+  If you know JavaScript and have previous experience with any JavaScript framework, you practically don't need
+  anything to start work with RightJS. And you need to learn just a few simple principles to start use it effectively.
 </p>
 
-<h2>Compact and Readable Applications Code</h2>
-<p>
-  RightJS designed the way that developers could write compact and readable applications code. It does not have long and complicated class structures and names. All the framework classes are organized in an elegant compact one-level collection, ready to use.
-</p>
-
-<p>
-  All the methods and names were thought over dozen of times, they were made as short as possible but still looking standard.
-</p>
-
-<p>
-  RightJS extends the native JavaScript classes, to cover most used cases in a developer's everyday work, such as handling of strings, arrays, functions, classes, type checks, files upload, etc. That lets you concentrate on your actual application logic, not on surviving in the tight JavaScript environment.
-</p>
 
 <h2>Multiple Paradigms</h2>
 <p>
-  RightJS tries to not put much constrains on the way the developer does his work. It provides excellent tools for object-oriented approach as much as tools for the functional programming approach. At any time, the developer is free to choose the most applicable and effective way to make his work done.
+  RightJS is mostly an object-oriented framework, and it is designed the way to make it most natural for the 
+  non-javascript developers who work with dynamic languages like Ruby and Python.
+</p>
+<p>
+  But despite of that, RightJS tries to not put any constrains on the way the developer does his work. If you
+  are an OOP person, you will have all the advanced OOP features, classes, modules, etc. If you are more 
+  like a functional programming type, you will have functions, carrying, bindings, etc.
+</p>
+<p>
+  At any moment you are free to do your work the way you think it's right.
+</p>
+
+
+<h2>Tiny Size And Excellent Performance</h2>
+<p>
+  RightJS does two important things: tries to not overcomplicate the things and it reuses all the native
+  functionality any browser can provide.
+</p>
+<p>
+  As the result, despite the fact it has all the standard features, it has a really tiny size of 36k and
+  it <a href="/benchmarks">beats up</a> all the modern frameworks by speed.
+</p>
+<p>
+  And smaller faster framework will leave more space for the actual application features.
+</p>
+
+
+
+<h2>The Native Object Extensions</h2>
+<p>
+  RightJS does extend the native class prototypes. But, it does not do it blindly.
+</p>
+<p>
+  RightJS tries to balance between the total prototype madness of Prototype and the strict name spaces of jQuery.
+  It does extend the native classes, but it does it only for the most common cases, it always provides the
+  standard behavior and it always keeps the original functionality intact.
+</p>
+<p>
+  There are several reasons of doing that.
+</p>
+<p>
+  First of all it is more comfortable to use those methods like that,
+  secondly it works much faster and eventually there's no harm of having methods like {String#trim},
+  {Array#uniq}, {Function#delay} out of the box. They are pretty common and standard, and even if
+  RightJS will overwrite someone-else's methods at the same class with the same name, then, because of their
+  standard nature those methods will do exactly the same thing as they did before.
 </p>
 
 <h2>Complete Toolbox and Modularity</h2>
 <p>
-  In the basic build RightJS provides all the general functionality that 99% of the real world applications need. That includes all the native class extensions, CSS selectors, DOM manipulations, ajax tools, cookies management and basic visual effects. Everything you need to make your application work.
+  The basic build of RightJS comes as a complete toolbox core. It has all the standard things like OOP support,
+  CSS-selectors, native classes extensions, DOM-objects manipulation functionality, ajax tools, cookies support
+  and some basic visual effects support. Everything you need in 99% of cases.
 </p>
 <p>
-  But RightJS is not a monolith build, it is a toolbox, you can throw, replace, upgrade any tools in it. And it also provides some abstract units such as {Observer} or {Options} that you can use in your applications right away.
+  But it designed the way it is easy to cut off some features and add new ones. You can create the custom builds
+  <a href="/builds">over here</a> and switch off the things you don't need.
 </p>
 
-<h2>Excellent Performance</h2>
-<p>
-  One of the main goals of RightJS is to make it work fast, real fast. It squeezes everything from the browser to the drop, reuses all the native functionality. Plus there are lots and lots of code optimizations. This thing is built for speed.
-</p>
-<p>
-  And faster tools lets the developer put more in his applications, make it richer and more interesting.
-</p>
-
-<h2>Beautiful Insides</h2>
-<p>
-  RightJS code is made the way it will be a pleasure for the community to work with. No monkey patching, no spaghetti code, no weird designs inside. Everything is thoughtfully organized, covered with the documentation and unit-tests.
-</p>
