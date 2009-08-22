@@ -85,6 +85,10 @@ ul#classes-list li label {
   font-size: 1.1em;
 }
 
+ul.changelog li {
+  margin-bottom: .6em;
+}
+
 /* BEGIN Layout */
 div#body {
   min-height: 100%;
