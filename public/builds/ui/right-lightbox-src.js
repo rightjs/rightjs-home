@@ -23,14 +23,19 @@ var Lightbox = new Class({
       endOpacity:      0.8,
       fxDuration:      200,
       hideOnEsc:       true,
+      hideOnOutClick:  true,
       showCloseButton: true,
-      blockContent:    false
+      blockContent:    false,
+      relName:         'lightbox'
     },
     
     i18n: {
-      Close: 'Close',
-      Prev:  'Previous',
-      Next:  'Next'
+      CloseText:  '&times;',
+      CloseTitle: 'Close',
+      PrevText:   '&lsaquo;&lsaquo;&lsaquo;',
+      PrevTitle:  'Previous Image',
+      NextText:   '&rsaquo;&rsaquo;&rsaquo;',
+      NextTitle:  'Next Image'
     },
     
     boxes: []
@@ -229,8 +234,13 @@ var Lightbox = new Class({
     // the close button if asked
     if (this.options.showCloseButton) {
       this.closeButton = this.E('lightbox-close-button', this.dialog)
-        .onClick(this.hide.bind(this)).update('&times;').set('title', Lightbox.i18n.Close);
+        .onClick(this.hide.bind(this)).update(Lightbox.i18n.CloseText).set('title', Lightbox.i18n.CloseTitle);
     }
+    
+    if (this.options.hideOnOutClick) {
+      this.locker.onClick(this.hide.bind(this));
+    }
+    
     return this;
   },
   
@@ -402,9 +412,9 @@ Lightbox.include((function() {
       var res = old_build.apply(this, arguments);
       
       this.prevLink = this.E('lightbox-prev-link', this.dialog).onClick(this.showPrev.bind(this))
-        .update('&lsaquo;&lsaquo;&lsaquo;').set('title', Lightbox.i18n.Prev).hide();
+        .update(Lightbox.i18n.PrevText).set('title', Lightbox.i18n.PrevTitle).hide();
       this.nextLink = this.E('lightbox-next-link', this.dialog).onClick(this.showNext.bind(this))
-        .update('&rsaquo;&rsaquo;&rsaquo;').set('title', Lightbox.i18n.Next).hide();
+        .update(Lightbox.i18n.NextText).set('title', Lightbox.i18n.NextTitle).hide();
       
       return res;
     },
@@ -542,7 +552,7 @@ Lightbox.extend({
  */
 document.onReady(function() {
  // grabbing the singles
- $$('a[rel=lightbox]').each(function(a) {
+ $$('a[rel='+Lightbox.Options.relName+']').each(function(a) {
    a.onClick(function(event) {
      event.stop();
      Lightbox.show(this);
@@ -550,7 +560,7 @@ document.onReady(function() {
  });
 
  // grabbing the roadtrip
- var roadtrip = $$('a[rel="lightbox[roadtrip]"]');
+ var roadtrip = $$('a[rel="'+Lightbox.Options.relName+'[roadtrip]"]');
  roadtrip.each(function(a) {
    a.roadtrip = roadtrip;
    a.onClick(function(event) {

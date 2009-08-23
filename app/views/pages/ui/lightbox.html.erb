@@ -88,15 +88,18 @@ box.hide();
     <tr><td>endOpacity</td>      <td>0.8</td>     <td>the locker end opacity</td></tr>
     <tr><td>fxDuration</td>      <td>200</td>     <td>the visual effects duration</td></tr>
     <tr><td>hideOnEsc</td>       <td>true</td>    <td>should the lightbox be closed on the Esc button</td></tr>
+    <tr><td>hideOnOutClick</td>  <td>true</td>    <td>should the lightbox be closed on click outside of the box</td></tr>
     <tr><td>showCloseButton</td> <td>true</td>    <td>should the close button be available</td></tr>
     <tr><td>blockContent</td>    <td>false</td>   <td>if true, the box content will be covered with a transparent div tag and will not be clickable</td></tr>
+    <tr><td>relName</td>         <td>'lightbox'</td><td>the rel-attribute name for the auto-discovery feature</td></tr>
+    <tr><td>checkTags</td>      <td>'*'</td>     <td>the tags name to be checked on load (to narrow down the search)</td></tr>
   </table>
 </p>
 <p>
   You can pass those options as a hash for the constructor, or change them globally at the <tt>Lightbox.Options</tt> object
 </p>
 <code>
-var hard_box = new Lightbox({hideOnEsc: false, showCloseButton: false});
+var hard_box = new Lightbox({hideOnEsc: false, hideOnOutClick: false, showCloseButton: false});
 hard_box.setTitle('Fill It Up');
 hard_box.show('some required form');
 </code>
@@ -130,9 +133,9 @@ Lightbox.show($('the-link'));
 </p>
 <code>
 Lightbox.i18n = {
-  Close: 'Закрыть',
-  Prev:  'Предыдущая',
-  Next:  'Следующая'
+  CloseTitle: 'Закрыть',
+  PrevTitle:  'Предыдущая',
+  NextTitle:  'Следующая'
 };
 </code>
 

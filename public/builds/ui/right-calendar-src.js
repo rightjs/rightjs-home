@@ -25,7 +25,10 @@ var Calendar = new Class(Observer, {
       maxDate:        null,
       firstDay:       1,     // 1 for Monday, 0 for Sunday
       fxDuration:     200,
-      numberOfMonths: 1      // a number or [x, y] greed definition
+      numberOfMonths: 1,     // a number or [x, y] greed definition
+      timePeriod:     1,     // the timepicker minimal periods (in minutes, might be bigger than 60)
+      checkTags:      '*',
+      relName:        'calendar'
     },
     
     Formats: {
@@ -181,8 +184,10 @@ Calendar.include({
     this.updateNextPrevMonthButtons(date, monthes_num);
     
     if (this.options.showTime) {
-      this.hours.value = date.getHours();
-      this.minutes.value = date.getMinutes();
+      this.hours.value = this.options.timePeriod < 60 ? date.getHours() :
+        (date.getHours()/(this.options.timePeriod/60)).round() * (this.options.timePeriod/60);
+      
+      this.minutes.value = (date.getMinutes() / (this.options.timePeriod % 60)).round() * this.options.timePeriod;
     }
     
     return this;
@@ -313,11 +318,20 @@ Calendar.include({
     this.hours = $E('select');
     this.minutes = $E('select');
     
-    (60).times(function(i) {
+    var minute_options_number = 60 / this.options.timePeriod;
+    
+    (minute_options_number == 0 ? 1 : minute_options_number).times(function(i) {
+      i = i * this.options.timePeriod;
       var c = i < 10 ? '0'+i : i;
-      
-      if (i < 24) this.hours.insert($E('option', {value: i, html: c}));
       this.minutes.insert($E('option', {value: i, html: c}));
+    }, this);
+    
+    var hour_options_number = this.options.timePeriod > 59 ? (24 * 60 / this.options.timePeriod) : 24;
+    
+    (hour_options_number == 0 ? 1 : hour_options_number).times(function(i) {
+      if (this.options.timePeriod > 59) i = (i * this.options.timePeriod / 60).floor();
+      var c = i < 10 ? '0'+i : i;
+      this.hours.insert($E('option', {value: i, html: c}));
     }, this);
     
     $E('div', {'class': 'right-calendar-time'}).insertTo(this.element)
@@ -413,8 +427,8 @@ Calendar.include({
     
     // connecting the time picker events
     if (this.hours) {
-      this.hours.on('change', this.setHour.bind(this));
-      this.minutes.on('change', this.setMinute.bind(this));
+      this.hours.on('change', this.setTime.bind(this));
+      this.minutes.on('change', this.setTime.bind(this));
     }
     
     // connecting the bottom buttons
@@ -437,12 +451,8 @@ Calendar.include({
     return this.select(this.date);
   },
   
-  setHour: function() {
+  setTime: function() {
     this.date.setHours(this.hours.value);
-    return this.select(this.date);
-  },
-  
-  setMinute: function() {
     this.date.setMinutes(this.minutes.value);
     return this.select(this.date);
   }
@@ -499,7 +509,7 @@ Calendar.include({
     this.setDate(this.parse(element.value));
     
     // RightJS < 1.4.1 bug handling
-    if (RightJS.version.replace('.', '').toInt() < 141) {
+    if (RightJS.version < '1.4.1') {
       if (Browser.WebKit) {
         dims.left += document.body.scrolls().x;
         dims.top  += document.body.scrolls().y;
@@ -703,9 +713,10 @@ Calendar.include({
  */
 document.onReady(function() {
   var calendar = new Calendar();
+  var rel_id_re = new RegExp(Calendar.Options.relName+'\\[(.+?)\\]');
   
-  $$('*[rel*=calendar]').each(function(element) {
-    var rel_id = element.get('rel').match(/calendar\[(.+?)\]/);
+  $$(Calendar.Options.checkTags+'[rel*='+Calendar.Options.relName+']').each(function(element) {
+    var rel_id = element.get('rel').match(rel_id_re);
     if (rel_id) {
       var input = $(rel_id[1]);
       if (input) {
@@ -718,4 +729,4 @@ document.onReady(function() {
 });
 
 
-document.write("<style type=\"text/css\">*.right-ui-button{display:inline-block;*display:inline;*zoom:1;height:1em;line-height:1em;padding:.2em .5em;text-align:center;border:1px solid #CCC;border-radius:.2em;-moz-border-radius:.2em;-webkit-border-radius:.2em;cursor:pointer;color:#555;background-color:#FFF}*.right-ui-button:hover{color:#222;border-color:#BA8;background-color:#FB6}*.right-ui-button-disabled,*.right-ui-button-disabled:hover{color:#888;background:#EEE;border-color:#CCC;cursor:default}*.right-ui-buttons{margin-top:.5em}div.right-calendar{position:absolute;height:auto;border:1px solid #BBB;position:relative;padding:.5em;border-radius:.3em;-moz-border-radius:.3em;-webkit-border-radius:.3em;cursor:default;background-color:#EEE}div.right-calendar-inline{position:relative;display:inline-block;*display:inline;*zoom:1}div.right-calendar-prev-button,div.right-calendar-next-button{position:absolute;float:left;width:1em;padding:.15em .4em}div.right-calendar-next-button{right:.5em}div.right-calendar-month-caption{text-align:center;height:1.2em;line-height:1.2em}table.right-calendar-greed{border-spacing:0px;border:none;background:none;width:auto}table.right-calendar-greed td{vertical-align:top;border:none;background:none;margin:0;padding:0;padding-right:.4em}table.right-calendar-greed td:last-child{padding:0}div.right-calendar-month table{margin:0;padding:0;border:none;width:auto;margin-top:.2em;border-spacing:1px;border:none;background:none}div.right-calendar-month table th{color:#777;text-align:center;border:none;background:none;padding:0;margin:0}div.right-calendar-month table td,div.right-calendar-month table td:last-child{text-align:right;padding:.1em .3em;background-color:#FFF;border:1px solid #CCC;cursor:pointer;border-radius:.2em;-moz-border-radius:.2em;-webkit-border-radius:.2em}div.right-calendar-month table td:hover{background-color:#FB6;border-color:#BA8}div.right-calendar-month table td.right-calendar-day-blank{background:transparent;cursor:default;border:none}div.right-calendar-month table td.right-calendar-day-selected{background-color:#FB6;border-color:#BA8;color:brown}div.right-calendar-month table td.right-calendar-day-disabled{color:#888;background:#EEE;border-color:#CCC;cursor:default}div.right-calendar-time{text-align:center}div.right-calendar-time select{margin:0 .4em}div.right-calendar-buttons div.right-ui-button{width:3.2em}div.right-calendar-done-button{position:absolute;right:.5em}</style>");
+document.write("<style type=\"text/css\">*.right-ui-button{display:inline-block;*display:inline;*zoom:1;height:1em;line-height:1em;padding:.2em .5em;text-align:center;border:1px solid #CCC;border-radius:.2em;-moz-border-radius:.2em;-webkit-border-radius:.2em;cursor:pointer;color:#555;background-color:#FFF}*.right-ui-button:hover{color:#222;border-color:#BA8;background-color:#FB6}*.right-ui-button-disabled,*.right-ui-button-disabled:hover{color:#888;background:#EEE;border-color:#CCC;cursor:default}*.right-ui-buttons{margin-top:.5em}div.right-calendar{position:absolute;height:auto;border:1px solid #BBB;position:relative;padding:.5em;border-radius:.3em;-moz-border-radius:.3em;-webkit-border-radius:.3em;cursor:default;background-color:#EEE;-moz-box-shadow:.2em .4em .8em #666;-webkit-box-shadow:.2em .4em .8em #666}div.right-calendar-inline{position:relative;display:inline-block;*display:inline;*zoom:1;-moz-box-shadow:none;-webkit-box-shadow:none}div.right-calendar-prev-button,div.right-calendar-next-button{position:absolute;float:left;width:1em;padding:.15em .4em}div.right-calendar-next-button{right:.5em}div.right-calendar-month-caption{text-align:center;height:1.2em;line-height:1.2em}table.right-calendar-greed{border-spacing:0px;border:none;background:none;width:auto}table.right-calendar-greed td{vertical-align:top;border:none;background:none;margin:0;padding:0;padding-right:.4em}table.right-calendar-greed td:last-child{padding:0}div.right-calendar-month table{margin:0;padding:0;border:none;width:auto;margin-top:.2em;border-spacing:1px;border:none;background:none}div.right-calendar-month table th{color:#777;text-align:center;border:none;background:none;padding:0;margin:0}div.right-calendar-month table td,div.right-calendar-month table td:last-child{text-align:right;padding:.1em .3em;background-color:#FFF;border:1px solid #CCC;cursor:pointer;border-radius:.2em;-moz-border-radius:.2em;-webkit-border-radius:.2em}div.right-calendar-month table td:hover{background-color:#FB6;border-color:#BA8}div.right-calendar-month table td.right-calendar-day-blank{background:transparent;cursor:default;border:none}div.right-calendar-month table td.right-calendar-day-selected{background-color:#FB6;border-color:#BA8;color:brown}div.right-calendar-month table td.right-calendar-day-disabled{color:#888;background:#EEE;border-color:#CCC;cursor:default}div.right-calendar-time{text-align:center}div.right-calendar-time select{margin:0 .4em}div.right-calendar-buttons div.right-ui-button{width:3.2em}div.right-calendar-done-button{position:absolute;right:.5em}</style>");

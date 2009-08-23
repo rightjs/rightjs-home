@@ -29,10 +29,11 @@ table {
   border: none;
   width: 100%;
   border-bottom: 1px solid #DED;
+  border-collapse: collapse;
 }
 table th, table td, table caption {
   margin: 0;
-  padding: 2pt 4pt;
+  padding: 2pt 6pt;
   text-align: left;
 }
 table th {

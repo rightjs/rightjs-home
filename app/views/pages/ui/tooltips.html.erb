@@ -1,0 +1,51 @@
+<h1>Right Tooltips</h1><% @title_text = "UI: Tooltips" %>
+
+<p>
+  Right tooltips is the native tooltips feature for RightJS.
+</p>
+
+<h2>Usage</h2>
+<p>
+  There is nothing special about it. You just include the source file
+</p>
+<code>
+<script src="/javascripts/right-tooltips.js"></script>
+</code>
+<p>
+  Then specify the <tt>rel="tooltip"</tt> attribute on your elements where
+  you want the tooltips to appear and RightJS will generate them when the
+  page is loaded
+</p>
+<p>
+  See <%= link_to "the demo page", "/ui/tooltips/demo" %> for examples.
+</p>
+
+<h2>Options</h2>
+<p>
+  There is some options you might customize
+  <table>
+    <tr><th>Name</th>       <th>Default</th>    <th>Description</th></tr>
+    <tr><td>fxName</td>     <td>'fade'</td>     <td>the appearance fx name</td></tr>
+    <tr><td>fxDuration</td> <td>400</td>        <td>the visual effect duration</td></tr>
+    <tr><td>delay</td>      <td>400</td>        <td>the tooltip appearance delay</td></tr>
+    <tr><td>idSuffix</td>   <td>'-tooltip'</td> <td>the tooltip ids suffix</td></tr>
+    <tr><td>relName</td>    <td>'tooltip'</td>  <td>the rel-attribute name for the auto-discovery feature</td></tr>
+    <tr><td>checkTags</td>  <td>'*'</td>        <td>the tags name to be checked on load (to narrow down the search)</td></tr>
+  </table>
+</p>
+
+<h2>Style Alterations</h2>
+<p>
+  The tooltip elements has the following simple structure
+</p>
+<code>
+<div class="right-tooltip">
+  <div class="right-tooltip-container">
+    // your data is here
+  </div>
+</div>
+</code>
+<p>
+  If the original element has an <tt>id</tt> attribute then related tooltip will have similar id with the <tt>-tooltip</tt>
+  suffix, so that you could style it separately if you need.
+</p>

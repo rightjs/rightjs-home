@@ -1,0 +1,9 @@
+/**
+ * The native tooltips feature for RightJS
+ *
+ * See http://rightjs.org/ui/tooltips for more details
+ *
+ * Copyright (C) 2009 Nikolay V. Nemshilov aka St.
+ */
+if (!RightJS) throw "Gimme RightJS!";
+eval((function(s,d){for(var i=d.length-1;i>-1;i--)if(d[i])s=s.replace(new RegExp(i,'g'),d[i]);return s})("59 9=58 Class({include:21,extend:{21:{34:'*',45:'13',39:'-13',28:'fade',20:60,41:60},12:47},initialize:7(e){3.10=$E('44',{'53':'25-13'}).36(18.body).32();3.11=$E('44',{'53':'25-13-11'}).36(3.10);3.set21().35(e)},43:7(t){3.11.update(t);17 3},42Text:7(){17 3.11.innerHTML},32:7(){9.12=47;3.27();3.10.32(3.14.28,{38:3.14.20});17 3},48:7(){9.12=3;3.10.48(3.14.28,{38:3.14.20});17 3},23:7(){9.12=3;3.24=3.48.46(3).41(3.14.41)},27:7(){if(3.24){3.24.cancel();3.24=47}},50:7(e){3.10.26.33=e.pageX+'px';3.10.26.61=e.pageY+'px';17 3},35:7(e){3.43(e.42('37')||e.42('54'));e.22('37','');e.22('54','');e.on({mouseover:3.23.46(3),mouseout:3.32.46(3)});if(e.id)3.10.id=e.id+3.14.39;3.associate=e;17 3}});18.onReady(7(){$$(9.21.34+'[rel='+9.21.45+']').each(7(e){59 t=e.42('37')||e.42('54');if(t)58 9(e)});18.onMousemove(7(a){if(9.12)9.12.50(a)})});18.write(\"<26 type=\\\"text/css\\\">44.25-13{position:absolute;29-61:16pt;29-33:2pt;19:1px 51 #DDD;background-55:#FFF8EE;55:#666;font-size:80%;cursor:default;19-31:.15;-57-19-31:.15;-49-19-31:.15;56-30:.15 .15 .15 #52;-57-56-30:.15 .15 .15 #52;-49-56-30:.15 .15 .15 #52}44.25-13-11{29:.6em;19-33:2px 51 brown;padding-33:.5em}</26>\");",",,,this,,,,function,,Tooltip,element,container,current,tooltip,options,4em,,return,document,border,fxDuration,Options,setAttribute,showDelayed,timer,right,style,cancelTimer,fxName,margin,shadow,radius,hide,left,checkTags,assignTo,insertTo,title,duration,idSuffix,,delay,get,setText,div,relName,bind,null,show,webkit,moveTo,solid,AAA,class,alt,color,box,moz,new,var,400,top".split(",")));

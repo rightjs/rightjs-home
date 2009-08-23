@@ -32,6 +32,14 @@
     <label>With Date Limits:</label>
     <input type="text" id="date-with-limits" size="32" />
   </p>
+  <p>
+    <label>With Time Period Of 15 Minutes:</label>
+    <input type="text" id="date-with-15-minutes-period" size="32" />
+  </p>
+  <p>
+    <label>With Time Period Of 3 Hours:</label>
+    <input type="text" id="date-with-3-hours-period" size="32" />
+  </p>
 </p>
 <script type="text/javascript">
 // <![CDATA[
@@ -50,6 +58,14 @@
   new Calendar({
     minDate: min_date, maxDate: max_date
   }).assignTo('date-with-limits');
+  
+  new Calendar({
+    timePeriod: 15, showTime: true, format: "%Y-%m-%d %H:%M"
+  }).assignTo('date-with-15-minutes-period');
+  
+  new Calendar({
+    timePeriod: 180, showTime: true, format: "%Y-%m-%d %H:%M"
+  }).assignTo('date-with-3-hours-period');
 // ]]>
 </script>
 <p>
@@ -87,6 +103,18 @@ max_date.setMonth(max_date.getMonth() + 1);
 new Calendar({
   minDate: min_date, maxDate: max_date
 }).assignTo('date-with-limits');
+
+
+// calendar with 15-minute time periods
+new Calendar({
+  timePeriod: 15, showTime: true, format: "%Y-%m-%d %H:%M"
+}).assignTo('date-with-15-minutes-period');
+
+
+// calendar with 3-hours time periods
+new Calendar({
+  timePeriod: 180, showTime: true, format: "%Y-%m-%d %H:%M"
+}).assignTo('date-with-3-hours-period');
 </code>
 </p>
 
