@@ -115,6 +115,9 @@ namespace :rightjs do
     system "cp #{RIGHTJS_ROOT}/build/right.js #{RIGHTJS_BUILD}/right.js"
     system "cp #{RIGHTJS_ROOT}/build/right-src.js #{RIGHTJS_BUILD}/right-src.js"
     
+    system "cd #{RIGHTJS_ROOT}; rake build OPTIONS=no-build"
+    system "cp #{RIGHTJS_ROOT}/build/right.js #{RIGHTJS_BUILD}/right-min.js"
+    
     puts "\nCreating custom builds\n"
     
     FileUtils.mkdir_p RIGHTJS_BUILD + "/custom"
