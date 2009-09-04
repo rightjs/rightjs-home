@@ -123,6 +123,7 @@ var Lightbox = new Class({
     if (no_fx === true) {
       this.body.setStyle(body_style);
       this.dialog.setStyle(dialog_style);
+      this.loading = false;
     } else {
       this.resizeFx(body_style, dialog_style);
     }
@@ -159,6 +160,7 @@ var Lightbox = new Class({
     this.unlock().content.show('fade', {
       duration: this.options.fxDuration/2
     });
+    this.loading = false;
   },
   
   // returns the content size hash
@@ -186,13 +188,7 @@ var Lightbox = new Class({
       this.locker.resize(window.sizes());
         
       this.element.style.position = 'absolute';
-        
-      var reposition_locker = function() {
-        this.element.style.top = document.documentElement.scrollTop + 'px';
-      }.bind(this);
-        
-      window.attachEvent('onscroll', reposition_locker);
-      reposition_locker();
+      this.element.style.top = document.documentElement.scrollTop + 'px';
     }
     
     return this.resize(false, true);
@@ -240,6 +236,10 @@ var Lightbox = new Class({
     if (this.options.hideOnOutClick) {
       this.locker.onClick(this.hide.bind(this));
     }
+    
+    document.on('mousewheel', function(e) { e.stop();
+      this[(e.detail || -e.wheelDelta) < 0 ? 'showPrev' : 'showNext']();
+    }.bind(this));
     
     return this;
   },
@@ -369,6 +369,7 @@ Lightbox.include((function() {
     
     // xhr requests loading specific lock
     loadLock: function() {
+      this.loading = true;
       this.lock().bodyLock.addClass('lightbox-body-lock-loading');
       return this;
     },
@@ -433,7 +434,7 @@ Lightbox.include((function() {
     
     // tries to show the previous item on the roadtrip
     showPrev: function() {
-      if (this.hasPrev() && this.element.visible()) {
+      if (this.hasPrev() && this.element.visible() && !this.loading) {
         this.show(this.roadLink.roadtrip[this.roadLink.roadtrip.indexOf(this.roadLink) - 1]);
       }
       return this;
@@ -441,7 +442,7 @@ Lightbox.include((function() {
 
     // tries to show the next item on the roadtrip
     showNext: function() {
-      if (this.hasNext() && this.element.visible()) {
+      if (this.hasNext() && this.element.visible() && !this.loading) {
         this.show(this.roadLink.roadtrip[this.roadLink.roadtrip.indexOf(this.roadLink) + 1]);
       }
       return this;
