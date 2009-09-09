@@ -23,7 +23,8 @@ namespace :rightjs do
   desc 'Updates the rightjs source code library'
   task :update_src do
     puts "Updating the RightJS source\n"
-    system "cd #{RIGHTJS_ROOT}; git pull"
+    system "cd #{RIGHTJS_ROOT}; git pull; git checkout master; git submodule init; git submodule update; "+
+         "cd lib/rightjs_goods; git pull; git checkout master; git submodule init; git submodule update"
     puts 
   end
   
@@ -103,47 +104,64 @@ namespace :rightjs do
   
   desc 'Updates the rightjs build'
   task :update_build do
-    puts "Updating the build\n\n"
+    puts "\nUpdating the current build\n\n"
     
     FileUtils.rm_rf   RIGHTJS_BUILD
     FileUtils.mkdir_p RIGHTJS_BUILD
     
     system "cd #{RIGHTJS_ROOT}; rake build"
     
-    puts "\nCopying files"
-    
     system "cp #{RIGHTJS_ROOT}/build/right.js #{RIGHTJS_BUILD}/right.js"
+    system "cp #{RIGHTJS_ROOT}/build/right-min.js #{RIGHTJS_BUILD}/right-min.js"
     system "cp #{RIGHTJS_ROOT}/build/right-src.js #{RIGHTJS_BUILD}/right-src.js"
     
-    system "cd #{RIGHTJS_ROOT}; rake build OPTIONS=no-build"
-    system "cp #{RIGHTJS_ROOT}/build/right.js #{RIGHTJS_BUILD}/right-min.js"
+    puts "\n\nUpdating the RightJS Goods builds\n\n"
     
-    puts "\nCreating custom builds\n"
+    system "cd #{RIGHTJS_ROOT}/lib/rightjs_goods; rake build"
     
-    FileUtils.mkdir_p RIGHTJS_BUILD + "/custom"
+    # copyting the moduels
+    FileUtils.rm_rf   RIGHTJS_BUILD_GOODS
+    FileUtils.mkdir_p RIGHTJS_BUILD_GOODS
     
-    (0..31).each do |i|
-      id = "%05d" % i.to_s(2)
+    RIGHTJS_BUILD_OPTIONS.each do |package|
+      if package.slice(0,3) != 'no-'
+        system "cp #{RIGHTJS_ROOT}/lib/rightjs_goods/build/right-#{package}.js     #{RIGHTJS_BUILD_GOODS}"
+        system "cp #{RIGHTJS_ROOT}/lib/rightjs_goods/build/right-#{package}-min.js #{RIGHTJS_BUILD_GOODS}"
+        system "cp #{RIGHTJS_ROOT}/lib/rightjs_goods/build/right-#{package}-src.js #{RIGHTJS_BUILD_GOODS}"
+      end
+    end
+    
+    puts "\nCreating custom builds\n\n"
+    
+    FileUtils.rm_rf   RIGHTJS_BUILD_CUSTOM
+    FileUtils.mkdir_p RIGHTJS_BUILD_CUSTOM
+    
+    (0..(2**RIGHTJS_BUILD_OPTIONS.size-1)).each do |i|
+      id = "%0#{RIGHTJS_BUILD_OPTIONS.size}d" % i.to_s(2)
       
       options = []
       
       id.split('').each_with_index do |value, index|
-        if value == '0'
-          options << "no-#{RIGHTJS_BUILD_OPTIONS[index]}"
+        if (RIGHTJS_BUILD_OPTIONS[index].slice(0,3) == 'no-' && value == '0') ||
+           (RIGHTJS_BUILD_OPTIONS[index].slice(0,3) != 'no-' && value == '1')
+           
+          options << RIGHTJS_BUILD_OPTIONS[index]
         end
       end
       
       options = options.join(',')
       
-      puts " * #{options.blank? ? 'full build' : options}"
+      puts " * #{options.empty? ? '-- clean RightJS build' : options}"
       
       system "cd #{RIGHTJS_ROOT}; rake build OPTIONS=#{options} &> /dev/null"
       
-      system "cp #{RIGHTJS_ROOT}/build/right.js     #{RIGHTJS_BUILD_CUSTOM}/right-#{id}1.js"
-      system "cp #{RIGHTJS_ROOT}/build/right-src.js #{RIGHTJS_BUILD_CUSTOM}/right-#{id}0.js"
+      system "cp #{RIGHTJS_ROOT}/build/right.js     #{RIGHTJS_BUILD_CUSTOM}/right-#{id}11.js"
+      system "cp #{RIGHTJS_ROOT}/build/right-min.js #{RIGHTJS_BUILD_CUSTOM}/right-#{id}01.js"
+      system "cp #{RIGHTJS_ROOT}/build/right-min.js #{RIGHTJS_BUILD_CUSTOM}/right-#{id}01.js"
+      system "cp #{RIGHTJS_ROOT}/build/right-src.js #{RIGHTJS_BUILD_CUSTOM}/right-#{id}00.js"
     end
-    
-    puts
+
+    puts 
   end
   
   desc 'Cleans up the pages cache'

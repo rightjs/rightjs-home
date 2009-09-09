@@ -66,4 +66,8 @@ module ApplicationHelper
   def set_unit_scope(name)
     controller.instance_eval{ @unit = Unit.find_by_name(name)}
   end
+  
+  def goods_path(package=nil)
+    "/goods"+ (package ? "/#{package}" : "")
+  end
 end

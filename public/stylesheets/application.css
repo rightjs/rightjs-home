@@ -285,6 +285,9 @@ form#custom-build-form ul li {
   display: block;
   height: 20pt;
 }
+form#custom-build-form ul li.goods label {
+  color: #A53A3A;
+}
 
 form#custom-build-form ul li input {
   cursor: pointer;
@@ -301,7 +304,7 @@ form#custom-build-form label {
 }
 
 form#custom-build-form div#calc {
-  height: 160px;
+  height: 222px;
   width: 20pt;
   background: #DED;
   position: relative;

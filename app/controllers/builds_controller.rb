@@ -22,7 +22,7 @@ class BuildsController < ApplicationController
   def create
     params[:options] ||= {}
     
-    options = (RIGHTJS_BUILD_OPTIONS + ['compress']).map do |key|
+    options = (RIGHTJS_BUILD_OPTIONS.collect{|o| o.gsub(/^no\-/, '')} + ['build', 'compress']).map do |key|
       params[:options].has_key?(key) ? 1 : 0
     end
     

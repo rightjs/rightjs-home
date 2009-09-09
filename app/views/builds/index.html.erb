@@ -17,15 +17,24 @@
         ['form',     'Form Additional Features'],
         ['xhr',      'Ajax Features'],
         ['fx',       'Basic Visual Effects'],
+        
+        # RightJS Goods modules
+        ['json',     'JSON support',                 true],
+        ['events',   'Advanced DOM-Events handling', true],
+        ['effects',  'Additional Visual Effects',    true],
+        
         ['compress', 'Compress Source Code'],
         ['build',    'Create Self-Build Script']
       ].collect do |options|
         content_tag :li,
-          check_box_tag("options[#{options.first}]", 1, true) +
-          label_tag("options_#{options.first}", options.last)
+            check_box_tag("options[#{options.first}]", 1, !options[2]) +
+            label_tag("options_#{options.first}", options[1]),
+          :class => options[2] ? :goods : nil
+          
       end.join("\n")
       %>
     </ul>
+    
   </p>
   
   <p class="buttons">
@@ -34,16 +43,22 @@
   </p>
 </form>
 
-<p style="color: gray; margin-top: 20pt; font-size: 80%">
-  <b>NOTE:</b> The self-building feature creates a self-building javascript code
+<div style="font-size: 80%">
+<p style="margin-top: 30pt">
+  The brown options are modules out of the <%= link_to 'RightJS Goods', goods_path %> project.
+</p>
+
+<h2>The Self-Building Feature</h2>
+<p>
+  The self-building feature creates a self-building javascript code
   that reconstructs itself on the browser side. It gives additionally about 25-30%
-  of compression and prepares the script for better server-side gzip compression,
-  but in exchange it takes about 20-100 ms on reconstruction.
+  of compression, but in exchange it takes about 10-100 ms on reconstruction.
   <br/><br/>
   In most of the cases of real live applications it is practically invisible for the
   user, but if you are creating an extremely light-weight application and care about the
   user experience you might consider to switch the feature off.
 </p>
+</div>
 
 <script type="text/javascript">
 // <!--
@@ -51,7 +66,7 @@
 // some nice looking calculator method
 
 var build_sizes = <%= @build_sizes.to_json %>;
-var build_keys  = <%= (RIGHTJS_BUILD_OPTIONS + ['compress']).to_json %>;
+var build_keys  = <%= (RIGHTJS_BUILD_OPTIONS.collect{|o| o.gsub(/^no\-/, '')} + ['build', 'compress']).to_json %>;
 var max_size    = Math.max.apply(null, Object.values(build_sizes));
 var min_size    = Math.min.apply(null, Object.values(build_sizes));
 
