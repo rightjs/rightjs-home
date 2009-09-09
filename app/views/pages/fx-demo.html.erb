@@ -39,8 +39,7 @@ $('morph-test').morph({
   fontSize: '40px',
   background: 'green',
   color: 'yellow'
-},
-{duration: 'long'});
+}, {duration: 'long'});
 </textarea>
   <div class="fx-starter">
     <a href="" onclick="reset('morph-test'); return false;">Reset</a>
@@ -53,9 +52,9 @@ $('morph-test').morph({
   Fx.Highlight is the generic highlighter effect. You can specify start and end colors if you like.
 </p>
 <p>
-  <div id="highlight-test" class="fx-test fx-no-bg fx-right">How are ya mate?</div>
+  <div id="highlight-test" class="fx-test fx-no-bg">Highlight me!</div>
 </p>
-<p class="fx-handler">
+<p class="fx-handler fx-handler-goods">
 <textarea id="highlight-test-script">
 $('highlight-test').highlight();
 </textarea>
@@ -70,11 +69,15 @@ $('highlight-test').highlight();
   Fx.Fade is the opacity effects handler.
 </p>
 <p>
-  <div id="fade-test" class="fx-test fx-right">How are ya mate?</div>
+  <div class="fx-test-holder">
+    <div id="fade-test" class="fx-test fx-goods">Fade me!</div>
+  </div>
 </p>
-<p class="fx-handler">
+<p class="fx-handler fx-handler-goods">
 <textarea id="fade-test-script">
-$('fade-test').fade();
+$('fade-test')
+  .fade()
+  .fade();
 </textarea>
   <div class="fx-starter">
     <a href="" onclick="reset('fade-test'); return false;">Reset</a>
@@ -84,19 +87,127 @@ $('fade-test').fade();
 
 <h2>Fx.Slide</h2>
 <p>
-  Fx.Slide is the slider effect. By default it works from the top, but
-  might work from any position, see the documentation for more details.
+  <div class="fx-test-holder" style="overflow: hidden;">
+    <div id="slide-test" class="fx-test  fx-goods">Slide me!</div>
+  </div>
 </p>
-<p>
-  <div id="slide-test" class="fx-test fx-right">How are ya mate?</div>
-</p>
-<p class="fx-handler">
+<p class="fx-handler fx-handler-goods">
 <textarea id="slide-test-script">
-$('slide-test').slide();
+$('slide-test')
+  .slide()
+  .slide({direction: 'left'})
+  .slide('out', {direction: 'bottom'})
+  .slide('in',  {direction: 'right'})
 </textarea>
   <div class="fx-starter">
     <a href="" onclick="reset('slide-test'); return false;">Reset</a>
     <a href="" onclick="runfx('slide-test'); return false;">Start</a>
   </div>
 </p>
+<p>&nbsp;</p>
+<h1>RightJS Goods Additional Visual Effects</h1>
+<script type="text/javascript" src="/builds/goods/right-effects-min.js"></script>
 
+<h2>Fx.CSS</h2>
+<style type="text/css">
+  div.green-background { background: green; }
+  div.blue-color       { color:      blue;  }
+</style>
+<p>
+  <div id="css-test" class="fx-test fx-goods">I can morph to classes!</div>
+</p>
+<p class="fx-handler fx-handler-goods">
+<textarea id="css-test-script">
+$('css-test')
+  .morphToClass('green-background')
+  .morphToClass('blue-color')
+</textarea>
+  <div class="fx-starter">
+    <a href="" onclick="reset('css-test'); $('css-test').setClass('fx-test fx-goods'); return false;">Reset</a>
+    <a href="" onclick="runfx('css-test'); return false;">Start</a>
+  </div>
+</p>
+
+<h2>Fx.Move</h2>
+<p>
+  <div id="move-test" class="fx-test fx-goods">Move me around!</div>
+</p>
+<p class="fx-handler fx-handler-goods">
+<textarea id="move-test-script">
+$('move-test')
+  .move({x:  300}, {position: 'relative'})
+  .move({y: -200}, {position: 'relative'})
+  .move({x: -300}, {position: 'relative'})
+  .move({y:  200}, {position: 'relative'});
+</textarea>
+  <div class="fx-starter">
+    <a href="" onclick="reset('move-test'); return false;">Reset</a>
+    <a href="" onclick="runfx('move-test'); return false;">Start</a>
+  </div>
+</p>
+
+<h2>Fx.Run</h2>
+<p>
+  <div class="fx-test-holder">
+    <div id="run-test" class="fx-test fx-goods">I can run in and out!</div>
+  </div>
+</p>
+<p class="fx-handler fx-handler-goods">
+<textarea id="run-test-script">
+$('run-test')
+  .run().run() // left by default
+  .run('out', {direction: 'top'})
+  .run('in',  {direction: 'top'})
+</textarea>
+  <div class="fx-starter">
+    <a href="" onclick="reset('run-test'); return false;">Reset</a>
+    <a href="" onclick="runfx('run-test'); return false;">Start</a>
+  </div>
+</p>
+
+<h2>Fx.Bounce</h2>
+<p>
+  <div id="bounce-test" class="fx-test fx-goods">I can bounce!</div>
+</p>
+<p class="fx-handler fx-handler-goods">
+<textarea id="bounce-test-script">
+$('bounce-test').bounce();
+</textarea>
+  <div class="fx-starter">
+    <a href="" onclick="reset('bounce-test'); return false;">Reset</a>
+    <a href="" onclick="runfx('bounce-test'); return false;">Start</a>
+  </div>
+</p>
+
+<h2>Fx.Puff</h2>
+<p>
+  <div class="fx-test-holder">
+    <div id="puff-test" class="fx-test fx-goods">I can puff out and in!</div>
+  </div>
+</p>
+<p class="fx-handler fx-handler-goods">
+<textarea id="puff-test-script">
+$('puff-test').puff();
+</textarea>
+  <div class="fx-starter">
+    <a href="" onclick="reset('puff-test'); return false;">Reset</a>
+    <a href="" onclick="runfx('puff-test'); return false;">Start</a>
+  </div>
+</p>
+
+
+<h2>Fx.Zoom</h2>
+<p>
+  <div id="zoom-test" class="fx-test fx-goods">Zoom!</div>
+</p>
+<p class="fx-handler">
+<textarea id="zoom-test-script">
+$('zoom-test')
+  .zoom(2,   {from: 'left-top', duration: 'long'})
+  .zoom(0.5, {from: 'left-top', duration: 'long'});
+</textarea>
+  <div class="fx-starter">
+    <a href="" onclick="reset('zoom-test'); return false;">Reset</a>
+    <a href="" onclick="runfx('zoom-test'); return false;">Start</a>
+  </div>
+</p>

@@ -254,8 +254,8 @@ div#rss-feed img, div#twitter img {
 
 div.fx-test {
   width: 200px;
-  height: 100px;
-  line-height: 100px;
+  height: 80px;
+  line-height: 80px;
   text-align: center;
   background: orange;
   color: brown;
@@ -263,7 +263,7 @@ div.fx-test {
 
 div.fx-no-bg {
   background: transparent;
-  border: 1px solid #EEE;
+  border: 1px solid #DDD;
 }
 div.fx-right {
   position: absolute;
@@ -271,8 +271,19 @@ div.fx-right {
 }
 
 p.fx-handler textarea {
-  height: 98px;
+  height: 77px;
   width: 398px;
+}
+
+p.fx-handler-goods {
+  display: block;
+  margin-left: 220px;
+  margin-top: -92px;
+}
+
+div.fx-test-holder {
+  display: block;
+  height: 80px;
 }
 
 form#custom-build-form ul {
