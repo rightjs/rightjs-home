@@ -1,0 +1,69 @@
+<h1>RightJS Goods</h1><% @title_text = 'Goods' %>
+
+<p>
+  RightJS Goods is a subproject of RightJS that contains officially supported extensions
+  for RightJS
+</p>
+<p>
+  All the source code of the project is available under terms of the MIT license at the
+  github service.
+</p>
+<p>
+  <a href="http://github.com/rightjs/rightjs-goods" target="_blank">http://github.com/rightjs/rightjs-goods</a>
+</p>
+<p>
+  <tt>git clone git://github.com/rightjs/rightjs-goods.git</tt>
+</p>
+
+<p>
+  You can include any of the following modules as separated files on your page, or you
+  can include them in the main build at the <%= link_to 'custom build page', builds_path %>
+</p>
+
+
+<h2>Additional Visual Effects</h2>
+<p>
+  By default RightJS comes with the Fx engine and few most used visual effects. This module
+  contains a library of all the additional visual effects.
+</p>
+<p>
+  Info:
+    <%= link_to 'Documentation', goods_path('effects') %> |
+  
+  Download:
+    <%= link_to 'build',    '/builds/goods/right-effects.js',     :target => :_blank %>,
+    <%= link_to 'minified', '/builds/goods/right-effects-min.js', :target => :_blank %>,
+    <%= link_to 'source',   '/builds/goods/right-effects-src.js', :target => :_blank %>
+</p>
+
+<h2>JSON support</h2>
+<p>
+  This module provides the standard JSON import/export feature. Additionally when included
+  it provides better JSON responses check for the {Xhr} module and also an ability to save
+  and retrieve objects and arrays in the {Cookie} module transparently.
+</p>
+<p>
+  Info:
+    <%= link_to 'Documentation', goods_path('json') %> |
+    
+  Download:
+    <%= link_to 'build',    '/builds/goods/right-json.js',     :target => :_blank %>,
+    <%= link_to 'minified', '/builds/goods/right-json-min.js', :target => :_blank %>,
+    <%= link_to 'source',   '/builds/goods/right-json-src.js', :target => :_blank %>
+</p>
+
+<h2>Advanced DOM-Events Handling</h2>
+<p>
+  This module provides additional functionality for DOM events, like additional methods
+  to check which button or key was pressed. And it also provides an ability to fire
+  real DOM events on your page elements.
+</p>
+<p>
+  Info:
+    <%= link_to 'Documentation', goods_path('events') %> |
+    
+  Download:
+    <%= link_to 'build',    '/builds/goods/right-events.js',     :target => :_blank %>,
+    <%= link_to 'minified', '/builds/goods/right-events-min.js', :target => :_blank %>,
+    <%= link_to 'source',   '/builds/goods/right-events-src.js', :target => :_blank %>
+</p>

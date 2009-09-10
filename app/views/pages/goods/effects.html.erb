@@ -1,0 +1,198 @@
+<h1>Additional Visual Effects</h1><% @title_text = "Goods: Additional Visual Effects" %>
+
+<p>
+  The library of additional visual effects for RightJS currently offers the following list of effects
+</p>
+<p>
+  <ul>
+    <li><a href="#CSS">Fx.CSS</a></li>
+    <li><a href="#Move">Fx.Move</a></li>
+    <li><a href="#Run">Fx.Run</a></li>
+    <li><a href="#Bounce">Fx.Bounce</a></li>
+    <li><a href="#Puff">Fx.Puff</a></li>
+    <li><a href="#Zoom">Fx.Zoom</a></li>
+  </ul>
+</p>
+<p>
+  You can see all the effects in action at the main <%= link_to 'visual effects demo', '/fx-demo' %> page.
+</p>
+
+<a name="CSS"></a>
+<h2>Fx.CSS</h2>
+
+<p>
+  Fx.CSS is an equivalent of the {Fx.Morph} effect, but instead of using an actual styles it
+  works with the css classes. This might be useful if you don't want to keep any styles inside
+  your code and organize all of them at the css level.
+</p>
+<p>
+  It also lets you to morph by gradually removing some css-classes
+</p>
+<p>
+  The <tt>start()</tt> method receives two arguments the first one is the class to add and
+  the second one is the class to remove
+</p>
+<p>
+  The <tt>morphToClass()</tt> method is the element level shortcut for the effect
+</p>
+<code>
+new Fx.CSS('my-element').start('new-class');           // adds the class
+new Fx.CSS('my-element').start(null, 'remove-class');  // removes the class
+
+// at the element level
+$('my-element').morphToClass('new-class');
+$('my-element').morphToClass(null, 'remove-class');
+
+// with options
+$('my-element').morphToClass('something', {
+  duration: 'long',
+  onFinish: function() {...}
+});
+</code>
+<p>
+  NOTE: this visual effect processes the element <tt>style</tt> attribute, so that
+  if you morphed it to some class you won't be able to remove the class anymore,
+  because all the styles will be embedded to the <tt>style</tt> level and will have
+  priority over the css level definitions.
+</p>
+
+
+<a name="Move"></a>
+<h2>Fx.Move</h2>
+
+<p>
+  This effect allows you to move your elements around the page.
+</p>
+<p>
+  You can use the additional <tt>position</tt> option to specify which coordinates do you use,
+  absolute or relative. By default it's <tt>absolute</tt>
+</p>
+<p>
+  The <tt>start()</tt> method receives the hash of the element position. It might be a hash
+  like <tt>{x: NN, y: NN}</tt> or a hash like <tt>{left: 'NNpx', top: 'NNpx'}</tt>
+</p>
+<p>
+  You also might specify only one attribute, horizontal or vertical to move only in one of the axis.
+</p>
+<p>
+  The <tt>move()</tt> method is the element level shortcut for the effect
+</p>
+<code>
+new Fx.Move('my-element').start({x: 100, y: 200});
+new Fx.Move('my-element', {position: 'relative'}).start({x: -200});
+
+// at the element level
+$('element').move({x: 200, y: 200}); // absolute position
+$('element').move({x: -200}, {position: 'relative'}); // moves it 200px left
+</code>
+
+<a name="Run"></a>
+<h2>Fx.Run</h2>
+<p>
+  This effect makes the element appear and disappear by moving behind (or from behind) the left or
+  top edge of the window. Its a bidirectional effect so you might specify the effect direction like
+  <tt>'in'</tt> or <tt>'out'</tt>. Or use it by default in the <tt>'toggle'</tt> mode.
+</p>
+<p>
+  An additional option called <tt>direction</tt> defines in which direction the element should run.
+  It might be <tt>'left'</tt> (default) or <tt>'top'</tt>
+</p>
+<p>
+  The <tt>run()</tt> method is the element level shortcut for the effect
+</p>
+<code>
+new Fx.Run('element').start();
+new Fx.Run('element').start('in');
+new Fx.Run('element').start('out');
+
+$('element').run();
+$('element').run('in');
+$('element').run('out');
+
+$('element').run({direction: 'top'});
+$('element').run('out', {direction: 'top', onFinish: do_that});
+</code>
+
+
+<a name="Bounce"></a>
+<h2>Fx.Bounce</h2>
+<p>
+  This effect supposed to attract user's attention by making an element jump.
+</p>
+<p>
+  There are two additional options that will let you customize the effect. The
+  first one is <tt>direction</tt>, that describes which direction the element should
+  bounce. It might be one of the following <tt>'top'</tt> (default), <tt>'left'</tt>,
+  <tt>'right'</tt> or <tt>'bottom'</tt>.
+</p>
+<p>
+  The second one called <tt>value</tt> is an amount of pixels at which the element should
+  move. By default it's <tt>16</tt> pixels.
+</p>
+<p>
+  The <tt>bounce()</tt> method is the element level shortcut for the effect
+</p>
+<code>
+new Fx.Bounce('element').start();
+
+$('element').bounce();
+$('element').bounce({value: 40});
+$('element').bounce({direction: 'left'});
+</code>
+
+<a name="Puff"></a>
+<h2>Fx.Puff</h2>
+<p>
+  Another bidirectional effect that shows/hides an element by zooming and making it fade
+  at the same time.
+</p>
+<p>
+  An additional option called <tt>size</tt> will let you control how big the element should
+  grow before disappear. By default it's <tt>1.4</tt> times.
+</p>
+<p>
+  The <tt>puff()</tt> method is the element level shortcut for the effect
+</p>
+<code>
+new Fx.Puff('element').start();
+
+$('element').puff();     // the toggle mode by default
+$('element').puff('in');
+$('element').puff('out');
+
+$('element').puff({size: 2});
+</code>
+
+<a name="Zoom"></a>
+<h2>Fx.Zoom</h2>
+<p>
+  This visual effect lets you gradually increase/decrease an element size. It simultaneously
+  processes all the available attributes like height, width, font-size, border-size, margins
+  and keeps the element proportions intact.
+</p>
+<p>
+  There is an additional option called <tt>from</tt> that allows you do define which direction
+  the element should grow. It might be one of the following <tt>'center'</tt> (default),
+  <tt>'top'</tt>, <tt>'right'</tt>, <tt>'left'</tt>, <tt>'bottom'</tt>. And you can use any
+  appropriate combinations of them for all the four corners, like <tt>'left top'</tt> or
+  <tt>'bottom-right'</tt>
+</p>
+<p>
+  The <tt>start()</tt> method, as the end proportion might receive the following arguments:
+  <ul>
+    <li>a <tt>float</tt> value where <tt>1</tt> is an equivalent of 100%</li>
+    <li>a <tt>string</tt> like <tt>'120%'</tt> to define the value in usual percents</li>
+    <li>a hash like <tt>{width: 'NNpx'}</tt> or <tt>{height: 'NNpx'}</tt></li>
+  </ul>
+</p>
+<p>
+  The <tt>zoom()</tt> method is the element level shortcut for the effect
+</p>
+<code>
+new Fx.Zoom('element').start(1.2); // zoom at 20%
+new Fx.Zoom('element').start(0.8); // minify at 20%
+
+$('element').zoom(2, {from: 'left'});
+$('element').zoom('150%', {from: 'top left'});
+$('element').zoom({width: '200px'});  // zooms to the size of 200px
+</code>
