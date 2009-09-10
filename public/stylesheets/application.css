@@ -260,31 +260,34 @@ div.fx-test {
   background: orange;
   color: brown;
 }
+div.fx-test-container {
+  height: 80px;
+  width: 200px;
+  float: left;
+  margin-right: 20pt;
+}
+div.fx-example-big div.fx-test-container {
+  width: auto;
+  height: auto;
+  float: none;
+  margin-right: 0;
+  margin-bottom: 10pt;
+}
 
 div.fx-no-bg {
   background: transparent;
   border: 1px solid #DDD;
 }
-div.fx-right {
-  position: absolute;
-  margin-left: 440px;
-}
 
-p.fx-handler textarea {
+div.fx-example textarea {
   height: 77px;
   width: 398px;
 }
 
-p.fx-handler-goods {
-  display: block;
-  margin-left: 220px;
-  margin-top: -92px;
-}
 
-div.fx-test-holder {
-  display: block;
-  height: 80px;
-}
+/* Fx.CSS example styles */
+div.green-background { background: green; }
+div.blue-color       { color:      blue;  }
 
 form#custom-build-form ul {
   list-style: none;
