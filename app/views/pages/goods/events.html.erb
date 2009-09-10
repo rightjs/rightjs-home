@@ -1,0 +1,68 @@
+<h1>Advanced DOM Events Handling</h1><% @title_text = "Goods: Advanced DOM Events Handling" %>
+
+<p>
+  This module provides additional functionality that might be helpful when you need to work
+  with DOM events a lot.
+</p>
+
+<h2>Keys And Buttons Determination</h2>
+<p>
+  There are two additional constants appear at the {Event} class when the module is included.
+</p>
+<p>
+  The first one is <tt>Event.BUTTONS</tt> and keeps the mouse button numbers
+  <ul>
+    <li><tt>LEFT</tt> - 0 (1 for IE and Konqueror)</li>
+    <li><tt>MIDDLE</tt> - 1 (4 for IE and Konqueror)</li>
+    <li><tt>RIGHT</tt> - 2</li>
+  </ul>
+</p>
+<p>
+  The second one is <tt>Event.KEYS</tt> keeps codes of the command keys on a keyboard
+  <ul>
+    <li><tt>BACKSPACE</tt></li>
+    <li><tt>TAB</tt></li>
+    <li><tt>ENTER</tt></li>
+    <li><tt>ESCAPE</tt></li>
+    <li><tt>SPACE</tt></li>
+    <li><tt>PAGE_UP</tt></li>
+    <li><tt>PAGE_DOWN</tt></li>
+    <li><tt>END</tt></li>
+    <li><tt>HOME</tt></li>
+    <li><tt>LEFT</tt></li>
+    <li><tt>UP</tt></li>
+    <li><tt>RIGHT</tt></li>
+    <li><tt>DOWN</tt></li>
+    <li><tt>INSERT</tt></li>
+    <li><tt>DELETE</tt></li>
+  </ul>
+</p>
+<p>
+  For each of the constants there is a respective method that will check if the key/button was pressed.
+  The names follow the constant names, like this:
+</p>
+<code>
+$('element').onClick(function(event) {
+  if (event.isLeftClick())
+    // ...
+});
+
+$('input').onKeydown(function(event) {
+  if (event.isEnter())
+    this.form.submit();
+});
+</code>
+
+<h2>DOM Events Firing</h2>
+<p>
+  By default when you try to initiate events on dom elements in RightJS, it will simply go through
+  all the callbacks registered to the element. It works but it's not real.
+</p>
+<p>
+  If you need to fire real dom-events, then you might use this module. When it's included it wraps
+  the original events initiation methods and uses the new ones, so that there will be no difference
+  at the API level.
+</p>
+<p>
+  NOTE: Konqueror 3 does not supports this feature.
+</p>
