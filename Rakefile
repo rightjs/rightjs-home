@@ -23,8 +23,8 @@ namespace :rightjs do
   desc 'Updates the rightjs source code library'
   task :update_src do
     puts "Updating the RightJS source\n"
-    system "cd #{RIGHTJS_ROOT}; git pull; git checkout master; git submodule init; git submodule update; "+
-         "cd lib/rightjs_goods; git pull; git checkout master; git submodule init; git submodule update"
+    system "cd #{RIGHTJS_ROOT}; git checkout master; git pull origin master; git submodule init; git submodule update; "+
+         "cd lib/rightjs_goods; git checkout master; git pull origin master; git submodule init; git submodule update"
     puts 
   end
   
