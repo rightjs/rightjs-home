@@ -3,6 +3,7 @@
 
 <p>
   There are some standard use cases for the <%= link_to 'Right Calendar', '/ui/calendar' %> widget.
+  You can use the keyboard buttons like arrows, escape and enter buttons to navigate through the calendars
 </p>
 
 <h2>On Form Date-Time Picking</h2>
@@ -45,10 +46,10 @@
 // <![CDATA[
   new Calendar().assignTo('date-simple');
   new Calendar().assignTo('date-triggered', 'date-trigger');
-  new Calendar({showTime: true, format: "%Y-%m-%d %H:%M"}).assignTo('date-with-time');
+  new Calendar({format: "%Y-%m-%d %H:%M"}).assignTo('date-with-time');
   new Calendar({showButtons: true}).assignTo('date-with-buttons');
   new Calendar({
-    format: "%B %d, %Y %l:%M%P", showTime: true
+    format: "%B %d, %Y %l:%M%P"
   }).assignTo('date-with-formatting');
   var min_date = new Date();
   var max_date = new Date();
@@ -60,11 +61,11 @@
   }).assignTo('date-with-limits');
   
   new Calendar({
-    timePeriod: 15, showTime: true, format: "%Y-%m-%d %H:%M"
+    timePeriod: 15, format: "%Y-%m-%d %H:%M"
   }).assignTo('date-with-15-minutes-period');
   
   new Calendar({
-    timePeriod: 180, showTime: true, format: "%Y-%m-%d %H:%M"
+    timePeriod: 180, format: "%Y-%m-%d %H:%M"
   }).assignTo('date-with-3-hours-period');
 // ]]>
 </script>
@@ -77,9 +78,7 @@ new Calendar().assignTo('date-triggered', 'date-trigger');
 
 
 // calendar with the time-picker
-new Calendar({
-  showTime: true, format: "%Y-%m-%d %H:%M"
-}).assignTo('date-with-time');
+new Calendar({format: "%Y-%m-%d %H:%M"}).assignTo('date-with-time');
 
 
 // calendar with the bottom buttons
@@ -89,9 +88,7 @@ new Calendar({
 
 
 // calendar with fancy formatting
-new Calendar({
-  format: "%Y-%m-%d %l:%M", showTime: true
-}).assignTo('date-with-formatting');
+new Calendar({format: "%Y-%m-%d %l:%M"}).assignTo('date-with-formatting');
 
 
 // calendar with dates limit
@@ -107,13 +104,13 @@ new Calendar({
 
 // calendar with 15-minute time periods
 new Calendar({
-  timePeriod: 15, showTime: true, format: "%Y-%m-%d %H:%M"
+  timePeriod: 15, format: "%Y-%m-%d %H:%M"
 }).assignTo('date-with-15-minutes-period');
 
 
 // calendar with 3-hours time periods
 new Calendar({
-  timePeriod: 180, showTime: true, format: "%Y-%m-%d %H:%M"
+  timePeriod: 180, format: "%Y-%m-%d %H:%M"
 }).assignTo('date-with-3-hours-period');
 </code>
 </p>

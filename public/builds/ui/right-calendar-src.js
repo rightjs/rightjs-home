@@ -18,17 +18,19 @@ var Calendar = new Class(Observer, {
     EVENTS: $w('show hide select done'),
     
     Options: {
-      format:         'ISO', // a key out of the predefined formats or a format string
-      showTime:       false,
+      format:         'ISO',  // a key out of the predefined formats or a format string
+      showTime:       null,   // null for automatic, or true|false to enforce
       showButtons:    false,
       minDate:        null,
       maxDate:        null,
-      firstDay:       1,     // 1 for Monday, 0 for Sunday
+      firstDay:       1,      // 1 for Monday, 0 for Sunday
+      fxName:         'fade', // set to null if you don't wanna any fx
       fxDuration:     200,
-      numberOfMonths: 1,     // a number or [x, y] greed definition
-      timePeriod:     1,     // the timepicker minimal periods (in minutes, might be bigger than 60)
+      numberOfMonths: 1,      // a number or [x, y] greed definition
+      timePeriod:     1,      // the timepicker minimal periods (in minutes, might be bigger than 60)
       checkTags:      '*',
-      relName:        'calendar'
+      relName:        'calendar',
+      twentyFourHour: null    // null for automatic, or true|false to enforce
     },
     
     Formats: {
@@ -101,6 +103,21 @@ var Calendar = new Class(Observer, {
     // format catching up
     this.options.format = (this.constructor.Formats[this.options.format] || this.options.format).trim();
     
+    // setting up the showTime option
+    if (this.options.showTime === null) {
+      this.options.showTime = this.options.format.search(/%[HkIl]/) > -1;
+    }
+    
+    // setting up the 24-hours format
+    if (this.options.twentyFourHour === null) {
+      this.options.twentyFourHour = this.options.format.search(/%[Il]/) < 0;
+    }
+    
+    // enforcing the 24 hours format if the time threshold is some weird number
+    if (this.options.timePeriod > 60 && 12 % (this.options.timePeriod/60).ceil()) {
+      this.options.twentyFourHour = true;
+    }
+
     return this;
   },
   
@@ -130,7 +147,8 @@ var Calendar = new Class(Observer, {
    * @return Calendar this
    */
   hide: function() {
-    this.element.hide('fade', {duration: this.options.fxDuration});
+    this.element.hide(this.options.fxName, {duration: this.options.fxDuration});
+    Calendar.current = null;
     return this;
   },
   
@@ -141,7 +159,8 @@ var Calendar = new Class(Observer, {
    * @return Calendar this
    */
   show: function(position) {
-    this.element.show('fade', {duration: this.options.fxDuration});
+    this.element.show(this.options.fxName, {duration: this.options.fxDuration});
+    Calendar.current = this;
     return this;
   },
   
@@ -283,7 +302,7 @@ Calendar.include({
       }
     }
     
-    this.buildTime();
+    if (this.options.showTime) this.buildTime();
     this.buildButtons();
     
     return this;
@@ -299,43 +318,50 @@ Calendar.include({
   
   // builds a month block
   buildMonth: function() {
-    return $E('div', {'class': 'right-calendar-month'}).insert([
-      $E('div', {'class': 'right-calendar-month-caption'}),
-      $E('table').insert(
-        '<thead><tr>'+
-          this.options.dayNames.map(function(name) {return '<th>'+name+'</th>';}).join('')+
-        '</tr></thead><tbody>'+
+    return $E('div', {'class': 'right-calendar-month'}).insert(
+      '<div class="right-calendar-month-caption"></div>'+
+      '<table><thead><tr>'+
+        this.options.dayNames.map(function(name) {return '<th>'+name+'</th>';}).join('')+
+      '</tr></thead><tbody>'+
           '123456'.split('').map(function() {return '<tr><td><td><td><td><td><td><td></tr>'}).join('')+
-        '</tbody>'
-      )
-    ]);
+      '</tbody></table>'
+    );
   },
   
   // builds the time selection block
   buildTime: function() {
-    if (!this.options.showTime) return;
+    var time_picker = $E('div', {'class': 'right-calendar-time', html: ':'}).insertTo(this.element);
     
-    this.hours = $E('select');
-    this.minutes = $E('select');
+    this.hours = $E('select').insertTo(time_picker, 'top');
+    this.minutes = $E('select').insertTo(time_picker);
     
-    var minute_options_number = 60 / this.options.timePeriod;
+    var minutes_threshold = this.options.timePeriod < 60 ? this.options.timePeriod : 60;
+    var hours_threshold   = this.options.timePeriod < 60 ? 1 : (this.options.timePeriod / 60).ceil();
     
-    (minute_options_number == 0 ? 1 : minute_options_number).times(function(i) {
-      i = i * this.options.timePeriod;
-      var c = i < 10 ? '0'+i : i;
-      this.minutes.insert($E('option', {value: i, html: c}));
+    (60).times(function(i) {
+      var caption = (i < 10 ? '0' : '') + i;
+      
+      if (i < 24 && i % hours_threshold == 0) {
+        if (this.options.twentyFourHour)
+          this.hours.insert($E('option', {value: i, html: caption}));
+        else if (i < 12) {
+          this.hours.insert($E('option', {value: i, html: i == 0 ? 12 : i}));
+        }
+      }
+      
+      if (i % minutes_threshold == 0) {
+        this.minutes.insert($E('option', {value: i, html: caption}));
+      }
     }, this);
     
-    var hour_options_number = this.options.timePeriod > 59 ? (24 * 60 / this.options.timePeriod) : 24;
-    
-    (hour_options_number == 0 ? 1 : hour_options_number).times(function(i) {
-      if (this.options.timePeriod > 59) i = (i * this.options.timePeriod / 60).floor();
-      var c = i < 10 ? '0'+i : i;
-      this.hours.insert($E('option', {value: i, html: c}));
-    }, this);
-    
-    $E('div', {'class': 'right-calendar-time'}).insertTo(this.element)
-      .insert([this.hours, document.createTextNode(":"), this.minutes]);
+    // adding the meridian picker if it's a 12 am|pm picker
+    if (!this.options.twentyFourHour) {
+      this.meridian = $E('select').insertTo(time_picker);
+      
+      (this.options.format.includes(/%P/) ? ['am', 'pm'] : ['AM', 'PM']).each(function(value) {
+        this.meridian.insert($E('option', {value: value.toLowerCase(), html: value}));
+      }, this);
+    }
   },
   
   // builds the bottom buttons block
@@ -356,6 +382,33 @@ Calendar.include({
  *
  * Copyright (C) 2009 Nikolay V. Nemshilov aka St.
  */
+ 
+// the document keybindings hookup
+document.onKeydown(function(event) {
+ if (Calendar.current) {
+   var name;
+
+   switch(event.keyCode) {
+     case 27: name = 'hide';      break;
+     case 37: name = 'prevDay';   break;
+     case 39: name = 'nextDay';   break;
+     case 38: name = 'prevWeek';  break;
+     case 40: name = 'nextWeek';  break;
+     case 34: name = 'nextMonth'; break;
+     case 33: name = 'prevMonth'; break;
+     case 13:
+        Calendar.current.select(Calendar.current.date);
+        name = 'done';
+        break;
+   }
+
+   if (name) {
+     Calendar.current[name]();
+     event.stop();
+   }
+ }
+});
+ 
 Calendar.include({
   /**
    * Initiates the 'select' event on the object
@@ -379,39 +432,53 @@ Calendar.include({
     return this.fire('done', this.date);
   },
   
-  /**
-   * Switches to one month forward
-   *
-   * @return Calendar this
-   */
-  next: function() {
-    this.prevDate = new Date(this.prevDate || this.date);
-    
-    if (this.hasNextMonth) {
-      this.prevDate.setMonth(this.prevDate.getMonth() + 1);
-    }
-    return this.update(this.prevDate);
+  nextDay: function() {
+    return this.changeDate({'Date': 1});
   },
   
-  /**
-   * Switches to on month back
-   *
-   * @return Calendar this
-   */
-  prev: function() {
-    this.prevDate = new Date(this.prevDate || this.date);
-    
-    if (this.hasPrevMonth) {
-      this.prevDate.setMonth(this.prevDate.getMonth() - 1);
-    }
-    return this.update(this.prevDate);
+  prevDay: function() {
+    return this.changeDate({'Date': -1});
   },
+  
+  nextWeek: function() {
+    return this.changeDate({'Date': 7});
+  },
+  
+  prevWeek: function() {
+    return this.changeDate({'Date': -7});
+  },
+  
+  nextMonth: function() {
+    return this.changeDate({Month: 1});
+  },
+  
+  prevMonth: function() {
+    return this.changeDate({Month: -1});
+  },
+  
 // protected
+
+  // changes the current date according to the hash
+  changeDate: function(hash) {
+    var date = new Date(this.date);
+    
+    for (var key in hash) {
+      date['set'+key](date['get'+key]() + hash[key]);
+    }
+    
+    // checking the date range constrains
+    if (!(
+      (this.options.minDate && this.options.minDate > date) ||
+      (this.options.maxDate && this.options.maxDate < date)
+    )) this.date = date;
+    
+    return this.update(this.date);
+  },
   
   connectEvents: function() {
     // connecting the monthes swapping
-    this.prevButton.onClick(this.prev.bind(this));
-    this.nextButton.onClick(this.next.bind(this));
+    this.prevButton.onClick(this.prevMonth.bind(this));
+    this.nextButton.onClick(this.nextMonth.bind(this));
     
     // connecting the calendar day-cells
     this.element.select('div.right-calendar-month table tbody td').each(function(cell) {
@@ -420,7 +487,7 @@ Calendar.include({
           var prev = this.element.first('.right-calendar-day-selected');
           if (prev) prev.removeClass('right-calendar-day-selected');
           cell.addClass('right-calendar-day-selected');
-          this.setDay(cell.date);
+          this.setTime(cell.date);
         }
       }.bind(this));
     }, this);
@@ -429,6 +496,9 @@ Calendar.include({
     if (this.hours) {
       this.hours.on('change', this.setTime.bind(this));
       this.minutes.on('change', this.setTime.bind(this));
+      if (!this.options.twentyFourHour) {
+        this.meridian.on('change', this.setTime.bind(this));
+      }
     }
     
     // connecting the bottom buttons
@@ -444,16 +514,17 @@ Calendar.include({
   },
   
   // sets the date without nucking the time
-  setDay: function(date) {
-    this.date.setYear(date.getFullYear());
-    this.date.setMonth(date.getMonth());
-    this.date.setDate(date.getDate());
-    return this.select(this.date);
-  },
-  
-  setTime: function() {
-    this.date.setHours(this.hours.value);
+  setTime: function(date) {
+    // from clicking a day in a month table
+    if (date instanceof Date) {
+      this.date.setYear(date.getFullYear());
+      this.date.setMonth(date.getMonth());
+      this.date.setDate(date.getDate());
+    }
+    
+    this.date.setHours(this.hours.value.toInt() + (!this.options.twentyFourHour && this.meridian.value == 'pm' ? 12 : 0));
     this.date.setMinutes(this.minutes.value);
+
     return this.select(this.date);
   }
   
@@ -489,7 +560,7 @@ Calendar.include({
     } else {
       input.on({
         focus: this.showAt.bind(this, input),
-        click: function(e) { e.stop(); },
+        click: function(e) { e.stop(); if (this.element.hidden()) this.showAt(input); }.bind(this),
         keyDown: function(e) {
           if (e.keyCode == 9 && this.element.visible())
             this.hide();
@@ -534,7 +605,7 @@ Calendar.include({
     this.on(this.doneButton ? 'done' : 'select', function() {
       element.value = this.format();
     }.bind(this));
-      
+    
     return this.hideOthers().show();
   },
   
@@ -597,6 +668,7 @@ Calendar.include({
  * Copyright (C) 2009 Nikolay V. Nemshilov aka St.
  */
 Calendar.include({
+
   /**
    * Parses out the given string based on the current date formatting
    *
@@ -733,4 +805,4 @@ document.onReady(function() {
 });
 
 
-document.write("<style type=\"text/css\">*.right-ui-button{display:inline-block;*display:inline;*zoom:1;height:1em;line-height:1em;padding:.2em .5em;text-align:center;border:1px solid #CCC;border-radius:.2em;-moz-border-radius:.2em;-webkit-border-radius:.2em;cursor:pointer;color:#555;background-color:#FFF}*.right-ui-button:hover{color:#222;border-color:#BA8;background-color:#FB6}*.right-ui-button-disabled,*.right-ui-button-disabled:hover{color:#888;background:#EEE;border-color:#CCC;cursor:default}*.right-ui-buttons{margin-top:.5em}div.right-calendar{position:absolute;height:auto;border:1px solid #BBB;position:relative;padding:.5em;border-radius:.3em;-moz-border-radius:.3em;-webkit-border-radius:.3em;cursor:default;background-color:#EEE;-moz-box-shadow:.2em .4em .8em #666;-webkit-box-shadow:.2em .4em .8em #666}div.right-calendar-inline{position:relative;display:inline-block;*display:inline;*zoom:1;-moz-box-shadow:none;-webkit-box-shadow:none}div.right-calendar-prev-button,div.right-calendar-next-button{position:absolute;float:left;width:1em;padding:.15em .4em}div.right-calendar-next-button{right:.5em}div.right-calendar-month-caption{text-align:center;height:1.2em;line-height:1.2em}table.right-calendar-greed{border-spacing:0px;border:none;background:none;width:auto}table.right-calendar-greed td{vertical-align:top;border:none;background:none;margin:0;padding:0;padding-right:.4em}table.right-calendar-greed td:last-child{padding:0}div.right-calendar-month table{margin:0;padding:0;border:none;width:auto;margin-top:.2em;border-spacing:1px;border-collapse:separate;border:none;background:none}div.right-calendar-month table th{color:#777;text-align:center;border:none;background:none;padding:0;margin:0}div.right-calendar-month table td,div.right-calendar-month table td:last-child{text-align:right;padding:.1em .3em;background-color:#FFF;border:1px solid #CCC;cursor:pointer;border-radius:.2em;-moz-border-radius:.2em;-webkit-border-radius:.2em}div.right-calendar-month table td:hover{background-color:#FB6;border-color:#BA8}div.right-calendar-month table td.right-calendar-day-blank{background:transparent;cursor:default;border:none}div.right-calendar-month table td.right-calendar-day-selected{background-color:#FB6;border-color:#BA8;color:brown}div.right-calendar-month table td.right-calendar-day-disabled{color:#888;background:#EEE;border-color:#CCC;cursor:default}div.right-calendar-time{text-align:center}div.right-calendar-time select{margin:0 .4em}div.right-calendar-buttons div.right-ui-button{width:3.2em}div.right-calendar-done-button{position:absolute;right:.5em}</style>");
+document.write("<style type=\"text/css\">*.right-ui-button{display:inline-block;*display:inline;*zoom:1;height:1em;line-height:1em;padding:.2em .5em;text-align:center;border:1px solid #CCC;border-radius:.2em;-moz-border-radius:.2em;-webkit-border-radius:.2em;cursor:pointer;color:#555;background-color:#FFF}*.right-ui-button:hover{color:#222;border-color:#BA8;background-color:#FB6}*.right-ui-button-disabled,*.right-ui-button-disabled:hover{color:#888;background:#EEE;border-color:#CCC;cursor:default}*.right-ui-buttons{margin-top:.5em}div.right-calendar{position:absolute;height:auto;border:1px solid #BBB;position:relative;padding:.5em;border-radius:.3em;-moz-border-radius:.3em;-webkit-border-radius:.3em;cursor:default;background-color:#EEE;-moz-box-shadow:.2em .4em .8em #666;-webkit-box-shadow:.2em .4em .8em #666}div.right-calendar-inline{position:relative;display:inline-block;*display:inline;*zoom:1;-moz-box-shadow:none;-webkit-box-shadow:none}div.right-calendar-prev-button,div.right-calendar-next-button{position:absolute;float:left;width:1em;padding:.15em .4em}div.right-calendar-next-button{right:.5em}div.right-calendar-month-caption{text-align:center;height:1.2em;line-height:1.2em}table.right-calendar-greed{border-spacing:0px;border:none;background:none;width:auto}table.right-calendar-greed td{vertical-align:top;border:none;background:none;margin:0;padding:0;padding-right:.4em}table.right-calendar-greed td:last-child{padding:0}div.right-calendar-month table{margin:0;padding:0;border:none;width:auto;margin-top:.2em;border-spacing:1px;border-collapse:separate;border:none;background:none}div.right-calendar-month table th{color:#777;text-align:center;border:none;background:none;padding:0;margin:0}div.right-calendar-month table td,div.right-calendar-month table td:last-child{text-align:right;padding:.1em .3em;background-color:#FFF;border:1px solid #CCC;cursor:pointer;border-radius:.2em;-moz-border-radius:.2em;-webkit-border-radius:.2em}div.right-calendar-month table td:hover{background-color:#FB6;border-color:#BA8}div.right-calendar-month table td.right-calendar-day-blank{background:transparent;cursor:default;border:none}div.right-calendar-month table td.right-calendar-day-selected{background-color:#FB6;border-color:#BA8;color:brown}div.right-calendar-month table td.right-calendar-day-disabled{color:#888;background:#EEE;border-color:#CCC;cursor:default}div.right-calendar-time{border-top:1px solid #ccc;margin-top:.3em;padding-top:.5em;text-align:center}div.right-calendar-time select{margin:0 .4em}div.right-calendar-buttons div.right-ui-button{width:3.2em}div.right-calendar-done-button{position:absolute;right:.5em}</style>");

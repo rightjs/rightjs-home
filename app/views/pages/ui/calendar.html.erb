@@ -90,13 +90,15 @@
   <table>
     <tr><th>Name</th>           <th>Default</th> <th>Description</th></tr>
     <tr><td>format</td>         <td>ISO</td>     <td>one of the predefined formats name or a format string</td></tr>
-    <tr><td>showTime</td>       <td>false</td>   <td>a marker if the time picker should be displayed </td></tr>
+    <tr><td>showTime</td>       <td>null</td>    <td>a marker if the time picker should be displayed</td></tr>
+    <tr><td>twentyFourHour</td> <td>null</td>    <td>a marker if the 24 or 12 hours time picker should be used</td></tr>
     <tr><td>timePeriod</td>     <td>1</td>       <td>the time picker min time quantity in minutes</td></tr>
     <tr><td>showButtons</td>    <td>false</td>   <td>a marker if the bottom buttons should be displayed</td></tr>
     <tr><td>minDate</td>        <td>null</td>    <td>the minimum date you can select</td></tr>
     <tr><td>maxDate</td>        <td>null</td>    <td>the maximum date you can select</td></tr>
     <tr><td>firstDay</td>       <td>1</td>       <td>1 for Monday, 0 for Sunday</td></tr>
     <tr><td>numberOfMonths</td> <td>1</td>       <td>a number of month to display, or a [x,y] months greed definition</td></tr>
+    <tr><td>fxName</td>         <td>'fade'</td>  <td>the visual effect name, use <tt>null</tt> if you don't want any fx</td></tr>
     <tr><td>fxDuration</td>     <td>200</td>     <td>the visual effects duration (if Fx is available)</td></tr>
     <tr><td>relName</td>        <td>'calendar'</td><td>the rel-attribute name for the auto-discovery feature</td></tr>
     <tr><td>checkTags</td>      <td>'*'</td>     <td>the tags name to be checked on load (to narrow down the search)</td></tr>
@@ -104,6 +106,11 @@
 </p>
 <p>
   You also can alter the <tt>Calendar.Options</tt> object to make the changes global.
+</p>
+<p>
+  The <tt>showTime</tt> and <tt>twentyFourHour</tt> options are have <tt>null</tt> by default, which means that those options
+  will be automatically defined depends on the specified time format option. You also might specify a boolean value to
+  enforce the options.
 </p>
 
 <h2>Events</h2>
@@ -159,7 +166,13 @@
 
 <h2>Internationalization</h2>
 <p>
-  You can alter the <tt>Calendar.i18n</tt> object to change the calendar texts. For example:
+  You might find a translation module for your language at the github repository.
+</p>
+<p>
+  <a href="http://github.com/rightjs/rightjs-ui" target="_blank">http://github.com/rightjs/rightjs-ui</a>
+</p>
+<p>
+  Or you can translate the interface by simply altering the <tt>Calendar.i18n</tt> object like that
 </p>
 <code>
 Calendar.i18n = {
