@@ -31,12 +31,12 @@
   and create a JavaScript wrap up over it.
 </p>
 <p>
-  The target is to implement a transparent ajaxed functionality the way that the original one was still
+  The target is to implement a transparent ajax functionality the way that the original one was still
   available, so that the user could always hit the right mouse button and choose to open the links in 
   new tab or window or give a link for another user to edit or create new pictures in the gallery.
 </p>
 <p>
-  We also aim to make a great deal of the original templates reusage and javascript code simplicity.
+  We also aim to make a great deal of the original templates re usage and javascript code simplicity.
 </p>
 
 <h2>Some Preparations</h2>
@@ -60,8 +60,8 @@
 
 // _picture.html.erb
 &lt;% div_for picture do %>
-  &lt;%= link_to image_tag(picture.image.url(:thmb)), picture.image.url(:medium),
-    :title => picture.title, :rel => "lightbox[roadtrip]" %>
+  &lt;%= link_to image_tag(picture.image.url(:thmb)),
+    picture.image.url(:medium), :title => picture.title %>
     
   &lt;%= link_to 'Edit', edit_picture_path(picture) %>
   &lt;%= link_to 'Destroy', picture, :confirm => 'Are you sure?', :method => :delete %>
@@ -99,6 +99,86 @@
   Okay, enough with the preparations lets get to the fun part
 </p>
 
+<h2>Pictures Deleting</h2>
+<p>
+  Lets start with something simple, for example images deleting.
+</p>
+<p>
+  What we will do we will hijack the <tt>delete</tt> links and assign our own
+  <tt>onclick</tt> handler. This way if we screwed up with something, the original
+  functionality will back us up.
+</p>
+<p>
+  For the beginning we need to add css class <tt>delete</tt> to the delete links
+  in the <tt>_picture</tt> partial, so we could find and process them.
+</p>
+<code>
+// _picture.html.erb
+&lt; div_for picture do %>
+  ......
+  &lt;%= link_to 'Destroy', picture, :class => :delete //...
+&lt;% end %>
+</code>
+<p>
+  Adding such classes is a good practice anyway, it will let you paint those links
+  with some different color later, maybe add some fancy icon, etc.
+</p>
+<p>
+  Okay now lets highjack the event
+</p>
+<code>
+function hijack_links() {
+  $$('#pictures a.delete').each(function(link) {
+    link.onclick = function(event) {
+      event.stop();
+      
+      if (confirm("Are you sure?")) {
+        Xhr.load(this.href+".js", { method: 'delete' });
+      }
+    };
+  });
+}
+hijack_links();
+</code>
+<p>
+  We use a function so that we could call this code again when we upload new pictures via ajax.
+</p>
+<p>
+  Then we need to add the <tt>.js</tt> format handler to the <tt>destroy</tt> method
+  in our Rails controller.
+</p>
+<code>
+def destroy
+  .....
+  respond_to do |format|
+    ....
+    format.js
+  end
+end
+</code>
+<p>
+  This will receive our ajax calls and render some piece of javascript that will remove our image.
+  So we need some template called <tt>destroy.js.erb</tt>
+</p>
+<code>
+// destroy.js.erb
+remove_picture(&lt;%= @picture.id %>);
+
+
+// index.html.erb
+function remove_picture(id) {
+  $('picture_'+id).remove();
+}
+</code>
+<p>
+  We could just write something like <tt>$('picture_&lt;%= @picture.id %>').remove()</tt> in the template
+  but it's always better to keep all the functionality in one place and work through some sort
+  of an interface. It will let you grow a simple library and then refactor and improve it separately
+  without touching any other template.
+</p>
+<p>
+  Okay, let's move to the next part
+</p>
 
 <h2>Files Uploading</h2>
 <p>
@@ -130,10 +210,7 @@
 </p>
 <code>
 function remotize_form(id) {
-  var form = $(id);
-  if (form) {
-    form.remotize().enable().action += '.js';
-  }
+  $(id).remotize().enable().action += '.js';
 };
 remotize_form('new_picture');
 </code>
@@ -176,20 +253,13 @@ end
 replace_form('new_form', "&lt;%= escape_javascript(render('form')) %>");
 </code>
 <p>
-  As you see we have defined two new functions <tt>insert_picture</tt> and <tt>replace_form</tt>,
-  we could put all the logic right in the file and make all the page changes from the template,
-  but it is always better in those cases to keep all the logic in one place and work through
-  some proxy interface. This way it will be easier to maintain the code later. You might think
-  about it like the basic principle of OOP incapsulating applied to the templates.
-</p>
-<p>
-  So we define those two functions at the <tt>index</tt> template right below the <tt>remotize_form</tt>
-  function.
+  Once again we defined two proxy functions, one will insert the new image on the page, the other
+  updates the form. Implementation is really simple.
 </p>
 <code>
 function insert_picture(source) {
   $('pictures').insert(source);
-  Lightbox.rescan();
+  hijack_links();  // find and process the new links
 };
 
 function replace_form(id, source) {
@@ -198,10 +268,7 @@ function replace_form(id, source) {
 };
 </code>
 <p>
-  We used the <tt>Lightbox.rescan()</tt> call to make the Lightbox widget to catch up the new image.
-</p>
-<p>
-  Okay. This looks simple enough. Three short simple functions and we are in business.
+  Okay. This looks simple enough. Two short simple functions and we are in business.
 </p>
 
 <h2>Unfortunately it wont work</h2>
@@ -260,25 +327,111 @@ end
   Okay this was the whole trick. After that the uploads will work nicely.
 </p>
 
+<h2>Pictures Editing</h2>
+
+<p>
+  Lets finish up with the thing by adding an ajax pictures editing functionality. Now
+  when we know how the things work there won't be any problem.
+</p>
+<p>
+  First we need to add the <tt>edit</tt> css class to our edit links so we could hijack
+  clicks, exactly how we did it with the pictures deleting feature.
+</p>
+<code>
+// _picture.html.erb
+....
+  link_to 'Edit', edit_picture_path(picture), :class => 'edit', //...
+
+
+// index.html.erb
+function hijack_links() {
+  // delete links processing in here
+  
+  $$("#pictures a.edit").each(function(link) {
+    link.onclick = function(event) {
+      event.stop();
+      Xhr.load(this.href + ".js");
+    }
+  });
+}
+</code>
+<p>
+  We don't need to touch our controller for generating a GET response for the
+  <tt>edit</tt> action, we just create the <tt>edit.js.erb</tt> template and
+  add another function that will handle the things on the page
+</p>
+<code>
+// edit.js.erb
+show_edit_form(&lt;%= @picture.id %>, "&lt;%= escape_javascript(render("form")) %>");
+
+
+// index.html.erb
+function show_edit_form(id, source) {
+  $$('form.edit_picture').each('remove');
+  
+  remotize_form(
+    $('picture_'+id).insert(source)
+      .first('form.edit_picture').show('fade')
+  );
+}
+</code>
+<p>
+  The script is simple. It just removes any possibly hanging around old popups.
+  Then we add the source to the picture block, find our form, make it nicely appear
+  and finally make it remote.
+</p>
+<p>
+  That's all we need to load and show the remote form. Now lets catch the form 
+  submits, just like we did in the new pictures uploading. We define the <tt>.js</tt>
+  response handler in the <tt>update</tt> method in our controller
+</p>
+<code>
+def update
+  ....
+  respond_to do |format|
+    ....
+    format.js   { render :layout => 'iframed', :content_type => 'text/html' }
+  end
+end
+</code>
+<p>
+  Then add some simple template called <tt>update.js.erb</tt> and a javascript function
+  called <tt>update_picture</tt>that will handle the things.
+</p>
+<code>
+// update.js.erb
+&lt;% if @picture.valid? %>
+  update_picture(&lt;%= @picture.id %>, "&lt;%= escape_javascript(render(@picture))%>");
+&lt;% else %>
+  replace_form('edit_picture_&lt;%= @picture.id%>', "&lt;%= escape_javascript(render('form')) %>");
+&lt;% end -%>
+
+
+// index.html.erb
+function update_picture(id, source) {
+  $('picture_'+id).replace(source);
+  
+  hijack_links();
+};
+</code>
+<p>
+  This is pretty much all about it.
+</p>
+
 <h2>Summary</h2>
 <p>
   That might looked like a bit long explanation, but if you take a look at the whole thing
   you will see how nicely we reused all the original templates and handled all the process
-  in just a few short JavaScript functions.
+  in just a few short and simple JavaScript functions.
 </p>
 <p>
   We also didn't wreak the original functionality and now our user has an option, use
-  the ajaxed interface or the basic new picture form on a separated page.
+  the ajax interface or the basic features on separated pages.
 </p>
 
 <h2>The Further Steps</h2>
 <p>
   If you download the source code out of the github repository you'll find the complete
-  application where more things solved like the pictures ajaxed editing and deleting and so one.
-  There are also some visual effects applied to the maintenance.
-</p>
-<p>
-  But the principles remain to be the same as I've just described, so there no need to repeat
-  them in here. Just take a look at the code, there are just a few more simple functions, I'm sure
-  you will understand what they do.
+  application where more things solved like the the Lightbox feature usage, spinners handling,
+  some more visual effects processing etc.
 </p>
