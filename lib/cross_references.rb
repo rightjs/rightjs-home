@@ -9,8 +9,9 @@ module CrossReferences
   end
   
   def hook_api_references
-    response.body.gsub! /[^%#]\{([a-z\.#]+[a-z])\}/i do |match|
-      desc = $1.dup
+    response.body.gsub! /([^%#])\{([a-z\.#]+[a-z])\}/i do |match|
+      start = $1.dup
+      desc  = $2.dup
       
       unit = Unit.find_by_name(desc) || Unit.find_by_name(desc.slice(0, desc.rindex(/\.|#[a-z]+$/i) || 0)) || @unit
       
@@ -27,7 +28,7 @@ module CrossReferences
         desc
       end
       
-      match
+      "#{start}#{match}"
     end
   end
 end
