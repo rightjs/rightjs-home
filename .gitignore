@@ -10,7 +10,9 @@ public/uploads/**/*
 
 public/*.html
 public/**/*.html
-public/builds/**/*
+public/builds/goods
+public/builds/custom
+public/builds/current
 
 nbproject
 
