@@ -213,11 +213,6 @@ div#api-search div.autocompleter ul li strong {
   font-weight: normal;
   color: #A00;
 }
-div#api-search div.autocompleter-spinner {
-  margin: 0;
-  padding: 0;
-  margin-left: -16px;
-}
 
 div.method {
 }
