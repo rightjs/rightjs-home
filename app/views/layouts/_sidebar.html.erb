@@ -1,8 +1,25 @@
 <div id="sidebar">
-  <!--div id="api-search" class="box">
+  <div id="api-search" class="box">
     <label>API-Search</label>
-    <input type="text" value="Search" disabled="true" />
-  </div-->
+    <input type="text" value="Search" id="api-search-field" onclick="this.value=''" />
+    <script type="text/javascript">
+    // <![CDATA[
+    new Autocompleter('api-search-field', {
+      url: '/docs/search/%{search}.js',
+      onSelect: function() {
+        this.oldValue = this.input.value;
+      },
+      onDone: function() {
+        var current = this.container.first('.current');
+        if (current) {
+          document.location.href = current.title;
+        }
+        this.input.setValue(this.oldValue).blur();
+      }
+    });
+    // ]]>
+    </script>
+  </div>
   
 <% if request.request_uri.starts_with?('/docs') %>
   <div class="box">

@@ -1,0 +1,10 @@
+<%=
+
+content_tag :ul, @methods.collect{ |method|
+  content_tag :li, (method.unit.name +
+    (method[:type] == 'instance' ? '#' : '.') +
+    method.name.gsub(/(#{Regexp.escape(params[:search])})/i, '<strong>\\1</strong>')
+  ), :title => unit_method_path(method)
+}.join('')
+
+%>

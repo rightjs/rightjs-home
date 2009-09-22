@@ -11,6 +11,8 @@ ActionController::Routing::Routes.draw do |map|
   
   map.with_options :controller => 'docs' do |docs|
     docs.connect 'docs/:path', :action => 'show', :requirements => {:path => /[\w\d\/]+/}
+    docs.connect 'docs/search/:search.:format', :action => 'search'
+    docs.connect 'docs/search/.js',        :action => 'search', :requirements => {:search => ''}
   end
   
   map.with_options :controller => 'pages' do |pages|

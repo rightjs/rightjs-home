@@ -174,17 +174,6 @@ div#sidebar label {
   font-size: 1.6em;
 }
 
-div#api-search input {
-  border: 2px solid #DDD;
-  padding: 5pt;
-  font-size: 1.4em;
-  font-weight: bold;
-  display: block;
-  width: 170pt;
-}
-div#api-search input:active {
-  background-color: #FFD;
-}
 
 div#sidebar ul {
   padding-left: 0pt;
@@ -199,6 +188,35 @@ div#sidebar ul li a {}
 div#sidebar ul li.current {
   list-style: circle;
   font-weight: bold;
+}
+
+div#api-search input {
+  border: 2px solid #DDD;
+  padding: 5pt;
+  font-size: 1.4em;
+  font-weight: bold;
+  display: block;
+  width: 170pt;
+}
+div#api-search input:focus {
+  background-color: #FFD;
+}
+div#api-search div.autocompleter ul {
+  margin: 0;
+}
+div#api-search div.autocompleter ul li {
+  list-style: none;
+  font-weight: normal;
+  padding: .5em 1em;
+}
+div#api-search div.autocompleter ul li strong {
+  font-weight: normal;
+  color: #A00;
+}
+div#api-search div.autocompleter-spinner {
+  margin: 0;
+  padding: 0;
+  margin-left: -16px;
 }
 
 div.method {
