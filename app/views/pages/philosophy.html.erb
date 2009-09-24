@@ -91,28 +91,6 @@ $$('li').each('onClick', 'toggleClass', 'marked');
   And smaller faster framework will leave more space for the actual application features.
 </p>
 
-
-
-<h2>The Native Object Extensions</h2>
-<p>
-  RightJS does extend the native class prototypes. But, it does not do it blindly.
-</p>
-<p>
-  RightJS tries to balance between the total prototype madness of Prototype and the strict name spaces of jQuery.
-  It does extend the native classes, but it does it only for the most common cases, it always provides the
-  standard behavior and it always keeps the original functionality intact.
-</p>
-<p>
-  There are several reasons of doing that.
-</p>
-<p>
-  First of all it is more comfortable to use those methods like that,
-  secondly it works much faster and eventually there's no harm of having methods like {String#trim},
-  {Array#uniq}, {Function#delay} out of the box. They are pretty common and standard, and even if
-  RightJS will overwrite someone-else's methods at the same class with the same name, then, because of their
-  standard nature those methods will do exactly the same thing as they did before.
-</p>
-
 <h2>Complete Toolbox and Modularity</h2>
 <p>
   The basic build of RightJS comes as a complete toolbox core. It has all the standard things like OOP support,

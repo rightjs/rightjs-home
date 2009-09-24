@@ -47,7 +47,14 @@
     <tr><td>relName</td>    <td>'tooltip'</td>  <td>the rel-attribute name for the auto-discovery feature</td></tr>
     <tr><td>checkTags</td>  <td>'*'</td>        <td>the tags name to be checked on load (to narrow down the search)</td></tr>
   </table>
+  In order to change the options alter the <tt>Tooltip.Options</tt> object, like this
 </p>
+<code>
+$ext(Tooltip.Options, {
+  delay: 200,
+  fxname: null
+});
+</code>
 
 <h2>Style Alterations</h2>
 <p>
