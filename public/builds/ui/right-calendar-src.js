@@ -522,8 +522,10 @@ Calendar.include({
       this.date.setDate(date.getDate());
     }
     
-    this.date.setHours(this.hours.value.toInt() + (!this.options.twentyFourHour && this.meridian.value == 'pm' ? 12 : 0));
-    this.date.setMinutes(this.minutes.value);
+    if (this.hours) {
+      this.date.setHours(this.hours.value.toInt() + (!this.options.twentyFourHour && this.meridian.value == 'pm' ? 12 : 0));
+      this.date.setMinutes(this.minutes.value);
+    }
 
     return this.select(this.date);
   }
@@ -582,17 +584,6 @@ Calendar.include({
   showAt: function(element) {
     var element = $(element), dims = element.dimensions();
     this.setDate(this.parse(element.value));
-    
-    // RightJS < 1.4.1 bug handling
-    if (RightJS.version < '1.4.1') {
-      if (Browser.WebKit) {
-        dims.left += document.body.scrolls().x;
-        dims.top  += document.body.scrolls().y;
-      } else if (Browser.Konqueror) {
-        dims.left = element.offsetLeft;
-        dims.top  = element.offsetTop;
-      }
-    }
     
     this.element.setStyle({
       position: 'absolute',
