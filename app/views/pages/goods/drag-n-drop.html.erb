@@ -1,0 +1,51 @@
+<h1>Drag'n'Drop Module</h1><% @title_text = "Goods: Drag'n'Drop" %>
+
+<p>
+  This is the standard drag-n-drop library for RightJS. As most of libraries of this type it
+  contains basically two units <tt>Draggable</tt> and <tt>Droppable</tt>. There are two separated documents
+  for each of them, plus you might take a look at some simple demo page
+  
+  <ul>
+    <%= menu_link_to 'Draggable', goods_path('drag-n-drop/draggable') %>
+    <%= menu_link_to 'Droppable', goods_path('drag-n-drop/droppable') %>
+    <%= menu_link_to 'Demo Page', goods_path('drag-n-drop/demo') %>
+  </ul>
+</p>
+
+<h2>Download</h2>
+<p>
+  This library comes in the three standard builds
+  
+  <ul>
+    <%= menu_link_to 'right-dnd.js',     '/builds/goods/right-dnd.js',     :target => :_blank %>
+    <%= menu_link_to 'right-dnd-min.js', '/builds/goods/right-dnd-min.js', :target => :_blank %>
+    <%= menu_link_to 'right-dnd-src.js', '/builds/goods/right-dnd-src.js', :target => :_blank %>
+  </ul>
+  
+  It also available as an option at the <%= link_to 'custom build', builds_path %> page.
+</p>
+
+<h2>Auto-Discovery Feature</h2>
+<p>
+  This library provides the standard for RightJS auto-discovery by the <tt>'rel'</tt>
+  attribute feature and the HTML5 style option attributes like this:
+</p>
+<code>
+<div rel="draggable" data-draggable-options="{revert: false}">Drag Me To Hell</div>
+
+<div rel="droppable" data-droppable-options="{accept: '.sinner'}">The Hell</div>
+</code>
+
+<h2>Element Level Method</h2>
+<p>
+  There are also several {Element} level shortcut methods to covert elements into
+  draggable/droppable units.
+  
+  <table>
+    <tr><th>Name</th>                     <th>Description</th></tr>
+    <tr><td>makeDraggable([options])</td> <td>makes the element draggable</td></tr>
+    <tr><td>undoDraggable()</td>          <td>undoes the draggable conversion</td></tr>
+    <tr><td>makeDroppable([options])</td> <td>makes the element droppable</td></tr>
+    <tr><td>undoDroppable()</td>          <td>undoes the droppable conversion</td></tr>
+  </table>
+</p>

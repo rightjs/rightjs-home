@@ -1,0 +1,65 @@
+<h2>Droppable</h2> <% @title_text = "Goods: Drag'n'Drop: Droppable" %>
+
+<p>
+  <tt>Droppable</tt> is a standard droppable units handling class out of the
+  <%= link_to "Drag'n'Drop", goods_path('drag-n-drop') %> library.
+</p>
+<p>
+  For the public API it has only two methods the constructor and destructor.
+  The constructor that takes a reference to an element and the options hash.
+  The destructor is just a method that detaches all the event handling out of the element.
+</p>
+<code>
+var droppable = new Droppable('my-element', {accept: 'div'});
+
+// after that the element won't behave like a droppable
+droppable.destroy();
+</code>
+<p>
+  You might also use the auto-discovery feature and the {Element} level shortcuts to
+  create droppables. Please see the main <%= link_to "Drag'n'Drop", goods_path('drag-n-drop') %>
+  page for more details.
+</p>
+
+<h2>Options</h2>
+<p>
+  There are a number of options you might specify for your droppables
+  
+  <table>
+    <tr><th>Name</th>        <th>Default</th>           <th>Description</th></tr>
+    <tr><td>accept</td>      <td>'*'</td>               <td>a css-rule to filter acceptable elements</td></tr>
+    <tr><td>containment</td> <td>null</td>              <td>the list of elements (or ids) that should to be accepted</td></tr>
+    <tr><td>overlap</td>     <td>null</td>              <td>'x', 'y', 'horizontal', 'vertical', 'both'  makes it respond only if the draggable overlaps the droppable</td></tr>
+    <tr><td>overlapSize</td> <td>0.5</td>               <td>the overlapping level 0 for nothing 1 for the whole thing</td>
+    <tr><td>allowClass</td>  <td>'droppable-allow'</td> <td>css-class when it accepts a draggable</td></tr>
+    <tr><td>denyClass</td>   <td>'droppable-deny'</td>  <td>css-class when it does not accept a draggable</td></tr>
+    <tr><td>relName</td>     <td>'droppable'</td>       <td>automatically discovered items feature key</td></tr>
+  </table>
+</p>
+<p>
+  As usual you might specify them as initialization options for every particular draggable unit, or
+  you might customize the <tt>Draggable.Options</tt> in order to change the global settings.
+</p>
+
+<h2>Events</h2>
+<p>
+  There are few events about the draggables might notify your application.
+  
+  <table>
+    <tr><th>Name</th>  <th>Description</th></tr>
+    <tr><td>hover</td> <td>when a draggable hovered the droppable</td></tr>
+    <tr><td>leave</td> <td>when a draggable leaves the droppable</td></tr>
+    <tr><td>drop</td>  <td>when a draggable was accepted and dropped</td></tr>
+  </table>
+</p>
+<p>
+  All the event listeners will receive three arguments: draggable, droppable and the mouse event
+  that caused the event.
+</p>
+<code>
+new Droppable('my-element', {
+  onDrop: function(draggable, droppable, event) {
+    //...
+  }
+});
+</code>

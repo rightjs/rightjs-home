@@ -1,0 +1,82 @@
+<h1>Draggable</h1> <% @title_text = "Goods: Drag'n'Drop: Draggable" %>
+
+<p>
+  <tt>Draggable</tt> is a standard draggable units handling class out of the
+  <%= link_to "Drag'n'Drop", goods_path('drag-n-drop') %> library.
+</p>
+<p>
+  For the public API it has only two methods the constructor and destructor.
+  The constructor that takes a reference to an element and the options hash.
+  The destructor is just a method that detaches all the event handling out of the element.
+</p>
+<code>
+var draggable = new Draggable('my-element', {axis: 'x'});
+
+// after that the element won't be draggable anymore
+draggable.destroy();
+</code>
+<p>
+  You might also use the auto-discovery feature and the {Element} level shortcuts to
+  create draggables. Please see the main <%= link_to "Drag'n'Drop", goods_path('drag-n-drop') %>
+  page for more details.
+</p>
+
+<h2>Options</h2>
+<p>
+  There are a number of options you might specify for your draggables
+  
+  <table>
+    <tr><th>Name</th>              <th>Default</th>     <th>Description</th></tr>
+    <tr><td>handle</td>            <td>null</td>        <td>a reference to handle element that will start the drag</td>
+    <tr><td>snap</td>              <td>0</td>           <td>a number in pixels or [x,y]</td>
+    <tr><td>axis</td>              <td>null</td>        <td>null or 'x' or 'y' or 'vertical' or 'horizontal'</td>
+    <tr><td>range</td>             <td>null</td>        <td>{x: [min, max], y:[min, max]} or reference to another element</td>
+    <tr><td>dragClass</td>         <td>'dragging'</td>  <td>the dragging time class name</td>
+    <tr><td>clone</td>             <td>false</td>       <td>marker if it should keep a clone in place</td>
+    <tr><td>revert</td>            <td>false</td>       <td>marker if the object should be moved back once dropped</td>
+    <tr><td>revertDuration</td>    <td>'normal'</td>    <td>the moving back fx duration</td>
+    <tr><td>scroll</td>            <td>true</td>        <td>marker if draggables should automatically scroll the window</td>
+    <tr><td>scrollSensitivity</td> <td>32</td>          <td>the scrolling area size in pixels</td>
+    <tr><td>zIndex</td>            <td>10000000</td>    <td>the initial elements z-index (gets incremented during drags)</td>
+    <tr><td>moveOut</td>           <td>false</td>       <td>marker if the draggable should be moved out of it's context (for overflown elements)</td>
+    <tr><td>relName</td>           <td>'draggable'</td> <td> the auto-discovery feature key</td>
+  </table>
+</p>
+<p>
+  As usual you might specify them as initialization options for every particular draggable unit, or
+  you might customize the <tt>Draggable.Options</tt> in order to change the global settings.
+</p>
+
+<h2>Events</h2>
+<p>
+  There are few events about the draggables might notify your application.
+  <table>
+    <tr><th>Name</th>  <th>Description</th></tr>
+    <tr><td>start</td> <td>when the drag starts</td></tr>
+    <tr><td>drag</td>  <td>when the element changed its position</td></tr>
+    <tr><td>stop</td>  <td>when the user released the element</td></tr>
+    <tr><td>drop</td>  <td>when the object was dropped on a droppable object</td></tr>
+  </table>
+</p>
+<p>
+  All the callbacks except the <tt>'drop'</tt> event, will take two arguments, the draggable by itself and the mouse event that caused the event.
+</p>
+<code>
+new Draggable('my-element', {
+  onStart: function(draggable, event) {
+    notify_my_application_about_drag_start();
+  }
+});
+</code>
+<p>
+  The <tt>'drop'</tt> event will happened only when the draggable was dropped over a droppable object that
+  will accept it, and once it's happened the listener will receive three objects, droppable, draggable and
+  the mouse event
+</p>
+<code>
+new Draggable('my-element', {
+  onDrop: function(droppable, draggable, event) {
+    notify_my_app();
+  }
+});
+</code>
