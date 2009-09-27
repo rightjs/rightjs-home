@@ -33,6 +33,33 @@ var Autocompleter = new Class(Observer, {
       spinner:    'native',
       
       relName:    'autocompleter'
+    },
+    
+    // scans the document for autocompletion fields
+    rescan: function() {
+      var key = Autocompleter.Options.relName;
+      var reg = new RegExp('^'+key+'+\\[(.*?)\\]$');
+      
+      $$('input[rel^="'+key+'"]').each(function(input) {
+        if (!input.autocompleter) {
+          var data = input.get('data-'+key+'-options');
+          var options = Object.merge(eval('('+data+')'));
+          var match = input.get('rel').match(reg);
+          
+          if (match) {
+            var url = match[1];
+
+            // if looks like a list of local options
+            if (url.match(/^['"].*?['"]$/)) {
+              options.local = eval('['+url+']');
+            } else if (!url.blank()) {
+              options.url = url;
+            }
+          }
+          
+          new Autocompleter(input, options);
+        }
+      });
     }
   },
   
@@ -45,10 +72,21 @@ var Autocompleter = new Class(Observer, {
   initialize: function(input, options) {
     this.$super(options);
     
-    this.input     = $(input).onKeyup(this.watch.bind(this)).onBlur(this.hide.bind(this));
+    // storing the callbacks so we could detach them later
+    this._watch = this.watch.bind(this);
+    this._hide  = this.hide.bind(this);
+    
+    this.input     = $(input).onKeyup(this._watch).onBlur(this._hide);
     this.container = $E('div', {'class': 'autocompleter'}).insertTo(this.input, 'after');
     
-    this.checkSpinner();
+    this.input.autocompleter = this;
+  },
+  
+  // kills the autocompleter
+  destroy: function() {
+    this.input.stopObserving('keyup', this._watch).stopObserving('blur', this._hide);
+    delete(this.input.autocompleter);
+    return this;
   },
   
   // catching up with some additonal options
@@ -154,7 +192,7 @@ var Autocompleter = new Class(Observer, {
     } else {
       this.request = Xhr.load(this.options.url.replace('%{search}', encodeURIComponent(search)), {
         method:  this.options.method,
-        spinner: this.options.spinner,
+        spinner: this.getSpinner(),
         onComplete: function(response) {
           this.fire('load').suggest(response.responseText, search);
         }.bind(this)
@@ -193,17 +231,13 @@ var Autocompleter = new Class(Observer, {
   },
   
   // builds a native textual spinner if necessary
-  checkSpinner: function() {
-    if (this.options.spinner == 'native') {
-      var dims = this.input.dimensions();
-      
-      this.options.spinner = $E('div', {
+  getSpinner: function() {
+    this._spinner = this._spinner || this.options.spinner;
+    
+    // building the native spinner
+    if (this._spinner == 'native') {
+      this._spinner = $E('div', {
         'class': 'autocompleter-spinner'
-      }).setStyle({
-        top: (dims.top + 1) + 'px',
-        height: (dims.height - 2) + 'px',
-        lineHeight: (dims.height - 2) + 'px',
-        left: (dims.left + dims.width - 19) + 'px'
       }).insertTo(this.input, 'after');
       
       var dots = '123'.split('').map(function(i) {
@@ -213,9 +247,26 @@ var Autocompleter = new Class(Observer, {
       (function() {
         var dot = dots.shift();
         dots.push(dot);
-        this.options.spinner.update(dot);
+        this._spinner.update(dot);
       }.bind(this)).periodical(400);
     }
+    
+    // repositioning the native spinner
+    if (this.options.spinner == 'native') {
+      var dims = this.input.dimensions();
+      
+      this._spinner.setStyle('visiblity: hidden').show();
+      
+      this._spinner.setStyle({
+        visibility: 'visible',
+        top: (dims.top + 1) + 'px',
+        height: (dims.height - 2) + 'px',
+        lineHeight: (dims.height - 2) + 'px',
+        left: (dims.left + dims.width - this._spinner.offsetWidth - 1) + 'px'
+      }).hide();
+    }
+    
+    return this._spinner;
   }
 });
 
@@ -224,41 +275,29 @@ var Autocompleter = new Class(Observer, {
  *
  * Copyright (C) Nikolay V. Nemshilov aka St.
  */
-document.onReady(function() {
-  $$('input[rel^="autocompleter"]').each(function(input) {
-    var match = input.get('rel').match(/^[a-z]+\[(.*?)\]$/);
-    if (match) {
-      var url = match[1], options = {};
-      
-      // if looks like a list of local options
-      if (url.match(/^['"].*?['"]$/)) {
-        options.local = eval('['+url+']');
-      } else if (!url.blank()) {
-        options.url = url;
-      }
-      
-      input.autocompleter = new Autocompleter(input, options);
-    }
-  });
-}).onKeydown(function(event) {
+document.on({
+  ready:   Autocompleter.rescan,
+  
   // the autocompletion list navigation
-  if (Autocompleter.current) {
-    var name;
-    
-    switch (event.keyCode) {
-       case 27: name = 'hide'; break;
-       case 37: name = 'prev'; break;
-       case 39: name = 'next'; break;
-       case 38: name = 'prev'; break;
-       case 40: name = 'next'; break;
-       case 13: name = 'done'; break;
-    }
-    
-    if (name) {
-      Autocompleter.current[name]();
-      event.stop();
+  keydown: function(event) {
+    if (Autocompleter.current) {
+      var name;
+
+      switch (event.keyCode) {
+         case 27: name = 'hide'; break;
+         case 37: name = 'prev'; break;
+         case 39: name = 'next'; break;
+         case 38: name = 'prev'; break;
+         case 40: name = 'next'; break;
+         case 13: name = 'done'; break;
+      }
+
+      if (name) {
+        Autocompleter.current[name]();
+        event.stop();
+      }
     }
   }
 });
 
-document.write("<style type=\"text/css\">div.autocompleter{display:none;position:absolute;z-index:100000000;border:none;margin:0;padding:0;background:white;-moz-box-shadow:#BBB .2em .2em .4em;-webkit-box-shadow:#BBB .2em .2em .4em;overflow:hidden}div.autocompleter ul{list-style:none;margin:0;padding:0;border:none;background:none;*border-bottom:1px solid #CCC}div.autocompleter ul li{list-style:none;font-weight:normal;margin:0;padding:.2em .4em;border:1px solid #CCC;border-top:none;border-bottom:none;background:none;cursor:pointer}div.autocompleter ul li:first-child{border-top:1px solid #CCC}div.autocompleter ul li:last-child{border-bottom:1px solid #CCC;*border-bottom:none}div.autocompleter ul li.current{background:#DDD}div.autocompleter-spinner{position:absolute;z-index:100000000;width:18px;text-align:center;font-size:140%;font-family:Georgia;background:#DDD;color:#666;display:none;margin:0;padding:0}div.autocompleter-spinner div.dot-1{margin-left:-4px}div.autocompleter-spinner div.dot-2{}div.autocompleter-spinner div.dot-3{margin-left:4px}</style>");
+document.write("<style type=\"text/css\">div.autocompleter{display:none;position:absolute;z-index:100000000;border:none;margin:0;padding:0;background:white;-moz-box-shadow:#BBB .2em .2em .4em;-webkit-box-shadow:#BBB .2em .2em .4em;overflow:hidden}div.autocompleter ul{list-style:none;margin:0;padding:0;border:none;background:none;*border-bottom:1px solid #CCC}div.autocompleter ul li{list-style:none;font-weight:normal;margin:0;padding:.2em .4em;border:1px solid #CCC;border-top:none;border-bottom:none;background:none;cursor:pointer}div.autocompleter ul li:first-child{border-top:1px solid #CCC}div.autocompleter ul li:last-child{border-bottom:1px solid #CCC;*border-bottom:none}div.autocompleter ul li.current{background:#DDD}div.autocompleter-spinner{position:absolute;z-index:100000000;text-align:center;font-size:140%;font-family:Georgia;background:#DDD;color:#666;display:none;width:1em;margin:0;padding:0}div.autocompleter-spinner div.dot-1{margin-left:-4px}div.autocompleter-spinner div.dot-2{}div.autocompleter-spinner div.dot-3{margin-left:4px}</style>");

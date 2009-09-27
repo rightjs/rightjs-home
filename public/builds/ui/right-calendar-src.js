@@ -51,6 +51,27 @@ var Calendar = new Class(Observer, {
       dayNamesMin:     $w('Su Mo Tu We Th Fr Sa'),
       monthNames:      $w('January February March April May June July August September October November December'),
       monthNamesShort: $w('Jan Feb Mar Apr May Jun Jul Aug Sep Oct Nov Dec')
+    },
+    
+    // scans for the auto-discoverable calendar inputs
+    rescan: function() {
+      var key       = Calendar.Options.relName;
+      var rel_id_re = new RegExp(key+'\\[(.+?)\\]');
+
+      $$(Calendar.Options.checkTags+'[rel*='+key+']').each(function(element) {
+        var data     = element.get('data-'+key+'-options');
+        var calendar = new Calendar(eval('('+data+')') || {});
+        
+        var rel_id   = element.get('rel').match(rel_id_re);
+        if (rel_id) {
+          var input = $(rel_id[1]);
+          if (input) {
+            calendar.assignTo(input, element);
+          }
+        } else {
+          calendar.assignTo(element);
+        }
+      });
     }
   },
   
@@ -72,50 +93,56 @@ var Calendar = new Class(Observer, {
    * @param Object options
    * @return Calendar this
    */
-  setOptions: function(options) {
-    this.$super(options);
+  setOptions: function(user_options) {
+    this.$super(user_options);
     
-    // merging the i18n tables
-    this.options.i18n = {};
-    for (var key in this.constructor.i18n) {
-      this.options.i18n[key] = isArray(this.constructor.i18n[key]) ? this.constructor.i18n[key].clone() : this.constructor.i18n[key];
-    }
-    this.options.i18n = Object.merge(this.options.i18n, options||{});
+    var klass   = this.constructor;
+    var options = this.options;
     
-    // defining the current days sequence
-    this.options.dayNames = this.options.i18n.dayNamesMin;
-    if (this.options.firstDay) {
-      this.options.dayNames.push(this.options.dayNames.shift());
-    }
-    
-    // the monthes table cleaning up
-    if (!isArray(this.options.numberOfMonths)) {
-      this.options.numberOfMonths = [this.options.numberOfMonths, 1];
-    }
-    
-    // min/max dates preprocessing
-    if (this.options.minDate) this.options.minDate = this.parse(this.options.minDate);
-    if (this.options.maxDate) {
-      this.options.maxDate = this.parse(this.options.maxDate);
-      this.options.maxDate.setDate(this.options.maxDate.getDate() + 1);
-    }
-    
-    // format catching up
-    this.options.format = (this.constructor.Formats[this.options.format] || this.options.format).trim();
-    
-    // setting up the showTime option
-    if (this.options.showTime === null) {
-      this.options.showTime = this.options.format.search(/%[HkIl]/) > -1;
-    }
-    
-    // setting up the 24-hours format
-    if (this.options.twentyFourHour === null) {
-      this.options.twentyFourHour = this.options.format.search(/%[Il]/) < 0;
-    }
-    
-    // enforcing the 24 hours format if the time threshold is some weird number
-    if (this.options.timePeriod > 60 && 12 % (this.options.timePeriod/60).ceil()) {
-      this.options.twentyFourHour = true;
+    with (this.options) {
+      // merging the i18n tables
+      options.i18n = {};
+
+      for (var key in klass.i18n) {
+        i18n[key] = isArray(klass.i18n[key]) ? klass.i18n[key].clone() : klass.i18n[key];
+      }
+      $ext(i18n, (user_options || {}).i18n);
+      
+      // defining the current days sequence
+      options.dayNames = i18n.dayNamesMin;
+      if (firstDay) {
+        dayNames.push(dayNames.shift());
+      }
+      
+      // the monthes table cleaning up
+      if (!isArray(numberOfMonths)) {
+        numberOfMonths = [numberOfMonths, 1];
+      }
+      
+      // min/max dates preprocessing
+      if (minDate) minDate = this.parse(minDate);
+      if (maxDate) {
+        maxDate = this.parse(maxDate);
+        maxDate.setDate(maxDate.getDate() + 1);
+      }
+      
+      // format catching up
+      format = (klass.Formats[format] || format).trim();
+      
+      // setting up the showTime option
+      if (showTime === null) {
+        showTime = format.search(/%[HkIl]/) > -1;
+      }
+      
+      // setting up the 24-hours format
+      if (twentyFourHour === null) {
+        twentyFourHour = format.search(/%[Il]/) < 0;
+      }
+      
+      // enforcing the 24 hours format if the time threshold is some weird number
+      if (timePeriod > 60 && 12 % (timePeriod/60).ceil()) {
+        twentyFourHour = true;
+      }
     }
 
     return this;
@@ -778,22 +805,7 @@ Calendar.include({
  *
  * Copyright (C) 2009 Nikolay V. Nemshilov aka St.
  */
-document.onReady(function() {
-  var calendar = new Calendar();
-  var rel_id_re = new RegExp(Calendar.Options.relName+'\\[(.+?)\\]');
-  
-  $$(Calendar.Options.checkTags+'[rel*='+Calendar.Options.relName+']').each(function(element) {
-    var rel_id = element.get('rel').match(rel_id_re);
-    if (rel_id) {
-      var input = $(rel_id[1]);
-      if (input) {
-        calendar.assignTo(input, element);
-      }
-    } else {
-      calendar.assignTo(element);
-    }
-  });
-});
+document.onReady(Calendar.rescan);
 
 
 document.write("<style type=\"text/css\">*.right-ui-button{display:inline-block;*display:inline;*zoom:1;height:1em;line-height:1em;padding:.2em .5em;text-align:center;border:1px solid #CCC;border-radius:.2em;-moz-border-radius:.2em;-webkit-border-radius:.2em;cursor:pointer;color:#555;background-color:#FFF}*.right-ui-button:hover{color:#222;border-color:#BA8;background-color:#FB6}*.right-ui-button-disabled,*.right-ui-button-disabled:hover{color:#888;background:#EEE;border-color:#CCC;cursor:default}*.right-ui-buttons{margin-top:.5em}div.right-calendar{position:absolute;height:auto;border:1px solid #BBB;position:relative;padding:.5em;border-radius:.3em;-moz-border-radius:.3em;-webkit-border-radius:.3em;cursor:default;background-color:#EEE;-moz-box-shadow:.2em .4em .8em #666;-webkit-box-shadow:.2em .4em .8em #666}div.right-calendar-inline{position:relative;display:inline-block;*display:inline;*zoom:1;-moz-box-shadow:none;-webkit-box-shadow:none}div.right-calendar-prev-button,div.right-calendar-next-button{position:absolute;float:left;width:1em;padding:.15em .4em}div.right-calendar-next-button{right:.5em}div.right-calendar-month-caption{text-align:center;height:1.2em;line-height:1.2em}table.right-calendar-greed{border-spacing:0px;border:none;background:none;width:auto}table.right-calendar-greed td{vertical-align:top;border:none;background:none;margin:0;padding:0;padding-right:.4em}table.right-calendar-greed td:last-child{padding:0}div.right-calendar-month table{margin:0;padding:0;border:none;width:auto;margin-top:.2em;border-spacing:1px;border-collapse:separate;border:none;background:none}div.right-calendar-month table th{color:#777;text-align:center;border:none;background:none;padding:0;margin:0}div.right-calendar-month table td,div.right-calendar-month table td:last-child{text-align:right;padding:.1em .3em;background-color:#FFF;border:1px solid #CCC;cursor:pointer;border-radius:.2em;-moz-border-radius:.2em;-webkit-border-radius:.2em}div.right-calendar-month table td:hover{background-color:#FB6;border-color:#BA8}div.right-calendar-month table td.right-calendar-day-blank{background:transparent;cursor:default;border:none}div.right-calendar-month table td.right-calendar-day-selected{background-color:#FB6;border-color:#BA8;color:brown}div.right-calendar-month table td.right-calendar-day-disabled{color:#888;background:#EEE;border-color:#CCC;cursor:default}div.right-calendar-time{border-top:1px solid #ccc;margin-top:.3em;padding-top:.5em;text-align:center}div.right-calendar-time select{margin:0 .4em}div.right-calendar-buttons div.right-ui-button{width:3.2em}div.right-calendar-done-button{position:absolute;right:.5em}</style>");

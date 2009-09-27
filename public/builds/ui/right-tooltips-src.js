@@ -27,7 +27,19 @@ var Tooltip = new Class({
       delay:      400  // the appearance delay
     },
     
-    current: null // currently active tooltip reference
+    current: null, // currently active tooltip reference
+    
+    // scans the page for auto-discoverable tooltiped elements
+    rescan: function() {
+      var key = Tooltip.Options.relName;
+      $$(Tooltip.Options.checkTags+'[rel='+key+']').each(function(element) {
+        var text = element.get('title') || element.get('alt');
+        if (text) {
+          var data = element.get('data-'+key+'-options');
+          new Tooltip(element, eval('('+data+')'));
+        }
+      });
+    }
   },
   
   initialize: function(element, options) {
@@ -105,19 +117,14 @@ var Tooltip = new Class({
  *
  * Copyright (C) 2009 Nikolay V. Nemshilov aka St.
  */
-document.onReady(function() {
-  $$(Tooltip.Options.checkTags+'[rel='+Tooltip.Options.relName+']').each(function(element) {
-    var text = element.get('title') || element.get('alt');
-    if (text) {
-      new Tooltip(element);
-    }
-  });
+document.on({
+  ready: Tooltip.rescan,
   
-  document.onMousemove(function(e) {
+  mousemove: function(event) {
     if (Tooltip.current) {
-      Tooltip.current.moveTo(e);
+      Tooltip.current.moveTo(event);
     }
-  })
+  }
 });
 
 document.write("<style type=\"text/css\">div.right-tooltip{position:absolute;margin-top:16pt;margin-left:2pt;border:1px solid #DDD;background-color:#FFF8EE;color:#666;font-size:80%;cursor:default;border-radius:.4em;-moz-border-radius:.4em;-webkit-border-radius:.4em;box-shadow:.4em .4em .4em #AAA;-moz-box-shadow:.4em .4em .4em #AAA;-webkit-box-shadow:.4em .4em .4em #AAA}div.right-tooltip-container{margin:.6em;border-left:2px solid brown;padding-left:.5em}</style>");
