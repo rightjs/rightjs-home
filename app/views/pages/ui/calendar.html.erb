@@ -63,9 +63,24 @@
   You also can use the <tt>rel="calendar[input_field_id]"</tt> attribute if you want to use a trigger
   element, like an image, that will show the calendar up.
 </p>
+<code>
+// simple case
+<input type="text" rel="calendar" />
+
+// with a trigger image
+<input type="text" id="my-input" />
+<img src="calendar.png" rel="calendar[my-input]" />
+</code>
 <p>
-  If you need the auto-discovery calendars has some specific settings, like custom formatting etc. 
-  you can adjust the global <tt>Calendar.Options</tt> object to have the default values you need.
+  You can specify custom options for those inputs with the HTML5 style attribute like this
+</p>
+<code>
+<input type="text" rel="calendar" 
+  data-calendar-options="{format: 'US'}" />
+</code>
+<p>
+  It is also possible to alter the <tt>Calendar.Options</tt> object to make the changes global
+  so that any new calendar automatically had all the settings.
 </p>
 
 
