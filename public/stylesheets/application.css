@@ -67,6 +67,12 @@ dl dt {
 dl ul {
   margin: .5em 0;
 }
+dl.roadmap {
+  margin-top: 2em;
+}
+dl.roadmap ul {
+  margin-bottom: 1.5em;
+}
 
 a img {
   border: 1px solid #DDD;
