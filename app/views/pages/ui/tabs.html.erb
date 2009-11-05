@@ -1,0 +1,307 @@
+<h1>RightJS UI: Tabs</h1><% @title_text = 'UI: Tabs'%>
+
+<p>
+  Right Tabs is the standard tabs engine for the RightJS UI project. It provides an easy way of creating
+  usual tabs, carousel and harmonica widgets, joining them under a single unified engine.
+</p>
+
+<h2>What's Up?</h2>
+<p>
+  Right Tabs are served with the following features:
+  <ul>
+    <li>An uniformed three in one (tabs, carousel, harmonica) package</li>
+    <li>Everything is included in a single tiny (~10k) file</li>
+    <li>Pure CSS design, and no image dependencies</li>
+    <li>Simple and easy usage</li>
+    <li>Remote content loading via ajax</li>
+    <li>An interface to create/move/remote tabs programmatically</li>
+    <li>Restoring the tabs state by the URL anchor and cookies</li>
+    <li>Semantically friendly and jQuery Tabs compatible markup</li>
+  </ul>
+  
+  See the <%= link_to 'demo page', '/ui/tabs/demo' %> for examples of the most common cases
+</p>
+
+<h2>Usage</h2>
+<p>
+  Usage is really simple, you just include the <%= link_to 'javascript file', '/builds/ui/right-tabs.js' %>
+  to your page and then prepare your tabs element as the following structure.
+</p>
+<code>
+<ul>
+  <ul>
+    <li><a href="#tab-1">Tab 1</a></li>
+    <li><a href="#tab-2">Tab 2</a></li>
+  </ul>
+  
+  <li id="tab-1">Tab 1 Content</li>
+  <li id="tab-2">Tab 2 Content</li>
+</ul>
+</code>
+<p>
+  You also can use the jQuery's original structure with DIVs
+</p>
+<code>
+<div>
+  <ul>
+    <li><a href="#tab-1">Tab 1</a></li>
+    <li><a href="#tab-2">Tab 2</a></li>
+  </ul>
+  
+  <div id="tab-1">Tab 1 Content</div>
+  <div id="tab-2">Tab 2 Content</div>
+</div>
+</code>
+
+<p>
+  After that you'll need to instantiate the tabs object, with a simple javascript code
+</p>
+<code>
+<ul id="my-tabs">
+//...
+new Tabs('my-tabs');
+</code>
+
+<p>
+  Or as a variant you can assign the <tt>right-tabs</tt> css class for your tabs element
+  and our script will automatically find and instantiate it when the page's loaded
+</p>
+
+<code>
+<ul class="right-tabs">
+  // ...
+</ul>
+</code>
+
+
+<h2>Variants</h2>
+<p>
+  To create a carousel widget simply add the <tt>right-tabs-carousel</tt> css-class
+  to your tabs element and the engine will know that you want a carousel widget.
+</p>
+<code>
+<ul id="my-carousel" class="right-tabs-carousel">
+  // ...
+</ul>
+</code>
+
+<p>
+  For the harmonica widget use the standard DL/DT/DD tags construction.
+</p>
+<code>
+<dl>
+  <dt><a href="#">Tab 1</a></dt>
+  <dd>Tab 1 Content</dd>
+  <dt><a href="#">Tab 2</a></dt>
+  <dd>Tab 2 Content</dd>
+</dl>
+</code>
+
+<h2>Remote Tabs</h2>
+<p>
+  To make the engine load your tabs content via XHR requests, just specify the url-addresses
+  instead of the anchor hashes and you're good to go. And in this case you don't need
+  to specify any panels, they will be generated on fly.
+</p>
+<code>
+<ul>
+  <ul>
+    <li><a href="content/tab-1.html">Tab 1</a></li>
+    <li><a href="content/tab-2.html">Tab 2</a></li>
+  </ul>
+</ul>
+</code>
+<p>
+  There is also a mixed approach available. You can use your tabs with hash names and then
+  specify a common url-address with a <tt>%{id}</tt> placeholder as an option, like this
+</p>
+<code>
+<ul id="my-tabs">
+  <ul>
+    <li><a href="#tab-1">Tab 1</a></li>
+    <li><a href="#tab-2">Tab 2</a></li>
+  </ul>
+</ul>  
+// ...
+new Tabs('my-tabs', {url: '/content/%{id}.html'});
+</code>
+<p>
+  In this case the script will use the tab hash names as the ids and hit urls like this
+</p>
+<code>
+/content/tab-1.html
+/content/tab-2.html
+</code>
+
+<h2>Current Tab</h2>
+<p>
+  There are several ways how you can specify the tab that the user will see by default.
+</p>
+<p>
+  First of all you can specify the <tt>right-tabs-current</tt> css-class on your current
+  tab.
+</p>
+<code>
+<ul id="my-tabs">
+  <ul>
+    <li><a href="#tab-1">Tab 1</a></li>
+    <li class="right-tabs-current"><a href="#tab-2">Tab 2</a></li>
+  </ul>
+</ul>
+</code>
+<p>
+  You also can use the <tt>selected</tt> option with the constructor. Then you can activate
+  the <tt>Cookie</tt> option and the script will keep the current tab index in cookies
+</p>
+<p>
+  And eventually the engine watches the url-address hash and if there is one it will check
+  it against the available tab hash names. Once a match is found it will automatically 
+  activate the tab. This way you can refer a specific tab via an url-address.
+</p>
+<p>
+  The priority of the current tab checks is the following
+</p>
+<p>
+  URL -> Cookie -> CSS Class -> First
+</p>
+
+<h2>Options</h2>
+<p>
+  There is the following list of supported options for the tabs engine
+  
+  <table>
+    <tr><th>Name</th>           <th>Default</th>  <th>Description</th></tr>
+    <tr><td>idPrefix</td>        <td>''</td>       <td>the tab-panel elements id prefix</td></tr>
+    <tr><td>tabsElement</td>     <td>null</td>     <td>the tabs list element reference, in case it is somewhere else</td></tr>
+    <tr><td>resizeFx</td>        <td>'both'</td>   <td>'slide', 'fade', 'both' or null for no fx</td></tr>
+    <tr><td>resizeDuration</td>  <td>400</td>      <td>the tab panels resize fx duration</td></tr>
+    <tr><td>scrollTabs</td>      <td>false</td>    <td>use the tabs list scrolling</td></tr>
+    <tr><td>scrollDuration</td>  <td>400</td>      <td>the tabs scrolling fx duration</td></tr>
+    <tr><td>selected</td>        <td>null</td>     <td>an index of a tab to open</td></tr>
+    <tr><td>disabled</td>        <td>[]</td>       <td>list of disabled tab indexes</td></tr>
+    <tr><td>closable</td>        <td>false</td>    <td>set true if you want a close icon on your tabs</td></tr>
+    <tr><td>url</td>             <td>false</td>    <td>a common remote tabs url, should have the %{id} placeholder</td></tr>
+    <tr><td>cache</td>           <td>false</td>    <td>marker if the remote tabs should be cached</td></tr>
+    <tr><td>Xhr</td>             <td>null</td>     <td>the {Xhr} requests additional options</td></tr>
+    <tr><td>Cookie</td>          <td>null</td>     <td>set the {Cookie} options if you'd like to keep the last selected tab index in cookies</td></tr>
+  </table>
+</p>
+<p>
+  You can send any of those options as the constructor options, like this
+</p>
+<code>
+new Tabs('my-tabs', {
+  idPrefix: 'my-',
+  selected: 2,
+  Xhr: {spinner: 'spinner'}
+});
+</code>
+<p>
+  Or you can use the HTML5 like attribute called <tt>data-tabs-options</tt> directly on your tabs element
+</p>
+<code>
+<ul data-tabs-options="{idPrefix:'my-', selected:4}">
+  // ...
+</ul>
+</code>
+
+<h2>Events</h2>
+<p>
+  This script provides you an access to the following events
+  <table>
+    <tr><th>Name</th>   <th>Description</th></tr>
+    <tr><td>show</td>   <td>when a tab is shown</td></tr>
+    <tr><td>hide</td>   <td>when a tab get hidden</td></tr>
+    <tr><td>click</td>  <td>when the user clicks on a tab</td></tr>
+    <tr><td>load</td>   <td>when a remote tabs is loaded</td></tr>
+    <tr><td>disable</td><td>when a tab gets disabled</td></tr>
+    <tr><td>enable</td> <td>when a tab gets enabled</td></tr>
+    <tr><td>add</td>    <td>when a new tabs was added</td></tr>
+    <tr><td>remove</td> <td>when a tab is removed</td></tr>
+    <tr><td>move</td>   <td>when a tab is moved to a new position</td></tr>
+  </table>
+</p>
+<p>
+  Every event listener will receive a tab object instance as an argument.
+</p>
+
+<h2>Public API</h2>
+<p>
+  There is a simple public API for all the <tt>Tabs</tt> class instances
+  <table>
+    <tr><th>Name</th>                   <th>Description</th></tr>
+    <tr><td>show(index)</td>            <td>shows the tab at the index</td></tr>
+    <tr><td>add(title, content[, options])</td><td>creates a new tab</td></tr>
+    <tr><td>remove(index[s])</td>       <td>removes the tab(s)</td></tr>
+    <tr><td>move(index, position)</td>  <td>moves the tab to the position</td></tr>
+    <tr><td>disable(index[s])</td>      <td>disables the tab(s)</td></tr>
+    <tr><td>enable(index[s])</td>       <td>enables the tab(s)</td></tr>
+  </table>
+</p>
+<p>
+  The <tt>add</tt> method can receive options with the following keys
+  <ul>
+    <li><tt>id</tt> - the tab hash-name</li>
+    <li><tt>url</tt> - the tab content remote url-address</li>
+    <li><tt>position</tt> - the tab position</li>
+  </ul>
+</p>
+
+<h2>Styles</h2>
+<p>
+  In the most basic case after a tabs module is instantiated it will assign css-classes
+  for your tabs-element, like this
+</p>
+<code>
+<ul class="right-tabs">
+  <ul class="right-tabs-list">
+    <li class="right-tabs-tab"><a href="#tab-1">Tab 1</a></li>
+    <li class="right-tabs-tab"><a href="#tab-2">Tab 2</a></li>
+  </ul>
+
+  <li id="tab-1" class="right-tabs-panel">Tab 1 Content</li>
+  <li id="tab-2" class="right-tabs-panel">Tab 2 Content</li>
+</ul>
+</code>
+<p>
+  It will use the <tt>right-tabs-current</tt> and <tt>right-tabs-disabled</tt> classes
+  at the tab-elements to paint the current and disabled tabs.
+</p>
+<p>
+  For the carousel widget and scrollable tabs the script will transform the structure
+  to create the scrollbar
+</p>
+<code>
+<ul class="right-tabs">
+  <div class="right-tabs-scroller">
+    <div class="right-tabs-scroll-left">&laquo;</div>
+    <div class="right-tabs-scroll-right">&raquo;</div>
+    <div class="right-tabs-scroll-body">
+      <ul class="right-tabs-list">
+        <li class="right-tabs-tab"><a href="#tab-1">Tab 1</a></li>
+        <li class="right-tabs-tab"><a href="#tab-2">Tab 2</a></li>
+      </ul>
+    </div>
+  </div>
+  
+  // ....
+</ul>
+</code>
+<p>
+  Then, for the remote tabs it will be using a textual spinner with the following structure
+</p>
+<code>
+<ul class="right-tabs">
+  <ul class="right-tabs-list">
+    // ...
+  </ul>
+  
+  <li class="right-tabs-panel">
+    <div class="right-tabs-panel-locker">
+      <div class="right-tabs-panel-locker-spinner">
+        <div class="glow"></div><div></div><div></div><div></div>
+      </div>
+    </div>
+  </li>
+</ul>
+</code>
