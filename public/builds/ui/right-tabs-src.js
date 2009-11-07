@@ -178,14 +178,14 @@ Tabs.Tab = new Class({
     return this.fire('click').show();
   },
   
-  show: function(nofx) {
+  show: function() {
     if (this.enabled()) {
       var prev_tab = this.controller.tabs.first('current');
       if (prev_tab)  prev_tab.fire('hide');
       
       this.element.radioClass('right-tabs-current');
       this.controller.scrollToTab(this);
-      this.panel.show(nofx);
+      this.panel.show();
       
       this.fire('show');
     }
@@ -269,10 +269,10 @@ Tabs.Panel = new Class(Observer, {
   },
   
   // shows the panel
-  show: function(nofx) {
+  show: function() {
     return this.resizing(function() {
       this.element.radioClass('right-tabs-panel-current');
-    }, nofx);
+    });
   },
   
   // updates the panel content
@@ -306,69 +306,64 @@ Tabs.Panel = new Class(Observer, {
   
 // protected
   
-  resizing: function(callback, nofx) {
+  resizing: function(callback) {
     if (this.__working) return this.resizing.bind(this, callback).delay(20);
     
-    var controller = this.tab.controller, options = controller.options;
+    var controller = this.tab.controller;
+    var options    = controller.options;
+    var prev_panel = controller.element.subNodes().first('hasClass', 'right-tabs-panel-current');
+    var this_panel = this.element;
+    var swapping   = prev_panel != this_panel;
+    var loading    = this.element.first('div.right-tabs-panel-locker');
     
-    if (!nofx && options.resizeFx && self.Fx) {
+    if (options.resizeFx && self.Fx && prev_panel && (swapping || loading)) {
       this.__working = true;
       
-      var element  = controller.element;
-      var panel    = this.element;
-      var fx_name  = options.resizeFx;
-      
-      if (fx_name == 'both' && this.element.first('div.right-tabs-panel-locker')) fx_name = 'slide';
-      
       // calculating the visual effects durations
+      var fx_name  = (options.resizeFx == 'both' && loading) ? 'slide' : options.resizeFx;
       var duration = options.resizeDuration; duration = Fx.Durations[duration] || duration;
-      var resize_duration = options.resizeFx == 'fade' ? 0 : options.resizeFx == 'slide' ? duration : duration / 2;
+      var resize_duration = fx_name == 'fade' ? 0 : fx_name == 'slide' ? duration : duration / 2;
       var fade_duration   = duration - resize_duration;
       
-      // saving the previous sizes
-      var prev_panel = controller.element.subNodes().filter('hasClass', 'right-tabs-panel-current').last();
-      var prev_element_height = element.offsetHeight;
-      var prev_panel_height   = prev_panel ? prev_panel.offsetHeight : 0;
-      
-      // preparing the element for resize
-      if (fx_name != 'fade' && !controller.isHarmonica) {
-        element.setStyle({height: prev_element_height+'px'});
-      }
-      
-      
       if (fx_name != 'slide')
-        panel.setStyle({opacity: 0});
+        this_panel.setStyle({opacity: 0});
       
+      // saving the previous sizes
+      var prev_panel_height = (controller.isHarmonica && swapping) ? 0 : prev_panel.offsetHeight;
       
+      // applying the changes
       callback.call(this);
       
+      // getting the new size
+      var new_panel_height  = this_panel.offsetHeight;
       
-      // resizing the tabs element
-      if (fx_name != 'fade') {
-        if (controller.isHarmonica) {
-          var old_size  = prev_panel_height;
-          var new_size  = panel.offsetHeight;
-          var set_back  = panel.setStyle.bind(element, {height: 'auto'});
-          var container = panel;
-        } else {
-          var old_size  = prev_element_height;
-          var new_size  = prev_element_height + panel.offsetHeight - prev_panel_height;
-          var set_back  = element.setStyle.bind(element, {height: 'auto'});
-          var container = element;
-          
-          if (new_size != old_size) {
-            container.morph({height: new_size + 'px'}, {onFinish: set_back, duration: resize_duration });
-          } else {
-            set_back();
-          }
+      
+      if (fx_name != 'fade' && prev_panel_height != new_panel_height) {
+        // wrapping the element with an overflowed element to visualize the resize
+        var fx_wrapper = $E('div', {'class': 'right-tabs-resizer'}).setHeight(prev_panel_height);
+        var set_back = fx_wrapper.replace.bind(fx_wrapper, this_panel);
+        this_panel.wrap(fx_wrapper);
+        
+        fx_wrapper.morph({height: new_panel_height + 'px'}, {duration: resize_duration, onFinish: set_back });
+        
+        // in case of harmonica nicely hidding the previous panel
+        if (controller.isHarmonica && swapping) {
+          prev_panel.addClass('right-tabs-panel-current');
+          var hide_wrapper = $E('div', {'class': 'right-tabs-resizer'}).setHeight(prev_panel.offsetHeight);
+          var prev_back = function() {
+            hide_wrapper.replace(prev_panel.removeClass('right-tabs-panel-current'));
+          };
+          prev_panel.wrap(hide_wrapper);
+          hide_wrapper.morph({height: '0px'}, {duration: resize_duration, onFinish: prev_back});
         }
-        
-        
+      } else {
+        // removing the resize duration out of the equasion
+        rezise_duration = 0;
+        duration = fade_duration;
       }
       
       if (fx_name != 'slide')
-        panel.morph.bind(panel, {opacity: 1}, {duration: fade_duration}).delay(resize_duration);
-      
+        this_panel.morph.bind(this_panel, {opacity: 1}, {duration: fade_duration}).delay(resize_duration);
       
       // removing the working marker
       (function() { this.__working = false; }).bind(this).delay(duration);
@@ -434,6 +429,29 @@ return {
 
 // protected
 
+  // overloading the init script to add the scrollbar support
+  init: function() {
+    old_init.call(this);
+
+    if (this.scrollable = (this.options.scrollTabs || this.isCarousel)) {
+      this.buildScroller();
+    }
+
+    return this;
+  },
+
+  // builds the tabs scroller block
+  buildScroller: function() {
+    if (!this.element.first('right-tabs-scroller')) {
+      this.prevButton = $E('div', {'class': 'right-tabs-scroll-left',  'html': '&laquo;'}).onClick(this.scrollLeft.bind(this));
+      this.nextButton = $E('div', {'class': 'right-tabs-scroll-right', 'html': '&raquo;'}).onClick(this.scrollRight.bind(this));
+      
+      this.element.insert($E('div', {'class': 'right-tabs-scroller'}).insert([
+        this.prevButton, this.nextButton, $E('div', {'class': 'right-tabs-scroll-body'}).insert(this.tabsList)
+      ]), 'top');
+    }
+  },
+
   // picks the next/prev non-disabled available tab
   pickTab: function(pos) {
     var current = this.tabs.first('current');
@@ -483,6 +501,7 @@ return {
   // scrolls the tabs list to the position
   scrollTo: function(scroll) {
     // checking the constraints
+    var current_scroll  = this.tabsList.getStyle('left').toInt() || 0;
     var available_width = this.tabsList.parentNode.offsetWidth;
     var overall_width   = 0;
     for (var i=0; i < this.tabs.length; i++) {
@@ -496,35 +515,39 @@ return {
     // applying the scroll
     var style = {left: scroll + 'px'};
     
-    if (this.options.scrollDuration && self.Fx)
+    if (this.options.scrollDuration && self.Fx && current_scroll != scroll) {
       this.tabsList.morph(style, {duration: this.options.scrollDuration});
-    else
+    } else {
       this.tabsList.setStyle(style);
-  },
-
-  // overloading the init script to add the scrollbar support
-  init: function() {
-    old_init.call(this);
-
-    if (this.scrollable = (this.options.scrollTabs || this.isCarousel)) {
-      this.buildScroller();
     }
-
-    return this;
+    
+    this.checkScrollButtons(overall_width, available_width, scroll);
   },
-
-  // builds the tabs scroller block
-  buildScroller: function() {
-    if (!this.element.first('right-tabs-scroller')) {
-      this.element.insert($E('div', {'class': 'right-tabs-scroller'}).insert([
-        $E('div', {'class': 'right-tabs-scroll-left',  'html': '&laquo;'}).onClick(this.scrollLeft.bind(this)),
-        $E('div', {'class': 'right-tabs-scroll-right', 'html': '&raquo;'}).onClick(this.scrollRight.bind(this)),
-        $E('div', {'class': 'right-tabs-scroll-body'}).insert(this.tabsList)
-      ]), 'top');
+  
+  // checks the scroll buttons
+  checkScrollButtons: function(overall_width, available_width, scroll) {
+    var has_prev = has_next = false;
+    
+    if (this.isCarousel) {
+      var enabled = this.tabs.filter('enabled');
+      var current = enabled.first('current');
+      
+      if (current) {
+        var index = enabled.indexOf(current);
+        
+        has_prev = index > 0;
+        has_next = index < enabled.length - 1;
+      }
+    } else {
+      has_prev = scroll != 0;
+      has_next = scroll > (available_width - overall_width);
     }
+    
+    this.prevButton[has_prev ? 'removeClass' : 'addClass']('right-tabs-scroll-disabled');
+    this.nextButton[has_next ? 'removeClass' : 'addClass']('right-tabs-scroll-disabled');
   }
-};
-})());
+  
+}})());
 
 /**
  * This module handles the current tab state saving/restoring processes
@@ -572,7 +595,7 @@ return {
       var enabled = this.tabs.filter('enabled');
       current = enabled[this.urlIndex()] || enabled[this.cookieIndex()] || enabled.first('current') || enabled[0];
     }
-    if (current) current.show(true);
+    if (current) current.show();
   },
   
   // tries to find the current tab index in the url hash
@@ -743,4 +766,4 @@ document.onReady(function() {
   Tabs.rescan();
 });
 
-document.write("<style type=\"text/css\">.right-tabs,.right-tabs .right-tabs-list,.right-tabs .right-tabs-tab,.right-tabs .right-tabs-panel,.right-tabs-scroll-left,.right-tabs-scroll-right,.right-tabs-scroll-body,.right-tabs-panel-locker{margin:0;padding:0;background:none;border:none;list-style:none;display:block;width:auto;height:auto}.right-tabs{overflow:hidden;border-bottom:1px solid #CCC}.right-tabs-tab,.right-tabs-tab a{display:block;float:left}.right-tabs-tab a{position:relative;cursor:pointer;text-decoration:none;border:1px solid #CCC;background:#DDD;color:#444;-moz-border-radius:.3em;-webkit-border-radius:.3em}.right-tabs-tab a:hover{border-color:#CCC;background:#EEE}.right-tabs .right-tabs-list .right-tabs-current a,dl.right-tabs dt.right-tabs-current a{font-weight:bold;color:#000;background:#FFF}.right-tabs-tab a img{border:none;opacity:.6;filter:alpha(opacity=60)}.right-tabs-tab a:hover img,.right-tabs .right-tabs-list .right-tabs-current a img{opacity:1;filter:alpha(opacity=100)}.right-tabs-disabled,.right-tabs-disabled a,.right-tabs-disabled a:hover{background:#EEE;border-color:#DDD;color:#AAA;cursor:default}.right-tabs-disabled a img,.right-tabs-disabled a:hover img{opacity:.5;filter:alpha(opacity=50)}.right-tabs-tab-close-icon{display:inline-block;*display:inline;*zoom:1;margin-right:-0.5em;margin-left:0.5em;cursor:pointer;opacity:0.5;filter:alpha(opacity=50)}.right-tabs-tab-close-icon:hover{opacity:1;filter:alpha(opacity=100);color:#B00;text-shadow:#888 .15em .15em .2em}.right-tabs .right-tabs-panel{display:none;position:relative;min-height:4em;padding:.5em 0}.right-tabs .right-tabs-panel-current{display:block}.right-tabs-panel-locker{position:absolute;top:0px;left:0px;opacity:0.5;filter:alpha(opacity=50);background:#CCC;width:100%;height:100%;text-align:center;line-height:100%}.right-tabs-panel-locker-spinner{position:absolute;left:44%;top:44%}.right-tabs-panel-locker-spinner div{float:left;background:#777;width:.5em;height:1em;margin-right:.1em;-moz-border-radius:.1em;-webkit-border-radius:.1em}.right-tabs-panel-locker-spinner div.glow{background:#444;height:1.2em;margin-top:-0.1em}.right-tabs .right-tabs-scroller{padding:0 1.4em;position:relative;margin-bottom:.5em}.right-tabs .right-tabs-scroller .right-tabs-scroll-left,.right-tabs .right-tabs-scroller .right-tabs-scroll-right{width:1.1em;text-align:center;background:#EEE;color:#888;cursor:pointer;border:1px solid #DDD;-moz-border-radius:.2em;-webkit-border-radius:.2em;position:absolute;top:0px;left:0px;z-index:100}.right-tabs .right-tabs-scroller .right-tabs-scroll-left:hover,.right-tabs .right-tabs-scroller .right-tabs-scroll-right:hover{color:#000;background:#DDD;border-color:#AAA}.right-tabs .right-tabs-scroller .right-tabs-scroll-right{left:auto;right:0px}.right-tabs .right-tabs-scroller .right-tabs-scroll-body{width:100%;overflow:hidden;position:relative;z-index:50}.right-tabs .right-tabs-scroller .right-tabs-list{position:relative;width:999em;margin:0}.right-tabs-simple .right-tabs-list{height:2em;padding:0 1em;border-bottom:1px solid #CCC}.right-tabs-simple .right-tabs-tab{margin-top:-1px;margin-right:1px}.right-tabs-simple .right-tabs-tab a{line-height:1.8em;margin-top:.2em;padding:0 1em;border-bottom:none;-moz-border-radius-bottomleft:0;-moz-border-radius-bottomright:0;-webkit-border-bottom-left-radius:0;-webkit-border-bottom-right-radius:0}.right-tabs-simple .right-tabs-list .right-tabs-current a{line-height:2em;margin-top:1px}.right-tabs-simple .right-tabs-scroller{border-bottom:1px solid #CCC}.right-tabs-simple .right-tabs-scroller .right-tabs-scroll-left,.right-tabs-simple .right-tabs-scroller .right-tabs-scroll-right{line-height:1.8em;top:.2em;-moz-border-radius-bottomleft:0;-moz-border-radius-bottomright:0;-webkit-border-bottom-left-radius:0;-webkit-border-bottom-right-radius:0}.right-tabs-simple .right-tabs-scroller .right-tabs-scroll-body{position:relative;top:1px}.right-tabs-simple .right-tabs-scroller .right-tabs-scroll-body .right-tabs-list{padding:0}.right-tabs-carousel .right-tabs-list,.right-tabs-carousel .right-tabs-tab a,.right-tabs-carousel .right-tabs-scroller .right-tabs-scroll-left,.right-tabs-carousel .right-tabs-scroller .right-tabs-scroll-right{height:6em;line-height:6em}.right-tabs-carousel .right-tabs-tab{margin-right:2px}.right-tabs-carousel .right-tabs-tab a img{border:1px solid #CCC;margin:.4em;padding:0}dl.right-tabs{overflow:none;border:none}dt.right-tabs-tab,dt.right-tabs-tab a{display:block;float:none}dt.right-tabs-tab a{padding:.2em 1em}dl.right-tabs dt.right-tabs-current a{background:#EEE;-moz-border-radius-bottomleft:0;-moz-border-radius-bottomright:0;-webkit-border-bottom-left-radius:0;-webkit-border-bottom-right-radius:0}</style>");
+document.write("<style type=\"text/css\">.right-tabs,.right-tabs .right-tabs-list,.right-tabs .right-tabs-tab,.right-tabs .right-tabs-panel,.right-tabs-scroll-left,.right-tabs-scroll-right,.right-tabs-scroll-body,.right-tabs-panel-locker,.right-tabs-resizer{margin:0;padding:0;background:none;border:none;list-style:none;display:block;width:auto;height:auto}.right-tabs{border-bottom:1px solid #CCC}.right-tabs-resizer{overflow:hidden}.right-tabs-tab,.right-tabs-tab a{display:block;float:left}.right-tabs-tab a{position:relative;cursor:pointer;text-decoration:none;border:1px solid #CCC;background:#DDD;color:#444;-moz-border-radius:.3em;-webkit-border-radius:.3em}.right-tabs-tab a:hover{border-color:#CCC;background:#EEE}.right-tabs .right-tabs-list .right-tabs-current a,dl.right-tabs dt.right-tabs-current a{font-weight:bold;color:#000;background:#FFF}.right-tabs-tab a img{border:none;opacity:.6;filter:alpha(opacity=60)}.right-tabs-tab a:hover img,.right-tabs .right-tabs-list .right-tabs-current a img{opacity:1;filter:alpha(opacity=100)}.right-tabs-disabled,.right-tabs-disabled a,.right-tabs-disabled a:hover{background:#EEE;border-color:#DDD;color:#AAA;cursor:default}.right-tabs-disabled a img,.right-tabs-disabled a:hover img{opacity:.5;filter:alpha(opacity=50)}.right-tabs-tab-close-icon{display:inline-block;*display:inline;*zoom:1;margin-right:-0.5em;margin-left:0.5em;cursor:pointer;opacity:0.5;filter:alpha(opacity=50)}.right-tabs-tab-close-icon:hover{opacity:1;filter:alpha(opacity=100);color:#B00;text-shadow:#888 .15em .15em .2em}.right-tabs .right-tabs-panel{display:none;position:relative;min-height:4em;padding:.5em 0}.right-tabs .right-tabs-panel-current{display:block}.right-tabs-panel-locker{position:absolute;top:0px;left:0px;opacity:0.5;filter:alpha(opacity=50);background:#CCC;width:100%;height:100%;text-align:center;line-height:100%}.right-tabs-panel-locker-spinner{position:absolute;left:44%;top:44%}.right-tabs-panel-locker-spinner div{float:left;background:#777;width:.5em;height:1em;margin-right:.1em;-moz-border-radius:.1em;-webkit-border-radius:.1em}.right-tabs-panel-locker-spinner div.glow{background:#444;height:1.2em;margin-top:-0.1em}.right-tabs .right-tabs-scroller{padding:0 1.4em;position:relative;margin-bottom:.5em}.right-tabs .right-tabs-scroller .right-tabs-scroll-left,.right-tabs .right-tabs-scroller .right-tabs-scroll-right{width:1.1em;text-align:center;background:#EEE;color:#666;cursor:pointer;border:1px solid #CCC;-moz-border-radius:.2em;-webkit-border-radius:.2em;position:absolute;top:0px;left:0px;z-index:100}.right-tabs .right-tabs-scroller .right-tabs-scroll-left:hover,.right-tabs .right-tabs-scroller .right-tabs-scroll-right:hover{color:#000;background:#DDD;border-color:#AAA}.right-tabs .right-tabs-scroller .right-tabs-scroll-right{left:auto;right:0px}.right-tabs .right-tabs-scroller .right-tabs-scroll-disabled,.right-tabs .right-tabs-scroller .right-tabs-scroll-disabled:hover{cursor:default;background:#DDD;border-color:#DDD;color:#AAA}.right-tabs .right-tabs-scroller .right-tabs-scroll-body{width:100%;overflow:hidden;position:relative;z-index:50}.right-tabs .right-tabs-scroller .right-tabs-list{position:relative;width:999em;margin:0}.right-tabs-simple .right-tabs-list{height:2em;padding:0 1em;border-bottom:1px solid #CCC}.right-tabs-simple .right-tabs-tab{margin-top:-1px;margin-right:1px}.right-tabs-simple .right-tabs-tab a{line-height:1.8em;margin-top:.2em;padding:0 1em;border-bottom:none;-moz-border-radius-bottomleft:0;-moz-border-radius-bottomright:0;-webkit-border-bottom-left-radius:0;-webkit-border-bottom-right-radius:0}.right-tabs-simple .right-tabs-list .right-tabs-current a{line-height:2em;margin-top:1px}.right-tabs-simple .right-tabs-scroller{border-bottom:1px solid #CCC}.right-tabs-simple .right-tabs-scroller .right-tabs-scroll-left,.right-tabs-simple .right-tabs-scroller .right-tabs-scroll-right{line-height:1.8em;top:.2em;-moz-border-radius-bottomleft:0;-moz-border-radius-bottomright:0;-webkit-border-bottom-left-radius:0;-webkit-border-bottom-right-radius:0}.right-tabs-simple .right-tabs-scroller .right-tabs-scroll-body{position:relative;top:1px}.right-tabs-simple .right-tabs-scroller .right-tabs-scroll-body .right-tabs-list{padding:0}.right-tabs-carousel .right-tabs-list,.right-tabs-carousel .right-tabs-tab a,.right-tabs-carousel .right-tabs-scroller .right-tabs-scroll-left,.right-tabs-carousel .right-tabs-scroller .right-tabs-scroll-right{height:6em;line-height:6em}.right-tabs-carousel .right-tabs-tab{margin-right:2px}.right-tabs-carousel .right-tabs-tab a img{border:1px solid #CCC;margin:.4em;padding:0}dl.right-tabs{overflow:none;border:none}dt.right-tabs-tab,dt.right-tabs-tab a{display:block;float:none}dt.right-tabs-tab a{padding:.2em 1em}dl.right-tabs dt.right-tabs-current a{background:#EEE;-moz-border-radius-bottomleft:0;-moz-border-radius-bottomright:0;-webkit-border-bottom-left-radius:0;-webkit-border-bottom-right-radius:0}</style>");

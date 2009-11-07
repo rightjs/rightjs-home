@@ -34,6 +34,10 @@
     <input type="text" id="date-with-limits" size="32" />
   </p>
   <p>
+    <label>With Year Buttons</label>
+    <input type="text" id="date-with-years" size="32" />
+  </p>
+  <p>
     <label>With Time Period Of 15 Minutes:</label>
     <input type="text" id="date-with-15-minutes-period" size="32" />
   </p>
@@ -59,6 +63,8 @@
   new Calendar({
     minDate: min_date, maxDate: max_date
   }).assignTo('date-with-limits');
+  
+  new Calendar({listYears: true}).assignTo('date-with-years');
   
   new Calendar({
     timePeriod: 15, format: "%Y-%m-%d %H:%M"
@@ -100,6 +106,10 @@ max_date.setMonth(max_date.getMonth() + 1);
 new Calendar({
   minDate: min_date, maxDate: max_date
 }).assignTo('date-with-limits');
+
+
+// with year buttons
+new Calendar({listYears: true}).assignTo('date-with-years');
 
 
 // calendar with 15-minute time periods
