@@ -1,4 +1,16 @@
-<h1>Right Sortable</h1> <% @title_text = "UI: Sortable" %>
+<h1>Right Sortable</h1>
+<%
+  @title_text = "UI: Sortable"
+  @ui_lib = :sortable
+  @anchors = [
+    [:features,  "Features list"],
+    [:usage,     "Usage basics"],
+    [:descovery, "Auto-Discovery"],
+    [:options,   "Options list"],
+    [:events,    "Events list"],
+    [:urls,      "Remote calls handling"]
+  ]
+-%>
 <p>
   Right Sortable is the sortable lists feature for RightJS
 </p>
@@ -12,6 +24,7 @@
   NOTE: This module requires the <%= link_to 'drag-n-drop', goods_path('drag-n-drop')%> library
 </p>
 
+<a name="features"></a>
 <h2>What's Up?</h2>
 <p>
   Right Sortable has the following features:
@@ -26,6 +39,7 @@
   See the <%= link_to 'live demo', '/ui/sortable/demo' %> page for examples.
 </p>
 
+<a name="usage"></a>
 <h2>Usage</h2>
 <p>
   There are several ways to initialize sortable lists. First of all using the <tt>Sortable</tt>
@@ -50,6 +64,7 @@ new Sortable('todos', { url: '/todos' }).destroy();
 $('todos').makeSortable({ url: '/todos' }).undoSortable();
 </code>
 
+<a name="descovery"></a>
 <h2>Auto-Discoverable Sortables</h2>
 <p>
   As all the other widgets in the RightJS UI library sortables can be defined using the <tt>rel</tt>
@@ -70,6 +85,7 @@ $('todos').makeSortable({ url: '/todos' }).undoSortable();
 </ul>
 </code>
 
+<a name="options"></a>
 <h2>Options</h2>
 <p>
   You might use the following options to customize your sortables
@@ -88,6 +104,7 @@ $('todos').makeSortable({ url: '/todos' }).undoSortable();
   </table>
 </p>
 
+<a name="events"></a>
 <h2>Events</h2>
 <p>
   There is just one event name for this unit <tt>'update'</tt>. Callbacks for this event will receive the moved list item element
@@ -101,6 +118,7 @@ new Sortable('todos', {
 });
 </code>
 
+<a name="urls"></a>
 <h2>Urls And Remote Calls Processing</h2>
 <p>
   In this area everything is pretty much straight forward, you can define the <tt>url</tt> and <tt>method</tt> with the options,

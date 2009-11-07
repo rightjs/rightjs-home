@@ -1,10 +1,26 @@
-<h1>RightJS UI: Tabs</h1><% @title_text = 'UI: Tabs'%>
+<h1>RightJS UI: Tabs</h1>
+<%
+  @title_text = 'UI: Tabs'
+  @ui_lib  = :tabs
+  @anchors = [
+    [:features, "Features list"],
+    [:usage,    "Usage basics"],
+    [:variants, "Variants definition"],
+    [:remote,   "Remote tabs handling"],
+    [:current,  "Current tab defining"],
+    [:options,  "Options list"],
+    [:events,   "Events list"],
+    [:api,      "API reference"],
+    [:styles,   "Styles description"]
+  ]
+-%>
 
 <p>
   Right Tabs is the standard tabs engine for the RightJS UI project. It provides an easy way of creating
   usual tabs, carousel and harmonica widgets, joining them under a single unified engine.
 </p>
 
+<a name="features"></a>
 <h2>What's Up?</h2>
 <p>
   Right Tabs are served with the following features:
@@ -22,10 +38,16 @@
   See the <%= link_to 'demo page', '/ui/tabs/demo' %> for examples of the most common cases
 </p>
 
+<a name="usage"></a>
 <h2>Usage</h2>
 <p>
-  Usage is really simple, you just include the <%= link_to 'javascript file', '/builds/ui/right-tabs.js' %>
-  to your page and then prepare your tabs element as the following structure.
+  The usage is simple as usual. Include one of these files onto your page
+  <ul>
+    <li><a href="/builds/ui/right-tabs.js"     target="_blank">right-tabs.js</a> - fully compressed build</li>
+    <li><a href="/builds/ui/right-tabs-min.js" target="_blank">right-tabs-min.js</a> - minified version</li>
+    <li><a href="/builds/ui/right-tabs-src.js" target="_blank">right-tabs-src.js</a> - uncompressed source code with comments</li>
+  </ul>
+  And then prepare your tabs element as the following structure.
 </p>
 <code>
 <ul>
@@ -73,7 +95,7 @@ new Tabs('my-tabs');
 </ul>
 </code>
 
-
+<a name="variants"></a>
 <h2>Variants</h2>
 <p>
   To create a carousel widget simply add the <tt>right-tabs-carousel</tt> css-class
@@ -97,6 +119,8 @@ new Tabs('my-tabs');
 </dl>
 </code>
 
+
+<a name="remote"></a>
 <h2>Remote Tabs</h2>
 <p>
   To make the engine load your tabs content via XHR requests, just specify the url-addresses
@@ -133,6 +157,7 @@ new Tabs('my-tabs', {url: '/content/%{id}.html'});
 /content/tab-2.html
 </code>
 
+<a name="current"></a>
 <h2>Current Tab</h2>
 <p>
   There are several ways how you can specify the tab that the user will see by default.
@@ -165,6 +190,7 @@ new Tabs('my-tabs', {url: '/content/%{id}.html'});
   URL -> Cookie -> CSS Class -> First
 </p>
 
+<a name="options"></a>
 <h2>Options</h2>
 <p>
   There is the following list of supported options for the tabs engine
@@ -205,6 +231,7 @@ new Tabs('my-tabs', {
 </ul>
 </code>
 
+<a name="events"></a>
 <h2>Events</h2>
 <p>
   This script provides you an access to the following events
@@ -225,6 +252,7 @@ new Tabs('my-tabs', {
   Every event listener will receive a tab object instance as an argument.
 </p>
 
+<a name="api"></a>
 <h2>Public API</h2>
 <p>
   There is a simple public API for all the <tt>Tabs</tt> class instances
@@ -247,6 +275,7 @@ new Tabs('my-tabs', {
   </ul>
 </p>
 
+<a name="styles"></a>
 <h2>Styles</h2>
 <p>
   In the most basic case after a tabs module is instantiated it will assign css-classes
