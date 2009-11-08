@@ -1,27 +1,13 @@
-<h1>RightJS UI: Tabs</h1>
-<%
-  @title_text = 'UI: Tabs'
-  @ui_lib  = :tabs
-  @anchors = [
-    [:features, "Features list"],
-    [:usage,    "Usage basics"],
-    [:variants, "Variants definition"],
-    [:remote,   "Remote tabs handling"],
-    [:current,  "Current tab defining"],
-    [:options,  "Options list"],
-    [:events,   "Events list"],
-    [:api,      "API reference"],
-    [:styles,   "Styles description"]
-  ]
--%>
+<h1>RightJS UI: Tabs</h1><% @title_text = 'UI: Tabs' -%>
 
 <p>
   Right Tabs is the standard tabs engine for the RightJS UI project. It provides an easy way of creating
   usual tabs, carousel and harmonica widgets, joining them under a single unified engine.
 </p>
 
-<a name="features"></a>
-<h2>What's Up?</h2>
+<%= anchors_index %>
+
+<%= chapter "Features List", :features %>
 <p>
   Right Tabs are served with the following features:
   <ul>
@@ -38,8 +24,7 @@
   See the <%= link_to 'demo page', '/ui/tabs/demo' %> for examples of the most common cases
 </p>
 
-<a name="usage"></a>
-<h2>Usage</h2>
+<%= chapter "Usage basics", :usage%>
 <p>
   The usage is simple as usual. Include one of these files onto your page
   <ul>
@@ -95,8 +80,7 @@ new Tabs('my-tabs');
 </ul>
 </code>
 
-<a name="variants"></a>
-<h2>Variants</h2>
+<%= chapter "Variants Definition", :variants %>
 <p>
   To create a carousel widget simply add the <tt>right-tabs-carousel</tt> css-class
   to your tabs element and the engine will know that you want a carousel widget.
@@ -118,10 +102,13 @@ new Tabs('my-tabs');
   <dd>Tab 2 Content</dd>
 </dl>
 </code>
+<p>
+  All the other features like remote tabs loading, options and events are common over all three
+  types of the tabs and can be used with any of them
+</p>
 
 
-<a name="remote"></a>
-<h2>Remote Tabs</h2>
+<%= chapter "Remote Tabs", :remote %>
 <p>
   To make the engine load your tabs content via XHR requests, just specify the url-addresses
   instead of the anchor hashes and you're good to go. And in this case you don't need
@@ -157,8 +144,7 @@ new Tabs('my-tabs', {url: '/content/%{id}.html'});
 /content/tab-2.html
 </code>
 
-<a name="current"></a>
-<h2>Current Tab</h2>
+<%= chapter "Current Tab Definition", :current %>
 <p>
   There are several ways how you can specify the tab that the user will see by default.
 </p>
@@ -190,8 +176,7 @@ new Tabs('my-tabs', {url: '/content/%{id}.html'});
   URL -> Cookie -> CSS Class -> First
 </p>
 
-<a name="options"></a>
-<h2>Options</h2>
+<%= chapter "Options List", :options %>
 <p>
   There is the following list of supported options for the tabs engine
   
@@ -231,8 +216,7 @@ new Tabs('my-tabs', {
 </ul>
 </code>
 
-<a name="events"></a>
-<h2>Events</h2>
+<%= chapter "Events List", :events %>
 <p>
   This script provides you an access to the following events
   <table>
@@ -252,8 +236,7 @@ new Tabs('my-tabs', {
   Every event listener will receive a tab object instance as an argument.
 </p>
 
-<a name="api"></a>
-<h2>Public API</h2>
+<%= chapter "API Reference", :api %>
 <p>
   There is a simple public API for all the <tt>Tabs</tt> class instances
   <table>
@@ -275,8 +258,7 @@ new Tabs('my-tabs', {
   </ul>
 </p>
 
-<a name="styles"></a>
-<h2>Styles</h2>
+<%= chapter "Style Alterations", :styles %>
 <p>
   In the most basic case after a tabs module is instantiated it will assign css-classes
   for your tabs-element, like this
@@ -333,4 +315,14 @@ new Tabs('my-tabs', {
     </div>
   </li>
 </ul>
+</code>
+<p>
+  The harmonica widget will remain the same structure with a similar css-class assignments
+</p>
+<code>
+<dl class="right-tabs">
+  <dt class="right-tabs-tab">Tab 1</dt>
+  <dd class="right-tabs-panel">Tab Content</dd>
+  // ...
+</dl>
 </code>

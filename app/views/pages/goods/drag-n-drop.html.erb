@@ -12,7 +12,9 @@
   </ul>
 </p>
 
-<h2>Download</h2>
+<%= anchors_index %>
+
+<%= chapter "Download", :download %>
 <p>
   This library comes in the three standard builds
   
@@ -25,7 +27,7 @@
   It also available as an option at the <%= link_to 'custom build', builds_path %> page.
 </p>
 
-<h2>Auto-Discovery Feature</h2>
+<%= chapter "Auto-Discovery Feature", :discovery %>
 <p>
   This library provides the standard for RightJS auto-discovery by the <tt>'rel'</tt>
   attribute feature and the HTML5 style option attributes like this:
@@ -36,7 +38,7 @@
 <div rel="droppable" data-droppable-options="{accept: '.sinner'}">The Hell</div>
 </code>
 
-<h2>Element Level Method</h2>
+<%= chapter "Element Level Methods", :methods %>
 <p>
   There are also several {Element} level shortcut methods to covert elements into
   draggable/droppable units.
@@ -48,4 +50,17 @@
     <tr><td>makeDroppable([options])</td> <td>makes the element droppable</td></tr>
     <tr><td>undoDroppable()</td>          <td>undoes the droppable conversion</td></tr>
   </table>
+</p>
+
+<%= chapter "Performance Notes", :performance %>
+<p>
+  In our implementation, the number of <u>draggable</u> elements on your page <u>will not affect</u>
+  your application performance, all of them will be handled in the same way for the same cost.
+</p>
+<p>
+  But, the performance <u>depends</u> on the number of your <u>droppable</u> targets. In this case there is a difference
+  between usual droppables and droppables with the <tt>overlap</tt> option turned on. In the first
+  case you might pretty much safely have 100 and more droppables (depends on the complexity of your page),
+  but in case if you need to track the actual draggable and droppable elements overlapping, the number of them
+  might drop down two three times (depends on the browser).
 </p>

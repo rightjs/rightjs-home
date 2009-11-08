@@ -4,7 +4,7 @@
   RightJS inherits its dom-navigation principles from the Prototype and MooTools projects. As for the dom-manipulations it is a mix of ideas from Prototype, MooTools and jQuery.
 </p>
 
-<h2>Basic Elements Selection</h2>
+<%= chapter "Basic Elements Selection", :basic %>
 <p>
   RightJS provide two pretty much standard methods to select elements on the page, <tt>$('element-id')</tt> and <tt>$$('css rule')</tt>. The first one finds an element by its <tt>ID</tt> and the second one selects all the elements on the page which fits the given css-rule.
 </p>
@@ -16,7 +16,7 @@ var elements = $$('div > div.foo + div.bar');
   RightJS supports all the CSS selectors up to the  Level 3. If the browsers supports the native css-selectors functionality then it will be used, otherwise, all the queries will be simultaneously handled by an internal javascript based selector engine. This is a cross-browser feature and works everywhere starting from IE6.
 </p>
 
-<h2>Sub-Nodes Selection</h2>
+<%= chapter "Sub-Nodes Selection", :subnodes %>
 <p>
   RightJS provides a number of methods to perform various selections starting from a given element.
   <table>
@@ -57,7 +57,8 @@ $('top').first('div');       // -> div#second-1
   As usual you can use all the CSS Level 3 magic in your selectors.
 </p>
 
-<h2>Basic Manipulations</h2>
+
+<%= chapter "Basic Manipulations", :manipulations %>
 <p>
   There's just one generic method which, depends on the data provided, handles all the possible element manipulations.
 </p>
@@ -100,7 +101,8 @@ $('element').insert({
 });
 </code>
 
-<h2>DOM Manipulation Shortcuts And Additional Methods</h2>
+
+<%= chapter "DOM Manipulation Shortcuts And Additional Methods", :shortcuts %>
 <p>
   There are a few nice shortcuts and additional methods for most of the dom-manipulation operations which will make your application code more compact and readable
   

@@ -64,7 +64,7 @@ elements.each('on', 'click', 'toggleClass', 'marked');
 element.on('click', 'toggleClass', 'marked');
 </code>
 
-<h2>Why Do That?</h2>
+<%= chapter "Why Do That?", :why %>
 <p>
   If you still didn't get it try to read the piece of code above. Just as a 
   plain English text. The feature is really natural. There are lots and lots
@@ -78,7 +78,8 @@ element.on('click', 'toggleClass', 'marked');
   bugs.
 </p>
 
-<h2>Is There A Performance Overhead?</h2>
+
+<%= chapter "Is There A Performance Overhead?", :overhead %>
 <p>
   Practically there is no difference between specifying a real function or a
   name. As the matter of fact it will work even faster than if you just create

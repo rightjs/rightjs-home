@@ -21,8 +21,19 @@ h1, h2, h3, h4, table caption {
   font-family: Georgia;
 }
 
-h1, h2, h3, h4, label, caption {
+h1, h2, h3, h4, label, caption, h2 a {
   color: #8A7;
+}
+h2 a:hover {
+  color: brown;
+}
+h2.chapter {
+  margin-top: 2em;
+  border-bottom: 1px solid #DDD;
+}
+h2 a.top-anchor {
+  float: right;
+  font-size: 0.7em;
 }
 
 table {

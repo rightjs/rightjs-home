@@ -5,7 +5,7 @@
   easier and more natural for object oriented programmers
 </p>
 
-<h2>Strings To Numbers Conversion</h2>
+<%= chapter "Strings To Numbers Conversion", :conversion %>
 <p>
   The {String} class has two methods to convert its instances to numbers, {String#toInt} and {String#toFloat}. The usage is simple
 </p>
@@ -37,7 +37,7 @@
 '0-03'.toFloat(true); // -> 0
 </code>
 
-<h2>Number Extensions</h2>
+<%= chapter "Number Extensions", :extensions %>
 <p>
   The {Number} class has most of the <tt>Math</tt> module methods like <tt>abs</tt>, <tt>floor</tt>,
   <tt>ceil</tt>, <tt>round</tt> attached to the instance level, so that you can work with them
@@ -52,7 +52,7 @@ num.ceil();  // -> 16
 num.floor(); // -> 15
 </code>
 
-<h2>Ruby Style Loops</h2>
+<%= chapter "Ruby Style Loops", :loops %>
 <p>
   In additional the {Number} class supports the Ruby language style loops for the numbers:
   {Number#times}, {Number#downto} and {Number#upto}
@@ -73,7 +73,7 @@ num.upto(8, function(i) {
 });
 </code>
 
-<h2>Random Numbers Generator</h2>
+<%= chapter "Random Numbers Generator", :random %>
 <p>
   By default the {Math.random} method returns float numbers between 0 and 1. RigthJS extends the method
   and makes it generate integer numbers in a given range, if specified.

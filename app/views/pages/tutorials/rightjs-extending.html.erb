@@ -16,8 +16,7 @@
 </p>
 
 
-<a name="natives"></a>
-<h2>JavaScript Natives Extending</h2>
+<%= chapter "JavaScript Natives Extending", :natives %>
 <p>
   When we are talking about extending the native units like {String}, {Array}, {Function} etc.
   we are talking about extending the object prototypes. So the extension of natives is
@@ -44,8 +43,7 @@ $ext(String.prototype, {
 </code>
 
 
-<a name="rightjs"></a>
-<h2>RightJS Own Classes Extending</h2>
+<%= chapter "RightJS Own Classes Extending", :rightjs %>
 <p>
   The are few RightJS own classes in the core, like {Xhr}, {Fx}, {Cookie}. All of them are based on the {Class} unit,
   which means you can use the RightJS OOP features to extend them. Meaningly the <tt>include</tt> and <tt>extend</tt> methods.
@@ -84,8 +82,9 @@ $ext(Xhr, {...});           // same as Xhr.extend
 $ext(Xhr.prototype, {...}); // same as Xhr.include
 </code>
 
-<a name="dom"></a>
-<h2>DOM Level Extending</h2>
+
+
+<%= chapter "DOM Level Extending", :dom %>
 <p>
   As there are more than one implementation of the DOM level units, extending them might be tricky.
   For this reason RightJS provides the {Element.addMethods} feature, which might be used like this.
@@ -117,8 +116,8 @@ $$('*').each('myMethod2');
   RightJS own method works.
 </p>
 
-<a name="#overloading"></a>
-<h2>Methods Overloading</h2>
+
+<%= chapter "Methods Overloading", :overloading %>
 <p>
   Sometimes you might need not just to add some new methods but overload existing ones,
   here is a tip how you could do that.

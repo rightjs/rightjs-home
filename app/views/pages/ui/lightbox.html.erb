@@ -1,17 +1,4 @@
-<h1>Right Lightbox</h1>
-<%
-  @title_text = 'UI: Lightbox'
-  @ui_lib = :lightbox
-  @anchors = [
-    [:features, "Features list"],
-    [:usage,    "Usage basics"],
-    [:api,      "API reference"],
-    [:options,  "Options list"],
-    [:links,    "Links processing"],
-    [:i18n,     "Internationalization"],
-    [:styles,   "Style adjustments"]
-  ]
--%>
+<h1>Right Lightbox</h1><% @title_text = 'UI: Lightbox' -%>
 
 <p>
   Right Lightbox is the standard lightbox feature for RightJS
@@ -33,8 +20,9 @@
   <a href="http://github.com/rightjs/rightjs-ui" target="_blank">http://github.com/rightjs/rightjs-ui</a>
 </p>
 
-<a name="features"></a>
-<h2>What's Up?</h2>
+<%= anchors_index %>
+
+<%= chapter "Features List", :features %>
 <p>
   Right Lightbox has the following features
   <ul>
@@ -51,8 +39,8 @@
   You can play with the thing right here: <%= link_to 'Right Lightbox Live Demo', '/ui/lightbox/demo' %>
 </p>
 
-<a name="usage"></a>
-<h2>Usage</h2>
+
+<%= chapter "Usage Basics", :usage %>
 <p>
   The usage of Right Lightbox is really simple. Just grab the file above, include it on your page and you are good to go
 </p>
@@ -66,8 +54,8 @@
   See the <%= link_to 'live demo', '/ui/lightbox/demo' %> page for some common use cases
 </p>
 
-<a name="api"></a>
-<h2>API-Reference</h2>
+
+<%= chapter "API Reference", :api %>
 <p>
   Right Lightbox has a really simple interface
   <table>
@@ -96,8 +84,8 @@ box.load('/some/url');
 box.hide();
 </code>
 
-<a name="options"></a>
-<h2>Options</h2>
+
+<%= chapter "Options List", :options %>
 <p>
   There are several options when you are using Right Lightbox
   <table>
@@ -121,8 +109,8 @@ hard_box.setTitle('Fill It Up');
 hard_box.show('some required form');
 </code>
 
-<a name="links"></a>
-<h2>Links Automatic Processing</h2>
+
+<%= chapter "Links Automatic Processing", :links %>
 <p>
   When you pass a link node into the <tt>show</tt> method, Lightbox will automatically grab its url address and title, then load the 
   content referred by the link, show it and set the link's title on the box.
@@ -148,8 +136,8 @@ Lightbox.show($('the-link'));
   If you need to rescan the auto-discovery links manually, say after a page updates. You can call the <tt>Lightbox.rescan()</tt> method.
 </p>
 
-<a name="i18n"></a>
-<h2>Internationalization</h2>
+
+<%= chapter "Internationalization", :i18n %>
 <p>
   You might find a translation module for your language at the github repository.
 </p>
@@ -167,8 +155,8 @@ Lightbox.i18n = {
 };
 </code>
 
-<a name="styles"></a>
-<h2>Style Adjustments</h2>
+
+<%= chapter "Style Adjustments", :styles %>
 <p>
   If you need to alter the lightbox view to make it fit your design, please use the following
   elements structure description as a guidance.

@@ -4,7 +4,7 @@
   In the default build, RightJS provides basic visual effects support. This includes the generic elements morphing interface and several shortcuts for the most common operations.
 </p>
 
-<h2>Generic Elements Morphing Interface</h2>
+<%= chapter "Generic Elements Morphing Interface", :generic %>
 <p>
   {Fx.Morph} is the basic class for all the element visual effects. It provides a generic interface where you can morph your elements from their current conditions to any other. There is nothing tricky, you just specify the end style and optionally duration and transition type, and then the things happen automatically.
 </p>
@@ -30,7 +30,7 @@ new Fx.Morph('element').start('end-class');
 new Fx.Morph('element').start('marked big special');
 </code>
 
-<h2>Options</h2>
+<%= chapter "Options List", :options %>
 <p>
   The basic visual effects constructor might receive an options object with the following keys
   <ul>
@@ -67,7 +67,7 @@ new Fx.Morph('element').start('marked big special');
   </ul>
 </p>
 
-<h2>Frequently Used Visual Effects</h2>
+<%= chapter "Frequently Used Visual Effects", :frequently %>
 <p>
   In the default package RightJS provides several frequently used visual effects
   <ul>
@@ -85,7 +85,8 @@ new Fx.Fade('element').start();
 new Fx.Slide('element').start();
 </code>
 
-<h2>Bidirectional Effects</h2>
+
+<%= chapter "Bidirectional Effects", :bidirectional %>
 <p>
   The {Fx.Fade} and {Fx.Slide} effects belong to the family of bidirectional or twin effects. Those effects might work in both back and forth directions. By default the effects will check the element state and determine the direction automatically, but you can specify the direction manually if you need.
 </p>
@@ -104,7 +105,8 @@ new Fx.Slide('element').start('in');
 new Fx.Slide('element').start('in');
 </code>
 
-<h2>DOM Level Visual Effect Shortcuts</h2>
+
+<%= chapter "DOM Level Visual Effect Shortcuts", :shortcuts %>
 <% controller.instance_eval{ @unit = Unit.find_by_name('Fx.Element')} %>
 <p>
   There are several shortcuts which let you run visual effects directly from the dom-element instances, without manual effects creation.
@@ -136,7 +138,8 @@ $('element').toggle('slide', {
 });
 </code>
 
-<h2>Effects Queueing</h2>
+
+<%= chapter "Effects Queueing", :queueing %>
 <p>
   By default RightJS will queue all the visual effects you run on any elements, so you could safely define an element effects chain from your code like that.
 </p>
@@ -159,7 +162,8 @@ new Fx.Highlight('element', {queue: false});
 $('element').fade('out', {queue: false});
 </code>
 
-<h2>Custom Visual Effects</h2>
+
+<%= chapter "Custom Visual Effects", :custom %>
 <p>
   With RightJS it is really simple to create your own reusable visual effects, which do precisely what you need in your application.
 </p>

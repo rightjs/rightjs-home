@@ -4,7 +4,7 @@
   This module provides the standard JSON import/export functionality, plus some additional features
 </p>
 
-<h2>JSON Encoding And Decoding</h2>
+<%= chapter "JSON Encoding And Decoding", :encoding %>
 <p>
   The basic JSON import/export works through the standard interface like this.
 </p>
@@ -18,14 +18,14 @@ JSON.decode('[1,2,3]'); // -> [1,2,3]
   then uses it to export given object into a json string.
 </p>
 
-<h2>Better Xhr JSON Check</h2>
+<%= chapter "Better Xhr JSON Check", :checking %>
 <p>
   By default the {Xhr} module checks the json responses consistency with a simplified procedure. If you need
   something better then include this module and all the xhr requests will be checked by the full check procedure
   defined at json.org.
 </p>
 
-<h2>Cookie Extension</h2>
+<%= chapter "Cookie Extension", :cookie %>
 <p>
   By default the {Cookie} module works with strings only. If you include this module then the {Cookie}
   class will automatically export/import the incoming data through the JSON encoder, and then you will

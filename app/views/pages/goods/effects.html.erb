@@ -4,22 +4,12 @@
   The library of additional visual effects for RightJS currently offers the following list of effects
 </p>
 <p>
-  <ul>
-    <li><a href="#CSS">Fx.CSS</a></li>
-    <li><a href="#Move">Fx.Move</a></li>
-    <li><a href="#Run">Fx.Run</a></li>
-    <li><a href="#Bounce">Fx.Bounce</a></li>
-    <li><a href="#Puff">Fx.Puff</a></li>
-    <li><a href="#Zoom">Fx.Zoom</a></li>
-  </ul>
-</p>
-<p>
   You can see all the effects in action at the main <%= link_to 'visual effects demo', '/fx-demo' %> page.
 </p>
 
-<a name="CSS"></a>
-<h2>Fx.CSS</h2>
+<%= anchors_index %>
 
+<%= chapter "Fx.CSS", :CSS %>
 <p>
   Fx.CSS is an equivalent of the {Fx.Morph} effect, but instead of using an actual styles it
   works with the css classes. This might be useful if you don't want to keep any styles inside
@@ -57,9 +47,8 @@ $('my-element').morphToClass('something', {
 </p>
 
 
-<a name="Move"></a>
-<h2>Fx.Move</h2>
 
+<%= chapter "Fx.Move", :Move %>
 <p>
   This effect allows you to move your elements around the page.
 </p>
@@ -86,8 +75,8 @@ $('element').move({x: 200, y: 200}); // absolute position
 $('element').move({x: -200}, {position: 'relative'}); // moves it 200px left
 </code>
 
-<a name="Run"></a>
-<h2>Fx.Run</h2>
+
+<%= chapter "Fx.Run", :Run %>
 <p>
   This effect makes the element appear and disappear by moving behind (or from behind) the left or
   top edge of the window. Its a bidirectional effect so you might specify the effect direction like
@@ -114,8 +103,8 @@ $('element').run('out', {direction: 'top', onFinish: do_that});
 </code>
 
 
-<a name="Bounce"></a>
-<h2>Fx.Bounce</h2>
+
+<%= chapter "Fx.Bounce", :Bounce %>
 <p>
   This effect supposed to attract user's attention by making an element jump.
 </p>
@@ -140,8 +129,8 @@ $('element').bounce({value: 40});
 $('element').bounce({direction: 'left'});
 </code>
 
-<a name="Puff"></a>
-<h2>Fx.Puff</h2>
+
+<%= chapter "Fx.Puff", :Puff %>
 <p>
   Another bidirectional effect that shows/hides an element by zooming and making it fade
   at the same time.
@@ -163,8 +152,8 @@ $('element').puff('out');
 $('element').puff({size: 2});
 </code>
 
-<a name="Zoom"></a>
-<h2>Fx.Zoom</h2>
+
+<%= chapter "Fx.Zoom", :Zoom %>
 <p>
   This visual effect lets you gradually increase/decrease an element size. It simultaneously
   processes all the available attributes like height, width, font-size, border-size, margins

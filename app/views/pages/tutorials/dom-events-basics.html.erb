@@ -56,7 +56,8 @@ $('element').observe('click', function(event) {
   This is pretty much all the standard features you might see at most of the frameworks. Now lets get to the new features.
 </p>
 
-<h2>Event Listeners Connection Additionals</h2>
+
+<%= chapter "Event Listeners Connection Additional", :additional %>
 <p>
   I'm sure there was a moment when you felt tired of writing <tt>observe('blablabla')</tt> continually. So lets help you
   a little bit. First, there is a short alias for the {#observe} method called {#on}. The code with the thing sounds quite natural
@@ -82,7 +83,8 @@ $('element').onKeydown(function() {...});
   a safer feeling in your guts.
 </p>
 
-<h2>Attaching Several Event Listeners In A Single Call</h2>
+
+<%= chapter "Attaching Several Event Listeners In A Single Call", :multiple %>
 <p>
   Additionally, you might specify several event handlers in a single call
 </p>
@@ -104,7 +106,8 @@ new Element('div', {
 });
 </code>
 
-<h2>Arguments Presetting</h2>
+
+<%= chapter "Arguments Presetting", :arguments %>
 <p>
   With RightJS you don't need to bind additional arguments which you might need to pass into your event listeners manually.
   You can just pass them as optional arguments to the {#observe} or {#on} methods.
@@ -131,7 +134,8 @@ new Element('div', {
   additional binding wrapper. Instead of that, the callback will be called directly with those arguments.
 </p>
 
-<h2>Listeners Assignment By Name</h2>
+
+<%= chapter "Listeners Assignment By Name", :byname %>
 <p>
   I'm sure there are heaps and heaps of cases when what you need from a listener is just to call the same element method
 </p>
@@ -171,7 +175,8 @@ $E('div').inserTo(document.body
   called directly.
 </p>
 
-<h2>Callbacks Attachment Check</h2>
+
+<%= chapter "Callbacks Attachment Check", :checking %>
 <p>
   To check if an element observes a particular callback, there is the method called {#observes}, generally
   it is getting called the following way.
@@ -206,7 +211,8 @@ $('element').observes('click', callback);    // true
 $('element').observes('mouseover' callback); // -> false
 </code>
 
-<h2>Listeners Detaching</h2>
+
+<%= chapter "Listeners Detaching", :detaching %>
 <p>
   There is a method {#stopObserving} which you call when you need the element to stop observe some callback
 </p>
@@ -248,7 +254,8 @@ $('element').stopObserving('click', callback);
 // but still observes the 'mouseover' event
 </code>
 
-<h2>Manual Events Firing</h2>
+
+<%= chapter "Manual Events Firing", :firing %>
 <p>
   There is a method called {#fire} in RightJS that lets you manually trigger any events on your
   elements if you need so.
@@ -286,7 +293,7 @@ $('input').keypress({keyCode: 22});
 </p>
 
 
-<h2>Custom Events Support</h2>
+<%= chapter "Custom Events Support", :custom %>
 <p>
   With RightJS you are free to define any custom events you want for your elements. And generally
   there is no difference between the native and custom events, you can handle them transparently

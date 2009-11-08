@@ -5,7 +5,9 @@
   with DOM events a lot.
 </p>
 
-<h2>Keys And Buttons Determination</h2>
+<%= anchors_index %>
+
+<%= chapter "Keys And Buttons Determination", :keys %>
 <p>
   There are two additional constants appear at the {Event} class when the module is included.
 </p>
@@ -53,7 +55,7 @@ $('input').onKeydown(function(event) {
 });
 </code>
 
-<h2>DOM Events Firing</h2>
+<%= chapter "DOM Events Firing", :dom %>
 <p>
   By default when you try to initiate events on dom elements in RightJS, it will simply go through
   all the callbacks registered to the element. It works but it's not real.

@@ -7,7 +7,7 @@
   that might be useful to know.
 </p>
 
-<h2>Standard Visibility Toggling</h2>
+<%= chapter "Standard Visibility Toggling", :standard %>
 <p>
   RightJS has all the standard methods like {Element#hide}, {Element#show}, {Element#toggle}
   to switch the dom-elements visibility status on and off. Additionally there is the {Element#radio}
@@ -39,7 +39,7 @@ $(element).style.display; // -> 'inline-block'
 $(element).show().update('with text').highlight();
 </code>
 
-<h2>CSS Classes Toggling</h2>
+<%= chapter "CSS Classes Toggling", :css %>
 <p>
   There are list of standard methods to manage the css-classes presence on dom-elements
   {Element#addClass}, {Element#removeClass}, {Element#hasClass}, {Element#toggleClass},
@@ -60,7 +60,8 @@ $(element).show().update('with text').highlight();
 $('some-menu').select('li').each('onClick', 'radioClass', 'marked');
 </code>
 
-<h2>Visibility Toggling With Visual Effects</h2>
+
+<%= chapter "Visibility Toggling With Visual Effects", :effects %>
 <p>
   Some visual effects like {Fx.Slide} and {Fx.Fade} are bidirectional. Which means that
   they can work in both directions to show and to hide an element.
@@ -85,7 +86,7 @@ $(element).slide('in');
 </code>
 
 
-<h2>Mixed Approach</h2>
+<%= chapter "Mixed Approach", :mixed %>
 <p>
   The visual effects library in RightJS is not a required module and can be switched off
   by the <%= link_to 'custom build', builds_path %> process.

@@ -5,7 +5,10 @@
   and then it will automatically watch any changes on the web-page and update matching elements.
 </p>
 
-<h2>Simple Example</h2>
+<%= anchors_index %>
+
+
+<%= chapter "Simple Example", :simple %>
 <p>
   The usage is really simple, you just define a css-rule and events that you want to handle
 </p>
@@ -22,7 +25,7 @@
   once more when it's loaded.
 </p>
 
-<h2>RightJS Features Are Also Available</h2>
+<%= chapter "RightJS Features Are Also Available", :rightjs %>
 <p>
   The <tt>'behave'</tt> method supports all the same argument types as the {Observer#observe} method,
   including the <a href="/tutorials/call-by-name">call by name</a> feature, custom events, etc.
@@ -43,7 +46,8 @@
 "#todo-list div.item".behave('click', 'radioClass', 'selected');
 </code>
 
-<h2>Stopping Behavior</h2>
+
+<%= chapter "Stopping Behavior", :stopping %>
 <p>
   If you need to cancel some behavior, just call the <tt>'stopBehave'</tt> method and it will remove all
   the registered callbacks out of processed elements and will stop watching the page updates.
@@ -54,7 +58,8 @@
 "#todo-list div.item".stopBehave();
 </code>
 
-<h2>Manual Triggering</h2>
+
+<%= chapter "Manual Triggering", :manual %>
 <p>
   By default the script will watch when you change the page by using the RightJS {Element} methods, like
   {Element#insert}, {Element#update}, etc. But if you did changed your page manually by say altering an
@@ -70,7 +75,7 @@ $('todo-list').innserHTML = "...";
 Behavior.refresh();
 </code>
 
-<h2>Tough Bastards Way</h2>
+<%= chapter "Tough Bastards Way", :tough %>
 <p>
   In case of more complex development you might want some more serious way of your behaviors
   library organization; with classes, objects and so one. We have 'em too. 

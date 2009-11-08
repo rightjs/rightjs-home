@@ -22,7 +22,7 @@
   what you was going to do. RightJS will take care of things.
 </p>
 
-<h2>Additional DOM-Event Methods</h2>
+<%= chapter "Additional DOM-Event Methods", :additional %>
 <p>
   Additionally, RightJS has well... additional dom-event methods. They all are pretty much standard, and 
   you need to remember just two of them: {Event#stop} and {Event#position}.
@@ -50,7 +50,8 @@ $('some-element').onClick(function(e) {
   overhead on any modern browsers.
 </p>
 
-<h2>Manual Events Extending</h2>
+
+<%= chapter "Manual Events Extending", :manual %>
 <p>
   In case you are creating some patch for the old IE browsers (6 and 7 versions) and for some reasons
   used the <tt>attachEvent</tt> method you still can extend the incoming events by calling the {Event.ext}
