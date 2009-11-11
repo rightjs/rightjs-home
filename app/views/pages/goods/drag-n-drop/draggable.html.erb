@@ -82,3 +82,21 @@ new Draggable('my-element', {
   }
 });
 </code>
+
+<%= chapter "Relatively Positioned Draggables", :relative %>
+<p>
+  This implementation of draggables transparently works with draggable elements that are inside relatively
+  positioned elements with their own positions scope, like this
+</p>
+<code>
+<div style="position: absolute; left: 40em; top: 10em">
+  <div rel="draggable" style="left: 0; top:0">
+    Drag me around!
+  </div>
+</div>
+</code>
+<p>
+  The only condition is that you <u>have to</u> specify the default position of the element with CSS or the style attribute.
+  Once you've done that, the script will check the element's relative and absolute positions and if they are different, then
+  it will work inside the relative positions scope.
+</p>
