@@ -1,0 +1,163 @@
+<h1>RightJS UI: Slider Demo</h1><% @title_text = "UI: Slider: Demo" %>
+<script type="text/javascript" src="/builds/goods/right-dnd-min.js"></script>
+<script type="text/javascript" src="/builds/ui/right-slider-src.js"></script>
+<style type="text/css">
+  div.slider-out {
+    width: 5em;
+    padding: 0 .2em;
+    border: 1px solid #DDD;
+  }
+  div.slider-demo div.slider-out {
+    position: relative;
+    left: 22em;
+    margin-top: -1.5em;
+  }
+  div.slider-demo-vertical div.slider-out {
+    width: 2em;
+  }
+  div.slider-demo-vertical {
+    float: left;
+    margin-top: 1em;
+    margin-right: .2em;
+  }
+  div.slider-demo-vertical div.right-slider {
+    margin-top: 0.5em;
+    margin-left: 1em;
+  }
+</style>
+<p>
+  There are some basic use-cases for the <%= link_to "Slider", "/ui/slider" %> widget out of the
+  <%= link_to "RightJS UI", "/ui" %> library.
+</p>
+
+<h2>Simple Sliders</h2>
+<p>
+  <div class="slider-demo">
+    <div class="right-slider" data-slider-options="{update: 'slider-out-1'}">
+      <div class="right-slider-handle"></div>
+    </div>
+    <div class="slider-out" id="slider-out-1">0</div>
+  </div>
+  <div class="slider-demo-vertical">
+    <div class="slider-out" id="slider-out-2">0</div>
+    <div class="right-slider right-slider-vertical" data-slider-options="{update: 'slider-out-2'}">
+      <div class="right-slider-handle"></div>
+    </div>
+  </div>
+  <div style="clear:left"></div>
+</p>
+
+<h2>Snapping Slider</h2>
+<p>
+  <div class="slider-demo">
+    <div class="right-slider" data-slider-options="{update:'slider-out-3',snap:10}">
+      <div class="right-slider-handle"></div>
+    </div>
+    <div class="slider-out" id="slider-out-3">0</div>
+  </div>
+  
+  <div class="slider-demo">
+    <div class="right-slider" data-slider-options="{update:'slider-out-4',snap:20}">
+      <div class="right-slider-handle"></div>
+    </div>
+    <div class="slider-out" id="slider-out-4">0</div>
+  </div>
+  
+  <div class="slider-demo">
+    <div class="right-slider" data-slider-options="{update:'slider-out-5',snap:30}">
+      <div class="right-slider-handle"></div>
+    </div>
+    <div class="slider-out" id="slider-out-5">0</div>
+  </div>
+</p>
+
+<h2>With Different Ranges</h2>
+<p>
+  <div class="slider-demo">
+    <div class="right-slider" data-slider-options="{update:'slider-out-6',min:-100,max:0,value:-20}">
+      <div class="right-slider-handle"></div>
+    </div>
+    <div class="slider-out" id="slider-out-6">0</div>
+  </div>
+  <div class="slider-demo">
+    <div class="right-slider" data-slider-options="{update:'slider-out-7',min:-100,max:100,value:0}">
+      <div class="right-slider-handle"></div>
+    </div>
+    <div class="slider-out" id="slider-out-7">0</div>
+  </div>
+  <div class="slider-demo">
+    <div class="right-slider" data-slider-options="{update:'slider-out-8',min:100,max:200,value:120}">
+      <div class="right-slider-handle"></div>
+    </div>
+    <div class="slider-out" id="slider-out-8">0</div>
+  </div>
+</p>
+
+<h2>With Round Settings</h2>
+<p>
+  <div class="slider-demo">
+    <div class="right-slider" data-slider-options="{update:'slider-out-9',round: 1}">
+      <div class="right-slider-handle"></div>
+    </div>
+    <div class="slider-out" id="slider-out-9">0</div>
+  </div>
+  <div class="slider-demo">
+    <div class="right-slider" data-slider-options="{update:'slider-out-10',round: 2}">
+      <div class="right-slider-handle"></div>
+    </div>
+    <div class="slider-out" id="slider-out-10">0</div>
+  </div>
+  <div class="slider-demo">
+    <div class="right-slider" data-slider-options="{update:'slider-out-11',round: 3}">
+      <div class="right-slider-handle"></div>
+    </div>
+    <div class="slider-out" id="slider-out-11">0</div>
+  </div>
+  <div class="slider-demo">
+    <div class="right-slider" data-slider-options="{update:'slider-out-12',round: 4}">
+      <div class="right-slider-handle"></div>
+    </div>
+    <div class="slider-out" id="slider-out-12">0</div>
+  </div>
+</p>
+
+<h2>Dynamically Generated Sliders</h2>
+<p>
+  <div class="slider-demo" id="d-slider-0"><div class="slider-out" id="slider-out-13">0</div></div>
+  <div class="slider-demo" id="d-slider-1"><div class="slider-out" id="slider-out-14">0</div></div>
+  
+  <div class="slider-demo-vertical" id="d-slider-2"><div class="slider-out" id="slider-out-15">0</div></div>
+  <div class="slider-demo-vertical" id="d-slider-3"><div class="slider-out" id="slider-out-16">0</div></div>
+  <div class="slider-demo-vertical" id="d-slider-4"><div class="slider-out" id="slider-out-17">0</div></div>
+  <div class="slider-demo-vertical" id="d-slider-5"><div class="slider-out" id="slider-out-18">0</div></div>
+  <div class="slider-demo-vertical" id="d-slider-6"><div class="slider-out" id="slider-out-19">0</div></div>
+  <div class="slider-demo-vertical" id="d-slider-7"><div class="slider-out" id="slider-out-20">0</div></div>
+  <div class="slider-demo-vertical" id="d-slider-8"><div class="slider-out" id="slider-out-21">0</div></div>
+  <div class="slider-demo-vertical" id="d-slider-9"><div class="slider-out" id="slider-out-22">0</div></div>
+  <div class="slider-demo-vertical" id="d-slider-10"><div class="slider-out" id="slider-out-23">0</div></div>
+  <div class="slider-demo-vertical" id="d-slider-11"><div class="slider-out" id="slider-out-24">0</div></div>
+  <div class="slider-demo-vertical" id="d-slider-12"><div class="slider-out" id="slider-out-25">0</div></div>
+
+  <script type="text/javascript">
+  // <![CDATA[
+  new Slider().insertTo('d-slider-0', 'top').assignTo('slider-out-13').fire('change', 0);
+  new Slider({min: -100, max: 100,value: 0}).insertTo('d-slider-1', 'top').assignTo('slider-out-14');
+  
+  // list of vertical sliders
+  var slider_num    = 2;
+  var out_num       = 15
+  var min_value     = -10;
+  var max_value     = 10;
+  var sliders_count = 11;
+  
+  for (var i=0; i < sliders_count; i++) {
+    new Slider({direction: 'y', min: min_value, max: max_value
+    }).insertTo('d-slider-'+(slider_num+i))
+      .assignTo('slider-out-'+(out_num+i))
+      .setValue(min_value + (max_value - min_value)/(sliders_count-1) * i);
+  }
+  // ]]>
+  </script>
+  
+  <div style="clear:both"></div>
+</p>
