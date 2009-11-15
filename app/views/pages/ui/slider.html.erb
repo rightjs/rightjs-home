@@ -49,6 +49,25 @@ new Slider({min: 0, max: 100, value: 20})
   When the page is loaded our script will automatically find and initialize your slider
 </p>
 
+<%= chapter "Assigned Sliders", :assigned %>
+<p>
+  You can assign any slider to work in pair with any input or content elements on your page,
+  so that when you move the slider it was automatically updating the input element value or a
+  content element <tt>innerHTML</tt> property.
+</p>
+<code>
+// with an option
+new Slider({update: 'my-element'});
+
+// or with a direct call
+new Slider({...}).assignTo('my-element');
+</code>
+<p>
+  NOTE: that when you assign a slider to work with an input element, it work both ways, if
+  change the slider it will change the value of the input element, and if you change the input
+  element it will move the slider.
+</p>
+
 <%= chapter "Vertical Sliders", :vertical %>
 <p>
   For vertical sliders use the options <tt>direction</tt> or a css-class <tt>right-slider-vertical</tt>, this way

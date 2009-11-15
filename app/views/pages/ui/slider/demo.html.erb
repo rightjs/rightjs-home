@@ -2,17 +2,21 @@
 <script type="text/javascript" src="/builds/goods/right-dnd-min.js"></script>
 <script type="text/javascript" src="/builds/ui/right-slider-min.js"></script>
 <style type="text/css">
-  div.slider-out {
+  input.slider-out {
     width: 5em;
-    padding: 0 .2em;
+    padding: .1em .2em;
     border: 1px solid #DDD;
   }
-  div.slider-demo div.slider-out {
-    position: relative;
-    left: 22em;
-    margin-top: -1.5em;
+  div.slider-demo {
+    margin-bottom: 1em;
   }
-  div.slider-demo-vertical div.slider-out {
+  div.slider-demo input.slider-out {
+    float: left;
+    position: relative;
+    left: 26em;
+    margin-top: -1.8em;
+  }
+  div.slider-demo-vertical input.slider-out {
     width: 2em;
   }
   div.slider-demo-vertical {
@@ -22,7 +26,7 @@
   }
   div.slider-demo-vertical div.right-slider {
     margin-top: 0.5em;
-    margin-left: 1em;
+    margin-left: 0.9em;
   }
 </style>
 <p>
@@ -36,10 +40,10 @@
     <div class="right-slider" data-slider-options="{update: 'slider-out-1'}">
       <div class="right-slider-handle"></div>
     </div>
-    <div class="slider-out" id="slider-out-1">0</div>
+    <input type="text" class="slider-out" id="slider-out-1" />
   </div>
   <div class="slider-demo-vertical">
-    <div class="slider-out" id="slider-out-2">0</div>
+    <input type="text" class="slider-out" id="slider-out-2" />
     <div class="right-slider right-slider-vertical" data-slider-options="{update: 'slider-out-2'}">
       <div class="right-slider-handle"></div>
     </div>
@@ -53,21 +57,21 @@
     <div class="right-slider" data-slider-options="{update:'slider-out-3',snap:10}">
       <div class="right-slider-handle"></div>
     </div>
-    <div class="slider-out" id="slider-out-3">0</div>
+    <input type="text" class="slider-out" id="slider-out-3" />
   </div>
   
   <div class="slider-demo">
     <div class="right-slider" data-slider-options="{update:'slider-out-4',snap:20}">
       <div class="right-slider-handle"></div>
     </div>
-    <div class="slider-out" id="slider-out-4">0</div>
+    <input type="text" class="slider-out" id="slider-out-4" />
   </div>
   
   <div class="slider-demo">
     <div class="right-slider" data-slider-options="{update:'slider-out-5',snap:30}">
       <div class="right-slider-handle"></div>
     </div>
-    <div class="slider-out" id="slider-out-5">0</div>
+    <input type="text" class="slider-out" id="slider-out-5" />
   </div>
 </p>
 
@@ -77,19 +81,19 @@
     <div class="right-slider" data-slider-options="{update:'slider-out-6',min:-100,max:0,value:-20}">
       <div class="right-slider-handle"></div>
     </div>
-    <div class="slider-out" id="slider-out-6">0</div>
+    <input type="text" class="slider-out" id="slider-out-6" />
   </div>
   <div class="slider-demo">
     <div class="right-slider" data-slider-options="{update:'slider-out-7',min:-100,max:100,value:0}">
       <div class="right-slider-handle"></div>
     </div>
-    <div class="slider-out" id="slider-out-7">0</div>
+    <input type="text" class="slider-out" id="slider-out-7" />
   </div>
   <div class="slider-demo">
     <div class="right-slider" data-slider-options="{update:'slider-out-8',min:100,max:200,value:120}">
       <div class="right-slider-handle"></div>
     </div>
-    <div class="slider-out" id="slider-out-8">0</div>
+    <input type="text" class="slider-out" id="slider-out-8" />
   </div>
 </p>
 
@@ -99,44 +103,44 @@
     <div class="right-slider" data-slider-options="{update:'slider-out-9',round: 1}">
       <div class="right-slider-handle"></div>
     </div>
-    <div class="slider-out" id="slider-out-9">0</div>
+    <input type="text" class="slider-out" id="slider-out-9" />
   </div>
   <div class="slider-demo">
     <div class="right-slider" data-slider-options="{update:'slider-out-10',round: 2}">
       <div class="right-slider-handle"></div>
     </div>
-    <div class="slider-out" id="slider-out-10">0</div>
+    <input type="text" class="slider-out" id="slider-out-10" />
   </div>
   <div class="slider-demo">
     <div class="right-slider" data-slider-options="{update:'slider-out-11',round: 3}">
       <div class="right-slider-handle"></div>
     </div>
-    <div class="slider-out" id="slider-out-11">0</div>
+    <input type="text" class="slider-out" id="slider-out-11" />
   </div>
   <div class="slider-demo">
     <div class="right-slider" data-slider-options="{update:'slider-out-12',round: 4}">
       <div class="right-slider-handle"></div>
     </div>
-    <div class="slider-out" id="slider-out-12">0</div>
+    <input type="text" class="slider-out" id="slider-out-12" />
   </div>
 </p>
 
 <h2>Dynamically Generated Sliders</h2>
 <p>
-  <div class="slider-demo" id="d-slider-0"><div class="slider-out" id="slider-out-13">0</div></div>
-  <div class="slider-demo" id="d-slider-1"><div class="slider-out" id="slider-out-14">0</div></div>
+  <div class="slider-demo" id="d-slider-0"><input type="text" class="slider-out" id="slider-out-13" /></div>
+  <div class="slider-demo" id="d-slider-1"><input type="text" class="slider-out" id="slider-out-14" /></div>
   
-  <div class="slider-demo-vertical" id="d-slider-2"><div class="slider-out" id="slider-out-15">0</div></div>
-  <div class="slider-demo-vertical" id="d-slider-3"><div class="slider-out" id="slider-out-16">0</div></div>
-  <div class="slider-demo-vertical" id="d-slider-4"><div class="slider-out" id="slider-out-17">0</div></div>
-  <div class="slider-demo-vertical" id="d-slider-5"><div class="slider-out" id="slider-out-18">0</div></div>
-  <div class="slider-demo-vertical" id="d-slider-6"><div class="slider-out" id="slider-out-19">0</div></div>
-  <div class="slider-demo-vertical" id="d-slider-7"><div class="slider-out" id="slider-out-20">0</div></div>
-  <div class="slider-demo-vertical" id="d-slider-8"><div class="slider-out" id="slider-out-21">0</div></div>
-  <div class="slider-demo-vertical" id="d-slider-9"><div class="slider-out" id="slider-out-22">0</div></div>
-  <div class="slider-demo-vertical" id="d-slider-10"><div class="slider-out" id="slider-out-23">0</div></div>
-  <div class="slider-demo-vertical" id="d-slider-11"><div class="slider-out" id="slider-out-24">0</div></div>
-  <div class="slider-demo-vertical" id="d-slider-12"><div class="slider-out" id="slider-out-25">0</div></div>
+  <div class="slider-demo-vertical" id="d-slider-2"><input type="text" class="slider-out" id="slider-out-15" /></div>
+  <div class="slider-demo-vertical" id="d-slider-3"><input type="text" class="slider-out" id="slider-out-16" /></div>
+  <div class="slider-demo-vertical" id="d-slider-4"><input type="text" class="slider-out" id="slider-out-17" /></div>
+  <div class="slider-demo-vertical" id="d-slider-5"><input type="text" class="slider-out" id="slider-out-18" /></div>
+  <div class="slider-demo-vertical" id="d-slider-6"><input type="text" class="slider-out" id="slider-out-19" /></div>
+  <div class="slider-demo-vertical" id="d-slider-7"><input type="text" class="slider-out" id="slider-out-20" /></div>
+  <div class="slider-demo-vertical" id="d-slider-8"><input type="text" class="slider-out" id="slider-out-21" /></div>
+  <div class="slider-demo-vertical" id="d-slider-9"><input type="text" class="slider-out" id="slider-out-22" /></div>
+  <div class="slider-demo-vertical" id="d-slider-10"><input type="text" class="slider-out" id="slider-out-23" /></div>
+  <div class="slider-demo-vertical" id="d-slider-11"><input type="text" class="slider-out" id="slider-out-24" /></div>
+  <div class="slider-demo-vertical" id="d-slider-12"><input type="text" class="slider-out" id="slider-out-25" /></div>
 
   <script type="text/javascript">
   // <![CDATA[
