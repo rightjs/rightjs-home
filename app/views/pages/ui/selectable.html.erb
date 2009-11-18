@@ -1,0 +1,296 @@
+<h1>RightJS UI: Selectable</h1><% @title_text = "UI: Selectable" %>
+<p>
+  Selectable is a standard select-boxes replacement that can hold any html content in the options list.
+  It can work both ways as a multi or as a single-select box.
+</p>
+<p>
+  See the <%= link_to "demo page", "/ui/selectable/demo" %> for the most common use-cases.
+</p>
+
+<%= anchors_index %>
+
+
+<%= chapter "Features List", :features %>
+<p>
+  Our selectables have the following features
+  <ul>
+    <li>Provides both multi and single selectboxes</li>
+    <li>Can work as a standalone widget</li>
+    <li>Can be assigned to work as a part of a form</li>
+    <li>Everything is in a tiny (> 6k) file, including the basic styles</li>
+    <li>Easy and flexible use with many of options</li>
+  </ul>
+</p>
+
+
+<%= chapter "Usage Basics", :usage %>
+<p>
+  First of all you need to include one of those files onto your page.
+  <ul>
+    <li><a href="/builds/ui/right-selectable.js"     target="_blank">right-selectable.js</a> - fully compressed build</li>
+    <li><a href="/builds/ui/right-selectable-min.js" target="_blank">right-selectable-min.js</a> - minified version</li>
+    <li><a href="/builds/ui/right-selectable-src.js" target="_blank">right-selectable-src.js</a> - uncompressed source code with comments</li>
+  </ul>
+</p>
+<p>
+  After that you can just generate your selectables programmatically in JavaScript
+</p>
+<code>
+new Selectable({
+  options: ['one two three four five']
+}).insertTo('the-container');
+</code>
+<p>
+  You also can prepare an HTML structure and then initialize your selectable on it, like this
+</p>
+<code>
+<ul id="my-selectable">
+  <li>One</li>
+  <li>Two</li>
+  <li>Three</li>
+  <li>Four</li>
+</ul>
+
+new Selectable('my-selectable', {
+  selected: 2,
+  disabled: [1,3]
+});
+</code>
+<p>
+  Or, as usual, you can just assign the <tt>right-selectable</tt> css-class onto your element and it will get
+  automatically initialized when page is loaded.
+</p>
+<code>
+<ol class="right-selectable">
+  <li>One</li>
+  <li>Two</li>
+</ol>
+</code>
+<p>
+  Yes, that's right you can use both <tt>UL</tt> or <tt>OL</tt> tags, and, as usual, you can specify an HTML5 like attribute
+  called <tt>data-selectable-options</tt> with your options in a JSON format
+</p>
+
+
+<%= chapter "Various Variants", :variats %>
+<p>
+  To let the script know that you want a simple single-select box you have two options: add the <tt>right-selectable-single</tt>
+  css-class to your element, or use the <tt>multiple: false</tt> option in any available way.
+</p>
+<code>
+<ul class="right-selectable right-selectable-single">
+  ....
+</ul>
+
+<ul class="right-selectable" data-selectable-options="{multiple:false}">
+  ...
+</ul>
+</code>
+<p>
+  You also can create selectables with groups of options. For that case use the standard <tt>dl/dt/dd</tt> tags structure like that
+</p>
+<code>
+<dl class="right-selectable">
+  <dt>First Group</dt>
+  <dd>
+    <ul>
+      <li>One</li>
+      <li>Two</li>
+    </ul>
+  </dd>
+  <dt>Second Group</dt>
+  <dd>
+    <ul>
+      <li>Three</li>
+      <li>Four</li>
+    </ul>
+  </dd>
+</dl>
+</code>
+<p>
+  You can use the list with groups with the single-select boxes as well.
+</p>
+
+
+<%= chapter "Assigned To Inputs", :assign %>
+<p>
+  Our selectables can be easily used as a part of a form, by assigning them to a hidden input element.
+  You can do that by using the <tt>assignTo</tt> method or with the <tt>update</tt> option, like that
+</p>
+<code>
+<form ...>
+  <input id="the-value" type="hidden" />
+  
+  // programmatically
+  new Selectable({...}).assignTo('the-value');
+  
+  // with automatic initialization
+  <ul class="right-selectable"
+    data-selectable-options="{update: 'the-value'}">
+    ....
+  </ul>
+  
+</form>
+</code>
+<p>
+  NOTE: those assignments work both ways, when you change the selectbox it will change the input 
+  field value, and when you change the input field, it will change the selectbox.
+</p>
+<p>
+  There are several ways you can specify the actual values to be used for the output.
+  If you use a flat list of options, or simple <tt>LI</tt> tags, the script will use the indexes
+  of the options in the list.
+</p>
+<code>
+var selectable = new Selectable({
+  options: ['one', 'two', 'three'],
+  select: [0,1]
+});
+
+// or in HTML
+<ul>
+  <li>one</li>
+  <li>two</li>
+  <li>three</li>
+</ul>
+
+selectable.getValue(); // -> [0, 1]
+</code>
+<p>
+  But if you had used a hash of options with key->value pairs, or <tt>id</tt> attributes for your
+  <tt>LI</tt> elements, then those keys or ID values will be used as the values
+</p>
+<code>
+var selectable = new Selectable({
+  options: {
+    one: 'First',
+    two: 'Second',
+    three: 'Third'
+  },
+  selected: [0,1]
+});
+
+// or with html like this
+<ul>
+  <li id="one">First</li>
+  <li id="two">Second</li>
+  <li id="three">Third</li>
+</ul>
+
+selectable.getValue(); // -> ['one', 'two']
+</code>
+<p>
+  In case if you have the keys/IDs in a some sort of sequential way, like <tt>thing-1</tt>,
+  <tt>thing-2</tt>, <tt>thing-3</tt>, you also can specify the <tt>parseIds</tt> option as
+  <tt>true</tt> and then the script will automatically parse out the numerical part of the IDs
+  to be used as the result value.
+</p>
+
+
+<%= chapter "Options List", :options %>
+<p>
+  You can use any of those options in an options hash with the <tt>Selectable</tt> class constructor, or
+  in a JSON formatted hash inside your custom <tt>data-selectable-options</tt> attribute.
+  <table>
+    <tr><th>Name</th>       <th>Default</th> <th>Description</th></tr>
+    <tr><td>options</td>    <td>null</td>    <td>a hash of key-value pairs or an array of options</td></tr>
+    <tr><td>selected</td>   <td>null</td>    <td>an array of selected item indexes</td></tr>
+    <tr><td>disabled</td>   <td>null</td>    <td>an array of disabled item indexes</td></tr>
+    <tr><td>multiple</td>   <td>true</td>    <td>a flag if it should be a multi-select or a single select widget</td></tr>
+    <tr><td>fxName</td>     <td>'slide'</td> <td>the drop-down options list fx-name (null, 'slide', 'fade')</td></tr>
+    <tr><td>fxDuration</td> <td>'short'</td> <td>the drop-down options list fx-duration</td></tr>
+    <tr><td>update</td>     <td>null</td>    <td>a field to be assigned to</td></tr>
+    <tr><td>parseIds</td>   <td>false</td>   <td>if it should parse integer ids out of the keys</td></tr>
+    <tr><td>refresh</td>    <td>true</td>    <td>a flag if it should automatically refresh the items list</td></tr>
+  </table>
+</p>
+
+
+<%= chapter "Events List", :events %>
+<p>
+  There is the following list of events the <tt>Selectable</tt> instances will handle by default
+  <table>
+    <tr><th>Name</th>     <th>Description</th></tr>
+    <tr><td>change</td>   <td>the value was changed</td></tr>
+    <tr><td>select</td>   <td>an item was selected</td></tr>
+    <tr><td>unselect</td> <td>an item was unselected</td></tr>
+    <tr><td>disable</td>  <td>an item was disabled</td></tr>
+    <tr><td>enable</td>   <td>an item was enabled</td></tr>
+    <tr><td>hover</td>    <td>an item was hovered with the cursor</td></tr>
+    <tr><td>leave</td>    <td>an item was left by the cursor</td></tr>
+    <tr><td>show</td>     <td>the drop-down menu was displayed</td></tr>
+    <tr><td>hide</td>     <td>the drop-down menu was closed</td></tr>
+  </table>
+</p>
+<p>
+  The item related event callbacks, meaningly <tt>select</tt>, <tt>unselect</tt>, <tt>disable</tt>, <tt>enable</tt>, <tt>hover</tt> and <tt>leave</tt>
+  will receive three arguments: the list item (LI element), the item index in the list and the selectable instance.
+</p>
+<p>
+  The <tt>change</tt> event listener will receive the value and a reference to the selectable unit.
+</p>
+<p>
+  And the <tt>show</tt> and <tt>hide</tt> event listeners will receive just the selectable unit reference.
+</p>
+
+
+<%= chapter "API-Reference", :api %>
+<p>
+  There are several handy methods in the public API of the <tt>Selectable</tt> unit
+  <table>
+    <tr><th>Name</th>              <th>Description</th></tr>
+    <tr><td>initialize([element,] Object options)</td><td>basic constructor</td></tr>
+    <tr><td>destroy()</td>         <td>basic destructor</td></tr>
+    <tr><td>setValue(value)</td>   <td>sets the value</td></tr>
+    <tr><td>getValue()</td>        <td>returns the current value</td></tr>
+    <tr><td>select(item)</td>      <td>selects the item(s)</td></tr>
+    <tr><td>unselect(item)</td>    <td>unselects the item(s)</td></tr>
+    <tr><td>selected(item)</td>    <td>checks if the item(s) are selected</td></tr>
+    <tr><td>disable(item)</td>     <td>disables the item(s)</td></tr>
+    <tr><td>enable(item)</td>      <td>enables the item(s)</td></tr>
+    <tr><td>disabled(item)</td>    <td>checks if the item(s) are disabled</td></tr>
+    <tr><td>insertTo(element[, position])</td><td>inserts the widget into the element</td></tr>
+    <tr><td>assignTo(element)</td> <td>assigns the widget to work with the input element</td></tr>
+    <tr><td>refresh()</td>         <td>refreshes the options list</td></tr>
+  </table>
+</p>
+<p>
+  NOTE: the item related methods, like <tt>select</tt>, <tt>unselect</tt>, etc, can receive several types of arguments,
+  it might be numerical indexes in the items list, it can be keys/ids of the options, or the list item elements by themselves.
+  You also can send either arrays or single items, works both ways.
+</p>
+<p>
+  You also can call those methods without any arguments, in which case the script will assume that you want
+  select/unselect/disable/enable/check <u>all</u> the items on the list.
+</p>
+
+
+<%= chapter "Style Alterations", :styles %>
+<p>
+  The elements structure will be left intact pretty much as it described in the <a href="#usage">usage basics</a>
+  chapter. The script will also use the <tt>right-selectable-selected</tt> and <tt>right-selectable-disabled</tt>
+  css-classes for selected and disabled list items respectively.
+</p>
+<code>
+<ul class="right-selectable">
+  <li class="right-selectable-selected">Selected item</li>
+  <li class="right-selectable-disabled">Disabled item</li>
+  <li>Another item</li>
+</ul>
+</code>
+<p>
+  For the single-select boxes, it will add the <tt>right-selectable-single</tt> class to the list element,
+  and insert a simple structure like that, right before the list.
+</p>
+<code>
+<div class="right-selectable-container">
+  <div class="right-selectable-handle">&amp;bull;</div>
+  <ul>
+    <li>Selected item</li>
+  </ul>
+</div>
+</code>
+<p>
+  That will work as the select-box visible element and the <tt>LI</tt> element will be cloned out of the
+  currently selected item on the options list.
+</p>
