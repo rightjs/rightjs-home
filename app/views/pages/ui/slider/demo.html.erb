@@ -1,32 +1,34 @@
 <h1>RightJS UI: Slider Demo</h1><% @title_text = "UI: Slider: Demo" %>
 <script type="text/javascript" src="/builds/goods/right-dnd-min.js"></script>
-<script type="text/javascript" src="/builds/ui/right-slider-min.js"></script>
+<script type="text/javascript" src="/builds/ui/right-slider-src.js"></script>
 <style type="text/css">
   input.slider-out {
     width: 5em;
     padding: .1em .2em;
     border: 1px solid #DDD;
   }
-  div.slider-demo {
-    margin-bottom: 1em;
-  }
   div.slider-demo input.slider-out {
-    float: left;
-    position: relative;
-    left: 26em;
-    margin-top: -1.8em;
+    display: inline;
+    vertical-align: middle;
+    margin-top: -1.6em;
+  * margin-top: 0em;
+    margin-left: 1em;
   }
-  div.slider-demo-vertical input.slider-out {
-    width: 2em;
-  }
+  
   div.slider-demo-vertical {
     float: left;
-    margin-top: 1em;
-    margin-right: .2em;
+    width: 2em;
+    margin-right: .4em;
+  }
+  div.slider-demo-vertical input.slider-out {
+    float: left;
+    vertical-align: top;
+    width: 2em;
   }
   div.slider-demo-vertical div.right-slider {
-    margin-top: 0.5em;
-    margin-left: 0.9em;
+    margin-top: .2em;
+    margin-left: .8em;
+    float: left;
   }
 </style>
 <p>

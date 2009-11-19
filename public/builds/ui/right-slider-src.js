@@ -76,7 +76,11 @@ var Slider = new Class(Observer, {
     value = (value * base).round() / base;
     
     // checking the value constraings
-    if (this.options.snap) value = value - value % this.options.snap;
+    if (this.options.snap) {
+      var snap = this.options.snap;
+      var diff = value % snap;
+      value = diff < snap/2 ? value - diff : value - diff + snap;
+    }
     if (value < this.options.min) value = this.options.min;
     if (value > this.options.max) value = this.options.max;
     
@@ -127,17 +131,32 @@ var Slider = new Class(Observer, {
    * @return Slider this
    */
   assignTo: function(element) {
-    var element = $(element);
-    var assign  = function(value) {
-      element[element.setValue ? 'setValue' : 'update'](''+value);
-    };
-    assign(this.value);
+    var assign  = function(element, value) {
+      if (element = $(element)) {
+        if (value === undefined || value === null) value = '';
+        element[element.setValue ? 'setValue' : 'update'](''+value);
+      }
+    }.curry(element);
     
-    if (element.setValue) {
-      element.onChange(function() {
-        this.setValue(element.value);
+    var connect = function(element, object) {
+      var element = $(element);
+      if (element && element.onChange) {
+        element.onChange(function() {
+          this.setValue(element.value);
+        }.bind(object));
+      }
+    }.curry(element);
+    
+    if ($(element)) {
+      assign(this.value);
+      connect(this);
+    } else {
+      document.onReady(function() {
+        assign(this.value);
+        connect(this);
       }.bind(this));
     }
+    
     return this.onChange(assign);
   },
   
@@ -150,6 +169,9 @@ var Slider = new Class(Observer, {
         onBefore: this.prepare.bind(this),
         onDrag: this.dragged.bind(this)
       });
+    
+    // make it jump to the position
+    this.element.onClick(this.clicked.bind(this));
       
     if (this.options.direction == 'y') {
       this.element.addClass('right-slider-vertical');
@@ -181,13 +203,25 @@ var Slider = new Class(Observer, {
     return $E('div', {'class': 'right-slider'}).insert($E('div', {'class': 'right-slider-handle'}));
   },
   
+  // callback for the eleemnt on-click event to make the slider to jump there
+  clicked: function(event) {
+    event.stop();
+    this.precalc().moveTo(this.value);
+    
+    var position = event.position();
+    var element  = this.dimensions;
+    
+    var position = (this.horizontal ? position.x - element.left : position.y - element.top) - this.offset;
+    
+    if (position > this.space) position = this.space;
+    else if (position < 0)     position = 0;
+    
+    this.setPosition(position);
+  },
+  
   // callback for the element dragg
   dragged: function(draggable, event) {
-    var position = draggable.element.style[this.horizontal ? 'left' : 'top'].toFloat();
-    if (!this.horizontal) position = this.space - position;
-    var value    = position / this.space * (this.options.max - this.options.min) + this.options.min;
-    
-    this.setValue(value);
+    this.setPosition(draggable.element.style[this.horizontal ? 'left' : 'top'].toFloat());
   },
   
   // callback for the draggable before event
@@ -213,6 +247,14 @@ var Slider = new Class(Observer, {
     if (this.options.snap) {
       options.snap = this.space / (this.options.max - this.options.min) * this.options.snap;
     }
+  },
+  
+  // sets the slider value by the handle position
+  setPosition: function(position) {
+    if (!this.horizontal)  position = this.space - position;
+    var value    = position / this.space * (this.options.max - this.options.min) + this.options.min;
+    
+    this.setValue(value);
   },
   
   // moves the slider to the given position
@@ -246,4 +288,4 @@ var Slider = new Class(Observer, {
  */
 document.onReady(Slider.rescan);
 
-document.write("<style type=\"text/css\">div.right-slider,div.right-slider-handle{margin:0;padding:0;border:none;background:none}div.right-slider{height:0.4em;width:20em;border:1px solid #CCC;background:#EEE;-moz-border-radius:.2em;-webkit-border-radius:.2em;position:relative;margin:.6em 0}div.right-slider-handle{position:absolute;left:0;top:0;cursor:pointer;width:4pt;height:1em;margin-top:-0.4em;margin-left:0.1em;background:#CCC;border:1px solid #AAA;-moz-border-radius:.2em;-webkit-border-radius:.2em}div.right-slider-vertical{height:10em;width:0.4em;margin:0 .3em}div.right-slider-vertical div.right-slider-handle{margin:0;margin-left:-0.4em;margin-top:0.1em;height:4pt;width:1em}</style>");
+document.write("<style type=\"text/css\">div.right-slider,div.right-slider-handle{margin:0;padding:0;border:none;background:none}div.right-slider{height:0.4em;width:20em;border:1px solid #CCC;background:#EEE;-moz-border-radius:.2em;-webkit-border-radius:.2em;position:relative;margin:.6em 0;display:inline-block;*display:inline;*zoom:1}div.right-slider-handle{position:absolute;left:0;top:0;cursor:pointer;width:4pt;height:1em;margin-top:-0.4em;margin-left:0.1em;background:#CCC;border:1px solid #AAA;-moz-border-radius:.2em;-webkit-border-radius:.2em}div.right-slider-vertical{height:10em;width:0.4em;margin:0 .3em}div.right-slider-vertical div.right-slider-handle{margin:0;margin-left:-0.4em;margin-top:0.1em;height:4pt;width:1em}</style>");
