@@ -19,6 +19,7 @@ namespace :rightjs do
     Rake::Task['rightjs:update_docs'].invoke
     Rake::Task['rightjs:update_modules'].invoke
     Rake::Task['rightjs:update_build'].invoke
+    Rake::Task['rightjs:create_zips'].invoke
   end
   
   desc 'Updates the rightjs source code library'
@@ -211,12 +212,55 @@ namespace :rightjs do
       end
       
       File.open("#{RIGHTJS_BUILD_CUSTOM}/right-#{id}11.js", "w").write(packed)
-      File.open("#{RIGHTJS_BUILD_CUSTOM}/right-#{id}01.js", "w").write(packed)
-      File.open("#{RIGHTJS_BUILD_CUSTOM}/right-#{id}10.js", "w").write(minified)
+      File.open("#{RIGHTJS_BUILD_CUSTOM}/right-#{id}10.js", "w").write(packed)
+      File.open("#{RIGHTJS_BUILD_CUSTOM}/right-#{id}01.js", "w").write(minified)
       File.open("#{RIGHTJS_BUILD_CUSTOM}/right-#{id}00.js", "w").write(source)
     end
     
     puts 
+  end
+  
+  desc 'Zips the stuff up'
+  task :create_zips do
+    puts "Creating Zipped builds"
+    
+    out_dir = "#{RAILS_ROOT}/tmp/zips"
+    
+    ['', '-min', '-src'].each do |version|
+      FileUtils.rm_rf   out_dir
+      FileUtils.mkdir_p out_dir
+      
+      system "cp #{RIGHTJS_BUILD_CURRENT}/right#{version}.js      #{out_dir}"
+      system "cp #{RIGHTJS_BUILD_CURRENT}/right-olds#{version}.js #{out_dir}"
+      File.open("#{out_dir}/README.txt", "w") do |file|
+        file.write(%Q{RightJS Two-Files Builds Usage
+==============================
+
+
+  1. Copy both of the JavaScript files into your javascript directory,
+     keep both of them next to each other.
+  
+  2. Put the bigger one onto your page in usual way
+     <script src="where/is/that/right.js"></script>
+     
+     Don't include the second file, it will be loaded automatically when needed
+     
+  3. Keep the filenames in a corresponding manner, like
+    
+     right[boo-boo-boo].js
+     right-olds[boo-boo-boo].js
+
+
+Have Fun!
+
+})
+      end
+
+      system "cd #{out_dir}; zip build.zip right#{version}.js right-olds#{version}.js README.txt"
+      system "cp #{out_dir}/build.zip #{RIGHTJS_BUILD_CURRENT}/right#{version}.js.zip"
+      
+      FileUtils.rm_rf   out_dir
+    end
   end
   
   desc 'Cleans up the pages cache'
