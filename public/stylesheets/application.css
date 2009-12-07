@@ -144,15 +144,19 @@ div#main-menu ul {
 div#main-menu ul li {
   float: left;
   margin-right: 1px;
+  padding: 0 10pt;
 }
 div#main-menu ul li a {
   display: block;
-  padding: 5pt 10pt;
+  padding: 6pt 0;
 }
 div#main-menu ul li a:hover,
 div#main-menu ul li.current a {
-  background: #FDD;
   text-decoration: none;
+  border-bottom: 2px solid brown;
+}
+div#main-menu ul li.current a {
+  font-weight: bold;
 }
 
 div#lang-switch {
@@ -348,7 +352,7 @@ form#custom-build-form label {
 }
 
 form#custom-build-form div#calc {
-  height: 270px;
+  height: 330px;
   width: 20pt;
   background: #DED;
   position: relative;
@@ -368,6 +372,20 @@ form#custom-build-form div#calc div#num {
   margin-top: -0.5em;
   position: absolute;
   color: brown;
+}
+
+dl#download-options {
+  margin: 20pt;
+}
+dl#download-options dt {
+  font-size: 120%;
+  margin-top: 10pt;
+}
+ol#usage-principles li {
+  margin-bottom: 10pt;
+}
+ol#usage-principles li code {
+  margin: 5pt 0;
 }
 
 

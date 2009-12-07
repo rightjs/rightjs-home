@@ -17,19 +17,21 @@
         ['form',     'Form Additional Features'],
         ['xhr',      'Ajax Features'],
         ['fx',       'Basic Visual Effects'],
+        ['olds',     'Old Browsers Support'],
         
         # RightJS Goods modules
-        ['json',     'JSON support',                 true],
-        ['events',   'Advanced DOM-Events handling', true],
-        ['effects',  'Additional Visual Effects',    true],
-        ['behavior', 'Behaviors Module',             true],
-        ['dnd',      "Drag'n'Drop Module",           true],
+        ['json',     'JSON support',                  true],
+        ['events',   'Advanced DOM-Events handling',  true],
+        ['effects',  'Additional Visual Effects',     true],
+        ['behavior', 'Behaviors Module',              true],
+        ['dnd',      "Drag'n'Drop Module",            true],
+        ['rails',    'Ruby And Rails Support Module', true],
         
         ['compress', 'Compress Source Code'],
         ['build',    'Create Self-Build Script']
       ].collect do |options|
         content_tag :li,
-            check_box_tag("options[#{options.first}]", 1, !options[2]) +
+            check_box_tag("options[#{options.first}]", 1, !options[2] && options[0] != 'olds') +
             label_tag("options_#{options.first}", options[1]),
           :class => options[2] ? :goods : nil
           
