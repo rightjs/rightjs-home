@@ -10,3 +10,6 @@
 [submodule "vendor/right_js/ui"]
 	path = vendor/right_js/ui
 	url = git://github.com/rightjs/rightjs-ui.git
+[submodule "vendor/plugins/frontcompiler"]
+	path = vendor/plugins/frontcompiler
+	url = git://github.com/MadRabbit/frontcompiler.git
