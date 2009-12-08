@@ -75,6 +75,27 @@ $('todo-list').innserHTML = "...";
 Behavior.refresh();
 </code>
 
+
+<%= chapter "Events Delegation", :delegation %>
+<p>
+  With the library you also can create an events delegation objects, so that different types of
+  elements were handled by different rules. For that case you need to specify hashes like
+  <tt>css_rule -> handler_function</tt>
+</p>
+<code>
+var delegation = Behavior.delegate({
+  ".foo": function() { alert('foo'); },
+  ".bar": function() { alert('bar'); }
+});
+
+"div.something".behave('click', delegation);
+</code>
+<p>
+  After that all the <tt>div.something</tt> elements will trigger alert with 'foo' if they have class 'foo'
+  and 'bar' if they have class 'bar'.
+</p>
+
+
 <%= chapter "Tough Bastards Way", :tough %>
 <p>
   In case of more complex development you might want some more serious way of your behaviors
