@@ -18,6 +18,12 @@ function runfx(id) {
 }
 // -->
 </script>
+<style type="text/css">
+  #scroll-test {
+    overflow: scroll;
+    line-height: 1.4em;
+  }
+</style>
 
 
 <h2>Fx.Morph</h2>
@@ -106,6 +112,39 @@ $('slide-test')
     <a href="" onclick="reset('slide-test'); return false;">Reset</a>
   </div>
 </div>
+
+
+<h2>Fx.Scroll</h2>
+<div class="fx-example">
+  <div class="fx-test-container">
+    <div id="scroll-test" class="fx-test"></div>
+  </div>
+  
+<textarea id="scroll-test-script">
+$('scroll-test').scroll({
+  x: 200,
+  y: 40
+});
+</textarea>
+
+  <div class="fx-links">
+    <a href="" onclick="runfx('scroll-test'); return false;">Start</a>
+    <a href="" onclick="reset('scroll-test'); return false;">Reset</a>
+  </div>
+  
+  <script type="text/javascript">
+  // <![CDATA[
+    for (var i=0; i < 8; i++) {
+      var str = '<div>';
+      for (var j=0; j < 30; j++) {
+        str += '&nbsp;'+ j;
+      }
+      $('scroll-test').insert(str + '</div>');
+    }
+  // ]]>
+  </script>
+</div>
+
 <p>&nbsp;</p>
 
 
