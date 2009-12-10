@@ -21,6 +21,20 @@
   </ul>
 </p>
 
+<p>
+  <b>NOTE:</b> as it's been a point of speculations, some notes on the benchmarks interpretation.
+</p>
+<p>
+  Every test in the testing util is generally separated it doesn't have any value scaling connection to
+  any other. Every test takes different amount of time and there is no way to estimate it's value relative
+  to another tests.
+</p>
+<p>
+  This means, that every single test by itself is valid, but the summary result is not an absolute measure.
+  You cannot use it directly and seriously claim that framework A is 8x times faster than B. You only can
+  use it as a relative measure and should check if A is faster than B in <u>every</u> test.
+</p>
+
 
 <a name="firefox"></a>
 <h1>Firefox</h1>
