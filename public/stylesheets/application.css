@@ -3,7 +3,7 @@ html, body {
   padding: 0;
   font-family: Verdana;
   font-size: 10pt;
-  background: #DDD;
+  background: #EEE;
   height: 100%;
 }
 
@@ -76,7 +76,7 @@ dl dt {
 }
 
 dl ul {
-  margin: .5em 0;
+  margin: 1em 0 2em 0;
 }
 dl.roadmap {
   margin-top: 2em;
@@ -133,7 +133,7 @@ div#head div#slogan {
 
 div#main-menu {
   float: right;
-  margin-top: -2.5em;
+  margin-top: -2em;
   margin-right: -10pt;
   font-size: 1.1em;
 }
@@ -148,7 +148,7 @@ div#main-menu ul li {
 }
 div#main-menu ul li a {
   display: block;
-  padding: 6pt 0;
+  padding: 8pt 0;
 }
 div#main-menu ul li a:hover,
 div#main-menu ul li.current a {
@@ -287,7 +287,7 @@ div#rss-feed img, div#twitter img {
 }
 
 div.fx-test {
-  width: 200px;
+  width: 180px;
   height: 80px;
   line-height: 80px;
   text-align: center;
@@ -296,7 +296,7 @@ div.fx-test {
 }
 div.fx-test-container {
   height: 80px;
-  width: 200px;
+  width: 180px;
   float: left;
   margin-right: 20pt;
 }
@@ -314,15 +314,22 @@ div.fx-no-bg {
 }
 
 div.fx-example textarea {
-  height: 77px;
-  width: 398px;
+  height: 78px;
+  width: 28em;
+  border: 1px solid #CCC;
+  background: #F6F6F6;
 }
-
+div#scroll-test {
+  overflow: scroll;
+  line-height: 2em;
+}
 
 /* Fx.CSS example styles */
 div.green-background { background: green; }
 div.blue-color       { color:      blue;  }
 
+
+/* Custom build page styles */
 form#custom-build-form ul {
   list-style: none;
   padding-left: 0pt;
