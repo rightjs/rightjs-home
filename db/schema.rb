@@ -9,7 +9,19 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090519060958) do
+ActiveRecord::Schema.define(:version => 20091217092929) do
+
+  create_table "downloads", :force => true do |t|
+    t.string   "filename"
+    t.string   "version"
+    t.string   "ip_address"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "downloads", ["filename"], :name => "index_downloads_on_filename"
+  add_index "downloads", ["ip_address"], :name => "index_downloads_on_ip_address"
+  add_index "downloads", ["version"], :name => "index_downloads_on_version"
 
   create_table "posts", :force => true do |t|
     t.string   "title"

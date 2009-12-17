@@ -16,7 +16,7 @@ class BuildsController < ApplicationController
   end
   
   def show
-    send_file(params[:id])
+    send_custom(params[:id])
   end
   
   def create
@@ -26,19 +26,37 @@ class BuildsController < ApplicationController
       params[:options].has_key?(key) ? 1 : 0
     end
     
-    send_file(options.join)
+    send_custom(options.join)
   end
   
   def custom
     create
   end
   
+  def current
+    send_file "#{RIGHTJS_BUILD_CURRENT}/#{params[:id]}", params[:id]
+  end
+  
 protected
-  def send_file(options)
-    file_name = RIGHTJS_BUILD_CUSTOM + "/right-#{options}.js"
+  def send_custom(options)
+    send_file "#{RIGHTJS_BUILD_CUSTOM}/right-#{options}.js", "right.js"
+  end
+  
+  def send_file(file, filename)
+    raise NotFound unless File.exists?(file)
     
-    raise NotFound unless File.exists?(file_name)
+    record_download(file)
     
-    super file_name, :type => "text/javascript; charset=utf-8", :stream => false, :filename => 'right.js'
+    content_type = file.ends_with?('.zip') ? "application/zip" : "text/javascript; charset=utf-8"
+    
+    super file, :type => content_type, :stream => false, :filename => filename
+  end
+  
+  def record_download(file)
+    Download.create!({
+      :filename   => File.basename(file),
+      :version    => RIGHTJS_VERSION,
+      :ip_address => request.remote_addr
+    })
   end
 end

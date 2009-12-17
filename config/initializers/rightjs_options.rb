@@ -6,7 +6,7 @@ RIGHTJS_VERSION       = "1.5.1"
 
 RIGHTJS_ROOT          = "#{RAILS_ROOT}/vendor/right_js"
 RIGHTJS_BUILD         = "#{RAILS_ROOT}/public/builds"
-RIGHTJS_BUILD_CURRENT = "#{RAILS_ROOT}/public/builds/current"
+RIGHTJS_BUILD_CURRENT = "#{RAILS_ROOT}/public/builds/basic"
 RIGHTJS_BUILD_CUSTOM  = "#{RAILS_ROOT}/public/builds/custom"
 RIGHTJS_BUILD_GOODS   = "#{RAILS_ROOT}/public/builds/goods"
 RIGHTJS_BUILD_UI      = "#{RAILS_ROOT}/public/builds/ui"

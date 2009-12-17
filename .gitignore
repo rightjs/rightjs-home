@@ -13,7 +13,7 @@ public/**/*.html
 public/builds/ui
 public/builds/goods
 public/builds/custom
-public/builds/current
+public/builds/basic
 
 nbproject
 
