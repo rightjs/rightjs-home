@@ -1,20 +1,19 @@
 <div id="sidebar">
   <div id="api-search" class="box">
-    <label>API-Search</label>
-    <input type="text" value="Search" id="api-search-field" onclick="this.value=''" />
+    <input type="text" value="Search API" id="api-search-field" />
     <script type="text/javascript">
     // <![CDATA[
+    $('api-search-field')
+      .onFocus(function() { this._v = this.value; this.value = ''; })
+      .onBlur(function() { this.value = this._v; });
     new Autocompleter('api-search-field', {
       url: '/docs/search/%{search}.js',
-      onSelect: function() {
-        this.oldValue = this.input.value;
-      },
       onDone: function() {
         var current = this.container.first('.current');
         if (current) {
           document.location.href = current.title;
         }
-        this.input.setValue(this.oldValue).blur();
+        this.input.setValue(this.input._v).blur();
       }
     });
     // ]]>

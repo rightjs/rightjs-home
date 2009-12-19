@@ -148,10 +148,55 @@ div#foot div#copyright {
 }
 /* END layout */
 
+/* BEGIN content */
+div#api-search input {
+  padding: .3em .5em;
+  font-size: 1.3em;
+  display: block;
+  width: 92%;
+  background-color: #FFFEFC;
+  background-image: url('../images/design.png');
+  background-repeat: no-repeat;
+  background-position: right -258px;
+  border: .2em solid #CFCEBD;
+  -webkit-border-radius: .3em;
+  -moz-border-radius: .3em;
+  color: #CFCEBD;
+}
+div#api-search input:focus {
+  background: #FFF;
+  color: #444;
+  outline:none;
+}
+div#api-search div.autocompleter ul {
+  margin: 0;
+}
+div#api-search div.autocompleter ul li {
+  list-style: none;
+  font-weight: normal;
+  padding: .5em 1em;
+}
+div#api-search div.autocompleter ul li strong {
+  font-weight: normal;
+  color: #A00;
+}
+div#api-search div.autocompleter-spinner {
+  width: 30px;
+  height: 1.4em !important;
+  margin-top: .22em;
+  background-color: transparent;
+  background-image: url('../images/spinner.gif');
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+div#api-search div.autocompleter-spinner * {
+  display: none;
+}
+
+/* END content */
+
 
 /* BEGIN code hightlightning */
-div.method {
-}
 div.method > h2 {
   border-bottom: 2px solid #CFCEBD;
   margin-top: 30pt;
@@ -164,7 +209,7 @@ div.method p.semantic code {
 }
 
 tt {
-  background: #EEE;
+  background: #DDC;
   padding: 0 4pt;
 }
 code {
