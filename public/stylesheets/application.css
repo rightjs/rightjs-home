@@ -25,10 +25,11 @@ h1, h2, h3, h4, label, caption, h2 a {
 }
 h2 a:hover {
   color: #DE4200;
+  text-decoration: none;
 }
 h2.chapter {
   margin-top: 2em;
-  border-bottom: 1px solid #DDD;
+  border-bottom: 2px solid #CFCEBD;
 }
 h2 a.top-anchor {
   float: right;
@@ -107,6 +108,7 @@ div#main {
 }
 div#info {
   margin-right: 18em;
+  padding-bottom: 1em;
 }
 
 div#sidebar {
@@ -145,3 +147,93 @@ div#foot div#copyright {
   color: #A2896E;
 }
 /* END layout */
+
+
+/* BEGIN code hightlightning */
+div.method {
+}
+div.method > h2 {
+  border-bottom: 2px solid #CFCEBD;
+  margin-top: 30pt;
+}
+
+div.method p.semantic code {
+  background: transparent;
+  padding: 0;
+  border: none;
+}
+
+tt {
+  background: #EEE;
+  padding: 0 4pt;
+}
+code {
+  font-family: Monaco, "Lucida Console", monospace;
+  font-size: .9em;
+  white-space: pre;
+  overflow: auto;
+  display: block;
+  padding: 1em;
+  background: #FFFEFC;
+  color: #555;
+  border: 4px solid #CFCEBD;
+  -webkit-border-radius: .6em;
+  -moz-border-radius: .6em;
+}
+
+code s, code i, code u, code b {
+  font-weight: normal !important;
+  text-decoration: none !important;
+}
+
+code s, code s * { /* string */
+  color: green !important;
+}
+
+code s.re {
+  color: #880 !important;
+}
+
+code s.int { /* number */
+  color: blue !important;
+}
+
+code s.float {
+  color: brown !important;
+}
+
+code s.key { /* hash keys */
+  color: #880 !important;
+}
+
+code i { /* comments */
+  color: #BBB !important;
+}
+
+code b { /* function return for if else ... */
+  font-weight: bold;
+  color: #808;
+}
+
+code b.var { /* var new this self */
+  color: #EE82EE;
+  font-weight: bold;
+}
+
+code b.rest { /* null false true undefined */
+  color: #A52A2A;
+}
+
+code b.unit { /* class names */
+  color: #088;
+}
+
+code u { /* attribute */
+  color: #880;
+}
+code u.method {
+  color: #008;
+}
+
+
+/* END code hightlightning */
