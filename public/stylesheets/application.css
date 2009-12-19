@@ -1,14 +1,14 @@
 html, body {
   margin: 0;
   padding: 0;
-  font-family: Verdana;
-  font-size: 10pt;
-  background: #EEE;
-  height: 100%;
+  background: #612B14;
+  font-family: Verdana, Helvetica, sans-serif;
+  font-size: 14px;
+  color: #333;
 }
 
 a {
-  color: brown;
+  color: #DE4200;
   text-decoration: none;
 }
 a:hover {
@@ -18,14 +18,13 @@ a:hover {
 h1, h2, h3, h4, table caption {
   margin-top: 20pt;
   font-weight: normal;
-  font-family: Georgia;
+  font-family: "Trebuchet MS", Garuda, sans-serif;
 }
-
 h1, h2, h3, h4, label, caption, h2 a {
-  color: #8A7;
+  color: #7A5E44;
 }
 h2 a:hover {
-  color: brown;
+  color: #DE4200;
 }
 h2.chapter {
   margin-top: 2em;
@@ -36,127 +35,64 @@ h2 a.top-anchor {
   font-size: 0.7em;
 }
 
-table {
-  border: none;
-  width: 100%;
-  border-bottom: 1px solid #DED;
-  border-collapse: collapse;
-}
-table th, table td, table caption {
-  margin: 0;
-  padding: 2pt 6pt;
-  text-align: left;
-}
-table th {
-  background: #DED;
-}
-table tr:nth-child(2n+1) {
-  background: #EEE;
-}
 
-div#info > h1:first-child {
-  margin-top: 0;
-}
-
-label {
-  font-weight: bold;
-  font-family: Verdana;
-  display: block;
-}
-
-dl {
-  
-}
-
-dl dt {
-  font-weight: normal;
-  font-family: Georgia;
-  color: #8A7;
-  font-size: 1.4em;
-}
-
-dl ul {
-  margin: 1em 0 2em 0;
-}
-dl.roadmap {
-  margin-top: 2em;
-}
-dl.roadmap ul {
-  margin-bottom: 1.5em;
-}
-
-a img {
-  border: 1px solid #DDD;
-  padding: .4em;
-}
-
-input[type="image"] {
-  position: relative;
-  top: 3px;
-}
-
-dl#tutorials-index {
-  margin: 20pt;
-}
-
-ul#classes-list li label {
-  font-size: 1.1em;
-}
-
-ul.changelog li {
-  margin-bottom: .6em;
-}
-
-/* BEGIN Layout */
+/* BEGIN layout */
 div#body {
   min-height: 100%;
   min-width: 800px;
-  background: white;
-  margin: 0 100pt;
 }
-
 div#head, div#main, div#foot {
-  padding: 20pt;
+  padding: 1em 8em;
 }
 
 div#head {
-  background: #DED;
+  background: #453A31;
+  border-bottom: .5em solid #846E5D;
+  position: relative;
 }
 
 a#logo {
-  font-size: 4em;
-  font-family: Georgia;
+  display: block;
+  width: 94px;
+  height: 94px;
+  text-indent: -99em;
+  background: url('../images/design.png') no-repeat 0 0;
+  -webkit-box-shadow: #222 .2em .2em .4em;
+  -moz-box-shadow: #222 .2em .2em .4em;
 }
-div#head div#slogan {
-  margin-left: 20pt;
+div#slogan {
+  position: absolute;
+  color: #927B66;
+  top: 2em;
+  font-size: 130%;
+  font-style: italic;
+  font-family: Arial;
+  margin-left: 120px;
 }
 
 div#main-menu {
-  float: right;
-  margin-top: -2em;
-  margin-right: -10pt;
-  font-size: 1.1em;
+  position: absolute;
+  bottom: -0.5em;
+  right: 8em;
 }
-
 div#main-menu ul {
   list-style: none;
 }
 div#main-menu ul li {
   float: left;
-  margin-right: 1px;
-  padding: 0 10pt;
+  margin-left: 2em;
 }
 div#main-menu ul li a {
   display: block;
   padding: 8pt 0;
+  color: #B0ACA2;
+  border-bottom: .5em solid transparent;
 }
 div#main-menu ul li a:hover,
 div#main-menu ul li.current a {
   text-decoration: none;
-  border-bottom: 2px solid brown;
-}
-div#main-menu ul li.current a {
-  font-weight: bold;
+  border-bottom-color: #DE4200;
+  color: #F7F2F0;
 }
 
 div#lang-switch {
@@ -165,306 +101,47 @@ div#lang-switch {
   top: 20pt;
   display: none;
 }
-div#lang-switch a {
-  margin-left: 5pt;
+
+div#main {
+  background: #F8F6F0;
+}
+div#info {
+  margin-right: 18em;
 }
 
 div#sidebar {
-  width: 200pt;
+  width: 16em;
   float: right;
-  margin-right: -20pt;
 }
 div#sidebar div.box {
   margin-bottom: 20pt;
 }
 
-div#info {
-  margin-right: 200pt;
-}
-
 div#foot {
-  color: grey;
+  color: #6D0D04;
+  background: #843412;
+  padding-bottom: 2em;
 }
-
-/* END Layout */
-
-
-div#sidebar label {
-  font-weight: normal;
-  font-family: Georgia;
-  font-size: 1.6em;
+div#foot h2 {
+  color: #C7B293;
+  font-size: 1.3em;
+  margin-top: .8em;
+  margin-bottom: 1em;
 }
-
-
-div#sidebar ul {
-  padding-left: 0pt;
-  margin-left: 20pt;
+div#foot a {
+  color: #F7F2F0;
+  font-size: .9em;
 }
-
-div#sidebar ul li {
-  margin-left: 0pt;
-}
-div#sidebar ul li a {}
-
-div#sidebar ul li.current {
-  list-style: circle;
-  font-weight: bold;
-}
-
-div#api-search input {
-  border: 2px solid #DDD;
-  padding: 5pt;
-  font-size: 1.4em;
-  font-weight: bold;
-  display: block;
-  width: 170pt;
-}
-div#api-search input:focus {
-  background-color: #FFD;
-}
-div#api-search div.autocompleter ul {
-  margin: 0;
-}
-div#api-search div.autocompleter ul li {
-  list-style: none;
-  font-weight: normal;
-  padding: .5em 1em;
-}
-div#api-search div.autocompleter ul li strong {
-  font-weight: normal;
-  color: #A00;
-}
-
-div.method {
-}
-div.method > h2 {
-  border-bottom: 1px solid brown;
-  margin-top: 30pt;
-}
-div.method > h2 a:hover {
-  text-decoration: none;
-}
-
-div.method p.semantic code {
-  background: transparent;
-  padding: 0;
-}
-
-div.post > h2:first-child {
-  border-bottom: 1px solid #EEE;
-}
-
-div.post h2 span.date {
+div#foot div#contacts {
   float: right;
+  width: 16em;
 }
 
-div.post h2 a:hover {
-  text-decoration: none;
-}
-
-p.action-links {
-  margin-top: 20pt;
-}
-
-div.shot {
-  text-align: center;
-}
-div.shot a, div.shot a:hover {
-  text-decoration: none;
-}
-div.shot img {
-  border: 1px solid #DDD;
-  padding: 5pt;
-}
-
-div#rss-feed, div#twitter {
-  padding: 5pt;
-  padding-bottom: 0;
-}
-
-div#rss-feed img, div#twitter img {
-  vertical-align: top;
-}
-
-div.fx-test {
-  width: 180px;
-  height: 80px;
-  line-height: 80px;
-  text-align: center;
-  background: orange;
-  color: brown;
-}
-div.fx-test-container {
-  height: 80px;
-  width: 180px;
-  float: left;
-  margin-right: 20pt;
-}
-div.fx-example-big div.fx-test-container {
-  width: auto;
-  height: auto;
-  float: none;
-  margin-right: 0;
-  margin-bottom: 10pt;
-}
-
-div.fx-no-bg {
-  background: transparent;
-  border: 1px solid #DDD;
-}
-
-div.fx-example textarea {
-  height: 78px;
-  width: 28em;
-  border: 1px solid #CCC;
-  background: #F6F6F6;
-}
-div#scroll-test {
-  overflow: scroll;
-  line-height: 2em;
-}
-
-/* Fx.CSS example styles */
-div.green-background { background: green; }
-div.blue-color       { color:      blue;  }
-
-
-/* Custom build page styles */
-form#custom-build-form ul {
-  list-style: none;
-  padding-left: 0pt;
-  margin-left: 20pt;
-}
-form#custom-build-form ul li {
-  margin-left: 0pt;
-  display: block;
-  height: 20pt;
-}
-form#custom-build-form ul li.goods label {
-  color: #A53A3A;
-}
-
-form#custom-build-form ul li input {
-  cursor: pointer;
-  color: green;
-  vertical-align: middle;
-  margin-right: 10pt;
-  width: 20px;
-  height: 20px;
-}
-
-form#custom-build-form label {
-  display: inline;
-  cursor: pointer;
-}
-
-form#custom-build-form div#calc {
-  height: 330px;
-  width: 20pt;
-  background: #DED;
-  position: relative;
-  float: right;
-  margin-right: 20pt;
-}
-
-form#custom-build-form div#calc div#bar {
-  background: #8A7;
+div#foot div#copyright {
   position: absolute;
-  width: 100%;
-  bottom: 0px;
+  margin-top: 3.5em;
+  font-size: 80%;
+  padding-bottom: 1em;
+  color: #A2896E;
 }
-
-form#custom-build-form div#calc div#num {
-  margin-left: -40pt;
-  margin-top: -0.5em;
-  position: absolute;
-  color: brown;
-}
-
-dl#download-options {
-  margin: 20pt;
-}
-dl#download-options dt {
-  font-size: 120%;
-  margin-top: 10pt;
-}
-ol#usage-principles li {
-  margin-bottom: 10pt;
-}
-ol#usage-principles li code {
-  margin: 5pt 0;
-}
-
-
-
-/* BEGIN code hightlightning */
-tt {
-  background: #EEE;
-  padding: 0 4pt;
-}
-code {
-  font-family: monospace;
-  white-space: pre;
-  overflow: auto;
-  display: block;
-  padding: 10pt;
-  background: #EEE;
-  color: #444;
-}
-
-code s, code i, code u, code b {
-  font-weight: normal !important;
-  text-decoration: none !important;
-}
-
-code s, code s * { /* string */
-  color: green !important;
-}
-
-code s.re {
-  color: #880 !important;
-}
-
-code s.int { /* number */
-  color: blue !important;
-}
-
-code s.float {
-  color: brown !important;
-}
-
-code s.key { /* hash keys */
-  color: #880 !important;
-}
-
-code i { /* comments */
-  color: gray !important;
-}
-
-code b { /* function return for if else ... */
-  font-weight: bold;
-  color: #808;
-}
-
-code b.var { /* var new this self */
-  color: #EE82EE;
-  font-weight: bold;
-}
-
-code b.rest { /* null false true undefined */
-  color: #A52A2A;
-}
-
-code b.unit { /* class names */
-  color: #088;
-}
-
-code u { /* attribute */
-  color: #880;
-}
-code u.method {
-  color: #008;
-}
-
-
-/* END code hightlightning */
+/* END layout */
