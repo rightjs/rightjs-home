@@ -153,7 +153,7 @@ div#api-search input {
   padding: .3em .5em;
   font-size: 1.3em;
   display: block;
-  width: 92%;
+  width: 90%;
   background-color: #FFFEFC;
   background-image: url('../images/design.png');
   background-repeat: no-repeat;
@@ -170,15 +170,20 @@ div#api-search input:focus {
 }
 div#api-search div.autocompleter ul {
   margin: 0;
+  background: #FFFEFC;
 }
 div#api-search div.autocompleter ul li {
   list-style: none;
   font-weight: normal;
   padding: .5em 1em;
+  
+}
+div#api-search div.autocompleter ul li.current {
+  background: #CFCEBD;
 }
 div#api-search div.autocompleter ul li strong {
   font-weight: normal;
-  color: #A00;
+  color: #DE4200;
 }
 div#api-search div.autocompleter-spinner {
   width: 30px;
@@ -222,8 +227,8 @@ code {
   background: #FFFEFC;
   color: #555;
   border: 4px solid #CFCEBD;
-  -webkit-border-radius: .6em;
-  -moz-border-radius: .6em;
+  -webkit-border-radius: .5em;
+  -moz-border-radius: .5em;
 }
 
 code s, code i, code u, code b {

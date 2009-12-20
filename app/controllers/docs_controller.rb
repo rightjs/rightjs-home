@@ -10,7 +10,6 @@ class DocsController < ApplicationController
   
   # catches the autocompleter list
   def search
-    sleep 2
     @methods = UnitMethod.all({
       :conditions => ["name LIKE ?", "%#{params[:search].blank? ? '+' : params[:search]}%"],
       :limit => 10
