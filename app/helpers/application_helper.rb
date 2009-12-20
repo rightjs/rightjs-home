@@ -18,15 +18,13 @@ module ApplicationHelper
       packs[unit.package] << unit
     end
     
-    content_tag :ul, packs.keys.sort.collect { |package|
-      content_tag(:li, 
-        content_tag(:label, package.capitalize) +
-        content_tag(:ul, packs[package].collect { |unit|
-          menu_link_to(unit.name, unit)+
-            (@unit == unit ? right_js_unit_menu(unit) : '')
-        })
-      )
-    }, :id => 'classes-list'
+    packs.keys.sort.collect { |package|
+      content_tag(:label, package.capitalize) +
+      content_tag(:ul, packs[package].collect { |unit|
+        menu_link_to(unit.name, unit)+
+          (@unit == unit ? right_js_unit_menu(unit) : '')
+      })
+    }.join("\n")
   end
   
   # builds a particular unit methods menu

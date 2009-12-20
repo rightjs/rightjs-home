@@ -1,37 +1,20 @@
 <div id="sidebar">
-  <div id="api-search" class="box">
-    <input type="text" value="Search API" id="api-search-field" />
-    <script type="text/javascript">
-    // <![CDATA[
-    $('api-search-field')
-      .onFocus(function() { this._v = this.value; this.value = ''; })
-      .onBlur(function() { this.value = this._v; });
-    new Autocompleter('api-search-field', {
-      url: '/docs/search/%{search}.js',
-      onDone: function() {
-        var current = this.container.first('.current');
-        if (current) {
-          document.location.href = current.title;
-        }
-        this.input.setValue(this.input._v).blur();
-      }
-    });
-    // ]]>
-    </script>
-  </div>
-  
 <% if request.request_uri.starts_with?('/docs') %>
-  <div class="box">
-    <label>Classes</label>
+  <%= render 'layouts/search_box' %>
+
+  <div class="box" id="api-lists">
     <%= right_js_classes_menu %>
   </div>
 <% else -%>
-  <div class="box">
-    <label>Get Latest Version</label>
+  <div class="box" id="download-box">
+    <h1>Get it!</h1>
     <ul>
       <%= menu_link_to "RightJS v#{RIGHTJS_VERSION}", "/builds/current/right.js.zip" %>
     </ul>
   </div>
+  
+  <%= render 'layouts/search_box' %>
+  
   <div class="box">
     <label>Documentation</label>
     <ul>

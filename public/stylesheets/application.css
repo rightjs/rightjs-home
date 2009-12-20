@@ -15,12 +15,12 @@ a:hover {
   text-decoration: underline;
 }
 
-h1, h2, h3, h4, table caption {
+h1, h2, h3, h4, table caption, dl dt {
   margin-top: 20pt;
   font-weight: normal;
   font-family: "Trebuchet MS", Garuda, sans-serif;
 }
-h1, h2, h3, h4, label, caption, h2 a {
+h1, h2, h3, h4, label, caption, h2 a, dl dt {
   color: #7A5E44;
 }
 h2 a:hover {
@@ -35,6 +35,48 @@ h2 a.top-anchor {
   float: right;
   font-size: 0.7em;
 }
+
+ul {
+  list-style-image: url('../images/bullet.png');
+  list-style-type: auto;
+  margin-left: 0;
+  padding-left: 2em;
+}
+ul li.current {
+  list-style-image: url('../images/bullet-on.png');
+  list-style-type: auto;
+  font-weight: bold;
+}
+ul.changelog li {
+  margin-bottom: .6em;
+}
+
+dl dt {
+  font-size: 1.4em;
+}
+
+dl ul {
+  margin: 1em 0 2em 0;
+}
+dl.roadmap {
+  margin-top: 2em;
+}
+dl.roadmap ul {
+  margin-bottom: 1.5em;
+}
+
+a img {
+  border: 1px solid #DDD;
+  padding: .4em;
+}
+
+input[type="image"] {
+  position: relative;
+  top: 3px;
+}
+
+
+
 
 
 /* BEGIN layout */
@@ -82,6 +124,7 @@ div#main-menu ul {
 div#main-menu ul li {
   float: left;
   margin-left: 2em;
+  list-style: none;
 }
 div#main-menu ul li a {
   display: block;
@@ -94,6 +137,7 @@ div#main-menu ul li.current a {
   text-decoration: none;
   border-bottom-color: #DE4200;
   color: #F7F2F0;
+  font-weight: normal;
 }
 
 div#lang-switch {
@@ -108,7 +152,10 @@ div#main {
 }
 div#info {
   margin-right: 18em;
-  padding-bottom: 1em;
+}
+div#info, div#sidebar {
+  padding: 1em 0;
+  padding-bottom: 1.5em;
 }
 
 div#sidebar {
@@ -197,6 +244,50 @@ div#api-search div.autocompleter-spinner {
 div#api-search div.autocompleter-spinner * {
   display: none;
 }
+
+div#info > h1:first-child {
+  margin-top: 0;
+  color: #4D3B2B;
+}
+
+div#sidebar div.box label {
+  font-size: 1.2em;
+}
+
+div#download-box h1 {
+  margin-top: 0;
+}
+div#download-box ul {
+  margin: 0;
+  padding: 0;
+}
+div#download-box ul li {
+  list-style: none;
+  padding: 0;
+  padding-left: 24px;
+  background: url('../images/design.png') no-repeat 0 -300px;
+}
+
+div#api-lists ul {
+  margin-top: .3em;
+  margin-bottom: .4em;
+}
+div#api-lists ul ul {
+  margin: 0;
+}
+
+ol#usage-principles {
+  padding-left: 2em;
+}
+ol#usage-principles li {
+  margin-bottom: 10pt;
+}
+ol#usage-principles li code {
+  margin: 5pt 0;
+}
+
+
+
 
 /* END content */
 
