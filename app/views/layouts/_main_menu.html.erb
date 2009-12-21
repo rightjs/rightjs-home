@@ -2,9 +2,9 @@
   <ul>
     <%= menu_link_to 'Home',    '/' %>
     <%= menu_link_to 'Download', download_path %>
-    <%= menu_link_to 'Plugins',  '/plugins' %>
+    <%= menu_link_to 'Plugins',  '/plugins', {}, url_starts_with?('/ui', '/goods') %>
     <%= menu_link_to 'Demos',   '/demos' %>
-    <%= menu_link_to 'Docs',     documentation_path %>
+    <%= menu_link_to 'Docs',     documentation_path, {}, url_starts_with?('/docs', '/tutorials') %>
     <%= menu_link_to 'Blog',     '/blog' %>
   </ul>
 </div>

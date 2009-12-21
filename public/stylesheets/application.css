@@ -34,6 +34,7 @@ h2.chapter {
 h2 a.top-anchor {
   float: right;
   font-size: 0.7em;
+  margin-top: .4em;
 }
 
 ul {
@@ -46,6 +47,10 @@ ul li.current {
   list-style-image: url('../images/bullet-on.png');
   list-style-type: auto;
   font-weight: bold;
+}
+ul ul {
+  margin-top: .2em;
+  margin-bottom: .4em;
 }
 ul.changelog li {
   margin-bottom: .6em;
@@ -149,6 +154,7 @@ div#lang-switch {
 
 div#main {
   background: #F8F6F0;
+  min-height: 400pt;
 }
 div#info {
   margin-right: 18em;
@@ -197,14 +203,14 @@ div#foot div#copyright {
 
 /* BEGIN content */
 div#api-search input {
-  padding: .3em .5em;
+  padding: .3em;
   font-size: 1.3em;
   display: block;
-  width: 90%;
+  width: 92%;
   background-color: #FFFEFC;
   background-image: url('../images/design.png');
   background-repeat: no-repeat;
-  background-position: right -258px;
+  background-position: right -340px;
   border: .2em solid #CFCEBD;
   -webkit-border-radius: .3em;
   -moz-border-radius: .3em;
@@ -245,6 +251,50 @@ div#api-search div.autocompleter-spinner * {
   display: none;
 }
 
+ul#social {
+  margin: 0;
+  padding: 0;
+}
+ul#social li {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  float: left;
+}
+ul#social li a {
+  display: block;
+  width: 50px;
+  padding-top: 50px;
+  background: url('../images/design.png') no-repeat;
+  margin-right: 1em;
+  text-align: center;
+  color: #C4C3B4;
+}
+ul#social li a:hover {
+  color: #DE4200;
+  text-decoration: none;
+}
+ul#social li a#rss-link {
+  background-position: 4px -100px;
+}
+ul#social li a#rss-link:hover {
+  background-position: -46px -100px;
+}
+ul#social li a#twitter-link {
+  background-position: 4px -180px;
+}
+ul#social li a#twitter-link:hover {
+  background-position: -46px -180px;
+}
+ul#social li a#github-link {
+  background-position: 4px -260px;
+}
+ul#social li a#github-link:hover {
+  background-position: -46px -260px;
+}
+
+
+
 div#info > h1:first-child {
   margin-top: 0;
   color: #4D3B2B;
@@ -265,7 +315,7 @@ div#download-box ul li {
   list-style: none;
   padding: 0;
   padding-left: 24px;
-  background: url('../images/design.png') no-repeat 0 -300px;
+  background: url('../images/design.png') no-repeat 0 -375px;
 }
 
 div#api-lists ul {

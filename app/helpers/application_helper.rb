@@ -6,8 +6,8 @@ module ApplicationHelper
   end
   
   # common menu link builder
-  def menu_link_to(text, url, options={})
-    content_tag :li, link_to(text, url, options), :class => part_of_current_url?(url) ? 'current' : nil
+  def menu_link_to(text, url, options={}, current=nil)
+    content_tag :li, link_to(text, url, options), :class => (current || part_of_current_url?(url)) ? 'current' : nil
   end
   
   # builds a menu list with RightJS main classes and links to the documentation
@@ -40,6 +40,10 @@ module ApplicationHelper
     url == '/' ? request.request_uri == '/' : request.request_uri.starts_with?(url)
   end
   
+  def url_starts_with?(*list)
+    list.any?{|url| request.request_uri.starts_with?(url)}
+  end
+  
   def link_to_unit(unit)
     unit = Unit.find_by_name(unit) if unit.is_a?(String)
     link_to unit.name, unit
@@ -66,6 +70,11 @@ module ApplicationHelper
   end
   
   def goods_path(package=nil)
+    package = 'drag-n-drop' if package.to_s == 'dnd'
     "/goods"+ (package ? "/#{package}" : "")
+  end
+  
+  def ui_path(package=nil)
+    "/ui"+ (package ? "/#{package}" : "")
   end
 end

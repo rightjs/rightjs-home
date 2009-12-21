@@ -14,147 +14,45 @@
   <tt>git clone git://github.com/rightjs/rightjs-ui.git</tt>
 </p>
 
+<%
+module_descriptions = {
+  :autocompleter => "Autocompleter is the standard autocompletion feature for RightJS",
+  
+  :calendar      => "Calendar is the standard calendar feature for RightJS. It might work "+
+                    "as a standard date-picker widget for the input elements, or as an inline "+
+                    "calendar widget on the page",
+                    
+  :tabs          => "Tabs is the standard three in one (tabs/carousel/harmonica) tabs engine for RightJS",
+  
+  :slider        => "Slider is the standard slider widget, it can work as a standalone widget "+
+                    "or in pair with an input element",
+                    
+  :selectable    => "Customizable select-boxes replacement that can hold any html in the options list",
+  
+  :sortable      => "Sortable is the standard sortable units feature for RightJS",
+  
+  :lightbox      => "Right Lightbox is the standard lightbox feature for RightJS, with all the standard "+
+                    "functionality, like displaying any html content, ajax load, images browsing, etc.",
+                    
+  :tooltips      => "This is the basic custom titles/tooltips feature for RightJS"
+}
+-%>
 
-<h2>Autocompleter</h2>
+<% ui_list.each do |unit| %>
+<%= chapter unit[:name], unit[:key] %>
 <p>
-  Autocompleter is the standard autocompletion feature for RightJS.
+  <%= module_descriptions[unit[:key]] %>
 </p>
 <p>
   Info:
-    <%= link_to 'Documentation', '/ui/autocompleter' %>,
-    <%= link_to 'Demo',          '/ui/autocompleter/demo' %> |
-    
+    <%= link_to "Documentation", unit[:url] %>,
+    <%= link_to 'Demo',          unit[:url] + '/demo' %> |
+  
   Download:
-    <%= link_to 'build',    '/builds/ui/right-autocompleter.js',     :target => :_blank %>,
-    <%= link_to 'minified', '/builds/ui/right-autocompleter-min.js', :target => :_blank %>,
-    <%= link_to 'source',   '/builds/ui/right-autocompleter-src.js', :target => :_blank %>
+    <%= link_to "build",    "/builds/ui/right-#{unit[:key]}.js",     :target => :_blank %>,
+    <%= link_to "minified", "/builds/ui/right-#{unit[:key]}-min.js", :target => :_blank %>,
+    <%= link_to "source",   "/builds/ui/right-#{unit[:key]}-src.js", :target => :_blank %>
 </p>
 
-<h2>Calendar</h2>
-<p>
-  Calendar is the standard calendar feature for RightJS. It might work as a standard date-picker
-  widget for the input elements, or as an inline calendar widget on the page
-</p>
-<p>
-  Info:
-    <%= link_to 'Documentation', '/ui/calendar' %>,
-    <%= link_to 'Demo',          '/ui/calendar/demo' %> |
-    
-  Download:
-    <%= link_to 'build',    '/builds/ui/right-calendar.js',     :target => :_blank %>,
-    <%= link_to 'minified', '/builds/ui/right-calendar-min.js', :target => :_blank %>,
-    <%= link_to 'source',   '/builds/ui/right-calendar-src.js', :target => :_blank %>
-</p>
+<% end -%>
 
-
-<h2>Tabs</h2>
-<p>
-  Tabs is the standard three in one (tabs/carousel/harmonica) tabs engine for RightJS.
-</p>
-<p>
-  Info:
-    <%= link_to 'Documentation', '/ui/tabs' %>,
-    <%= link_to 'Demo',          '/ui/tabs/demo' %> |
-    
-  Download:
-    <%= link_to 'build',    '/builds/ui/right-tabs.js',     :target => :_blank %>,
-    <%= link_to 'minified', '/builds/ui/right-tabs-min.js', :target => :_blank %>,
-    <%= link_to 'source',   '/builds/ui/right-tabs-src.js', :target => :_blank %>
-</p>
-
-
-<h2>Rater</h2>
-<p>
-  Rater is the standard rating widget with stars
-</p>
-<p>
-  Info:
-    <%= link_to 'Documentation', '/ui/rater' %>,
-    <%= link_to 'Demo',          '/ui/rater/demo' %> |
-    
-  Download:
-    <%= link_to 'build',    '/builds/ui/right-rater.js',     :target => :_blank %>,
-    <%= link_to 'minified', '/builds/ui/right-rater-min.js', :target => :_blank %>,
-    <%= link_to 'source',   '/builds/ui/right-rater-src.js', :target => :_blank %>
-</p>
-
-
-<h2>Slider</h2>
-<p>
-  Slider is the standard slider widget, it can work as a standalone widget or in pair with an input element
-</p>
-<p>
-  Info:
-    <%= link_to 'Documentation', '/ui/slider' %>,
-    <%= link_to 'Demo',          '/ui/slider/demo' %> |
-    
-  Download:
-    <%= link_to 'build',    '/builds/ui/right-slider.js',     :target => :_blank %>,
-    <%= link_to 'minified', '/builds/ui/right-slider-min.js', :target => :_blank %>,
-    <%= link_to 'source',   '/builds/ui/right-slider-src.js', :target => :_blank %>
-</p>
-
-<h2>Selectable</h2>
-<p>
-  Customizable select-boxes replacement that can hold any html in the options list.
-</p>
-<p>
-  Info:
-    <%= link_to 'Documentation', '/ui/selectable' %>,
-    <%= link_to 'Demo',          '/ui/selectable/demo' %> |
-    
-  Download:
-    <%= link_to 'build',    '/builds/ui/right-selectable.js',     :target => :_blank %>,
-    <%= link_to 'minified', '/builds/ui/right-selectable-min.js', :target => :_blank %>,
-    <%= link_to 'source',   '/builds/ui/right-selectable-src.js', :target => :_blank %>
-</p>
-
-
-
-<h2>Sortable</h2>
-<p>
-  Sortable is the standard sortable units feature for RightJS
-</p>
-<p>
-  Info:
-    <%= link_to 'Documentation', '/ui/sortable' %>,
-    <%= link_to 'Demo',          '/ui/sortable/demo' %> |
-    
-  Download:
-    <%= link_to 'build',    '/builds/ui/right-sortable.js',     :target => :_blank %>,
-    <%= link_to 'minified', '/builds/ui/right-sortable-min.js', :target => :_blank %>,
-    <%= link_to 'source',   '/builds/ui/right-sortable-src.js', :target => :_blank %>
-</p>
-
-
-<h2>Lightbox</h2>
-<p>
-  Right Lightbox is the standard lightbox feature for RightJS, with all the standard functionality, like
-  displaying any html content, ajax load, images browsing, etc.
-</p>
-<p>
-  Info:
-    <%= link_to 'Documentation', '/ui/lightbox' %>,
-    <%= link_to 'Demo',          '/ui/lightbox/demo' %> |
-    
-  Download:
-    <%= link_to 'build',    '/builds/ui/right-lightbox.js',     :target => :_blank %>,
-    <%= link_to 'minified', '/builds/ui/right-lightbox-min.js', :target => :_blank %>,
-    <%= link_to 'source',   '/builds/ui/right-lightbox-src.js', :target => :_blank %>
-</p>
-
-
-<h2>Tooltips</h2>
-<p>
-  This is the basic custom titles/tooltips feature for RightJS
-</p>
-<p>
-  Info:
-    <%= link_to 'Documentation', '/ui/tooltips' %>,
-    <%= link_to 'Demo',          '/ui/tooltips/demo' %> |
-    
-  Download:
-    <%= link_to 'build',    '/builds/ui/right-tooltips.js',     :target => :_blank %>,
-    <%= link_to 'minified', '/builds/ui/right-tooltips-min.js', :target => :_blank %>,
-    <%= link_to 'source',   '/builds/ui/right-tooltips-src.js', :target => :_blank %>
-</p>

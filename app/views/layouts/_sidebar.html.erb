@@ -25,23 +25,13 @@
   </div>
   
   <div class="box">
-    <label>Additionals</label>
+    <label>Additional</label>
     <ul>
       <%= menu_link_to 'RightJS Goods', goods_path %>
+      <%= goods_modules_menu if request.request_uri.starts_with?('/goods/') %>
       <%= menu_link_to 'RightJS UI', '/ui' %>
+      <%= ui_modules_menu if request.request_uri.starts_with?('/ui/') %>
       <%= menu_link_to 'Showcases', '/showcases' %>
-    </ul>
-  </div>
-  
-  <div class="box">
-    <label>About Project</label>
-    <ul>
-      <%= menu_link_to 'Comparison', '/comparison' %>
-      <%= menu_link_to 'Benchmarks', '/benchmarks' %>
-      <%= menu_link_to 'Philosophy', '/philosophy' %>
-      <%= menu_link_to 'Browsers',   '/browsers'   %>
-      <%= menu_link_to 'Roadmap',    '/roadmap'    %>
-      <%= menu_link_to 'Credits',    '/credits'    %>
     </ul>
   </div>
   
@@ -56,13 +46,10 @@
 <% end -%>
 
   <div class="box">
-    <div id="rss-feed">
-      <%= image_tag 'rss.png' %>
-      <%= link_to "RSS Feed", posts_path(:format => :rss) %>
-    </div>
-    <div id="twitter">
-      <%= image_tag 'twitter.png' %>
-      <%= link_to "Follow On Twitter", "http://twitter.com/rightjs" %>
-    </div>
+    <ul id="social">
+      <li><%= link_to "RSS", posts_path(:format => :rss),      :id => "rss-link"     %></li>
+      <li><%= link_to "Twitter", "http://twitter.com/rightjs", :id => "twitter-link" %></li>
+      <li><%= link_to "GitHub", "http://github.com/rightjs",   :id => "github-link"  %></li>
+    </ul>
   </div>
 </div>

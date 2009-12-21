@@ -14,100 +14,46 @@
 <p>
   <tt>git clone git://github.com/rightjs/rightjs-goods.git</tt>
 </p>
-
 <p>
   You can include any of the following modules as separated files on your page, or you
   can include them in the main build at the <%= link_to 'custom build page', builds_path %>
 </p>
+<%
+module_descriptions = {
+  :rails    => "Provides a conventional ajax operations interface and RightJS core "+
+                "extensions with underscored and ruby-like aliases.",
+                
+  :dnd      => "The standard drag-n-drop library for RightJS",
+  
+  :effects  => "By default RightJS comes with a basic Fx engine and a few most used visual "+
+                "effects. This module contains a library of all the additional visual effects.",
+                
+  :json     => "This module provides the standard JSON import/export feature. Additionally "+
+               "when included it provides better JSON responses check for the {Xhr} module and "+
+               "also an ability to save and retrieve objects and arrays in the {Cookie} module transparently.",
+               
+  :events   => "This module provides additional functionality for the DOM events handling, like additional "+
+               "methods to check which button or key was pressed. And it also provides an "+
+               "ability to fire real DOM events on your page elements.",
+               
+  :behavior => "This module provides the unobtrusive behavior definitions functionality, similar to "+
+               "the jQuery's 'live' feature or the Prototype 'lowpro' plugin, but with some additional abilities."
+}
+-%>
 
-<h2>RubyOnRails Support Module</h2>
+<% goods_list.each do |unit| %>
+<%= chapter unit[:name], unit[:key] %>
 <p>
-  Provides a conventional ajax operations interface and RightJS core extensions 
-  with underscored and ruby-like aliases.
+  <%= module_descriptions[unit[:key]] %>
 </p>
 <p>
   Info:
-    <%= link_to 'Documentation', goods_path('rails') %> |
+    <%= link_to "Documentation", unit[:url] %> |
   
   Download:
-    <%= link_to 'build',    '/builds/goods/right-rails.js',     :target => :_blank %>,
-    <%= link_to 'minified', '/builds/goods/right-rails-min.js', :target => :_blank %>,
-    <%= link_to 'source',   '/builds/goods/right-rails-src.js', :target => :_blank %>
+    <%= link_to "build",    "/builds/goods/right-#{unit[:key]}.js",     :target => :_blank %>,
+    <%= link_to "minified", "/builds/goods/right-#{unit[:key]}-min.js", :target => :_blank %>,
+    <%= link_to "source",   "/builds/goods/right-#{unit[:key]}-src.js", :target => :_blank %>
 </p>
 
-
-<h2>Drag'n'Drop Module</h2>
-<p>
-  The standard drag-n-drop library for RightJS
-</p>
-<p>
-  Info:
-    <%= link_to 'Documentation', goods_path('drag-n-drop') %> |
-  
-  Download:
-    <%= link_to 'build',    '/builds/goods/right-dnd.js',     :target => :_blank %>,
-    <%= link_to 'minified', '/builds/goods/right-dnd-min.js', :target => :_blank %>,
-    <%= link_to 'source',   '/builds/goods/right-dnd-src.js', :target => :_blank %>
-</p>
-
-<h2>Additional Visual Effects</h2>
-<p>
-  By default RightJS comes with the Fx engine and few most used visual effects. This module
-  contains a library of all the additional visual effects.
-</p>
-<p>
-  Info:
-    <%= link_to 'Documentation', goods_path('effects') %> |
-  
-  Download:
-    <%= link_to 'build',    '/builds/goods/right-effects.js',     :target => :_blank %>,
-    <%= link_to 'minified', '/builds/goods/right-effects-min.js', :target => :_blank %>,
-    <%= link_to 'source',   '/builds/goods/right-effects-src.js', :target => :_blank %>
-</p>
-
-<h2>JSON support</h2>
-<p>
-  This module provides the standard JSON import/export feature. Additionally when included
-  it provides better JSON responses check for the {Xhr} module and also an ability to save
-  and retrieve objects and arrays in the {Cookie} module transparently.
-</p>
-<p>
-  Info:
-    <%= link_to 'Documentation', goods_path('json') %> |
-    
-  Download:
-    <%= link_to 'build',    '/builds/goods/right-json.js',     :target => :_blank %>,
-    <%= link_to 'minified', '/builds/goods/right-json-min.js', :target => :_blank %>,
-    <%= link_to 'source',   '/builds/goods/right-json-src.js', :target => :_blank %>
-</p>
-
-<h2>Advanced DOM-Events Handling</h2>
-<p>
-  This module provides additional functionality for DOM events, like additional methods
-  to check which button or key was pressed. And it also provides an ability to fire
-  real DOM events on your page elements.
-</p>
-<p>
-  Info:
-    <%= link_to 'Documentation', goods_path('events') %> |
-    
-  Download:
-    <%= link_to 'build',    '/builds/goods/right-events.js',     :target => :_blank %>,
-    <%= link_to 'minified', '/builds/goods/right-events-min.js', :target => :_blank %>,
-    <%= link_to 'source',   '/builds/goods/right-events-src.js', :target => :_blank %>
-</p>
-
-<h2>Behaviors Module</h2>
-<p>
-  This module provides the behavior definitions functionality, similar to the jQuery's 'live' feature,
-  but with some additional abilities.
-</p>
-<p>
-  Info:
-    <%= link_to 'Documentation', goods_path('behavior') %> |
-    
-  Download:
-    <%= link_to 'build',    '/builds/goods/right-behavior.js',     :target => :_blank %>,
-    <%= link_to 'minified', '/builds/goods/right-behavior-min.js', :target => :_blank %>,
-    <%= link_to 'source',   '/builds/goods/right-behavior-src.js', :target => :_blank %>
-</p>
+<% end -%>
