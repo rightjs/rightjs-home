@@ -80,7 +80,34 @@ input[type="image"] {
   top: 3px;
 }
 
+table {
+  border: none;
+  width: 100%;
+  
+  border-collapse: collapse;
+}
+table th, table td, table caption {
+  margin: 0;
+  padding: 2pt 6pt;
+  text-align: left;
+}
+table th {
+  background: #CFCEBD;
+}
+table td {
+  border-bottom: 1px solid #CFCEBD;
+}
+table tr:nth-child(2n+1) {
+  background: #EFEEDD;
+}
 
+div.right-calendar table tr {
+  background: none;
+}
+
+label {
+  display: block;
+}
 
 
 
