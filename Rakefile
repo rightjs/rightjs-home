@@ -198,9 +198,9 @@ namespace :rightjs do
       puts (options + modules).join(',')
       
       basic_build = basic_builds[options.join(',')]
-      source   = basic_build[:src]
-      minified = basic_build[:min]
-      packed   = basic_build[:pack]
+      source   = basic_build[:src].dup
+      minified = basic_build[:min].dup
+      packed   = basic_build[:pack].dup
       
       modules.each do |name|
         source << "\n" + goods_builds[name][:src]
