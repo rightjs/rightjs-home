@@ -37,6 +37,9 @@ div#scroll-test {
   overflow: scroll;
   line-height: 2em;
 }
+#zoom-test-script {
+  width: 40em;
+}
 
 /* Fx.CSS example styles */
 div.green-background { background: green; }
