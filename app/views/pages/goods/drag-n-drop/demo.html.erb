@@ -1,47 +1,6 @@
 <h1>Drag'n'Drop Demo</h1> <% @title_text = "Goods: Drag'n'Drop: Demo" %>
 <script type="text/javascript" src="/builds/goods/right-dnd-min.js"></script>
-<style type="text/css">
-  div.draggable, div.droppable {
-    background: orange;
-    color: brown;
-    border: 1px solid brown;
-    float: left;
-    width: 10em;
-    height: 5em;
-    margin-right: 1em;
-    text-align: center;
-    line-height: 5em;
-    cursor: move;
-    -webkit-border-radius: .2em;
-    -moz-border-radius: .2em;
-  }
-  div.test-container {
-    height: 5em;
-  }
-  div#draggable-area {
-    background: #CFCEBD;
-    width:  30em;
-    height: 16em;
-    -webkit-border-radius: .2em;
-    -moz-border-radius: .2em;
-  }
-  
-  div.droppable {
-    cursor: default;
-    background: #FF8;
-  }
-  
-  div.droppable-allow {
-    background: #8F8 !important;
-    font-weight: bold;
-    border: 1px dashed brown;
-  }
-  div.droppable-deny {
-    background: #EEE !important;
-    color: #666;
-    border-color: #888;
-  }
-</style>
+<% content_for :modules, stylesheet_link_tag('dnd-demo') %>
 
 <p>
   Some standard demo cases for the drag-n-drop feature

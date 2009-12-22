@@ -1,5 +1,5 @@
 <h1>Visual Effects Demo</h1><% @title_text = 'Visual Effects Demo' %>
-
+<% content_for :modules, stylesheet_link_tag('fx-demo') %>
 <p>
   By default RightJS comes with some basic visual effects library and here are some
   demos and a playground where you can test them. Please take a look at the documentation
@@ -18,49 +18,6 @@ function runfx(id) {
 }
 // -->
 </script>
-<style type="text/css">
-  div.fx-test {
-    width: 180px;
-    height: 80px;
-    line-height: 80px;
-    text-align: center;
-    background: orange;
-    color: brown;
-  }
-  div.fx-test-container {
-    height: 80px;
-    width: 180px;
-    float: left;
-    margin-right: 20pt;
-  }
-  div.fx-example-big div.fx-test-container {
-    width: auto;
-    height: auto;
-    float: none;
-    margin-right: 0;
-    margin-bottom: 10pt;
-  }
-
-  div.fx-no-bg {
-    background: transparent;
-    border: 1px solid #C4C3B4;
-  }
-
-  div.fx-example textarea {
-    height: 78px;
-    width: 28em;
-    border: 1px solid #C4C3B4;
-    background: #FFFEFC;
-  }
-  div#scroll-test {
-    overflow: scroll;
-    line-height: 2em;
-  }
-  
-  /* Fx.CSS example styles */
-  div.green-background { background: green; }
-  div.blue-color       { color:      blue;  }
-</style>
 
 
 <h2>Fx.Morph</h2>
