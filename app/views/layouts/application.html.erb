@@ -5,7 +5,7 @@
     <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
     <%= auto_discovery_link_tag(:rss, posts_url(:format => :rss), :title => "RightJS News") %>
     <%= stylesheet_link_tag 'application' %>
-    <%= javascript_include_tag 'right.js'%>
+    <%= javascript_include_tag 'right', 'application' %>
     <script type="text/javascript" src="/builds/ui/right-autocompleter.js"></script>
     <%= yield :modules %>
   </head>

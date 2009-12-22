@@ -415,7 +415,7 @@ code {
   font-family: Monaco, "Lucida Console", monospace;
   font-size: .9em;
   white-space: pre;
-  overflow: auto;
+  overflow: hidden;
   display: block;
   padding: 1em;
   background: #FFFEFC;
