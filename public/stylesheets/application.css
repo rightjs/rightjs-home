@@ -75,6 +75,10 @@ a img {
   padding: .4em;
 }
 
+input[type="text"], input[type="password"], textarea {
+  background: #FFFEFC;
+  border-color: #CFCEBD;
+}
 input[type="image"] {
   position: relative;
   top: 3px;

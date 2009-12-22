@@ -1,0 +1,82 @@
+/** RightJS UI modules official site like styles */
+div.autocompleter ul li.current {
+  background: #C4C3B3;
+}
+
+
+div.right-calendar {
+  background: #E8E6E0;
+}
+
+*.right-ui-button, div.right-calendar-month table td {
+  background: #F8F6F0;
+}
+*.right-ui-button:hover, div.right-calendar-month table td:hover {
+  background: #DDDDCC;
+}
+div.right-calendar-month table th {
+  color: #7A5E43;
+  font-family: "Trebuchet MS", Garuda, sans-serif;
+}
+div.right-calendar-month table td.right-calendar-day-selected {
+  color: #4D3A2A;
+  background: #D8D6D0;
+}
+
+
+
+*.right-selectable, div.right-selectable-container {
+  background: #FFFEFC;
+}
+
+*.right-selectable li:hover, *.right-selectable li.right-selectable-selected, dl.right-selectable dt {
+  background: #D8D6D0;
+}
+
+*.right-selectable li.right-selectable-disabled,
+*.right-selectable li.right-selectable-disabled:hover {
+  background: #C4C3B4;
+}
+
+div.right-selectable-container div.right-selectable-handle {
+  background: #D8D6D0;
+}
+
+
+div.right-slider {
+  background: #E8E6E0;
+}
+div.right-slider-handle {
+  background: #C8C6C0;
+}
+
+
+.right-tabs * {
+  border-color: #CFCEBD;
+}
+.right-tabs-tab a,
+.right-tabs .right-tabs-scroller .right-tabs-scroll-left,
+.right-tabs .right-tabs-scroller .right-tabs-scroll-right {
+  background: #E8E6E0;
+}
+.right-tabs-tab a:hover,
+.right-tabs .right-tabs-scroller .right-tabs-scroll-left:hover,
+.right-tabs .right-tabs-scroller .right-tabs-scroll-right:hover {
+  background: #D8D6D0;
+}
+.right-tabs .right-tabs-list .right-tabs-current a, dl.right-tabs dt.right-tabs-current a  {
+  background: #F8F6F0;
+  color: #4D3A2A;
+}
+.right-tabs-disabled, .right-tabs-disabled a, .right-tabs-disabled a:hover {
+  background: #E8E6E0;
+}
+.right-tabs-carousel .right-tabs-list,
+.right-tabs-carousel .right-tabs-tab a,
+.right-tabs-carousel .right-tabs-scroller .right-tabs-scroll-left,
+.right-tabs-carousel .right-tabs-scroller .right-tabs-scroll-right {
+  height: 80px;
+}
+dl.right-tabs dt.right-tabs-current a {
+  background: #E8E6E0;
+}
