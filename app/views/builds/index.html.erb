@@ -1,5 +1,56 @@
 <h1>Custom Build Creating</h1><% @title_text = 'Custom Build'%>
+<style type="text/css">
+  form#custom-build-form ul {
+    list-style: none;
+    padding-left: 0pt;
+    margin-left: 20pt;
+  }
+  form#custom-build-form ul li {
+    margin-left: 0pt;
+    display: block;
+    height: 20pt;
+  }
+  form#custom-build-form ul li.goods label {
+    color: #A53A3A;
+  }
 
+  form#custom-build-form ul li input {
+    cursor: pointer;
+    color: green;
+    vertical-align: middle;
+    margin-right: 10pt;
+    width: 20px;
+    height: 20px;
+  }
+
+  form#custom-build-form label {
+    display: inline;
+    cursor: pointer;
+  }
+
+  form#custom-build-form div#calc {
+    height: 330px;
+    width: 20pt;
+    background: #CFCEBD;
+    position: relative;
+    float: right;
+    margin-right: 20pt;
+  }
+
+  form#custom-build-form div#calc div#bar {
+    background: #8A7;
+    position: absolute;
+    width: 100%;
+    bottom: 0px;
+  }
+
+  form#custom-build-form div#calc div#num {
+    margin-left: -40pt;
+    margin-top: -0.5em;
+    position: absolute;
+    color: #DE4200;
+  }
+</style>
 <p>
   You are free to create your own built of RightJS which fits your needs the best.
 </p>
