@@ -364,7 +364,33 @@ ol#usage-principles li code {
 }
 
 
+div.shot {
+  text-align: center;
+}
+div.shot a, div.shot a:hover {
+  text-decoration: none;
+}
+div.shot img {
+  border: 1px solid #DDD;
+  padding: 5pt;
+}
 
+
+div.post > h2:first-child {
+  border-bottom: 2px solid #CFCEBD;
+}
+
+div.post h2 span.date {
+  float: right;
+}
+
+div.post h2 a:hover {
+  text-decoration: none;
+}
+
+p.action-links {
+  margin-top: 20pt;
+}
 
 /* END content */
 

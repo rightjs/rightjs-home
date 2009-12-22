@@ -7,12 +7,12 @@
 <p>
   It tested to work with the following browsers
   <ul>
-    <li>Firefox versions > 1.5</li>
-    <li>Safari versions > 3 and the mobile version</li>
+    <li>Firefox versions >= 1.5</li>
+    <li>Safari versions >= 3 and the mobile version</li>
     <li>Google Chrome all versions</li>
-    <li>Internet Explorer versions 6,7,8</li>
-    <li>Opera version > 9.27</li>
-    <li>Konqueror versions 3 and 4</li>
+    <li>Internet Explorer versions >=6</li>
+    <li>Opera version >= 9.25</li>
+    <li>Konqueror versions >= 3.10</li>
   </ul>
 </p>
 
@@ -41,20 +41,9 @@
   might need to specify the following entry in your document header
 </p>
 <p>
-  <tt>&lt;meta http-equiv="X-UA-Compatible" content="IE=8"&gt;</tt>
+  <code><meta http-equiv="X-UA-Compatible" content="IE=8" /></code>
 </p>
 <p>
   Otherwise, the interface won't be available and RightJS will use its own manual css-selectors
   engine.
-</p>
-
-<h2>Konqueror 3</h2>
-<p>
-  Most of the features of RightJS should be working perfectly on Konq 3, but it has its own
-  limitations in the computed styles handling. The later versions had some back-ports from the
-  4 version and seems like working fine now, but the older versions might still have problems
-  with the visual effects library.
-</p>
-<p>
-  Other features should be working fine.
 </p>
