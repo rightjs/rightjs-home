@@ -167,9 +167,11 @@ div#main-menu ul li a {
 div#main-menu ul li a:hover,
 div#main-menu ul li.current a {
   text-decoration: none;
-  border-bottom-color: #DE4200;
   color: #F7F2F0;
   font-weight: normal;
+}
+div#main-menu ul li.current a {
+  border-bottom-color: #DE4200;
 }
 
 div#lang-switch {

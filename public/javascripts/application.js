@@ -42,10 +42,38 @@ document.onReady(function() {
     }
   };
   
-  
   $$('code').each(function(block) {
     block
       .onMouseover(function() { this._timer = roll_code.bind(this).delay(40); })
       .onMouseout(function() { if (this._timer) this._timer.cancel(); })
   });
-})
+  
+  // the main menu effects
+  var head    = $('head');
+  var menu    = $('main-menu');
+  var links   = menu.select('a');
+  var current = menu.first('li.current a');
+  var thing   = $E('div').setStyle({
+    position:   'absolute',
+    bottom:     '-'+head.getStyle('borderBottomWidth'),
+    left:       current.position().x + 'px',
+    width:      current.offsetWidth + 'px',
+    height:     current.getStyle('borderBottomWidth'),
+    background: current.getStyle('borderBottomColor')
+  }).insertTo('head');
+  current.setStyle('border-color:transparent')
+  
+  var move_to = function(link) {
+    if (thing._fx) thing._fx.cancel();
+    thing._fx = new Fx.Morph(thing, {transition: 'Log'}).start({
+      width: link.offsetWidth  + 'px',
+      left:  link.position().x + 'px'
+    });
+  };
+  
+  links.each(function(link) {
+    link.onMouseover(move_to.curry(link));
+  });
+  
+  window.on('blur', move_to.curry(current));
+});
