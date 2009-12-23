@@ -115,10 +115,10 @@ var delegation = Behavior.delegate({
   The usage is pretty straight forward:
 </p>
 <code>
-new Behave("#todo-list div.item", "click", function() {...});
-new Behave("#todo-list div.item", "click", [func1, func2, func3]);
-new Behave("#todo-list div.item", "click", "radioClass", "selected");
+new Behavior("#todo-list div.item", "click", function() {...});
+new Behavior("#todo-list div.item", "click", [func1, func2, func3]);
+new Behavior("#todo-list div.item", "click", "radioClass", "selected");
 
-var behave = new Behave("css-rule", {event: function() {}});
+var behave = new Behavior("css-rule", {event: function() {}});
 behave.start().stop().start().refresh();
 </code>
