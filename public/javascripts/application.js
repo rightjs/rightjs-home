@@ -53,37 +53,40 @@ document.onReady(function() {
   var menu    = $('main-menu');
   var links   = menu.select('a');
   var current = menu.first('li.current a');
-  var thing   = $E('div').setStyle({
-    position:   'absolute',
-    bottom:     '-'+head.getStyle('borderBottomWidth'),
-    left:       current.position().x + 'px',
-    width:      current.offsetWidth + 'px',
-    height:     current.getStyle('borderBottomWidth'),
-    background: current.getStyle('borderBottomColor')
-  }).insertTo('head');
-  current.setStyle('border-color:transparent');
   
-  menu.style.zIndex  = 100;
-  thing.style.zIndex = 10;
-  
-  var move_to = function(link) {
-    if (thing._fx) thing._fx.cancel();
-    thing._fx = new Fx.Morph(thing, {transition: 'Log'}).start({
-      width: link.offsetWidth  + 'px',
-      left:  link.position().x + 'px'
+  if (current) {
+    var thing   = $E('div').setStyle({
+      position:   'absolute',
+      bottom:     '-'+head.getStyle('borderBottomWidth'),
+      left:       current.position().x + 'px',
+      width:      current.offsetWidth + 'px',
+      height:     current.getStyle('borderBottomWidth'),
+      background: current.getStyle('borderBottomColor')
+    }).insertTo('head');
+    current.setStyle('border-color:transparent');
+
+    menu.style.zIndex  = 100;
+    thing.style.zIndex = 10;
+
+    var move_to = function(link) {
+      if (thing._fx) thing._fx.cancel();
+      thing._fx = new Fx.Morph(thing, {transition: 'Log'}).start({
+        width: link.offsetWidth  + 'px',
+        left:  link.position().x + 'px'
+      });
+    };
+
+    var rollback = move_to.curry(current);
+
+    links.each(function(link) {
+      link.onMouseover(function() {
+        if (menu._timer) { menu._timer.cancel(); menu._timer = null; }
+        move_to(this);
+      }).onMouseout(function() {
+        menu._timer = rollback.delay(800);
+      });
     });
-  };
-  
-  var rollback = move_to.curry(current);
-  
-  links.each(function(link) {
-    link.onMouseover(function() {
-      if (menu._timer) { menu._timer.cancel(); menu._timer = null; }
-      move_to(this);
-    }).onMouseout(function() {
-      menu._timer = rollback.delay(800);
-    });
-  });
-  
-  window.on('blur', rollback);
+
+    window.on('blur', rollback);
+  }
 });
