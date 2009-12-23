@@ -126,7 +126,7 @@ div#head, div#main, div#foot {
 
 div#head {
   background: #453A31;
-  border-bottom: .5em solid #846E5D;
+  border-bottom: 7px solid #846E5D;
   position: relative;
 }
 
@@ -166,7 +166,7 @@ div#main-menu ul li a {
   display: block;
   padding: 8pt 0;
   color: #B0ACA2;
-  border-bottom: .5em solid transparent;
+  border-bottom: 7px solid transparent;
 }
 div#main-menu ul li a:hover,
 div#main-menu ul li.current a {
