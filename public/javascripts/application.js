@@ -61,7 +61,10 @@ document.onReady(function() {
     height:     current.getStyle('borderBottomWidth'),
     background: current.getStyle('borderBottomColor')
   }).insertTo('head');
-  current.setStyle('border-color:transparent')
+  current.setStyle('border-color:transparent');
+  
+  menu.style.zIndex  = 100;
+  thing.style.zIndex = 10;
   
   var move_to = function(link) {
     if (thing._fx) thing._fx.cancel();
@@ -71,9 +74,16 @@ document.onReady(function() {
     });
   };
   
+  var rollback = move_to.curry(current);
+  
   links.each(function(link) {
-    link.onMouseover(move_to.curry(link));
+    link.onMouseover(function() {
+      if (menu._timer) { menu._timer.cancel(); menu._timer = null; }
+      move_to(this);
+    }).onMouseout(function() {
+      menu._timer = rollback.delay(800);
+    });
   });
   
-  window.on('blur', move_to.curry(current));
+  window.on('blur', rollback);
 });
