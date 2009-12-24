@@ -163,3 +163,24 @@ Cookie.remove('key');
 <p>
   Read the api documentation for {Cookie} for more details
 </p>
+
+<%= chapter "Object Oriented Programming", :oop %>
+<p>
+  RightJS is an object oriented framework and it provides extensive abilities for OOP approach.
+  In a basic case it looks like Prototype classes.
+</p>
+<code>
+var MyClass = new Class({
+  initialize: function() {
+    // constructor
+  },
+
+  method1: function() {},
+  method2: function() {}
+});
+</code>
+<p>
+  But classes in RightJS also support inheritance and Ruby-style modules sharing. Read
+  <%= link_to "this article", tutorial_path('object-oriented-programming') %> for more
+  information on this topic.
+</p>
