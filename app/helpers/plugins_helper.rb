@@ -44,7 +44,7 @@ private
 
   def modules_menu(id, list)
     content_tag :ul, list.collect{|pack|
-      menu_link_to pack[:name], pack[:url]
+      menu_link_to pack[:name], pack[:url] + (request.request_uri.ends_with?('/demo') ? '/demo' : '')
     }.join("\n"), :id => id
   end
 end
