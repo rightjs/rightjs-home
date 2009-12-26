@@ -35,8 +35,8 @@ document.onReady(function() {
       
       clone.onMouseout(function(event) {
         var dims = this.dimensions();
-        if (event.pageX < dims.left || event.pageX > (dims.left + dims.width - offset/2) ||
-            event.pageY < dims.top  || event.pageY > (dims.top + dims.height - offset/2))
+        if (event.pageX < dims.left || event.pageX > (dims.left + dims.width) ||
+            event.pageY < dims.top  || event.pageY > (dims.top + dims.height))
           rollback();
       })
     }
@@ -44,7 +44,7 @@ document.onReady(function() {
   
   $$('code').each(function(block) {
     block
-      .onMouseover(function() { this._timer = roll_code.bind(this).delay(40); })
+      .onMouseover(function() { this._timer = roll_code.bind(this).delay(100); })
       .onMouseout(function() { if (this._timer) this._timer.cancel(); })
   });
   
