@@ -17,6 +17,8 @@ ActionController::Routing::Routes.draw do |map|
   end
   
   map.with_options :controller => 'pages' do |pages|
+    pages.mirror 'ui/in-edit/response', :action => 'mirror'
+    
     pages.with_options :action => 'show' do |show|
       show.documentation 'docs', :requirements => {:path => ['docs']}
       show.download 'download', :requirements => {:path => ['download']}

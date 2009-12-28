@@ -9,7 +9,7 @@ class PagesController < ApplicationController
     puts @path
     
     if @path == 'ui/in-edit/response'
-      render :text => params[:text], :content_type => "text/html"
+      
     elsif @path.ends_with?('move.html')
       # used in the sortable demo
       render :text => sortable_move_resopnse, :layout => false
@@ -23,6 +23,10 @@ class PagesController < ApplicationController
       
       render @file, :layout => request.xhr? ? false : 'application'
     end
+  end
+  
+  def mirror
+    render :text => params[:text], :content_type => "text/html"
   end
   
 private
