@@ -12,6 +12,10 @@ module PluginsHelper
     :behavior => "Behaviors Module"
   }
   
+  UI_NAMES = {
+    'in-edit' => "In Place Edit"
+  }
+  
   def goods_list
     RIGHTJS_GOODS.collect(&:to_sym).collect do |key|
       {
@@ -26,7 +30,7 @@ module PluginsHelper
     RIGHTJS_UIS.sort.collect do |key|
       {
         :key  => key.to_sym,
-        :name => key.capitalize,
+        :name => UI_NAMES[key] || key.capitalize,
         :url  => ui_path(key)
       }
     end.sort_by{|i| i[:name]}

@@ -1,0 +1,126 @@
+<h1>In Place Editors</h1><% @title_text = "UI: In Place Editors" %>
+<p>
+  In place editor is a standard feature, that let you nicely handle the text-editing right on the page
+</p>
+<p>
+  Get the latest version right here
+  <ul>
+    <li><a href="/builds/ui/right-in-edit.js"     target="_blank">right-in-edit.js</a> - packed build</li>
+    <li><a href="/builds/ui/right-in-edit-min.js" target="_blank">right-in-edit-min.js</a> - minified version</li>
+    <li><a href="/builds/ui/right-in-edit-src.js" target="_blank">right-in-edit-src.js</a> - uncompressed source code with comments</li>
+  </ul>
+</p>
+
+<p>
+  All the source code of the project are available under terms of the MIT license
+</p>
+<p>
+  <a href="http://github.com/rightjs/rightjs-ui" target="_blank">http://github.com/rightjs/rightjs-ui</a>
+</p>
+
+<%= anchors_index %>
+
+<%= chapter "Features List", :features %>
+<p>
+  Our in-place editors plugin has the following features:
+  <ul>
+    <li>Works with text inputs, files, passwords and textarea fields</li>
+    <li>Can automatically hide/show additional elements, like trigger links</li>
+    <li>Super easy usage interface</li>
+    <li>Comes in a single tiny file (just 2.6k)</li>
+  </ul>
+</p>
+<p>
+  See the <%= link_to 'live demo', '/ui/in-edit/demo' %> page for examples.
+</p>
+
+<%= chapter "Usage basics", :usage %>
+<p>
+  The usage is super-easy. Just call the <tt>inEdit</tt> method on the element, which content you would like
+  to edit, pass your options and you're good to go.
+</p>
+<code>
+<span id="the-text">Click the 'Edit' link to edit me right here!</span>
+
+<a href="#" onclick="$('the-text').inEdit({url: '/url'}); return false;">Edit</a>
+</code>
+<p>
+  Or even like that, without an 'edit' link
+</p>
+<code>
+<div onclick="$(this).inEdit({url:'/url'})">click me to edit!</div>
+</code>
+<p>
+  You also can use the <tt>InEdit</tt> class to handle in-place forms manually in your code.
+</p>
+<code>
+var editor = new InEdit('the-element', {
+  url:    '/the/submit/url',
+  name:   'the_text',
+  method: 'post'
+});
+
+editor.show();
+</code>
+<p>
+  In any case once the user hits the submit button, our script will send all the data
+  via an {Xhr} request and update the original element with the content from the response-text
+</p>
+
+
+<%= chapter "Options List", :options %>
+<p>
+  You can use the following options with your inline editors.
+  
+  <table>
+    <tr><th>Name</th>   <th>Default</th> <th>Description</th></tr>
+    <tr><td>url</td>    <td>null</td>    <td>the url address where to send the form</td></tr>
+    <tr><td>name</td>   <td>'text'</td>  <td>the field name</td></tr>
+    <tr><td>method</td> <td>'put'</td>   <td>the method for the Xhr request</td></tr>
+    <tr><td>type</td>   <td>'text'</td>  <td>the input type, 'text', 'file', 'password' or 'textarea'</td></tr>
+    <tr><td>toggle</td> <td>null</td>    <td>a reference to an element that should get hidden when the editor is active</td></tr>
+    <tr><td>update</td> <td>true</td>    <td>a marker if the element should be updated with the response-text</td></tr>
+    <tr><td>Xhr</td>    <td>{}</td>      <td>additional Xhr options</td></tr>
+  </table>
+</p>
+
+
+<%= chapter "Public API", :api %>
+<p>
+  In case you work with the <tt>InEdit</tt> class directly there are few methods available
+  <table>
+    <tr><th>Name</th><th>Description</th></tr>
+    <tr><td>show()</td><td>shows the in-place form</td></tr>
+    <tr><td>hide()</td><td>hides the form and brings back the original content</td></tr>
+    <tr><td>send()</td><td>in case you need to send the form manually</td></tr>
+  </table>
+</p>
+
+
+<%= chapter "Events List", :events %>
+<p>
+  There is also a list of events available which you can observe with the in-form editors
+  <table>
+    <tr><th>Name</th><th>Description</th></tr>
+    <tr><td>show</td><td>when the form appears in the place</td></tr>
+    <tr><td>hide</td><td>when the form gets hidden</td></tr>
+    <tr><td>send</td><td>when the form was submitted</td></tr>
+    <tr><td>update</td><td>when the script received the server response and updated the element</td></tr>
+  </table>
+</p>
+
+
+<%= chapter "Style Alterations", :style %>
+<p>
+  In case you need to alter the styles on the form, there's basic structure of elements we use
+</p>
+<code>
+<form class="right-in-edit">
+  <input class="right-in-edit-field" />
+  <input type="submit" class="right-in-edit-submit" />
+  <a href="" class="right-in-edit-cancel">Cancel</a>
+  <div class="right-in-edit-spinner">
+    <div class="glow"></div><div></div><div></div><div></div>
+  </div>
+</form>
+</code>

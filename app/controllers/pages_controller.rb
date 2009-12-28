@@ -6,7 +6,11 @@ class PagesController < ApplicationController
   def show
     @path = params[:path].blank? ? 'home' : params[:path].join('/')
     
-    if @path.ends_with?('move.html')
+    puts @path
+    
+    if @path == 'ui/in-edit/response'
+      render :text => params[:text], :content_type => "text/html"
+    elsif @path.ends_with?('move.html')
       # used in the sortable demo
       render :text => sortable_move_resopnse, :layout => false
     elsif @path.ends_with?('.js')
