@@ -18,7 +18,7 @@ module CrossReferences
       match = if unit
         if unit.name == desc
           "<a href='#{unit_path(unit)}' class='api-ref'>#{unit.name}</a>"
-        elsif method = unit.unit_methods.find_by_name(desc.slice(desc.rindex(/\.|#/)+1, desc.size))
+        elsif method = unit.unit_methods.find_by_name(desc.slice((desc.rindex(/\.|#/)||0)+1, desc.size))
           match = unit == @unit ? method.name : "#{unit.name}#{desc.slice(unit.name.size, 1)}#{method.name}"
           "<a href='#{unit_method_path(method)}' class='api-ref'>#{match}</a>"
         else

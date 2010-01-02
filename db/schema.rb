@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20091217092929) do
+ActiveRecord::Schema.define(:version => 20100102095949) do
 
   create_table "downloads", :force => true do |t|
     t.string   "filename"
@@ -34,13 +34,30 @@ ActiveRecord::Schema.define(:version => 20091217092929) do
 
   add_index "posts", ["uri_name"], :name => "index_posts_on_uri_name"
 
+  create_table "unit_descriptions", :force => true do |t|
+    t.integer "unit_id"
+    t.string  "language"
+    t.text    "text"
+  end
+
+  add_index "unit_descriptions", ["language"], :name => "index_unit_descriptions_on_language"
+  add_index "unit_descriptions", ["unit_id"], :name => "index_unit_descriptions_on_unit_id"
+
+  create_table "unit_method_descriptions", :force => true do |t|
+    t.integer "unit_method_id"
+    t.string  "language"
+    t.text    "text"
+    t.text    "example"
+  end
+
+  add_index "unit_method_descriptions", ["language"], :name => "index_unit_method_descriptions_on_language"
+  add_index "unit_method_descriptions", ["unit_method_id"], :name => "index_unit_method_descriptions_on_unit_method_id"
+
   create_table "unit_methods", :force => true do |t|
     t.integer "unit_id"
     t.string  "type"
     t.string  "name"
-    t.string  "semantic"
-    t.text    "description"
-    t.text    "example"
+    t.text    "semantic"
   end
 
   add_index "unit_methods", ["unit_id"], :name => "index_unit_methods_on_unit_id"
@@ -48,8 +65,10 @@ ActiveRecord::Schema.define(:version => 20091217092929) do
   create_table "units", :force => true do |t|
     t.string "name"
     t.string "package"
-    t.text   "description"
   end
+
+  add_index "units", ["name"], :name => "index_units_on_name"
+  add_index "units", ["package"], :name => "index_units_on_package"
 
   create_table "users", :force => true do |t|
     t.string   "login"

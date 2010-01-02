@@ -87,8 +87,11 @@ input[type="image"] {
 table {
   border: none;
   width: 100%;
-  
   border-collapse: collapse;
+}
+table thead {
+  border-top: 1px solid #BFBEAD;
+  border-bottom: 1px solid #BFBEAD;
 }
 table th, table td, table caption {
   margin: 0;

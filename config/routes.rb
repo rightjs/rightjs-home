@@ -10,10 +10,14 @@ ActionController::Routing::Routes.draw do |map|
     s_map.logout '/logout', :action => 'destroy'
   end
   
+  doc_prefixes = [''] + RIGHTJS_LANGUAGES.collect{|l| "#{l}/"}
+  
   map.with_options :controller => 'docs' do |docs|
-    docs.connect 'docs/:path', :action => 'show', :requirements => {:path => /[\w\d\/]+/}
-    docs.connect 'docs/search/:search.:format', :action => 'search'
-    docs.connect 'docs/search/.js',        :action => 'search', :requirements => {:search => ''}
+    doc_prefixes.each do |prefix|
+      docs.connect "#{prefix}docs/:path", :action => 'show', :requirements => {:path => /[\w\d\/]+/}
+      docs.connect "#{prefix}docs/search/:search.:format", :action => 'search'
+      docs.connect "#{prefix}docs/search/.js",             :action => 'search', :requirements => {:search => ''}
+    end
   end
   
   map.with_options :controller => 'pages' do |pages|

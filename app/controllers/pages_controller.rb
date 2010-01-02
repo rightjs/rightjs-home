@@ -6,8 +6,6 @@ class PagesController < ApplicationController
   def show
     @path = params[:path].blank? ? 'home' : params[:path].join('/')
     
-    puts @path
-    
     if @path == 'ui/in-edit/response'
       
     elsif @path.ends_with?('move.html')

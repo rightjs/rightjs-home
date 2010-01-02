@@ -36,72 +36,64 @@ namespace :rightjs do
     
     puts "Rebuilding documentation\n\n"
     
-    require 'rdoc/markup/simple_markup'
-    require 'rdoc/markup/simple_markup/to_html'
-
-    p = SM::SimpleMarkup.new
-    
-    def p.to_html(source)
-      source = source.gsub(/\n +\*/, "\n*")
-      
-      self.convert(source, SM::ToHtml.new).
-        gsub("&quot;", '"'). # getting quotes back
-        gsub("<p>\n&lt;code&gt;\n</p>\n<pre>", "<code>").
-        gsub("</pre>\n<p>\n&lt;/code&gt;\n</p>", "</code>").
-        gsub(/(<code>)(.+?)(<\/code>)/im) {
-          "#{$1}#{$2.gsub("\n  ", "\n")}</code>"
-        }
-    end
-    
     Unit.destroy_all
-    UnitMethod.destroy_all
     
-    FileList["#{RIGHTJS_ROOT}/core/doc/**/*.rd"].each do |file_name|
-      name = File.basename(file_name).split('.rd').first.split('.').collect(&:capitalize).join('.')
+    docs_dir = "#{RIGHTJS_ROOT}/core/doc/"
+    
+    FileList["#{docs_dir}*/**/*.md"].each do |file_name|
+      els = file_name.gsub(docs_dir, '').split('/')
       
-      puts " * #{name}"
+      language = els.shift
+      package  = els.shift
+      basename = els.shift
+      unitname = basename.gsub(/\.md$/, '').split('.').collect(&:capitalize).join('.')
       
-      pack = file_name.split('doc/').last.split("/").first
+      puts " * #{unitname} (#{language})"
       
-      source = File.read(file_name)
+      fulltext = File.read(file_name)
       
-      methods = source.split('###')
+      blocks   = fulltext.split("###")
+      basetext = blocks.shift
       
-      description = p.to_html(methods.shift.strip)
-      
-      unit = Unit.create({
-        :name => name,
-        :package => pack,
-        :description => description
+      unit     = Unit.find_or_create_by_name_and_package(unitname, package)
+      unit.descriptions.create({
+        :language => language, :text => Shmaruku.to_html(basetext)
       })
       
-      methods.each do |method|
-        method = method.split('== Semantic')
-        name = method.shift.strip
-        type = name.include?('.') ? 'class' : name.include?('#') ? 'instance' : 'global'
-        name = type == 'global' ? name : name.split(/\.|#/).last
+      blocks.each do |method_desc|
+        desc = method_desc.split("\n")
+        name = desc.shift.strip
+        type = name[0,1] == '.' ? 'class' : name[0,1] == '#' ? 'instance' : 'global'
+        name = name.gsub /^\.|#/, ''
         
-        method = method.first.split('== Description')
-        semantic = method.shift.strip.gsub(/\n  /, "\n")
+        text = Shmaruku.to_html(desc.join("\n")).strip
         
-        method = method.first.split('== Example')
-        description = p.to_html(method.shift.strip.gsub(/\n  /, "\n"))
+        semantic = ''
+        example  = ''
         
-        example = method.blank? ? '' : method.shift.strip.gsub(/\n  /, "\n")
+        text.gsub! /\A<code>(.*?)<\/code>/im do |match|
+          semantic = $1.dup
+          ''
+        end
         
-        method = UnitMethod.create({
-          :unit        => unit,
-          :type        => type,
-          :name        => name,
-          :semantic    => semantic,
-          :description => description,
-          :example     => example
+        text.gsub! /<code>(.*?)<\/code>\Z/im do |match|
+          example = $1.dup
+          ''
+        end
+        
+        puts "Can't find semantic for #{language} - #{unitname} - #{name}" if semantic.blank?
+        
+        method = UnitMethod.find_or_create_by_unit_id_and_name_and_type(unit.id, name, type)
+        method.update_attribute(:semantic, semantic.strip)
+        
+        method.descriptions.create({
+          :language => language,
+          :example  => example.strip,
+          :text     => text.strip
         })
       end
     end
     
-    puts "\nCleaning cache\n\n"
-    FileUtils.rm_rf "#{RAILS_ROOT}/public/docs"
   end
   
   desc 'Updates the rightjs Goods and UI modules'
