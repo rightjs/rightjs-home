@@ -89,4 +89,13 @@ document.onReady(function() {
 
     window.on('blur', rollback);
   }
+  
+  // aggregation links visual effects
+  $$('#social li a').each(function(link) {
+    var icon = new Element('i');
+    
+    link.insert(icon, 'top').addClass('fancy-icon')
+      .onMouseover(icon.morph.bind(icon, {opacity: 0}))
+      .onMouseout(icon.morph.bind(icon, {opacity: 1}));
+  });
 });
