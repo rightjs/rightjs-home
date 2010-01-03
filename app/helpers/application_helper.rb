@@ -7,7 +7,7 @@ module ApplicationHelper
   
   # common menu link builder
   def menu_link_to(text, url, options={}, current=nil)
-    content_tag :li, link_to(text, url, options), :class => (current || part_of_current_url?(url)) ? 'current' : nil
+    content_tag :li, link_to(text, url, options), :class => (current.nil? ? part_of_current_url?(url) : current) ? 'current' : nil
   end
   
   # builds a menu list with RightJS main classes and links to the documentation
@@ -21,7 +21,7 @@ module ApplicationHelper
     packs.keys.sort.collect { |package|
       content_tag(:label, package.capitalize) +
       content_tag(:ul, packs[package].collect { |unit|
-        menu_link_to(unit.name, unit)+
+        menu_link_to(unit.name, unit, {}, request.request_uri == unit_path(unit))+
           (@unit == unit ? right_js_unit_menu(unit) : '')
       })
     }.join("\n")

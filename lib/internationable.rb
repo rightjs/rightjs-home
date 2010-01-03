@@ -3,7 +3,7 @@
 #
 #
 module Internationable
-  DEFAULT_LANGUAGE = 'en'
+  DEFAULT_LANGUAGE = RIGHTJS_DEFAULT_LANG
   
   def self.current_language
     defined?(@@current_language) ? @@current_language : DEFAULT_LANGUAGE

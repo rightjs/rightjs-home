@@ -2,7 +2,7 @@
   <ul>
     <%= menu_link_to 'Home',    '/' %>
     <%= menu_link_to 'Download', download_path, {}, url_starts_with?(download_path, '/builds') %>
-    <%= menu_link_to 'Plugins',  '/plugins', {}, url_starts_with?('/ui', '/goods') %>
+    <%= menu_link_to 'Plugins',  '/plugins', {}, url_starts_with?('/ui', '/goods', '/plugins') %>
     <%= menu_link_to 'Demos',   '/demos', {}, url_starts_with?('/demos', '/fx-demo') %>
     <%= menu_link_to 'Docs',     documentation_path, {}, url_starts_with?('/docs', '/tutorials') %>
     <%= menu_link_to 'Blog',     '/blog' %>

@@ -183,9 +183,8 @@ div#main-menu ul li.current a {
 
 div#lang-switch {
   position: absolute;
-  right: 120pt;
-  top: 20pt;
-  display: none;
+  right: 8em;
+  top: 1em;
 }
 
 div#main {

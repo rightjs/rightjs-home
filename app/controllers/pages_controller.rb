@@ -14,12 +14,10 @@ class PagesController < ApplicationController
     elsif @path.ends_with?('.js')
       # used in the autocompleter demo
       render :text => language_autocompleter_response, :layout => false
+    elsif @page = Page.find_by_path(@path)
+      render :text => @page.to_html(@template), :layout => request.xhr? ? false : 'application'
     else
-      @file = "pages/#{@path}.html.erb"
-      
-      raise NotFound if !File.exists?("#{RAILS_ROOT}/app/views/#{@file}")
-      
-      render @file, :layout => request.xhr? ? false : 'application'
+      raise NotFound
     end
   end
   

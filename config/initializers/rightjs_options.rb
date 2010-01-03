@@ -20,3 +20,4 @@ RIGHTJS_BUILD_OPTIONS = %w(no-cookie no-form no-xhr no-fx no-olds ) + RIGHTJS_GO
 RIGHTJS_TICKETS_TRACKER_URL = 'http://rightjs.lighthouseapp.com/projects/31989'
 
 RIGHTJS_LANGUAGES     = %w(en ru)
+RIGHTJS_DEFAULT_LANG  = 'en'

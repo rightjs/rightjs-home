@@ -17,7 +17,7 @@ protected
   rescue_from ActiveRecord::RecordNotFound, :with => :render_not_found
   
   def render_not_found
-    render "pages/not_found.html.erb", :status => 404
+    render :text => Page.find_by_path("not_found").to_html(@template), :layout => 'application', :status => 404
     
     false # filters default
   end
@@ -44,7 +44,7 @@ protected
   before_filter :choose_language
   
   def choose_language
-    basehost   = request.env['HTTP_HOST'].gsub /(#{RIGHTJS_LANGUAGES.join('|')}){2}\./, ''
+    basehost   = request.env['HTTP_HOST'].gsub /(#{RIGHTJS_LANGUAGES.join('|')})\./, ''
     
     @language  = nil
     @languages = {}
