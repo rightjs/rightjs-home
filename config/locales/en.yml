@@ -1,5 +1,43 @@
-# Sample localization file for English. Add more files in this directory for other locales.
-# See http://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 en:
-  hello: "Hello world"
+  slogan:                 The Right JavaScript Framework
+                          
+  menu:                   
+    Home:                 Home    
+    Download:             Download
+    Plugins:              Plugins 
+    Demos:                Demos   
+    Docs:                 Docs    
+    Blog:                 Blog    
+                          
+    Benchmarks:           Benchmarks
+    Browsers:             Browsers
+    Comparison:           Comparison
+    Philosophy:           Philosophy
+    Roadmap:              Roadmap 
+    Contacts:             Contacts
+    
+    About_the_Framework:  About the Framework
+    Questions:            Questions?
+    
+  sidebar:
+    Search_API:           Search API
+    Get_it:               Get it!
+    Documentation:        Documentation
+    Getting_Started:      Getting Started
+    API_Reference:        API Reference
+    Tutorials:            Tutorials
+    
+    Additional:           Additional
+    
+    RightJS_Goods:        RightJS Goods
+    RightJS_UI:           RightJS UI
+    Showcases:            Showcases
+    
+    Community:            Community
+    
+    Google_Group:         Google Group
+    Tickets_Tracker:      Tickets Tracker
+    Code_Snippets:        Code Snippets
+    Participate:          Participate!
+    IRC_rightjs:          'IRC #rightjs'

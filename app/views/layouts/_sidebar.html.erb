@@ -7,7 +7,7 @@
   </div>
 <% else -%>
   <div class="box" id="download-box">
-    <h1>Get it!</h1>
+    <h1><%= 'sidebar.Get_it'.t %></h1>
     <ul>
       <%= menu_link_to "RightJS v#{RIGHTJS_VERSION}", "/builds/current/right.js.zip" %>
     </ul>
@@ -16,32 +16,33 @@
   <%= render 'layouts/search_box' %>
   
   <div class="box">
-    <label>Documentation</label>
+    <label><%= 'sidebar.Documentation'.t %></label>
     <ul>
-      <%= menu_link_to 'Getting Started', tutorial_path('getting-started') %>
-      <%= menu_link_to 'API-Reference', documentation_path %>
-      <%= menu_link_to 'Tutorials', '/tutorials' %>
+      <%= menu_link_to 'sidebar.Getting_Started'.t, tutorial_path('getting-started') %>
+      <%= menu_link_to 'sidebar.API_Reference'.t, documentation_path %>
+      <%= menu_link_to 'sidebar.Tutorials'.t, '/tutorials' %>
     </ul>
   </div>
   
   <div class="box">
-    <label>Additional</label>
+    <label><%= 'sidebar.Additional'.t %></label>
     <ul>
-      <%= menu_link_to 'RightJS Goods', goods_path %>
+      <%= menu_link_to 'sidebar.RightJS_Goods'.t, goods_path %>
       <%= goods_modules_menu if request.request_uri.starts_with?('/goods/') %>
-      <%= menu_link_to 'RightJS UI', '/ui' %>
+      <%= menu_link_to 'sidebar.RightJS_UI'.t, '/ui' %>
       <%= ui_modules_menu if request.request_uri.starts_with?('/ui/') %>
-      <%= menu_link_to 'Showcases', '/showcases' %>
+      <%= menu_link_to 'sidebar.Showcases'.t, '/showcases' %>
     </ul>
   </div>
   
   <div class="box">
-    <label>Community</label>
+    <label><%= 'sidebar.Community'.t %></label>
     <ul>
-      <%= menu_link_to 'Google Group', 'http://groups.google.com/group/rightjs', :target => :_blank %>
-      <%= menu_link_to 'Tickets Tracker', RIGHTJS_TICKETS_TRACKER_URL, :target => :_blank %>
-      <%= menu_link_to 'Participate!', '/participate' %>
-      <%= menu_link_to 'IRC #rightjs', 'irc://irc.freenode.net/rightjs' %>
+      <%= menu_link_to 'sidebar.Google_Group'.t, 'http://groups.google.com/group/rightjs' %>
+      <%= menu_link_to 'sidebar.Tickets_Tracker'.t, RIGHTJS_TICKETS_TRACKER_URL %>
+      <%= menu_link_to 'sidebar.Code_Snippets'.t, 'http://github.com/rightjs/rightjs-snippets' %>
+      <%= menu_link_to 'sidebar.Participate'.t, '/participate' %>
+      <%= menu_link_to 'sidebar.IRC_rightjs'.t, 'irc://irc.freenode.net/rightjs' %>
     </ul>
   </div>
 <% end -%>

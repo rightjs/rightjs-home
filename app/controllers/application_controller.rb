@@ -69,6 +69,8 @@ protected
         value.gsub! "/#{@language}/", '/'
       end
     end
+    
+    I18n.locale = @language
   end
   
   def is_current_language?(lang)

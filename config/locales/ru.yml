@@ -1,0 +1,43 @@
+
+ru:
+  slogan:                 Правая JavaScript библиотека
+                
+  menu:         
+    Home:                 Начало
+    Download:             Скачать
+    Plugins:              Плагины
+    Demos:                Демки
+    Docs:                 Доки
+    Blog:                 Блог
+                
+    Benchmarks:           Бенчмарки
+    Browsers:             Браузеры
+    Comparison:           Сравнение
+    Philosophy:           Философия
+    Roadmap:              Роадмап
+    Contacts:             Контакты
+    
+    About_the_Framework:  О проекте
+    Questions:            Вопросы?
+    
+  sidebar:
+    Search_API:           Поиск API
+    Get_it:               Скачать!
+    Documentation:        Документация
+    Getting_Started:      Быстрый старт
+    API_Reference:        API-документация
+    Tutorials:            Статьи
+    
+    Additional:           Дополнительно
+    
+    RightJS_Goods:        RightJS Плагины
+    RightJS_UI:           RightJS Видежты
+    Showcases:            Примеры
+    
+    Community:            Коммунистам
+    
+    Google_Group:         Форум
+    Tickets_Tracker:      Трекер
+    Code_Snippets:        Снипеты
+    Participate:          Помочь!
+    IRC_rightjs:          'IRC #rightjs'
