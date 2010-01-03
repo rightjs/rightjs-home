@@ -2,7 +2,7 @@
 <%= @unit.description %>
 
 <% unless @unit.unit_methods.blank? -%>
-<h1>Methods</h1>
+<h1><%= 'docs.Methods'.t %></h1>
 <p>
   <%= @unit.unit_methods.map { |method|
     link_to_unit_method method

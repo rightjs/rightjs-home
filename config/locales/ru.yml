@@ -41,3 +41,9 @@ ru:
     Code_Snippets:        Снипеты
     Participate:          Помочь!
     IRC_rightjs:          'IRC #rightjs'
+    
+  docs:
+    Methods:              Методы
+    Description:          Описание
+    Example:              Пример
+  
