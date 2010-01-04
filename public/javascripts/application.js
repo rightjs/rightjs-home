@@ -87,7 +87,10 @@ document.onReady(function() {
       });
     });
 
-    window.on('blur', rollback);
+    window.on({
+      blur: rollback,
+      resize: rollback
+    });
   }
   
   // aggregation links visual effects
