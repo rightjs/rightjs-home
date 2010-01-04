@@ -17,7 +17,7 @@ protected
   rescue_from ActiveRecord::RecordNotFound, :with => :render_not_found
   
   def render_not_found
-    render :text => Page.find_by_path("not_found").to_html(@template), :layout => 'application', :status => 404
+    render :text => Page.find_by_path("not-found").to_html(@template), :layout => 'application', :status => 404
     
     false # filters default
   end
