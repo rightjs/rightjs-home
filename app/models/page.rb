@@ -25,7 +25,13 @@ class Page
   def to_html(template)
     content = template.render(:inline => File.read(@filename))
     
-    @filename.ends_with?('.md') ? Shmaruku.to_html(content) : content
+    content = Shmaruku.to_html(content) if @filename.ends_with?('.md')
+    
+    # highjacking the page title
+    title = content.match(/\A<h1>(.+?)<\/h1>/)
+    template.instance_variable_set("@title_text", title[1]) if title && !template.instance_variable_get("@title_text")
+    
+    content
   end
   
 end

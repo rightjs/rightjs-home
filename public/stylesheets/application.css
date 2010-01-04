@@ -394,7 +394,8 @@ div.shot a, div.shot a:hover {
   text-decoration: none;
 }
 div.shot img {
-  border: 1px solid #DDD;
+  border: 1px solid #CFCEBD;
+  background: #FFFEFC;
   padding: 5pt;
 }
 
