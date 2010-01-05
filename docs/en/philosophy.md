@@ -11,15 +11,14 @@ RightJS does not have any intention to enlight you with some radically new appro
 in JavaScript development, but rather does something quite opposite.
 
 The main target of RightJS is to create a simple, fast and reliable tool for a true
-agile development. RightJS simplifies many routine operations making JavaScript
+agile development. It simplifies many routine operations making JavaScript
 development an easy and natural thing. It looks simple, it works simple, but that
-is the kind of simplicity that lets you concentrate on serious things instead of
-fighting for survival.
+is the kind of simplicity that lets you concentrate on serious things.
 
 
 ## Designed, not Evolved
 
-Whatever your previous experience is jQuery, Prototype, Mootools, Ruby, Python or PHP.
+Whatever your previous experience is jQuery, Prototype, Mootools, Ruby, Python or even PHP.
 When you look through RightJS API, you immediately spot familiar things. But don't get
 fooled, it was designed this way intentionally, to make it easy to work with for people
 with different backgrounds.
@@ -27,7 +26,7 @@ with different backgrounds.
 And it's not just designed to be familiar, it is designed to make JavaScript development
 a most natural thing specifically for the server-side developers who work with dynamic
 languages like Ruby or Python. We have extensive object-oriented programming features,
-flexible dynamic language attitude, native units extensions, etc.
+flexible dynamic language attitude, native unit extensions, etc, etc.
 
 
 ## Don't Learn, Have Fun!

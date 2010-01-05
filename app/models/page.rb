@@ -26,7 +26,14 @@ class Page
   def to_html(template)
     content = template.render(:inline => File.read(@filename))
     
-    content = Shmaruku.to_html(content) if @filename.ends_with?('.md')
+    if @filename.ends_with?('.md')
+      # rebuilding the chapter blocks
+      content.gsub! /##\s+(.+?),\s+\:([a-z]+)/ do |match|
+        template.chapter($1.dup, $2.dup)
+      end
+      
+      content = Shmaruku.to_html(content)
+    end
     
     # highjacking the page title
     unless template.instance_variable_get("@title_text")

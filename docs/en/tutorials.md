@@ -1,4 +1,4 @@
-<h1>Tutorials</h1>
+# Tutorials
 
 <dl id="tutorials-index">
   <dt>General Features</dt>
@@ -15,8 +15,7 @@
   <dt>DOM Features</dt>
   <ul>
     <%= menu_link_to "DOM Navigation And Manipulations", tutorial_path('dom-navigation-and-manipulations') %>
-    <%= menu_link_to "DOM Events Handling Basics",       tutorial_path('dom-events-basics') %>
-    <%= menu_link_to "DOM Event Extensions",             tutorial_path('dom-event-extensions') %>
+    <%= menu_link_to "DOM Events Handling",              tutorial_path('dom-events-handling') %>
     <%= menu_link_to "Elements Visual State Toggling",   tutorial_path('elements-toggling') %>
   </ul>
   <dt>Additional Features</dt>

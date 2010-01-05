@@ -12,11 +12,10 @@ module PagesHelper
     @anchors << [title, key]
     
     content_tag(:a, '', :name => key)+
-    content_tag(:h2,
+    "\n<h2 class='chapter'>\n  "+
       content_tag(:a, "top &uarr;", :href => "#", :class => "top-anchor")+
-      content_tag(:a, title, :href => "##{key}"),
-      :class => :chapter
-    )
+      content_tag(:a, title, :href => "##{key}")+
+    "\n</h2>"
   end
   
   ANCHORS_INDEX_PLACEHOLDER = '<!-- anchors index will be here -->'

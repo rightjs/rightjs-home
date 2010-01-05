@@ -2,8 +2,10 @@
 # Patching Maruku for our own needs
 #
 class Shmaruku < Maruku
+  KEY = "OH THIS TIME IM REALLY GONNA GET YA"
+  
   def self.to_html(string) 
-    self.new(string.gsub(/\{([a-z\.#]+)\}/im, '-|\1|-')).to_html
+    self.new(string.gsub(/\{([a-z\.#]+)\}/im, "#{KEY}\\1#{KEY}")).to_html
   end
   
   def to_html
@@ -22,6 +24,8 @@ class Shmaruku < Maruku
     ['<pre><tt>',                      '<code>' ],
     ['</tt></pre>',                    '</code>'],
     ["<td style='text-align: left;'>", '<td>'   ],
-    [/\-\|([a-z\.#]+)\|\-/im,          '{\1}'   ]
+    ["&amp;lt;",                       '&lt;'   ],
+    ["&amp;gt;",                       '&gt;'   ],
+    [/#{KEY}([a-z\.#]+)#{KEY}/im,      '{\1}'   ]
   ]
 end
