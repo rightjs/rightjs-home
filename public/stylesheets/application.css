@@ -77,11 +77,18 @@ a img {
 
 input[type="text"], input[type="password"], textarea {
   background: #FFFEFC;
-  border-color: #CFCEBD;
+  border: 1px solid #CFCEBD;
+  -webkit-border-radius: .2em;
+  -moz-border-radius: .2em; 
 }
 input[type="image"] {
   position: relative;
   top: 3px;
+}
+input.demo-field {
+  border: 1px solid #CFCEBD;
+  font-size: 1.1em;
+  width: 14em;
 }
 
 table {

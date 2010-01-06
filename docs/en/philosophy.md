@@ -19,19 +19,19 @@ is the kind of simplicity that lets you concentrate on serious things.
 ## Designed, not Evolved
 
 Whatever your previous experience is jQuery, Prototype, Mootools, Ruby, Python or even PHP.
-When you look through RightJS API, you immediately spot familiar things. But don't get
-fooled, it was designed this way intentionally, to make it easy to work with for people
-with different backgrounds.
+When you look through RightJS API, you immediately spot familiar things. RightJS keeps it
+close to the standards and it was specifically designed the way it was familiar for
+people with different backgrounds.
 
 And it's not just designed to be familiar, it is designed to make JavaScript development
-a most natural thing specifically for the server-side developers who work with dynamic
+the most natural thing specifically for the server-side developers who work with dynamic
 languages like Ruby or Python. We have extensive object-oriented programming features,
 flexible dynamic language attitude, native unit extensions, etc, etc.
 
 
 ## Don't Learn, Have Fun!
 
-You might noticed that there is not much of the documentation for RightJS. The reason
+You might notice that there is not so much of the documentation for RightJS. The reason
 is that we simplified and systematically organized all the things the way there is
 almost nothing to learn. Because we don't want you to learn, we want you to have fun.
 
@@ -56,7 +56,7 @@ development in order to bring in the JavaScript development the joy of dynamic
 languages programming.
 
 We specifically choose object-oriented structures and functionality injection approach,
-providing a clean and reliable working skeleton, which can be easily bended, patched
+providing a clean and reliably working skeleton, which can be easily bended, patched
 and overridden when your task requires any sort of customization.
 
 If you can hack it on the server-side, you don't need to change your habits and can

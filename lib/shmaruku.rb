@@ -17,15 +17,16 @@ class Shmaruku < Maruku
   end
   
   PATCHES = [
-    ['&#39;',                          "'"      ],
-    ['&quot;',                         '"'      ],
-    [/<h(\d)\sid='(.+?)'>/,            '<h\1>'  ],
-    ['code>',                          'tt>'    ],
-    ['<pre><tt>',                      '<code>' ],
-    ['</tt></pre>',                    '</code>'],
-    ["<td style='text-align: left;'>", '<td>'   ],
-    ["&amp;lt;",                       '&lt;'   ],
-    ["&amp;gt;",                       '&gt;'   ],
-    [/#{KEY}([a-z\.#]+)#{KEY}/im,      '{\1}'   ]
+    ['&#39;',                          "'"            ],
+    ['&quot;',                         '"'            ],
+    [/<h(\d)\sid='(.+?)'>/,            '<h\1>'        ],
+    ['code>',                          'tt>'          ],
+    ['<pre><tt>',                      '<code>'       ],
+    ['</tt></pre>',                    '</code>'      ],
+    ["<td style='text-align: left;'>", '<td>'         ],
+    ["&amp;lt;",                       '&lt;'         ],
+    ["&amp;gt;",                       '&gt;'         ],
+    [/<div([^>]+)\/>/,                 '<div\1></div>'],
+    [/#{KEY}([a-z\.#]+)#{KEY}/im,      '{\1}'         ]
   ]
 end
