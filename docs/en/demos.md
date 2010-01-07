@@ -1,4 +1,4 @@
-<h1>Demo Pages Index</h1>
+# Demo Pages Index
 
 <p>
   <dl>

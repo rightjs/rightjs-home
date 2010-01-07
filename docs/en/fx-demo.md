@@ -1,28 +1,10 @@
-<h1>Visual Effects Demo</h1>
+# Visual Effects Demo
 <% content_for :modules, stylesheet_link_tag('fx-demo') %>
-<p>
-  By default RightJS comes with a visual effects engine and several most frequently used effects.
-</p>
 
-<script type="text/javascript">
-// <!--
-function reset(id) {
-  $(id).replace('<div id="'+id+'" class="'+$(id).className+'">'+$(id).innerHTML+'</div>');
-}
-function runfx(id) {
-  try {
-    $eval($(id+'-script').value);
-  } catch(e) {}
-}
-// -->
-</script>
+By default RightJS comes with a visual effects engine and several most frequently used effects.
 
 
 <h2>Fx.Morph</h2>
-<p>
-  Fx.Morph is a basic visual effects interface. It allows you to gradually morph
-  any dom-element appearance from its current state to any given style.
-</p>
 
 <div class="fx-example fx-example-big">
   <div class="fx-test-container">
@@ -261,3 +243,17 @@ $('zoom-test')
     <a href="" onclick="reset('zoom-test'); return false;">Reset</a>
   </div>
 </div>
+
+
+<script type="text/javascript">
+// <!--
+function reset(id) {
+  $(id).replace('<div id="'+id+'" class="'+$(id).className+'">'+$(id).innerHTML+'</div>');
+}
+function runfx(id) {
+  try {
+    $eval($(id+'-script').value);
+  } catch(e) {}
+}
+// -->
+</script>

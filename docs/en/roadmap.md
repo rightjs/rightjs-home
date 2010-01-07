@@ -1,9 +1,7 @@
-<h1>Roadmap</h1>
+# Roadmap
 
-<p>
-  This document is meant to share some plans on the further project development.
-  There will be no dates, at least so far, just priorities and order of the milestones.
-</p>
+This document is meant to share some plans on the further project development.
+There will be no dates, at least so far, just priorities and order of the milestones.
 
 <dl class="roadmap">
   <dt>RightJS Home: Russian Documentation</dt>

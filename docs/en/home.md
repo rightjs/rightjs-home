@@ -59,11 +59,6 @@
     </p>
   </li>
 </ul>
-<script type="text/javascript">
-  // <![CDATA[
-    new Tabs('promo');
-  // ]]>
-</script>
 
 <h1>What's Hot?</h1>
 <dl id="features">
@@ -85,6 +80,7 @@
 
 <script type="text/javascript">
   // <![CDATA[
+    new Tabs('promo');
     new Tabs('features');
   // ]]>
 </script>
