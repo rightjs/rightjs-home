@@ -46,3 +46,28 @@ en:
     Methods:              Methods
     Description:          Description
     Example:              Example
+  
+  
+  pages:
+    misc:
+      Info:               Info
+      Demo:               Demo
+      Download:           Download
+      Documentation:      Documentation
+    
+      build:              build
+      minified:           minified
+      source:             source
+    
+    download:
+      Packed:             Packed Version
+      Minified:           Minified Version
+      Uncompressed:       Uncompressed Source Code
+      
+      core_file:          the core file
+      old_browsers:       the old browsers support
+      zipped_files:       both files zipped
+  
+    fx_demo:
+      Start:              Start
+      Reset:              Reset

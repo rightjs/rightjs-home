@@ -1,0 +1,21 @@
+<% content_for :modules, javascript_include_tag('/builds/goods/right-dnd-min.js') %>
+<% content_for :modules, stylesheet_link_tag('dnd-demo') %>
+
+<p>
+  <div class="test-container">
+    <div class="draggable" rel="draggable" data-draggable-options="{}">Drag Me</div>
+    <div class="draggable" rel="draggable" data-draggable-options="{}">Or Me</div>
+  </div>
+</p>
+<p>
+  <div class="test-container">
+    <div class="draggable" rel="draggable" data-draggable-options="{revert: true}">I Run Back</div>
+    <div class="draggable" rel="draggable" data-draggable-options="{clone: true, revert: true}">I Leave Clone</div>
+  </div>
+</p>
+<p>
+  <div class="test-container">
+    <div class="draggable" rel="draggable" data-draggable-options="{snap: 50}">I Snap To 50px</div>
+    <div class="draggable" rel="draggable" data-draggable-options="{snap: [0, 50]}">I Snap To [0, 50]</div>
+  </div>
+</p>

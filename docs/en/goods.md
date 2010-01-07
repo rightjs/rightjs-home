@@ -15,7 +15,8 @@ You can include any of the following modules as separated files on your page, or
 can include them in the main build at the [custom builds page](<%= builds_path %>)
 
 <%
-module_descriptions = {
+@module_descriptions = {
+  
   :rails    => "Provides a conventional ajax operations interface and RightJS core "+
                "extensions with underscored and ruby-like aliases.",
                 
@@ -34,22 +35,8 @@ module_descriptions = {
                
   :behavior => "This module provides an unobtrusive behavior definitions functionality, similar to "+
                "the jQuery's 'live' feature or the Prototype 'lowpro' plugin, but with some additional abilities."
+
 }
 -%>
 
-<% goods_list.each do |unit| %>
-<%= chapter unit[:name], unit[:key] %>
-<p>
-  <%= module_descriptions[unit[:key]] %>
-</p>
-<p>
-  Info:
-    <%= link_to "Documentation", unit[:url] %> |
-  
-  Download:
-    <%= link_to "build",    "/builds/goods/right-#{unit[:key]}.js",     :target => :_blank %>,
-    <%= link_to "minified", "/builds/goods/right-#{unit[:key]}-min.js", :target => :_blank %>,
-    <%= link_to "source",   "/builds/goods/right-#{unit[:key]}-src.js", :target => :_blank %>
-</p>
-
-<% end -%>
+<%= partial 'unit', :collection => goods_list %>

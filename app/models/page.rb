@@ -4,14 +4,13 @@
 class Page
   
   def self.find_by_path(path)
-    dirname_view  = "#{Rails.root}/app/views/pages/"
-    dirname_docs  = "#{Rails.root}/docs/"
+    dirname_view  = "#{Rails.root}/app/views/pages"
+    dirname_docs  = "#{Rails.root}/docs"
     
     filename = [
-      "#{dirname_docs}#{Internationable.current_language}/#{path}.md",
-      "#{dirname_docs}#{Internationable::DEFAULT_LANGUAGE}/#{path}.md",
-      "#{dirname_view}#{Internationable.current_language}/#{path}.html.erb",
-      "#{dirname_view}#{Internationable::DEFAULT_LANGUAGE}/#{path}.html.erb"
+      "#{dirname_docs}/#{Internationable.current_language}/#{path}.md",
+      "#{dirname_docs}/#{Internationable::DEFAULT_LANGUAGE}/#{path}.md",
+      "#{dirname_view}/#{path}.html.erb"
     ].detect do |filename|
       File.exists?(filename)
     end

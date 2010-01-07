@@ -45,4 +45,16 @@ module PagesHelper
     
     content
   end
+  
+  
+  #
+  # Renders the partial template inside of markdown files
+  #
+  def partial(name, options={})
+    render options.merge(:partial => "pages/#{params[:path].join("/")}/#{name}.html.erb")
+  end
+  
+  def contact_email
+    %Q{<a href="&#x6D;&#x61;i&#x6C;&#x74;&#x6F;:&#105;&#110;&#102;&#111;&#064;&#114;&#105;&#103;&#104;&#116;&#106;&#115;&#046;&#111;&#114;&#103;">&#105;&#110;&#102;&#111;&#064;&#114;&#105;&#103;&#104;&#116;&#106;&#115;&#046;&#111;&#114;&#103;</a>}
+  end
 end

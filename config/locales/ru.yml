@@ -47,3 +47,26 @@ ru:
     Description:          Описание
     Example:              Пример
   
+  pages:
+    misc:
+      Info:               Инфо
+      Demo:               Демо
+      Download:           Скачать
+      Documentation:      Документация
+      
+      build:              билд
+      minified:           сжатый
+      source:             исходник
+    
+    download:
+      Packed:             Пакованная версия
+      Minified:           Сжатая версия
+      Uncompressed:       Оригинальный исходный код
+
+      core_file:          основное ядро
+      old_browsers:       поддержка старых браузеров
+      zipped_files:       оба файла в архиве
+    
+    fx_demo:
+      Start:              Старт
+      Reset:              Сброс

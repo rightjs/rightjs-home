@@ -10,7 +10,7 @@ github service.
 `git clone git://github.com/rightjs/rightjs-ui.git`
 
 <%
-module_descriptions = {
+@module_descriptions = {
   :autocompleter => "Autocompleter is the standard autocompletion feature for RightJS",
   
   :calendar      => "Calendar is the standard calendar feature for RightJS. It might work "+
@@ -37,20 +37,4 @@ module_descriptions = {
 }
 -%>
 
-<% ui_list.each do |unit| %>
-<%= chapter unit[:name], unit[:key] %>
-<p>
-  <%= module_descriptions[unit[:key]] %>
-</p>
-<p>
-  Info:
-    <%= link_to "Documentation", unit[:url] %>,
-    <%= link_to 'Demo',          unit[:url] + '/demo' %> |
-  
-  Download:
-    <%= link_to "build",    "/builds/ui/right-#{unit[:key]}.js",     :target => :_blank %>,
-    <%= link_to "minified", "/builds/ui/right-#{unit[:key]}-min.js", :target => :_blank %>,
-    <%= link_to "source",   "/builds/ui/right-#{unit[:key]}-src.js", :target => :_blank %>
-</p>
-<% end -%>
-
+<%= partial 'unit', :collection => ui_list %>

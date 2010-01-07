@@ -3,27 +3,7 @@
 By default RightJS comes in two files. One of them the actual core, which works for all the modern browsers,
 the second one is a dynamically loadable module with patches for old browsers.
 
-<dl id="download-options">
-  <dt>Packed Version</dt>
-  <ul>
-    <li><%= link_to 'right.js',      '/builds/current/right.js', :target => :_blank %> - the core file</li>
-    <li><%= link_to 'right-olds.js', '/builds/current/right-olds.js', :target => :_blank %> - old browsers support module</li>
-    <li><%= link_to 'right.js.zip',  '/builds/current/right.js.zip', :target => :_blank %> - both files zipped</li>
-  </ul>
-  <dt>Minified Version</dt>
-  <ul>
-    <li><%= link_to 'right-min.js',      '/builds/current/right-min.js', :target => :_blank %> - the core file</li>
-    <li><%= link_to 'right-olds-min.js', '/builds/current/right-olds-min.js', :target => :_blank %> - old browsers support module</li>
-    <li><%= link_to 'right-min.js.zip',  '/builds/current/right-min.js.zip', :target => :_blank %> - both files zipped</li>
-  </ul>
-  <dt>Uncompressed Source Code</dt>
-  <ul>
-    <li><%= link_to 'right-src.js',      '/builds/current/right-src.js', :target => :_blank %> - the core file</li>
-    <li><%= link_to 'right-olds-src.js', '/builds/current/right-olds-src.js', :target => :_blank %> - old browsers support module</li>
-    <li><%= link_to 'right-src.js.zip',  '/builds/current/right-src.js.zip', :target => :_blank %> - both files zipped</li>
-  </ul>
-</dl>
-
+<%= partial 'options' %>
 
 # Two-Files Build Usage Principles
 

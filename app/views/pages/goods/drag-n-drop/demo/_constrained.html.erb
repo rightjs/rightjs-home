@@ -1,0 +1,33 @@
+<p>
+  <div class="test-container">
+    <div class="draggable" rel="draggable" data-draggable-options="{axis: 'x', revert: true}">X-Axis Only</div>
+    <div class="draggable" rel="draggable" data-draggable-options="{axis: 'y', revert: true}">Y-Axis Only</div>
+  </div>
+</p>
+<p>
+  <div class="test-container">
+    <div id="draggable-1" class="draggable">100px Range</div>
+    <div id="draggable-2" class="draggable">200px Range</div>
+  </div>
+</p>
+<p>
+  <div class="test-container" id="draggable-area">
+    <div class="draggable" rel="draggable" data-draggable-options="{range: 'draggable-area'}">I Live In Here</div>
+  </div>
+</p>
+<script type="text/javascript">
+// <![CDATA[
+  var dims_1 = $('draggable-1').dimensions();
+  var dims_2 = $('draggable-2').dimensions();
+  
+  $('draggable-1').makeDraggable({revert: true, range: {
+    x: [dims_1.left - 100, dims_1.left + dims_1.width  + 100],
+    y: [dims_1.top  - 100, dims_1.top  + dims_1.height + 100]
+  }});
+  
+  $('draggable-2').makeDraggable({revert: true, range: {
+    x: [dims_2.left - 200, dims_2.left + dims_2.width  + 200],
+    y: [dims_2.top  - 200, dims_2.top  + dims_2.height + 200]
+  }});
+// ]]>
+</script>

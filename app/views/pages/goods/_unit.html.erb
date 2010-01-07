@@ -1,0 +1,13 @@
+<%= chapter unit[:name], unit[:key] %>
+<p>
+  <%= @module_descriptions[unit[:key]] %>
+</p>
+<p>
+  <%= "pages.misc.Info".t %>:
+    <%= link_to "pages.misc.Documentation".t, unit[:url] %> |
+  
+  <%= "pages.misc.Download".t %>:
+    <%= link_to "pages.misc.build".t,    "/builds/goods/right-#{unit[:key]}.js",     :target => :_blank %>,
+    <%= link_to "pages.misc.minified".t, "/builds/goods/right-#{unit[:key]}-min.js", :target => :_blank %>,
+    <%= link_to "pages.misc.source".t,   "/builds/goods/right-#{unit[:key]}-src.js", :target => :_blank %>
+</p>

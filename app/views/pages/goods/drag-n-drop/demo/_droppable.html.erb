@@ -1,0 +1,13 @@
+<p>
+  <div class="test-container">
+    <div class="draggable" rel="draggable" data-draggable-options="{revert: true}">Drag Me</div>
+    <div class="droppable" rel="droppable">Drop Here</div>
+  </div>
+</p>
+<script type="text/javascript">
+// <![CDATA[
+Droppable.Options.onDrop = function() {
+  this.element.highlight('green');
+};
+// ]]>
+</script>

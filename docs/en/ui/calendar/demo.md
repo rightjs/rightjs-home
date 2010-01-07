@@ -151,13 +151,13 @@ For example:
 You can inline your calendars right onto your page using the `insertTo` method
 
 <p>
-  <div id="simple-calendar"> </div>
+  <div id="simple-calendar"></div>
 </p>
 <p>
-  <div id="simple-calendar-with-time"> </div>
+  <div id="simple-calendar-with-time"></div>
 </p>
 <p>
-  <div id="simple-calendar-with-buttons"> </div>
+  <div id="simple-calendar-with-buttons"></div>
 </p>
 <script type="text/javascript">
 //<![CDATA[
@@ -171,10 +171,10 @@ You also can build several months calendars and calendar greed by defining the
 `numberOfMonths` option
 
 <p>
-  <div id="two-calendars"> </div>
+  <div id="two-calendars"></div>
 </p>
 <p>
-  <div id="calendar-greed"> </div>
+  <div id="calendar-greed"></div>
 </p>
 <script type="text/javascript">
 //<![CDATA[

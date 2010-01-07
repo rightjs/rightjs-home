@@ -4,12 +4,7 @@ RightJS is meant to be working with all the modern and some old but still used b
 
 It was tested to work with the following browsers
 
-* Firefox versions >= 1.5
-* Safari versions >= 3
-* Google Chrome all versions
-* Internet Explorer versions >=6
-* Opera version >= 9.25
-* Konqueror versions >= 3.10
+<%= partial 'browsers' %>
 
 ## Quirks Mode
 
