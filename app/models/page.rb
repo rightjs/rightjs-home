@@ -28,7 +28,7 @@ class Page
     
     if @filename.ends_with?('.md')
       # rebuilding the chapter blocks
-      content.gsub! /##\s+(.+?),\s+\:([a-z0-9\-_]+)/ do |match|
+      content.gsub! /##\s+(.+?),\s+\:([a-z0-9\-_]+)/i do |match|
         template.chapter($1.dup, $2.dup)
       end
       

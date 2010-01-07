@@ -47,8 +47,9 @@ module PluginsHelper
 private
 
   def modules_menu(id, list)
+    uri = request.request_uri
     content_tag :ul, list.collect{|pack|
-      menu_link_to pack[:name], pack[:url] + (request.request_uri.ends_with?('/demo') ? '/demo' : '')
+      menu_link_to pack[:name], pack[:url] + (uri =~ /^\/ui\/.+?\/demo$/ ? '/demo' : '')
     }.join("\n"), :id => id
   end
 end

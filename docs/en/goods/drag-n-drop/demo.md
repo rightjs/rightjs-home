@@ -1,12 +1,11 @@
-<h1>Drag'n'Drop Demo</h1> <% @title_text = "Goods: Drag'n'Drop: Demo" %>
-<script type="text/javascript" src="/builds/goods/right-dnd-min.js"></script>
+# Drag'n'Drop Demo
+<% content_for :modules, javascript_include_tag('/builds/goods/right-dnd-min.js') %>
 <% content_for :modules, stylesheet_link_tag('dnd-demo') %>
 
-<p>
-  Some standard demo cases for the drag-n-drop feature
-</p>
+Some standard demo cases for the drag-n-drop feature
 
-<h2>Simple Draggables</h2>
+## Simple Draggables, :simple
+
 <p>
   <div class="test-container">
     <div class="draggable" rel="draggable" data-draggable-options="{}">Drag Me</div>
@@ -26,7 +25,8 @@
   </div>
 </p>
 
-<h2>Draggables With Constraints</h2>
+## Draggables With Constraints, :constrained
+
 <p>
   <div class="test-container">
     <div class="draggable" rel="draggable" data-draggable-options="{axis: 'x', revert: true}">X-Axis Only</div>
@@ -38,30 +38,32 @@
     <div id="draggable-1" class="draggable">100px Range</div>
     <div id="draggable-2" class="draggable">200px Range</div>
   </div>
-  <script type="text/javascript">
-  // <![CDATA[
-    var dims_1 = $('draggable-1').dimensions();
-    var dims_2 = $('draggable-2').dimensions();
-    
-    $('draggable-1').makeDraggable({revert: true, range: {
-      x: [dims_1.left - 100, dims_1.left + dims_1.width  + 100],
-      y: [dims_1.top  - 100, dims_1.top  + dims_1.height + 100]
-    }});
-    
-    $('draggable-2').makeDraggable({revert: true, range: {
-      x: [dims_2.left - 200, dims_2.left + dims_2.width  + 200],
-      y: [dims_2.top  - 200, dims_2.top  + dims_2.height + 200]
-    }});
-  // ]]>
-  </script>
 </p>
 <p>
   <div class="test-container" id="draggable-area">
     <div class="draggable" rel="draggable" data-draggable-options="{range: 'draggable-area'}">I Live In Here</div>
   </div>
 </p>
+<script type="text/javascript">
+// <![CDATA[
+  var dims_1 = $('draggable-1').dimensions();
+  var dims_2 = $('draggable-2').dimensions();
+  
+  $('draggable-1').makeDraggable({revert: true, range: {
+    x: [dims_1.left - 100, dims_1.left + dims_1.width  + 100],
+    y: [dims_1.top  - 100, dims_1.top  + dims_1.height + 100]
+  }});
+  
+  $('draggable-2').makeDraggable({revert: true, range: {
+    x: [dims_2.left - 200, dims_2.left + dims_2.width  + 200],
+    y: [dims_2.top  - 200, dims_2.top  + dims_2.height + 200]
+  }});
+// ]]>
+</script>
 
-<h2>Simple Droppable</h2>
+
+## Simple Droppable, :droppables
+
 <script type="text/javascript">
 // <![CDATA[
 Droppable.Options.onDrop = function() {
@@ -76,7 +78,8 @@ Droppable.Options.onDrop = function() {
   </div>
 </p>
 
-<h2>Selective Droppables</h2>
+## Selective Droppables, :selective
+
 <p>
   <div class="test-container">
     <div class="draggable good" rel="draggable" data-draggable-options="{revert: true}">Devotee</div>

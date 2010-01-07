@@ -1,27 +1,23 @@
-<h1>Goods Index</h1>
+# Goods Index
 
-<p>
-  RightJS Goods is a subproject of RightJS that contains officially supported common use extensions
-  for RightJS
-</p>
-<p>
-  All the source code of the project is available under terms of the MIT license at the
-  github service.
-</p>
-<p>
-  <a href="http://github.com/rightjs/rightjs-goods" target="_blank">http://github.com/rightjs/rightjs-goods</a>
-</p>
-<p>
-  <tt>git clone git://github.com/rightjs/rightjs-goods.git</tt>
-</p>
-<p>
-  You can include any of the following modules as separated files on your page, or you
-  can include them in the main build at the <%= link_to 'custom build page', builds_path %>
-</p>
+
+RightJS Goods is a subproject of RightJS that contains officially supported common use extensions
+for RightJS
+
+All the source code of the project is available under terms of the MIT license at the
+github service.
+
+<http://github.com/rightjs/rightjs-goods>
+
+`git clone git://github.com/rightjs/rightjs-goods.git`
+
+You can include any of the following modules as separated files on your page, or you
+can include them in the main build at the [custom builds page](<%= builds_path %>)
+
 <%
 module_descriptions = {
   :rails    => "Provides a conventional ajax operations interface and RightJS core "+
-                "extensions with underscored and ruby-like aliases.",
+               "extensions with underscored and ruby-like aliases.",
                 
   :dnd      => "The standard drag-n-drop library for RightJS",
   
@@ -36,7 +32,7 @@ module_descriptions = {
                "methods to check which button or key was pressed. And it also provides an "+
                "ability to fire real DOM events on your page elements.",
                
-  :behavior => "This module provides the unobtrusive behavior definitions functionality, similar to "+
+  :behavior => "This module provides an unobtrusive behavior definitions functionality, similar to "+
                "the jQuery's 'live' feature or the Prototype 'lowpro' plugin, but with some additional abilities."
 }
 -%>
