@@ -27,7 +27,7 @@ That means you have two top level functions `$(id)` and `$$(css_rule)`
     $$('div > div.boo'); // -> Array
 
 
-Then, every {Element} instance has a number of methods to navigate through its neighborhood, like
+Then, every {Element} instance has a number of methods to navigate around its neighborhood, like
 `select`, `subNodes`, `siblings`, etc. Each of them can be used as is
 or can receive a string css-rule that will filter the result.
 
@@ -129,24 +129,9 @@ and in the API documentation for {Xhr}
 
 
 
-## Cookies Handling, :cookies
-
-By default RightJS has a simple interface to help you work with the cookies. It automatically
-escapes/unescapes the values, sets expiration dates and makes other helpful things.
-And if you hook up the [JSON](/goods/json) module it will transparently save
-and retrieve any JSON exportable values like arrays, objects, booleans, etc.
-
-    Cookie.set('key', 'value');
-    Cookie.get('key');
-    Cookie.remove('key');
-
-Read the api documentation for {Cookie} for more details
-
-
-
 ## Object Oriented Programming, :oop
 
-RightJS is an object oriented framework and it provides extensive abilities for OOP approach.
+RightJS is an object oriented framework and it provides extensive abilities for the OOP approach.
 In a basic case it looks like Prototype classes.
 
     var MyClass = new Class({
@@ -161,3 +146,19 @@ In a basic case it looks like Prototype classes.
 But classes in RightJS also support inheritance and Ruby-style modules sharing. Read
 [this article](/tutorials/object-oriented-programming) for more
 information on this topic.
+
+
+
+## Cookies Handling, :cookies
+
+By default RightJS has a simple interface to help you work with the cookies. It automatically
+escapes/unescapes the values, sets expiration dates and makes other helpful things.
+And if you hook up the [JSON](/goods/json) module it will transparently save
+and retrieve any JSON exportable values like arrays, objects, booleans, etc.
+
+    Cookie.set('key', 'value');
+    Cookie.get('key');
+    Cookie.remove('key');
+
+Read the api documentation for {Cookie} for more details
+

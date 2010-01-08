@@ -17,9 +17,9 @@
     </p>
     <p>
       On one side RightJS has a really nice and simple, easy to write and read syntax
-      that makes it a snap to use and extend, even for noobs. An on the other, it 
-      supports multiple paradigms and has extensive OOP and FP features that will
-      make any tough professional happy.
+      that makes it a snap to use and extend even for noobs. An on the other, it 
+      supports multiple paradigms, has extensive OOP and FP abilities along with other
+      features that will make any tough professional happy.
     </p>
     <p class="bottom-link">
       <%= link_to "Getting started", tutorial_path('getting-started') %>
@@ -49,7 +49,7 @@
       just as fast as they possibly can.
     </p>
     <p>
-      RightJS reuses the native functionality every browser can provide and it
+      RightJS reuses all native functionality every browser can provide and it
       doesn't overcomplicate things with too fancy, slow features. As the result,
       RightJS beats up all the modern frameworks in most of the routine operations,
       and in many cases gets really close the pure dom code performance.

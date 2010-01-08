@@ -1,6 +1,6 @@
 # Project Philosophy
 
-Although it looks small simple and not always serious, RightJS actually has
+Although it looks small, simple and not always serious, RightJS actually has
 a pretty solid idea behind and if you would like to have it described in one sentence
 that would be "causal but well organized"
 

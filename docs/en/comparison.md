@@ -5,7 +5,7 @@ A few words about basic differences and similarities between RightJS and other m
 
 ## Disclaimer
 
-Except the obvious reason of brainwashing and making you use RightJS, this article meant to give you some
+Except the obvious reason of brainwashing and making you use RightJS, this article is meant to give you some
 ideas where RightJS is situated (or supposed to be situated) relatively to other JavaScript frameworks.
 
 

@@ -1,7 +1,7 @@
 # Download
 
-By default RightJS comes in two files. One of them the actual core, which works for all the modern browsers,
-the second one is a dynamically loadable module with patches for old browsers.
+By default RightJS comes in two files. One of them is the actual core, which works for all the modern browsers,
+the other one is a dynamically loadable module with patches for old browsers.
 
 <%= partial 'options' %>
 
@@ -13,7 +13,7 @@ the second one is a dynamically loadable module with patches for old browsers.
 
         <script src="where/it/is/right.js"></script>
 
-3. Don't worry about the olds file, RightJS will automatically load it when it needed.
+3. Don't worry about the olds file, RightJS will automatically load it when needed.
 
 4. Keep the file names in a corresponding way, like that
 
@@ -23,17 +23,17 @@ the second one is a dynamically loadable module with patches for old browsers.
 
 # Custom Build
 
-By default RightJS comes with several plugins already baked in, like advanced forms handling, cookies, etc.
+By default RightJS comes with several plugins like advanced forms handling, cookies, etc. already baked in.
 You can switch the things you don't use off, and reduce the build size down to 18k.
 
-There are also a number of plugins out of the [RightJS Goods](/goods) can be embedded into your builds too.
+There are also a number of plugins out of the [RightJS Goods](/goods) project that can be embedded into your builds too.
 
 [Custom Build Page](<%= builds_path %>)
 
 
 # GitHub Repository
 
-The original source code of the project situated at the github account over here
+The original source code of the project is situated at the github account over here
 
 <http://github.com/rightjs/rightjs-core%>
 
