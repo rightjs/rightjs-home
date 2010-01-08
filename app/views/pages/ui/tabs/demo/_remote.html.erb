@@ -1,0 +1,15 @@
+<p>
+  <ul id="remote-tabs">
+    <ul>
+      <li><a href="#tab-1">Tab 1</a></li>
+      <li><a href="#tab-2">Tab 2</a></li>
+      <li><a href="#tab-3">Tab 3</a></li>
+      <li><a href="#tab-4">Tab 4</a></li>
+    </ul>
+  </ul>
+</p>
+<script type="text/javascript">
+// <![CDATA[
+  new Tabs('remote-tabs', {url: 'content/%{id}', idPrefix: 'r-'});
+// ]]>
+</script>

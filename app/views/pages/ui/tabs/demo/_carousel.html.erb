@@ -1,0 +1,44 @@
+<p>
+  <label for="slideshow-swapper">
+    <input type="checkbox" id="slideshow-swapper" checked="false" />
+    Slideshow
+  </label>
+  <ul id="carousel-tabs" class="right-tabs-carousel">
+    <ul>
+      <li><a href="#tab-1"><%= image_tag 'test/1-min.jpg' %></a></li>
+      <li><a href="#tab-2"><%= image_tag 'test/2-min.jpg' %></a></li>
+      <li><a href="#tab-3"><%= image_tag 'test/3-min.jpg' %></a></li>
+      <li><a href="#tab-4"><%= image_tag 'test/4-min.jpg' %></a></li>
+      <li><a href="#tab-5"><%= image_tag 'test/1-min.jpg' %></a></li>
+      <li><a href="#tab-6"><%= image_tag 'test/2-min.jpg' %></a></li>
+      <li><a href="#tab-7"><%= image_tag 'test/3-min.jpg' %></a></li>
+      <li><a href="#tab-8"><%= image_tag 'test/4-min.jpg' %></a></li>
+      <li><a href="#tab-9"><%= image_tag 'test/1-min.jpg' %></a></li>
+      <li><a href="#tab-10"><%= image_tag 'test/2-min.jpg' %></a></li>
+      <li><a href="#tab-11"><%= image_tag 'test/3-min.jpg' %></a></li>
+      <li><a href="#tab-12"><%= image_tag 'test/4-min.jpg' %></a></li>
+    </ul>
+    
+    <li id="cs-tab-1"><%= image_tag 'test/1-med.jpg', :size => '400x299' %></li>
+    <li id="cs-tab-2"><%= image_tag 'test/2-med.jpg', :size => '400x265' %></li>
+    <li id="cs-tab-3"><%= image_tag 'test/3-med.jpg', :size => '400x265' %></li>
+    <li id="cs-tab-4"><%= image_tag 'test/4-med.jpg', :size => '400x267' %></li>
+    <li id="cs-tab-5"><%= image_tag 'test/1-med.jpg', :size => '400x299' %></li>
+    <li id="cs-tab-6"><%= image_tag 'test/2-med.jpg', :size => '400x265' %></li>
+    <li id="cs-tab-7"><%= image_tag 'test/3-med.jpg', :size => '400x265' %></li>
+    <li id="cs-tab-8"><%= image_tag 'test/4-med.jpg', :size => '400x267' %></li>
+    <li id="cs-tab-9"><%= image_tag 'test/1-med.jpg', :size => '400x299' %></li>
+    <li id="cs-tab-10"><%= image_tag 'test/2-med.jpg', :size => '400x265' %></li>
+    <li id="cs-tab-11"><%= image_tag 'test/3-med.jpg', :size => '400x265' %></li>
+    <li id="cs-tab-12"><%= image_tag 'test/4-med.jpg', :size => '400x267' %></li>
+  </ul>
+</p>
+<script type="text/javascript">
+// <![CDATA[
+  var tabs = new Tabs('carousel-tabs', {idPrefix: 'cs-'});
+  var slideshow = $('slideshow-swapper').onClick(function() {
+    if (this.checked) tabs.startLoop(2000);
+    else tabs.stopLoop();
+  }).set({checked: false});
+// ]]>
+</script>

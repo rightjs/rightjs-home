@@ -1,0 +1,35 @@
+<% content_for :modules, javascript_include_tag('/builds/ui/right-tabs-min.js') %>
+
+<style type="text/css">
+  .right-tabs .right-tabs-panel {
+    padding: .5em;
+  }
+  #carousel-tabs .right-tabs-panel {
+    text-align: center;
+  }
+  #harmonica-tabs dt {
+    font-size: 1em;
+    font-family: Verdana;
+  }
+</style>
+
+<p>
+  <ul id="simple-tabs">
+    <ul>
+      <li><a href="#tab-1">Tab 1</a></li>
+      <li><a href="#tab-2">Tab 2</a></li>
+      <li><a href="#tab-3">Tab 3</a></li>
+      <li><a href="#tab-4">Tab 4</a></li>
+    </ul>
+    
+    <li id="tab-1">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</li>
+    <li id="tab-2">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.<br/><br/>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</li>
+    <li id="tab-3">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.<br/><br/>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.<br/><br/>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</li>
+    <li id="tab-4">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.<br/><br/>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.<br/><br/>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.<br/><br/>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</li>
+  </ul>
+</p>
+<script type="text/javascript">
+// <![CDATA[
+  new Tabs('simple-tabs');
+// ]]>
+</script>

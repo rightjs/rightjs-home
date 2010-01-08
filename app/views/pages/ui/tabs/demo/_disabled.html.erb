@@ -1,0 +1,20 @@
+<p>
+  <ul id="disabled-tabs">
+    <ul>
+      <li><a href="#tab-1">Tab 1</a></li>
+      <li><a href="#tab-2">Tab 2</a></li>
+      <li><a href="#tab-3">Tab 3</a></li>
+      <li><a href="#tab-4">Tab 4</a></li>
+    </ul>
+    
+    <li id="d-tab-1">Tab 1 Content</li>
+    <li id="d-tab-2">Tab 2 Content</li>
+    <li id="d-tab-3">Tab 3 Content</li>
+    <li id="d-tab-4">Tab 4 Content</li>
+  </ul>
+</p>
+<script type="text/javascript">
+// <![CDATA[
+  new Tabs('disabled-tabs', {disabled: 1, idPrefix: 'd-'});
+// ]]>
+</script>
