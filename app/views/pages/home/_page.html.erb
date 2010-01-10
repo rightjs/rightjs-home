@@ -1,0 +1,55 @@
+<% content_for :modules, javascript_include_tag('/builds/ui/right-tabs-min.js') %>
+<% content_for :modules, stylesheet_link_tag('landing-page') %>
+
+<ul id="promo" class="right-tabs">
+  <ul>
+    <li id="friendly-tab"><a href="#friendly"><h1><%= @promo_texts[:friendly][:title] %></h1><i><%= @promo_texts[:friendly][:subtitle] %></i></a></li>
+    <li id="compact-tab"><a href="#compact"><h1><%= @promo_texts[:compact][:title] %></h1><i><%= @promo_texts[:compact][:subtitle] %></i></a></li>
+    <li id="fast-tab"><a href="#fast"><h1><%= @promo_texts[:fast][:title] %></h1><i><%= @promo_texts[:fast][:subtitle] %></i></a></li>
+  </ul>
+  
+  <li id="friendly">
+    <%= @promo_texts[:friendly][:text] %>
+    <p class="bottom-link">
+      <%= link_to @promo_texts[:friendly][:more], tutorial_path('getting-started') %>
+    </p>
+  </li>
+  <li id="compact">
+    <%= @promo_texts[:compact][:text] %>
+    <p class="bottom-link">
+      <%= link_to @promo_texts[:compact][:more], builds_path %>
+    </p>
+  </li>
+  <li id="fast">
+    <%= @promo_texts[:fast][:text] %>
+    <p class="bottom-link">
+      <%= link_to @promo_texts[:fast][:more], '/benchmarks' %>
+    </p>
+  </li>
+</ul>
+
+<h1><%= @hots_block[:title] %></h1>
+
+<dl id="features" class="right-tabs">
+  <dt><a href="#ui"><h2>RightJS UI</h2><i><%= @hots_block[:ui] %></i></a></dt>
+  <dd id="ui"><%= ui_modules_menu %></dd>
+  
+  <dt><a href="#goods"><h2>RightJS Goods</h2><i><%= @hots_block[:goods] %></i></a></dt>
+  <dd id="goods"><%= goods_modules_menu %></dd>
+  
+  <dt><a href="#showcases"><h2>Showcases</h2><i><%= @hots_block[:showcases] %></i></a></dt>
+  <dd>
+    <ul>
+      <li><a href="http://stcamp.net/games/sudoku/">Right Sudoku</a></li>
+      <li><a href="http://stcamp.net/games/t-ninja/">Typing Ninja</a></li>
+      <li><a href="http://stcamp.net/games/nippo/">Happy Nippo</a></li>
+    </ul>
+  </dd>
+</dl>
+
+<script type="text/javascript">
+  // <![CDATA[
+    new Tabs('promo');
+    new Tabs('features').element.setStyle('height:auto');
+  // ]]>
+</script>

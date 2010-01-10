@@ -1,7 +1,7 @@
-<% content_for :modules, stylesheet_link_tag('fx-demo') %><h2>Fx.Morph</h2>
+<% content_for :modules, stylesheet_link_tag('fx-demo') %>
 
 <script type="text/javascript">
-// <!--
+// <![CDATA[
 function reset(id) {
   $(id).replace('<div id="'+id+'" class="'+$(id).className+'">'+$(id).innerHTML+'</div>');
 }
@@ -10,9 +10,11 @@ function runfx(id) {
     $eval($(id+'-script').value);
   } catch(e) {}
 }
-// -->
+// ]]>
 </script>
 
+
+<h2>Fx.Morph</h2>
 
 <div class="fx-example fx-example-big">
   <div class="fx-test-container">
@@ -113,19 +115,18 @@ $('scroll-test').scroll({
     <a href="" onclick="runfx('scroll-test'); return false;">Start</a>
     <a href="" onclick="reset('scroll-test'); return false;">Reset</a>
   </div>
-  
-  <script type="text/javascript">
-  // <![CDATA[
-    for (var i=0; i < 8; i++) {
-      var str = '<div>';
-      for (var j=0; j < 30; j++) {
-        str += '&nbsp;'+ j;
-      }
-      $('scroll-test').insert(str + '</div>');
-    }
-  // ]]>
-  </script>
 </div>
+<script type="text/javascript">
+// <![CDATA[
+  for (var i=0; i < 8; i++) {
+    var str = '<div>';
+    for (var j=0; j < 30; j++) {
+      str += '&nbsp;'+ j;
+    }
+    $('scroll-test').insert(str + '</div>');
+  }
+// ]]>
+</script>
 
 <p>&nbsp;</p>
 

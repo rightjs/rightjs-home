@@ -35,7 +35,7 @@ There are also a number of plugins out of the [RightJS Goods](/goods) project th
 
 The original source code of the project is situated at the github account over here
 
-<http://github.com/rightjs/rightjs-core%>
+<http://github.com/rightjs/rightjs-core>
 
 `git clone git://github.com/rightjs/rightjs-core.git`
 

@@ -1,7 +1,7 @@
 # Object Oriented Tutorials
 
-Internally, RightJS is mostly an object-oriented framework and in this tutorial we will go through
-all the most important techniques and features of working with classes in RightJS.
+Internally RightJS is mostly an object-oriented framework and in this tutorial we will go through
+all the most important techniques and features of object-oriented programming in RightJS.
 
 <%= anchors_index %>
 

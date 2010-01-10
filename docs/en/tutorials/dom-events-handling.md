@@ -78,7 +78,8 @@ This way whichever browser the user uses, you always will have access to the fol
 on every event
 
 * `which` - which mouse button was pressed (1,2,3)
-* `target` - target element reference
+* `target` - the target element reference
+* `currentTarget` - the bounding (listener) element reference
 * `relatedTarget` - the related element for the over and out mouse events
 * `pageX`, `pageY` - the cursor position relative to the document
 
