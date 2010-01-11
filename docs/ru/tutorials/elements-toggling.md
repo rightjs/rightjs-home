@@ -1,22 +1,20 @@
-# Elements Visual State Toggling
+# Смена визуального состояния
 <% set_unit_scope('Element') %>
 
-There are several methods in RightJS that supposed to help you to switch dom-elements visual
-state. Most of them are standard but there some additional features and details
-that might be useful to know.
+RightJS имеет несколько методов для того чтобы работать со сменой визуального состояния
+dom-элементов. Большинство из них вполне стандарты, но так же существует несколько дополнительных
+возможностей и опций о которых вы возможно хотели бы знать.
 
-## Standard Visibility Toggling, :standard
+## Стандартное переключение видимости элементов, :standard
 
-RightJS has all the standard methods like {Element#hide}, {Element#show}, {Element#toggle}
-to switch the dom-elements visibility status on and off. Additionally there is the {Element#radio}
-method that might be seen in some other frameworks. This method shows the element and hides
-all the siblings.
+RightJS имеет все стандартные методы, такие как {Element#hide}, {Element#show}, {Element#toggle}
+для того чтобы скрывать и показывать элементы страницы. Дополнительно существует метод {Element#radio}
+который скрывает все соседние элементы и показывает только текущий.
 
-There are two important things you should know about those methods.
+Есть несколько важных моментов вы должны знать об этих методах.
 
-First of all those methods preserve the element style `display` property. So that if
-you has changed an element style then hidden it and then shown again, the element will remain the
-original `display` value.
+Во-первых все они сохраняют значение стиля `display`, так что если вы скроете элемент и покажете
+его вновь, он будет иметь оригинальный вид.
 
     $(element).style.display = 'inline-block';
     
@@ -25,20 +23,19 @@ original `display` value.
     
     $(element).style.display; // -> 'inline-block'
 
-Secondly as all the methods in RightJS that change an object, those methods return reference
-to the element back, so that you could write nice and readable phrases in your code.
-Like that:
+Во-вторых, как и все прочие мутирующие методы в RigthJS, эти методы возвращают ссылку на
+сам элемент, так что вы можете создавать цепи вызовов подобные следующей
 
     $(element).show().update('with text').highlight();
 
 
-## CSS Classes Toggling, :css
+## Переключение CSS классов, :css
 
-There is a list of standard methods to manage css-classes presence on dom-elements
+Так же существуют все стандартные методы для работы с css-классами
 {Element#addClass}, {Element#removeClass}, {Element#hasClass}, {Element#toggleClass},
-{Element#radioClass}.
+{Element#radioClass}:
 
-The usage of them is pretty straight forward:
+Например, простенькое меню:
 
     /*
       <ul id="some-menu">
@@ -48,46 +45,44 @@ The usage of them is pretty straight forward:
       </ul>
     */
  
-    $('some-menu').select('li').each('onClick', 'radioClass', 'marked');
+    $$('#some-menu > li').each('onClick', 'radioClass', 'marked');
 
 
-## Visibility Toggling With Visual Effects, :effects
+## Переключение видимости с использованием визуальных эффектов, :effects
 
-Some visual effects like {Fx.Slide} and {Fx.Fade} are bidirectional. Which means that
-they can work in both directions to show and to hide an element.
+Некоторые визуальные эффекты, такие как, {Fx.Slide} и {Fx.Fade} принадлежат к числу
+двунаправленных. Это означает, что вы можете использовать их как для скрытия, так 
+и для показа элементов страниц.
 
-By default they will automatically determine an element current state and work towards
-the opposite one. It is an fx equivalent of the {Element#toggle} method if you will.
+По умолчанию они будут автоматически определять текущее состояние элемента и
+работать в противоположном, подобно методу {Element#toggle}.
 
     $(element).style.display = 'none';
     
-    $(element).fade(); // -> shows
-    $(element).fade(); // -> hides
+    $(element).fade(); // -> показывает
+    $(element).fade(); // -> скрывает
 
-If you need an effect to work in some direction specifically you can define it manually,
-like that:
+Если вам необходимо чтобы эффект работал только в определенном направлении, вы можете
+указать его вручную:
 
-    $(element).slide('out'); // hides despite on the element state
-    $(element).slide('in');
+    $(element).slide('out'); // всегда скрывает
+    $(element).slide('in');  // всегда показывает
 
 
-## Mixed Approach, :mixed
+## Смешанный подход, :mixed
 
-The visual effects library in RightJS is not a required module and can be switched off
-by the [custom build](<%= builds_path %>) process.
+Библиотека визуальных эффектов в RightJS,- необязательный модуль и может быть при
+необходимости отключена.
 
-In case when you write some sort of a plugin or widget, which supposed to work in both
-cases whenever the {Fx} module is included or not, you might find the mixed approach
-useful.
+В случае если вы создаете некий плагин или виджет, и хотели бы чтобы он работал в
+любом случае, доступны ли эффекты или нет, то вас может заинтересовать смешанный подход.
 
-The idea is simple: you use the standard {Element#hide}, {Element#show}, etc. methods
-and pass the desired visual effect name and options as the arguments to the method,
-like this:
+Смысл его в том, что используя стандартные методы {Element#hide}, {Element#show}, и т.п.
+вы указываете имя эффекта который бы вы хотели использовать для показа/скрытия элемента
 
     $(element).hide('fade');
     $(element).show('slide', {direction: 'right'});
 
-In this case, if there is the {Fx} library then the element will be processed with the
-specified visual effect and if the {Fx} library is not available, then the element will
-get simply hidden/shown immediately. 
-
+В этом случае, если библиотека визуальных эффектов доступна, соответствующий эффект
+будет использован для обработки элемента. А если эффекты отключены, элемент будет
+просто скрыт/показан обычным способом.

@@ -1,45 +1,46 @@
-# DOM Navigation And Manipulations
+# DOM навигация и манипуляции
 <% set_unit_scope('Element') %>
 
-RightJS inherits its dom-navigation principles mostly from the Prototype and MooTools projects.
-As for the dom-manipulations it is a mix of ideas from Prototype, MooTools and jQuery.
+RightJS унаследовал базовые принципы dom-навигации от проектов Prototype и Mootools.
+А dom-манипуляции, это смесь идей из Prototype, MooTools и jQuery.
 
 
-## Basic Elements Search, :basic
+## Базовый поиск элементов, :basic
 
-RightJS provides two pretty much standard methods to find elements on the page,
-`$('element-id')` and `$$('css rule')`. The first one finds an element by its
-`ID` and the second one selects all the elements on the page that fit the given css-rule.
+RightJS предоставляет два стандартных метода для поиска элементов на странице
+`$('element-id')` и `$$('css rule')`. Первый из них находит элементы по ID,
+а второй собирает список элементов подпадающий под указанное css-правило.
 
     var element = $('element-id');
     var elements = $$('div > div.foo + div.bar');
 
-RightJS supports all the CSS selectors up to the  Level 3. It will use a browser native
-css-selectors functionality if available.
+RightJS поддерживает все стандартные конструкции CSS3 и использует встроенный движок
+браузера для поиска, если таковой имеется.
 
 
-## Node Relative Navigation, :subnodes
+## Относительная навигация, :subnodes
 
-RightJS provides a number of methods to navigate around an element's neighborhood
+RightJS так же предоставляет набор методов для навигации относительно отдельно взятого элемента
 
-Method                 | Description
+Метод                  | Описание
 -----------------------|-----------------------------------------------------------
-{Element#parent}       | the parent element
-{Element#parents}      | all the parent elements from bottom to top
-{Element#subNodes}     | first level descendants
-{Element#siblings}     | all the siblings
-{Element#nextSiblings} | next siblings
-{Element#prevSiblings} | previous siblings
-{Element#next}         | next sibling
-{Element#prev}         | previous sibling
-{Element#first}        | first matching descendant at any level
-{Element#select}       | all the matching descendants at any levels
+{Element#parent}       | родительский элемент
+{Element#parents}      | все родительские элементы снизу вверх
+{Element#subNodes}     | подэлементы первого уровня
+{Element#siblings}     | все соседние элементы
+{Element#nextSiblings} | соседние элементы следующие за данным
+{Element#prevSiblings} | соседние элементы идущие до данного элемента
+{Element#next}         | следующий соседний элемент
+{Element#prev}         | предыдущий соседний элемент
+{Element#first}        | первый подходящий подэлемент с любого уровня
+{Element#select}       | все подходящие подэлементы со всех уровней
 
 
-All the methods can receive a css-rule as an argument. If a css-rule was specified
-then the result will be altered according to the rule, collections will be filtered out
-keeping only matching elements and methods that supposed to find a single element
-will skip elements until find the first one that matches the rule.
+Все вышеперечисленные методы могут получать аргумент в виде css-правила. Если таковое
+было указано, то результат поиска будет изменен соответствующим способом. Все методы
+возвращающие списки элементов, будут иметь эти списки отфильтрованными по указанному
+правилу, а методы возвращающие один элемент, будут пропускать элементы до тех пор пока
+не встретят подходящий под правило.
 
     /*
       <div id="top">
@@ -53,26 +54,26 @@ will skip elements until find the first one that matches the rule.
     $('third-1').parent();       // -> div#second-1
     $('third-1').parent('#top'); // -> div#top
     
-    $('top').select('div');      // -> all the subdivs
+    $('top').select('div');      // -> все под элементы с тэгом DIV
     
     $('top').first('div');       // -> div#second-1
 
 
 
-## Basic Manipulations, :manipulations
+## Базовые манипуляции, :manipulations
 
-There's just one generic method that depending on a type of data provided, handles all the possible
-element manipulations.
+В целом существует единственный метод, который в зависимости от типа полученных данных,
+производит все типы манипуляций на страницах.
 
 `{Element#insert}(mixed content[, String position])`
 
-The content might be one of the following
+Контет может быть одинм из следующих
 
-* A string html content
-* An element instance
-* An iterable object of any kind, Array, NodeList, arguments, etc.
+* Строка с HTML кодом
+* DOM-элемент
+* Список элементов любого типа Array, NodeList, arguments, и т.п.
 
-And the `position` argument might be one of the following
+Аргумент `position` может быть одним из следующих
 
 * top
 * bottom
@@ -80,7 +81,7 @@ And the `position` argument might be one of the following
 * after
 * instead
 
-`bottom` is the default value
+`bottom` - значение по умолчанию
 
     $('element').insert('<div>some html code</div>');
 
@@ -90,7 +91,7 @@ And the `position` argument might be one of the following
     
     $('element').insert(anther_element.childNodes, 'before');
 
-Additionally, you can send to the method a hash where the keys will be the position and the values are the content
+Дополнительно вы можете указать хэш элементов для вставки
 
     $('element').insert({
       top:    element1,
@@ -99,25 +100,25 @@ Additionally, you can send to the method a hash where the keys will be the posit
     });
 
 
-## DOM Manipulation Shortcuts And Additional Methods, :shortcuts
+## Дополнительные методы для DOM манипуляций, :shortcuts
 
-There are a few nice shortcuts and additional methods for the most common dom-manipulation
-operations that will make your application code more compact and readable
+Так же существует несколько удобных сокращений для того чтобы сделать код работы с
+элементами более удобным в работе и легко читаемым.
 
-Method             | Description
+Название           | Описание
 -------------------|---------------------------------------------------------
-{Element#insertTo} | inserts current element into given given one
-{Element#replace}  | replaces current element with the given content
-{Element#update}   | updates current element content with the given one
-{Element#wrap}     | wraps current element with another element
-{Element#clean}    | removes all the child nodes out of the element
-{Element#empty}    | checks if the element has no internal text or sub-elements
+{Element#insertTo} | вставляет данный элемент в указанный
+{Element#replace}  | заменяет данный элемент указанным контентом
+{Element#update}   | заменяет внутренний контент элемента указанным
+{Element#wrap}     | оборачивает данный элемент указанным
+{Element#clean}    | удаляет все подэлементы данного элемента
+{Element#empty}    | проверяет если элемент не содержит ни текста ни подэлементов
 
-Some examples
+Несколько примеров
 
     var element = $E('div').insertTo(document.body).update('some html');
     
     element.empty();         // -> false
     element.clean().empty(); // -> true
     
-    element.replace('here was that element');
+    element.replace('тут был тот элемент');

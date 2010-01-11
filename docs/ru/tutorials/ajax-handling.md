@@ -1,48 +1,46 @@
-# Ajax Handling
+# Работа с Ajax
 
-Generally there is just one simple class called {Xhr} that responsible for
-almost all the ajax functionality in RightJS
+В целом существует один простой базовый класс с именем {Xhr} который отвечает
+за всю обработку ajax функциональности в RightJS
 
-Some simple examples might look the following way
+Простой пример выглядит следующим образом
 
     new Xhr('/some/url').send();
     new Xhr('/some/url').send('param=value');
     new Xhr('/some/url', {onFinish: function() {..}}).send();
 
 
-## Options List, :options
+## Список опций, :options
 
-{Xhr} supports options with the following keys
-
-
-Key          | Default | Description
--------------|---------|-------------------------------------------------
-method       | ‘post’  | request method
-encoding     | ‘utf-8’ | encoding
-async        | true    | asynchronous request
-evalScripts  | false   | extract/eval javascripts from the response
-evalResponse | false   | eval response as a javascript code
-evalJSON     | true    | eval json responses automatically
-secureJSON	 | true	   | if it should validate json responses
-urlEncoded   | true    | urlencode the parameters
-spinner      | null    | spinner element or element id
-spinnerFx    | 'fade'  | spinner handling visual effect
-params       | null    | default parameters
+Класс {Xhr} поддерживает следующие опции
 
 
-You can send any of the options in a hash as the second argument of the 
-{Xhr} constructor, or you can set them up globally for all the {Xhr}
-requests by changing the {Xhr.Options} variable. When you do so all the
-following {Xhr} requests will take the new options.
+Имя          | Умолчание | Описание
+-------------|-----------|--------------------------------------------------------
+method       | ‘post’    | метод запроса
+encoding     | ‘utf-8’   | используемая кодировка
+async        | true      | флаг асинхронного вызова
+evalScripts  | false     | исполнять ли код из JavaScript тэгов из текста ответа
+evalResponse | false     | если нужно исполнить текст ответа как код JavaScript
+evalJSON     | true      | обрабатывать ли JSON ответы автоматически
+secureJSON	 | true	     | флаг, если JSON код должен быть проверяться
+urlEncoded   | true      | флаг, если необходимо кодировать отправляемые данные
+spinner      | null      | ссылка на элемент спиннера или его ID
+spinnerFx    | 'fade'    | визуальный эффект для работы со спиннером
+params       | null      | параметры для отправки по умолчанию
+
+
+Вы можете посылать любые опции вместе с конструктором класса {Xhr}, или же
+вы можете изменить настройки глобально, изменив переменную {Xhr.Options}.
 
     Xhr.Options.spinner = 'global-spinner-id';
     Xhr.Options.params  = 'my=params&global=options';
 
 
-## Events List, :events
+## Поддерживаемые события, :events
 
-{Xhr} class provides the standard {Observer} functionality and supports the
-following events.
+Класс {Xhr} наследует стандартный интерфейс класса {Observer} и работает
+со следующими событиями.
   
 * create
 * request
@@ -50,8 +48,7 @@ following events.
 * success
 * cancel
 
-You can send your callbacks along with the constructor options or handle by
-{Observer} methods in the standard way.
+Вы можете назначать ваши обработчики событий любым стандартным способом.
 
     new Xhr('/some/url', {onFinish: function() {...}}).send();
     new Xhr('/some/url').on('finish', function() {...}).send();
@@ -61,7 +58,7 @@ You can send your callbacks along with the constructor options or handle by
     xhr.onComplete(some_function);
     xhr.stopObserving(some_function);
 
-Surely you can add your own events if you need so
+Естественно вы можете работать с собственными событиями тем же способом
 
     var xhr = new Xhr('/some/url');
     
@@ -74,50 +71,49 @@ Surely you can add your own events if you need so
     
     xhr.onComplete('checkMyEvent');
 
-__NOTE__: all the callbacks will be called in the
-context of the request and receive two arguments, current request instance
-and the original XMLHttpRequest object.
+__ВНИМАНИЕ__: все функции слушателей будут исполнены в контексте объекта запроса
+и получат два аргумента: ссылку на текущий объект запроса, и ссылку на оригинальный
+XMLHttpRequest объект.
 
-Additionally you can use the {Xhr} class level {Observer} interface to
-attach global event listeners for all the xhr requests.
+Дополнительно класс {Xhr} имеет интерфейс обсервера уровня класса, который
+вы можете использовать для подключения глобальных слушателей событий.
 
     Xhr.onSend(call_that_function);
     
-    new Xhr('/some/url').send(); // <- will automatically call that function
+    new Xhr('/some/url').send(); // <- автоматически вызовет ту функцию
 
 
-## Spinners Handling, :spinners
+## Обработка спиннеров, :spinners
 
-{Xhr} class in RightJS has a built-in support of spinners handling. You
-don't need to attach event listeners to show and hide them. You just specify
-a reference to your spinner and {Xhr} will do it for you automatically.
+Класс {Xhr} в RightJS имеет встроенную поддержку работы со спиннерами. Вам не нужно
+указывать никакие дополнительные функции, просто укажите ссылку на элемент спиннера
+и {Xhr} будет автоматически показывать его и скрывать.
 
-You can specify a global spinner for all the {Xhr} requests or set custom
-spinners per request.
+Вы можете указать, как глобальный спиннер, который будет работать со всеми запросами,
+так и локальный, который будет срабатывать только для какого-то определенного запроса.
 
     Xhr.Options.spinner = $('spinner');
     Xhr.Options.spinner = 'global-spinner-id';
     
-    // or per request
+    // или для конкретного запроса
     new Xhr('/some/url', {spinner: 'custom-spinner'}).send();
 
-__NOTE__: if you did specify both global and local
-spinners, both of them will be shown.
+__ВНИМАНИЕ__: если вы укажете оба, глобальный и локальный спиннер, оба из них будут
+использованы
 
 
-## Parameters Handling, :parameters
+## Обработка параметров, :parameters
 
-There are three levels of parameters you can specify to be sent with any
-request. Global, per instance and per send.
+Существует три уровня на которых можно указать данные для отправки на сервер.
+Глобальные, уровня объекта запроса, и локальные данные для каждой отправки.
 
-Global parameters might be set at the {Xhr.Options} object and will be sent
-with every request. Instance level parameters might be specified with the
-constructor options and will be sent every time you send the request. And
-eventually you can specify some additional parameters with the {Xhr#send}
-method.
+Глобальные данные могут быть установлены в переменной {Xhr.Options} и будут
+отправляться с каждым запросом. Данные уровня объекта работают при каждой
+отправке запроса из данного объекта. И локальный данные вы можете указать
+передать в метод {Xhr#send} для каждой отдельной отправки.
 
-If you specify the parameters on several levels, they will be merged with the
-'last win' strategy.
+Все они будут собраны в единый кусок данных перед отправкой с приоритетом
+данных более низкого уровня.
 
     Xhr.Options.params = 'my_cite_key=123234';
     
@@ -125,25 +121,25 @@ If you specify the parameters on several levels, they will be merged with the
     
     xhr.send('some_more=params&send=options');
 
-Parameters might be url-encoded strings or hashes. Hashes will be converted
-into strings and url-encoded if necessary.
+Параметры могут быть в виде url-кодированной строки или в виде хэшей. Хэши
+убудут кодироваться автоматически.
 
     new Xhr('/some.url').send('some=params&more=options');
     
-    // or like this
+    // или так
     new Xhr('/some.url').send({some: 'params', more: 'options'});
 
-Additionally, you can send a form element instance to the {Xhr#send} method,
-{Xhr} will automatically grab the form data and convert into parameters.
+Дополнительно вы можете послать элемент формы в метод {Xhr#send}, и он
+автоматически соберет все данные из формы и пошлет их на сервер.
 
     new Xhr('/some/url').send($('my-form'));
 
 
-## JSON Responses, :json
+## Работа с JSON, :json
 
-By default {Xhr} if received a response with the json content-type,
-will try to evaluate the response and assign the json object to the
-`responseJSON` attribute of the request.
+По умолчанию, когда {Xhr} получает ответ с сервера с типом данных JSON,
+он автоматически попытается сконвертировать их в объект и установить 
+свойство `responseJSON`.
 
     new Xhr('/some.json', {
       onSuccess: function() {
@@ -151,43 +147,41 @@ will try to evaluate the response and assign the json object to the
       }
     }).send();
 
-You can switch the feature off by setting the `evalJSON` option to `false`
+Вы можете отключить данную возможность установив опцию `evalJSON` в `false`
 
 
-## Shortcuts and DOM support, :shortcuts
+## Сокращения и поддержка DOM, :shortcuts
 
-There are view shortcuts and additional methods that will make your live
-easier when you implement an ajax application.
+Существует так же несколько сокращений и дополнительных методов, для того
+чтобы сделать работу с Ajax более удобной.
 
-To shortify {Xhr} instancing you can use the {Xhr.load} method that will
-create an {Xhr} instance and send the request.
+Во-первых вы можете использовать метод {Xhr.load} чтобы быстро создавать
+GET запросы на сервер.
 
     Xhr.load('/some/url', {
-      method: 'get',
-      onSuccess: function(request) {
-        // do something about it
+      onSuccess: function() {
+        // делаем что-то по этому поводу
       }
     });
 
-With the {Xhr#update} method you can update elements content with the
-requests response
+Так же существует метод {Xhr#update} который отправляет запрос и обновляет
+указанный элемент текстом ответа
 
     new Xhr('/some/url').update('element');
 
-You can also initiate a xhr-request directly from an element instance by
-calling the {Element#load} method. This will initiate applicable xhr
-request and update the element content when the request is complete
+Вы так же можете проделать точно тоже самое вызвав метод элемента {Element#load}
 
     $('element').load('/some/url');
     
     $('element').load('/some/url', {method: 'get'});
 
-End eventually you can submit your forms via ajax requests directly from the
-forms by calling the {Form#send} method. It will read the form
-`action` and `method` attributes, initiate a suitable xhr
-request, serialize the form data and send it to the server
+И в конце концов вы можете отправлять ваши формы через ajax просто вызвав их
+метод {Form#send}. Данный метод автоматически соберет все данные из формы,
+а так же считает атрибуты `action` и `method`, и создаст соответствующий запрос
+на сервер
 
     $('my-form').send();
+    
     $('my-form').send({
       spinner: 'form-spinner',
       onSuccess: function() {
@@ -195,10 +189,7 @@ request, serialize the form data and send it to the server
       }
     });
 
-__NOTE__: This feature supports files uploading too.
-If your form has the `enctype` attribute equals to
-`multipart/form-data`, then the form will be sent via virtual ajax
-request through some hidden iframe.
-
-The interface although stay the same and everything will get
-happened automatically.
+__ВНИМАНИЕ__: этот метод работает так же если на форме есть поля с файлами
+для загрузки на сервер. Если таковые обнаруживаются, то {Xhr} будет автоматически
+использовать скрытый элемент IFrame, для отправки формы. Интерфейс при этом
+остается тем же самым.

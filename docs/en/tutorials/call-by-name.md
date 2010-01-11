@@ -19,13 +19,13 @@ and generally lets you feed all the generic methods with names just the same way
 
 Say you could strip tags in each string in a list of strings like this
 
-    strings.each(function(string) {
+    strings.map(function(string) {
       return string.stripTags();
     });
 
 Or you could do just the same thing calling the method by name
 
-    strings.each('stripTags');
+    strings.map('stripTags');
 
 RightJS works perfectly with both method or attribute names. There are some
 use cases.
@@ -46,11 +46,12 @@ use cases.
     // adding a class to every element
     elements.each('addClass', 'marked');
     
-    // attaching event listener to every element in a list
-    elements.each('on', 'click', 'toggleClass', 'marked');
+    // attaching an event listener by name
+    element.onClick('toggleClass', 'marked');
     
-    // or you could do the same with a single element
-    element.on('click', 'toggleClass', 'marked');
+    // attaching event listener to every element in a list
+    elements.each('onClick', 'toggleClass', 'marked');
+    
 
 ## Why Do That?, :why
 

@@ -1,50 +1,52 @@
-# Getting Started
+# Быстрый старт
 
-This article is meant to give you a basic overview for the most common features and use cases of RightJS.
+Данная статья содержит начальный обзор возможностей RightJS и предназначена для быстрого ввода в курс дела
 
 <%= anchors_index %>
 
 
-## Installation, :installation
+## Установка, :installation
 
-The only tricky part of RightJS installation is that it comes in two files. One of them is the actual
-core and the other one contains old-browsers support code. But don't worry, for the installation process
-it doesn't change anything. Just [download](/download) the files, drop them both next
-to each other where you want them and then include the _core_ file in the usual way.
+Единственный хитрый момент при установке RightJS в том, что по умолчанию он идет в двух файлах.
+Один из них - это основное ядро, а второй - модуль для поддержки старых браузеров. Но волноваться
+тут совершенно не очем, и подобная конфигурация не меняет в процессе установки ровным счетом ничего.
+
+Просто [скачайте](/download) оба файла, поместите их рядом с друг другом в той директории где
+вы держите JavaScript файлы, и подключите файл _ядра_, в обычном порядке.
 
     <script src="/javascript/right.js"></script>
 
-Don't worry about the second file. RightJS will automatically hook it up when needed.
+Не волнуйтесь о втором файле, RightJS сам подгрузит его, если это будет необходимо.
 
 
-## DOM Navigation, :navigation
+## Навигация DOM, :navigation
 
-RightJS mostly inherits the dom-navigation principles from the Prototype and Mootools frameworks.
-That means you have two top level functions `$(id)` and `$$(css_rule)`
+RightJS унаследовал принципы навигации по документам от фреймворков Prototype и Mootools.
+Это означает что у вас имеется две функции `$(id)` и `$$(css_rule)`
 
-    $('element-id');     // -> Element
+    $('element-id');     // Находит элемент по ID
     
-    $$('div > div.boo'); // -> Array
+    $$('div > div.boo'); // Находит список элементов по CSS правилу
 
+Далее, каждый элемент страницы (класс {Element}) имеет ряд методов для навигации по соседним
+с ним элементам страницы, как-то `select`, `subNodes`, `siblings`, и т.д. Каждый из этих методов
+может быть использован как есть, а может получать опционально css-правило согласно которому
+результат будет отфильтрован.
 
-Then, every {Element} instance has a number of methods to navigate around its neighborhood, like
-`select`, `subNodes`, `siblings`, etc. Each of them can be used as is
-or can receive a string css-rule that will filter the result.
-
-    element.select('div.boo span.foo'); // all levels descendants
+    element.select('div.boo span.foo'); // подэлементы любого уровня
     
-    element.parent();        // the first parent
-    element.parent('div');   // the first DIV parent
+    element.parent();        // первый родительский элемент
+    element.parent('div');   // первый родительский элемент с тэгом DIV
 
-RigthJS supports all the standard CSS3 selectors on all browsers.
-[Read more](/tutorials/dom-navigation-and-manipulations)
+RigthJS поддерживает все стандартные CSS3 конструкции на всех браузерах.
+[Статья о навигации](/tutorials/dom-navigation-and-manipulations)
 
 
-## Working With Collections, :collections
+## Работа с коллекциями, :collections
 
-To keep it simple RightJS doesn't have any specific interfaces to process dom-elements collections,
-instead of that it offers something nicer and more generic. You can process {Array}s by specifying 
-property/method name and optional attributes just like that.
+RightJS не имеет какого либо специального интерфейса для работы со списками элементов, вместо
+этого он везде работает с массивами ({Array}) и позволяет едионообразно обрабатывать их в
+упрощенном виде просто указывая имя метода/свойства которые должны быть использованны в итерациях.
 
     var ids = $$('div').map('id');
     var classes = $$('div').map('className').map('split', /\s+/).flatten();
@@ -56,39 +58,43 @@ property/method name and optional attributes just like that.
     $$('div').each('addClass', 'marked');
     $$('div').each('onClick', 'addClass', 'marked');
 
-Read [this article](/tutorials/call-by-name) for more information about the feature.
+Загляните в [специальную статью](/tutorials/call-by-name) более детально описывающую данную возможность.
 
 
 
-## Events handling, :events
+## Работа с событиями, :events
 
-Events handling in RightJS is kind of a mix of Prototype and jQuery ideas. There is a basic method
-called `on`, which can take various sort of arguments and a list of shortcuts for all the
-standard dom-events
+Работа с событиями в RightJS это своего рода смесь идей из Prototype и jQuery. Существует один,
+общий метод `on`, который позволяет работать с различными типами аргументов. А так же имеется
+ряд удобных сокращений для всех стандартных dom-событий, и удобная возможность указания обработчика
+по имени
 
     element.on('click', function() {});
-    element.on({click: function(){}, mouseover: function() {} });
     element.on('click', [func1, func2, func3, func4]);
+    element.on({click: function(){}, mouseover: function() {} });
     
-    // standard event shortcuts
+    // сокращения для стандартных событий
     element.onClick(function() {});
     element.onMouseover(function() {});
     
-    // it also supports the by-name event handlers
+    // укзанаие обработчиков по имени
     element.onClick('addClass', 'marked');
     element.onClick('morph', {background: 'green'});
 
-See the [dom-event basics](/tutorials/dom-events-handling) for more information
+Смотрите так же [статью о dom-событиях](/tutorials/dom-events-handling) для более подробной
+информации по данному впросу
 
 
 
-## Visual Effects, :fx
+## Визуальные эффекты, :fx
 
-By default RightJS comes with an extensive visual effects engine that allows you to smoothly morph
-any dom-element to any style, plus there are a number of standard effects like `highlight`,
+По умолчанию RightJS имеет встроенный движок визуальных эффектов позволяющий плавно
+трансформировать любой элемент от его текущего состояния до любого указанного стиля,
+а так же имеется набор стандартных и часто используемых эффектов вроде `highlight`,
 `fade`, `slide`, `scroll`.
 
-You can do both, use them in an OOP way like Scriptaculous, or use dom-level methods like jQuery.
+Вы можете использовать эффекты в двух вариантах, в ООП стиле, как в Scriptaculous,
+или использовать методы уровня элемента, как в jQuery.
 
     new Fx.Morph('element').start({background: 'green'});
     
@@ -96,15 +102,16 @@ You can do both, use them in an OOP way like Scriptaculous, or use dom-level met
     
     $('element').fade().slide().highlight();
 
-You can see the visual effects demo [over here](/fx-demo), and read more about them
-in [this article](/tutorials/visual-effects)
+Вы можете посмотреть на демо визуальных эффектов [вот тут](/fx-demo), а так же найти
+более детальное описание принципов в [специальной статье](/tutorials/visual-effects)
 
 
 
-## AJAX Operations, :ajax
+## AJAX операции, :ajax
 
-There is the main interface for ajax operations called {Xhr} (after XmlHTTPRequest). You can use
-it as a class like in Prototype, or you can use it in a procedural way like in jQuery.
+В RightJS существует основной интерфейс для работы с ajax, именуемый {Xhr} (в честь XmlHTTPRequest).
+Вы можете использовать его в виде класса, как в Prototype, а так же можете использовать в 
+процедурном стиле, как в jQuery.
 
     new Xhr('/url').send();
     new Xhr('/url', {method: 'get'}).update('element');
@@ -112,27 +119,29 @@ it as a class like in Prototype, or you can use it in a procedural way like in j
     Xhr.load('/url');
     $('element').load('/url', {method: 'get'});
 
-Hey, we have a backed in spinners handling in there!
+Мы так же имеем, встроенную обработку спиннеров!
 
     Xhr.load('/url', {spinner: 'spinner'});
 
-And we can send forms via ajax just like that (including forms with files to upload)
+И можем отсылать формы (включая формы с файлами), вот так просто
 
     $('my-form').send({onFinish: callback});
     
-    // or like that
+    // или так
     $('my-form').remotize();
     $('my-form').submit();
 
-Read more about that in [this article](/tutorials/ajax-handling)
-and in the API documentation for {Xhr}
+Вы можете найти больше информации по данному вопросу вот в [этой статье](/tutorials/ajax-handling)
+а так же в API-документации для класса {Xhr}
 
 
 
-## Object Oriented Programming, :oop
+## Объектно-ориентированное программирование, :oop
 
-RightJS is an object oriented framework and it provides extensive abilities for the OOP approach.
-In a basic case it looks like Prototype classes.
+RightJS,- это объектно-ориентированный фремворк, и являясь таковым, он предоставляет
+продвинутеые возможности для программирования в объектной парадигме.
+
+Базовое определение класса выглядит точно так же как в Prototype.
 
     var MyClass = new Class({
       initialize: function() {
@@ -142,23 +151,24 @@ In a basic case it looks like Prototype classes.
       method1: function() {},
       method2: function() {}
     });
-  
-But classes in RightJS also support inheritance and Ruby-style modules sharing. Read
-[this article](/tutorials/object-oriented-programming) for more
-information on this topic.
+
+Но классы в RightJS так же поддерживают наследование, инжекцию функциональности и
+совместное использование модулей в стиле языка Ruby. Загляните в специальную
+[статью про ООП](/tutorials/object-oriented-programming) для полной информации по вопросу.
 
 
 
-## Cookies Handling, :cookies
+## Работа с кукисами, :cookies
 
-By default RightJS has a simple interface to help you work with the cookies. It automatically
-escapes/unescapes the values, sets expiration dates and makes other helpful things.
-And if you hook up the [JSON](/goods/json) module it will transparently save
-and retrieve any JSON exportable values like arrays, objects, booleans, etc.
+По умолчанию RightJS имеет специальный интерфейс для того чтобы помочь вам работать
+с кукисами. Он автоматически кодирует/декодирует данные, устанавливает даты истечения
+срока действия и делает прочие полезные операции. А если вы подключите модуль
+[JSON](/goods/json), то интерфейс `Cookie` будет так же прозрачно работать с любыми
+JSON экспортируемыми данными, такими как массивы, объекты, булевы значения и т.п.
 
     Cookie.set('key', 'value');
     Cookie.get('key');
     Cookie.remove('key');
 
-Read the api documentation for {Cookie} for more details
+Загляните в api-документацию по модулю {Cookie} для более детальной информации
 

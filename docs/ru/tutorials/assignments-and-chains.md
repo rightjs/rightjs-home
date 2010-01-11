@@ -1,25 +1,25 @@
-# Assignments And Chains
+# Мутирующие методы и цепи
 
-RightJS designed in a such way, that anytime you change an object by method
-this method will return a reference to the object it belongs to. Simply saying
-whenever you change an object as the result you have the same object again and
-free to call its other methods.
+RightJS спроектирован таким образом, что каждый раз когда вы вызываете
+метод который изменяет состояние какого-либо объекта, этот метод возвращает
+назад ссылку на сам объект. Это позволяет удобно вызывать объект снова и снова,
+создавая цепи вызовов.
 
-For example instead of this code
+Например вместо данного кода
 
     var element = new Element('div');
     element.update('text');
     element.insertTo(document.body);
     element.hightlight();
 
-You could write everything in a single line.
+Вы могли бы написать все в одну строчку
 
     new Element('div').update('text').insertTo(document.body).highlight();
 
-Generally, anytime you do something with objects in RightJS, change or get,
-you end up with some data, there are almost no methods that return
-`void`, and this gives you an opportunity to queue just anything
-you want.
+В целом, существует правило согласного которому, каждый раз когда вы обращаетесь
+к какому либо методу в RightJS, вы всегда получаете назад какие-либо данные,
+либо ссылку на сам объект, что дает вам возможность создавать удобные
+цепочки вызовов и легко понятные предложения из кода.
 
     var classes = elements.map('className').map('split', ' ').flatten().uniq();
     
@@ -29,4 +29,4 @@ you want.
     
     new Fx.Morph('element').start({...}).pause().resume().cancel();
 
-Think you've got the idea.
+Думаю вы поняли идею.

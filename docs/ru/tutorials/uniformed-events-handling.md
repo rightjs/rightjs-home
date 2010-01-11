@@ -1,41 +1,44 @@
-# Uniformed Events Handling
+# Единообразная обработка событий
 
-RightJS has a shared module called {Observer} that handles all the functionality of
-observable units that need to process some events. That includes {Xhr}, {Fx}, DOM units like
-{Element}, {Form}, {Document}, and all modules out of the [Goods](/goods) and [UI](/ui) libraries.
+RightJS имеет совместно используемый модуль {Observer} отвечающий за функциональность работы
+с событиями. Он используется во всех случаях где происходит работа с событями, как-то классы
+{Xhr}, {Fx}, элементы DOM такие как {Element}, {Form}, {Document}, а так же все модули из
+библиотек [Goods](/goods) и [UI](/ui).
 
-All of them works via the same interface and uses the same set of features.
+Использование единого совместно используемого модуля, позволяет обрабатывать события во
+всех случаях единообразно.
 
 
-## Usage Basics, :usage
+## Основы использования, :usage
 
-The {Observer} module has all the standard methods to assign, remote, check and trigger events.
-So when you see a list of supported by a unit events, like say [Draggable](/goods/drag-n-drop/draggable#events)
-you can use them right away like this
+Модуль {Observer} содержит все стандартные методы для назначения, удаления и проверки
+слушателей, а так же инициации событий. Поэтому когда вы видите список поддерживаемых
+событий, например для класса [Draggable](/goods/drag-n-drop/draggable#events),
+вы можете сразу начать их использовать, со всеми доступными методами наблюдателя
 
     new Draggable().on('start', function() {....});
     
-    // you can use hashes
+    // в виде хэша
     new Draggable().on({
       start: function1,
       drag:  function2,
       drop:  function3
     });
     
-    // you also can use self-references like that
+    // использовать ссылки по имени
     new Draggable().on('start', 'revert');
     
-    // and lists of callbacks
+    // использовать коллекции слушателей
     new Draggable().on('start', [function1, function2]);
     new Draggable().on({
       start: [function1, function2],
       stop:  [function3, function4]
     });
     
-    // and you can pre-bind some values for your callbacks too
+    // и вы можете предустановить дополнительные аргументы
     new Draggable().on('start', func1, val1, val2, ...);
 
-Pretty much the same for any DOM element
+Все точно тоже верно и для DOM элементов
 
     $('my-id').on('click', function() {...});
     
@@ -47,31 +50,32 @@ Pretty much the same for any DOM element
       mouseout:  [func2, func3, funcc4]
     });
 
-Then for predefined events list and the most common dom-events there will be shortcut methods
-named like `on[Event]`. Note each of them returns the object back so you can write chains like that
+Далее для предустановленного набора событий и для всех стандартных событий dom, существуют так же
+сокращенные методы вида `on[Event]`.
 
     new Draggable().onStart(func1).onStop(func2).onDrag('revert');
     
     $('my-id').onClick(function(){}).onMouseover('addClass', 'hovered');
 
-For the predefined events, with all the units, you can send your callbacks along with any options
-using the same names as the shortcut methods
+Так же для предустановленного набора событий, вы можете указывать ваших слушателей совместно
+с остальными опциями конструктора используя ключи подобные именам сокращенных методов
 
     new Draggable({
-      axis: 'x',
-      snap: 10,
+      axis:    'x',
+      snap:    10,
       onStart: function1,
       onStop:  function2
     });
     
     new Autocompleter('my-element', {
-      url: '/some/url',
+      url:      '/some/url',
       onShow:   function1,
       onSelect: function2
     });
 
-The only exception is the the DOM {Element} constructor, to speed the things up, you need to use
-an option named `events` with the same hash of callbacks you would send to the `on` method
+Единственное исключение - конструктор класса {Element}. Для того чтобы ускорить программную
+сборку элементов, вы должны указывать своих слушателей с ключом `events` используя точно такой же
+вид хэшей какой бы вы указали для метода `on`
 
     new Element('div', {
       id: 'my-id',
@@ -81,18 +85,19 @@ an option named `events` with the same hash of callbacks you would send to the `
       }
     });
 
-## Custom Events, :custom
+## Нестандартные события, :custom
 
-In our system there is no difference between custom and predefined list of events. You can define
-and trigger your own events on fly, just like that
+В нашей системе нет никакой разницы между стандартными и нестандартными событиями. Вы можете
+назначать слушателей и инициировать любые нестандартные события точно тем же способом что 
+и стандартные. Единственно не будут доступны сокращенные методы и опции для конструктора.
 
     var calendar = new Calendar();
     
-    // assign it
+    // назначаем слушателя нестандартного события
     calendar.on('my-event', function(one, two, three) {
-      // do something about it
+      // делаем что-то по этому поводу
     });
     
-    // fire it up
+    // инициируем нестандартное событие
     calendar.fire('my-event', 1,2,3);
 

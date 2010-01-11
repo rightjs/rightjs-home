@@ -1,23 +1,24 @@
-# RightJS Extending Guide
+# Пособие по расширению RightJS
 
-In case you would like to write some extension for RightJS, like a plugin or just some tiny library
-to organize routine operations in your application, here is a simple guidance how you could do that.
+В случае если вы пожелаете написать некое расширение для RightJS, 
+например плагин или просто небольшую библиотеку организующую рутинные операции
+в вашем приложении, публикуем небольшое пособие по данному вопросу.
+
+В рамках расширения функциональности RightJS следует иметь ввиду следующие три
+типа классов
+
+* [Родные классы JavaScript](#natives)
+* [Собственные классы RightJS](#rightjs)
+* [Классы уровня DOM](#dom)
+
+Мы пройдемся по ним один за одним и в конце я добавлю несколько слов по поводу перегрузки методов
 
 
-In terms of functionality extending you should be aware of three types of units
+## Расширение родных классов JavaScript, :natives
 
-* [JavaScript Natives](#natives)
-* [RightJS Classes](#rightjs)
-* [DOM Level Units](#dom)
-
-We will get through them one by one and later I'll put some words in about methods overloading.
-
-
-## JavaScript Natives Extending, :natives
-
-When we are talking about extending native units like {String}, {Array}, {Function} etc.
-we are talking about extending the object prototypes. So the extension of natives is
-simple. Just use the `$ext` function on the unit prototype like that
+Когда мы говорим о расширении родных классов JavaScript, таких как {String}, {Array}, {Function} и т.д.
+мы имеем ввиду расширение прототипов этих классов. В этом смысле расширение родных юнитов,
+дело совершенно простое. Просто используйте функцию `$ext` на объекте прототипа нужного класса.
 
     $ext(Array.prototype, {
       myMethod1: function() { return 1; },
@@ -38,15 +39,14 @@ simple. Just use the `$ext` function on the unit prototype like that
     "boo".hasBoo(); // -> true
 
 
-## RightJS Own Classes Extending, :rightjs
+## Расширение собственных классов RightJS, :rightjs
 
-The are few RightJS own classes in the core, like {Xhr}, {Fx}, {Cookie}. All of them are
-based on the {Class} unit, which means you can use the RightJS OOP features to extend them.
-Meaningly the `include()` and `extend()` methods.
+RightJS имеет несколько собственных классов, например {Xhr}, {Fx}, {Cookie}. Все они основаны
+на использовании общего движка классов {Class}, и как следствие могут быть легко расширены
+с использованием методов `include()` и `extend()`.
 
-In similar with the Ruby programming language, the `include` method extends the class instance
-level, which is the prototype level in our case. And the `extend` method extends the class level
-by itself.
+RightJS использует язык Ruby в качестве модели, поэтому методы расширения имеют точно тот же смысл.
+Метод `include` расширяет уровень объекта, а метод `extend` соответственно уровень самого класса.
 
     Xhr.include({
       myMethod: function() {}
@@ -62,24 +62,21 @@ by itself.
       new Xhr('/some/url');
     }
 
-You can feed those methods with several modules if you like
+Если вы не имеете никакого опыта с Ruby и не чувствуете себя в своей тарелке, можете так же
+использовать тот же подход что и в случае собственных классов JavaScript.
 
-    Xhr.include(MyModule1, MyModule2, ...);
-    Xhr.extend(MyModule1, MyModule2, ...);
-
-If you don't have any Ruby experience and it doesn't feel much natural, you can use the usual approach too.
-
-    $ext(Xhr, {...});           // same as Xhr.extend
-    $ext(Xhr.prototype, {...}); // same as Xhr.include
+    $ext(Xhr, {...});           // тоже что и Xhr.extend
+    $ext(Xhr.prototype, {...}); // тоже что и Xhr.include
 
 
 
-## DOM Level Extending, :dom
+## Расширение классов уровня DOM, :dom
 
-As there are more than one implementation of the DOM level units, extending them might be tricky.
-For this reason RightJS provides the {Element.addMethods} feature, which might be used like this.
+Как мы все хорошо знаем, в природе существует более чем одна реализация объектной модели документа и
+в этом свете расширение классов уровня DOM может быть довольно хитрой задачей. В связи с чем
+в RightJS существует метод {Element.include}, который организует все процессы за единым интерфейсом.
 
-    Element.addMethods({
+    Element.include({
       myMethod1: function() {},
       myMehtod2: function() {}
     });
@@ -87,27 +84,26 @@ For this reason RightJS provides the {Element.addMethods} feature, which might b
     $('my-element').myMethod1();
     $$('*').each('myMethod2');
 
-Once you called the feature all your extensions will be registered and then whenever you select
-an element with RightJS methods you will have them available on the element.
+После того как вы вызовите данный метод, он зарегистрирует все ваши расширения и после этого
+он станет доступен со всеми элементами на странице.
 
-There are few more methods like this, to extend another dom-units
+Так же существует еще несколько подобных методов для других элементов страниц
 
-* {Form.addMethods} - extends the FORM elements only
-* {Form.Element.addMethods} - extends INPUT, SELECT and TEXTAREA elements only
-* {Event.addMethods} - extends the dom events
+* {Form.include} - расширяет только элементы FORM
+* {Form.Element.include} - расширяет только элементы ввода INPUT, SELECT and TEXTAREA
+* {Event.include} - расширяет объекты событий
 
-All those methods will register your extensions inside the objects and extend the units
-prototype level if available, so that your methods will work exactly the same way as any
-RightJS own method works.
+Все эти методы будут регистрировать ваши расширения в системе, так что они будут работать
+точно так же как и любые другие методы RightJS.
 
 
-## Methods Overloading, :overloading
+## Перегрузка методов, :overloading
 
-Sometimes you might need not just to add some new methods but overload existing ones,
-here is a tip how you could do that.
+Иногда вам может понадобиться не просто добавить некий дополнительный метод, а
+перегрузить уже существующий. Приводим несколько примеров, как это может быть сделано
 
-The idea is simple, you create a temporary function, that will return the end hash with
-extensions, and then you instantly call it with the unit you extend, like this:
+Идея проста. Вы создаете временную функцию которая возвращает хэш для расширения
+и тут же ее вызываете. Примерно вот так.
 
     $ext(SomeClass.prototype, (function(class_prototype) {
       var old_method = class_prototype.someMethod;
@@ -123,10 +119,11 @@ extensions, and then you instantly call it with the unit you extend, like this:
       };
     })(SomeClass.prototype));
 
-The reason of doing that is to have a separated namespace where you could safely disconnect
-the old methods and keep them alive for future calls.
+Это делается для того, чтобы создать новое пространство имен, где можно было бы безопасно
+отделить старый метод и создать новый, способный вызывать старый.
 
-For example, say I want that the {Xhr} instances did some fancy stuff before sending the requests
+Примера ради, скажем вы захотите чтобы все объекты типа {Xhr} делали некий хитрый вызов перед
+тем как они получают запрос на отправку
 
     Xhr.include(function(xhr_prototype) {
       var old_send = xhr_prototype.send;
@@ -138,22 +135,23 @@ For example, say I want that the {Xhr} instances did some fancy stuff before sen
           return old_send.apply(this, arguments);
         },
     
-        // my additional method with the fancy stuff
+        // дополнительный хитрый метод
         fancyStuff: function() {
         }
       };
     
     })(Xhr.prototype));
 
-In case of the dom-level units, all the additional methods are stored at constants called `Methods`,
-like `Element.Methods`, `Form.Methods`, `Event.Methods`. You can use them instead of
-prototypes in the overloading process.
+В случае работы с классами уровня DOM, все дополнительные методы хранятся в переменных 
+с именем `Methods`, например `Element.Methods`, `Form.Methods`, `Event.Methods`. Вы можете
+использовать их вместо прототипов классов при перегрузке методов
 
-For example I would like to know when something on the page was changed.
+Например этот код перегрузит метод {Element#insert} и будет уведомлять внешнюю функцию
+об изменениях на странице.
 
     var call_mommy = function(element) {...};
     
-    Element.addMethods((function(old_methods) {
+    Element.include((function(old_methods) {
       var old_insert = old_methods.insert;
   
       return {
@@ -167,6 +165,3 @@ For example I would like to know when something on the page was changed.
       };
     })(Element.Methods));
 
-<p>&nbsp;</p>
-
-This is pretty much all about the RightJS extending techniques.

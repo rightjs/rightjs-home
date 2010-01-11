@@ -62,10 +62,6 @@ by itself.
       new Xhr('/some/url');
     }
 
-You can feed those methods with several modules if you like
-
-    Xhr.include(MyModule1, MyModule2, ...);
-    Xhr.extend(MyModule1, MyModule2, ...);
 
 If you don't have any Ruby experience and it doesn't feel much natural, you can use the usual approach too.
 
@@ -77,9 +73,9 @@ If you don't have any Ruby experience and it doesn't feel much natural, you can 
 ## DOM Level Extending, :dom
 
 As there are more than one implementation of the DOM level units, extending them might be tricky.
-For this reason RightJS provides the {Element.addMethods} feature, which might be used like this.
+For this reason RightJS provides the {Element.include} feature, which might be used like this.
 
-    Element.addMethods({
+    Element.include({
       myMethod1: function() {},
       myMehtod2: function() {}
     });
@@ -92,9 +88,9 @@ an element with RightJS methods you will have them available on the element.
 
 There are few more methods like this, to extend another dom-units
 
-* {Form.addMethods} - extends the FORM elements only
-* {Form.Element.addMethods} - extends INPUT, SELECT and TEXTAREA elements only
-* {Event.addMethods} - extends the dom events
+* {Form.include} - extends the FORM elements only
+* {Form.Element.include} - extends INPUT, SELECT and TEXTAREA elements only
+* {Event.include} - extends the dom events
 
 All those methods will register your extensions inside the objects and extend the units
 prototype level if available, so that your methods will work exactly the same way as any
@@ -153,7 +149,7 @@ For example I would like to know when something on the page was changed.
 
     var call_mommy = function(element) {...};
     
-    Element.addMethods((function(old_methods) {
+    Element.include((function(old_methods) {
       var old_insert = old_methods.insert;
   
       return {

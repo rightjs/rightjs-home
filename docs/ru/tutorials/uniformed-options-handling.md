@@ -1,19 +1,21 @@
-# Uniformed Options Handling
+# Единообразная обработка опций
 
-RightJS has its own conventional way to process options in all the configurable units like {Xhr}, {Fx}, {Cookie} and
-all the modules out of the the [Goods](/goods) and [UI](/ui) libraries.
+RightJS имеет свой собственный способ для единообразной работы с опциями, который
+работает для всех конфигурируемых классов, таких как {Xhr}, {Fx}, {Cookie} и всех
+модулей из проектов [Goods](/goods) и [UI](/ui).
 
-For this purpose there is a simple shared module called {Options}. All the RightJS units use it and so can you.
+Для этой цели существует совместно используемый модуль под именем {Options}.
+Все классы RightJS используют его, и вы можете делать тоже самое.
 
-## Convention, :convention
+## Соглашение, :convention
 
-The {Options} module might be used in several different ways, but in order to organize the things in a single
-uniformed way, we use the following convention.
+Модуль {Options} может быть использован несколькими различными способами, и для
+того чтобы организовать все классы к единому формату, мы используем следующее соглашение.
 
-Every configurable class has a class-level property called `Options`, which is a simple hash that contains
-the default options for the class instances. That what it will have if you won't specify any options at all.
+Каждый конфигурируемый класс имеет свойство уровня класса с именем `Options`,
+которое представляет собой обычный хэш, содержащий настройки по умолчанию.
 
-For example the {Xhr} class has the `Options` property that looks like that
+Например класс {Xhr} имеет свойство `Options` выглядящее примерно вот так
 
     Xhr.Options = {
       method:   'post',
@@ -21,77 +23,81 @@ For example the {Xhr} class has the `Options` property that looks like that
       ....
     }
 
-When you create an instance of a configurable class, the options you send into its constructor, will be _merged_
-with the default ones, and then the instance will have a property called `options` (downcased), which will
-contain the actual merged options of your object.
+Когда вы создаете объект конфигурируемого класса, опции которые вы посылаете в конструктор
+будут _объединены_ с опциями по умолчанию и установлены в переменную уровня объекта `options`
+(в нижнем регистре), которая будет содержать текущие настройки объекта.
 
-    // with default options
+    // с опциями по умолчанию
     var xhr = new Xhr();
     xhr.options.method   // -> 'post'
     xhr.options.encoding // -> 'utf-8'
 
-    // with custom options
+    // с пользовательскими опциями
     var xhr = new Xhr({method: 'get'});
-    xhr.options.method   // -> 'post'
+    xhr.options.method   // -> 'get'
     xhr.options.encoding // -> 'utf-8'
 
 
-## Alterations, :alterations
+## Настройки, :alterations
 
-Having such a conventional way, gives you a good flexibility over your application configuration.
+Наличие подобного соглашения, дает вам хорошую гибкость при настройке приложений.
 
-When you see a list of supported options for a class, say like [Calendar widget options](/ui/calendar#options)
-You can feed each constructor with any of those options like that
+Когда вы видите список поддерживаемых опций для класса, скажем [опции для виджета календаря](/ui/calendar#options),
+во-первых вы можете рассчитывать на поддержку этих опций конструктором класса
 
     var calendar = new Calendar({
-      format:  'US',
-      firstDay: 0
+      format:  'EUR',
+      firstDay: 1
     });
     
-    calendar.options.format   // -> 'US'
-    calendar.options.firstDay // -> 0
+    calendar.options.format   // -> 'EUR'
+    calendar.options.firstDay // -> 1
 
-Or you can alter the `Calendar.Options` object and change behavior of all the class instances in a single place like that
+А так же на то, что вы можете изменить объект `Calendar.Options` и изменить базовое поведение
+всех объектов данного класса в одном месте
 
     $ext(Calendar.Options, {
-      format:  'US',
-      firstDay: 0
+      format:  'EUR',
+      firstDay: 1
     });
     
-    // after that
+    // после этого
     var calendar = new Calendar();
-    calendar.options.format   // -> 'US'
-    calendar.options.firstDay // -> 0
+    calendar.options.format   // -> 'EUR'
+    calendar.options.firstDay // -> 1
 
-Those principles work all over the framework with all the configurable classes.
+Данный принцип работает со всеми конфигурируемыми классами по всему фреймворку.
 
 
-## RigthJS UI Library Options, :ui
+## Опции виджетов RigthJS UI, :ui
 
-All the [RightJS UI](/ui) library units can be initialized without actual writing any JavaScript code,
-all of them have their own markers, like custom `rel` attributes or css-classes, so that when the page is loaded
-the scripts could automatically find your elements and do all the initializations, for example you can initialize a
-calendar over an input field like that
+Большинство виджетов из библиотеки [RightJS UI](/ui) могут быть инициализированы без написания
+непосредственно JavaScript кода. Все из них имеют собственные маркеры в виде специальных
+значений в атрибуте `rel` или специальных css-классов, так что когда страница будет загружена,
+скрипты могли автоматически найти нужные элементы и инициализировать их. Например вы можете
+назначить виджет календаря для поля ввода таким образом
 
     <input type="text" rel="calendar" />
 
-But in case you need some customization for that kind of elements there is a conventional way of doing that.
+Но в случае если вам необходимо указать какие либо специальные настройки для каждого отдельного
+виджета, в RightJS существует стандартный способ.
 
-All you need is to create a custom HTML5 style attribute that named like `data-[unit-name-here]-options` and
-set your options inside it in a JSON format. For example
+Все что вам нужно, это создать специальный атрибут в стиле HTML5, который будет иметь имя в виде
+`data-[имя-класса]-options` и содержать внутри необходимые опции в формате JSON. Например:
 
-    // a calendar field
-    <input rel="calendar" data-calendar-options="{format:'US'}" />
+    // поле с календарем
+    <input rel="calendar" data-calendar-options="{format:'EUR'}" />
     
-    // autocompleter
+    // поле с автоподстановками
     <input type="text" rel="autocompleter"
       data-autocompleter-options="{url:'/my/url'}">
       
-    // or a lightbox link
+    // ссылка на лайтбокс
     <a rel="lightbox" data-lightbox-options="{blockContent: true}">
       <img src="/.../..." />
     </a>
 
-When a script will process your element it will automatically check the attributes and try to use them as options.
+Когда скрипт будет обрабатывать ваши элементы, он автоматически проверит наличие таких атрибутов
+и если они имеются, будет использовать их в качестве источника опций.
 
-This principle works with all auto-discoverable units out of the [UI](/ui) and [Goods](/goods) libraries
+Данный принцип работает со всеми автоматически инициализируемыми классами из библиотек [UI](/ui) и [Goods](/goods)

@@ -32,7 +32,7 @@ contain the actual merged options of your object.
 
     // with custom options
     var xhr = new Xhr({method: 'get'});
-    xhr.options.method   // -> 'post'
+    xhr.options.method   // -> 'get'
     xhr.options.encoding // -> 'utf-8'
 
 

@@ -1,81 +1,84 @@
-# Visual Effects
+# Визуальные эффекты
 <% set_unit_scope('Fx.Element') %>
 
-By default RightJS comes with the basic visual effects engine, and a few most
-common effects implemented on it. As RigthJS is an object-oriented framework,
-most of the effects are normal classes, that can be easily extended and reworked,
-but we also have some options, nice dom-level shortcuts, open interface, etc.
+По умолчанию RightJS идет со встроенным движком визуальных эффектов и несколькими,
+самыми часто используемыми эффектами. И т.к. RightJS - по большому счету 
+объектно ориентированная библиотека, все эффекты в ней это по сути классы которые
+могут быть лекго наследованы, расширены и т.п. Имеются так же свой набор опций,
+методы для сокращенного создания эффектов и т.п. вещи.
 
-Lets go through them step by step.
+В этой статье мы рассмотрим основные вопросы по теме работы с ними.
 
-## Basic Fx.Morph Interface, :generic
+## Базовый интерфейс Fx.Morph, :generic
 
-{Fx.Morph} is the basic class for all the element visual effects. It provides
-a generic interface where you can morph your element styles from their current state
-to any other. There is nothing tricky, you just specify the end style and some
-options if you need, and then the things happen automatically.
+Класс {Fx.Morph} это базовый класс и основа для всех остальных визуальных эффектов в RightJS.
+Он предоставляет общий интерфейс позволяющий плавно изменять стили любого элемента
+от их текущего состояния до любого нового.
 
     new Fx.Morph('element').start({
       background: 'yellow',
-      width: '200px'
+      width:      '200px'
     });
 
     new Fx.Morph('element', {
       duration: 'short', transition: 'Sin'
     }).start({...});
 
-You free to use any standard css notation in your styles, colors in short or long hex form,
-colors in rgb form, or any of the 12 standard color names. Dimensions might be in any units,
-but it's better if you keep them consistent, say in pixels or points. And yes you can
-use the one-line definitions like `border: 10px solid yellow` or `margin: 1px 2px 3px 4px`
+Вы можете свободно использовать стили в любой стандартной для css нотации, указывать
+несколько стилей в одном, как например `border: 10px solid yellow` или `margin: 1px 2px 3px 4px`,
+можете использовать цвета в любом доступном формате, а так же использовать любые из 12-ти
+стандартных их названий. Размеры могут быть по идее в любых единицах, но
+лучше использовать пикселы или поинты. т.к. Opera браузеры иногда округляют в em при их считывании
+и не дают правильно работать с маленькими элементами в районе 1em.
 
-You can specify as much styles as you want for this effect it will process all of them 
-simultaneously 
+Вы можете указывать столько стилей, сколько пожелаете, все они будут обработаны синхронно
+в одном эффекте
 
-## Options List, :options
+## Список опций, :options
 
-The basic visual effects constructor can receive an options hash with the following keys
+Базовый конструктор визуальных эффектов может получать следующие опции
 
-Name       | Default  | Description
------------|----------|----------------------------------------------------
-duration   | 'normal' | the effect duration (name or number in ms)
-transition | 'Sin'    |type of the effect transition
-queue      | true     | marker if the effect should be queued
+Имя        | Умолчание  | Описание
+-----------|------------|----------------------------------------------------
+duration   | 'normal'   | длительность эффекта (название или число в мс)
+transition | 'Sin'      | алгоритм переходов
+queue      | true       | маркер, если эффект должен встать в очередь
 
 
-The duration option can be one of the following
+Длительность может быть одним из следующих
 
-* 'short'  - 200 ms
-* 'normal' - 400 ms (default)
-* 'long'   - 800 ms
-* Any number value representing the duration in milliseconds
+* 'short'  - 200 мс
+* 'normal' - 400 мс (по умолчанию)
+* 'long'   - 800 мс
+* любое целое число отражающее длительность в миллисекундах
 
-The transition option might be one of the following
+Алгоритмы переходов доступны следующие
 
-* 'Cos' - slow at the beginning and the end, and fast in the middle
-* 'Sin' - fast at the beginning and the end, and slow in the middle
-* 'Exp' - slow at the beginning and rapidly throttles to the end
-* 'Log' - fast at the beginning and rapidly slows down to the end
-* 'Lin' - a constant speed transition
-* Any function that represents your own custom transition
+* 'Cos' - медленный в середине, быстрый в начале и конце
+* 'Sin' - медленный на концах, быстрый в середине
+* 'Exp' - медленный в начале и убыстряющийся к концу
+* 'Log' - быстрый в начале и замедляющийся к концу
+* 'Lin' - переход с постоянной скоростью
+* вы так же можете указать любую собственную функцию
 
-Additionally, every effect has the {Observer} interface and you can
-use the following event names to attach your listeners
+## Список событий, :events
+
+Каждый эффект имеет интерфейс {Observer} и вы можете подключать к ним слушателей следующих событий
 
 * start
 * finish
 * cancel
 
-## Default Effects Collection, :frequently
+## Коллекция эффектов по умолчанию, :frequently
 
-In the default package RightJS provides several frequently used visual effects
+По умолчанию RightJS предоставляет следующие простые эффекты уже реализованными
 
 * {Fx.Highlight}
 * {Fx.Fade}
 * {Fx.Slide}
 * {Fx.Scroll}
 
-All of them are subclasses of the {Fx.Morph} effect and have the same exact interface
+Все они являются подклассами {Fx.Morph} и имеют тот же самый интерфейс
 
     new Fx.Highlight('element').start();
     
@@ -84,12 +87,12 @@ All of them are subclasses of the {Fx.Morph} effect and have the same exact inte
     new Fx.Slide('element').start();
 
 
-## Bidirectional Effects, :bidirectional
+## Двунаправленные эффекты, :bidirectional
 
-The {Fx.Fade} and {Fx.Slide} effects belong to the family of bidirectional effects.
-Those effects can work in both directions to hide and to show an element.
-By default the effects will check the element current state and determine the direction
-automatically, but you can specify the direction manually if you need.
+Эффекты {Fx.Fade} и {Fx.Slide} относятся к семейству двунаправленных эффектов и могут работать
+в двух направлениях, на показ и на скрытие элементов. По умолчанию, они автоматически определяют
+текущее состояние элемента и работают в противоположном направлении, но вы можете так же указать
+направление работы вручную.
 
     // hide -> show -> hide -> show
     new Fx.Fade('element').start();
@@ -105,10 +108,10 @@ automatically, but you can specify the direction manually if you need.
     new Fx.Slide('element').start('in');
 
 
-## DOM Level Visual Effect Shortcuts, :shortcuts
+## Сокращенный вызов эффектов, :shortcuts
 
-There are several shortcuts, which let you run visual effects directly from the dom-element
-instances, without manual effects instantiating and getting dirty with the classes 
+Существует несколько коротких методов, позволяющих вам запускать эффекты непосредственно
+от dom-элементов без создания объектов вручную
 
 * {Fx.Element#morph}(mixed style[, Object fx_options])
 * {Fx.Element#highlight}([end_color[, start_color[, Object fx_options]]])
@@ -116,7 +119,7 @@ instances, without manual effects instantiating and getting dirty with the class
 * {Fx.Element#slide}([String direction[, Object fx_options]])
 * {Fx.Element#scroll}(Object position);
 
-Some examples
+Несколько примеров
 
     $('element').morph({background: 'green'});
 
@@ -126,7 +129,7 @@ Some examples
 
     $('element').slide();
 
-Additionally, you can send effect name and options directly into the element `hide/show/toggle/radio` methods.
+Дополнительно, вы можете посылать имя эффекта напрямую в методы элементов `hide/show/toggle/radio`.
 
     $('element').hide('slide');
     $('element').show('fade');
@@ -136,10 +139,10 @@ Additionally, you can send effect name and options directly into the element `hi
     });
 
 
-## Effects Queueing, :queueing
+## Очередь эффектов, :queueing
 
-By default RightJS will queue all the visual effects you run on any elements, so you
-could safely define an element effects chain from your code like that.
+По умолчанию RightJS будет ставить визуальные эффекты в очередь, так что вы можете
+легко создавать последовательности эффектов в коде
 
     $('element').morph({
       width: '400px', fontSize: '40px'
@@ -147,10 +150,8 @@ could safely define an element effects chain from your code like that.
 
     $('element').show('fade').highlight();
 
-    // etc.
-
-But if you need two or more effects were running simultaneously, you can specify the option
-`queue: false` with your effect options and then this effect won't get queued and will start immediately. 
+Но в случае если вам необходимо запустить два и более эффекта одновременно, вы можете указать
+опцию `queue: false`. В этом случае эффект будет запущен незамедлительно. 
 
     new Fx.Morph('element').start({width: '400px'});
     new Fx.Highlight('element', {queue: false}).start();
@@ -158,25 +159,25 @@ But if you need two or more effects were running simultaneously, you can specify
     $('element').fade('out', {queue: false});
 
 
-## Custom Visual Effects, :custom
+## Собственные эффекты, :custom
 
-With RightJS it is really simple to create your own reusable visual effects,
-which will do exactly what you need in your application.
+Т.к. визуальные эффекты в RightJS имеют нормальную объектно-ориентированную структуру,
+а класс {Fx.Morph} предоставляет интерфейс для работы с любыми стилями,
+то используя наследование, можно очень легко и быстро создавать свои собственные эффекты,
+которые будут делать в точности то что вам необходимо.
 
-For example take a look at the [custom build page](<%= builds_path %>).
-There is some sort of sleek progress bar, which shows you the size of the result build.
-This is generally a morph effect, but then it nicely changes the size number while the
-effect running, plus there is a fancy highlighting happens simultaneously.
+Например взгляните на эффект градусника на [странице пользовательских сборок](<%= builds_path %>).
+Тот что показывает размер сборок справа. По идее это просто `morph` эффект, но там
+так же происходит подсветка другим цветом, а так же меняются цифры во время работы.
 
-You can do such things realy simple. There are two methods in every visual effect that
-need to be implemented `prepare` and `render`, first one gets called right before the
-effect runs and receives all the same arguments you send into the `start` method when
-you start the effect, and the `render` method is the place where you calculate and make all the
-changes in the element at every step, during the effect run this method will receive
-float numbers from `0` to `1`, which you can use to calculate your current state.
+Создавать собственные эффекты очень просто. В базовом интерфейсе существует два метода,
+которые вам необходимо реализовать `prepare` и `render`, первый из них вызывается непосредственно
+перед запуском эффекта когда до него доходит очередь; он получает все те же аргументы что и
+метод `start`. Второй метод, это то место где собственно происходят трансформации. Во время
+работы эффекта этот метод получает числа от `0` до `1`, указывающие на относительную позицию
+эффекта от начала до конца.
 
-Then you just use the exceptional OOP abilities of RightJS, inherit the basic visual
-effect class and add your custom code. For example that build calculator visual effect looks like that.
+Например тот эффект со страницы пользовательских сборок выглядит примерно вот так.
 
     var CalcFx = new Class(Fx.Morph, {
       prepare: function(start_size, end_size) {

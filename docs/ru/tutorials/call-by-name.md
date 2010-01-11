@@ -1,77 +1,80 @@
-# Call By Name
+# Вызов по имени
 
-_Call By Name_ is one of the major features of RightJS and works in 
-many places all over the framework.
+_Вызов по имени_ это одна из основополагающих возможностей в RigthJS и работает
+во многих местах по всему фреймворку и плагинам.
 
-The idea is really simple. It brings the dynamic functions involvement 
-similar to the method `invoke` in some programming languages. 
+Идея очень проста. Данная возможность схожа с методом массивов `invoke` в некоторых
+языках программирования
 
     ['foo', 'boo', 'moo'].invoke('replace', 'oo', 'aa');
     
     // -> ['faa', 'baa', 'maa']
 
-You just pass a method name and some optional arguments into the `invoke` method
-of a collection and it will automatically call that method by name with specified
-arguments.
+Вы просто указываете имя метода и несколько необходимых аргументов. Далее метод
+`invoke` пройдет по всем элементам массива и вызовет на каждом из них указанный
+метод с указанными аргументами.
 
-But instead of creating such additional methods, RightJS extends the idea
-and generally lets you feed all the generic methods with names just the same way.
+Но вместо того, чтобы создавать подобные дополнительные методы, RightJS расширяет
+данную идею и дает вам возможность использовать ее глобально, со всеми стандартными
+методами коллекций, а так же при обработке событий.
 
-Say you could strip tags in each string in a list of strings like this
+Скажем, в стандартном подходе вы могли бы удалить все тэги из списка строк, вот таким образом
 
-    strings.each(function(string) {
+    strings.map(function(string) {
       return string.stripTags();
     });
 
-Or you could do just the same thing calling the method by name
+В RightJS вы можете сделать тоже самое просто указав метод по имени
 
-    strings.each('stripTags');
+    strings.map('stripTags');
 
-RightJS works perfectly with both method or attribute names. There are some
-use cases.
+RightJS единообразно работает как с методами, так и с атрибутами элементов
+массивов. Несколько примеров
 
-    // some strings processing example
+    // несколько примеров обработки списка строк
     var lowercased = strings.map('toLowerCase');
     var uppercased = strings.map('toUpperCase');
     var trimmed    = strings.map('trim');
     var blanks     = strings.filter('blank');
     var replaced   = strings.map('replace', 'some', 'another');
     
-    // collecting the element ids
+    // собираем все ID элементов
     var ids = elements.map('id');
     
-    // disabling all the elements
+    // блокируем все элементы списка
     elements.each('disable');
     
-    // adding a class to every element
+    // добавляем класс 'marked' для каждого элемента
     elements.each('addClass', 'marked');
     
-    // attaching event listener to every element in a list
-    elements.each('on', 'click', 'toggleClass', 'marked');
+    // указываем обработчик события по имени
+    element.onClick('toggleClass', 'marked');
     
-    // or you could do the same with a single element
-    element.on('click', 'toggleClass', 'marked');
+    // подключаем слушателя события для каждого элемента
+    elements.each('onClick', 'toggleClass', 'marked');
+    
 
-## Why Do That?, :why
+## Зачем это делать?, :why
 
-If you still didn't get it try to read the piece of code above. Just as a 
-plain English text. The feature is really natural. There are many
-of cases like those, when you simply need to call a method or grab an attribute
-of every item in a collection, or attach an object method to an event.
+Если вы все еще не поняли идеи, попробуйте прочитать кусок кода в предыдущем
+примере еще раз. Просто как обычный текст. Возможность указывать обработчик
+по имени, позволяет писать естественный, удобочитаемый код легко понятный
+другим разработчикам.
 
-Instead of writing dummy functions you just  feed the generic methods with a 
-name and RightJS do all the rest for you. As the result you write more
-compact and readable code. And more compact code means fewer misprints and 
-bugs.
+В практике JavaScript программирования существует множество случаев, когда
+все что вам нужно, это вызывать _уже существующий_ метод каждого элемента.
+Отказавшись от использования функций посредников в подобных случаях вы не
+просто делаете код более читабельным, вы так же можете значительно сократить
+его размер и как следствие количество потенциальных опечаток и багов в нем.
 
 
-## Is There A Performance Overhead?, :overhead
+## А что с производительностью?, :overhead
 
-Practically there is no difference between specifying a real function or a
-name. As the matter of fact it will work even faster than if you just create
-a dummy function, bind it to the object and call its method manually.
-Because you eliminate the dummy and bind functions, and specify your method
-by reference without actually initializing any new function.
+Практически нет разницы между вызовом реальной функции или указанием ее
+по имени. И на самом деле, если в массиве больше чем пара элементов, такой
+подход работает быстрее, чем если бы вы использовали функцию посредник, возможно
+еще и поместив ее в дополнительную функцию создающую правильный контекст.
+Т.к. он не использует дополнительных функций и вызывает все методы напрямую.
 
-As the result, in many cases of routine operations, it works faster. Take a
-look at the [benchmarks page](/benchmarks) and you'll see.
+В результате, в большинстве случаев рутинных операций такие вызовы работают
+быстрее. Загляните за примером на [страницу бенчмарков](/benchmarks) и вы все увидите.

@@ -1,29 +1,29 @@
-# Work With Numbers
+# Работа с числами
 
-RightJS provides several small but handy features that might make the work with numbers
-easier and more natural for object oriented programmers
+RightJS предоставляет несколько дополнительных возможностей для того чтобы 
+сделать работу с числами более естественной и удобной для объектно-ориентированных программистов
 
 
-## Strings To Numbers Conversion, :conversion
+## Конвертация строк в числа, :conversion
 
-The {String} class has two methods to convert its instances to numbers,
-{String#toInt} and {String#toFloat}. The usage is simple
+Класс {String} имеет два дополнительных метода для конвертации строк в числа
+{String#toInt} и {String#toFloat}
 
     '10px'.toInt();    // -> 10
     '0.001'.toFloat(); // -> 0.001
 
-You also can use the {String#toInt} method to convert hex values into decimal numbers
+Вы так же можете использовать метод {String#toInt} для конвертации шестнадцатиричных чисел в десятичные
 
     'FF'.toInt(16);  // -> 255
     '8B'.toInt(16);  // -> 139
 
-The {String#toFloat} method will also automatically recognize a comma and dash symbols as the decimal point.
+Метод {String#toFloat} так же распознает запятые и тире как знаки десятичной точки.
 
     '0.01'.toFloat(); // -> 0.01
     '0,02'.toFloat(); // -> 0.02
     '0-03'.toFloat(); // -> 0.03
 
-If you want to disable this feature, just pass `true` as the argument
+Вы можете отключить эту возможность, просто указав `true` в качестве аргумента
 
     '0.01'.toFloat(true); // -> 0.01
     '0,02'.toFloat(true); // -> 0
@@ -31,11 +31,10 @@ If you want to disable this feature, just pass `true` as the argument
 
 
 
-## Number Extensions, :extensions
+## Расширения чисел, :extensions
 
-The {Number} class has most of the `Math` module methods like `abs`, `floor`,
-`ceil`, `round` attached to the instance level, so that you can work with them
-directly without calling the `Math` module.
+Класс чисел {Number} так же имеет методы модуля `Math`, такие как `abs`, `floor`, `ceil`, `round`
+подключенные на уровень объекта, так что вы можете вызывать их напрямую от чисел.
 
     15.4.abs();   // -> 15.4
     15.4.round(); // -> 15
@@ -43,10 +42,10 @@ directly without calling the `Math` module.
     15.4.floor(); // -> 15
 
 
-## Ruby Style Loops, :loops
+## Циклы в стиле Ruby, :loops
 
-In additional the {Number} class supports the Ruby language style loops for the numbers:
-{Number#times}, {Number#downto} and {Number#upto}
+Дополнительно класс {Number} поддерживает работу с циклами в стиле языка Ruby
+с использованием стандартных методов {Number#times}, {Number#downto} and {Number#upto}
 
     4..times(function(i) {
       // ....
@@ -61,17 +60,17 @@ In additional the {Number} class supports the Ruby language style loops for the 
     });
 
 
-## Random Numbers Generator, :random
+## Генератор случайных чисел, :random
 
-By default the {Math.random} method returns float numbers between 0 and 1. RigthJS extends this method
-and makes it generate integer numbers in a given range, if specified.
+По умолчанию метод {Math.random} возвращает числа с плавающей точкой в диапазоне от `0` до `1`.
+RightJS расширяет данный метод позволяя так же легко генерировать случайные целые числа в заданном
+диапазоне
 
-    Math.random();    // a Float    between 0 and 1
+    Math.random();    // Float   между 0 и 1
     
-    Math.random(8);   // an Integer between 0 and 8
+    Math.random(8);   // Integer между 0 и 8
     
-    Math.random(1,4); // an Integer between 1 and 4
+    Math.random(1,4); // Integer между 1 и 4
 
 <p>&nbsp;</p>
 
-That's it. Have fun!

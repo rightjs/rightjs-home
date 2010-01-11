@@ -1,8 +1,8 @@
-# DOM Events Handling
+# Работа с событиями DOM
 <% set_unit_scope('Element') %>
 
-RightJS has one unified events handling interface defined by the {Observer} module and all the dom-elements
-use them for dom-events processing. This means you can attach events listeners in the same way as everywhere else
+RightJS имеет общий интерфейс для работы с событиями - {Observer} и все dom-элементы используют его
+для работы. Это означает, что вы можете назначать обработчики событий тем же точно способом что и везде
 
     $('element').on('click', function() {});
     $('element').on('click', [func1, func2, func3,...]);
@@ -12,11 +12,10 @@ use them for dom-events processing. This means you can attach events listeners i
       mouseout:  func3
     });
     
-    // listeners by name work too
+    // ссылки по имени так же работают
     $('element').on('click', 'addClass', 'clicked');
     
-    
-Then for all the standard dom-events there are nice shortcut methods for event listeners attachment
+Так же, для всех стандартных dom-событий существует набор сокращений
 
     $('element').onClick(function() {})
     $('element').onMouseover('addClass', 'hovered');
@@ -26,7 +25,7 @@ Then for all the standard dom-events there are nice shortcut methods for event l
     
     $('input').onChange(function() {});
   
-And you can check and unsubscribe listeners the same way too
+И вы так же можете отключать слушателей стандартным способом
 
     $('element').stopObserving('click');
     $('element').stopObserving(function_1);
@@ -37,65 +36,65 @@ And you can check and unsubscribe listeners the same way too
     
     // ....
 
-See the description of the {Observer} unit and {Element} methods, like {#on}, {#stopObserving}, {#observes}, {#listeners}
-for more information on the standard interface.
+См. описание модулей {Observer} и {Element} с методами {#on}, {#stopObserving}, {#observes}, {#listeners}
+для более детальной информации по стандартному интерфейсу.
 
 
-## Event Object Receiving, :receiving
+## Получение объекта события, :receiving
 
-There is couple of important moments on how RightJS sends an instance of the dom-event inside the listeners.
+Есть пара важных моментов о том, как RightJS посылает объекты событий в методы слушателей.
 
-When you just attach your listener function in a standard way it naturally called in the context of the element and receive
-the dom-event instance as the first argument.
+Когда вы подключаете слушателя в виде функции, обычным способом. RightJS работает в стандартном режиме,
+он вызовет функцию слушателя в контексте данного элемента и передаст объект события первым аргументом в списке.
 
     $('element').onClick(function(event) {
       if (this.hasClass('marked'))
-        event.stop(); // or something
+        event.stop(); // или что там у вас
     });
-    
-You also can bind some arguments that should be sent along with the event to your listeners, so that you don't have
-to use any sort of currying/binding manually in such cases
+
+Вы так же можете предустановить несколько атрибутов которые необходимо послать слушателю вместе
+с объектом события. В данном случае не нужно ничего придумывать, просто укажите аргументы следом за функцией
 
     $('element').onClick(function(event, one, two, three) {
       this.update(one + two + three);
     }, 'one', 'two', 'three');
 
-But, when you attach your event listener by name, in this case RightJS will send in your listeners _defined arguments only_.
-The reason is simple, all the methods referred by name expect some data from you, not an event.
+__НО__, если вы указываете обработчик события по имени, RightJS пошлет в него _только те аргументы_ которые
+вы укажите при инициализации. Причина в том, что методы указываемые по имени, ожидают некоторые данные, а не объект события.
 
     $('element').onClick('hide', 'fade', {duration: 'long'});
     $('element').onMouseover('addClass', 'hovered');
     $('element').onMouseout('removeClass', 'hovered');
 
 
-## Event Extensions, :extensions
+## Расширения событий, :extensions
 
-RightJS does not create any sort of mediative interface for cross-browser events handling.
-Instead of that it uses the standard and familiar W3C event model simply mocking this interface
-on the IE browsers.
+RightJS не создает никакого прокси-интерфейса для работы с событиями в кросс-браузерном стиле.
+Вместо этого, он исправляет события Internet Explorer, добавляя к ним стандартные для w3c свойства.
 
-This way whichever browser the user uses, you always will have access to the following properties
-on every event
+Это означает, что с каким бы браузером вы не работали, вы всегда будете иметь следующий список атрибутов.
 
-* `which` - which mouse button was pressed (1,2,3)
-* `target` - the target element reference
-* `currentTarget` - the bounding (listener) element reference
-* `relatedTarget` - the related element for the over and out mouse events
-* `pageX`, `pageY` - the cursor position relative to the document
+* `which` - номер нажатой кнопки мыши (1,2,3)
+* `target` - ссылка на элемент вызвавший событие
+* `currentTarget` - ссылка на элемент слушателя события
+* `relatedTarget` - ссылка на зависимый элемент для событий mouseover и mouseout
+* `pageX`, `pageY` - абсолютная позиция курсора
 
-Additionally, every event has a few standard methods {Event#stop}, {Event#position}, to stop an event and grab it's
-position respectively.
+В дополнение каждый объект события будет иметь пару стандартных методов {Event#stop} и {Event#position},
+для остановки событий и для того чтобы получать их позицию соответственно.
 
-If you use RightJS own interfaces to bind your event listeners, then all the extensions will be available right away
+Если вы используете w3c стандартный браузер или пользуетесь интерфейсами RightJS для назначения слушателей,
+то все расширения будут доступны прозрачно и сразу
 
     $('element').onContextmenu(function(event) {
       event.stop();
       
       $('context-menu').moveTo(event.position()).show('slide');
     });
-    
-But in case if you have attached your event listener via the IE native interfaces, then you can call the
-{Event.ext} method to extend your events
+  
+Но если вы по каким либо причинам назначили слушателя используя интерфейсы браузера IE напрямую,
+то для того, чтобы получить доступ к расширениям, вам необходимо будет вызвать метод {Event.ext}
+на объекте события
 
     element.attachEvent('onclick', function(event) {
       Event.ext(event);
@@ -104,27 +103,28 @@ But in case if you have attached your event listener via the IE native interface
     });
 
 
-## Manual Events Triggering, :triggering
+## Запуск событий вручную, :triggering
 
-Every event in RightJS can be triggered manually, which is a bit naughty but sometimes useful. To do so,
-all you need is to call the `fire` method with the event name and possibly some options
+Любое событие в RightJS может быть инициировано вручную, что не является вполне чистым подходом в плане
+работы с dom-событиями, но иногда бывает очень полезным. Для того чтобы запустить событие, вам нужно
+вызвать метод `fire` указав имя события и возможно несколько опций
 
     $('element').onClick(function() { alert('boo'); });
     
-    $('element').fire('click'); // you'll see the 'boo'
+    $('element').fire('click'); // вы увидите алерт 'boo'
     
     
-    // or say you can trigger a keyboard event like that
+    // или скажем вы можете эмулировать нажатие клавиши
     $('element').fire('keypress', {keyCode: 27});
 
-__NOTE__: RightJS _will not_ trigger a real event in this case. It will simply call every subscribed
-listener with a _fake_ event that will have the options you specify.
+__ВНИМАНИЕ__: RightJS _не запускает_ реальных событий в данном случае. Данный метод просто оповещает
+всех зарегистрированных слушателей с искусственным объектом события.
 
 
-## Custom Events, :custom
+## Нестандартные события, :custom
 
-Basically, for RightJS, there is no difference between standard and custom events. It handles all of them
-the same exact way.
+В целом, для RightJS, нет никакой разницы между стандартными и нестандартными событиями. Все они 
+будут обработаны в едином виде
 
     $('element').on('my-event', function() {...});
     
@@ -133,4 +133,4 @@ the same exact way.
         this.fire('my-event', {with: 'options'});
     });
 
-The only difference is that your events obviously won't have shortcuts.
+Единственная разница в том, что для нестандартных событий нет сокращенных методов.

@@ -1,86 +1,89 @@
-# Object Oriented Tutorials
+# Объектно-ориентированное программирование
 
-Internally, RightJS is mostly an object-oriented framework and in this tutorial we will go through
-all the most important techniques and features of working with classes in RightJS.
+Внутренне, RightJS - объектно-ориентированный фреймворк и как следствие он предоставляет
+расширенные возможности по объектно-ориентированному программированию. В данной статье
+мы рассмотрим наиболее важные методики по работе с классами в RightJS.
 
 <%= anchors_index %>
 
 
-## Basic Definition, :definition
+## Базовое определение, :definition
 
-The basic class definitions in RightJS is pretty much the same as you might see in Prototype
-or Mootools. There is a unit called {Class}, which you use in the following way.
+Базовое определение класса в RightJS выглядит точно так же каким вы можете его
+увидеть в таких библиотеках как Prototype или Mootools. Точно так же существует
+класс с именем {Class}, который используется следующим образом
 
     var MyClass = new Class({
       initialize: function() {
-        // constructor
+        // конструктор
       },
   
       method1: function() {},
       method2: function() {}
     });
 
-If you have some classes of yours from Prototype/Mootools and they don't use inheritance, they
-should be working in RightJS right way.
+Если вы имеете классы из Prototype/Mootools, которые не используют наследования,
+они должны быть рабочими и в RigthJS тоже.
 
 
-## Inheritance, :inheritance
+## Наследование, :inheritance
 
-Inheritance in RightJS looks like the one in Prototype, you pass two arguments to the {Class}
-constructor, the parent class and the new code hash, but unlike Prototype, RigthJS doesn't
-send reference to the super-method as a first argument, instead of that it allows you to
-access it in a more natural way by referring it with the `this.$super` variable.
+Наследование в RightJS выглядит похожим на наследование в Prototype, точно так же необходимо
+указать два аргумента для {Class}, первый из них - родительский класс, а второй - хэш
+методов для нового класса. Но разница в том, что в RightJS вместо того чтобы использовать
+аргументы для ссылки на супер-методы, используется переменная с именем `this.$super`. Например:
 
     var Girl = new Class({
       sayHello: function() {
-        return "Hello there";
+        return "привет";
       }
     });
     
     var FancyGirl = new Class(Girl, {
       sayHello: function() {
-        return "Well, "+ this.$super() +"!";
+        return "Ну "+ this.$super() +" красавчег!";
       }
     });
 
-The overloaded methods can take any types and numbers of arguments you like, and you can
-bypass them down to the `$super` method as you need.
+Перегруженные методы в данном случае могут иметь любое количество аргументов любого рода,
+и вы вольны вызывать родительский метод так, как вам это необходимо.
 
 
-## Private Methods, :private
+## Приватные методы, :private
 
-RightJS doesn't have any special features to handle private methods, because you don't really need
-that. You always can create private methods with the following trick.
+RightJS не имеет никакой специальной функциональности для работы с приватными методами.
+Потому что она в общем-то не нужна. Вы всегда можете создать приватные методы следующим
+образом
 
     var MyClass = new Class((function() {
   
       var private_method = function() {
-        // some secret stuff in here
+        // секретный код, недоступный снаружи
       };
       
     return {
       
         publicMethod: function() {
-          // you can call it like a plain function in here
+          // вы можете вызвать его как простую функцию
           private_method('bla', 'bla', 'bla');
           
-          // or you can call it in the context of the object
+          // или в контектсе объекта, как метод
           private_method.call(this, 'bla', 'bla', 'bla');
         }
     
     }})());
 
-The idea is simple, you isolate your private methods in a temporary function that returns
-a methods hash for the {Class} constructor, and then immediately call it.
+Идея очень проста, вы изолируете приватные методы во временной функции, которая возвращает
+хэш для создания класса, и тут же ее вызываете.
 
 
-## Ruby Style Mixins, :mixins
+## Модули в стиле Ruby, :mixins
 
-If you ever worked with Ruby, you should know how it takes advantages of multiple-inheritance
-by allowing you to create shared modules and then use functionality injection technique to
-include them into your classes.
+Если вы когда либо работали с языком программирования Ruby, вы должны знать, как он использует
+преимущества множественного наследования с помощью возможности создания совместно используемых
+модулей и дальнейшей их инжекции в классы.
 
-RightJS tries to monkey this feature and allows you to share your modules the same way
+RightJS имитирует данную возможность и точно так же позволяет вам создавать совместно используемые модули
 
     var Module1 = {
       method1: function() {}
@@ -94,20 +97,20 @@ RightJS tries to monkey this feature and allows you to share your modules the sa
       include: Module1,
       extend:  Module2
     
-      // rest of the class definition
+      // дальше идут сами методы класса
     });
 
-The naming principles are the same as it is in Ruby, `include` extends the instance
-(prototype) level and `extend` extends the class level.
+Принципы именования те же самые что и в Ruby, `include` расширяет уровень объекта (прототипа)
+а `extend` расширяет уровень самого класса.
 
-You also can specify several mixins in a list if you need
+Вы так же можете указывать несколько модулей одновременно используя массивы
 
     var MyClass = new Class({
       include: [Module1, Module2, Module3],
       extend:  [Module4, Module5, Module6]
     });
 
-And you can use hashes directly, like that
+Или используя непосредственно хэши вот таким образом.
 
     var MyClass = new Class({
       extend: {
@@ -120,64 +123,66 @@ And you can use hashes directly, like that
       }
     });
 
-And finally you can call the `include` and `extend` methods after a class
-was initialized
+А так же вы можете использовать методы класса `include()` и `extend()` _после_ того как
+класс был создан
 
     var MyClass = new Class({});
     
     MyClass.include(Module1, Module2, ...);
     MyClass.extend(Module3, Module4, ...);
 
-## Mixin Priorities, :priorities
 
-There are two principles you should keep in mind when you use the modules sharing.
 
-When you include/extend your modules inline with the rest of your class definition, the
-class definition properties will have priority over the mixed in modules.
+## Приоритеты методов модулей, :priorities
+
+Есть два принципа которые вы должны держать в уме, работая с совместно используемыми модулями в RightJS
+
+Когда вы подключаете ваши модули совместно с остальными методами класса _во время_
+непосредственно определения. Методы класса будут иметь приоритет над методами модулей.
 
     var Module = {
-      method: function() { return "the module thing"; }
+      method: function() { return "метод модуля"; }
     };
 
     var MyClass = new Class({
       include: Module,
   
       method: function() {
-        return "my class thing";
+        return "метод класса";
       }
     });
     
-    new MyClass().method(); // -> "my class thing"
+    new MyClass().method(); // -> "метод класса"
 
-
-But when you call the `include`/`extend` methods _after_ your class was
-defined, then the modules will have priorities over existing methods.
+Но когда вы используете методы `include`/`extend` уже _после_ того как класс
+был создан, в этом случае методы модулей будут иметь приоритет над методами
+класса.
 
     var Module = {
-      method: function() { return "the module thing"; }
+      method: function() { return "метод модуля"; }
     };
     
     var MyClass = new Class({
       method: function() {
-        return "my class thing";
+        return "метод класса";
       }
     });
     
     MyClass.include(Module);
 
-    new MyClass.method(); // -> "the module thing"  
+    new MyClass.method(); // -> "метод модуля"  
     
     
 
-## Mixin Callbacks, :callbacks
+## Обратные вызовы, :callbacks
 
-As RightJS monkeys Ruby's classes system, it also monkeys the Ruby-style mixin callbacks,
-which are pretty helpful when you want to write some extensive meta-programming voodoo.
+Имея систему классов на основе Ruby, RightJS так же поддерживает похожую систему обратных
+вызовов для совместно используемых модулей. Что бывает очень полезно при метапрограммировании.
 
-To use that feature, you need to create in your modules methods named `selfIncluded`/`selfExtended`
-or their underscored equivalents `self_included`/`self_extended`. The first one is called when
-the module is included in a class, the second one when it was used to extend a class. Both of the methods will
-take related class as an argument
+Для использования этой возможности, вам необходимо создать методы с именами `selfIncluded`/`selfExtended`
+или в случае использования стиля с подчеркиваниями `self_included`/`self_extended`. Первый из них
+вызывается когда модуль был использован для расширения уровня объекта, а второй соответственно при
+расширении уровня класса. Обе функции получают ссылку на расширяемый класс.
 
     var Module = {
       self_included: function(klass) {
@@ -200,5 +205,5 @@ take related class as an argument
 
 <p>&nbsp;</p>
 
-<p>This is pretty much all of it</p>
+<p>Это в общем-то все.</p>
 
