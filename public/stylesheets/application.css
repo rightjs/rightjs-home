@@ -192,6 +192,7 @@ div#lang-switch {
   position: absolute;
   right: 8em;
   top: 1em;
+  display: none;
 }
 
 div#main {
