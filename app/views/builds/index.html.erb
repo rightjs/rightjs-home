@@ -69,7 +69,13 @@
 
 // some nice looking calculator method
 
-var build_sizes = <%= @build_sizes.to_json %>;
+var build_sizes_t = {<%= @build_sizes.collect{|k,v| "#{k.to_i(2)}:#{v}"}.join(',') %>};
+var build_sizes = {};
+for (var key in build_sizes_t) {
+  build_sizes[String(key).toInt().toString(2)] = build_sizes_t[key];
+}
+
+
 var build_keys  = <%= (RIGHTJS_BUILD_OPTIONS.collect{|o| o.gsub(/^no\-/, '')} + ['build', 'compress']).to_json %>;
 var max_size    = Math.max.apply(null, Object.values(build_sizes));
 var min_size    = Math.min.apply(null, Object.values(build_sizes));
