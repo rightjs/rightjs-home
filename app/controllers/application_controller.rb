@@ -8,6 +8,11 @@ class ApplicationController < ActionController::Base
   include CrossReferences
   include AuthenticatedSystem
   
+  # overloads the original method to use a language prefix
+  def self.cache_page(content=nil, path=nil)
+    super content || response.body, "/#{@@language == 'en' ? '' : @@language}#{path == '/' ? '/index' : path}"
+  end
+  
 protected
   
 
@@ -56,6 +61,7 @@ protected
     end
     
     @language ||= Internationable::DEFAULT_LANGUAGE
+    @@language = @language
     
     Internationable.current_language = @language
     
