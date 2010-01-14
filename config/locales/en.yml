@@ -78,6 +78,27 @@ en:
       core_file:          the core file
       old_browsers:       the old browsers support
       zipped_files:       both files zipped
+      
+    builds:
+      modules:
+        cookie:           Cookies support
+        form:             Form Additional Features
+        xhr:              Ajax Features
+        fx:               Basic Visual Effects
+        olds:             Old Browsers Support
+        
+        json:             JSON support
+        events:           Advanced DOM-Events handling
+        effects:          Additional Visual Effects
+        behavior:         Behaviors Module
+        dnd:              Drag'n'Drop Module
+        rails:            Ruby And Rails Support Module
+        
+        compress:         Compress Source Code
+        build:            Create Self-Build Script
+        
+      Create:             Create
+      Reset:              Reset
   
     fx_demo:
       Start:              Start

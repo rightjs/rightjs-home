@@ -2,8 +2,14 @@ class BuildsController < ApplicationController
   skip_before_filter :verify_authenticity_token
   
   caches_page :index
+  caches_page :scripts
   
   def index
+    params[:path] = ['builds']
+    render :text => Page.find_by_path("builds").to_html(@template), :layout => 'application'
+  end
+  
+  def scripts
     # grabbing the custom build sizes for some javascript nice effects
     @build_sizes = {}
     

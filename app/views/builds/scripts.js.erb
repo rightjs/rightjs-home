@@ -1,0 +1,68 @@
+// some nice looking calculator method
+
+var build_keys  = <%= (RIGHTJS_BUILD_OPTIONS.collect{|o| o.gsub(/^no\-/, '')} + ['build', 'compress']).to_json %>;
+var build_sizes_t = "<%= @build_sizes.collect{|k,v| "#{k.to_i(2).to_s(16)}:#{v.to_s(16)}"}.join(',') %>";
+var build_sizes = {};
+build_sizes_t.split(',').each(function(pair) {
+  pair = pair.split(':');
+  var key = pair[0].toInt(16).toString(2).split('');
+  while (key.length < build_keys.length) key.unshift('0');
+  build_sizes[key.join('')] = pair[1].toInt(16);
+});
+
+var max_size    = Math.max.apply(null, Object.values(build_sizes));
+var min_size    = Math.min.apply(null, Object.values(build_sizes));
+
+document.onReady(function() {
+  var build_form  = $('custom-build-form');
+
+  var calc     = $E('div', {id: 'calc'});
+  var calc_bar = $E('div', {id: 'bar'}).insertTo(calc);
+  var calc_num = $E('div', {id: 'num'}).insertTo(calc_bar);
+
+  build_form.insert(calc, 'top');
+
+  var CalcFx = new Class(Fx.Morph, {
+    prepare: function(start_size, end_size) {
+      this.startSize = start_size;
+      this.endSize   = end_size;
+
+      this.element.highlight('brown', 'green', {queue: false});
+
+      this.$super({height: (calc.sizes().y * (end_size / max_size)) + 'px'});
+    },
+
+    render: function(delta) {
+      var size = this.startSize + (this.endSize - this.startSize) * delta;
+      size = ((size/100).round()/10).toString();
+      if (!size.includes('.')) size += ".0";
+      calc_num.update(size + 'k');
+
+      this.$super(delta);
+    }
+  });
+
+  var prev_size = 0;
+  var update_calc = function() {
+    var options = build_keys.map(function(key) {
+      return $("options_"+key).checked ? 1 : 0;
+    }).join('');
+    var new_size = build_sizes[options];
+    if (new_size) {
+      new CalcFx(calc_bar).start(prev_size, new_size);
+      prev_size = new_size;
+    }
+  };
+
+  build_form.inputs().each(function(input) {
+    if (input.type == 'checkbox') {
+      input.on('click', update_calc);
+    }
+  });
+  $('form-reset').on('click', function() { update_calc.delay(50); });
+  
+  update_calc();
+});
+
+
+

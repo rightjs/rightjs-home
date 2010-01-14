@@ -268,6 +268,8 @@ Have Fun!
         FileUtils.rm file_name
       end
     end
+    
+    FileUtils.rm "#{RAILS_ROOT}/public/builds/scripts.js" if File.exists?("#{RAILS_ROOT}/public/builds/scripts.js")
   end
 end
 

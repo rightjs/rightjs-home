@@ -1,6 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
   
-  map.resources :builds, :collection => { :custom => :post }
+  map.resources :builds, :collection => { :custom => :post, :scripts => :get }
   map.current_build '/builds/current/:id', :controller => 'builds', :action => 'current', :requirements => {:id => /[\w\-\.]+/}
   map.resources :posts, :as => :blog
   

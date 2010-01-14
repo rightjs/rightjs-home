@@ -77,6 +77,27 @@ ru:
       core_file:          основное ядро
       old_browsers:       поддержка старых браузеров
       zipped_files:       оба файла в архиве
+      
+    builds:
+      modules:
+        cookie:           Поддержка Cookies
+        form:             Дполнительные возможности форм
+        xhr:              Поддержка Ajax
+        fx:               Базовые визуальные эффекты
+        olds:             Поддержка старых браузеров
+
+        json:             Поддержка JSON
+        events:           Продвинутое управление DOM-событиями
+        effects:          Дополнительные визуальные эффекты
+        behavior:         Модуль поведений (Behaviors)
+        dnd:              Модуль Drag'n'Drop
+        rails:            Поддержка Ruby And Rails
+
+        compress:         Сжать исходный код
+        build:            Создать пакованную версию
+
+      Create:             Создать
+      Reset:              Сбросить
     
     fx_demo:
       Start:              Старт

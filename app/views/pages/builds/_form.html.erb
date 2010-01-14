@@ -1,0 +1,42 @@
+<% content_for :modules do %>
+  <%= stylesheet_link_tag('custom-build') %>
+  <%= javascript_include_tag('/builds/scripts.js') %>
+<% end -%>
+
+<form action="<%= custom_builds_path %>" id="custom-build-form" method="post">
+  <p>
+    <ul>
+      <%= [
+        ['cookie',   'pages.builds.modules.cookie'.t        ],
+        ['form',     'pages.builds.modules.form'.t          ],
+        ['xhr',      'pages.builds.modules.xhr'.t           ],
+        ['fx',       'pages.builds.modules.fx'.t            ],
+        ['olds',     'pages.builds.modules.olds'.t          ],
+        
+        # RightJS Goods modules
+        ['json',     'pages.builds.modules.json'.t,     true],
+        ['events',   'pages.builds.modules.events'.t,   true],
+        ['effects',  'pages.builds.modules.effects'.t,  true],
+        ['behavior', 'pages.builds.modules.behavior'.t, true],
+        ['dnd',      'pages.builds.modules.dnd'.t,      true],
+        ['rails',    'pages.builds.modules.rails'.t,    true],
+        
+        ['compress', 'pages.builds.modules.compress'.t      ],
+        ['build',    'pages.builds.modules.build'.t         ]
+      ].collect do |options|
+        content_tag :li,
+            check_box_tag("options[#{options.first}]", 1, !options[2] && options[0] != 'olds') +
+            label_tag("options_#{options.first}", options[1]),
+          :class => options[2] ? :goods : nil
+          
+      end.join("\n")
+      %>
+    </ul>
+    
+  </p>
+  
+  <p class="buttons">
+    <input type="submit" value="<%= 'pages.builds.Create'.t %>" />
+    <input type="reset"  value="<%= 'pages.builds.Reset'.t %>" id="form-reset" />
+  </p>
+</form>
