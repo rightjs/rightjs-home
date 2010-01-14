@@ -1,34 +1,30 @@
-# Tabs
+# Табы
 
-Right Tabs is the standard tabs engine for the RightJS UI project. It provides an easy way of creating
-usual tabs, and also carousel and harmonica widgets, joining them under a single unified engine.
+`Tabs` - это стандартный движок табов для RightJS. Он предоставляет возможность легко
+создавать элементы табов, а так же поддерживает виджеты гармошки и карусельки в одом плагине.
 
-* [right-tabs.js](/builds/ui/right-tabs.js) - fully compressed build
-* [right-tabs-min.js](/builds/ui/right-tabs-min.js) - minified version
-* [right-tabs-src.js](/builds/ui/right-tabs-src.js) - uncompressed source code
-
-See the [demo page](/ui/tabs/demo) for examples of the most common cases
+<%= partial '/ui/head', :locals => {:name => 'tabs'} %>
 
 <%= anchors_index %>
 
-## Features List, :features
+## Список возможностей, :features
 
-Right Tabs are served with the following features:
+Виджет табов предоставляют следующие возможности:
 
-* An uniformed three in one (tabs, carousel, harmonica) package
-* Everything is included in a single tiny (~10k) file
-* Pure CSS design, and no image dependencies
-* Simple and easy usage
-* Remote content loading via ajax
-* An interface to create/move/remote tabs programmatically
-* Restoring the tabs state by an URL anchor and/or cookies
-* Semantically friendly and jQuery Tabs compatible markup
+* Три виджета в одном (табы, карусель, гармошка)
+* Все включено в одном небольшом (~10k) файле
+* Чистоый CSS дизайн, никаких внешних зависимостей от картинок
+* Простое и удобное использование
+* Возможна загрузка контента через AJAX
+* Интерфейс для управления табами программно
+* Восстановление состояния по анкерам url-адресов и кукисам
+* Семантически дружелюбная разметка совместимая с табами jQuery
 
 
-## Usage Basics, :usage
+## Основы использования, :usage
 
-The usage is simple as usual. Include one of those files onto your page
-and then prepare your tabs element as the following structure.
+Использование табов очень простое. Подключите один из вышеперечисленных файлов
+на вашу страницу, и подготовьте структуру элементов табов в следующем виде.
 
     <ul>
       <ul>
@@ -40,7 +36,7 @@ and then prepare your tabs element as the following structure.
       <li id="tab-2">Tab 2 Content</li>
     </ul>
 
-You also can use the jQuery's original structure with DIVs
+Вы так же можете использовать оригинальный для jQuery формат с тэгами DIV
 
     <div>
       <ul>
@@ -52,35 +48,36 @@ You also can use the jQuery's original structure with DIVs
       <div id="tab-2">Tab 2 Content</div>
     </div>
 
-After that you'll need to instantiate the tabs object, with a simple javascript code
+После этого вам необходимо инициализировать объект виджета простым JavaScript вызовом
 
     <ul id="my-tabs">
     //...
     new Tabs('my-tabs');
 
-Or as a variant you can assign the `right-tabs` css class for your tabs element
-and our script will automatically find and instantiate it when the page's loaded
+Вы так же можете просто назначить класс `right-tabs` на вашем элементе, и 
+скрипт автоматически найдет и проинициализирует виджет когда страница загрузится
 
     <ul class="right-tabs">
       // ...
     </ul>
-    
-The HTML5 style options attribute is available too
+
+Опции с использование атрибутов в стиле HMTL5 так же доступны
 
     <ul class="right-tabs" data-tabs-options="{select:2}">
       // ...
     </ul>
 
-## Variants Definition, :variants
+## Различные варианты, :variants
 
-To create a carousel widget simply add the `right-tabs-carousel` css-class
-to your tabs element and the engine will know that you want a carousel.
+Для того что-бы создать виджет карусели, просто добавьте к вашему элементу
+css-класс `right-tabs-carousel`.
 
     <ul id="my-carousel" class="right-tabs-carousel">
       // ...
     </ul>
 
-For the harmonica widget use the standard DL/DT/DD tags construction.
+Для виджета гармошки, используйте стандартную структуру списка с описаниями
+из тэгов `DL/DT/DD`.
 
     <dl>
       <dt><a href="#">Tab 1</a></dt>
@@ -89,15 +86,16 @@ For the harmonica widget use the standard DL/DT/DD tags construction.
       <dd>Tab 2 Content</dd>
     </dl>
 
-All the other features like remote tabs loading, options and events are common over all three
-types of the tabs and can be used with any of them
+Все остальные вещи, как-то удаленная загрузка контента, опции, события и т.п.
+работают одинаково для всех видов виджетов
 
 
-## Remote Tabs, :remote
+## Удаленная загрузка, :remote
 
-To make the engine load your tabs content via {Xhr} requests, just specify the url-addresses
-instead of the anchor hashes and you're good to go. And in this case you don't need
-to specify any panels, they will be generated on fly.
+Для того чтобы заставить скрипт загружать ваши данные с удаленного сервера через
+{Xhr} запросы, все что вам требуется это указать их адреса в ссылках списка табов.
+В этом случае вам так же не нужно создавать элементы панелей, скрипт сам сгенерирует
+их когда потребуется.
 
     <ul>
       <ul>
@@ -106,8 +104,9 @@ to specify any panels, they will be generated on fly.
       </ul>
     </ul>
 
-There is also a mixed approach available. You can use your tabs with hash names and then
-specify a common url-address with an `%{id}` placeholder as an option, like this
+Так же существует смешанный подход. Вы можете использовать анкеры как в обычных табах
+и использовать общий для всех табов url-адрес содержащий плейсхолдер `%{id}`, как в
+следующем примере
 
     <ul id="my-tabs">
       <ul>
@@ -118,16 +117,17 @@ specify a common url-address with an `%{id}` placeholder as an option, like this
     // ...
     new Tabs('my-tabs', {url: '/content/%{id}.html'});
 
-In this case the script will use the tab hash names as the ids and hit urls like this
+В этом случае скрипт будет заменять плейсхолдер анкерами ссылок и обращаться к адресам
 
     /content/tab-1.html
     /content/tab-2.html
 
-## Current Tab Definition, :current
 
-There are several ways how you can specify the tab that the user will see by default.
+## Указание текущего таба, :current
 
-First of all you can specify the `right-tabs-current` css-class on your current tab.
+Существует несколько способов для указания таба который пользователь увидит по умолчанию.
+
+Вы можете просто добавить css-класс `right-tabs-current` на нужном элементе списка табов.
 
     <ul id="my-tabs">
       <ul>
@@ -136,40 +136,41 @@ First of all you can specify the `right-tabs-current` css-class on your current 
       </ul>
     </ul>
 
-You also can use the `selected` option with the constructor or the custom `data-tabs-options`
-attribute. Then you can activate the `Cookie` option and the script will keep the current tab index in cookies
+Вы так же можете указать индекс текущего таба в опции `selected`. Еще вы можете активировать
+опцию `Cookie` и скрипт будет автоматически хранить индекс последнего таба в кукисах.
 
-And eventually the engine watches the url-address hash and if there is one it will check
-it against the available tab hash names. Once a match is found it will automatically 
-activate the tab. This way you can refer a specific tab via an url-address.
+И в конце концов, скрипт поддерживает указатели на табы путем использования анекров url-адресов.
+Если скрипт найдет анкер из списка табов совпадающий с указанным в текущем адресе, он
+автоматически покажет этот таб. Таким образом пользователи могут давать ссылки на конкретный таб.
 
-The priority of the current tab checks is the following
+Приоритет выбора текущего таба следующий
 
     URL -> Cookie -> CSS Class -> First
+    
 
-## Options List, :options
+## Список опций, :options
 
-There is the following list of supported options for the tabs engine
+Существует следующий список поддерживаемых опций для табов
 
-Name            | Default  | Description
-----------------|----------|------------------------------------------------------------------
-idPrefix        | ''       | the tab-panel elements id prefix
-tabsElement     | null     | the tabs list element reference, in case it is somewhere else
-resizeFx        | 'both'   | 'slide', 'fade', 'both' or null for no fx
-resizeDuration  | 400      | the tab panels resize fx duration
-scrollTabs      | false    | use the tabs list scrolling
-scrollDuration  | 400      | the tabs scrolling fx duration
-selected        | null     | an index of a tab to open
-disabled        | \[\]     | list of disabled tab indexes
-closable        | false    | set true if you want a close icon on your tabs
-loop            | false    | you can specify a delay in milliseconds in here to have a slideshow
-loopPause       | true     | makes the slideshow get paused when the user moves the mouse over it
-url             | false    | a common remote tabs url, should have the %{id} placeholder
-cache           | false    | marker if the remote tabs should be cached
-Xhr             | null     | the {Xhr} requests additional options
-Cookie          | null     | set the {Cookie} options if you'd like to keep the last selected tab index in cookies
+Имя             | Умолчание | Описание
+----------------|-----------|------------------------------------------------------------------
+idPrefix        | ''        | префикс для ID атрибутов панелей
+tabsElement     | null      | ссылка на элемент списка табов (на случай если он расположен в другом месте)
+resizeFx        | 'both'    | `'slide'`, `'fade'`, `'both'` или `null` чтобы отключить
+resizeDuration  | 400       | длительность эффекта переключения
+scrollTabs      | false     | флаг, если необходимо использовать прокрутку для списка табов
+scrollDuration  | 400       | длительность эффекта прокрутки табов
+selected        | null      | индекс таба по умолчанию
+disabled        | \[\]      | список индексов заблокированных табов
+closable        | false     | если `true`, то табы будут иметь иконку закрытия
+loop            | false     | длительность паузы в мс для эффекта слайдшоу
+loopPause       | true      | флаг, ставит слайдшоу на паузу, когда пользователь помещает курсор над табами
+url             | false     | общий url-адрес для табов, должен содержать плейсхолдер `%{id}`
+cache           | false     | флаг, если необходимо кэшировать табы загружаемые с сервера
+Xhr             | null      | дополнительные опции для {Xhr} запросов
+Cookie          | null      | {Cookie} опции, если необходимо хранить индекс последнего таба
 
-You can send any of those options as the constructor options, like this
+Вы можете использовать любые из вышеперечисленных опций с конструктором класса `Tabs`
 
     new Tabs('my-tabs', {
       idPrefix: 'my-',
@@ -177,58 +178,58 @@ You can send any of those options as the constructor options, like this
       Xhr: {spinner: 'spinner'}
     });
 
-Or you can use the HTML5 like attribute called `data-tabs-options` directly on your tabs element
+Или вы можете использовать HTML5 атрибут `data-tabs-options` непосредственно на ваших элементах
 
     <ul data-tabs-options="{idPrefix:'my-', selected:4}">
       // ...
     </ul>
 
-## Events List, :events
+## Список событий, :events
 
-This script provides you an access to the following events
+Данный скрипт поддерживает следующий список событий
 
-Name    | Description
+Имя     | Описание
 --------|------------------------------------------------
-show    | when a tab was shown
-hide    | when a tab gets hidden
-click   | when the user clicks on a tab
-load    | when a remote tab is loaded
-disable | when a tab gets disabled
-enable  | when a tab gets enabled
-add     | when a new tabs was added
-remove  | when a tab was removed
-move    | when a tab was moved to a new position
+show    | когда таб был показан
+hide    | когда таб был скрыт
+click   | когда пользователь кликает по табу
+load    | когда удаленный таб был загружен
+disable | когда таб был заблокирован
+enable  | когда таб был разблокирован
+add     | кагда новый таб был добавлен
+remove  | когда таб был удален из списка
+move    | когда таб был передвинут в новое место
 
-Every event listener will receive a tab object instance as an argument.
+Каждый слушатель событий будет получать ссылку на объект таба как аргумент.
 
 
-## API Reference, :api
+## API документация, :api
 
-There is a simple public API for all the `Tabs` class instances
+Существует следующий простой интерфейс для объектов класса `Tabs`
 
-Name                             | Description
+Метод                            | Описание
 ---------------------------------|----------------------------------
-show(index)                      | shows the tab at the index
-add(title, content\[, options\]) | creates a new tab
-remove(index\[s\])               | removes the tab(s)
-move(index, position)            | moves the tab to the position
-disable(index\[s\])              | disables the tab(s)
-enable(index\[s\])               | enables the tab(s)
-startLoop(\[delay_ms\])          | starts a slideshow loop
-stopLoop()                       | stops the slideshow
+show(index)                      | показывает таб по индексу
+add(title, content\[, options\]) | создает новый таб
+remove(index\[s\])               | удаляет таб(ы)
+move(index, position)            | перемещает таб в новую позицию
+disable(index\[s\])              | блокирует таб(ы)
+enable(index\[s\])               | разблокирует таб(ы)
+startLoop(\[delay_ms\])          | запускает цикл слайдшоу
+stopLoop()                       | останавливает слайдшоу
 
 
-The `add` method can receive options with the following keys
+Метод `add` может получать хэш опций со следующими ключами
 
-* `id` - the tab hash-name
-* `url` - the tab content remote url-address
-* `position` - the tab position
+* `id` - имя анкера таба
+* `url` - url-адрес контента для удаленного таба
+* `position` - позиция таба в списке
 
 
-## Style Alterations, :styles
+## Настройки стилей, :styles
 
-In the most basic case after a tabs module is instantiated it will assign css-classes
-for your tabs-element, like this
+В наиболее простом случае, после того как объект табов был создан, он назначит
+следующие css-классы на элементы струтуры
 
     <ul class="right-tabs">
       <ul class="right-tabs-list">
@@ -240,11 +241,11 @@ for your tabs-element, like this
       <li id="tab-2" class="right-tabs-panel">Tab 2 Content</li>
     </ul>
 
-It will use the `right-tabs-current` and `right-tabs-disabled` classes
-at the tab-elements to paint the current and disabled tabs.
+Скрипт так же будет использовать css-классы `right-tabs-current` и `right-tabs-disabled`
+для текущих и заблокированных табов соответственно.
 
-For the carousel widget and scrollable tabs the script will transform the structure
-to create the scrollbar
+Виджет карусели и табы с прокруткой, будут немного трансформированы для создания
+соответствующих элементов управления
 
     <ul class="right-tabs">
       <div class="right-tabs-scroller">
@@ -261,7 +262,7 @@ to create the scrollbar
       // ....
     </ul>
 
-Then, for the remote tabs it will be using a textual spinner with the following structure
+Далее, для табов загружаемых с сервера, скрипт будет использовать блокирующий элемент следующей структуры
 
     <ul class="right-tabs">
       <ul class="right-tabs-list">
@@ -277,7 +278,8 @@ Then, for the remote tabs it will be using a textual spinner with the following 
       </li>
     </ul>
 
-The harmonica widget will remain the same structure with a similar css-class assignments
+Виджет гармошки, не претерпит никаких структурных изменений, за исключением того что
+для его элементов будут назначенные те же самые css-классы
 
     <dl class="right-tabs">
       <dt class="right-tabs-tab">Tab 1</dt>

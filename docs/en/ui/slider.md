@@ -3,11 +3,7 @@
 Slider is a simple standard slider widget. It can work as a standalone widget or be assigned
 to any element, which it will update.
 
-* [right-slider.js](/builds/ui/right-slider.js) - fully compressed build
-* [right-slider-min.js](/builds/ui/right-slider-min.js) - minified version
-* [right-slider-src.js](/builds/ui/right-slider-src.js) - uncompressed source code
-
-Visit the [demo page](/ui/slider/demo) for some basic use-cases.
+<%= partial '/ui/head', :locals => {:name => 'slider'} %>
 
 <%= anchors_index %>
 

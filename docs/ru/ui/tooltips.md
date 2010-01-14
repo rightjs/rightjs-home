@@ -1,46 +1,36 @@
-# Tooltips
+# Тултипы
 
-Right tooltips is the native tooltips feature for RightJS.
+`Tooltips` - это простой виджет для создания настраиваемых тултипов в RigthJS.
 
-Get the latest version right here
-
-* [right-tooltips.js](/builds/ui/right-tooltips.js) - fully compressed build
-* [right-tooltips-min.js](/builds/ui/right-tooltips-min.js) - minified version
-* [right-tooltips-src.js](/builds/ui/right-tooltips-src.js) - uncompressed source code
-
-All the source code of the project is available under terms of the MIT license
-
-<http://github.com/rightjs/rightjs-ui>
-
-See the [demo page](/ui/tooltips/demo) for examples.
+<%= partial '/ui/head', :locals => {:name => 'tooltips'} %>
 
 <%= anchors_index %>
 
 
-## Usage Basics, :usage
+## Основы использования, :usage
 
-There is nothing special about it. You just include the source file
+В данном случае нет ничего особенного, просто подключите один из файлов
 
     <script src="/javascripts/right-tooltips.js"></script>
 
-Then specify the `rel="tooltip"` attribute on your elements where
-you want the tooltips to appear and RightJS will generate them when the
-page is loaded
+И укажите атрибут `rel="tooltip"` на элементах с которыми вы хотите использовать
+данный виджет. Скрипт автоматически все создаст и подключит когда страница будет загружена
 
-## Options List, :options
 
-There are some options you can customize
+## Список опций, :options
 
-Name       | Default    | Description
+Существует следующий список поддерживаемых опций
+
+Имя        | Умолчание  | Описание
 -----------|------------|-----------------------------------------------------------------
-fxName     | 'fade'     | the appearance fx name
-fxDuration | 400        | the visual effect duration
-delay      | 400        | the tooltip appearance delay
-idSuffix   | '-tooltip' | the tooltip ids suffix
-relName    | 'tooltip'  | the rel-attribute name for the auto-discovery feature
-checkTags  | '\*'       | the tags name to be checked on load (to narrow down the search)
+fxName     | 'fade'     | имя эффекта для показа тултипов
+fxDuration | 400        | длительность эффекта показа
+delay      | 400        | задержка перед показом тултипов
+idSuffix   | '-tooltip' | префикс на случай использования ID элементов
+relName    | 'tooltip'  | ключ для функции авто-инициализации
+checkTags  | '\*'       | тэги которые должны быть проверены (для ускорения поиска)
 
-In order to change the options alter the `Tooltip.Options` object, like this
+Для того чтобы изменить настройки, просто измените переменную `Tooltip.Options`
 
     $ext(Tooltip.Options, {
       delay: 200,
@@ -48,15 +38,15 @@ In order to change the options alter the `Tooltip.Options` object, like this
     });
 
 
-## Style Adjustments, :styles
+## Настройки стилей, :styles
 
-The tooltip elements have the following simple structure
+Элементы тултипов имеют следующую простую структуру
 
     <div class="right-tooltip">
       <div class="right-tooltip-container">
-        // your data is here
+        // ваши данные тут
       </div>
     </div>
 
-If the original element has an `id` attribute then related tooltip will have similar id with the `-tooltip`
-suffix, so that you could style it separately if you need.
+Если оригинальный элемент имеет атрибут `id`, тогда элемент соответствующего тултипа будет иметь
+похожий `id` с суффиксом `-tooltip`, так что вы сможете настроить его вид отдельно от других.

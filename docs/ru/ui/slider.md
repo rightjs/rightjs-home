@@ -1,111 +1,116 @@
-# Slider
+# Слайдер
 
-Slider is a simple standard slider widget. It can work as a standalone widget or be assigned
-to any element, which it will update.
+`Slider` - это простой виджет слайдера для RightJS. Он может работать как независимый
+виджет, а так же может работать в паре с другим элементом, например в составе форм.
 
-* [right-slider.js](/builds/ui/right-slider.js) - fully compressed build
-* [right-slider-min.js](/builds/ui/right-slider-min.js) - minified version
-* [right-slider-src.js](/builds/ui/right-slider-src.js) - uncompressed source code
-
-Visit the [demo page](/ui/slider/demo) for some basic use-cases.
+<%= partial '/ui/head', :locals => {:name => 'slider'} %>
 
 <%= anchors_index %>
 
-## Features List, :features
+## Список возможностей, :features
 
-* Comes in a single tiny (3k) file
-* Works as standalone widget or can be assigned to another element
-* Can be generated or initialized on existing elements
-* Pure CSS based design, comes with basic styles
-* Supports both, vertical and horizontal sliders
+* Все собрано в одном маленьком (3k) файле
+* Может работать как независимый виджет или в составе форм
+* Может быть сгенерирован или инициализирован из существующих элементов
+* Чистый CSS дизайн, имеет базовый стиль по умолчанию
+* Поддерживает оба, горизонтальный и вертикальный варианты
 
-## Usage Basics, :usage
+## Основы использования, :usage
 
-__NOTE__: This widget uses the [drag-n-drop](/goods/drag-n-drop) module. Include it onto your page along
-with one of the files above, then create your slider like that
+__ВНИМАНИЕ__: Данный виджет использует модуль [drag-n-drop](/goods/drag-n-drop), который
+должен быть подключен вместе с одним из файлов из списка в начале страницы.
+
+Когда вы подключите данный виджет, у вас будет выбор. Создавать слайдеры программно
 
     new Slider({min: 0, max: 100, value: 20})
       .insertTo('my-element').assignTo('my-input');
 
-You can go even simpler and just create a tags structure with your options like that
+Или поступить проще дав скрипту инициализировать их из существующих элементов страницы
 
     <div class="right-slider" data-slider-options="{min:0,max:100,update:'my-input'}">
       <div class="right-slider-handle"></div>
     </div>
 
-When the page is loaded our script will automatically find and initialize your slider
+В данном случае вы сможете помещать дополнительные элементы на слайдер, так как вам это
+потребуется.
 
-## Assigned Sliders, :assigned
 
-You can assign any slider to work in pair with any input or content elements on your page,
-so that when you move the slider it was automatically updating the input element value or a
-content element `innerHTML` property.
+## Назначенные слайдеры, :assigned
 
-    // with an option
+Вы можете назначить виджет слайдера работать в паре с полем ввода или обычным элементом,
+так что когда пользователь двигает слайдер, он будет автоматически обновлять значение
+в указанном элементе.
+
+    // с опциями
     new Slider({update: 'my-element'});
 
-    // or with a direct call
+    // или методом
     new Slider({...}).assignTo('my-element');
 
-__NOTE:__ when you assign a slider to work with an input element, it works both ways, if you
-change the slider it will change the value of the input element, and if you change the input
-element it will move the slider.
+__ВНИМАНИЕ:__ назначение работает в обе стороны, так что если вы назначили слайдер
+для работы в паре с текстовым полем ввода, когда пользователь смещает слайдер, то
+будет меняться значение в поле ввода, но когда пользователь изменит значение в поле
+ввода, то это изменит так же и положение слайдера.
 
-## Vertical Sliders, :vertical
 
-For vertical sliders use the `direction` option or a css-class `right-slider-vertical` like that
+## Вертикальные слайдеры, :vertical
+
+Для создания вертикальных слайдеров, используйте опцию `direction: 'y'` или добавьте
+css-класс `right-slider-vertical` на ваш элемент
 
     new Slider({direction:'y', ....})
 
-    // or with a html structure
-    <div class="right-slider right-slider-vertical" ...>
+    // или в структуре html
+    <div class="right-slider right-slider-vertical">
       <div class="right-slider-handle"></div>
     </div>
 
 
-## Options List, :options
+## Список опций, :options
 
-You can use the following list of options with the `Slider` constructor or the `data-slider-options` attribute
+Вы можете использовать следующий список опций с виджетами слайдера
 
-Name      | Default | Description
-----------|---------|----------------------------------------------------------------
-min       | 0       | the min value
-max       | 100     | the max value
-snap      | 0       | the values threshold
-value     | null    | start value, if null then the min value will be used
-direction | 'x'     | slider direction 'x', 'y'
-update    | null    | reference to an element to update
-round     | 0       | the number of symbols after the decimal pointer
-
-
-## Events List, :events
-
-There is just one event with this widget, the name is `change`.
+Имя       | Умолчание | Описание
+----------|-----------|----------------------------------------------------------------
+min       | 0         | минимальное значение
+max       | 100       | максимальное значение
+snap      | 0         | шаг значений
+value     | null      | начальное значение (использует минимальное, если `null`)
+direction | 'x'       | направление слайдера 'x', 'y'
+update    | null      | ссылка на элемент для работы в паре
+round     | 0         | сколько знаков после запятой необходимо оставлять
 
 
-## API Reference, :api
+## Список событий, :events
 
-All the `Slider` class instances have the following public methods
+Существует всего лишь одно событие с которым работает данный виджет: `change`.
 
-Name              | Description
+
+## API документация, :api
+
+Все объекты класса `Slider` предоставляют следующий открытый интерфейс
+
+Имя               | Описание
 ------------------|----------------------------------------------------------------
-setValue(value)   | the value assignment method
-getValue()        | current value getter
-reset()           | resets the value to the defaults
-insertTo(element) | inserts this slider into the element
-assignTo(element) | assign this slider to update the element
+setValue(value)   | устанавливает текущее значение
+getValue()        | возвращает текущее значение
+reset()           | сбрасывает текущее значение до значения по умолчанию
+insertTo(element) | вставляет слайдер в указанный элемент
+assignTo(element) | назначает слайдер для работы в паре с указанным элементом
 
 
-## Style Alterations, :styles
+## Настройки стилей, :styles
 
-The tags structure for this widget is as simple as it is.
+Структура элементов данного виджета, проста как есть
 
-    // horizontal slider
+    // горизонтальный слайдер
     <div class="right-slider">
       <div class="right-slider-handle"></div>
     </div>
 
-    // vertical slider
+    // вертикальный слайдер
     <div class="right-slider right-slider-vertical">
       <div class="right-slider-handle"></div>
     </div>
+
+

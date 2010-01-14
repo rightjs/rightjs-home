@@ -1,62 +1,48 @@
-# Lightbox
+# Лайтбокс
 
-Lightbox is the standard lightbox-popup feature for RightJS
+`Lightbox` - это стандартный плагин лайтбокса для RightJS
 
-
-Get the latest version right here
-
-* [right-lightbox.js](/builds/ui/right-lightbox.js) - fully compressed build
-* [right-lightbox-min.js](/builds/ui/right-lightbox-min.js) - minified version
-* [right-lightbox-src.js](/builds/ui/right-lightbox-src.js) - uncompressed source code
-
-
-All the source code of the project is available under terms of the MIT license
-
-<http://github.com/rightjs/rightjs-ui>
-
-See the [live demo](/ui/lightbox/demo) page for some common use cases
+<%= partial '/ui/head', :locals => {:name => 'lightbox'} %>
 
 <%= anchors_index %>
 
-## Features List, :features
+## Список возможностей, :features
 
-Right Lightbox has the following features
+Данный плагин обладает следующими возможностями
 
-* Support of any html content displaying
-* Support of content loading via ajax requests
-* Road trips support
-* Content auto discovery via the `rel="lightbox"` attribute
-* It has really tiny size of just 8.5k and doesn't need any images
-* Everything is included in a single file
-* i18n support
-
-
-## Usage Basics, :usage
-
-The usage of Right Lightbox is really simple. Just grab the file above, include it on your page and you are good to go
-
-    <script src="/javascripts/right-lightbox.js" type="text/javascript"></script>
-
-Right Lightbox does not require any images and all the styles are inlined inside the javascript file
+* Может показывать любой HTML контент
+* Поддерживает загрузку контента через {Xhr}
+* Работает с коллекциями/галлереями
+* Автоматическая инициализация по атрибуту `rel="lightbox"`
+* Все упаковано в один маленький (8.5k) файл
+* Не имеет зависимостей от других файлов css или картинок
+* Поддержка интернационализации
 
 
-## API Reference, :api
+## Базовое использование, :usage
 
-Right Lightbox has a really simple interface
+Наш лайтбокс не требует, никаких дополнительных телодвижений. Просто подключите его файл.
 
-Method                               | Description
+    <script src="/javascripts/right-lightbox.js"></script>
+
+
+## API интерфейс, :api
+
+Класс `Lightbox` имеет следующий простой интерфейс
+
+Метод                                | Описание
 -------------------------------------|---------------------------------------------------
-show(mixed content\[, Object size\]) | shows any given content
-load(String url\[, Object options\]) | loads content via an ajax request
-hide()                               | hides the lightbox
+show(mixed content\[, Object size\]) | показывает данный контент
+load(String url\[, Object options\]) | загружает контент через {Xhr} запрос
+hide()                               | закрывает лайтбокс
 
-You can use those methods to work with Lightbox as with a single class
+Вы можете использовать данные методы, как на уровне класса
 
     Lightbox.show('some content');
     Lightbox.load('/some/address');
     Lightbox.hide();
 
-Or you can have usual instances of the Lightbox class
+Так и на уровне объектов
 
     var box = new Lightbox();
     box.show('some content');
@@ -64,57 +50,60 @@ Or you can have usual instances of the Lightbox class
     box.hide();
 
 
-## Links Automatic Processing, :links
+## Автоматическая инициализация ссылок, :links
 
-When you pass a link node into the `show` method, Lightbox will automatically grab its url address and title, then load the 
-content referred by the link, show it and set the link's title on the box.
+Вы посылать элементы ссылок в метод `show`, скрипт автоматически считает из
+них адрес и заголовок, распознает если это ссылка на картинку и покажет соответствующий лайтбокс.
 
     // <a href="/some/url" title="Some Content" id="the-link">click me</a>
 
     Lightbox.show($('the-link'));
 
-Right Lightbox will automatically check the url address extension and if it is an image,
-then the reference will be handled like an image loading. You don't need to do anything about it.
+Но вам не нужно делать даже и этого. Данный скрипт поддерживает автоматическую
+инициализацию ссылок, подобно проекту [Lightbox 2](http://www.huddletogether.com/projects/lightbox2).
+Все что от вас требуется это установить на ссылках атрибут `rel="lightbox"` и скрипт
+автоматически найдет эти ссылки и назначит событие `click` для показа их контента
+в лайтбоксе.
 
-And you don't need to do those things manually. In similarity to the
-[Lightbox 2](http://www.huddletogether.com/projects/lightbox2) project, you can set the attribute
-`rel="lightbox"` and Lightbox will automatically hook those links to be shown in the lightboxes.
+Можно так же помечать последовательности/коллекции ссылок с помощью атрибута
+`rel="lightbox[roadtrip]"` 
 
-The roadtrips with the `rel="lightbox[roadtrip]"` attribute work too
-
-If you need to rescan the auto-discovery links manually, say after
-a page updates. You can call the `Lightbox.rescan()` method.
+Вы можете обновить списки ссылок, после обновления станицы, вызвав метод `Lightbox.rescan()`.
 
 
-## Options List, :options
+## Список опций, :options
 
-There are several options when you are using Right Lightbox
+Вы можете использовать следующие опции с виджетом лайтбокса
 
-Name            | Default | Description
-----------------|---------|----------------------------------------------------------------------------------
-endOpacity      | 0.8     | the locker end opacity
-fxDuration      | 200     | the visual effects duration
-hideOnEsc       | true    | should the lightbox be closed on the Esc button
-hideOnOutClick  | true    | should the lightbox be closed on click outside of the box
-showCloseButton | true    | should the close button be available
-blockContent    | false   | if true, the box content will be covered with a transparent div tag
-relName         | 'lightbox' | the rel-attribute name for the auto-discovery feature
-checkTags       | '\*'    | the tags name to be checked on load (to narrow down the search)
+Имя             | Умолчание  | Описание
+----------------|------------|----------------------------------------------------------------------------------
+endOpacity      | 0.8        | конечная прозрачность блокирующего элемента
+fxDuration      | 200        | длительность визуальных эффектов
+hideOnEsc       | true       | флаг, если нужно закрывать лайтбокс по кнопке Esc
+hideOnOutClick  | true       | флаг, если лайтбокс должен закрываться по клику вне бокса
+showCloseButton | true       | флаг, если кнопка закрытия должна быть видна
+blockContent    | false      | если `true` то контент будет заблокирован прозрачным DIV элементом
+relName         | 'lightbox' | ключ для функции авто-инициализации
+checkTags       | '\*'       | какие элементы должны быть проверены (ускоряет поиск)
 
-You can pass those options as a hash for the constructor, or change them globally at the `Lightbox.Options` object
+Вы можете указать любые из них с конструктором, или изменить глобально в переменной `Lightbox.Options`
 
-    var hard_box = new Lightbox({hideOnEsc: false, hideOnOutClick: false, showCloseButton: false});
+    var hard_box = new Lightbox({
+      hideOnEsc:       false,
+      hideOnOutClick:  false,
+      showCloseButton: false
+    });
     hard_box.setTitle('Fill It Up');
     hard_box.show('some required form');
 
 
-## Internationalization, :i18n
+## Интернационализация, :i18n
 
-You might find a translation module for your language at the github repository.
+Вы можете найти модуль интернационализации для необходимого вам языка на сервере github
 
-<http://github.com/rightjs/rightjs-ui/i18n>
+<http://github.com/rightjs/rightjs-ui/tree/master/i18n/>
 
-Or you can translate the interface by simply altering the `Ligthbox.i18n` object like that
+Или перевести все надписи вручную изменив переменную `Ligthbox.i18n`
 
     Lightbox.i18n = {
       CloseTitle: 'Закрыть',
@@ -123,10 +112,10 @@ Or you can translate the interface by simply altering the `Ligthbox.i18n` object
     };
 
 
-## Style Adjustments, :styles
+## Настройки стилей, :styles
 
-If you need to alter the lightbox view to make it fit your design, please use the following
-elements structure description as a guidance.
+Если вам потребуется изменить настройки стилей, используйте следующее описание
+структуры элементов как руководство.
 
     <div class="lightbox">
       <div class="lightbox-locker"></div>

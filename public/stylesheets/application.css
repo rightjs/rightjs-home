@@ -104,6 +104,7 @@ table th, table td, table caption {
   margin: 0;
   padding: 2pt 6pt;
   text-align: left;
+  vertical-align: top;
 }
 table th {
   background: #CFCEBD;
@@ -192,7 +193,6 @@ div#lang-switch {
   position: absolute;
   right: 8em;
   top: 1em;
-  display: none;
 }
 
 div#main {

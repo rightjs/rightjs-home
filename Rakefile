@@ -119,6 +119,12 @@ namespace :rightjs do
         system "cp #{path} #{build_dir}"
       end
     end
+    
+    puts "    Copying i18n files in place"
+    
+    FileUtils.rm_rf   RIGHTJS_BUILD_I18N
+    FileUtils.mkdir_p RIGHTJS_BUILD_I18N
+    system "cp #{RIGHTJS_ROOT}/ui/i18n/*.js #{RIGHTJS_BUILD_I18N}"
   end
   
   

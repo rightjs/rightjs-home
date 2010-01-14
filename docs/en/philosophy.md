@@ -31,7 +31,7 @@ flexible dynamic language attitude, native unit extensions, etc, etc.
 
 ## Don't Learn, Have Fun!
 
-You might notice that there is not so much of the documentation for RightJS. The reason
+You might notice that there is not so much of the documentation for RightJS. One of the reasons
 is that we simplified and systematically organized all the things the way there is
 almost nothing to learn. Because we don't want you to learn, we want you to have fun.
 
@@ -45,7 +45,7 @@ Well, you even don't need to know them either, because when you see things like 
     $$('li').each('onClick', 'toggleClass', 'marked');
 
 You don't need to be a genius or read any documentation to figure out what's going on.
-Those things snap immediately even for people who is just starting their way to
+Those things snap immediately even for people who are just starting their way to
 JavaScript development.
 
 ## And It's Highly Hackable!

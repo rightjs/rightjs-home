@@ -2,17 +2,7 @@
 
 In place editor is a standard feature, that let you nicely handle the text-editing right in the page
 
-Get the latest version right here
-
-* [right-in-edit.js](/builds/ui/right-in-edit.js) - packed build
-* [right-in-edit-min.js](/builds/ui/right-in-edit-min.js) - minified version
-* [right-in-edit-src.js](/builds/ui/right-in-edit-src.js) - uncompressed source code
-
-All the source code of the project is available under terms of the MIT license
-
-<http://github.com/rightjs/rightjs-ui>
-
-See the [live demo](/ui/in-edit/demo) page for examples.
+<%= partial '/ui/head', :locals => {:name => 'in-edit'} %>
 
 <%= anchors_index %>
 

@@ -1,9 +1,9 @@
-# Rater Demo
+# Демо рейтинга
 <% content_for :modules, javascript_include_tag('/builds/ui/right-rater-min.js') %>
 
-There are some basic use-cases for the [Rater](/ui/rater) widget out of the [RightJS UI](/ui) library.
+Несколько простых примеров использования виджета [рейтинг](/ui/rater) из библиотеки [RightJS UI](/ui).
 
-## Simple Raters, :simple
+## Простые рейтинги, :simple
 
 <p>
   <div class="right-rater">
@@ -36,22 +36,22 @@ There are some basic use-cases for the [Rater](/ui/rater) widget out of the [Rig
   </div>
 </p>
 
-## Disabled Raters, :disabled
+## Блокируемые рейтинги, :disabled
 
 <p>
   <div class="right-rater" data-rater-options="{value:2, disabled:true}">
     <div>&#9733;</div><div>&#9733;</div><div>&#9733;</div><div>&#9733;</div><div>&#9733;</div>
   </div>
-  This rater is disabled
+  этот рейтинг заблокирован
 </p>
 <p>
   <div class="right-rater" data-rater-options="{value:2, disableOnVote:true}">
     <div>&#9733;</div><div>&#9733;</div><div>&#9733;</div><div>&#9733;</div><div>&#9733;</div>
   </div>
-  This rater will get disabled once you click on it
+  этот рейтинг заблокируется как только вы выберете значение
 </p>
 
-## Assigned Rater, :assigned
+## Назначенный рейтинг, :assigned
 
 <p>
   <div class="right-rater" data-rater-options="{value:2, update:'the-field'}">
@@ -60,7 +60,7 @@ There are some basic use-cases for the [Rater](/ui/rater) widget out of the [Rig
   <input type="text" id="the-field" size="1" />
 </p>
 
-## Remote Rater, :remote
+## Удаленный рейтинг, :remote
 
 <p>
   <div class="right-rater" data-rater-options="{value:1, url:'test', Xhr:{evalScripts:true,spinner:'rate-spinner'}}">
@@ -71,7 +71,7 @@ There are some basic use-cases for the [Rater](/ui/rater) widget out of the [Rig
   <span id="remote-rater-output"> </span>
 </p>
 
-## Automatically Generated Raters, :generated
+## Программно сгенерированные рейтинги, :generated
 
 <div id="auto-generated"> </div>
 <script type="text/javascript">

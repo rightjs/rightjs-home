@@ -1,0 +1,35 @@
+<% content_for :modules do %>
+  <%= javascript_include_tag '/builds/goods/right-dnd-min.js' %>
+  <%= javascript_include_tag '/builds/ui/right-slider-src.js' %>
+  <%= stylesheet_link_tag    'slider-demo'                    %>
+<% end %>
+<style type="text/css">
+  input.slider-out {
+    width: 5em;
+    padding: .1em .2em;
+    border: 1px solid #DDD;
+  }
+  div.slider-demo input.slider-out {
+    display: inline;
+    vertical-align: middle;
+    margin-top: 0em;
+    margin-left: 1em;
+  }
+
+  div.slider-demo-vertical {
+    float: left;
+    width: 2em;
+    margin-right: .4em;
+  }
+  div.slider-demo-vertical input.slider-out {
+    float: left;
+    vertical-align: top;
+    width: 2em;
+  }
+  div.slider-demo-vertical div.right-slider {
+    margin-top: .2em;
+    margin-left: .8em;
+    float: left;
+  }
+  
+</style>

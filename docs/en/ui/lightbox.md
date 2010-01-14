@@ -2,19 +2,7 @@
 
 Lightbox is the standard lightbox-popup feature for RightJS
 
-
-Get the latest version right here
-
-* [right-lightbox.js](/builds/ui/right-lightbox.js) - fully compressed build
-* [right-lightbox-min.js](/builds/ui/right-lightbox-min.js) - minified version
-* [right-lightbox-src.js](/builds/ui/right-lightbox-src.js) - uncompressed source code
-
-
-All the source code of the project is available under terms of the MIT license
-
-<http://github.com/rightjs/rightjs-ui>
-
-See the [live demo](/ui/lightbox/demo) page for some common use cases
+<%= partial '/ui/head', :locals => {:name => 'lightbox'} %>
 
 <%= anchors_index %>
 
@@ -112,7 +100,7 @@ You can pass those options as a hash for the constructor, or change them globall
 
 You might find a translation module for your language at the github repository.
 
-<http://github.com/rightjs/rightjs-ui/i18n>
+<http://github.com/rightjs/rightjs-ui/tree/master/i18n/>
 
 Or you can translate the interface by simply altering the `Ligthbox.i18n` object like that
 

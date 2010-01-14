@@ -10,6 +10,7 @@ RIGHTJS_BUILD_CURRENT = "#{RAILS_ROOT}/public/builds/basic"
 RIGHTJS_BUILD_CUSTOM  = "#{RAILS_ROOT}/public/builds/custom"
 RIGHTJS_BUILD_GOODS   = "#{RAILS_ROOT}/public/builds/goods"
 RIGHTJS_BUILD_UI      = "#{RAILS_ROOT}/public/builds/ui"
+RIGHTJS_BUILD_I18N    = "#{RAILS_ROOT}/public/builds/i18n"
 
 RIGHTJS_GOODS         = %w(json effects events behavior dnd rails)
 RIGHTJS_UIS           = %w(autocompleter calendar tabs rater slider selectable sortable lightbox tooltips in-edit)

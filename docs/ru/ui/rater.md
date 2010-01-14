@@ -1,40 +1,33 @@
-# Rater
+# Рейтинг
 
-Rater is a standard rating widget for RightJS. It can work as a standalone widget,
-can automatically send user rates via {Xhr} requests, or it can work in pair with
-an input element as a part of a form.
+`Rater` - это простой виджет RightJS для создания полей рейтингов. Он может работать
+как независимый виджет, может отсылать результаты голосований через {Xhr} запросы, а 
+так же может работать в составе форм.
 
-Get the latest version right here
-
-* [right-rater.js](/builds/ui/right-rater.js) - fully compressed build
-* [right-rater-min.js](/builds/ui/right-rater-min.js) - minified version
-* [right-rater-src.js](/builds/ui/right-rater-src.js) - uncompressed source code
-
-
-Visit the [demo page](/ui/rater/demo) for some basic use cases.
-
+<%= partial '/ui/head', :locals => {:name => 'rater'} %>
 
 <%= anchors_index %>
 
 
-## Features List, :features
+## Список возможностей, :features
 
-* Can work as a standalone widget
-* Can work as a part of a form
-* Can automatically send ratings via {Xhr} requests
-* Super easy usage
-* Comes in a tiny single file (2.3k)
+* Может работать как независимый виджет
+* Может работать как часть формы
+* Может отсылать результаты голосования через {Xhr} запросы
+* Очень простое использование
+* Все в одном маленьком файле (2.3k)
 
 
-## Usage Basics, :usage
+## Принципы использования, :usage
 
-The usage is super easy. Just include one of the files above onto your page.
-After that you will have a choice, create your rater in script like this
+Для использования виджета, подключите один из выше перечисленных файлов на вашу страницу.
+После этого у вас будет выбор. Использовать класс `Rater` программно из ваших скриптов.
 
     new Rater({url: '/boo'}).insertTo('my-conatiner');
 
-Or you can define your rater element directly inside your page and our script will
-find it by the `right-rater` class name and then automatically initialize it.
+Или вы можете создать структуру элементов в нужном месте вручную, указав css-класс
+`right-rater`. Скрипт автоматически найдет данный элемент и назначит все нужные
+обработчики событий.
 
     <div class="right-rater" data-rater-options="{url:'/boo'}">
       <div>★</div>
@@ -44,46 +37,49 @@ find it by the `right-rater` class name and then automatically initialize it.
       <div>★</div>
     </div>
 
-This also will let you put whatever you want instead of the textual stars.
+Это так же позволит вам использовать все что угодно, вместо текстовых звездочек.
 
 
-## Assigned Raters, :assigned
+## Назначенные рейтинги, :assigned
 
-You also can assign any rater to work with any, say hidden, input elements so it was working as a part of a form.
-You can do that with the `update` option or by the `assignTo()` method
+Вы так же можете назначить виджет рейтинга на работу с любым полем ввода, например
+скрытым полем, так что он будет работать как часть какой либо формы. Для этого вы
+можете либо указать совместно-используемое поле в опции `update` или использовать
+метод `assignTo()`
 
     <form ...>
       <input type="hidden" id="the-rating" name="rating" />
   
-      // with auto-discovery feature
+      // для автоматически инициализируемого элемента
       <div class="right-rater"
         data-rater-options="{update:'the-rating}">
         ...
       </div>
   
-      // or in script with options
+      // с опциями конструктора
       new Rater({update: 'the-rating'})
         .insertTo('the-rating', 'after');
   
-      // or like that
+      // или напрямую методом
       new Rater().insertTo('the-rating', 'after')
         .assignTo('the-rating');
     </form>
 
-__NOTE:__ assignments work in both ways, when yo change the rater it will change the input element,
-and when you change the input element it will change the rater status.
+__ВНИМАНИЕ:__ назначение работает в обе стороны. Когда пользователь меняет значение
+в виджете, скрипт меняет значение в поле. Но когда вы меняете значение в поле,
+это автоматически будет менять значение виджета.
 
 
-## Remote Raters, :remote
+## Удаленный рейтинг, :remote
 
-Our raters can automatically send {Xhr} requests when the user clicks any rating on the widget.
-For this purpose there are three options.
+Виджет рейтинга может автоматически отправлять данные на сервер через {Xhr} запрос когда пользователь
+выбирает какое-либо значение. Для этой цели используются следующие три опции
 
-* `url` - the url address where to send the requests
-* `param` - the param name for the rating, `'rate'` by default
-* `Xhr` - additional {Xhr} request options if you need
+* `url` - url-адрес куда отсылать результаты
+* `param` - имя параметра для рейтинга, `'rate'` по умолчанию
+* `Xhr` - дополнительные опции для {Xhr} запросов
 
-So your average remote rater might look like that
+Простой пример может выглядеть следующим образом
 
     new Rater({
       url: '/some/stuff/rating',
@@ -95,55 +91,58 @@ So your average remote rater might look like that
     });
 
 
-## Options List, :options
+## Список опций, :options
 
-There is a simple list of options you can use with the raters. You can pass them as a hash with
-the constructor, or set as a JSON hash inside of the `data-rater-options` attribute
+Существует следующий простой список опций который вы можете использовать с виджетом рейтинга.
+Вы можете использовать их любым доступным способом. Через конструктор, JSON опции в атрибуте
+`data-rater-options` или глобально в переменной `Rater.Options`
 
-Name          | Default | Description
---------------|---------|---------------------------------------------------------------
-size          | 5       | the number of stars in the line
-value         | null    | default value
-update        | null    | an element to be assigned to
-disabled      | false   | if it should be instantly disabled
-disableOnVote | false   | if it should be disabled when the user picks a value
-url           | null    | an url to send results with AJAX
-param         | 'rate'  | the value param name
-Xhr           | null    | additional {Xhr} options
+Имя           | Умолчание | Описание
+--------------|-----------|---------------------------------------------------------------
+size          | 5         | количество позиций (звездочек) в линии
+value         | null      | начальное значение
+update        | null      | ссылка на назначаемый элемент
+disabled      | false     | флаг, если рейтинг должен быть заблокирован по умолчанию
+disableOnVote | false     | флаг, если рейтинг должен быть заблокирован сразу после выбора
+url           | null      | url-адрес куда слать результаты выбора
+param         | 'rate'    | имя параметра для результата выбора
+Xhr           | null      | дополнительные опции для {Xhr} запросов
 
 
-## Events List, :events
+## Список событий, :events
 
-Our raters work with the following list of events. Every listener will receive two arguments,
-the current value and a reference to the rater object.
+Виджет рейтинга работает со следующим списком событий.
 
-Name   | Description
+Имя    | Описание
 -------|------------------------------------------------------------
-hover  | when a user hovers some star with a mouse
-change | when a user changes the rater value
-send   | when an xhr request with rating was sent
+hover  | когда пользователь наводит курсор на какую било звездочку
+change | когда пользователь выбирает какое-либо значение
+send   | когда {Xhr} запрос с рейтингом был отправлен
+
+Все слушатели получат два аргумента, выбранное значение и ссылку на объект виджета
 
 
-## API Reference, :api
+## API документация, :api
 
-All the `Rater` class instances have the following simple public API
+Класс `Rater` имеет следующий простой интерфейс
 
-Name              | Description
+Имя               | Описание
 ------------------|--------------------------------------------------
-setValue(value)   | sets the value
-getValue()        | returns the value
-insertTo(element, position) | inserts the widget inside the element
-assignTo(element) | assigns the rater to the element
-send()            | sends the rating via {Xhr}
-disable()         | disables the rater
-enable()          | enables the rater
-disabled()        | checks if the rater is disabled
+setValue(value)   | устанавливает текущее значение
+getValue()        | возвращает текущее значение
+insertTo(element, position) | вставляет виджет в указанный элемент
+assignTo(element) | назначает рейтинг на работу с указанным элементом
+send()            | отправляет рейтинг через {Xhr} запрос
+disable()         | блокирует виджет
+enable()          | разблокирует виджет
+disabled()        | проверяет если виджет заблокирован
 
-## Style Alterations, :styles
 
-The widget structure is simple as that
+## Настройки стилей, :styles
 
-    <div class="right-rater" data-rater-options="{url:'/boo'}">
+Виджет имеет следующую простую структуру
+
+    <div class="right-rater">
       <div class="right-rater-glow">★</div>
       <div class="right-rater-glow">★</div>
       <div>★</div>
@@ -151,10 +150,11 @@ The widget structure is simple as that
       <div>★</div>
     </div>
 
-Disabled raters will be assigned with the `right-rater-disabled` class
+Заблокированный виджет так же получит класс `right-rater-disabled`
 
-Then as you might noticed, to simplify the things we use utf-8 symbols for the stars, so
-here's a simple style snippet if you want to replace them with some images of yours
+Далее, для того чтобы не иметь никаких зависимостей от картинок, мы используем utf-8
+символы звездочек. Если вы захотите перекрасить их и использовать свои иконки, вот
+вам простой пример как это можно сделать.
 
     div.right-rater div {
       width: 10px;

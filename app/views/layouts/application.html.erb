@@ -9,6 +9,7 @@
     <%= stylesheet_link_tag 'application' %>
     <%= yield :modules %>
     <%= stylesheet_link_tag 'rightjs-ui-home' if request.request_uri.starts_with?('/ui/') %>
+    <%= javascript_include_tag('/builds/i18n/right-ui-i18n-ru.js') if @language == 'ru' %>
   </head>
   <body>
     <div id="body">

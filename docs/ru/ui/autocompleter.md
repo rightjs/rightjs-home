@@ -1,120 +1,124 @@
-# Right Autocompleter
+#  Автокомплитер
 
-Right `Autocompleter` is the official autocompletion feature for RightJS
+`Autocompleter` - это стандартынй виджет автоподстановок для RightJS
 
-Get the latest version right here
-
-* [right-autocompleter.js](/builds/ui/right-autocompleter.js) - fully compressed build
-* [right-autocompleter-min.js](/builds/ui/right-autocompleter-min.js) - minified version
-* [right-autocompleter-src.js](/builds/ui/right-autocompleter-src.js) - uncompressed source code
-
-All the source code of the project is available under terms of the MIT license
-
-<http://github.com/rightjs/rightjs-ui>
-
-See the [live demo](/ui/autocompleter/demo) page for examples.
+<%= partial '/ui/head', :locals => {:name => 'autocompleter'} %>
 
 <%= anchors_index %>
 
 
-## Features List, :features
+## Список возможностей, :features
 
-Right `Autocompleter` has the following features:
+`Autocompleter` имеет следующие возможности:
 
-* Works with ajax requests or a local options list
-* RESTful design and server side caching friendly urls
-* Responses caching feature
-* Comes in a single tiny file (less than 4k)
-* No css or image dependencies
-* Has basic styles in the box
-* Has a basic textual spinner by default
-* The autocompletion fields auto-discovery feature
+* Работает как с удаленными вызовами, так и с локальными списками
+* Дружелюбен к RESTful дизайну и дает удобно кэшировать результаты поиска
+* Имеет внутренний кэш запросов
+* Поставляется в одном маленьком файле (меньше 4k)
+* Не имеет зависимых файлов css или картинок
+* Имеет базовый стиль уже встроенным в код
+* Использует простой текстовый спиннер по умолчанию
+* Поддерживает автмоматическую инициализацию полей
 
 
-## Usage Basics, :usage
+## Основы использования, :usage
 
-Basically there's no pubic API, so you just feed the constructor with
-a reference to your input element and specify some options
+В целом для данного виджета не существует какого-либо API, и все что вам
+нужно это вызвать конструктор указав ссылку на поле ввода и опции
 
     // <input type="text" id="my-input" />
 
-    // a remote list calling
+    // с запросами на сервер
     new Autocompleter('my-input', {
       url: '/my/things'
     });
 
-    // a local options list
+    // с использованием локального списка
     new Autocompleter('my-input', {
       local: $w('mommy daddy sonny doggy kitty')
     });
+    
+Когда вы используете запросы на сервер, данный скрипт ожидает от него 
+обычный список в виде простых `UL/LI` тэгов
 
-## Auto-Discovery Feature, :discovery
+    <ul>
+      <li>one</li>
+      <li>two</li>
+      <li>three</li>
+    </ul>
 
-As all the other widgets out of the RightJS UI library the autocompleters
-have ability to be automatically discovered and initialized. For that 
-purpose you might use a `'rel'` attribute like this.
+Естественно вы можете использовать все что вам заблагорассудится внутри
+каждого элемента списка. Включая дополнительные скрипты
+    
+
+## Авто-инициализация, :discovery
+
+Как и большинство других виджетов в RightJS UI, модуль автоподстановок
+поддерживает автоматическую инициализацию. Все что вам для этого нужно,
+это указать атрибут `'rel'` в следующем виде
 
     <input type="text" rel="autocompleter[/your/url/goes/here]" />
 
-You also might define a local options list like this
+Или в случае локального списка, использовать следующий формат
 
     <input type="text" rel="autocompleter['mommy','daddy','sonny']"/>
 
-You also can use the HTML5 style attributes for options like this
+Вы так же можете использовать атрибуты в стиле HTML5 для опций
 
     <input type="text" rel="autocompleter[/url]"
       data-autocompleter-options="{spinner: 'spinner'}"/>
 
-Once the page is loaded the script will sniff through your page and initialize
-those inputs automatically.
+Когда страница загрузится, скрипт автоматически найдет эти поля по маркерам
+и инциализирует все должным образом.
 
 
-## Options List, :options
+## Список опций, :options
 
-There is a simple list of options for the autocompleters. You might specify any of them as
-the constructor options or alter the settings globally by changing the `Autocompleter.Options` object.
+Существует следующий список опций которые вы можете использовать с виджетом
+автоподстановок. Вы можете как указывать их любым доступным способом с каждым
+отдельным виджетом, так и изменить настройки глобально в объекте `Autocompleter.Options`.
 
-Name       | Default           | Description
+Название   | Умолчание         | Описание
 -----------|-------------------|--------------------------------------------------------
-url        | document.location | the url, might have a %{search} placeholder
-param      | 'search'          | the requests parameter name
-method     | 'get'             | the requests method
-minLength  | 1                 | the minimal length when it starts work
-threshold  | 200               | the typing pause threshold
-cache      | true              | a flag if it should use the results caching
-local      | null              | an optional local search results list
-fxName     | 'slide'           | visual effects name, use 'null' to disable fx
-fxDuration | 'short'           | the visual effect duration
-spinner    | 'native'          | spinner element reference
-relName    | 'autocompleter'   | the auto-discovery feature key
+url        | document.location | адрес для запросов, может содержать плейсхолдер '%{search}'
+param      | 'search'          | имя параметра для отправки на сервер
+method     | 'get'             | метод для запросов
+minLength  | 1                 | минимальная длинна с которой начинает срабатывать поиск
+threshold  | 200               | длительность паузы между нажатиями клавиш
+cache      | true              | флаг указывающий на необходимость использования кэша
+local      | null              | локальный список поиска
+fxName     | 'slide'           | имя визуального эффекта, 'null' чтобы отключить
+fxDuration | 'short'           | длительно визуального эффекта
+spinner    | 'native'          | ссылка на элемент спиннера
+relName    | 'autocompleter'   | ключ для авто-инициализации
 
 
-## Events List, :events
+## Список событий, :events
 
-You can use the following event names to work with our autocompleters
+Вы так же можете использовать следующий список событий для работы с полями автоподстановок
 
-Name   | Description
+Имя    | Описание
 -------|----------------------------------------------------------
-show   | when the list of suggestions is shown
-hide   | when the list of suggestions is hidden
-update | when the list of suggestions was updated
-load   | when the xhr request is loaded
-select | when some option was selected
-done   | when the option was copied to the input element
+show   | когда список подсказок появляется
+hide   | когда список подсказок скрывается
+update | когда список подсказок был обновлен
+load   | когда запрос на сервер был закончен
+select | когда какой-либо вариант в списке был отмечен
+done   | когда какой-либо вариант был выбран и вставлен в поле ввода
 
 
-## Urls Usage, :url
+## Использование url адресов, :url
 
-Right autocompleter provides two options to work with the target urls, you might
-specify the `'param'` and `'url'` options as the default and usual approach.
+Данный скрипт подстановок может работать с url-адресами в двух форматах. В стандартном
+виде вы можете, как обычно указать опции адреса и имени параметра `'url'`, `'param'`
 
     new Autocompleter('my-input', {
-      url: '/my/url',
+      url:   '/my/url',
       param: 'search'
     });
 
     /*
-      In this case the autocompleter will hit urls like this.
+      в этом случае скрипт будет опрашивать адреса в виде
  
       /my/url?param=a
       /my/url?param=as
@@ -123,15 +127,15 @@ specify the `'param'` and `'url'` options as the default and usual approach.
   
     */
 
-You also might want to have more caching friendly urls without the parameters
-in this case you might use the `'%{search}'` placeholder in your url. Like this
+Но вы так же можете использовать более дружелюбные для кэширования адреса, с
+помощью плейсхолдера `'%{search}'` в строке адреса, как в следующем примере
 
     new Autocompleter('my-input', {
       url: '/my/url/%{search}.js'
     });
 
     /*
-      In this case the autocompleter will hit urls like this
+      в этом случае скрипт будет запрашивать адреса в виде
   
       /my/url/a.js
       /my/url/as.js
@@ -140,12 +144,14 @@ in this case you might use the `'%{search}'` placeholder in your url. Like this
   
     */
 
-This will let you to drop the search results in static files on the server side.
+Это позволяет сбрасывать результаты запросов напрямую в обычные файлы на сервере,
+создавая очень эффективный кэш запросов.
 
 
-## Style Alterations, :styles
+## Настройки стилей, :styles
 
-If you need to alter some styles, here's how the autocompleter HTML source looks like
+Если вам необходимо изменить какие-либо стили, можете использовать следующее
+описание структуры HTML, как руководство.
 
     <div class="autocompleter">
       <ul>

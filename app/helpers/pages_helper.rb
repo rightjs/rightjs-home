@@ -51,9 +51,10 @@ module PagesHelper
   # Renders the partial template inside of markdown files
   #
   def partial(name, options={})
-    p "pages/#{params[:path].join("/")}/#{name}.html.erb"
+    path = "pages/"+(params[:path].empty? ? ['home'] : params[:path]).join("/") + "/"
+    path = 'pages' if name.starts_with?('/')
     
-    render options.merge(:partial => "pages/#{params[:path].join("/")}/#{name}.html.erb")
+    render options.merge(:partial => "#{path}#{name}.html.erb")
   end
   
   def contact_email

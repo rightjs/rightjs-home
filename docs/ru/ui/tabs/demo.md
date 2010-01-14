@@ -1,30 +1,30 @@
-# Tabs Demo
+# Демо табов
 
-This is the basic cases demo page for the [Tabs](/ui/tabs) widget out of the [RightJS UI](/ui) library.
+Несколько общих примеров использования виджета [табов](/ui/tabs) из библиотеки [RightJS UI](/ui).
 
-## Simple Tabs, :simple
+## Простые табы, :simple
 <%= partial 'simple' %>
 
 
-## Remote Tabs, :remote
+## Удаленные табы, :remote
 <%= partial 'remote' %>
 
 
-## Closable Tabs, :closeable
+## Закрываемые табы, :closeable
 <%= partial 'closeable' %>
 
 
-## Disabled Tabs, :disabled
+## Заблокированные табы, :disabled
 <%= partial 'disabled' %>
 
 
-## Scrollable Tabs, :scrollable
+## Табы с прокруткой, :scrollable
 <%= partial 'scrollable' %>
 
 
-## Carousel Widget, :carousel
+## Карусель, :carousel
 <%= partial 'carousel' %>
 
-## Harmonica Widget, :harmonica
+## Гармошка, :harmonica
 
 <%= partial 'harmonica' %>

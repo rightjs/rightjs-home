@@ -2,17 +2,7 @@
 
 Right tooltips is the native tooltips feature for RightJS.
 
-Get the latest version right here
-
-* [right-tooltips.js](/builds/ui/right-tooltips.js) - fully compressed build
-* [right-tooltips-min.js](/builds/ui/right-tooltips-min.js) - minified version
-* [right-tooltips-src.js](/builds/ui/right-tooltips-src.js) - uncompressed source code
-
-All the source code of the project is available under terms of the MIT license
-
-<http://github.com/rightjs/rightjs-ui>
-
-See the [demo page](/ui/tooltips/demo) for examples.
+<%= partial '/ui/head', :locals => {:name => 'tooltips'} %>
 
 <%= anchors_index %>
 

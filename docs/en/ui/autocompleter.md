@@ -2,17 +2,7 @@
 
 Right `Autocompleter` is the official autocompletion feature for RightJS
 
-Get the latest version right here
-
-* [right-autocompleter.js](/builds/ui/right-autocompleter.js) - fully compressed build
-* [right-autocompleter-min.js](/builds/ui/right-autocompleter-min.js) - minified version
-* [right-autocompleter-src.js](/builds/ui/right-autocompleter-src.js) - uncompressed source code
-
-All the source code of the project is available under terms of the MIT license
-
-<http://github.com/rightjs/rightjs-ui>
-
-See the [live demo](/ui/autocompleter/demo) page for examples.
+<%= partial '/ui/head', :locals => {:name => 'autocompleter'} %>
 
 <%= anchors_index %>
 
@@ -47,6 +37,16 @@ a reference to your input element and specify some options
     new Autocompleter('my-input', {
       local: $w('mommy daddy sonny doggy kitty')
     });
+    
+Autocompleter expects your server send back usual list of `UL/LI` tags,
+with any content inside of the items
+
+    <ul>
+      <li>one</li>
+      <li>two</li>
+      <li>three</li>
+    </ul>
+    
 
 ## Auto-Discovery Feature, :discovery
 

@@ -1,28 +1,28 @@
-# In Place Editors Demo
+# Демо редактирования на месте
 <% content_for :modules, javascript_include_tag('/builds/ui/right-in-edit-min.js') %>
 
-Here are some simple [in-place editor](/ui/in-edit) examples
+Несколько примеров использования плагина [редактирования на месте](/ui/in-edit)
 
 
-## Simple case, :simple
+## Простой пример, :simple
 
 <p class="test-case">
-  <span id="test-1">Click the 'Edit' link</span>
-  <a href="" onclick="$('test-1').inEdit({toggle: this}); return false;">Edit</a>
+  <span id="test-1">Кликните ссылку справа</span>
+  <a href="" onclick="$('test-1').inEdit({toggle: this}); return false;">Редактировать</a>
 </p>
 
-## With Textarea, :textarea
+## С полем textarea, :textarea
 
 <p class="test-case">
-  <span id="test-2">Click the 'Edit' link</span>
-  <a href="" onclick="$('test-2').inEdit({toggle: this, type: 'textarea'}); return false;">Edit</a>
+  <span id="test-2">Кликните ссылку справа</span>
+  <a href="" onclick="$('test-2').inEdit({toggle: this, type: 'textarea'}); return false;">Редактировать</a>
 </p>
 
-## With A Password, :password
+## Поле с паролем, :password
 
 <p class="test-case">
-  <span id="test-3">That's a secret thing in here</span>
-  <a href="" onclick="$('test-3').inEdit({toggle: this, type: 'password'}); return false;">Edit</a>
+  <span id="test-3">Очень секретный текст</span>
+  <a href="" onclick="$('test-3').inEdit({toggle: this, type: 'password'}); return false;">Редактировать</a>
 </p>
 
 <script type="text/javascript">

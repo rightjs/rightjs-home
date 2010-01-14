@@ -3,11 +3,7 @@
 Selectable is a standard select-boxes replacement that can hold any html content in the options list.
 It can work both ways as a multi or as a single-select box.
 
-* [right-selectable.js](/builds/ui/right-selectable.js) - fully compressed build
-* [right-selectable-min.js](/builds/ui/right-selectable-min.js) - minified version
-* [right-selectable-src.js](/builds/ui/right-selectable-src.js) - uncompressed source code
-
-See the [demo page](/ui/selectable/demo) for the most common use-cases.
+<%= partial '/ui/head', :locals => {:name => 'selectable'} %>
 
 <%= anchors_index %>
 
@@ -29,7 +25,7 @@ First of all you need to include one of the files above onto your page.
 After that you can just generate your selectables programmatically in JavaScript
 
     new Selectable({
-      options: ['one two three four five']
+      options: ['one', 'two', 'three', 'four', 'five']
     }).insertTo('the-container');
 
 You also can prepare an HTML structure and then initialize your selectable on it, like this
@@ -55,7 +51,18 @@ automatically initialized when the page is loaded.
     </ol>
 
 Yes, that's right you can use both `UL` or `OL` tags, and, as usual, you can specify an HTML5 like attribute
-called `data-selectable-options` with your options in a JSON format
+called `data-selectable-options` with your options in a JSON format.
+
+And you also can make the script automatically generate selectables out of standard selectboxes.
+Just add the `right-selectable` css-class and our script will automatically find it, generate
+a selectable widget equivalent and hide the original. That way the form the original selectbox belongs to
+won't notice anything
+
+    <select name="boo" class="right-selectable">
+      <option value="1"><b>F</b>first</option>
+      <option value="2"><b>S</b>econd</option>
+      ....
+    </select>
 
 
 ## Various Variants, :variants
@@ -160,6 +167,26 @@ In case if you have the keys/IDs in a some sort of sequential way, like `thing-1
 `thing-2`, `thing-3`, you also can specify the `parseIds` option as
 `true` and then the script will automatically parse out the numerical part of the IDs
 to be used as the result value.
+
+    var selectable = new Selectable({
+      options: {
+        'thing-1': 'First',
+        'thing-2': 'Second',
+        'thing-3': 'Third'
+      },
+      selected: [0,1],
+      parseIds: true
+    });
+
+    // эквивалентный HTML
+    <ul>
+      <li id="thing-1">First</li>
+      <li id="thing-2">Second</li>
+      <li id="thing-3">Third</li>
+    </ul>
+
+    selectable.getValue(); // -> [1, 2]
+    
 
 
 ## Options List, :options

@@ -1,15 +1,12 @@
-# Lightbox Demo
+# Лайтбокс демо
 <% content_for :modules, javascript_include_tag('/builds/ui/right-lightbox-min.js') %>
 
-Some use cases demo for the [Lightbox](/ui/lightbox) widget
+Несколько общих примеров использования виджета [Lightbox](/ui/lightbox)
 
-## Standalone Images Displaying, :standalone
+## Показ отдельных картинок, :standalone
 
-In similarity to the [Lightbox 2](http://www.huddletogether.com/projects/lightbox2) project,
-displaying of standalone images in the lightbox does not requires any javascript coding.
-All you need is to specify the `rel="lightbox"` attribute at the link. When page
-is loaded Lightbox will automatically find the links and perform all necessary
-initializations, grab the titles, etc.
+Подобно проекту [Lightbox 2](http://www.huddletogether.com/projects/lightbox2) вы
+можете показывать картинки в лайтбоксе, просто указав атрибут `rel="lightbox"` на ссылках.
 
     <a href="1.jpg" rel="lightbox"><img src="1-thmb.jpg"></a>
     <a href="2.jpg" rel="lightbox" title="Some title"><img src="2-thmb.jpg"></a>
@@ -20,11 +17,10 @@ initializations, grab the titles, etc.
   <a href="/images/test/3.jpg" rel="lightbox" title="Caravaggio"><img src="/images/test/3-thmb.jpg" /></a>
 </p>
 
-## Images Road Trip Displaying, :roadtrip
+## Показ галлереи картинок, :roadtrip
 
-If you want to display some collection of images as an album, without making the user to click each
-link, then you are specifying a slightly different attribute `rel="lightbox[roadtrip]"`.
-All the other principles are the same
+Если вы хотите чтобы лайтбокс показывал ваши картинки как одну галлерею, то вам
+необходимо указать на ссылках атрибут `rel="lightbox[roadtrip]"`.
 
     <a href="1.jpg" rel="lightbox[roadtrip]"><img src="1-thmb.jpg"></a>
     <a href="2.jpg" rel="lightbox[roadtrip]"><img src="2-thmb.jpg"></a>
@@ -35,40 +31,41 @@ All the other principles are the same
   <a href="/images/test/6.jpg" rel="lightbox[roadtrip]" title="Rain In St.Petersburg"><img src="/images/test/6-thmb.jpg" /></a>
 </p>
 
-You can use the left and right arrow buttons on your keyboard or the mouse wheel scrolling to list through the images
+Вы так же можете использовать кнопки клавиатуры и колесо прокрутки мыши, для того чтобы
+листать картинки
 
 
-## HTML Content Displaying, :html
+## Показ HTML контента, :html
 
-To display any html content, strings, dom-nodes, node-lists, arrays of elements, etc. Just pass it to the `show` method
+Для показа любого контента (строки, элементы страниц и их массивы). Просто пошлите их в метод `show`
 
     Lightbox.show($('lorem-block').innerHTML, {width: '20em'});
 
 <p>
-  <a href="" onclick="Lightbox.show($('lorem-block').innerHTML,{width:'20em'}); return false;">Click me to show the text below in the lightbox</a>
+  <a href="" onclick="Lightbox.show($('lorem-block').innerHTML,{width:'20em'}); return false;">Кликни меня чтобы показать нижеследующий текст в лайтбоксе</a>
 </p>
 <p id="lorem-block">
   Lorem ipsum dolor <u>sit</u> amet, consectetur adipisicing elit, <b>sed</b> do eiusmod tempor incididunt ut labore et dolore <i>magna</i> aliqua. Ut enim ad minim veniam, quis nostrud <u>exercitation</u> ullamco laboris nisi ut aliquip ex ea commodo <b>consequat</b>. Duis aute irure dolor in <i>reprehenderit</i> in voluptate velit esse cillum <u>dolore</u> eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non <b>proident</b>, sunt in culpa qui <i>officia</i> deserunt mollit anim id est laborum.
 </p>
 
-## Content Loading Via Ajax, :ajax
+## Загрузка контента через Ajax, :ajax
 
-To load some content via an xhr request just pass its url address to the `load` method.
-You can also pass any standard {Xhr} class options as the second argument.
+Для того чтобы загрузить контент через {Xhr} запрос, просто укажите адрес методу `load`.
+Вы так же можете указать опции для класса {Xhr} вторым атрибутом.
 
     Lightbox.load('/ui/lightbox/lorem');
 
 <p>
-  <a href="" onclick="Lightbox.load('/ui/lightbox/lorem'); return false;">Try it right here</a>
+  <a href="" onclick="Lightbox.load('/ui/lightbox/lorem'); return false;">Попробуйте сами</a>
 </p>
 
-## Links Automatic Processing, :autolinks
+## Автоматическая обработка ссылок, :autolinks
 
-If you send a dom-node of a link into the `show` method, lightbox will automatically grab
-the link url address, load it via an ajax request and then show it in the lightbox with the same title the link has.
+Вы так же можете просто послать элемент ссылки в метод `show`, он автоматически считает ее адрес
+загрузит контент через {Xhr} запрос и покажет его в лайтбоксе.
 
     Lightbox.show($('some-link'));
 
 <p>
-  <a href="/ui/lightbox/lorem" title="Loaded By Link" onclick="Lightbox.show(this); return false;">Try it right here</a>
+  <a href="/ui/lightbox/lorem" title="Loaded By Link" onclick="Lightbox.show(this); return false;">Попробуйте сами</a>
 </p>

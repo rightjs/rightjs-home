@@ -1,133 +1,122 @@
-# Right Calendar
+# Календарь
 
-Right Calendar is the standard calendar/datepicker feature for RightJS
+`Calendar` - это стандартный виджет календаря для RightJS
 
-Get the latest version right here
-
-* [right-calendar.js](/builds/ui/right-calendar.js) - fully compressed build
-* [right-calendar-min.js](/builds/ui/right-calendar-min.js) - minified version
-* [right-calendar-src.js](/builds/ui/right-calendar-src.js) - uncompressed source
-
-
-All the source code of the project is available under terms of the MIT license
-
-<http://github.com/rightjs/rightjs-ui>
-
-See the [live demo](/ui/calendar/demo) page for some common use cases
+<%= partial '/ui/head', :locals => {:name => 'calendar'} %>
 
 <%= anchors_index %>
 
 
-## Features List, :features
+## Список возможностей, :features
 
-Right Calendar has the following features:
+Виджет календаря имеет следующие возможности:
 
-* Dates and times picking
-* Multiple months and greed support
-* Date limits support
-* Inline displaying support
-* Auto-appearance at input elements
-* Auto-initialization by the `rel="calendar"` attribute
-* Tiny (just 10k) size, no image dependencies, fully css-based design
-* Everything is included in a single file
-* i18n support
+* Выбор даты и времени для полей ввода
+* Поддержка таблиц из нескольких месяцев
+* Поддержка минимальных/максимальных дат
+* Может работать как независимый виджет
+* Авто-инициализация через `rel="calendar"` атрибут
+* Маленький (всего 10k) размер 
+* Никаких зависимых файлов css или картинок
+* Поддержка интернационализации
 
 
-## Usage Basics, :usage
+## Основы использования, :usage
 
-The usage of Right Calendar is really simple. Just grab the file above, include it on your page and you
-are good to go. Right Calendar does not require any images and all the styles are inlined inside the javascript file
+Использование этого виджета очень простое. Просто подключите файл обычным образом
 
-    <script src="/javascripts/right-calendar.js" type="text/javascript"></script>
+    <script src="/javascripts/right-calendar.js"></script>
 
-After that you will have the `Calendar` unit available
+И после этого вы сможете создавать ваши календари с помощью класса `Calendar`
 
-    new Calendar({format: 'US'}).insertTo('that-element');
+    new Calendar({format: 'EUR'}).insertTo('that-element');
     
     new Calendar({showTime: true}).assignTo('that-input');
 
 
 
-## Inputs Auto-Discovery, :dicovery
+## Авто-инициализация, :discovery
 
-If you like, you can use the auto-initialization feature. Simply specify the `rel="calendar"`
-attribute on your `INPUT` element and when the page is loaded the calendar script will automatically find the
-element and initialize all the things.
+Для виджета календаря доступна стандартная для RightJS возможность автоматической
+инициализации. Все что для этого требуется, это указать атрибут `rel="calendar"` на
+нужном поле ввода. После этого, когда страница загрузится, скрипт автоматически
+найдет это поле и создаст для него календарик.
 
     <input type="text" rel="calendar" />
 
-You also can use the `rel="calendar[input_field_id]"` attribute if you want to use a trigger
-element, like an image, that will show the calendar up.
+Вы так же можете использовать атрибут `rel="calendar[input_field_id]"`, если
+вы хотите чтобы календарь появлялся только по клику на специальном элементе.
 
     <input type="text" id="my-input" />
     <img src="calendar.png" rel="calendar[my-input]" />
 
-And you can specify custom options for those inputs with the HTML5 style attribute like this
+И дополнительно, вы можете использовать атрибуты в стиле HTML5 для указания
+специфических опций, как в следующем примере
 
     <input type="text" rel="calendar" 
-      data-calendar-options="{format: 'US'}" />
+      data-calendar-options="{format: 'EUR'}" />
 
 
-## Options List, :options
+## Список опций, :options
 
-There are several options you can pass into the `Calendar` constructor or use with the auto-discovery feature
+Существует следующий список опций которые вы можете использовать с виджетами календаря
 
-Name           | Default    | Description
+Название       | Умолчание  | Описание
 ---------------|------------|-------------------------------------------------------------------
-format         | 'ISO'      | one of the predefined formats name or a format string
-showTime       | null       | a marker if the time picker should be displayed
-twentyFourHour | null       | a marker if the 24 or 12 hours time picker should be used
-timePeriod     | 1          | the time picker min time quantity in minutes
-showButtons    | false      | a marker if the bottom buttons should be displayed
-minDate        | null       | the minimum date you can select
-maxDate        | null       | the maximum date you can select
-listYears      | false      | show the year switching buttons
-firstDay       | 1          | 1 for Monday, 0 for Sunday
-numberOfMonths | 1          | a number of month to display, or a \[x,y\] months greed definition
-fxName         | 'fade'     | the visual effect name, use `null` if you don't want any fx
-fxDuration     | 'short'    | the visual effects duration
-relName        | 'calendar' | the rel-attribute name for the auto-discovery feature
-checkTags      | '\*'       | the tags name to be checked on load (to narrow down the search)
+format         | 'ISO'      | шаблон даты или имя предустановленного формата
+showTime       | null       | флаг, если виджет должен показывать поля выбора времени
+twentyFourHour | null       | флаг, какой формат времени должен использоваться 12 или 24 часовой
+timePeriod     | 1          | минимальный квант времени, в минутах
+showButtons    | false      | флаг, если виджет должен показывать снизу кнопки
+minDate        | null       | минимальная дата которую можно выбрать
+maxDate        | null       | максимальная дата которую можно выбрать
+listYears      | false      | флаг, если виджет должен показывать кнопки для листания годов
+firstDay       | 1          | с какого дня начинается неделя `1` c понедельника, `0` с воскресенья
+numberOfMonths | 1          | число месяцев на календаре, или размер сетки \[x,y\]
+fxName         | 'fade'     | имя визуального эффекта или `null` чтобы отключить
+fxDuration     | 'short'    | длительность визуального эффекта
+relName        | 'calendar' | ключ для функции авто-инициализации
+checkTags      | '\*'       | какие тэги нужно просматривать (чтобы ускорить поиск)
+
+Вы можете использовать любые из перечисленных опций совместно с каждым отдельно взятым виджетом
+или же изменить настройки глобально в переменной `Calendar.Options`.
+
+Опции `showTime` и `twentyFourHour` имеют значение `null` по умолчанию. Это означает, что
+скрипт будет определять их автоматически по строке шаблона даты. Но вы так же можете указать их в
+какое-либо значение вручную.
 
 
-You also can alter the `Calendar.Options` object to make the changes global.
+## Форматы дат, :formatting
 
-The `showTime` and `twentyFourHour` options have `null` value by default, which means that those options
-will be automatically determined depending on the specified time format option. You also might specify a boolean value to
-enforce those options.
-
-
-## Dates Formatting, :formatting
-
-Right Calendar uses the
+Виджет календаря использует систему формата дат
 [GNU strftime](http://www.gnu.org/software/libc/manual/html%5Fnode/Formatting-Calendar-Time.html#index-strftime-2660)
-formatting system and there are the following placeholders available:
+и поддерживает следующие ключи:
 
-Key | Description
+Имя | Описание
 ----|------------------------------------------------------------------------
-%a  | The abbreviated weekday name ('Sun')
-%A  | The  full  weekday  name ('Sunday')
-%b  | The abbreviated month name ('Jan')
-%B  | The  full  month  name ('January')
-%d  | Day of the month (01..31)
-%e  | Day of the month without leading zero (1..31)
-%m  | Month of the year (01..12)
-%y  | Year without a century (00..99)
-%Y  | Year with century
-%H  | Hour of the day, 24-hour clock (00..23)
-%k  | Hour of the day, 24-hour clock without leading zero (0..23)
-%I  | Hour of the day, 12-hour clock (01..12)
-%l  | Hour of the day, 12-hour clock without leading zero (0..12)
-%p  | Meridian indicator ('AM'  or  'PM')
-%P  | Meridian indicator ('pm'  or  'pm')
-%M  | Minute of the hour (00..59)
-%S  | Second of the minute (00..59)
-%%  | Literal '%' character
+%a  | Короткое название дня недели ('Вск')
+%A  | Полное название дня недели ('Воскресенье')
+%b  | Короткое название месяца ('Янв')
+%B  | Полное название месяца ('Январь')
+%d  | День месяца (01..31)
+%e  | День месяца без начального нуля (1..31)
+%m  | Номер месяца в году (01..12)
+%y  | Год без века (00..99)
+%Y  | Полный номер года
+%H  | Час дня в 24-х часовом формате (00..23)
+%k  | Час дня в 24-х часовом формате без начального нуля (0..23)
+%I  | Час дня в 12-ти часовом формате (01..12)
+%l  | Час дня в 12-ти часовом формате без начального нуля (0..12)
+%p  | Индикатор меридиана ('AM'  or  'PM')
+%P  | Индикатор меридиана ('pm'  or  'pm')
+%M  | Минуты (00..59)
+%S  | Секунды (00..59)
+%%  | Символ '%'
 
-There are also few predefined date formats are available:
+Так же доступно несколько предустановленных стандартных форматов:
 
 
-Name  | Format     | Example
+Имя   | Формат     | Пример
 ------|------------|--------------------
 ISO   | '%Y-%m-%d' | 2009-08-18
 POSIX | '%Y/%m/%d' | 2009/08/18
@@ -135,53 +124,53 @@ EUR   | '%d-%m-%Y' | 18-08-2009
 US    | '%m/%d/%Y' | 08/18/2009
 
 
-## Events List, :events
+## Список событий, :events
 
-Right calendar supports the following list of events
+Календари поддерживают следующий список событий
 
-Name   | Description
+Имя    | Описание
 -------|-------------------------------------------------
-show   | the calendar element was shown
-hide   | the calendar element was hidden
-select | user selects a date or time
-done   | user hits the 'done' button
+show   | календарь был показан
+hide   | календарь был скрыт
+select | пользователь выбирает дату/время
+done   | пользователь нажимает кнопку "Готово"
 
-You can use any standard {Observer} methods to process those events. Shortcuts like `onSelect`,
-`onDone` are also available.
+Вы можете использовать все стандартные методы модуля {Observer} для работы с данными
+событиями. Сокращенные методы вроде `onSelect`, `onDone` так же доступны.
 
 
-## API Reference, :api
+## API Документация, :api
 
-Right Calendar has a simple interface:
+Виджет календаря имеет простой API интерфейс
 
-Method                      | Description
+Метод                       | Описание
 ----------------------------|----------------------------------------------------------------------
-setDate(date)               | sets the date, the date might be a Date instance or a String
-getDate()                   | returns the current date
-format(\[String format\])   | returns a string representation of the current date
-insertTo(element)           | makes the calendar inlined into the element
-assignTo(element\[,trigger\]) | assigns the calendar to auto appear at the element; if the trigger is specified a calendar will appear only by clicking on the trigger element
-hide()                      | hides the calendar block
-show()                      | shows the calendar block
-showAt(Element)             | assigns the calendar to work with the element and shows it at the bottom of the element
+setDate(date)               | устанавливает дату, это может быть объект даты или строка
+getDate()                   | возвращает текущую дату в виде объекта даты
+format(\[String format\])   | возвращает текущую дату в виде строки
+insertTo(element)           | вставляет элемент календаря в указанный элемент
+assignTo(element\[,trigger\]) | назначает календарь работать с указанным полем ввода. можно так же указать элемент по клику на котором календарь будет показываться/скрываться
+hide()                      | скрывает элемент календаря
+show()                      | показывает элемент календаря
+showAt(Element)             | показывает элемент календаря ниже указанного элемента и назначает его на совместную с ним работу
 
 
 
-## Internationalization, :i18n
+## Интернационализация, :i18n
 
-You might find a translation module for your language at the github repository
+Вы можете найти модуль интернационализации для нужного вам языка в github репозитории
 
-<http://github.com/rightjs/rightjs-ui/i18n>
+<http://github.com/rightjs/rightjs-ui/tree/master/i18n/>
 
-Or you can translate the interface by simply altering the `Calendar.i18n` object like that
+Или же вы можете произвести перевод вручную, изменив объект `Calendar.i18n` следующим образом
 
     Calendar.i18n = {
-      Done:  'Готово',
-      Now:   'Сейчас',
-      Next:  'Следующий месяц',
-      Prev:  'Предыдущий месяц',
-      NextYear: 'Следующий год',
-      PrevYear: 'Предыдущий год',
+      Done:            'Готово',        
+      Now:             'Сейчас',        
+      Next:            'Следующий месяц',
+      Prev:            'Предыдущий месяц',
+      NextYear:        'Следующий год', 
+      PrevYear:        'Предыдущий год',
   
       dayNames:        $w('Вокскресенье Понедельник Вторник Среда Четверг Пятница Суббота'),
       dayNamesShort:   $w('Вск Пнд Втр Срд Чтв Птн Сбт'),
@@ -191,10 +180,11 @@ Or you can translate the interface by simply altering the `Calendar.i18n` object
     };
 
 
-## Style Alterations, :styles
+## Настройки стилей, :styles
 
-If you need to alter the calendar view to make it fit your design, please use the following
-elements structure description as a guidance.
+Если вам необходимо настроить виджет календаря для того чтобы он больше подходил к
+вашему дизайну, вы можете использовать следующее описание структуры элементов, как
+руководство к действию.
 
     <div class="right-calendar">
       <div class="right-ui-button right-calendar-next-button">&lsaquo;</div>

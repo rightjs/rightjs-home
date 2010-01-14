@@ -1,26 +1,5 @@
-# Right Tooltips Demo
-
-<% content_for :modules, javascript_include_tag('/builds/ui/right-tooltips-min.js') %>
-<style type="text/css">
-  ul.tooltiped li {
-    margin: .5em 0;
-    cursor: pointer;
-  }
-  ul.tooltiped li:hover {
-    background-color: #EEE;
-  }
-  
-  #blue-tooltip div.right-tooltip-container {
-    border-left-color: blue;
-  }
-  #green-tooltip div.right-tooltip-container {
-    border-left-color: green;
-  }
-  #red-tooltip div.right-tooltip-container {
-    border-left-color: red;
-  }
-</style>
-
+# Tooltips Demo
+<%= partial 'scripts' %>
 
 There are some use cases for the [tooltips](/ui/tooltips) widget
 

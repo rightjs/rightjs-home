@@ -2,15 +2,9 @@
 
 Right Sortable is the sortable lists feature for RightJS
 
-Get the latest version right here
+<%= partial '/ui/head', :locals => {:name => 'sortable'} %>
 
-* [right-sortable.js](/builds/ui/right-sortable.js) - fully compressed build
-* [right-sortable-min.js](/builds/ui/right-sortable-min.js) - minified version
-* [right-sortable-src.js](/builds/ui/right-sortable-src.js) - uncompressed source code
-
-__NOTE:__ This module requires the <%= link_to 'drag-n-drop', goods_path('drag-n-drop')%> library
-
-See the [live demo](/ui/sortable/demo) page for examples.
+__NOTE:__ This module requires the  [drag-n-drop](/goods/drag-n-drop) library
 
 <%= anchors_index %>
 

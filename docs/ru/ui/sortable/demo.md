@@ -1,38 +1,9 @@
-<h1>Sortable Demo</h1> <% @title_text = "UI: Sortable: Demo" %>
-<% content_for :modules do %>
-  <%= javascript_include_tag "/builds/goods/right-dnd-min.js"   %>
-  <%= javascript_include_tag "/builds/ui/right-sortable-min.js" %>
-  <%= stylesheet_link_tag    'sortable-demo'                    %>
-<% end %>
-<style type="text/css">
-  ul.sortable {
-    width: 20em;
-    list-style: none;
-    padding: 0;
-  }
-  ul.sortable li {
-    cursor: move;
-    background: #CFCEBD;
-    padding: .2em .4em;
-    margin: 2px;
-    -webkit-border-radius: .24em;
-    -moz-border-radius: .24em;
-  }
-  ul.sortable li.dragging {
-    opacity: 0.6;
-  }
-  ul.horizontal {
-    width: 30em;
-    height: 1em;
-  }
-  ul.horizontal li {
-    float: left;
-  }
-</style>
+# Демо сортируемых списков
+<%= partial 'scripts' %>
 
-Some sortable lists demo
+Несколько примеров использования виджета [сортируемых списков](/ui/sortable)
 
-## Vertical List, :vertical
+## Вертикальный список, :vertical
 
 <p>
   <ul class="sortable" rel="sortable">
@@ -44,7 +15,7 @@ Some sortable lists demo
   </ul>
 </p>
 
-## Horizontal List, :horizontal
+## Горизонтальный список, :horizontal
 
 <p>
   <ul class="sortable horizontal" rel="sortable">
@@ -56,7 +27,7 @@ Some sortable lists demo
   </ul>
 </p>
 
-## Remote List, :remote
+## Удаленный список, :remote
 
 <p>
   <ul class="sortable" rel="sortable" data-sortable-options="{url: '%{id}/move.html', Xhr: {evalScripts: true}}">

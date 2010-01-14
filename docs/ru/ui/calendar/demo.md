@@ -1,45 +1,45 @@
-# Right Calendar Demo
+# Демо календаря
 <% content_for :modules, javascript_include_tag('/builds/ui/right-calendar-min.js') %>
 
-There are some standard use cases for the [Calendar](/ui/calendar) widget.
-You can use the keyboard buttons like arrows, escape and enter buttons to navigate through the calendars
+Несколько стандартных примеров использования виджета [календаря](/ui/calendar).
+Вы можете использовать клавиши клавиатуры для навигации
 
-## On Form Date-Time Picking, :form
+## Работа с полями ввода форм, :form
 <p>
-  <label>Simple Date:</label>
+  <label>Простое поле:</label>
   <input type="text" id="date-simple" class="demo-field" />
 </p>
 <p>
-  <label>With Trigger:</label>
+  <label>Поле с иконкой:</label>
   <input type="text" id="date-triggered" class="demo-field" />
   <input type="image" id="date-trigger" src="/images/calendar.png" />
 </p>
 <p>
-  <label>With Time:</label>
+  <label>С датой и временем:</label>
   <input type="text" id="date-with-time" class="demo-field" />
 </p>
 <p>
-  <label>With Bottom Buttons:</label>
+  <label>С дополнительными кнопками:</label>
   <input type="text" id="date-with-buttons" class="demo-field" />
 </p>
 <p>
-  <label>With Fancy Formatting:</label>
+  <label>Со спец. форматированием:</label>
   <input type="text" id="date-with-formatting" class="demo-field" />
 </p>
 <p>
-  <label>With Date Limits:</label>
+  <label>С ограничением дат:</label>
   <input type="text" id="date-with-limits" class="demo-field" />
 </p>
 <p>
-  <label>With Year Buttons</label>
+  <label>С кнопками для годов:</label>
   <input type="text" id="date-with-years" class="demo-field" />
 </p>
 <p>
-  <label>With Time Period Of 15 Minutes:</label>
+  <label>С периодом в 15-ть минут:</label>
   <input type="text" id="date-with-15-minutes-period" class="demo-field" />
 </p>
 <p>
-  <label>With Time Period Of 3 Hours:</label>
+  <label>С периодом в 3 часа:</label>
   <input type="text" id="date-with-3-hours-period" class="demo-field" />
 </p>
 <script type="text/javascript">
@@ -49,7 +49,7 @@ You can use the keyboard buttons like arrows, escape and enter buttons to naviga
   new Calendar({format: "%Y-%m-%d %H:%M"}).assignTo('date-with-time');
   new Calendar({showButtons: true}).assignTo('date-with-buttons');
   new Calendar({
-    format: "%B %d, %Y %l:%M%P"
+    format: "%d %B %Y %H:%m"
   }).assignTo('date-with-formatting');
   var min_date = new Date();
   var max_date = new Date();
@@ -72,28 +72,28 @@ You can use the keyboard buttons like arrows, escape and enter buttons to naviga
 // ]]>
 </script>
 
-The code of the fields initiation looks like this:
+Исходный код выглядит следующим образом:
 
-    // simple calendars
+    // простые календари
     new Calendar().assignTo('date-simple');
     new Calendar().assignTo('date-triggered', 'date-trigger');
 
 
-    // calendar with the time-picker
+    // календарь со врменем
     new Calendar({format: "%Y-%m-%d %H:%M"}).assignTo('date-with-time');
 
 
-    // calendar with the bottom buttons
+    // календарь с кнопками
     new Calendar({
       showButtons: true
     }).assignTo('date-with-buttons');
 
 
-    // calendar with fancy formatting
-    new Calendar({format: "%Y-%m-%d %l:%M"}).assignTo('date-with-formatting');
+    // календарь со спец. форматированием
+    new Calendar({format: "%d %B %Y %H:%m"}).assignTo('date-with-formatting');
 
 
-    // calendar with dates limit
+    // календарь с ограничем дат
     var min_date = new Date();
     var max_date = new Date();
     min_date.setMonth(min_date.getMonth() - 1);
@@ -104,32 +104,26 @@ The code of the fields initiation looks like this:
     }).assignTo('date-with-limits');
 
 
-    // with year buttons
+    // календарь с кнопками лет
     new Calendar({listYears: true}).assignTo('date-with-years');
 
 
-    // calendar with 15-minute time periods
+    // календарь с 15-ти минутным периодом
     new Calendar({
       timePeriod: 15, format: "%Y-%m-%d %H:%M"
     }).assignTo('date-with-15-minutes-period');
 
 
-    // calendar with 3-hours time periods
+    // календарь с 3-х часовым периодом
     new Calendar({
       timePeriod: 180, format: "%Y-%m-%d %H:%M"
     }).assignTo('date-with-3-hours-period');
 
-## Fields Auto-Discovery, :auto
+## Поля с авто-инициализацией, :auto
 
-In simple cases you don't need to assign calendar instances to the input fields manually.
-All you need to specify the `rel="calendar"` attribute on your input-text field and
-the right calendar will do all the assignments automatically when the page is loaded.
-
-
-You also can specify an input-trigger pair with the `rel="calendar[input_field_id]"`
-attribute on the trigger element.
-
-For example:
+Вы так же можете создавать календари просто указав атрибут `rel="calendar"` на
+нужном поле ввода. Или атрибут вида `rel="calendar[input_field_id]"` если
+вы хотите показывать/скрывать календарь специальной кнопкой:
 
     <input type="text" rel="calendar" />
   
@@ -137,18 +131,19 @@ For example:
     <input type="image" rel="calendar[input-field]" />
 
 <p>
-  <label>Simple Date:</label>
+  <label>Простой календарь:</label>
   <input type="text" rel="calendar" class="demo-field" />
 </p>
 <p>
-  <label>With Trigger:</label>
+  <label>Календарь с триггером:</label>
   <input type="text" id="input-field" class="demo-field" />
   <input type="image" rel="calendar[input-field]" src="/images/calendar.png" />
 </p>
 
-## Inlined Calendars, :inline
+## Встроенные календари, :inline
 
-You can inline your calendars right onto your page using the `insertTo` method
+Вы можете использовать виджет календаря, как самостоятельный элемент страницы
+встраивая его с помощью метода `insertTo`
 
 <p>
   <div id="simple-calendar"></div>
@@ -167,8 +162,7 @@ new Calendar({showButtons: true}).insertTo('simple-calendar-with-buttons');
 //]]>
 </script>
 
-You also can build several months calendars and calendar greed by defining the
-`numberOfMonths` option
+Вы так же можете создавать календари из нескольких методов используя опцию `numberOfMonths`
 
 <p>
   <div id="two-calendars"></div>

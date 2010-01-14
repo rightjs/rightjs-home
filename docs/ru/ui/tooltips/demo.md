@@ -1,70 +1,49 @@
-# Right Tooltips Demo
+# Демо тултипов
+<%= partial 'scripts' %>
 
-<% content_for :modules, javascript_include_tag('/builds/ui/right-tooltips-min.js') %>
-<style type="text/css">
-  ul.tooltiped li {
-    margin: .5em 0;
-    cursor: pointer;
-  }
-  ul.tooltiped li:hover {
-    background-color: #EEE;
-  }
-  
-  #blue-tooltip div.right-tooltip-container {
-    border-left-color: blue;
-  }
-  #green-tooltip div.right-tooltip-container {
-    border-left-color: green;
-  }
-  #red-tooltip div.right-tooltip-container {
-    border-left-color: red;
-  }
-</style>
+Несколько примеров использования виджета [тултипов](/ui/tooltips)
 
-
-There are some use cases for the [tooltips](/ui/tooltips) widget
-
-## Simple Tooltips, :simple
+## Простой пример, :simple
 
 <p>
   <ul class="tooltiped">
-    <li title="Some tooltip" rel="tooltip">This element has a simple tooltip</li>
-    <li title="Another tooltip" rel="tooltip">And this element has simple tooltip</li>
+    <li title="Какой-то текст" rel="tooltip">Этот элемент имеет тултип</li>
+    <li title="Какой-то другой текст" rel="tooltip">И этот элемент имеет тултип</li>
   </ul>
 </p>
 
-## Tooltips With HTML, :html
+## Тултипы с HTML кодом, :html
 
-If you need to put some html code into your tooltip, then just assign the escaped html code
-to the `title` attribute, it will work.
+Если вам необходимо поместить некий HTML код в текст тултипа, просто замените в нем угловые
+скобки на соответствующие HTML символы.
 
-    <li title="&lt;b&gt;Some&lt;/b&gt; &lt;u&gt;html&lt;/u&gt;">...</li>
+    <li title="&lt;b&gt;Какой-то&lt;/b&gt; &lt;u&gt;html&lt;/u&gt;">...</li>
     
 <p>
   <ul class="tooltiped">
-    <li title="&lt;b&gt;Some&lt;/b&gt; &lt;u&gt;html&lt;/u&gt; code" rel="tooltip">This has some html tooltip</li>
-    <li title="&lt;s&gt;Another&lt;/s&gt; &lt;i&gt;html&lt;/i&gt; code" rel="tooltip">So does this one</li>
+    <li title="&lt;b&gt;Какой-то&lt;/b&gt; &lt;u&gt;html&lt;/u&gt; код" rel="tooltip">Этот элемент имеет тултип с HTML кодом</li>
+    <li title="&lt;s&gt;Другой&lt;/s&gt; &lt;i&gt;html&lt;/i&gt; код" rel="tooltip">И этот тоже</li>
   </ul>
 </p>
 
-## Tooltips On Images, :image
+## Тултипы над картинками, :image
 
-Images can has tooltips too. You can use ether `title` or `alt` attribute to keep the tooltip text.
+Картинки так же могут иметь тултипы. В данном случае поддерживаются оба `title` и `alt` атрибуты.
 
 <p>
-  <img src="/images/test/1-thmb.jpg" rel="tooltip" title="Watson's Bay" />
-  <img src="/images/test/2-thmb.jpg" rel="tooltip" alt="Some boats at Coogie" />
+  <img src="/images/test/1-thmb.jpg" rel="tooltip" title="Бухта Ватсона" />
+  <img src="/images/test/2-thmb.jpg" rel="tooltip" alt="Лодки не далеко от Coogie" />
 </p>
 
-## Customized Tooltips, :customized
+## Специфические тултипы, :customized
 
-If an element has an `id` attribute then the related tooltip element will have the same `id`
-but with the `-tooltip` suffix, so you can customize them separately.
+Если элемент имеет атрибут `id`, то элемент соответствующего тултипа будет иметь похожий
+`id` с суффиксом `-tooltip`, что позволяет настраивать внешний вид каждого тултипа отдельно
 
 <p>
   <ul class="tooltiped">
-    <li title="Blue Tooltip" rel="tooltip" id="blue">This one has blue tooltip</li>
-    <li title="Green Tooltip" rel="tooltip" id="green">This one has green tooltip</li>
-    <li title="Red Tooltip" rel="tooltip" id="red">This one has red tooltip</li>
+    <li title="Синий тултип" rel="tooltip" id="blue">Этот элемент имеет тултип с синей полоской</li>
+    <li title="Зеленый тултип" rel="tooltip" id="green">Этот элемент имеет тултип с зеленой полоской</li>
+    <li title="Красный тултип" rel="tooltip" id="red">А этот элемент имеет тултип с красной полоской</li>
   </ul>
 </p>

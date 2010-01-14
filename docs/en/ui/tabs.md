@@ -3,11 +3,7 @@
 Right Tabs is the standard tabs engine for the RightJS UI project. It provides an easy way of creating
 usual tabs, and also carousel and harmonica widgets, joining them under a single unified engine.
 
-* [right-tabs.js](/builds/ui/right-tabs.js) - fully compressed build
-* [right-tabs-min.js](/builds/ui/right-tabs-min.js) - minified version
-* [right-tabs-src.js](/builds/ui/right-tabs-src.js) - uncompressed source code
-
-See the [demo page](/ui/tabs/demo) for examples of the most common cases
+<%= partial '/ui/head', :locals => {:name => 'tabs'} %>
 
 <%= anchors_index %>
 

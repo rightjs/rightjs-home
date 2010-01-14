@@ -58,6 +58,17 @@ en:
       build:              build
       minified:           minified
       source:             source
+      
+      get_the_latest:     Get the latest version right here
+      
+      packed_version:     packed version
+      minified_version:   minified version
+      source_version:     source code
+      
+      github_available:   All the source code of the project is available under terms of the MIT license
+      
+      for_examples_see:   For some standard usage examples see the
+      demo_page:          demo page
     
     download:
       Packed:             Packed Version
@@ -71,3 +82,5 @@ en:
     fx_demo:
       Start:              Start
       Reset:              Reset
+    
+      

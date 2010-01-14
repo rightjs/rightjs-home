@@ -4,15 +4,7 @@ Rater is a standard rating widget for RightJS. It can work as a standalone widge
 can automatically send user rates via {Xhr} requests, or it can work in pair with
 an input element as a part of a form.
 
-Get the latest version right here
-
-* [right-rater.js](/builds/ui/right-rater.js) - fully compressed build
-* [right-rater-min.js](/builds/ui/right-rater-min.js) - minified version
-* [right-rater-src.js](/builds/ui/right-rater-src.js) - uncompressed source code
-
-
-Visit the [demo page](/ui/rater/demo) for some basic use cases.
-
+<%= partial '/ui/head', :locals => {:name => 'rater'} %>
 
 <%= anchors_index %>
 
@@ -143,7 +135,7 @@ disabled()        | checks if the rater is disabled
 
 The widget structure is simple as that
 
-    <div class="right-rater" data-rater-options="{url:'/boo'}">
+    <div class="right-rater">
       <div class="right-rater-glow">★</div>
       <div class="right-rater-glow">★</div>
       <div>★</div>

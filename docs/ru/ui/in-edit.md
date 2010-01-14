@@ -1,44 +1,35 @@
-# In Place Editors
+# Редактирование на месте
 
-In place editor is a standard feature, that let you nicely handle the text-editing right in the page
+`InEdit` - это стандартное расширение автоматической генерации форм для редактирования
+текстовых элементов на месте
 
-Get the latest version right here
-
-* [right-in-edit.js](/builds/ui/right-in-edit.js) - packed build
-* [right-in-edit-min.js](/builds/ui/right-in-edit-min.js) - minified version
-* [right-in-edit-src.js](/builds/ui/right-in-edit-src.js) - uncompressed source code
-
-All the source code of the project is available under terms of the MIT license
-
-<http://github.com/rightjs/rightjs-ui>
-
-See the [live demo](/ui/in-edit/demo) page for examples.
+<%= partial '/ui/head', :locals => {:name => 'in-edit'} %>
 
 <%= anchors_index %>
 
-## Features List, :features
+## Список возможностей, :features
 
-Our in-place editors plugin has the following features:
+Данное расширение обладает следующими возможностями:
 
-* Works with text inputs, files, passwords and textarea fields
-* Can automatically hide/show additional elements, like trigger links
-* Super easy usage interface
-* Comes in a single tiny file (just 2.6k)
+* Работает с любыми полями ввода (input, file, password, textarea)
+* Может скрывать/показывать дополнительные элементы, например иконки
+* Очень простое использование
+* Все упаковано в один маленький файл (всего 2.6k)
 
-## Usage basics, :usage
+## Основы использования, :usage
 
-The usage is super-easy. Just call the `inEdit` method on the element, which content you would like
-to edit, pass your options and you're good to go.
+Использование очень простое. Плагин добавляет метод `inEdit` для элементов страниц.
+Вы просто вызываете его с нужными опциями и плагин делает все что нужно сам.
 
-    <span id="the-text">Click the 'Edit' link to edit me right here!</span>
+    <span id="the-text">Кликните ссылку "редактировать", чтобы отредактировать этот текст</span>
 
-    <a href="#" onclick="$('the-text').inEdit({url: '/url'}); return false;">Edit</a>
+    <a href="#" onclick="$('the-text').inEdit({url: '/url'}); return false;">Редактировать</a>
 
-Or even like that, without an 'edit' link
+Или даже вот так, без всяких дополнительных ссылок
 
-    <div onclick="$(this).inEdit({url:'/url'})">click me to edit!</div>
+    <div onclick="$(this).inEdit({url:'/url'})">Кликни меня чтобы отредактировать!</div>
 
-You also can use the `InEdit` class to handle in-place forms manually in your code.
+Вы так же можете использовать класс `InEdit` самостоятельно.
 
     var editor = new InEdit('the-element', {
       url:    '/the/submit/url',
@@ -48,51 +39,53 @@ You also can use the `InEdit` class to handle in-place forms manually in your co
 
     editor.show();
 
-In any case once the user hits the submit button, our script will send all the data
-via an {Xhr} request and update the original element with the content from the response-text
+В любом случае, когда пользователь кликает на кнопке "Сохранить", плагин автоматически
+отправляет данные через {Xhr} запрос и затем обновляет содержимое редактируемого элемента
+текстом ответа с сервера
 
 
-## Options List, :options
+## Список опций, :options
 
-You can use the following options with your inline editors.
+Вы можете использовать следующий список опций любым доступным способом.
 
-Name   | Default | Description
--------|---------|---------------------------------------------------------------------
-url    | null    | the url address where to send the form
-name   | 'text'  | the field name to send
-method | 'put'   | the method of {Xhr} requests
-type   | 'text'  | the input type, 'text', 'file', 'password' or 'textarea'
-toggle | null    | a reference to an element that should get hidden when the editor is active
-update | true    | a marker if the element should be updated with the response-text
-Xhr    | {}      | additional {Xhr} options
+Имя    | Умолчание | Описание
+-------|-----------|---------------------------------------------------------------------
+url    | null      | url-адрес куда отправлять форму
+name   | 'text'    | имя поля для отправки данных
+method | 'put'     | метод для {Xhr} запросов
+type   | 'text'    | тип поля ввода 'text', 'file', 'password' or 'textarea'
+toggle | null      | ссылка на элемент который должен быть скрыт когда активна форма
+update | true      | флаг, если элемент должен быть обновлен текстом ответа сервера
+Xhr    | {}        | дополнительные опции для {Xhr} запросов
 
 
-## Public API, :api
+## Открытый API, :api
 
-In case you work with the `InEdit` class directly there are few methods available
+В случае если вы используете класс `InEdit` напрямую, вам будет доступен следующий интерфейс
 
-Name   | Description
+Имя    | Описание
 -------|-----------------------------------------------------------
-show() | shows the in-place form
-hide() | hides the form and brings back the original content
-send() | in case you need to send the form manually
+show() | создает и показывает форму редактирования
+hide() | убирает форму и возвращает оригинальный контент элемента
+send() | принудительно отправляет форму на сервер
 
 
-## Events List, :events
+## Список событий, :events
 
-There is also a list of events available which you can observe with the in-form editors
+Данный плагин работает со следующим списком событий
 
-Name   | Description
+Имя    | Описание
 -------|--------------------------------------------------------------------------
-show   | when the form appears in the place
-hide   | when the form gets hidden
-send   | when the form was submitted
-update | when the script received the server response and updated the element
+show   | когда форма показывается на месте текста
+hide   | когда форма скрывается
+send   | когда форма отправляется на сервер
+update | когда скрипт получил ответ сервера и обновил текст элемента
 
 
-## Style Alterations, :style
+## Настройки стилей, :style
 
-In case you need to alter the styles on the form, there's basic structure of elements we use
+В случае если вам нужно будет изменить стили элементов форм, используйте следующую
+конструкцию как описание используемой структуры элементов
 
     <form class="right-in-edit">
       <input class="right-in-edit-field" />

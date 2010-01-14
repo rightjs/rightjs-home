@@ -1,44 +1,42 @@
-# Selectable
+# Поля выбора
 
-Selectable is a standard select-boxes replacement that can hold any html content in the options list.
-It can work both ways as a multi or as a single-select box.
+`Selectable` - это замена стандартным селект-боксам способная содержать любой HTML контент
+в полях опций, а так же имеющая более управляемый внешний вид.
 
-* [right-selectable.js](/builds/ui/right-selectable.js) - fully compressed build
-* [right-selectable-min.js](/builds/ui/right-selectable-min.js) - minified version
-* [right-selectable-src.js](/builds/ui/right-selectable-src.js) - uncompressed source code
-
-See the [demo page](/ui/selectable/demo) for the most common use-cases.
+<%= partial '/ui/head', :locals => {:name => 'selectable'} %>
 
 <%= anchors_index %>
 
 
-## Features List, :features
+## Список возможностей, :features
 
-Our selectables have the following features
+Наши поля выбора имеют следующие возможности
 
-* Provides both multi and single selectboxes
-* Can work as a standalone widget
-* Can be assigned to work as a part of a form
-* Everything is in a tiny (~ 6k) file, including the basic styles
-* Easy and flexible use with many of options
+* Работает как с множественными, так и с единичными выборами
+* Может работать как самостоятельный виджет
+* Может быть подключен к полю ввода и работать в составе форм
+* Все включено в один небольшой (~ 6k) файл, включая базовые стили
+* Простое и гибкое использование с многими опциями
 
 
-## Usage Basics, :usage
+## Базовое использование, :usage
 
-First of all you need to include one of the files above onto your page.
-After that you can just generate your selectables programmatically in JavaScript
+После того, как вы подключите один из вышеперечисленных файлов на вашу страницу,
+у вас будет выбор: использовать класс `Selectable` для того чтобы генерировать виджеты
+программно из кода JavaScript
 
     new Selectable({
-      options: ['one two three four five']
+      options: ['раз', 'два', 'три', 'четыре', 'пять']
     }).insertTo('the-container');
 
-You also can prepare an HTML structure and then initialize your selectable on it, like this
+Или же вы можете подготовить обычный элемент HTML списка и создать поле выбора из него
 
     <ul id="my-selectable">
-      <li>One</li>
-      <li>Two</li>
-      <li>Three</li>
-      <li>Four</li>
+      <li>Раз</li>
+      <li>Два</li>
+      <li>Три</li>
+      <li>Четыре</li>
+      <li>Пять</li>
     </ul>
 
     new Selectable('my-selectable', {
@@ -46,22 +44,36 @@ You also can prepare an HTML structure and then initialize your selectable on it
       disabled: [1,3]
     });
 
-Or, as usual, you can just assign the `right-selectable` css-class onto your element and it will get
-automatically initialized when the page is loaded.
+А так же вы можете назначить на ваш элемент списка css-класс `right-selectable` и
+наш скрипт найдет его и автоматически создаст виджет поля выбора.
 
     <ol class="right-selectable">
       <li>One</li>
       <li>Two</li>
     </ol>
 
-Yes, that's right you can use both `UL` or `OL` tags, and, as usual, you can specify an HTML5 like attribute
-called `data-selectable-options` with your options in a JSON format
+Да, вы можете использовать любой тип списка `UL` или `OL`, а так же использовать
+атрибуты опций в стиле HTML5 `data-selectable-options`, как и с любым другим виджетом
+RightJS
+
+И еще вы можете автоматически конвертировать обычные селект-боксы, в поля выбора,
+просто назначив им css-класс `right-selectable`. Скрипт автоматически найдет их,
+сгенерирует и вставит замену, а так же скроет оригинальные элементы. В этом случае,
+форма которой принадлежит оригинальный список не заметит никаких изменений.
+
+    <select name="boo" class="right-selectable">
+      <option value="1"><b>Р</b>аз</option>
+      <option value="2"><b>Д</b>ва</option>
+      ....
+    </select>
 
 
-## Various Variants, :variants
 
-To let the script know that you want a simple single-select box you have two options: add the `right-selectable-single`
-css-class to your element, or use the `multiple: false` option in any available way.
+## Различные варианты, :variants
+
+По умолчанию, данный скрипт будет создавать поля множественного выбора, но вы так же
+можете создавать поля с одним выбором, указав дополнительный css-класс `right-selectable-single`
+или опцию `multiple: false` любым доступным способом.
 
     <ul class="right-selectable right-selectable-single">
       ....
@@ -71,40 +83,41 @@ css-class to your element, or use the `multiple: false` option in any available 
       ...
     </ul>
 
-You also can create selectables with groups of options. For that case use the standard `dl/dt/dd` tags structure like that
+Вы так же можете создавать поля выбора с группами опций. Для этой цели используйте стандартную
+конструкцию из тегов списка с описаниями `dl/dt/dd`
 
     <dl class="right-selectable">
-      <dt>First Group</dt>
+      <dt>Первая группа</dt>
       <dd>
         <ul>
-          <li>One</li>
-          <li>Two</li>
+          <li>Раз</li>
+          <li>Два</li>
         </ul>
       </dd>
-      <dt>Second Group</dt>
+      <dt>Вторая группа</dt>
       <dd>
         <ul>
-          <li>Three</li>
-          <li>Four</li>
+          <li>Три</li>
+          <li>Четыре</li>
         </ul>
       </dd>
     </dl>
-    
-You can use the list with groups with the single-select boxes as well.
+
+Вы можете использовать списки с группами в обоих случаях, в полях с множественным и с единичным выборами.
 
 
-## Assigned To Inputs, :assign
+## Работа в составе формы, :assign
 
-Our selectables can be easily used as a part of forms by assigning them to hidden input elements.
-You can do that by using the `assignTo()` method or with the `update` option, like that
+Поля выбора могут быть легко назначены на работу в паре с элементами ввода форм, например скрытыми полями.
+Для этой цели можно использовать метод `assignTo()` или опцию `update`, как в следующем примере
 
     <form ...>
       <input id="the-value" type="hidden" />
   
-      // programmatically
+      // программно
       new Selectable({...}).assignTo('the-value');
   
-      // with automatic initialization
+      // автоматически
       <ul class="right-selectable"
         data-selectable-options="{update: 'the-value'}">
         ....
@@ -113,19 +126,22 @@ You can do that by using the `assignTo()` method or with the `update` option, li
     </form>
 
 
-__NOTE:__ those assignments work both ways, when you change the selectbox it will change the input 
-field value, and when you change the input field, it will change the selectbox.
+__ВНИМАНИЕ:__ связь между виджетом и полем ввода, работает в обоих направлениях.
+Когда пользователь делает выбор в поле выбора, скрипт автоматически меняет значение
+в назначенном поле ввода, и наоборот.
 
-There are several ways you can specify the actual values to be used for the output.
-If you use a flat list of options, or simple `LI` tags, the script will use the indexes
-of the options in the list.
+Так же существует несколько способов, какие именно значения будут отправлены в
+совместно используемое поле ввода.
+
+Если вы использовали, обычный плоский список опций или простой список из `LI` тэгов,
+тогда скрипт будет использовать в качестве значений индекс выбранной опции в списке
 
     var selectable = new Selectable({
       options: ['one', 'two', 'three'],
       select: [0,1]
     });
 
-    // or in HTML
+    // или HTML
     <ul>
       <li>one</li>
       <li>two</li>
@@ -135,8 +151,9 @@ of the options in the list.
     selectable.getValue(); // -> [0, 1]
 
 
-But if you had used a hash of options with key->value pairs, or `id` attributes for your
-`LI` elements, then those keys or ID values will be used as the values
+Но если вы использовали хэш ключ-значение в качестве опций, или в случае HTML 
+списка, использовали тэги `LI` с атрибутами `id`, то ключи хэша и/или 
+атрибуты `id` будут использованы в качестве значений
 
     var selectable = new Selectable({
       options: {
@@ -147,7 +164,7 @@ But if you had used a hash of options with key->value pairs, or `id` attributes 
       selected: [0,1]
     });
 
-    // or with html like this
+    // эквивалентный HTML
     <ul>
       <li id="one">First</li>
       <li id="two">Second</li>
@@ -156,88 +173,111 @@ But if you had used a hash of options with key->value pairs, or `id` attributes 
 
     selectable.getValue(); // -> ['one', 'two']
 
-In case if you have the keys/IDs in a some sort of sequential way, like `thing-1`,
-`thing-2`, `thing-3`, you also can specify the `parseIds` option as
-`true` and then the script will automatically parse out the numerical part of the IDs
-to be used as the result value.
+Так же существует еще одна возможность. Если ваши ключи имеют вид последовательности
+с целыми значениями, например `thing-1`, `thing-2`, `thing-3`, то вы можете указать
+опцию `parseIds: true` и тогда скрипт будет автоматически выделять целочисленную часть
+ключа и использовать ее в качестве значений
+
+    var selectable = new Selectable({
+      options: {
+        'thing-1': 'First',
+        'thing-2': 'Second',
+        'thing-3': 'Third'
+      },
+      selected: [0,1],
+      parseIds: true
+    });
+
+    // эквивалентный HTML
+    <ul>
+      <li id="thing-1">First</li>
+      <li id="thing-2">Second</li>
+      <li id="thing-3">Third</li>
+    </ul>
+
+    selectable.getValue(); // -> [1, 2]
 
 
-## Options List, :options
+## Список опций, :options
 
-You can use any of those options in an options hash with the `Selectable` class constructor, or
-in a JSON formatted hash inside your custom `data-selectable-options` attribute.
+Вы можете использовать следующие опции любым доступным способом. С конструктором класса
+`Selectable`, в виде JSON данных в атрибуте `data-selectable-options` или глобально
+в переменной `Selectable.Options`
 
-Name       | Default | Description
------------|---------|--------------------------------------------------------------------
-options    | null    | a hash of key-value pairs or an array of options
-selected   | null    | an array of selected item indexes
-disabled   | null    | an array of disabled item indexes
-multiple   | true    | a flag if it should be a multi-select or a single select widget
-fxName     | 'slide' | the drop-down options list fx-name (null, 'slide', 'fade')
-fxDuration | 'short' | the drop-down options list fx-duration
-update     | null    | a field to be assigned to
-parseIds   | false   | if it should parse integer ids out of the keys
-refresh    | true    | a flag if it should automatically refresh the items list
+Имя        | Умолчание | Описание
+-----------|-----------|--------------------------------------------------------------------
+options    | null      | хэш ключ-значение или массив опций
+selected   | null      | список индексов опций выбранных по умолчанию
+disabled   | null      | список индексов опций заблокированных по умолчанию
+multiple   | true      | флаг, если это должно быть поле со множественным или единичным выбором
+fxName     | 'slide'   | эффект для выпадающего списка (null, 'slide', 'fade')
+fxDuration | 'short'   | длительность эффекта для выпадающего списка
+update     | null      | ссылка на назначенный элемент
+parseIds   | false     | если поставить `true` будет автоматически выделять целое значение из опций
+refresh    | true      | флаг, если скрипт должен автоматически обновлять список
 
 
-## Events List, :events
+## Список событий, :events
 
-There is the following list of events the `Selectable` instances will handle by default
+Вы можете использовать следующий список поддерживаемых событий с объектами полей выбора
 
-Name     | Description
+Имя      | Описание
 ---------|---------------------------------------------------
-change   | the value was changed
-select   | an item was selected
-unselect | an item was unselected
-disable  | an item was disabled
-enable   | an item was enabled
-hover    | an item was hovered with the cursor
-leave    | an item was left by the cursor
-show     | the drop-down menu was displayed
-hide     | the drop-down menu was closed
+change   | значение было изменено
+select   | позиция была помечена выделенной
+unselect | позиция потеряла маркер выделения
+disable  | позиция была заблокирована
+enable   | позиция была разблокирована
+hover    | пользователь поместил курсор над позицией
+leave    | пользователь убрал курсор с позиции
+show     | выпадающий список был показан
+hide     | выпадающий список был закрыт
 
-The item related event callbacks, meaningly `select`, `unselect`, `disable`, `enable`, `hover` and `leave`
-will receive three arguments: the list item (LI element), the item index in the list and the selectable instance.
+Все слушатели событий относящихся к конкретным позициям, а именно: `select`, `unselect`, `disable`,
+`enable`, `hover` и `leave`, будут получать три аргумента, элемент позиции (LI элемент), индекс позиции
+в списке и ссылку на сам объект поля выбора.
 
-The `change` event listener will receive the value and a reference to the selectable unit.
+Слушатели события `change` получат два аргумента, текущее значение и ссылку на объект поля выбора.
 
-And the `show` and `hide` event listeners will receive just the selectable unit reference.
+И на конец слушатели событий `show` и `hide` получат только ссылку на объект поля выбора.
 
 
-## API-Reference, :api
+## API-документация, :api
 
-There are several handy methods in the public API of the `Selectable` unit
+Объекты класса `Selectable` предоставляют доступ к следующим открытым методам
 
-Name              | Description
+Имя               | Описание
 ------------------|----------------------------------------------------------
-initialize(\[element,\] Object options) | basic constructor
-destroy()         | basic destructor
-setValue(value)   | sets the value
-getValue()        | returns the current value
-select(item)      | selects the item(s)
-unselect(item)    | unselects the item(s)
-selected(item)    | checks if the item(s) are selected
-disable(item)     | disables the item(s)
-enable(item)      | enables the item(s)
-disabled(item)    | checks if the item(s) are disabled
-insertTo(element\[, position\]) | inserts the widget into the element
-assignTo(element) | assigns the widget to work with the input element
-refresh()         | refreshes the options list
+initialize(\[element,\] Object options) | базовый конструктор
+destroy()         | деструктор
+setValue(value)   | устанавливает текущее значение
+getValue()        | возвращает текущее значение
+select(item)      | выделяет указанные позиции
+unselect(item)    | снимает выделение с указанных позиций
+selected(item)    | проверяет если указанные позиции выделены
+disable(item)     | блокирует указанные позиции
+enable(item)      | разблокирует указанные позиции
+disabled(item)    | проверяет если указанные позиции заблокированы
+insertTo(element\[, position\]) | вставляет виджет в указанный элемент
+assignTo(element) | назначает другой элемент работать в паре с полем выбора
+refresh()         | обновляет список опций
 
 
-__NOTE:__ the item related methods, like `select`, `unselect`, etc, can receive several types of arguments,
-it might be numerical indexes in the items list, it can be keys/ids of the options, or the list item elements by themselves.
-You also can send either arrays or single items, works both ways.
+__ВНИМАНИЕ:__ методы относящиеся к работе с отдельными позициями, такие как например `select`, `unselect`,
+и т.п., могут получать несколько типов аргументов. Это могут быть числовые индексы позиций в списке, это
+могут быть ключи/ID-атрибуты позиций, или это могут быть элементы списка (LI) сами по себе.
+Вы так же можете посылать как массивы так и отдельные позиции, работает в обоих случаях.
 
-You also can call those methods without any arguments, in which case the script will assume that you want
-select/unselect/disable/enable/check _all_ the items on the list.
+Еще можно вызывать эти методы _без_ аргументов. В этом случае скрипт будет считать что вы желаете
+обработать _все_ позиции в списке.
 
 
-## Style Alterations, :styles
+## Настройки стилей, :styles
 
-The elements structure will be left intact pretty much as it described in the [usage basics](#usage)
-chapter. The script will also use the `right-selectable-selected` and `right-selectable-disabled`
-css-classes for selected and disabled list items respectively.
+Структура элементов, будет в целом оставлена нетронутой, такой, как она описана в разделе
+[базового использования](#usage). Скрипт так же будет назначать css-классы
+`right-selectable-selected` и `right-selectable-disabled`, соответственно для выделенных
+и заблокированных позиций.
 
     <ul class="right-selectable">
       <li class="right-selectable-selected">Selected item</li>
@@ -245,8 +285,8 @@ css-classes for selected and disabled list items respectively.
       <li>Another item</li>
     </ul>
 
-For the single-select boxes, it will add the `right-selectable-single` class to the list element,
-and insert a simple structure like that, right before the list.
+Для полей с единичным выбором, скрипт добавит css-класс `right-selectable-single` и вставит
+структуру следующего вида непосредственно перед списком.
 
     <div class="right-selectable-container">
       <div class="right-selectable-handle">&bull;</div>
@@ -255,5 +295,5 @@ and insert a simple structure like that, right before the list.
       </ul>
     </div>
 
-That will work as the select-box visible element and the `LI` element will be cloned out of the
-currently selected item on the options list.
+Что будет работать видимым блоком селект-бокса. Элемент `LI` будет клонироваться от
+выбранного пользователем элемента списка.

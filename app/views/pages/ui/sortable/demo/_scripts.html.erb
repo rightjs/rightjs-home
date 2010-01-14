@@ -1,0 +1,30 @@
+<% content_for :modules do %>
+  <%= javascript_include_tag "/builds/goods/right-dnd-min.js"   %>
+  <%= javascript_include_tag "/builds/ui/right-sortable-min.js" %>
+  <%= stylesheet_link_tag    'sortable-demo'                    %>
+<% end %>
+<style type="text/css">
+  ul.sortable {
+    width: 20em;
+    list-style: none;
+    padding: 0;
+  }
+  ul.sortable li {
+    cursor: move;
+    background: #CFCEBD;
+    padding: .2em .4em;
+    margin: 2px;
+    -webkit-border-radius: .24em;
+    -moz-border-radius: .24em;
+  }
+  ul.sortable li.dragging {
+    opacity: 0.6;
+  }
+  ul.horizontal {
+    width: 30em;
+    height: 1em;
+  }
+  ul.horizontal li {
+    float: left;
+  }
+</style>

@@ -1,4 +1,4 @@
-# Selectable Demo
+# Демо полей выбора
 <% content_for :modules, javascript_include_tag('/builds/ui/right-selectable-min.js') %>
 <style type="text/css">
   dl.right-selectable dt {
@@ -6,162 +6,162 @@
   }
 </style>
 
-There are several basic use-cases for the [Selectable](/ui/selectable) unit
-out of the [RightJS UI](/ui) library.
+Несколько базовых примеров использования виджета [полей выбора](/ui/selectable)
+из библиотеки [RightJS UI](/ui).
 
 
-## Simple Selectable, :simple
+## Простой случай, :simple
 
 <p>
   <ul class="right-selectable">
-    <li>One</li>
-    <li>Two</li>
-    <li>Three</li>
-    <li>Four</li>
-    <li>Five</li>
-    <li>Six</li>
-    <li>Seven</li>
-    <li>Eight</li>
+    <li>Раз</li>
+    <li>Два</li>
+    <li>Три</li>
+    <li>Четыре</li>
+    <li>Пять</li>
+    <li>Шесть</li>
+    <li>Семь</li>
+    <li>Восемь</li>
   </ul>
 </p>
 
-## Selectable With Groups, :groups
+## Поля с группами, :groups
 
 <p>
   <dl class="right-selectable">
-    <dt>First Group</dt>
+    <dt>Первая группа</dt>
     <dd>
       <ul>
-        <li>One</li>
-        <li>Two</li>
-        <li>Three</li>
-        <li>Four</li>
+        <li>Раз</li>
+        <li>Два</li>
+        <li>Три</li>
+        <li>Четыре</li>
       </ul>
     </dd>
-    <dt>Second Group</dt>
+    <dt>Вторая группа</dt>
     <dd>
       <ul>
-        <li>Five</li>
-        <li>Six</li>
-        <li>Seven</li>
-        <li>Eight</li>
+        <li>Пять</li>
+        <li>Шесть</li>
+        <li>Семь</li>
+        <li>Восемь</li>
       </ul>
     </dd>
   </dl>
 </p>
 
-## With A Single Option, :single
+## Поле с единичным выбором, :single
 
 <p>
   <ul class="right-selectable right-selectable-single">
-    <li>One</li>
-    <li>Two</li>
-    <li>Three</li>
-    <li>Four</li>
-    <li>Five</li>
-    <li>Six</li>
-    <li>Seven</li>
-    <li>Eight</li>
+    <li>Раз</li>
+    <li>Два</li>
+    <li>Три</li>
+    <li>Четыре</li>
+    <li>Пять</li>
+    <li>Шесть</li>
+    <li>Семь</li>
+    <li>Восемь</li>
   </ul>
 </p>
 
-## With A Single Option And Groups, :single-groups
+## Поле с единичным вбором и группами, :single-groups
 
 <p>
   <dl class="right-selectable right-selectable-single">
-    <dt>First Group</dt>
+    <dt>Первая группа</dt>
     <dd>
       <ul>
-        <li>One</li>
-        <li>Two</li>
-        <li>Three</li>
-        <li>Four</li>
+        <li>Раз</li>
+        <li>Два</li>
+        <li>Три</li>
+        <li>Четыре</li>
       </ul>
     </dd>
-    <dt>Second Group</dt>
+    <dt>Вторая группа</dt>
     <dd>
       <ul>
-        <li>Five</li>
-        <li>Six</li>
-        <li>Seven</li>
-        <li>Eight</li>
+        <li>Пять</li>
+        <li>Шесть</li>
+        <li>Семь</li>
+        <li>Восемь</li>
       </ul>
     </dd>
   </dl>
 </p>
 
-## With Disabled Options, :disabled
+## С заблокированными позициями, :disabled
 
 <p>
   <ul class="right-selectable" data-selectable-options="{disabled:[1,4]}">
-    <li>One</li>
-    <li>Two</li>
-    <li>Three</li>
-    <li>Four</li>
-    <li>Five</li>
-    <li>Six</li>
-    <li>Seven</li>
-    <li>Eight</li>
+    <li>Раз</li>
+    <li>Два</li>
+    <li>Три</li>
+    <li>Четыре</li>
+    <li>Пять</li>
+    <li>Шесть</li>
+    <li>Семь</li>
+    <li>Восемь</li>
   </ul>
 </p>
 
-## Assigned To An Input, :assigned
+## Назначенное на поле ввода, :assigned
 
 <p>
-  This one works with indexes
+  Это поле работает с простыми индексами
   <ul class="right-selectable" data-selectable-options="{update: 'input-1'}">
-    <li>One</li>
-    <li>Two</li>
-    <li>Three</li>
-    <li>Four</li>
+    <li>Раз</li>
+    <li>Два</li>
+    <li>Три</li>
+    <li>Четыре</li>
   </ul>
   
   <input type="text" id="input-1" />
 </p>
 <p>
-  This one works with IDs
+  Это поле использует атрибут ID позиций
   <ul class="right-selectable" data-selectable-options="{update: 'input-2'}">
-    <li id="one-1">One</li>
-    <li id="two-2">Two</li>
-    <li id="three-3">Three</li>
-    <li id="four-4">Four</li>
+    <li id="one-1">Раз</li>
+    <li id="two-2">Два</li>
+    <li id="three-3">Три</li>
+    <li id="four-4">Четыре</li>
   </ul>
   
   <input type="text" id="input-2" />
 </p>
 <p>
-  This one automatically parses number out of IDs
+  Это поле автоматически выделяет цифры из ID атрибутов
   <ul class="right-selectable" data-selectable-options="{update: 'input-3', parseIds: true}">
-    <li id="one-1">One</li>
-    <li id="two-2">Two</li>
-    <li id="three-3">Three</li>
-    <li id="four-4">Four</li>
+    <li id="one-1">Раз</li>
+    <li id="two-2">Два</li>
+    <li id="three-3">Три</li>
+    <li id="four-4">Четыре</li>
   </ul>
   
   <input type="text" id="input-3" />
 </p>
 <p>
-  With a single select and IDs
+  С единичным выбором и атрибутами ID
   <ul class="right-selectable" data-selectable-options="{update: 'input-4', multiple: false}">
-    <li id="one-1">One</li>
-    <li id="two-2">Two</li>
-    <li id="three-3">Three</li>
-    <li id="four-4">Four</li>
+    <li id="one-1">Раз</li>
+    <li id="two-2">Два</li>
+    <li id="three-3">Три</li>
+    <li id="four-4">Четыре</li>
   </ul>
   
   <input type="text" id="input-4" />
 </p>
 
-## Programmatically Generated, :generated
+## Программно сгенерированные, :generated
 
 <div id="generated-selects"> </div>
 <script type="text/javascript">
 // <![CDATA[
   var keys = {
-    'option-1': 'One',
-    'option-2': 'Two',
-    'option-3': 'Three',
-    'option-4': 'Four'
+    'option-1': 'Раз',
+    'option-2': 'Два',
+    'option-3': 'Три',
+    'option-4': 'Четыре'
   };
   
   new Selectable({

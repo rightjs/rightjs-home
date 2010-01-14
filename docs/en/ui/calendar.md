@@ -2,18 +2,7 @@
 
 Right Calendar is the standard calendar/datepicker feature for RightJS
 
-Get the latest version right here
-
-* [right-calendar.js](/builds/ui/right-calendar.js) - fully compressed build
-* [right-calendar-min.js](/builds/ui/right-calendar-min.js) - minified version
-* [right-calendar-src.js](/builds/ui/right-calendar-src.js) - uncompressed source
-
-
-All the source code of the project is available under terms of the MIT license
-
-<http://github.com/rightjs/rightjs-ui>
-
-See the [live demo](/ui/calendar/demo) page for some common use cases
+<%= partial '/ui/head', :locals => {:name => 'calendar'} %>
 
 <%= anchors_index %>
 
@@ -48,7 +37,7 @@ After that you will have the `Calendar` unit available
 
 
 
-## Inputs Auto-Discovery, :dicovery
+## Inputs Auto-Discovery, :discovery
 
 If you like, you can use the auto-initialization feature. Simply specify the `rel="calendar"`
 attribute on your `INPUT` element and when the page is loaded the calendar script will automatically find the
@@ -171,7 +160,7 @@ showAt(Element)             | assigns the calendar to work with the element and 
 
 You might find a translation module for your language at the github repository
 
-<http://github.com/rightjs/rightjs-ui/i18n>
+<http://github.com/rightjs/rightjs-ui/tree/master/i18n/>
 
 Or you can translate the interface by simply altering the `Calendar.i18n` object like that
 

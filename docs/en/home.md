@@ -73,4 +73,4 @@
 
 
 -%>
-<%= partial 'home/page' %>
+<%= partial 'page' %>
