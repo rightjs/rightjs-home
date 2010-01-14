@@ -193,7 +193,6 @@ div#lang-switch {
   position: absolute;
   right: 8em;
   top: 1em;
-  display: none;
 }
 div#lang-switch select {
   background: #5D544C;
