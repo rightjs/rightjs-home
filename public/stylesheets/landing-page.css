@@ -1,6 +1,7 @@
 /** The landing page features */
 #promo {
   border: none;
+  margin-top: .22em;
 }
 #promo .right-tabs-list {
   margin: 0;

@@ -193,7 +193,14 @@ div#lang-switch {
   position: absolute;
   right: 8em;
   top: 1em;
+  display: none;
 }
+div#lang-switch select {
+  background: #5D544C;
+  color: #C0BCB2;
+  border: none;
+}
+
 
 div#main {
   background: #F8F6F0;
