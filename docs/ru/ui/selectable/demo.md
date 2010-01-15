@@ -65,7 +65,7 @@
   </ul>
 </p>
 
-## Поле с единичным вбором и группами, :single-groups
+## Поле с единичным выбором и группами, :single-groups
 
 <p>
   <dl class="right-selectable right-selectable-single">
