@@ -76,6 +76,11 @@ protected
       end
     end
     
+    # nuking the end slashes coz they prevent the hard cache from working
+    @languages.each do |key, value|
+      value.gsub! /\/$/, ''
+    end
+    
     I18n.locale = @language
   end
   
