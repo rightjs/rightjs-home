@@ -37,6 +37,19 @@ All the other principles are the same
 
 You can use the left and right arrow buttons on your keyboard or the mouse wheel scrolling to list through the images
 
+## Links to video-resources, :video
+
+Lightbox also supports links to the most common video streaming resources, with exactly the same format
+
+    <a href="youtube/bla/bla/bla" rel="lightbox">Funny video</a>
+
+<p>
+  <a href="http://www.youtube.com/watch?v=VAfnbIrQTSk" rel="lightbox">Youtube example</a> |
+  <a href="http://video.google.com/videoplay?docid=99174057823861673" rel="lightbox">Google Video example</a> |
+  <a href="http://vimeo.com/5727117" rel="lightbox">Vimeo example</a>
+</p>
+
+
 
 ## HTML Content Displaying, :html
 

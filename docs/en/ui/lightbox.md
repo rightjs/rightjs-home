@@ -12,6 +12,7 @@ Right Lightbox has the following features
 
 * Support of any html content displaying
 * Support of content loading via ajax requests
+* Support of links to video streams
 * Road trips support
 * Content auto discovery via the `rel="lightbox"` attribute
 * It has really tiny size of just 8.5k and doesn't need any images
@@ -61,17 +62,33 @@ content referred by the link, show it and set the link's title on the box.
 
     Lightbox.show($('the-link'));
 
-Right Lightbox will automatically check the url address extension and if it is an image,
-then the reference will be handled like an image loading. You don't need to do anything about it.
+Right Lightbox will automatically check the url address, if it is an image it will be shown as an image,
+if it's a link to a video stream it will build an embedded video object. And at the bottom it
+will try to load the content via an {Xhr} request and show. You don't need to do anything about it.
 
 And you don't need to do those things manually. In similarity to the
 [Lightbox 2](http://www.huddletogether.com/projects/lightbox2) project, you can set the attribute
 `rel="lightbox"` and Lightbox will automatically hook those links to be shown in the lightboxes.
 
-The roadtrips with the `rel="lightbox[roadtrip]"` attribute work too
+The road trips with the `rel="lightbox[roadtrip]"` attribute work too
 
-If you need to rescan the auto-discovery links manually, say after
-a page updates. You can call the `Lightbox.rescan()` method.
+You can change the markers in the `cssRule` and `roadtripRule` options (the list is below),
+and use any sort of markers you need, like say specific css-class or attribute.
+
+
+## Video Streams, :video
+
+This Lightbox implementation supports links to video streams. Basically there is nothing special
+about the actual links and all of them will be processed the same way as any other links.
+
+    <a href="http:/www.youtube.com/watch?v=VAfnbIrQTSk"
+       rel="lightbox">Funny Youtube video</a>
+
+Currently, Lightbox supports links to the following resources
+
+* YouTube
+* Google Video
+* Vimeo
 
 
 ## Options List, :options
@@ -85,9 +102,11 @@ fxDuration      | 200     | the visual effects duration
 hideOnEsc       | true    | should the lightbox be closed on the Esc button
 hideOnOutClick  | true    | should the lightbox be closed on click outside of the box
 showCloseButton | true    | should the close button be available
-blockContent    | false   | if true, the box content will be covered with a transparent div tag
-relName         | 'lightbox' | the rel-attribute name for the auto-discovery feature
-checkTags       | '\*'    | the tags name to be checked on load (to narrow down the search)
+blockContent    | false   | if true, content will be blocked by a transparent DIV
+cssRule         | "a\[rel^=lightbox\]"              | css-rule for _all_ lightbox links
+roadtripRule    | "a\[rel='lightbox\[roadtrip\]'\]" | css-rule for road trip lightbox links
+mediaWidth      | 425     | video player width
+mediaHeight     | 350     | video player height
 
 You can pass those options as a hash for the constructor, or change them globally at the `Lightbox.Options` object
 

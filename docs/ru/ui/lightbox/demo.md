@@ -35,6 +35,19 @@
 листать картинки
 
 
+## Ссылки на видео-ресурсы, :video
+
+Лайтбокс так же понимает ссылки на основные ресурсы потокового видео. Формат точно такой же
+
+    <a href="youtube/bla/bla/bla" rel="lightbox">Смешное видео</a>
+
+<p>
+  <a href="http://www.youtube.com/watch?v=VAfnbIrQTSk" rel="lightbox">Пример с Youtube</a> |
+  <a href="http://video.google.com/videoplay?docid=99174057823861673" rel="lightbox">Пример с Google video</a> |
+  <a href="http://vimeo.com/5727117" rel="lightbox">Пример с Vimeo</a>
+</p>
+
+
 ## Показ HTML контента, :html
 
 Для показа любого контента (строки, элементы страниц и их массивы). Просто пошлите их в метод `show`
