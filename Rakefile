@@ -25,7 +25,7 @@ namespace :rightjs do
   desc 'Updates the rightjs source code library'
   task :update_src do
     puts "Updating the RightJS source\n"
-    %w{core goods ui}.each do |name|
+    %w{core goods ui docs}.each do |name|
       system "cd #{RIGHTJS_ROOT}/#{name}; git checkout master; git pull origin master; git submodule init; git submodule update"
     end
   end
@@ -38,18 +38,18 @@ namespace :rightjs do
     
     Unit.destroy_all
     
-    docs_dir = "#{RIGHTJS_ROOT}/core/doc/"
+    docs_dir = "#{RIGHTJS_ROOT}/docs/docs/"
     
-    FileList["#{docs_dir}*/**/*.md"].each do |file_name|
+    FileList["#{docs_dir}*/docs/**/*.md"].each do |file_name|
       els = file_name.gsub(docs_dir, '').split('/')
       
-      language = els.shift
+      language = els.shift; els.shift # <- remove the trailing 'docs' name
       package  = els.shift
       basename = els.shift
       unitname = basename.gsub(/\.md$/, '').split('.').collect(&:capitalize).join('.')
       
       puts " * #{unitname} (#{language})"
-      
+
       fulltext = File.read(file_name)
       
       blocks   = fulltext.split("###")

@@ -13,3 +13,6 @@
 [submodule "vendor/plugins/frontcompiler"]
 	path = vendor/plugins/frontcompiler
 	url = git://github.com/MadRabbit/frontcompiler.git
+[submodule "vendor/right_js/docs"]
+	path = vendor/right_js/docs
+	url = git://github.com/rightjs/rightjs-docs.git

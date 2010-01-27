@@ -4,7 +4,7 @@ class PagesController < ApplicationController
   skip_before_filter :verify_authenticity_token
   
   def show
-    @path = params[:path].blank? ? 'home' : params[:path].join('/')
+    @path = params[:path].blank? ? 'index' : params[:path].join('/')
     
     if @path == 'ui/in-edit/response'
       

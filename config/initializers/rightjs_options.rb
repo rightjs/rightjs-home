@@ -23,6 +23,7 @@ RIGHTJS_TICKETS_TRACKER_URL = 'http://rightjs.lighthouseapp.com/projects/31989'
 RIGHTJS_LANGUAGES     = %w(en ru)
 RIGHTJS_DEFAULT_LANG  = 'en'
 
+RIGHTJS_SRC_DOCS      = "#{RIGHTJS_ROOT}/docs/docs"
 
 #
 # Little Hack

@@ -4,8 +4,8 @@
 class Page
   
   def self.find_by_path(path)
-    dirname_view  = "#{Rails.root}/app/views/pages"
-    dirname_docs  = "#{Rails.root}/docs"
+    dirname_view  = "#{RIGHTJS_SRC_DOCS}/com"
+    dirname_docs  = "#{RIGHTJS_SRC_DOCS}"
     
     filename = [
       "#{dirname_docs}/#{Internationable.current_language}/#{path}.md",
@@ -14,6 +14,16 @@ class Page
     ].detect do |filename|
       File.exists?(filename)
     end
+    
+    puts [
+      "#{dirname_docs}/#{Internationable.current_language}/#{path}.md",
+      "#{dirname_docs}/#{Internationable::DEFAULT_LANGUAGE}/#{path}.md",
+      "#{dirname_view}/#{path}.html.erb"
+    ]
+    
+    puts filename
+    
+    
     
     self.new(filename) if filename
   end
