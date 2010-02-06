@@ -73,6 +73,7 @@ ru:
       Packed:             Пакованная версия
       Minified:           Сжатая версия
       Uncompressed:       Оригинальный исходный код
+      ServerSide:         Серверная версия
 
       core_file:          основное ядро
       old_browsers:       поддержка старых браузеров

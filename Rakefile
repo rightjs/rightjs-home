@@ -148,7 +148,7 @@ namespace :rightjs do
       end
       options = options.join(',')
       puts options
-      system "cd #{RIGHTJS_ROOT}/core; rake build OPTIONS=#{options} &> /dev/null"
+      system "cd #{RIGHTJS_ROOT}/core; rake build OPTIONS=#{options == 'no-olds' ? 'no-olds,server' : options} &> /dev/null"
       
       # reading the build content
       basic_builds[options] = {

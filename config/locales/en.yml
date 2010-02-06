@@ -74,6 +74,7 @@ en:
       Packed:             Packed Version
       Minified:           Minified Version
       Uncompressed:       Uncompressed Source Code
+      ServerSide:         Server Side
       
       core_file:          the core file
       old_browsers:       the old browsers support
