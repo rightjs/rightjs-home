@@ -55,7 +55,15 @@ protected
     
     content_type = file.ends_with?('.zip') ? "application/zip" : "text/javascript; charset=utf-8"
     
-    super file, :type => content_type, :stream => false, :filename => filename
+    # Sometimes rails screws with the content-length, so we overloading the method
+    # to make it send the whole content without the actual size declation
+    headers.merge!(
+      'Content-Type'              => content_type,
+      'Content-Disposition'       => 'attachment; filename=right.js',
+      'Content-Transfer-Encoding' => 'binary'
+    )
+    
+    render :text => File.read(file)
   end
   
   def record_download(file)
