@@ -241,12 +241,18 @@ div#foot div#contacts {
   width: 16em;
 }
 
-div#foot div#copyright {
+div#foot div#copyright, div#foot div#design {
   position: absolute;
   margin-top: 3.5em;
   font-size: 80%;
   padding-bottom: 1em;
   color: #A2896E;
+}
+div#foot div#design {
+  right: 18.5em;
+}
+div#foot div#design a {
+  color: #BBB;
 }
 /* END layout */
 
