@@ -75,10 +75,13 @@ en:
       Minified:           Minified Version
       Uncompressed:       Uncompressed Source Code
       ServerSide:         Server Side
+      HotLink:            Hot Link
       
       core_file:          the core file
       old_browsers:       the old browsers support
       zipped_files:       both files zipped
+      latest_version:     always latest version
+      this_version:       always this exact version
       
     builds:
       modules:

@@ -218,6 +218,19 @@ namespace :rightjs do
     puts 
   end
   
+  desc 'Hotlink builds update'
+  task :update_hotlink do 
+    puts "Updating the hotlink builds"
+    
+    FileUtils.mkdir_p RIGHTJS_BUILD_HOTLINK unless File.exists?(RIGHTJS_BUILD_HOTLINK)
+    
+    system "cp #{RIGHTJS_BUILD_CURRENT}/right-min.js      #{RIGHTJS_BUILD_HOTLINK}/right.js"
+    system "cp #{RIGHTJS_BUILD_CURRENT}/right-olds-min.js #{RIGHTJS_BUILD_HOTLINK}/right-olds.js"
+    
+    system "cp #{RIGHTJS_BUILD_CURRENT}/right-min.js      #{RIGHTJS_BUILD_HOTLINK}/right-#{RIGHTJS_VERSION}.js"
+    system "cp #{RIGHTJS_BUILD_CURRENT}/right-olds-min.js #{RIGHTJS_BUILD_HOTLINK}/right-olds-#{RIGHTJS_VERSION}.js"
+  end
+  
   desc 'Zips the stuff up'
   task :create_zips do
     puts "Creating Zipped builds"
