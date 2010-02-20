@@ -13,7 +13,7 @@ RIGHTJS_BUILD_UI      = "#{RAILS_ROOT}/public/builds/ui"
 RIGHTJS_BUILD_I18N    = "#{RAILS_ROOT}/public/builds/i18n"
 
 RIGHTJS_GOODS         = %w(json effects events behavior dnd rails)
-RIGHTJS_UIS           = %w(autocompleter calendar tabs rater slider selectable sortable lightbox tooltips in-edit)
+RIGHTJS_UIS           = %w(autocompleter calendar tabs rater slider selectable sortable lightbox tooltips in-edit uploader)
 
 RIGHTJS_BUILD_OPTIONS = %w(no-cookie no-form no-xhr no-fx no-olds ) + RIGHTJS_GOODS
 
