@@ -59,7 +59,7 @@ protected
     # to make it send the whole content without the actual size declation
     headers.merge!(
       'Content-Type'              => content_type,
-      'Content-Disposition'       => 'attachment; filename=right.js',
+      'Content-Disposition'       => 'attachment; filename=right.js'+(file.ends_with?('.zip') ? '.zip' : ''),
       'Content-Transfer-Encoding' => 'binary'
     )
     

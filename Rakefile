@@ -244,25 +244,27 @@ namespace :rightjs do
       system "cp #{RIGHTJS_BUILD_CURRENT}/right#{version}.js      #{out_dir}"
       system "cp #{RIGHTJS_BUILD_CURRENT}/right-olds#{version}.js #{out_dir}"
       File.open("#{out_dir}/README.txt", "w") do |file|
-        file.write(%Q{RightJS Two-Files Builds Usage
-==============================
+        file.write(%Q{RightJS Two-Files Build Usage
+------------------------------
 
 
   1. Copy both of the JavaScript files into your javascript directory,
-     keep both of them next to each other.
+     keep both files next to each other.
   
-  2. Put the bigger one onto your page in usual way
+  2. Include the bigger one onto your page in usual way
      <script src="where/is/that/right.js"></script>
      
-     Don't include the second file, it will be loaded automatically when needed
+     Don't bother about the second file, it will be loaded automatically when needed
      
-  3. Keep the filenames in a corresponding manner, like
+  3. Keep the filenames in a corresponding manner, like that
     
      right[boo-boo-boo].js
      right-olds[boo-boo-boo].js
 
 
+--
 Have Fun!
+Nik
 
 })
       end
