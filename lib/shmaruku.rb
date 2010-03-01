@@ -26,6 +26,7 @@ class Shmaruku < Maruku
     ["<td style='text-align: left;'>", '<td>'         ],
     ["&amp;lt;",                       '&lt;'         ],
     ["&amp;gt;",                       '&gt;'         ],
+    ["&apos;",                         '"'            ],
     [/<div([^>]+)\/>/,                 '<div\1></div>'],
     [/#{KEY}([a-z\.#]+)#{KEY}/im,      '{\1}'         ]
   ]

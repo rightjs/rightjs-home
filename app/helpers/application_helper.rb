@@ -70,7 +70,7 @@ module ApplicationHelper
   end
   
   def goods_path(package=nil)
-    package = 'drag-n-drop' if package.to_s == 'dnd'
+    package = 'drag-and-drop' if package.to_s == 'dnd'
     "/goods"+ (package ? "/#{package}" : "")
   end
   

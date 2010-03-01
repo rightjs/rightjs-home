@@ -74,6 +74,7 @@ en:
       Packed:             Packed Version
       Minified:           Minified Version
       Uncompressed:       Uncompressed Source Code
+      Standard:           Standard Builds
       ServerSide:         Server Side
       HotLink:            Hot Link
       

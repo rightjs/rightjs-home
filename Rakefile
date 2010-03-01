@@ -19,6 +19,7 @@ namespace :rightjs do
     Rake::Task['rightjs:update_docs'].invoke
     Rake::Task['rightjs:update_modules'].invoke
     Rake::Task['rightjs:update_build'].invoke
+    Rake::Task['rightjs:update_hotlink'].invoke
     Rake::Task['rightjs:create_zips'].invoke
   end
   

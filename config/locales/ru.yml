@@ -73,6 +73,7 @@ ru:
       Packed:             Пакованная версия
       Minified:           Сжатая версия
       Uncompressed:       Оригинальный исходный код
+      Standard:           Стандартные сборки
       ServerSide:         Серверная версия
       HotLink:            Горячий линк
 
