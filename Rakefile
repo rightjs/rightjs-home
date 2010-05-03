@@ -121,11 +121,28 @@ namespace :rightjs do
       end
     end
     
-    puts "    Copying i18n files in place"
-    
+    puts "     Copying i18n files in place"
     FileUtils.rm_rf   RIGHTJS_BUILD_I18N
     FileUtils.mkdir_p RIGHTJS_BUILD_I18N
     system "cp #{RIGHTJS_ROOT}/ui/i18n/*.js #{RIGHTJS_BUILD_I18N}"
+    
+    puts "     Copying UI images in place"
+    FileUtils.rm_rf   RIGHTJS_UI_IMAGES
+    FileUtils.mkdir_p RIGHTJS_UI_IMAGES
+    system "cp #{RIGHTJS_ROOT}/ui/img/* #{RIGHTJS_UI_IMAGES}"
+    
+    puts "     Patching UI modules for new images location"
+    images_url = RIGHTJS_UI_IMAGES["#{RAILS_ROOT}/public".size, RIGHTJS_UI_IMAGES.size]
+    FileList["#{RIGHTJS_BUILD_UI}/*.js"].each do |filename|
+      old_content = File.read(filename)
+      new_content = old_content.gsub('url(../../img/', "url(#{images_url}/")
+      
+      if old_content != new_content
+        File.open(filename, "w") do |f|
+          f.write new_content
+        end
+      end
+    end
   end
   
   

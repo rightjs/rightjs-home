@@ -13,6 +13,8 @@ RIGHTJS_BUILD_UI      = "#{RAILS_ROOT}/public/builds/ui"
 RIGHTJS_BUILD_I18N    = "#{RAILS_ROOT}/public/builds/i18n"
 RIGHTJS_BUILD_HOTLINK = "#{RAILS_ROOT}/public/hotlink"
 
+RIGHTJS_UI_IMAGES     = "#{RAILS_ROOT}/public/images/rightjs-ui"
+
 RIGHTJS_GOODS         = %w(json effects events behavior dnd rails)
 RIGHTJS_UIS           = %w(autocompleter calendar tabs rater slider selectable sortable lightbox tooltips in-edit uploader)
 
