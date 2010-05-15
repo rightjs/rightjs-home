@@ -136,6 +136,7 @@ namespace :rightjs do
     FileList["#{RIGHTJS_BUILD_UI}/*.js"].each do |filename|
       old_content = File.read(filename)
       new_content = old_content.gsub('url(../../img/', "url(#{images_url}/")
+      new_content = new_content.gsub(/([^\s])no-repeat/, '\1 no-repeat') # front-compiler CSS compressor bug fix
       
       if old_content != new_content
         File.open(filename, "w") do |f|

@@ -80,3 +80,17 @@ div.right-slider-handle {
 dl.right-tabs dt.right-tabs-current a {
   background: #E8E6E0;
 }
+
+div.right-colorpicker input.display {
+  margin-top: .4em;
+}
+
+div.right-colorpicker div.rgb-display {
+  margin-top: .4em;
+}
+
+.right-colorpicker label,
+.right-colorpicker input {
+  font-weight: normal;
+  vertical-align: middle;
+}
