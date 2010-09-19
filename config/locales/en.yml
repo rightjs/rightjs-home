@@ -1,25 +1,26 @@
 
 en:
   slogan:                 The Right JavaScript Framework
-                          
-  menu:                   
-    Home:                 Home    
+
+  menu:
+    Home:                 Home
     Download:             Download
-    Plugins:              Plugins 
-    Demos:                Demos   
-    Docs:                 Docs    
-    Blog:                 Blog    
-                          
+    Plugins:              Plugins
+    UI:                   UI
+    Demos:                Demos
+    Docs:                 Docs
+    Blog:                 Blog
+
     Benchmarks:           Benchmarks
     Browsers:             Browsers
     Comparison:           Comparison
     Philosophy:           Philosophy
-    Roadmap:              Roadmap 
+    Roadmap:              Roadmap
     Contacts:             Contacts
-    
+
     About_the_Framework:  About the Framework
     Questions:            Questions?
-    
+
   sidebar:
     Search_API:           Search API
     Get_it:               Get it!
@@ -28,49 +29,49 @@ en:
     Top_10_Features:      Top 10 Features
     API_Reference:        API Reference
     Tutorials:            Tutorials
-    
+
     Additional:           Additional
-    
-    RightJS_Goods:        RightJS Goods
+
+    RightJS_Plugins:      RightJS Plugins
     RightJS_UI:           RightJS UI
     Showcases:            Showcases
-    
+
     Community:            Community
-    
+
     Google_Group:         Google Group
     Tickets_Tracker:      Tickets Tracker
     Code_Snippets:        Code Snippets
     Participate:          Participate!
     IRC_rightjs:          'IRC #rightjs'
-    
+
   docs:
     Methods:              Methods
     Description:          Description
     Example:              Example
-  
-  
+
+
   pages:
     misc:
       Info:               Info
       Demo:               Demo
       Download:           Download
       Documentation:      Documentation
-    
+
       build:              build
       minified:           minified
       source:             source
-      
+
       get_the_latest:     Get the latest version right here
-      
+
       packed_version:     packed version
       minified_version:   minified version
       source_version:     source code
-      
+
       github_available:   All the source code of the project is available under terms of the MIT license
-      
+
       for_examples_see:   For some standard usage examples see the
       demo_page:          demo page
-    
+
     download:
       Packed:             Packed Version
       Minified:           Minified Version
@@ -78,13 +79,13 @@ en:
       Standard:           Standard Builds
       ServerSide:         Server Side
       HotLink:            Hot Link
-      
+
       core_file:          the core file
       old_browsers:       the old browsers support
       zipped_files:       both files zipped
       latest_version:     always latest version
       this_version:       always this exact version
-      
+
     builds:
       modules:
         cookie:           Cookies support
@@ -92,22 +93,21 @@ en:
         xhr:              Ajax Features
         fx:               Basic Visual Effects
         olds:             Old Browsers Support
-        
+
         json:             JSON support
         events:           Advanced DOM-Events handling
         effects:          Additional Visual Effects
         behavior:         Behaviors Module
         dnd:              Drag'n'Drop Module
         rails:            Ruby And Rails Support Module
-        
+
         compress:         Compress Source Code
         build:            Create Self-Build Script
-        
+
       Create:             Create
       Reset:              Reset
-  
+
     fx_demo:
       Start:              Start
       Reset:              Reset
-    
-      
+

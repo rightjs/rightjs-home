@@ -12,9 +12,9 @@
       <%= menu_link_to "RightJS v#{RIGHTJS_VERSION}", "/builds/current/right.js.zip" %>
     </ul>
   </div>
-  
+
   <%= render 'layouts/search_box' %>
-  
+
   <div class="box">
     <label><%= 'sidebar.Documentation'.t %></label>
     <ul>
@@ -24,18 +24,18 @@
       <%= menu_link_to 'sidebar.Tutorials'.t, '/tutorials' %>
     </ul>
   </div>
-  
+
   <div class="box">
     <label><%= 'sidebar.Additional'.t %></label>
     <ul>
-      <%= menu_link_to 'sidebar.RightJS_Goods'.t, goods_path %>
-      <%= goods_modules_menu if request.request_uri.starts_with?('/goods/') %>
+      <%= menu_link_to 'sidebar.RightJS_Plugins'.t, plugins_path %>
+      <%= plugins_modules_menu if request.request_uri.starts_with?('/plugins/') %>
       <%= menu_link_to 'sidebar.RightJS_UI'.t, '/ui' %>
       <%= ui_modules_menu if request.request_uri.starts_with?('/ui/') %>
       <%= menu_link_to 'sidebar.Showcases'.t, '/showcases' %>
     </ul>
   </div>
-  
+
   <div class="box">
     <label><%= 'sidebar.Community'.t %></label>
     <ul>

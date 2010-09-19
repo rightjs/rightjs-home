@@ -1,25 +1,26 @@
 
 ru:
   slogan:                 Правая JavaScript библиотека
-                
-  menu:         
+
+  menu:
     Home:                 Начало
     Download:             Скачать
     Plugins:              Плагины
+    UI:                   UI
     Demos:                Демки
     Docs:                 Доки
     Blog:                 Блог
-                
+
     Benchmarks:           Бенчмарки
     Browsers:             Браузеры
     Comparison:           Сравнение
     Philosophy:           Философия
     Roadmap:              Роадмап
     Contacts:             Контакты
-    
+
     About_the_Framework:  О проекте
     Questions:            Вопросы?
-    
+
   sidebar:
     Search_API:           Поиск API
     Get_it:               Скачать!
@@ -28,48 +29,48 @@ ru:
     Top_10_Features:      10 лучших фишек
     API_Reference:        API-документация
     Tutorials:            Статьи
-    
+
     Additional:           Дополнительно
-    
-    RightJS_Goods:        RightJS Плагины
+
+    RightJS_Plugins:      RightJS Плагины
     RightJS_UI:           RightJS Видежты
     Showcases:            Примеры
-    
+
     Community:            Коммунистам
-    
+
     Google_Group:         Форум
     Tickets_Tracker:      Трекер
     Code_Snippets:        Снипеты
     Participate:          Подсобить
     IRC_rightjs:          'IRC #rightjs'
-    
+
   docs:
     Methods:              Методы
     Description:          Описание
     Example:              Пример
-  
+
   pages:
     misc:
       Info:               Инфо
       Demo:               Демо
       Download:           Скачать
       Documentation:      Документация
-      
+
       build:              билд
       minified:           сжатый
       source:             исходник
-      
+
       get_the_latest:     Скачайте последнюю версию здесь
-      
+
       packed_version:     пакованная версия
       minified_version:   сжатая версия
       source_version:     исходный код
-      
+
       github_available:   Весь исходный код проекта доступен в открытом доступе под MIT лицензией
-      
+
       for_examples_see:   Для примеров использования посетите
       demo_page:          демо страницу
-    
+
     download:
       Packed:             Пакованная версия
       Minified:           Сжатая версия
@@ -83,7 +84,7 @@ ru:
       zipped_files:       оба файла в архиве
       latest_version:     всегда последняя версия
       this_version:       всегда тольео эта версия
-      
+
     builds:
       modules:
         cookie:           Поддержка Cookies
@@ -104,7 +105,7 @@ ru:
 
       Create:             Создать
       Reset:              Сбросить
-    
+
     fx_demo:
       Start:              Старт
       Reset:              Сброс

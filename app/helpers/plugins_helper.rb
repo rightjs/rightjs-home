@@ -3,29 +3,28 @@
 #
 #
 module PluginsHelper
-  GOOD_NAMES = {
+  PLUGIN_NAMES = {
     :rails    => "RubyOnRails Support",
     :dnd      => "Drag'n'Drop Module",
     :effects  => "Additional Effects",
     :json     => "JSON Support",
-    :events   => "Advanced DOM-Events",
-    :behavior => "Behaviors Module"
+    :jquerysh => "jQuery Emulator"
   }
-  
+
   UI_NAMES = {
     'in-edit' => "In Place Edit"
   }
-  
-  def goods_list
-    RIGHTJS_GOODS.collect(&:to_sym).collect do |key|
+
+  def plugins_list
+    RIGHTJS_PLUGINS.collect(&:to_sym).collect do |key|
       {
         :key  => key,
-        :name => GOOD_NAMES[key],
-        :url  => goods_path(key)
+        :name => PLUGIN_NAMES[key],
+        :url  => plugins_path(key)
       }
     end.sort_by{|i| i[:name]}
   end
-  
+
   def ui_list
     RIGHTJS_UIS.sort.collect do |key|
       {
@@ -35,11 +34,11 @@ module PluginsHelper
       }
     end.sort_by{|i| i[:name]}
   end
-  
-  def goods_modules_menu
-    modules_menu "goods-menu", goods_list
+
+  def plugins_modules_menu
+    modules_menu "plugins-menu", plugins_list
   end
-  
+
   def ui_modules_menu
     modules_menu "ui-menu", ui_list
   end
