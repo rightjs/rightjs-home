@@ -2,6 +2,7 @@
 */**/.DS_Store
 
 log/*.log
+tmp/*
 tmp/**/*
 db/*.sqlite3
 config/database.yml
@@ -11,7 +12,7 @@ public/uploads/**/*
 public/*.html
 public/**/*.html
 public/builds/ui
-public/builds/goods
+public/builds/plugins
 public/builds/custom
 public/builds/basic
 public/builds/i18n

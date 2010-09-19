@@ -19,7 +19,7 @@ RIGHTJS_PLUGINS       = %w(json effects dnd rails jquerysh)
 RIGHTJS_UIS           = %w(autocompleter calendar tabs rater slider selectable sortable
                            lightbox tooltips in-edit uploader resizable colorpicker)
 
-RIGHTJS_BUILD_OPTIONS = %w(no-cookie no-form no-xhr no-fx no-events no-olds safe)
+RIGHTJS_BUILD_OPTIONS = %w(no-cookie no-form no-xhr no-fx no-events no-olds)
 
 
 RIGHTJS_TICKETS_TRACKER_URL = 'http://rightjs.lighthouseapp.com/projects/31989'
