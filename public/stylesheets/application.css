@@ -164,6 +164,8 @@ div#main-menu {
   position: absolute;
   bottom: -0.5em;
   right: 8em;
+  _bottom: auto;
+  _top: 83px;
 }
 div#main-menu ul {
   list-style: none;
