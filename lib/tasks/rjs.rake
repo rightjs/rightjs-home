@@ -14,12 +14,23 @@ namespace :rjs do
     FileUtils.mkdir_p dir
   end
 
+  desc "Updates the stuff on the server"
+  task :update do
+    Rake::Task['rjs:unpack'].invoke
+    Rake::Task['rjs:zip'].invoke
+    Rake::Task['rightjs:update_docs'].invoke
+  end
+
+  #####################################################################################
+  #####################################################################################
   desc "Creates and packs a build of everything"
   task :build do
     Rake::Task['rjs:build:standard'].invoke
     Rake::Task['rjs:build:custom'].invoke
   end
 
+  #####################################################################################
+  #####################################################################################
   desc "Pack all the builds into zips"
   task :pack do
     # packing the standard builds
@@ -29,12 +40,16 @@ namespace :rjs do
     system "cd #{CUSTOM_BUILDS_DIR}; zip -r ../../#{CUSTOM_BUILDS_DIR}.zip ."
   end
 
+  #####################################################################################
+  #####################################################################################
   desc "Pushes the zips to rightjs.org"
   task :push do
     system "scp #{STANDARD_BUILD_DIR}.zip #{ENV['LOGIN']}@rightjs.org:~/apps/rightjs/tmp"
     system "scp #{CUSTOM_BUILDS_DIR}.zip  #{ENV['LOGIN']}@rightjs.org:~/apps/rightjs/tmp"
   end
 
+  #####################################################################################
+  #####################################################################################
   desc "Unpacks the zip archives and tosses the files in place"
   task :unpack do
     redir STANDARD_BUILD_DIR
@@ -80,8 +95,64 @@ namespace :rjs do
     puts " * Copying the i18n modules"
     redir RIGHTJS_BUILD_I18N
     system "cp #{STANDARD_BUILD_DIR}/javascripts/right/i18n/*.js #{RIGHTJS_BUILD_I18N}"
- end
+  end
 
+  #####################################################################################
+  #####################################################################################
+  desc "Makes zip archives with basic builds"
+  task :zip do
+    puts "Creating Zipped builds"
+
+    out_dir = "#{RAILS_ROOT}/tmp/zips"
+
+    ['', '-src'].each do |version|
+      redir out_dir
+
+      system "cp #{RIGHTJS_BUILD_CURRENT}/right#{version}.js      #{out_dir}"
+      system "cp #{RIGHTJS_BUILD_CURRENT}/right-olds#{version}.js #{out_dir}"
+      File.open("#{out_dir}/README.txt", "w") do |file|
+        file.write <<-EOS.gsub(/^ *\|/, '')
+          |RightJS Two-Files Build Usage
+          |------------------------------
+          |
+          | 1. Copy both of the JavaScript files into your javascript directory,
+          |    keep them next to each other.
+          |
+          | 2. Include the bigger one on your page in usual way
+          |    <script src="where/is/that/right.js"></script>
+          |
+          |    Don't bother about the second file, it will be loaded automatically when needed
+          |
+          | 3. Keep the filenames in a corresponding manner, like that
+          |
+          |    right[boo-boo-boo].js
+          |    right-olds[boo-boo-boo].js
+          |
+          |--
+          |Have Fun!
+          |
+        EOS
+      end
+
+      system "cd #{out_dir}; zip build.zip right#{version}.js right-olds#{version}.js README.txt"
+      system "cp #{out_dir}/build.zip #{RIGHTJS_BUILD_CURRENT}/right#{version}.js.zip"
+    end
+
+    redir out_dir
+
+    system %Q{
+      cp #{RIGHTJS_BUILD_CURRENT}/right-safe.js     #{out_dir};
+      cp #{RIGHTJS_BUILD_CURRENT}/right-safe-src.js #{out_dir};
+      cd #{out_dir};
+      zip build.zip right-safe.js right-safe-src.js;
+      cp  build.zip #{RIGHTJS_BUILD_CURRENT}/right-safe.js.zip
+    }
+
+    FileUtils.rm_rf   out_dir
+  end
+
+ #####################################################################################
+ #####################################################################################
   desc "Creates the standard package build"
   task :'build:standard' do
     redir STANDARD_BUILD_DIR
@@ -93,6 +164,8 @@ namespace :rjs do
     system "cp -r #{RIGHT_RAILS_DIR}/public/* #{STANDARD_BUILD_DIR}/"
   end
 
+  #####################################################################################
+  #####################################################################################
   desc "Creates the collection of custom builds"
   task :'build:custom' do
     redir CUSTOM_BUILDS_DIR
