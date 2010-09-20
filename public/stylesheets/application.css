@@ -79,7 +79,7 @@ input[type="text"], input[type="password"], textarea {
   background: #FFFEFC;
   border: 1px solid #CFCEBD;
   -webkit-border-radius: .2em;
-  -moz-border-radius: .2em; 
+  -moz-border-radius: .2em;
 }
 input[type="image"] {
   position: relative;
@@ -116,7 +116,7 @@ table tr:nth-child(2n+1) {
   background: #EFEEDD;
 }
 
-div.right-calendar table tr {
+div.rui-calendar table tr {
   background: none;
 }
 
@@ -167,6 +167,7 @@ div#main-menu {
 }
 div#main-menu ul {
   list-style: none;
+  z-index: 10;
 }
 div#main-menu ul li {
   float: left;
@@ -178,6 +179,7 @@ div#main-menu ul li a {
   padding: 8pt 0;
   color: #B0ACA2;
   border-bottom: 7px solid transparent;
+  outline: none;
 }
 div#main-menu ul li a:hover,
 div#main-menu ul li.current a {
@@ -187,6 +189,15 @@ div#main-menu ul li.current a {
 }
 div#main-menu ul li.current a {
   border-bottom-color: #DE4200;
+}
+div#main-menu div#zing {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 7px;
+  background: #DE4200;
+  z-index: 100;
 }
 
 div#lang-switch {
@@ -276,33 +287,31 @@ div#api-search input:focus {
   color: #444;
   outline:none;
 }
-div#api-search div.autocompleter ul {
+div#api-search ul.rui-autocompleter {
   margin: 0;
   background: #FFFEFC;
 }
-div#api-search div.autocompleter ul li {
+div#api-search ul.rui-autocompleter li {
   list-style: none;
   font-weight: normal;
   padding: .5em 1em;
-  
 }
-div#api-search div.autocompleter ul li.current {
+div#api-search ul.rui-autocompleter li.current {
   background: #CFCEBD;
 }
-div#api-search div.autocompleter ul li strong {
+div#api-search ul.rui-autocompleter li strong {
   font-weight: normal;
   color: #DE4200;
 }
-div#api-search div.autocompleter-spinner {
+div#api-search div.rui-autocompleter-spinner {
   width: 30px;
-  height: 1.4em !important;
-  margin-top: .22em;
-  background-color: transparent;
-  background-image: url('../images/spinner.gif');
-  background-repeat: no-repeat;
-  background-position: center center;
+  height: 1.4em;
+  margin-left: .4em;
+  background-image: url('../images/spinner.gif') !important;
+  background-repeat: no-repeat !important;
+  background-position: center center !important;
 }
-div#api-search div.autocompleter-spinner * {
+div#api-search div.rui-autocompleter-spinner * {
   display: none;
 }
 

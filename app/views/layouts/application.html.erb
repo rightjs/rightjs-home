@@ -4,25 +4,25 @@
     <title><%= title_text %></title>
     <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
     <%= auto_discovery_link_tag(:rss, posts_url(:format => :rss), :title => "RightJS News") %>
-    <%= javascript_include_tag '/hotlink/right.js', 'application' %>
+    <%= javascript_include_tag '/builds/basic/right-src.js', 'application' %>
     <%= javascript_include_tag '/builds/ui/right-autocompleter.js' %>
     <%= stylesheet_link_tag 'application' %>
     <%= yield :modules %>
     <%= stylesheet_link_tag 'rightjs-ui-home' if request.request_uri.starts_with?('/ui/') %>
-    <%= javascript_include_tag('/builds/i18n/right-ui-i18n-ru.js') if @language == 'ru' %>
+    <%= javascript_include_tag('/builds/i18n/ru.js') if @language == 'ru' %>
   </head>
   <body>
     <div id="body">
       <div id="head">
         <a href="/" id="logo">RightJS</a>
         <div id="slogan"><%= 'slogan'.t %></div>
-        
+
         <%= render :partial => "layouts/main_menu" %>
         <%= render :partial => "layouts/lang_switch" %>
       </div>
       <div id="main">
         <%= render :partial => "layouts/sidebar" %>
-        
+
         <div id="info">
           <%= insert_anchors_index yield %>
         </div>
@@ -34,7 +34,7 @@
         <div id="copyright">Copyright &copy; 2008-2010 Nikolay Nemshilov</div>
       </div>
     </div>
-    
+
     <script src="http://www.google-analytics.com/ga.js" type="text/javascript"></script>
     <script type="text/javascript">
     // <![CDATA[

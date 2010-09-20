@@ -2,19 +2,19 @@
   <input type="text" value="<%= 'sidebar.Search_API'.t %>" id="api-search-field" />
   <script type="text/javascript">
   // <![CDATA[
-  $('api-search-field')
-    .onFocus(function() { this._v = this.value; this.value = ''; })
-    .onBlur(function() { this.value = this._v; });
-  new Autocompleter('api-search-field', {
-    url: '/docs/search/%{search}.js',
-    onDone: function() {
-      var current = this.container.first('.current');
-      if (current) {
-        document.location.href = current.title;
+    new Autocompleter($('api-search-field').on({
+      focus: function() { this._v = this.value(); this.value(''); },
+      blur:  function() { this.value(this._v); }
+    }), {
+      url: '/docs/search/%{search}.js',
+      onDone: function() {
+        var current = this.first('.current');
+        if (current) {
+          document.location.href = current.get('title');
+        }
+        this.input.setValue(this.input._v).blur();
       }
-      this.input.setValue(this.input._v).blur();
-    }
-  });
+    });
   // ]]>
   </script>
 </div>
