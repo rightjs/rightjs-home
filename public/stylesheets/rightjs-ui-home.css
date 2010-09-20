@@ -1,96 +1,106 @@
 /** RightJS UI modules official site like styles */
-div.autocompleter ul li.current {
+ul.rui-autocompleter li.current {
+  list-style: none;
   background: #C4C3B3;
 }
 
 
-div.right-calendar {
+div.rui-calendar {
   background: #E8E6E0;
 }
 
-*.right-ui-button, div.right-calendar-month table td {
+*.rui-ui-button, table.month td {
   background: #F8F6F0;
 }
-*.right-ui-button:hover, div.right-calendar-month table td:hover {
+*.rui-ui-button:hover, table.month td:hover {
   background: #DDDDCC;
 }
-div.right-calendar-month table th {
+div.rui-calendar table.month th {
   color: #7A5E43;
   font-family: "Trebuchet MS", Garuda, sans-serif;
 }
-div.right-calendar-month table td.right-calendar-day-selected {
+div.rui-calendar table.month td.selected {
   color: #4D3A2A;
   background: #D8D6D0;
 }
 
 
 
-*.right-selectable, div.right-selectable-container {
+*.rui-selectable, div.rui-selectable-container {
   background: #FFFEFC;
 }
 
-*.right-selectable li:hover, *.right-selectable li.right-selectable-selected, dl.right-selectable dt {
+*.rui-selectable li:hover, *.rui-selectable li.rui-selectable-selected, dl.rui-selectable dt {
   background: #D8D6D0;
 }
+dl.rui-selectable dt {
+  font-size: 11pt;
+}
 
-*.right-selectable li.right-selectable-disabled,
-*.right-selectable li.right-selectable-disabled:hover {
+*.rui-selectable li.rui-selectable-disabled,
+*.rui-selectable li.rui-selectable-disabled:hover {
   background: #C4C3B4;
 }
 
-div.right-selectable-container div.right-selectable-handle {
+div.rui-selectable-container div.rui-selectable-handle {
   background: #D8D6D0;
 }
 
 
-div.right-slider {
+div.rui-slider {
   background: #E8E6E0;
 }
-div.right-slider-handle {
-  background: #C8C6C0;
+div.rui-slider .level {
+  background: #d8d6d0;
+}
+div.rui-slider .handle {
+  background: #b8b6b0;
 }
 
 
-.right-tabs * {
+.rui-tabs * {
   border-color: #CFCEBD;
 }
-.right-tabs-tab a,
-.right-tabs .right-tabs-scroller .right-tabs-scroll-left,
-.right-tabs .right-tabs-scroller .right-tabs-scroll-right {
+.rui-tabs-tab a,
+.rui-tabs .rui-tabs-scroller .rui-tabs-scroll-left,
+.rui-tabs .rui-tabs-scroller .rui-tabs-scroll-right {
   background: #E8E6E0;
 }
-.right-tabs-tab a:hover,
-.right-tabs .right-tabs-scroller .right-tabs-scroll-left:hover,
-.right-tabs .right-tabs-scroller .right-tabs-scroll-right:hover {
+.rui-tabs-tab a:hover,
+.rui-tabs .rui-tabs-scroller .rui-tabs-scroll-left:hover,
+.rui-tabs .rui-tabs-scroller .rui-tabs-scroll-right:hover {
   background: #D8D6D0;
 }
-.right-tabs .right-tabs-list .right-tabs-current a, dl.right-tabs dt.right-tabs-current a  {
+.rui-tabs .rui-tabs-list .rui-tabs-current a, dl.rui-tabs dt.rui-tabs-current a  {
   background: #F8F6F0;
   color: #4D3A2A;
 }
-.right-tabs-disabled, .right-tabs-disabled a, .right-tabs-disabled a:hover {
+.rui-tabs-disabled, .rui-tabs-disabled a, .rui-tabs-disabled a:hover {
   background: #E8E6E0;
 }
-.right-tabs-carousel .right-tabs-list,
-.right-tabs-carousel .right-tabs-tab a,
-.right-tabs-carousel .right-tabs-scroller .right-tabs-scroll-left,
-.right-tabs-carousel .right-tabs-scroller .right-tabs-scroll-right {
+.rui-tabs-carousel .rui-tabs-tab a,
+.rui-tabs-carousel .rui-tabs-scroller .rui-tabs-scroller-prev,
+.rui-tabs-carousel .rui-tabs-scroller .rui-tabs-scroller-next {
   height: 80px;
+  line-height: 80px;
 }
-dl.right-tabs dt.right-tabs-current a {
+.rui-tabs-carousel .rui-tabs-tab a img {
+  margin-top: .2em;
+}
+dl.rui-tabs dt.rui-tabs-current a {
   background: #E8E6E0;
 }
 
-div.right-colorpicker input.display {
+div.rui-colorpicker input.display {
   margin-top: .4em;
 }
 
-div.right-colorpicker div.rgb-display {
+div.rui-colorpicker div.rgb-display {
   margin-top: .4em;
 }
 
-.right-colorpicker label,
-.right-colorpicker input {
+.rui-colorpicker label,
+.rui-colorpicker input {
   font-weight: normal;
   vertical-align: middle;
 }

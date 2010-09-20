@@ -7,6 +7,9 @@ div.fx-test {
   text-align: center;
   background: orange;
   color: brown;
+  border-radius: 2px;
+  -moz-border-radius: 2px;
+  -webkit-border-radius: 2px;
 }
 div.fx-test-container {
   height: 80px;
