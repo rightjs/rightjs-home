@@ -1,6 +1,6 @@
 
 en:
-  slogan:                 The Right JavaScript Framework
+  slogan:                 JavaScript Framework That Feels Right
 
   menu:
     Home:                 Home
@@ -66,6 +66,7 @@ en:
       packed_version:     packed version
       minified_version:   minified version
       source_version:     source code
+      safe_mode_version:  safe-mode version
 
       github_available:   All the source code of the project is available under terms of the MIT license
 
@@ -89,20 +90,13 @@ en:
     builds:
       modules:
         cookie:           Cookies support
-        form:             Form Additional Features
+        form:             Additional Form Features
         xhr:              Ajax Features
         fx:               Basic Visual Effects
+        events:           UJS Support And Related Features
         olds:             Old Browsers Support
-
-        json:             JSON support
-        events:           Advanced DOM-Events handling
-        effects:          Additional Visual Effects
-        behavior:         Behaviors Module
-        dnd:              Drag'n'Drop Module
-        rails:            Ruby And Rails Support Module
-
-        compress:         Compress Source Code
-        build:            Create Self-Build Script
+        safe:             Create Safe-Mode Build
+        minify:           Compress Source Code
 
       Create:             Create
       Reset:              Reset

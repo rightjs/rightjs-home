@@ -33,11 +33,11 @@ namespace :rjs do
   #####################################################################################
   desc "Pack all the builds into zips"
   task :pack do
-    # packing the standard builds
-    system "cd #{STANDARD_BUILD_DIR}; zip -r ../../#{STANDARD_BUILD_DIR}.zip ."
+    puts " * Packing the standard builds"
+    system "cd #{STANDARD_BUILD_DIR}; zip -r ../../#{STANDARD_BUILD_DIR}.zip . &> /dev/null"
 
-    # packing the custom builds
-    system "cd #{CUSTOM_BUILDS_DIR}; zip -r ../../#{CUSTOM_BUILDS_DIR}.zip ."
+    puts " * Packing the custom builds"
+    system "cd #{CUSTOM_BUILDS_DIR}; zip -r ../../#{CUSTOM_BUILDS_DIR}.zip . &> /dev/null"
   end
 
   #####################################################################################
@@ -55,8 +55,8 @@ namespace :rjs do
     redir STANDARD_BUILD_DIR
     redir CUSTOM_BUILDS_DIR
 
-    system "unzip #{STANDARD_BUILD_DIR}.zip -d #{STANDARD_BUILD_DIR}"
-    system "unzip #{CUSTOM_BUILDS_DIR}.zip -d #{CUSTOM_BUILDS_DIR}"
+    system "unzip #{STANDARD_BUILD_DIR}.zip -d #{STANDARD_BUILD_DIR} &> /dev/null"
+    system "unzip #{CUSTOM_BUILDS_DIR}.zip -d #{CUSTOM_BUILDS_DIR} &> /dev/null"
 
     puts " * Copying the standard builds"
     redir RIGHTJS_BUILD_CURRENT
@@ -177,20 +177,30 @@ namespace :rjs do
       id.split('').each_with_index do |value, index|
         options << RIGHTJS_BUILD_OPTIONS[index] if value == '1'
       end
-      options << (options == ['no-olds'] ? "server" : "safe")
       options = options.join(',')
 
-      puts options
+      puts options.blank? ? 'default build' : options
       system "cd #{RIGHTJS_LOCATION}; rake build OPTIONS=#{options} &> /dev/null"
 
-      if options.include?('server')
-        system "cp #{RIGHTJS_LOCATION}/build/right-server.js #{CUSTOM_BUILDS_DIR}/right-server.js"
-      else
-        system "cp #{RIGHTJS_LOCATION}/build/right.js          #{CUSTOM_BUILDS_DIR}/#{id}00.js"
-        system "cp #{RIGHTJS_LOCATION}/build/right-src.js      #{CUSTOM_BUILDS_DIR}/#{id}01.js"
-        system "cp #{RIGHTJS_LOCATION}/build/right-safe.js     #{CUSTOM_BUILDS_DIR}/#{id}10.js" if options.include?('safe')
-        system "cp #{RIGHTJS_LOCATION}/build/right-safe-src.js #{CUSTOM_BUILDS_DIR}/#{id}11.js" if options.include?('safe')
+      system "cp #{RIGHTJS_LOCATION}/build/right.js          #{CUSTOM_BUILDS_DIR}/#{id}01.js"
+      system "cp #{RIGHTJS_LOCATION}/build/right-src.js      #{CUSTOM_BUILDS_DIR}/#{id}00.js"
+
+      unless options.include?('safe')
+        options = (options.split(',') + ['safe']).join(',')
+        puts options
+        system "cd #{RIGHTJS_LOCATION}; rake build OPTIONS=#{options} &> /dev/null"
       end
+
+      id = id.slice(0, id.size - 1)
+
+      system "cp #{RIGHTJS_LOCATION}/build/right-safe.js     #{CUSTOM_BUILDS_DIR}/#{id}011.js" if options.include?('safe')
+      system "cp #{RIGHTJS_LOCATION}/build/right-safe-src.js #{CUSTOM_BUILDS_DIR}/#{id}010.js" if options.include?('safe')
+      system "cp #{RIGHTJS_LOCATION}/build/right-safe.js     #{CUSTOM_BUILDS_DIR}/#{id}111.js" if options.include?('safe')
+      system "cp #{RIGHTJS_LOCATION}/build/right-safe-src.js #{CUSTOM_BUILDS_DIR}/#{id}110.js" if options.include?('safe')
     end
+
+    puts " * Creating the server side build"
+    system "cd #{RIGHTJS_LOCATION}; rake build OPTIONS=server &> /dev/null"
+    system "cp #{RIGHTJS_LOCATION}/build/right-server.js #{CUSTOM_BUILDS_DIR}/right-server.js"
   end
 end

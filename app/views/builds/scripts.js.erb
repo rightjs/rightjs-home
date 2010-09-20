@@ -1,6 +1,6 @@
 // some nice looking calculator method
 
-var build_keys  = <%= (RIGHTJS_BUILD_OPTIONS.collect{|o| o.gsub(/^no\-/, '')} + ['build', 'compress']).to_json %>;
+var build_keys  = <%= (RIGHTJS_BUILD_OPTIONS.collect{|o| o.gsub(/^no\-/, '')} + ['safe', 'minify']).to_json %>;
 var build_sizes_t = "<%= @build_sizes.collect{|k,v| "#{k.to_i(2).to_s(16)}:#{v.to_s(16)}"}.join(',') %>";
 var build_sizes = {};
 build_sizes_t.split(',').each(function(pair) {
@@ -13,7 +13,7 @@ build_sizes_t.split(',').each(function(pair) {
 var max_size    = Math.max.apply(null, Object.values(build_sizes));
 var min_size    = Math.min.apply(null, Object.values(build_sizes));
 
-document.onReady(function() {
+$(document).onReady(function() {
   var build_form  = $('custom-build-form');
 
   var calc     = $E('div', {id: 'calc'});
@@ -45,7 +45,7 @@ document.onReady(function() {
   var prev_size = 0;
   var update_calc = function() {
     var options = build_keys.map(function(key) {
-      return $("options_"+key).checked ? 1 : 0;
+      return $("options_"+key)._.checked ? 0 : 1;
     }).join('');
     var new_size = build_sizes[options];
     if (new_size) {
@@ -55,12 +55,12 @@ document.onReady(function() {
   };
 
   build_form.inputs().each(function(input) {
-    if (input.type == 'checkbox') {
+    if (input._.type == 'checkbox') {
       input.on('click', update_calc);
     }
   });
   $('form-reset').on('click', function() { update_calc.delay(50); });
-  
+
   update_calc();
 });
 

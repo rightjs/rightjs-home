@@ -28,7 +28,8 @@ form#custom-build-form label {
 }
 
 form#custom-build-form div#calc {
-  height: 330px;
+  display: none;
+  height: 210px;
   width: 20pt;
   background: #CFCEBD;
   position: relative;

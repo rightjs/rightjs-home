@@ -65,6 +65,7 @@ ru:
       packed_version:     пакованная версия
       minified_version:   сжатая версия
       source_version:     исходный код
+      safe_mode_version:  безопасный режим
 
       github_available:   Весь исходный код проекта доступен в открытом доступе под MIT лицензией
 
@@ -92,16 +93,9 @@ ru:
         xhr:              Поддержка Ajax
         fx:               Базовые визуальные эффекты
         olds:             Поддержка старых браузеров
-
-        json:             Поддержка JSON
-        events:           Продвинутое управление DOM-событиями
-        effects:          Дополнительные визуальные эффекты
-        behavior:         Модуль поведений (Behaviors)
-        dnd:              Модуль Drag'n'Drop
-        rails:            Поддержка Ruby And Rails
-
-        compress:         Сжать исходный код
-        build:            Создать пакованную версию
+        events:           Поддержка UJS и соотествующих возможностей
+        safe:             Включить безопасный режим
+        minify:           Сжать исходный код
 
       Create:             Создать
       Reset:              Сбросить
