@@ -3,16 +3,17 @@
   border: none;
   margin-top: .22em;
 }
-#promo .right-tabs-list {
+#promo .rui-tabs-list {
   margin: 0;
   padding: 0;
   height: 5em;
   border-bottom: 4px solid #CFCEBD;
+  text-align: center;
 }
-#promo .right-tabs-list a,
-#promo .right-tabs-list a:hover,
-#promo .right-tabs-list .right-tabs-current a,
-#promo .right-tabs-list .right-tabs-current a:hover {
+#promo .rui-tabs-list a,
+#promo .rui-tabs-list a:hover,
+#promo .rui-tabs-list .rui-tabs-current a,
+#promo .rui-tabs-list .rui-tabs-current a:hover {
   top: 0;
   height: 5em;
   line-height: 2em;
@@ -20,15 +21,18 @@
   padding: 0;
   background: transparent;
   border: none;
+  border-bottom: 4px solid transparent;
+  text-align: left;
 }
 
 
-#promo .right-tabs-list a h1,
-#promo .right-tabs-list .right-tabs-current a h1 {
+#promo .rui-tabs-list a h1,
+#promo .rui-tabs-list .rui-tabs-current a h1 {
+  display: block;
   margin: 0;
   font-style: normal;
 }
-#promo .right-tabs-list a i {
+#promo .rui-tabs-list a i {
   font-family: "Trebuchet MS", Garuda, sans-serif;
   font-size: 1.3em;
   font-weight: normal;
@@ -36,22 +40,25 @@
   color: #B4B3A4;
 }
 
-#promo .right-tabs-list .right-tabs-current a,
-#promo .right-tabs-list .right-tabs-current a:hover {
-  border-bottom: 4px solid #DE4200;
+#promo .rui-tabs-list .rui-tabs-current a,
+#promo .rui-tabs-list .rui-tabs-current a:hover {
+  border-bottom-color: #DE4200;
 }
-#promo .right-tabs-list a:hover i,
-#promo .right-tabs-list .right-tabs-current a i {
+#promo .rui-tabs-list a:hover i,
+#promo .rui-tabs-list .rui-tabs-current a i {
   color: #444;
 }
 
 
-#promo #compact-tab {
-  float: none;
-  margin-left: 40%;
+#promo #friendly-tab {
+  position: absolute;
+  left: 0;
+  bottom: -4px;
 }
 #promo #fast-tab {
-  float: right;
+  position: absolute;
+  right: 0;
+  bottom: -4px;
 }
 #promo #compact-tab a {
   top: -1px;
@@ -66,7 +73,7 @@
   margin-bottom: .1em;
 }
 #features dt a,
-#features dt.right-tabs-current a {
+#features dt.rui-tabs-current a {
   font-weight: normal;
   color: #444;
   height: 2em;
@@ -81,7 +88,7 @@
   background-position: right -422px;
   background-repeat: no-repeat;
 }
-#features dt.right-tabs-current a {
+#features dt.rui-tabs-current a {
   background-position: right -472px;
 }
 #features dt h2 {
