@@ -44,8 +44,12 @@ namespace :rjs do
   #####################################################################################
   desc "Pushes the zips to rightjs.org"
   task :push do
-    system "scp #{STANDARD_BUILD_DIR}.zip #{ENV['LOGIN']}@rightjs.org:~/apps/rightjs/tmp"
-    system "scp #{CUSTOM_BUILDS_DIR}.zip  #{ENV['LOGIN']}@rightjs.org:~/apps/rightjs/tmp"
+    if ENV['LOGIN']
+      system "scp #{STANDARD_BUILD_DIR}.zip #{ENV['LOGIN']}@rightjs.org:~/apps/rightjs/tmp"
+      system "scp #{CUSTOM_BUILDS_DIR}.zip  #{ENV['LOGIN']}@rightjs.org:~/apps/rightjs/tmp"
+    else
+      puts "Specify the LOGIN please"
+    end
   end
 
   #####################################################################################
