@@ -8,7 +8,8 @@ module PluginsHelper
     :dnd      => "Drag'n'Drop Module",
     :effects  => "Additional Effects",
     :json     => "JSON Support",
-    :jquerysh => "jQuery Emulator"
+    :jquerysh => "jQuery Emulator",
+    :sizzle   => "Sizzle Support"
   }
 
   UI_NAMES = {
