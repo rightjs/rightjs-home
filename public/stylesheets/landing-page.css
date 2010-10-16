@@ -6,7 +6,7 @@
 #promo .rui-tabs-list {
   margin: 0;
   padding: 0;
-  height: 5em;
+  height: 2.5em;
   border-bottom: 4px solid #CFCEBD;
   text-align: center;
 }
@@ -15,7 +15,7 @@
 #promo .rui-tabs-list .rui-tabs-current a,
 #promo .rui-tabs-list .rui-tabs-current a:hover {
   top: 0;
-  height: 5em;
+  height: 2.5em;
   line-height: 2em;
   margin-top: 1px;
   padding: 0;
@@ -32,21 +32,10 @@
   margin: 0;
   font-style: normal;
 }
-#promo .rui-tabs-list a i {
-  font-family: "Trebuchet MS", Garuda, sans-serif;
-  font-size: 1.3em;
-  font-weight: normal;
-  margin-top: .2em;
-  color: #B4B3A4;
-}
 
 #promo .rui-tabs-list .rui-tabs-current a,
 #promo .rui-tabs-list .rui-tabs-current a:hover {
   border-bottom-color: #DE4200;
-}
-#promo .rui-tabs-list a:hover i,
-#promo .rui-tabs-list .rui-tabs-current a i {
-  color: #444;
 }
 
 
