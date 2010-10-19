@@ -17,7 +17,7 @@ RIGHTJS_UI_IMAGES     = "#{RAILS_ROOT}/public/images/rightjs-ui"
 
 RIGHTJS_PLUGINS       = %w(json effects dnd rails jquerysh sizzle)
 RIGHTJS_UIS           = %w(autocompleter calendar tabs rater slider selectable sortable
-                           lightbox tooltips in-edit uploader resizable colorpicker)
+                           lightbox tooltips in-edit uploader resizable colorpicker dialog)
 
 RIGHTJS_BUILD_OPTIONS = %w(no-cookie no-form no-xhr no-fx no-events no-olds)
 
