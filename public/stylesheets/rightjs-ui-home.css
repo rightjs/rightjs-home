@@ -61,6 +61,9 @@ div.rui-slider .handle {
 .rui-tabs * {
   border-color: #CFCEBD;
 }
+.rui-tabs ul, .rui-tabs li {
+  list-style-image: none;
+}
 .rui-tabs-tab a,
 .rui-tabs .rui-tabs-scroller .rui-tabs-scroll-left,
 .rui-tabs .rui-tabs-scroller .rui-tabs-scroll-right {

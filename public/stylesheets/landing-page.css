@@ -29,6 +29,7 @@
 #promo .rui-tabs-list a h1,
 #promo .rui-tabs-list .rui-tabs-current a h1 {
   display: block;
+  _display: inline;
   margin: 0;
   font-style: normal;
 }
