@@ -9,7 +9,8 @@ module PluginsHelper
     :effects  => "Additional Effects",
     :json     => "JSON Support",
     :jquerysh => "jQuery Emulator",
-    :sizzle   => "Sizzle Support"
+    :sizzle   => "Sizzle Support",
+    :table    => "Table DOM-Wrapper"
   }
 
   UI_NAMES = {

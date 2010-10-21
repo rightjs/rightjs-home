@@ -15,7 +15,7 @@ RIGHTJS_BUILD_HOTLINK = "#{RAILS_ROOT}/public/hotlink"
 
 RIGHTJS_UI_IMAGES     = "#{RAILS_ROOT}/public/images/rightjs-ui"
 
-RIGHTJS_PLUGINS       = %w(json effects dnd rails jquerysh sizzle)
+RIGHTJS_PLUGINS       = %w(json effects dnd rails jquerysh sizzle table)
 RIGHTJS_UIS           = %w(autocompleter calendar tabs rater slider selectable sortable
                            lightbox tooltips in-edit uploader resizable colorpicker dialog)
 
