@@ -43,6 +43,8 @@ protected
   ]
 
   def hightlight_code
+    return if response.content_type != 'text/html'
+
     response.body.gsub! /(<code>)(.+?)(<\/code>)/im do
       code = $2.gsub("<", "&lt;").gsub(">", "&gt;")
 

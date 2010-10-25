@@ -7,14 +7,16 @@ module CrossReferences
       after_filter :hook_api_references
     end
   end
-  
+
   def hook_api_references
+    return if response.content_type != 'text/html'
+
     response.body.gsub! /([^%#])\{([a-z\.#]+[a-z])\}/i do |match|
       start = $1.dup
       desc  = $2.dup
-      
+
       unit = Unit.find_by_name(desc) || Unit.find_by_name(desc.slice(0, desc.rindex(/\.|#[a-z]+$/i) || 0)) || @unit
-      
+
       match = if unit
         if unit.name == desc
           "<a href='#{unit_path(unit)}' class='api-ref'>#{unit.name}</a>"
@@ -27,7 +29,7 @@ module CrossReferences
       else
         desc
       end
-      
+
       "#{start}#{match}"
     end
   end

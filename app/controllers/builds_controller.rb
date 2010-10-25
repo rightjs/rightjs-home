@@ -44,30 +44,35 @@ class BuildsController < ApplicationController
   end
 
   def current
-    send_file "#{RIGHTJS_BUILD_CURRENT}/#{params[:id]}", params[:id]
+    send_file "#{RIGHTJS_BUILD_CURRENT}/#{params[:id]}", :filename => params[:id]
   end
 
 protected
   def send_custom(options)
-    send_file "#{RIGHTJS_BUILD_CUSTOM}/#{options}.js", "right.js"
+    send_file "#{RIGHTJS_BUILD_CUSTOM}/#{options}.js", :filename => "right.js"
   end
 
-  def send_file(file, filename)
+  #
+  # overloading the method, to count the downloads and all other fancy sort of things
+  #
+  def send_file(file, options={})
     raise NotFound unless File.exists?(file)
 
     record_download(file)
 
-    content_type = file.ends_with?('.zip') ? "application/zip" : "text/javascript; charset=utf-8"
+    if file.ends_with?('.zip')
+      super file, :type => "application/zip"
+    else
+      # rails seems to screw with the content length a bit in here so we overload the thing
+      # and send the script as a binary data
+      headers.merge!(
+        'Content-Type'              => "text/javascript; charset=utf-8",
+        'Content-Disposition'       => "attachment; filename=#{options[:filename]}",
+        'Content-Transfer-Encoding' => "binary"
+      )
 
-    # Sometimes rails screws with the content-length, so we overloading the method
-    # to make it send the whole content without the actual size declation
-    headers.merge!(
-      'Content-Type'              => content_type,
-      'Content-Disposition'       => 'attachment; filename=right.js'+(file.ends_with?('.zip') ? '.zip' : ''),
-      'Content-Transfer-Encoding' => 'binary'
-    )
-
-    render :text => File.read(file)
+      render :text => File.read(file)
+    end
   end
 
   def record_download(file)
