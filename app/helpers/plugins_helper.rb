@@ -10,7 +10,8 @@ module PluginsHelper
     :json     => "JSON Support",
     :jquerysh => "jQuery Emulator",
     :sizzle   => "Sizzle Support",
-    :table    => "Table DOM-Wrapper"
+    :table    => "Table DOM-Wrapper",
+    :keys     => "Pretty Keys"
   }
 
   UI_NAMES = {
