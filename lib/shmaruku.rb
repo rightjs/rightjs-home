@@ -3,19 +3,19 @@
 #
 class Shmaruku < Maruku
   KEY = "OH THIS TIME IM REALLY GONNA GET YA"
-  
-  def self.to_html(string) 
+
+  def self.to_html(string)
     self.new(string.gsub(/\{([a-z\.#]+)\}/im, "#{KEY}\\1#{KEY}")).to_html
   end
-  
+
   def to_html
     html = super
-    
+
     PATCHES.each{ |patch| html.gsub! *patch }
-    
+
     html
   end
-  
+
   PATCHES = [
     ['&#39;',                          "'"            ],
     ['&quot;',                         '"'            ],
@@ -28,6 +28,7 @@ class Shmaruku < Maruku
     ["&amp;gt;",                       '&gt;'         ],
     ["&apos;",                         '"'            ],
     [/<div([^>]+)\/>/,                 '<div\1></div>'],
-    [/#{KEY}([a-z\.#]+)#{KEY}/im,      '{\1}'         ]
+    [/#{KEY}([a-z\.#]+)#{KEY}/im,      '{\1}'         ],
+    [/<a([^>]+)\/>/,                   '<a\1></a>'    ]
   ]
 end

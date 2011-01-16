@@ -1,9 +1,9 @@
 /**
  * The main menu visual effect
  *
- * Copyright (C) 2010 Nikolay Nemshilov
+ * Copyright (C) 2010-2011 Nikolay Nemshilov
  */
-var move_zing = function() {
+function move_zing() {
   var zing    = $('zing');
   var main    = $('main-menu');
   var current = $$("#main-menu li.current a")[0];
@@ -25,16 +25,16 @@ var move_zing = function() {
     zing.stop().morph({
       width: this.size().x + 'px',
       left:  this.position().x - main.position().x + 'px'
-    }, {transition: 'Log'});
+    }, {transition: 'Log', engine: 'javascript'});
   }
-};
+}
 
-var roll_back = function() {
+function roll_back() {
   var current = $$("#main-menu li.current a")[0];
   if (current && !move_zing._timer) {
     move_zing._timer = move_zing.bind(current).delay(800);
   }
-};
+}
 
 "#main-menu li a".on({mouseover: move_zing, mouseout: roll_back});
 $(window).on({blur: roll_back, resize: roll_back});
@@ -45,13 +45,17 @@ $(window).on({blur: roll_back, resize: roll_back});
  *
  * Copyright (C) 2010 Nikolay Nemshilov
  */
-"#social li a".onMouseover(function() {
-  (this.icon || (
-    this.icon = $E('i')
+"#social li a".on({
+  mouseenter: function() {
+    (this.icon || (this.icon = $E('i')
       .insertTo(this.addClass('fancy-icon'), 'top')
-      .onMouseover('morph', {opacity: 0})
-      .onMouseout('morph', {opacity: 1})
-  )).fire('mouseover');
+    )).morph({opacity: 0});
+  },
+  mouseleave: function() {
+    if (this.icon) {
+      this.icon.morph({opacity: 1});
+    }
+  }
 });
 
 
@@ -60,58 +64,61 @@ $(window).on({blur: roll_back, resize: roll_back});
  *
  * Copyright (C) 2010 Nikolay Nemshilov
  */
+var current_block;
+function unroll_code(block) {
+  block._timer = null;
 
+  var element = block._;
 
-/*
-document.onReady(function() {
+  // checking if it's scrollable
+  element.scrollLeft = 1;
+  if (element.scrollLeft == 1 && !current_block) {
+    current_block = block;
+    element.scrollLeft = 0;
 
-  // fancy code resize effects
-  var roll_code = function() {
-    this._timer = null;
-    this.scrollLeft = 1;
-    if (this.scrollLeft && !this._hovering) {
-      this.scrollLeft = 0;
-      this._hovering = true;
+    var size = block.size();
 
-      // block has an offset and a border size
-      var offset = ((this.getStyle('paddingLeft')||'0').toFloat() + (this.getStyle('borderLeftWidth')||'0').toFloat()) * 2;
+    block._offset = ((block.getStyle('paddingLeft')||'0').toFloat() + (block.getStyle('borderLeftWidth')||'0').toFloat()) * 2;
 
-      // creating a resizable clone
-      var clone = $(this.cloneNode(true))
-        .setStyle({
-          top:   this.position().y + 'px',
-          width: this.offsetWidth - offset + 'px',
-          position: 'absolute'
-        })
-        .insertTo(this, 'before')
-        .morph({width: this.offsetWidth + $('sidebar').offsetWidth - offset + 'px'});
-
-
-      var rollback = function() {
-        clone.morph({width: this.offsetWidth - offset + 'px'}, {
-          onFinish: function() {
-            clone.remove();
-            this._hovering = false;
-          }.bind(this)
-        });
-      }.bind(this);
-
-      window.on('blur', function() { rollback(); this.stopObserving('blur', rollback);});
-
-      clone.onMouseout(function(event) {
-        var dims = this.dimensions();
-        if (event.pageX < dims.left || event.pageX > (dims.left + dims.width) ||
-            event.pageY < dims.top  || event.pageY > (dims.top + dims.height))
-          rollback();
-      })
+    if (!block._clone) {
+      block._clone = block.clone();
     }
-  };
 
-  $$('code').each(function(block) {
+    block._clone.insertTo(block, 'after');
+
     block
-      .onMouseover(function() { this._timer = roll_code.bind(this).delay(100); })
-      .onMouseout(function() { if (this._timer) this._timer.cancel(); })
-  });
+      .setStyle({ position: 'absolute' })
+      .resize(size)
+      .morph({width: size.x + $('sidebar').size().x - block._offset + 'px'});
+  }
+}
 
+function rollback_code_block() {
+  if (current_block) {
+    current_block.morph({
+      width: current_block._clone.size().x - current_block._offset + 'px'
+    }, {
+      onFinish: function() {
+        current_block._clone.remove();
+        current_block.setStyle({position: 'static', width: 'auto'});
+        current_block = null;
+      }
+    });
+  }
+}
+
+"code".on({
+  mouseenter: function() {
+    this._timer = unroll_code.curry(this).delay(100);
+  },
+
+  mouseleave: function() {
+    if (this._timer) {
+      this._timer.cancel();
+    } else {
+      rollback_code_block();
+    }
+  }
 });
-*/
+
+$(window).onBlur(rollback_code_block);
