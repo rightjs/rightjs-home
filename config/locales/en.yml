@@ -80,12 +80,14 @@ en:
       Standard:           Standard Builds
       ServerSide:         Server Side
       HotLink:            Hot Link
+      AllInOne:           All In One
 
       core_file:          the core file
       old_browsers:       the old browsers support
       zipped_files:       both files zipped
       latest_version:     always latest version
       this_version:       always this exact version
+      all_in_one_desc:    "everything in one file, core and plugins"
 
     builds:
       modules:

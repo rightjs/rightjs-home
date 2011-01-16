@@ -99,6 +99,9 @@ namespace :rjs do
     puts " * Copying the i18n modules"
     redir RIGHTJS_BUILD_I18N
     system "cp #{STANDARD_BUILD_DIR}/javascripts/right/i18n/*.js #{RIGHTJS_BUILD_I18N}"
+
+    puts " * Copyring the all-in-one archive"
+    system "cp #{STANDARD_BUILD_DIR}.zip #{RIGHTJS_BUILD}/rightjs-all.zip"
   end
 
   #####################################################################################

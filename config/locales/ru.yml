@@ -79,12 +79,14 @@ ru:
       Standard:           Стандартные сборки
       ServerSide:         Серверная версия
       HotLink:            Горячий линк
+      AllInOne:           Все в одном
 
       core_file:          основное ядро
       old_browsers:       поддержка старых браузеров
       zipped_files:       оба файла в архиве
       latest_version:     всегда последняя версия
       this_version:       всегда тольео эта версия
+      all_in_one_desc:    "все в одном файле, ядро и плагины"
 
     builds:
       modules:
