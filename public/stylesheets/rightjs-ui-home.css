@@ -29,6 +29,10 @@ div.rui-calendar table.month td.selected {
 *.rui-selectable, div.rui-selectable-container {
   background: #FFFEFC;
 }
+*.rui-selectable {
+  list-style: none;
+  list-style-image: none;
+}
 
 *.rui-selectable li:hover, *.rui-selectable li.rui-selectable-selected, dl.rui-selectable dt {
   background: #D8D6D0;
@@ -44,6 +48,9 @@ dl.rui-selectable dt {
 
 div.rui-selectable-container div.rui-selectable-handle {
   background: #D8D6D0;
+}
+*.rui-selectable, *.rui-selectable * {
+  list-style: none;
 }
 
 
@@ -106,4 +113,15 @@ div.rui-colorpicker div.rgb-display {
 .rui-colorpicker input {
   font-weight: normal;
   vertical-align: middle;
+}
+
+.rui-billboard {
+  list-style: none !important;
+  list-style-image: none !important;
+  padding-left: 0 !important;
+}
+
+.rui-sortable {
+  list-style: none !important;
+  list-style-image: none !important;
 }
