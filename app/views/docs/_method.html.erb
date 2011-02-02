@@ -1,7 +1,7 @@
 <div class="method">
   <a name="<%= method.name %>"></a>
   <h2><%= content_tag(:a, "top &uarr;", :href => "#", :class => "top-anchor") %><%= link_to_unit_method method %></h2>
-  
+
   <p class="semantic">
     <code><%= method.semantic%></code>
   </p>
@@ -10,7 +10,7 @@
   <h4><%= 'docs.Description'.t %></h4>
   <%= method.description %>
 <% end %>
-  
+
 <% unless method.example.blank? %>
   <h4><%= 'docs.Example'.t %></h4>
   <p>
