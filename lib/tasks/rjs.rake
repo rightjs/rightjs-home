@@ -195,7 +195,7 @@ namespace :rjs do
       unless options.include?('safe')
         options = (options.split(',') + ['safe']).join(',')
         puts options
-        system "cd #{RIGHTJS_LOCATION}; rake build OPTIONS=#{options} &> /dev/null"
+        system "cd #{RIGHTJS_LOCATION}; nake build OPTIONS=#{options} &> /dev/null"
       end
 
       id = id.slice(0, id.size - 1)
@@ -207,7 +207,7 @@ namespace :rjs do
     end
 
     puts " * Creating the server side build"
-    system "cd #{RIGHTJS_LOCATION}; rake build OPTIONS=server &> /dev/null"
+    system "cd #{RIGHTJS_LOCATION}; nake build OPTIONS=server &> /dev/null"
     system "cp #{RIGHTJS_LOCATION}/build/right-server.js #{CUSTOM_BUILDS_DIR}/right-server.js"
   end
 end

@@ -78,6 +78,7 @@ a img {
 input[type="text"], input[type="password"], textarea {
   background: #FFFEFC;
   border: 1px solid #CFCEBD;
+  border-radius: .2em;
   -webkit-border-radius: .2em;
   -moz-border-radius: .2em;
 }
@@ -281,6 +282,7 @@ div#api-search input {
   background-repeat: no-repeat;
   background-position: right -340px;
   border: .2em solid #CFCEBD;
+  border-radius: .3em;
   -webkit-border-radius: .3em;
   -moz-border-radius: .3em;
   color: #CFCEBD;
@@ -477,6 +479,7 @@ code {
   background: #FFFEFC;
   color: #555;
   border: 4px solid #CFCEBD;
+  border-radius: .5em;
   -webkit-border-radius: .5em;
   -moz-border-radius: .5em;
 }

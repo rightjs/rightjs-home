@@ -70,10 +70,12 @@
   line-height: 2em;
   background-color: #FFFEFC;
   border: 1px solid #DFDECD;
+  border-radius: .2em;
   -webkit-border-radius: .2em;
   -moz-border-radius: .2em;
   -webkit-box-shadow: #EFEEDD 0px 0px .5em;
   -moz-box-shadow: #EFEEDD 0px 0px .5em;
+  box-shadow: #EFEEDD 0px 0px .5em;
   background-image: url('../images/design.png');
   background-position: right -422px;
   background-repeat: no-repeat;

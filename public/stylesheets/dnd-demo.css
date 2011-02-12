@@ -10,6 +10,7 @@ div.draggable, div.droppable {
   text-align: center;
   line-height: 5em;
   cursor: move;
+  border-radius: .2em;
   -webkit-border-radius: .2em;
   -moz-border-radius: .2em;
 }
@@ -20,6 +21,7 @@ div#draggable-area {
   background: #CFCEBD;
   width:  30em;
   height: 16em;
+  border-radius: .2em;
   -webkit-border-radius: .2em;
   -moz-border-radius: .2em;
 }
