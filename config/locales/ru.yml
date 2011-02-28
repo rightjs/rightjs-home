@@ -84,7 +84,7 @@ ru:
       old_browsers:       поддержка старых браузеров
       zipped_files:       оба файла в архиве
       latest_version:     всегда последняя версия
-      this_version:       всегда тольео эта версия
+      this_version:       всегда только эта версия
       all_in_one_desc:    "все в одном файле, ядро и плагины"
 
     builds:
