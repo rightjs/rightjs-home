@@ -11,7 +11,8 @@ module PluginsHelper
     :jquerysh => "jQuery Emulator",
     :sizzle   => "Sizzle Support",
     :table    => "Table DOM-Wrapper",
-    :keys     => "Pretty Keys"
+    :keys     => "Pretty Keys",
+    :casting  => "Casting Plugin"
   }
 
   UI_NAMES = {
