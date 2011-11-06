@@ -168,7 +168,19 @@ namespace :rjs do
     system "cd #{RIGHT_RAILS_DIR}; rake rjs:build"
 
     # copying the stuff in here
-    system "cp -r #{RIGHT_RAILS_DIR}/public/* #{STANDARD_BUILD_DIR}/"
+    system "cp -r #{RIGHT_RAILS_DIR}/vendor/assets/* #{STANDARD_BUILD_DIR}/"
+
+    FileList["#{STANDARD_BUILD_DIR}/javascripts/right/*.js"].each do |filename|
+      old_content = File.read(filename)
+      new_content = old_content.gsub("url(/assets/rightjs-ui/", "url(/images/rightjs-ui/")
+
+      if old_content != new_content
+        puts " * patching #{filename}"
+        File.open(filename, "w") do |f|
+          f.write new_content
+        end
+      end
+    end
   end
 
   #####################################################################################

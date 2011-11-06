@@ -2,7 +2,7 @@
 # Here are the global site level options
 #
 
-RIGHTJS_VERSION       = "2.2.3"
+RIGHTJS_VERSION       = "2.3.0"
 
 RIGHTJS_ROOT          = "#{RAILS_ROOT}/vendor/right_js"
 RIGHTJS_BUILD         = "#{RAILS_ROOT}/public/builds"
@@ -15,7 +15,7 @@ RIGHTJS_BUILD_HOTLINK = "#{RAILS_ROOT}/public/hotlink"
 
 RIGHTJS_UI_IMAGES     = "#{RAILS_ROOT}/public/images/rightjs-ui"
 
-RIGHTJS_PLUGINS       = %w(json effects dnd rails jquerysh sizzle table keys casting)
+RIGHTJS_PLUGINS       = %w(effects dnd rails jquerysh sizzle table keys casting)
 RIGHTJS_UIS           = %w(autocompleter calendar tabs rater slider selectable sortable
                            lightbox tooltips in-edit uploader resizable colorpicker dialog
                            billboard tags rte
