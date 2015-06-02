@@ -1,0 +1,226 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <title>RightJS: Documentation: Document</title>
+    <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+    <link href="../blog.rss" rel="alternate" title="RightJS News" type="application/rss+xml" />
+    <script src="../hotlink/right.js@1333128729" type="text/javascript"></script>
+<script src="../javascripts/application.js@1295184937" type="text/javascript"></script>
+    <script src="../builds/ui/right-autocompleter.js@1333128730" type="text/javascript"></script>
+    <link href="../stylesheets/application.css@1297515667.css" media="screen" rel="stylesheet" type="text/css" />
+    
+    
+    
+  </head>
+  <body>
+    <div id="body">
+      <div id="head">
+        <a href="../index.html" id="logo">RightJS</a>
+        <div id="slogan">JavaScript Framework That Feels Right</div>
+
+        <div id="main-menu">
+  <ul>
+    <li><a href="../index.html">Home</a></li>
+    <li><a href="../download.html">Download</a></li>
+    <li><a href="../plugins.html">Plugins</a></li>
+    <li><a href="../ui.html">UI</a></li>
+    <li><a href="../demos.html">Demos</a></li>
+    <li class="current"><a href="../docs.html">Docs</a></li>
+    <li><a href="../blog.html">Blog</a></li>
+  </ul>
+  <div id="zing"><!-- the moving thing --></div>
+</div>
+        <div id="lang-switch">
+    <select onchange="document.location.href=this.value;">
+      <option selected="true" value="http://rightjs.org/docs/document">English</option>
+      <option value="http://ru.rightjs.org/docs/document">Русский</option>
+    </select>
+</div>
+      </div>
+      <div id="main">
+        <div id="sidebar">
+
+  <div id="api-search" class="box">
+  <input type="text" value="Search API" id="api-search-field" />
+  <script type="text/javascript">
+  // <![CDATA[
+    new Autocompleter($('api-search-field').on({
+      focus: function() { this._v = this.value(); this.value(''); },
+      blur:  function() { this.value(this._v); }
+    }), {
+      url: '/docs/search/%{search}.js',
+      onDone: function() {
+        var current = this.first('.current');
+        if (current) {
+          document.location.href = current.get('title');
+        }
+        this.input.setValue(this.input._v);
+      }
+    });
+  // ]]>
+  </script>
+</div>
+
+  <div class="box" id="api-lists">
+    <label>Core</label><ul><li><a href="browser.html">Browser</a></li><li><a href="class.html">Class</a></li><li><a href="util.html">Util</a></li></ul>
+<label>Dom</label><ul><li><a href="document.html">Document</a></li><ul><li><a href="document.html#listeners">listeners</a></li><li><a href="document.html#observes">observes</a></li><li><a href="document.html#on">on</a></li><li><a href="document.html#onReady">onReady</a></li><li><a href="document.html#stopObserving">stopObserving</a></li></ul><li><a href="element.html">Element</a></li><li><a href="event.html">Event</a></li><li><a href="form.html">Form</a></li><li><a href="input.html">Input</a></li><li><a href="window.html">Window</a></li></ul>
+<label>Fx</label><ul><li><a href="fx.html">Fx</a></li><li><a href="fx/attr.html">Fx.Attr</a></li><li><a href="fx/element.html">Fx.Element</a></li><li><a href="fx/fade.html">Fx.Fade</a></li><li><a href="fx/highlight.html">Fx.Highlight</a></li><li><a href="fx/morph.html">Fx.Morph</a></li><li><a href="fx/scroll.html">Fx.Scroll</a></li><li><a href="fx/slide.html">Fx.Slide</a></li></ul>
+<label>Lang</label><ul><li><a href="array.html">Array</a></li><li><a href="function.html">Function</a></li><li><a href="json.html">Json</a></li><li><a href="math.html">Math</a></li><li><a href="number.html">Number</a></li><li><a href="object.html">Object</a></li><li><a href="regexp.html">Regexp</a></li><li><a href="string.html">String</a></li></ul>
+<label>Util</label><ul><li><a href="cookie.html">Cookie</a></li><li><a href="observer.html">Observer</a></li><li><a href="options.html">Options</a></li><li><a href="xhr.html">Xhr</a></li></ul>
+  </div>
+
+  <div class="box">
+    <a href='http://www.pledgie.com/campaigns/14259'><img alt='Donate!' src='http://www.pledgie.com/campaigns/14259.png?skin_name=chrome' border='0' /></a>
+  </div>
+
+  <div class="box">
+    <ul id="social">
+      <li><a href="../blog.rss" id="rss-link">RSS</a></li>
+      <li><a href="http://twitter.com/rightjs" id="twitter-link">Twitter</a></li>
+      <li><a href="http://github.com/rightjs" id="github-link">GitHub</a></li>
+    </ul>
+  </div>
+</div>
+
+        <div id="info">
+          
+<h1>Document</h1>
+
+<p><a href='document.html' class='api-ref'>Document</a> is a dom-wrapper designed to work with dom-documents, basically it is an API to work with events, plus the <a href='document.html#onReady' class='api-ref'>onReady</a> method to track the document-ready event.</p>
+
+<h2>Document Ready</h2>
+
+<p>The <tt>dom-ready</tt> event in RightJS is simply called <tt>ready</tt> and you can assign a listener to it in any of the standard ways:</p>
+
+<code>$(document).<u class="method">onReady</u>(<b>function</b>() {...});<br/>$(document).<u class="method">on</u>(<s>'ready'</s>, <b>function</b>() {...});</code>
+
+<h1>Methods</h1>
+<p>
+  <a href="document.html#listeners">listeners</a>, <a href="document.html#observes">observes</a>, <a href="document.html#on">on</a>, <a href="document.html#onReady">onReady</a>, <a href="document.html#stopObserving">stopObserving</a>
+</p>
+
+<div class="method">
+  <a name="listeners"></a>
+  <h2><a class="top-anchor" href="document.html#">top &uarr;</a><a href="document.html#listeners">listeners</a></h2>
+
+  <p class="semantic">
+    <code>listeners()            -&gt; <b class="unit">Array</b> of functions<br/>listeners(<b class="unit">String</b> name) -&gt; <b class="unit">Array</b> of functions</code>
+  </p>
+
+
+  <h4>Description</h4>
+  <p>Returns a list of document event listeners which can optionally be narrowed down by an event name scope.</p>
+
+
+
+  <h4>Example</h4>
+  <p>
+    <code><b class="var">var</b> func = <b>function</b>() {};<br/><br/>$(document).<u class="method">on</u>(<s>'click'</s>, func);<br/><br/>$(document).<u class="method">listeners</u>();            <i>// -&gt; [func]</i><br/>$(document).<u class="method">listeners</u>(<s>'click'</s>);     <i>// -&gt; [func]</i><br/>$(document).<u class="method">listeners</u>(<s>'mouseover'</s>); <i>// -&gt; []</i></code>
+  </p>
+
+</div><div class="method">
+  <a name="observes"></a>
+  <h2><a class="top-anchor" href="document.html#">top &uarr;</a><a href="document.html#observes">observes</a></h2>
+
+  <p class="semantic">
+    <code>observes(<b class="unit">Function</b> listener)                -&gt; boolean<br/>observes(<b class="unit">String</b> name[, <b class="unit">Function</b> listener]) -&gt; boolean</code>
+  </p>
+
+
+  <h4>Description</h4>
+  <p>Checks if the given listener observers the document events. You can do either a general check or against a specific event name.</p>
+
+
+
+  <h4>Example</h4>
+  <p>
+    <code><b class="var">var</b> func = <b>function</b>() {};<br/><br/>$(document).<u class="method">on</u>(<s>'click'</s>, func);<br/><br/>$(document).<u class="method">observes</u>(func);              <i>// -&gt; true</i><br/>$(document).<u class="method">observes</u>(<s>'mouseover'</s>, func); <i>// -&gt; false</i></code>
+  </p>
+
+</div><div class="method">
+  <a name="on"></a>
+  <h2><a class="top-anchor" href="document.html#">top &uarr;</a><a href="document.html#on">on</a></h2>
+
+  <p class="semantic">
+    <code>on(<b class="unit">String</b> name, <b class="unit">Function</b> callback[, arguments, ...]) -&gt; <b class="unit">Document</b> <b class="var">self</b></code>
+  </p>
+
+
+  <h4>Description</h4>
+  <p>The standard listeners attachment method</p>
+
+
+
+  <h4>Example</h4>
+  <p>
+    <code>$(document).<u class="method">on</u>(<s>'ready'</s>, <b>function</b>() {....});</code>
+  </p>
+
+</div><div class="method">
+  <a name="onReady"></a>
+  <h2><a class="top-anchor" href="document.html#">top &uarr;</a><a href="document.html#onReady">onReady</a></h2>
+
+  <p class="semantic">
+    <code>onReady(<b class="unit">Function</b> callback[, arguments[, ....]]) -&gt; <b class="unit">Document</b> <b class="var">self</b></code>
+  </p>
+
+
+  <h4>Description</h4>
+  <p>A shortcut method for <tt>on('ready', ...)</tt></p>
+
+
+
+  <h4>Example</h4>
+  <p>
+    <code>$(document).<u class="method">onReady</u>(<b>function</b>() {....});</code>
+  </p>
+
+</div><div class="method">
+  <a name="stopObserving"></a>
+  <h2><a class="top-anchor" href="document.html#">top &uarr;</a><a href="document.html#stopObserving">stopObserving</a></h2>
+
+  <p class="semantic">
+    <code>stopObserving(<b class="unit">Function</b> listener)       -&gt; <b class="unit">Document</b> <b class="var">self</b><br/>stopObserving(<b class="unit">String</b> name[, listener]) -&gt; <b class="unit">Document</b> <b class="var">self</b></code>
+  </p>
+
+
+  <h4>Description</h4>
+  <p>Unsubscribes the event listener. This can be done globally for a particular event name, for some particular listener or for some particular listener and event name.</p>
+
+
+
+  <h4>Example</h4>
+  <p>
+    <code><b class="var">var</b> listener = <b>function</b>() {};<br/><br/>$(document).<u class="method">on</u>(<s>'click'</s>, listener);<br/><br/>$(document).<u class="method">stopObserving</u>(<s>'click'</s>);<br/><br/>$(document).<u class="method">stopObserving</u>(listner);<br/><br/>$(document).<u class="method">stopObserving</u>(<s>'click'</s>, listner);</code>
+  </p>
+
+</div>
+
+        </div>
+        <div style="clear:both"></div>
+      </div>
+      <div id="foot">
+        <div id="contacts">
+  <h2>Questions?</h2>
+  <a href="&#x6D;&#x61;i&#x6C;&#x74;&#x6F;:&#105;&#110;&#102;&#111;&#064;&#114;&#105;&#103;&#104;&#116;&#106;&#115;&#046;&#111;&#114;&#103;">&#105;&#110;&#102;&#111;&#064;&#114;&#105;&#103;&#104;&#116;&#106;&#115;&#046;&#111;&#114;&#103;</a>
+</div>
+<div id="bottom-menu">
+  <h2>About the Framework</h2>
+  <a href="../philosophy.html">Philosophy</a> |
+  <a href="../benchmarks.html">Benchmarks</a> |
+  <a href="../browsers.html">Browsers</a> |
+  <a href="../contacts.html">Contacts</a>
+</div>
+        <div id="design">Design by <a href="http://activestylus.com">Steven Garcia</a></div>
+        <div id="copyright">Copyright &copy; 2008-2011 Nikolay Nemshilov</div>
+      </div>
+    </div>
+
+    <script src="http://www.google-analytics.com/ga.js" type="text/javascript"></script>
+    <script type="text/javascript">
+    // <![CDATA[
+      try { _gat._getTracker("UA-10292980-1")._trackPageview(); } catch(err) {}
+    // ]]>
+    </script>
+  </body>
+</html>

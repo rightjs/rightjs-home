@@ -1,0 +1,661 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <title>RightJS: Documentation: Array</title>
+    <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+    <link href="../blog.rss" rel="alternate" title="RightJS News" type="application/rss+xml" />
+    <script src="../hotlink/right.js@1333128729" type="text/javascript"></script>
+<script src="../javascripts/application.js@1295184937" type="text/javascript"></script>
+    <script src="../builds/ui/right-autocompleter.js@1333128730" type="text/javascript"></script>
+    <link href="../stylesheets/application.css@1297515667.css" media="screen" rel="stylesheet" type="text/css" />
+    
+    
+    
+  </head>
+  <body>
+    <div id="body">
+      <div id="head">
+        <a href="../index.html" id="logo">RightJS</a>
+        <div id="slogan">JavaScript Framework That Feels Right</div>
+
+        <div id="main-menu">
+  <ul>
+    <li><a href="../index.html">Home</a></li>
+    <li><a href="../download.html">Download</a></li>
+    <li><a href="../plugins.html">Plugins</a></li>
+    <li><a href="../ui.html">UI</a></li>
+    <li><a href="../demos.html">Demos</a></li>
+    <li class="current"><a href="../docs.html">Docs</a></li>
+    <li><a href="../blog.html">Blog</a></li>
+  </ul>
+  <div id="zing"><!-- the moving thing --></div>
+</div>
+        <div id="lang-switch">
+    <select onchange="document.location.href=this.value;">
+      <option selected="true" value="http://rightjs.org/docs/array">English</option>
+      <option value="http://ru.rightjs.org/docs/array">Русский</option>
+    </select>
+</div>
+      </div>
+      <div id="main">
+        <div id="sidebar">
+
+  <div id="api-search" class="box">
+  <input type="text" value="Search API" id="api-search-field" />
+  <script type="text/javascript">
+  // <![CDATA[
+    new Autocompleter($('api-search-field').on({
+      focus: function() { this._v = this.value(); this.value(''); },
+      blur:  function() { this.value(this._v); }
+    }), {
+      url: '/docs/search/%{search}.js',
+      onDone: function() {
+        var current = this.first('.current');
+        if (current) {
+          document.location.href = current.get('title');
+        }
+        this.input.setValue(this.input._v);
+      }
+    });
+  // ]]>
+  </script>
+</div>
+
+  <div class="box" id="api-lists">
+    <label>Core</label><ul><li><a href="browser.html">Browser</a></li><li><a href="class.html">Class</a></li><li><a href="util.html">Util</a></li></ul>
+<label>Dom</label><ul><li><a href="document.html">Document</a></li><li><a href="element.html">Element</a></li><li><a href="event.html">Event</a></li><li><a href="form.html">Form</a></li><li><a href="input.html">Input</a></li><li><a href="window.html">Window</a></li></ul>
+<label>Fx</label><ul><li><a href="fx.html">Fx</a></li><li><a href="fx/attr.html">Fx.Attr</a></li><li><a href="fx/element.html">Fx.Element</a></li><li><a href="fx/fade.html">Fx.Fade</a></li><li><a href="fx/highlight.html">Fx.Highlight</a></li><li><a href="fx/morph.html">Fx.Morph</a></li><li><a href="fx/scroll.html">Fx.Scroll</a></li><li><a href="fx/slide.html">Fx.Slide</a></li></ul>
+<label>Lang</label><ul><li><a href="array.html">Array</a></li><ul><li><a href="array.html#include">include</a></li><li><a href="array.html#clean">clean</a></li><li><a href="array.html#clone">clone</a></li><li><a href="array.html#compact">compact</a></li><li><a href="array.html#each">each</a></li><li><a href="array.html#empty">empty</a></li><li><a href="array.html#every">every</a></li><li><a href="array.html#filter">filter</a></li><li><a href="array.html#first">first</a></li><li><a href="array.html#flatten">flatten</a></li><li><a href="array.html#includes">includes</a></li><li><a href="array.html#indexOf">indexOf</a></li><li><a href="array.html#last">last</a></li><li><a href="array.html#lastIndexOf">lastIndexOf</a></li><li><a href="array.html#map">map</a></li><li><a href="array.html#max">max</a></li><li><a href="array.html#merge">merge</a></li><li><a href="array.html#min">min</a></li><li><a href="array.html#random">random</a></li><li><a href="array.html#reject">reject</a></li><li><a href="array.html#shuffle">shuffle</a></li><li><a href="array.html#size">size</a></li><li><a href="array.html#some">some</a></li><li><a href="array.html#sortBy">sortBy</a></li><li><a href="array.html#sum">sum</a></li><li><a href="array.html#uniq">uniq</a></li><li><a href="array.html#walk">walk</a></li><li><a href="array.html#without">without</a></li></ul><li><a href="function.html">Function</a></li><li><a href="json.html">Json</a></li><li><a href="math.html">Math</a></li><li><a href="number.html">Number</a></li><li><a href="object.html">Object</a></li><li><a href="regexp.html">Regexp</a></li><li><a href="string.html">String</a></li></ul>
+<label>Util</label><ul><li><a href="cookie.html">Cookie</a></li><li><a href="observer.html">Observer</a></li><li><a href="options.html">Options</a></li><li><a href="xhr.html">Xhr</a></li></ul>
+  </div>
+
+  <div class="box">
+    <a href='http://www.pledgie.com/campaigns/14259'><img alt='Donate!' src='http://www.pledgie.com/campaigns/14259.png?skin_name=chrome' border='0' /></a>
+  </div>
+
+  <div class="box">
+    <ul id="social">
+      <li><a href="../blog.rss" id="rss-link">RSS</a></li>
+      <li><a href="http://twitter.com/rightjs" id="twitter-link">Twitter</a></li>
+      <li><a href="http://github.com/rightjs" id="github-link">GitHub</a></li>
+    </ul>
+  </div>
+</div>
+
+        <div id="info">
+          
+<h1>Array</h1>
+
+<p>RightJS extends the Array unit prototype in several ways. First of all it adds standard JavaScript 1.6 methods like <a href='array.html#map' class='api-ref'>map</a>, <a href='array.html#filter' class='api-ref'>filter</a> and so on to browsers that don&#8217;t support these methods yet. In other words: You can use these new JavaScript 1.6 features without having to worry whether your browsers support it or not.</p>
+
+<p>Secondly, it provides self-referential callback definitions by method names, which is extremely handy when you need to just call the same method on all array elements or process the same attribute. For example:</p>
+
+<code><b class="var">var</b> elements = $$(<s>'some css rule'</s>);<br/><br/>elements.<u class="method">each</u>(<s>'hide'</s>);<br/>elements.<u class="method">each</u>(<s>'addClass'</s>, <s>'marked'</s>);<br/>elements.<u class="method">each</u>(<s>'onClick'</s>, <b>function</b>() {});<br/><br/><b class="var">var</b> ids = elements.<u class="method">map</u>(<s>'get'</s>, <s>'id'</s>);<br/><b class="var">var</b> classes = elements.<u class="method">map</u>(<s>'get'</s>, <s>'className'</s>).<u class="method">map</u>(<s>'split'</s>, <s class="re">/\s+/</s>).<u class="method">flatten</u>().<u class="method">uniq</u>();<br/><br/><b class="var">var</b> visible_elements = elements.<u class="method">filter</u>(<s>'visible'</s>);<br/><b class="var">var</b> marked_elements  = elements.<u class="method">filter</u>(<s>'hasClass'</s>, <s>'marked'</s>);</code>
+
+<p>Finally, it adds several additional but standard methods like <a href='array.html#compact' class='api-ref'>compact</a>, <a href='array.html#uniq' class='api-ref'>uniq</a> or <a href='array.html#merge' class='api-ref'>merge</a>. Most of them are equivalents of Ruby Array methods.</p>
+
+<h2>Iterators Handling</h2>
+
+<p>There are two ways of using iterators. Either pass a lambda function, which will receive the following three arguments on every iteration:</p>
+
+<ul>
+<li>the current array element</li>
+
+<li>the element index in the array</li>
+
+<li>the instance of the array itself</li>
+</ul>
+
+<p>Or pass a method name (string) as the first argument and optional additional arguments. The method will be called on every iteration along with the additional arguments, for example:</p>
+
+<code>[...].<u class="method">each</u>(<s>'foo'</s>, <s class="int">1</s>, <s class="int">2</s>, <s class="int">3</s>);</code>
+
+<p>The method &#8216;foo(1, 2, 3)&#8217; will be called for every element of the array.</p>
+
+<h1>Methods</h1>
+<p>
+  <a href="array.html#include">include</a>, <a href="array.html#clean">clean</a>, <a href="array.html#clone">clone</a>, <a href="array.html#compact">compact</a>, <a href="array.html#each">each</a>, <a href="array.html#empty">empty</a>, <a href="array.html#every">every</a>, <a href="array.html#filter">filter</a>, <a href="array.html#first">first</a>, <a href="array.html#flatten">flatten</a>, <a href="array.html#includes">includes</a>, <a href="array.html#indexOf">indexOf</a>, <a href="array.html#last">last</a>, <a href="array.html#lastIndexOf">lastIndexOf</a>, <a href="array.html#map">map</a>, <a href="array.html#max">max</a>, <a href="array.html#merge">merge</a>, <a href="array.html#min">min</a>, <a href="array.html#random">random</a>, <a href="array.html#reject">reject</a>, <a href="array.html#shuffle">shuffle</a>, <a href="array.html#size">size</a>, <a href="array.html#some">some</a>, <a href="array.html#sortBy">sortBy</a>, <a href="array.html#sum">sum</a>, <a href="array.html#uniq">uniq</a>, <a href="array.html#walk">walk</a>, <a href="array.html#without">without</a>
+</p>
+
+<div class="method">
+  <a name="include"></a>
+  <h2><a class="top-anchor" href="array.html#">top &uarr;</a><a href="array.html#include">include</a></h2>
+
+  <p class="semantic">
+    <code><b class="unit">Array</b>.<u class="method">include</u>(<b class="unit">Object</b> new_methods[, <b class="unit">Boolean</b> dont_overwrite) -&gt; <b class="unit">Array</b></code>
+  </p>
+
+
+  <h4>Description</h4>
+  <p>Registers new functionality for <tt>Array</tt> instances</p>
+
+<p>If the second argument is <tt>true</tt>, then the method <em>will skip</em> already existing methods</p>
+
+
+
+  <h4>Example</h4>
+  <p>
+    <code><b class="unit">Array</b>.<u class="method">include</u>({<br/>  <s class="key">double</s>: <b>function</b>() {<br/>    <b>return</b> [<b class="var">this</b>.<u class="method">clone</u>(), <b class="var">this</b>.<u class="method">clone</u>()];<br/>  }<br/>});<br/><br/>[<s class="int">1</s>].<u class="method">double</u>(); <i>// -&gt; [[1], [1]]</i></code>
+  </p>
+
+</div><div class="method">
+  <a name="clean"></a>
+  <h2><a class="top-anchor" href="array.html#">top &uarr;</a><a href="array.html#clean">clean</a></h2>
+
+  <p class="semantic">
+    <code>clean() -&gt; <b class="unit">Array</b> <b class="var">self</b></code>
+  </p>
+
+
+  <h4>Description</h4>
+  <p>Shrinks the array to zero elements without loosing the object reference.</p>
+
+
+
+</div><div class="method">
+  <a name="clone"></a>
+  <h2><a class="top-anchor" href="array.html#">top &uarr;</a><a href="array.html#clone">clone</a></h2>
+
+  <p class="semantic">
+    <code>clone() -&gt; <b class="var">new</b> <b class="unit">Array</b></code>
+  </p>
+
+
+  <h4>Description</h4>
+  <p>Creates a new array that contains all the same elements as the original one.</p>
+
+
+
+</div><div class="method">
+  <a name="compact"></a>
+  <h2><a class="top-anchor" href="array.html#">top &uarr;</a><a href="array.html#compact">compact</a></h2>
+
+  <p class="semantic">
+    <code>compact() -&gt; <b class="unit">Array</b> <b class="var">new</b></code>
+  </p>
+
+
+  <h4>Description</h4>
+  <p>Creates a new array that contains all non-null and non-undefined elements from the original one.</p>
+
+
+
+  <h4>Example</h4>
+  <p>
+    <code>[<b class="rest">null</b>, <s class="int">0</s>, <b class="rest">undefined</b>, <s class="int">1</s>, <s class="int">2</s>, <s class="int">3</s>, <b class="rest">null</b>].<u class="method">compact</u>();<br/><br/><i>// -&gt; [0, 1, 2, 3];</i></code>
+  </p>
+
+</div><div class="method">
+  <a name="each"></a>
+  <h2><a class="top-anchor" href="array.html#">top &uarr;</a><a href="array.html#each">each</a></h2>
+
+  <p class="semantic">
+    <code>each(<b class="unit">Function</b> lambda[, <b class="unit">Object</b> scope]) -&gt; <b class="unit">Array</b> <b class="var">self</b><br/>each(<b class="unit">String</b> name[, argument, ...])    -&gt; <b class="unit">Array</b> <b class="var">self</b></code>
+  </p>
+
+
+  <h4>Description</h4>
+  <p>Calls the given function in the given optional scope on every element in the array.</p>
+
+
+
+  <h4>Example</h4>
+  <p>
+    <code><b class="var">var</b> elements = some_html_elements_list;<br/><br/>elements.<u class="method">each</u>(<b>function</b>(element, i) {<br/>  <b>if</b> (i % <s class="int">2</s> == <s class="int">0</s>) {<br/>    element.<u class="method">hide</u>();<br/>  } <b>else</b> {<br/>    element.<u class="method">show</u>();<br/>  }<br/>});<br/><br/>elements.<u class="method">each</u>(<s>'toggle'</s>); <i>// will call toggle() on every element of the array</i><br/>elements.<u class="method">each</u>(<s>'addClass'</s>, <s>'marked'</s>); <i>// will add the 'marked' class to every element</i></code>
+  </p>
+
+</div><div class="method">
+  <a name="empty"></a>
+  <h2><a class="top-anchor" href="array.html#">top &uarr;</a><a href="array.html#empty">empty</a></h2>
+
+  <p class="semantic">
+    <code>empty() -&gt; boolean</code>
+  </p>
+
+
+  <h4>Description</h4>
+  <p>Checks if the array contains no elements.</p>
+
+
+
+</div><div class="method">
+  <a name="every"></a>
+  <h2><a class="top-anchor" href="array.html#">top &uarr;</a><a href="array.html#every">every</a></h2>
+
+  <p class="semantic">
+    <code>every()                                -&gt; boolean<br/>every(<b class="unit">Function</b> lambda[, <b class="unit">Object</b> scope]) -&gt; boolean<br/>every(<b class="unit">String</b> name[, argument, ...])    -&gt; boolean</code>
+  </p>
+
+
+  <h4>Description</h4>
+  <p>Checks if every item in the array passes the condition in the given function.</p>
+
+<p>If no function is provided, every element will be checked as a boolean value:</p>
+
+
+
+  <h4>Example</h4>
+  <p>
+    <code>[<s class="int">1</s>,<s class="int">2</s>,<s class="int">3</s>,<s class="int">4</s>].<u class="method">every</u>() <i>// -&gt; true</i><br/>[<s class="int">0</s>,<s class="int">1</s>,<s class="int">2</s>,<s class="int">3</s>].<u class="method">every</u>() <i>// -&gt; false</i><br/><br/>[<s class="int">1</s>,<s class="int">2</s>,<s class="int">3</s>].<u class="method">every</u>(<b>function</b>(i) { <b>return</b> i &gt; <s class="int">0</s>}) <i>// -&gt; true</i><br/>[<s class="int">0</s>,<s class="int">1</s>,<s class="int">2</s>].<u class="method">every</u>(<b>function</b>(i) { <b>return</b> i &gt; <s class="int">0</s>}) <i>// -&gt; false</i><br/><br/>[<s>'moo'</s>, <s>'foo'</s>, <s>'boo'</s>].<u class="method">every</u>(<s>'match'</s>, <s>'oo'</s>) <i>// -&gt; true</i><br/>[<s>'moo'</s>, <s>'foo'</s>, <s>'bar'</s>].<u class="method">every</u>(<s>'match'</s>, <s>'oo'</s>) <i>// -&gt; false</i></code>
+  </p>
+
+</div><div class="method">
+  <a name="filter"></a>
+  <h2><a class="top-anchor" href="array.html#">top &uarr;</a><a href="array.html#filter">filter</a></h2>
+
+  <p class="semantic">
+    <code>filter(<b class="unit">Function</b> lambda[, <b class="unit">Object</b> scope]) -&gt; <b class="unit">Array</b> <b class="var">new</b><br/>filter(<b class="unit">String</b> name[, argument, ...])    -&gt; <b class="unit">Array</b> <b class="var">new</b></code>
+  </p>
+
+
+  <h4>Description</h4>
+  <p>Creates a new array that contains all the items from the original array that pass the condition in the lambda function:</p>
+
+
+
+  <h4>Example</h4>
+  <p>
+    <code><b class="var">var</b> strings = [<s>'anny'</s>, <s>'manny'</s>, <s>'banny'</s>, <s>'bob'</s>];<br/><br/>strings.<u class="method">filter</u>(<b>function</b>(string, i) {<br/>  <b>return</b> string.<u>length</u> &gt; (i+<s class="int">1</s>);<br/>});<br/><i>// -&gt; ['anny', 'manny', 'banny'];</i><br/><br/>strings.<u class="method">filter</u>(<s>'match'</s>, <s class="re">/[a-z]ann/</s>);<br/><i>// -&gt; ['anny', 'manny', 'banny']</i></code>
+  </p>
+
+</div><div class="method">
+  <a name="first"></a>
+  <h2><a class="top-anchor" href="array.html#">top &uarr;</a><a href="array.html#first">first</a></h2>
+
+  <p class="semantic">
+    <code>first()                                  -&gt; mixed<br/>first([<b class="unit">Function</b> lambda[, <b class="unit">Object</b> scope]]) -&gt; mixed<br/>first([<b class="unit">String</b> name[, argument, ...]])    -&gt; mixed</code>
+  </p>
+
+
+  <h4>Description</h4>
+  <p>Returns the first element of the array or <tt>undefined</tt> if the array is empty.</p>
+
+<p>If a callback is provided, the method will return the first element that passes the condition in the function:</p>
+
+
+
+  <h4>Example</h4>
+  <p>
+    <code>[<s class="int">1</s>,<s class="int">2</s>,<s class="int">3</s>,<s class="int">4</s>].<u class="method">first</u>() <i>// -&gt; 1</i><br/><br/>[<s class="int">1</s>,<s class="int">2</s>,<s class="int">3</s>,<s class="int">4</s>].<u class="method">first</u>(<b>function</b>(i) { <b>return</b> i &gt; <s class="int">1</s>; }) <i>// -&gt; 2</i><br/><br/>[<s>'bar'</s>, <s>'foo'</s>, <s>'moo'</s>].<u class="method">first</u>(<s>'match'</s>, <s>'oo'</s>) <i>// -&gt; 'foo'</i></code>
+  </p>
+
+</div><div class="method">
+  <a name="flatten"></a>
+  <h2><a class="top-anchor" href="array.html#">top &uarr;</a><a href="array.html#flatten">flatten</a></h2>
+
+  <p class="semantic">
+    <code>flatten() -&gt; <b class="unit">Array</b> <b class="var">new</b></code>
+  </p>
+
+
+  <h4>Description</h4>
+  <p>Converts a multi-dimensional array into a flat list.</p>
+
+
+
+  <h4>Example</h4>
+  <p>
+    <code>[<s class="int">0</s>,<s class="int">1</s>,[<s class="int">2</s>,<s class="int">3</s>,[<s class="int">4</s>,<s class="int">5</s>,[<s class="int">6</s>,<s class="int">7</s>],<s class="int">8</s>],<s class="int">9</s>]].<u class="method">flatten</u>();<br/><br/><i>// -&gt; [0,1,2,3,4,5,6,7,8,9];</i></code>
+  </p>
+
+</div><div class="method">
+  <a name="includes"></a>
+  <h2><a class="top-anchor" href="array.html#">top &uarr;</a><a href="array.html#includes">includes</a></h2>
+
+  <p class="semantic">
+    <code>includes(mixed value[, mixed value,...]) -&gt; boolean</code>
+  </p>
+
+
+  <h4>Description</h4>
+  <p>Checks whether the given value is present in the array. If several values are passed, the presence of <em>all</em> of them are checked:</p>
+
+
+
+  <h4>Example</h4>
+  <p>
+    <code>[<s class="int">0</s>,<s class="int">1</s>,<s class="int">2</s>,<s class="int">3</s>].<u class="method">includes</u>(<s class="int">0</s>);   <i>// true</i><br/>[<s class="int">0</s>,<s class="int">1</s>,<s class="int">2</s>,<s class="int">3</s>].<u class="method">includes</u>(<s class="int">4</s>);   <i>// false</i><br/>[<s class="int">0</s>,<s class="int">1</s>,<s class="int">2</s>,<s class="int">3</s>].<u class="method">includes</u>(<s class="int">1</s>,<s class="int">2</s>); <i>// true</i><br/>[<s class="int">0</s>,<s class="int">1</s>,<s class="int">2</s>,<s class="int">3</s>].<u class="method">includes</u>(<s class="int">2</s>,<s class="int">4</s>); <i>// false</i></code>
+  </p>
+
+</div><div class="method">
+  <a name="indexOf"></a>
+  <h2><a class="top-anchor" href="array.html#">top &uarr;</a><a href="array.html#indexOf">indexOf</a></h2>
+
+  <p class="semantic">
+    <code>indexOf(mixed value) -&gt; <b class="unit">Integer</b></code>
+  </p>
+
+
+  <h4>Description</h4>
+  <p>Searches the array for the given value and returns the index of the <em>first</em> appearance or -1 if the value is not found in the array.</p>
+
+
+
+</div><div class="method">
+  <a name="last"></a>
+  <h2><a class="top-anchor" href="array.html#">top &uarr;</a><a href="array.html#last">last</a></h2>
+
+  <p class="semantic">
+    <code>last()                                  -&gt; mixed<br/>last([<b class="unit">Function</b> lambda[, <b class="unit">Object</b> scope]]) -&gt; mixed<br/>last([<b class="unit">String</b> name[, argument, ...]])    -&gt; mixed</code>
+  </p>
+
+
+  <h4>Description</h4>
+  <p>Returns the last element of the array or <tt>undefined</tt> if the array is empty.</p>
+
+<p>If a callback is provided, the method will return the last element that passes the condition in the function:</p>
+
+
+
+  <h4>Example</h4>
+  <p>
+    <code>[<s class="int">1</s>,<s class="int">2</s>,<s class="int">3</s>,<s class="int">4</s>].<u class="method">last</u>() <i>// -&gt; 4</i><br/><br/>[<s class="int">1</s>,<s class="int">2</s>,<s class="int">3</s>,<s class="int">4</s>].<u class="method">last</u>(<b>function</b>(i) { <b>return</b> i &lt; <s class="int">4</s>; }) <i>// -&gt; 3</i><br/><br/>[<s>'foo'</s>, <s>'moo'</s>, <s>'bar'</s>].<u class="method">last</u>(<s>'match'</s>, <s>'oo'</s>) <i>// -&gt; 'moo'</i></code>
+  </p>
+
+</div><div class="method">
+  <a name="lastIndexOf"></a>
+  <h2><a class="top-anchor" href="array.html#">top &uarr;</a><a href="array.html#lastIndexOf">lastIndexOf</a></h2>
+
+  <p class="semantic">
+    <code>lastIndexOf(mixed value) -&gt; <b class="unit">Integer</b></code>
+  </p>
+
+
+  <h4>Description</h4>
+  <p>Searches the array for the given value and returns the index of the <em>last</em> appearance or -1 if the value is not found in the array.</p>
+
+
+
+</div><div class="method">
+  <a name="map"></a>
+  <h2><a class="top-anchor" href="array.html#">top &uarr;</a><a href="array.html#map">map</a></h2>
+
+  <p class="semantic">
+    <code>map(<b class="unit">Function</b> lambda[, <b class="unit">Object</b> scope]) -&gt; <b class="unit">Array</b> <b class="var">new</b><br/>map(<b class="unit">String</b> name[, argument, ...])    -&gt; <b class="unit">Array</b> <b class="var">new</b></code>
+  </p>
+
+
+  <h4>Description</h4>
+  <p>Collects the results of applying the lambda function on every element of the array.</p>
+
+
+
+  <h4>Example</h4>
+  <p>
+    <code><b class="var">var</b> strings = [<s>'anny'</s>, <s>'banny'</s>, <s>'manny'</s>];<br/><br/>strings.<u class="method">map</u>(<b>function</b>(string, i) {<br/>  <b>return</b> (i+<s class="int">1</s>)+<s>'. '</s>+string;<br/>});<br/><br/><i>// -&gt; ['1. anny', '2. banny', '3. manny'];</i><br/><br/>strings.<u class="method">map</u>(<s>'capitalize'</s>);<br/><br/><i>// -&gt; ['Anny', 'Banny', 'Manny'];</i><br/><br/>strings.<u class="method">map</u>(<s>'replace'</s>, <s>'nn'</s>, <s>'b'</s>);<br/><br/><i>// -&gt; ['aby', 'baby', 'maby'];</i></code>
+  </p>
+
+</div><div class="method">
+  <a name="max"></a>
+  <h2><a class="top-anchor" href="array.html#">top &uarr;</a><a href="array.html#max">max</a></h2>
+
+  <p class="semantic">
+    <code>max() -&gt; number maximal</code>
+  </p>
+
+
+  <h4>Description</h4>
+  <p>Returns a maximal number in the array</p>
+
+
+
+  <h4>Example</h4>
+  <p>
+    <code>[<s class="int">1</s>, <s class="int">2</s>, <s class="int">3</s>].<u class="method">max</u>(); <i>// -&gt; 3</i></code>
+  </p>
+
+</div><div class="method">
+  <a name="merge"></a>
+  <h2><a class="top-anchor" href="array.html#">top &uarr;</a><a href="array.html#merge">merge</a></h2>
+
+  <p class="semantic">
+    <code>merge(<b class="unit">Array</b> list[, <b class="unit">Array</b> list, ...]) -&gt; <b class="unit">Array</b> <b class="var">new</b></code>
+  </p>
+
+
+  <h4>Description</h4>
+  <p>Picks up items from the given arrays that do not exist in the current array, combines them with the items from the current array and returns the result as a new array.</p>
+
+
+
+  <h4>Example</h4>
+  <p>
+    <code>[<s class="int">0</s>,<s class="int">1</s>,<s class="int">2</s>,<s class="int">3</s>].<u class="method">merge</u>([<s class="int">2</s>,<s class="int">3</s>,<s class="int">4</s>], [<s class="int">3</s>,<s class="int">4</s>,<s class="int">5</s>], [<s class="int">1</s>,<s class="int">5</s>,<s class="int">6</s>]);<br/><br/><i>// -&gt; [0,1,2,3,4,5,6];</i></code>
+  </p>
+
+</div><div class="method">
+  <a name="min"></a>
+  <h2><a class="top-anchor" href="array.html#">top &uarr;</a><a href="array.html#min">min</a></h2>
+
+  <p class="semantic">
+    <code>min() -&gt; number minimal</code>
+  </p>
+
+
+  <h4>Description</h4>
+  <p>Returns a minimal number in the array</p>
+
+
+
+  <h4>Example</h4>
+  <p>
+    <code>[<s class="int">1</s>, <s class="int">2</s>, <s class="int">3</s>].<u class="method">min</u>(); <i>// -&gt; 1</i></code>
+  </p>
+
+</div><div class="method">
+  <a name="random"></a>
+  <h2><a class="top-anchor" href="array.html#">top &uarr;</a><a href="array.html#random">random</a></h2>
+
+  <p class="semantic">
+    <code>random() -&gt; mixed</code>
+  </p>
+
+
+  <h4>Description</h4>
+  <p>Returns a random element from the array or <tt>undefined</tt> if the array is empty.</p>
+
+
+
+</div><div class="method">
+  <a name="reject"></a>
+  <h2><a class="top-anchor" href="array.html#">top &uarr;</a><a href="array.html#reject">reject</a></h2>
+
+  <p class="semantic">
+    <code>reject(<b class="unit">Function</b> lambda[, <b class="unit">Object</b> scope]) -&gt; <b class="unit">Array</b> <b class="var">new</b><br/>reject(<b class="unit">String</b> name[, argument, ...])    -&gt; <b class="unit">Array</b> <b class="var">new</b></code>
+  </p>
+
+
+  <h4>Description</h4>
+  <p>An opposite to the <a href='array.html#filter' class='api-ref'>filter</a> method</p>
+
+
+
+  <h4>Example</h4>
+  <p>
+    <code><b class="var">var</b> strings = [<s>'anny'</s>, <s>'manny'</s>, <s>'banny'</s>, <s>'bob'</s>];<br/><br/>strings.<u class="method">reject</u>(<b>function</b>(string, i) {<br/>  <b>return</b> string.<u>length</u> &gt; (i+<s class="int">1</s>);<br/>});<br/><i>// -&gt; ['bob'];</i><br/><br/>strings.<u class="method">reject</u>(<s>'match'</s>, <s class="re">/[a-z]ann/</s>);<br/><i>// -&gt; ['bob']</i></code>
+  </p>
+
+</div><div class="method">
+  <a name="shuffle"></a>
+  <h2><a class="top-anchor" href="array.html#">top &uarr;</a><a href="array.html#shuffle">shuffle</a></h2>
+
+  <p class="semantic">
+    <code>shuffle() -&gt; <b class="unit">Array</b> <b class="var">new</b></code>
+  </p>
+
+
+  <h4>Description</h4>
+  <p>Creates a new array, which contains has all the same items as the original one but in a random order.</p>
+
+
+
+  <h4>Example</h4>
+  <p>
+    <code>[<s class="int">0</s>,<s class="int">1</s>,<s class="int">2</s>,<s class="int">3</s>,<s class="int">4</s>].<u class="method">shuffle</u>();<br/><br/><i>// -&gt; [3, 4, 0, 1, 2]</i></code>
+  </p>
+
+</div><div class="method">
+  <a name="size"></a>
+  <h2><a class="top-anchor" href="array.html#">top &uarr;</a><a href="array.html#size">size</a></h2>
+
+  <p class="semantic">
+    <code>size() -&gt; <b class="unit">Integer</b></code>
+  </p>
+
+
+  <h4>Description</h4>
+  <p>Returns the length of the array.</p>
+
+
+
+  <h4>Example</h4>
+  <p>
+    <code>[<s class="int">1</s>,<s class="int">2</s>,<s class="int">3</s>].<u class="method">size</u>(); <i>// -&gt; 3</i></code>
+  </p>
+
+</div><div class="method">
+  <a name="some"></a>
+  <h2><a class="top-anchor" href="array.html#">top &uarr;</a><a href="array.html#some">some</a></h2>
+
+  <p class="semantic">
+    <code>some()                                -&gt; boolean<br/>some(<b class="unit">Function</b> lambda[, <b class="unit">Object</b> scope]) -&gt; boolean<br/>some(<b class="unit">String</b> name[, argument, ...])    -&gt; boolean</code>
+  </p>
+
+
+  <h4>Description</h4>
+  <p>Checks if any of the elements in the array passes the condition in the function.</p>
+
+<p>If no function is provided, every element will be checked as a boolean value:</p>
+
+
+
+  <h4>Example</h4>
+  <p>
+    <code>[<s class="int">0</s>,<b class="rest">false</b>,<s class="int">1</s>].<u class="method">some</u>()    <i>// -&gt; true</i><br/>[<s class="int">0</s>,<b class="rest">false</b>,<b class="rest">null</b>].<u class="method">some</u>() <i>// -&gt; false</i><br/><br/>[<s class="int">0</s>,<s class="int">1</s>,<s class="int">2</s>].<u class="method">some</u>(<b>function</b>(i) { <b>return</b> i == <s class="int">0</s>; }) <i>// -&gt; true</i><br/>[<s class="int">1</s>,<s class="int">2</s>,<s class="int">3</s>].<u class="method">some</u>(<b>function</b>(i) { <b>return</b> i == <s class="int">0</s>; }) <i>// -&gt; false</i><br/><br/>[<s>'foo'</s>, <s>'bar'</s>].<u class="method">some</u>(<s>'match'</s>, <s>'bar'</s>) <i>// -&gt; true</i><br/>[<s>'foo'</s>, <s>'boo'</s>].<u class="method">some</u>(<s>'match'</s>, <s>'bar'</s>) <i>// -&gt; false</i></code>
+  </p>
+
+</div><div class="method">
+  <a name="sortBy"></a>
+  <h2><a class="top-anchor" href="array.html#">top &uarr;</a><a href="array.html#sortBy">sortBy</a></h2>
+
+  <p class="semantic">
+    <code>sortBy(<b class="unit">Function</b> lambda[, scope])      -&gt; <b class="unit">Array</b> <b class="var">new</b><br/>sortBy(<b class="unit">String</b> attr_name[, arguments]) -&gt; <b class="unit">Array</b> <b class="var">new</b></code>
+  </p>
+
+
+  <h4>Description</h4>
+  <p>Creates a new array by sorting the current one. Sorting is done by the results of either the given lambda function or the given attribute (string):</p>
+
+
+
+  <h4>Example</h4>
+  <p>
+    <code>[{<s class="key">t</s>:<s class="int">3</s>}, {<s class="key">t</s>:<s class="int">2</s>}, {<s class="key">t</s>:<s class="int">1</s>}].<u class="method">sortBy</u>(<b>function</b>(element) {<br/>  <b>return</b> element.<u>t</u>;<br/>});<br/><br/><i>// -&gt; [{t:1}, {t:2}, {t:3}]</i><br/><br/>[{<s class="key">t</s>:<s class="int">3</s>}, {<s class="key">t</s>:<s class="int">2</s>}, {<s class="key">t</s>:<s class="int">1</s>}].<u class="method">sortBy</u>(<s>'t'</s>);<br/><br/><i>// -&gt; [{t:1}, {t:2}, {t:3}]</i></code>
+  </p>
+
+</div><div class="method">
+  <a name="sum"></a>
+  <h2><a class="top-anchor" href="array.html#">top &uarr;</a><a href="array.html#sum">sum</a></h2>
+
+  <p class="semantic">
+    <code>sum() -&gt; number sum</code>
+  </p>
+
+
+  <h4>Description</h4>
+  <p>Returns a sum of all numbers in the array</p>
+
+
+
+  <h4>Example</h4>
+  <p>
+    <code>[<s class="int">1</s>, <s class="int">2</s>, <s class="int">3</s>].<u class="method">sum</u>(); <i>// -&gt; 6</i></code>
+  </p>
+
+</div><div class="method">
+  <a name="uniq"></a>
+  <h2><a class="top-anchor" href="array.html#">top &uarr;</a><a href="array.html#uniq">uniq</a></h2>
+
+  <p class="semantic">
+    <code>uniq() -&gt; <b class="unit">Array</b> <b class="var">new</b></code>
+  </p>
+
+
+  <h4>Description</h4>
+  <p>Creates a new array that contains only unique entries of the original</p>
+
+
+
+  <h4>Example</h4>
+  <p>
+    <code>[<s class="int">0</s>,<s class="int">1</s>,<s class="int">1</s>,<s class="int">2</s>,<s class="int">0</s>,<s class="int">1</s>,<s class="int">2</s>,<s class="int">3</s>,<s class="int">3</s>].<u class="method">uniq</u>();<br/><br/><i>// -&gt; [0,1,2,3];</i></code>
+  </p>
+
+</div><div class="method">
+  <a name="walk"></a>
+  <h2><a class="top-anchor" href="array.html#">top &uarr;</a><a href="array.html#walk">walk</a></h2>
+
+  <p class="semantic">
+    <code>walk(<b class="unit">Function</b> lambda[, <b class="unit">Object</b> scope]) -&gt; <b class="unit">Array</b> <b class="var">self</b><br/>walk(<b class="unit">String</b> name[, argument, ...])    -&gt; <b class="unit">Array</b> <b class="var">self</b></code>
+  </p>
+
+
+  <h4>Description</h4>
+  <p>Modifies every element of the array by passing them through the given lambda function:</p>
+
+
+
+  <h4>Example</h4>
+  <p>
+    <code><b class="var">var</b> names = [<s>'anny'</s>, <s>'manny'</s>, <s>'banny'</s>, <s>'bob'</s>];<br/><br/>names.<u class="method">walk</u>(<b>function</b>(name, i) {<br/>  <b>return</b> (i+<s class="int">1</s>)+<s>'. '</s>+name;<br/>});<br/><br/><i>// -&gt; ['1. anny', '2. manny', '3. banny', '4. bob'];</i><br/><br/>names.<u class="method">walk</u>(<s>'split'</s>, <s>'. '</s>);<br/><br/><i>// [['1', 'anny'], ['2', 'manny'], ['3', 'banny'], ['4', 'bob']];</i><br/><br/>names.<u class="method">walk</u>(<s>'last'</s>).<u class="method">walk</u>(<s>'capitalize'</s>);<br/><br/><i>// ['Anny', 'Manny', 'Banny', 'Bob'];</i></code>
+  </p>
+
+</div><div class="method">
+  <a name="without"></a>
+  <h2><a class="top-anchor" href="array.html#">top &uarr;</a><a href="array.html#without">without</a></h2>
+
+  <p class="semantic">
+    <code>without(mixed value[, mixed value, ...]) -&gt; <b class="unit">Array</b> <b class="var">new</b></code>
+  </p>
+
+
+  <h4>Description</h4>
+  <p>Creates a copy of the array without the specified elements.</p>
+
+
+
+  <h4>Example</h4>
+  <p>
+    <code>[<s class="int">0</s>,<s class="int">1</s>,<s class="int">2</s>,<s class="int">3</s>].<u class="method">without</u>(<s class="int">1</s>,<s class="int">3</s>);<br/><br/><i>// -&gt; [0,2];</i></code>
+  </p>
+
+</div>
+
+        </div>
+        <div style="clear:both"></div>
+      </div>
+      <div id="foot">
+        <div id="contacts">
+  <h2>Questions?</h2>
+  <a href="&#x6D;&#x61;i&#x6C;&#x74;&#x6F;:&#105;&#110;&#102;&#111;&#064;&#114;&#105;&#103;&#104;&#116;&#106;&#115;&#046;&#111;&#114;&#103;">&#105;&#110;&#102;&#111;&#064;&#114;&#105;&#103;&#104;&#116;&#106;&#115;&#046;&#111;&#114;&#103;</a>
+</div>
+<div id="bottom-menu">
+  <h2>About the Framework</h2>
+  <a href="../philosophy.html">Philosophy</a> |
+  <a href="../benchmarks.html">Benchmarks</a> |
+  <a href="../browsers.html">Browsers</a> |
+  <a href="../contacts.html">Contacts</a>
+</div>
+        <div id="design">Design by <a href="http://activestylus.com">Steven Garcia</a></div>
+        <div id="copyright">Copyright &copy; 2008-2011 Nikolay Nemshilov</div>
+      </div>
+    </div>
+
+    <script src="http://www.google-analytics.com/ga.js" type="text/javascript"></script>
+    <script type="text/javascript">
+    // <![CDATA[
+      try { _gat._getTracker("UA-10292980-1")._trackPageview(); } catch(err) {}
+    // ]]>
+    </script>
+  </body>
+</html>

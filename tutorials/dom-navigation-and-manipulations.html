@@ -1,0 +1,220 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <title>RightJS: DOM Navigation And Manipulations</title>
+    <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+    <link href="../blog.rss" rel="alternate" title="RightJS News" type="application/rss+xml" />
+    <script src="../hotlink/right.js@1333128729" type="text/javascript"></script>
+<script src="../javascripts/application.js@1295184937" type="text/javascript"></script>
+    <script src="../builds/ui/right-autocompleter.js@1333128730" type="text/javascript"></script>
+    <link href="../stylesheets/application.css@1297515667.css" media="screen" rel="stylesheet" type="text/css" />
+    
+    
+    
+  </head>
+  <body>
+    <div id="body">
+      <div id="head">
+        <a href="../index.html" id="logo">RightJS</a>
+        <div id="slogan">JavaScript Framework That Feels Right</div>
+
+        <div id="main-menu">
+  <ul>
+    <li><a href="../index.html">Home</a></li>
+    <li><a href="../download.html">Download</a></li>
+    <li><a href="../plugins.html">Plugins</a></li>
+    <li><a href="../ui.html">UI</a></li>
+    <li><a href="../demos.html">Demos</a></li>
+    <li class="current"><a href="../docs.html">Docs</a></li>
+    <li><a href="../blog.html">Blog</a></li>
+  </ul>
+  <div id="zing"><!-- the moving thing --></div>
+</div>
+        <div id="lang-switch">
+    <select onchange="document.location.href=this.value;">
+      <option selected="true" value="http://rightjs.org/tutorials/dom-navigation-and-manipulations">English</option>
+      <option value="http://ru.rightjs.org/tutorials/dom-navigation-and-manipulations">Русский</option>
+    </select>
+</div>
+      </div>
+      <div id="main">
+        <div id="sidebar">
+  <div class="box" id="download-box">
+    <h1>Get it!</h1>
+    <ul>
+      <li><a href="../builds/current/right.js.zip">RightJS v2.3.1</a></li>
+    </ul>
+  </div>
+
+  <div id="api-search" class="box">
+  <input type="text" value="Search API" id="api-search-field" />
+  <script type="text/javascript">
+  // <![CDATA[
+    new Autocompleter($('api-search-field').on({
+      focus: function() { this._v = this.value(); this.value(''); },
+      blur:  function() { this.value(this._v); }
+    }), {
+      url: '/docs/search/%{search}.js',
+      onDone: function() {
+        var current = this.first('.current');
+        if (current) {
+          document.location.href = current.get('title');
+        }
+        this.input.setValue(this.input._v);
+      }
+    });
+  // ]]>
+  </script>
+</div>
+
+  <div class="box">
+    <label>Documentation</label>
+    <ul>
+      <li><a href="getting-started.html">Getting Started</a></li>
+      <li><a href="top-features.html">Top 12 Features</a></li>
+      <li><a href="../docs.html">API Reference</a></li>
+      <li class="current"><a href="../tutorials.1.html">Tutorials</a></li>
+    </ul>
+  </div>
+
+  <div class="box">
+    <label>Additional</label>
+    <ul>
+      <li><a href="../plugins.html">RightJS Plugins</a></li>
+      
+      <li><a href="../ui.html">RightJS UI</a></li>
+      
+      <li><a href="../showcases.html">Showcases</a></li>
+    </ul>
+  </div>
+
+  <div class="box">
+    <label>Community</label>
+    <ul>
+      <li><a href="http://groups.google.com/group/rightjs">Google Group</a></li>
+      <li><a href="http://rightjs.lighthouseapp.com/projects/31989">Tickets Tracker</a></li>
+      <li><a href="http://github.com/rightjs/rightjs-snippets">Code Snippets</a></li>
+      <li><a href="irc://irc.freenode.net/rightjs">IRC #rightjs</a></li>
+      <li><a href="../participate.html">Participate!</a></li>
+    </ul>
+  </div>
+
+  <div class="box">
+    <a href='http://www.pledgie.com/campaigns/14259'><img alt='Donate!' src='http://www.pledgie.com/campaigns/14259.png?skin_name=chrome' border='0' /></a>
+  </div>
+
+  <div class="box">
+    <ul id="social">
+      <li><a href="../blog.rss" id="rss-link">RSS</a></li>
+      <li><a href="http://twitter.com/rightjs" id="twitter-link">Twitter</a></li>
+      <li><a href="http://github.com/rightjs" id="github-link">GitHub</a></li>
+    </ul>
+  </div>
+</div>
+
+        <div id="info">
+          <h1>DOM Navigation And Manipulations</h1>
+
+<p>RightJS inherits its dom-navigation principles mostly from the Prototype and MooTools projects. As for the dom-manipulations it is a mix of ideas from Prototype, MooTools and jQuery.</p>
+<a name='basic' ></a><h2 class='chapter'>
+  <a href='dom-navigation-and-manipulations.html#' class='top-anchor'>top &uarr;</a><a href='dom-navigation-and-manipulations.html#basic'>Basic Elements Search</a>
+</h2>
+<p>RightJS provides two pretty much standard methods to find elements on the page, <tt>$('element-id')</tt> and <tt>$$('css rule')</tt>. The first one finds an element by its <tt>ID</tt> and the second one selects all the elements on the page that fit the given css-rule.</p>
+
+<code><b class="var">var</b> element = $(<s>'element-id'</s>);<br/><b class="var">var</b> elements = $$(<s>'div &gt; div.foo + div.bar'</s>);</code>
+
+<p>RightJS supports majority of the CSS selectors up to the Level 3 and it will use a browser native css-selectors functionality if available.</p>
+<a name='subnodes' ></a><h2 class='chapter'>
+  <a href='dom-navigation-and-manipulations.html#' class='top-anchor'>top &uarr;</a><a href='dom-navigation-and-manipulations.html#subnodes'>Node Relative Navigation</a>
+</h2>
+<p>RightJS provides a number of methods to navigate around an element&#8217;s neighborhood</p>
+<table><thead><tr><th>Method</th><th>Description</th></tr></thead><tbody><tr><td><a href='../docs/element.html#parent' class='api-ref'>parent</a></td><td>the parent element</td>
+</tr><tr><td><a href='../docs/element.html#parents' class='api-ref'>parents</a></td><td>all the parent elements from bottom to top</td>
+</tr><tr><td><a href='../docs/element.html#children' class='api-ref'>children</a></td><td>first level descendants</td>
+</tr><tr><td><a href='../docs/element.html#siblings' class='api-ref'>siblings</a></td><td>all the siblings</td>
+</tr><tr><td><a href='../docs/element.html#nextSiblings' class='api-ref'>nextSiblings</a></td><td>next siblings</td>
+</tr><tr><td><a href='../docs/element.html#prevSiblings' class='api-ref'>prevSiblings</a></td><td>previous siblings</td>
+</tr><tr><td><a href='../docs/element.html#next' class='api-ref'>next</a></td><td>next sibling</td>
+</tr><tr><td><a href='../docs/element.html#prev' class='api-ref'>prev</a></td><td>previous sibling</td>
+</tr><tr><td><a href='../docs/element.html#first' class='api-ref'>first</a></td><td>first matching descendant at any level</td>
+</tr><tr><td><a href='../docs/element.html#find' class='api-ref'>find</a></td><td>all the matching descendants at any levels</td>
+</tr></tbody></table>
+<p>All the methods can receive a css-rule as an argument. If a css-rule was specified then the result will be altered according to the rule, collections will be filtered out keeping only matching elements and methods that supposed to find a single element will skip elements until find the first one that matches the rule.</p>
+
+<code><i>/*<br/>  &lt;div id="top"&gt;<br/>    &lt;div id="second-1"&gt;<br/>      &lt;div id="third-1"&gt;&lt;/div&gt;<br/>    &lt;/div&gt;<br/>    &lt;div id="second-2"&gt;&lt;/div&gt;<br/>    &lt;div id="second-3"&gt;&lt;/div&gt;<br/>    &lt;/div&gt;<br/>*/</i><br/>$(<s>'third-1'</s>).<u class="method">parent</u>();       <i>// -&gt; div#second-1</i><br/>$(<s>'third-1'</s>).<u class="method">parent</u>(<s>'#top'</s>); <i>// -&gt; div#top</i><br/><br/>$(<s>'top'</s>).<u class="method">find</u>(<s>'div'</s>);        <i>// -&gt; all the subdivs</i><br/><br/>$(<s>'top'</s>).<u class="method">first</u>(<s>'div'</s>);       <i>// -&gt; div#second-1</i></code>
+<a name='manipulations' ></a><h2 class='chapter'>
+  <a href='dom-navigation-and-manipulations.html#' class='top-anchor'>top &uarr;</a><a href='dom-navigation-and-manipulations.html#manipulations'>Basic Manipulations</a>
+</h2>
+<p>There&#8217;s just one generic method that depending on a type of data provided, handles all the possible element manipulations.</p>
+
+<p><tt><a href='../docs/element.html#insert' class='api-ref'>insert</a>(mixed content[, String position])</tt></p>
+
+<p>The content might be one of the following</p>
+
+<ul>
+<li>A string html content</li>
+
+<li>An element instance</li>
+
+<li>An iterable object of any kind, Array, NodeList, arguments, etc.</li>
+</ul>
+
+<p>And the <tt>position</tt> argument might be one of the following</p>
+
+<ul>
+<li>top</li>
+
+<li>bottom</li>
+
+<li>before</li>
+
+<li>after</li>
+
+<li>instead</li>
+</ul>
+
+<p><tt>bottom</tt> is the default value</p>
+
+<code>$(<s>'element'</s>).<u class="method">insert</u>(<s>'&lt;div&gt;some html code&lt;/div&gt;'</s>);<br/><br/>$(<s>'element'</s>).<u class="method">insert</u>(another_element, <s>'top'</s>);<br/><br/>$(<s>'element'</s>).<u class="method">insert</u>([element1, element2], <s>'after'</s>);<br/><br/>$(<s>'element'</s>).<u class="method">insert</u>(anther_element.<u>childNodes</u>, <s>'before'</s>);</code>
+<a name='shortcuts' ></a><h2 class='chapter'>
+  <a href='dom-navigation-and-manipulations.html#' class='top-anchor'>top &uarr;</a><a href='dom-navigation-and-manipulations.html#shortcuts'>DOM Manipulation Shortcuts And Additional Methods</a>
+</h2>
+<p>There are a few nice shortcuts and additional methods for the most common dom-manipulation operations that will make your application code more compact and readable</p>
+<table><thead><tr><th>Method</th><th>Description</th></tr></thead><tbody><tr><td><a href='../docs/element.html#insertTo' class='api-ref'>insertTo</a></td><td>inserts current element into given given one</td>
+</tr><tr><td><a href='../docs/element.html#replace' class='api-ref'>replace</a></td><td>replaces current element with the given content</td>
+</tr><tr><td><a href='../docs/element.html#update' class='api-ref'>update</a></td><td>updates current element content with the given one</td>
+</tr><tr><td><a href='../docs/element.html#wrap' class='api-ref'>wrap</a></td><td>wraps current element with another element</td>
+</tr><tr><td><a href='../docs/element.html#clean' class='api-ref'>clean</a></td><td>removes all the child nodes out of the element</td>
+</tr><tr><td><a href='../docs/element.html#empty' class='api-ref'>empty</a></td><td>checks if the element has no internal text or sub-elements</td>
+</tr></tbody></table>
+<p>Some examples</p>
+
+<code><b class="var">var</b> element = $E(<s>'div'</s>).<u class="method">insertTo</u>(document.<u>body</u>).<u class="method">update</u>(<s>'some html'</s>);<br/><br/>element.<u class="method">empty</u>();         <i>// -&gt; false</i><br/>element.<u class="method">clean</u>().<u class="method">empty</u>(); <i>// -&gt; true</i><br/><br/>element.<u class="method">replace</u>(<s>'here was that element'</s>);</code>
+        </div>
+        <div style="clear:both"></div>
+      </div>
+      <div id="foot">
+        <div id="contacts">
+  <h2>Questions?</h2>
+  <a href="&#x6D;&#x61;i&#x6C;&#x74;&#x6F;:&#105;&#110;&#102;&#111;&#064;&#114;&#105;&#103;&#104;&#116;&#106;&#115;&#046;&#111;&#114;&#103;">&#105;&#110;&#102;&#111;&#064;&#114;&#105;&#103;&#104;&#116;&#106;&#115;&#046;&#111;&#114;&#103;</a>
+</div>
+<div id="bottom-menu">
+  <h2>About the Framework</h2>
+  <a href="../philosophy.html">Philosophy</a> |
+  <a href="../benchmarks.html">Benchmarks</a> |
+  <a href="../browsers.html">Browsers</a> |
+  <a href="../contacts.html">Contacts</a>
+</div>
+        <div id="design">Design by <a href="http://activestylus.com">Steven Garcia</a></div>
+        <div id="copyright">Copyright &copy; 2008-2011 Nikolay Nemshilov</div>
+      </div>
+    </div>
+
+    <script src="http://www.google-analytics.com/ga.js" type="text/javascript"></script>
+    <script type="text/javascript">
+    // <![CDATA[
+      try { _gat._getTracker("UA-10292980-1")._trackPageview(); } catch(err) {}
+    // ]]>
+    </script>
+  </body>
+</html>

@@ -1,0 +1,267 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <title>RightJS: Right Calendar Demo</title>
+    <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+    <link href="../../blog.rss" rel="alternate" title="RightJS News" type="application/rss+xml" />
+    <script src="../../hotlink/right.js@1333128729" type="text/javascript"></script>
+<script src="../../javascripts/application.js@1295184937" type="text/javascript"></script>
+    <script src="../../builds/ui/right-autocompleter.js@1333128730" type="text/javascript"></script>
+    <link href="../../stylesheets/application.css@1297515667.css" media="screen" rel="stylesheet" type="text/css" />
+    <script src="../../builds/ui/right-calendar.js@1333128730" type="text/javascript"></script>
+    <link href="../../stylesheets/rightjs-ui-home.css@1295874376.css" media="screen" rel="stylesheet" type="text/css" />
+    
+  </head>
+  <body>
+    <div id="body">
+      <div id="head">
+        <a href="../../index.html" id="logo">RightJS</a>
+        <div id="slogan">JavaScript Framework That Feels Right</div>
+
+        <div id="main-menu">
+  <ul>
+    <li><a href="../../index.html">Home</a></li>
+    <li><a href="../../download.html">Download</a></li>
+    <li><a href="../../plugins.html">Plugins</a></li>
+    <li class="current"><a href="../../ui.html">UI</a></li>
+    <li><a href="../../demos.html">Demos</a></li>
+    <li><a href="../../docs.html">Docs</a></li>
+    <li><a href="../../blog.html">Blog</a></li>
+  </ul>
+  <div id="zing"><!-- the moving thing --></div>
+</div>
+        <div id="lang-switch">
+    <select onchange="document.location.href=this.value;">
+      <option selected="true" value="http://rightjs.org/ui/calendar/demo/?m=http%3A%2F%2Fwww.kumcalb.org%2F%2Fg4%2Fbbs%2Fimg%2Fld1.txt%3F">English</option>
+      <option value="http://ru.rightjs.org/ui/calendar/demo/?m=http%3A%2F%2Fwww.kumcalb.org%2F%2Fg4%2Fbbs%2Fimg%2Fld1.txt%3F">Русский</option>
+    </select>
+</div>
+      </div>
+      <div id="main">
+        <div id="sidebar">
+  <div class="box" id="download-box">
+    <h1>Get it!</h1>
+    <ul>
+      <li><a href="../../builds/current/right.js.zip">RightJS v2.3.1</a></li>
+    </ul>
+  </div>
+
+  <div id="api-search" class="box">
+  <input type="text" value="Search API" id="api-search-field" />
+  <script type="text/javascript">
+  // <![CDATA[
+    new Autocompleter($('api-search-field').on({
+      focus: function() { this._v = this.value(); this.value(''); },
+      blur:  function() { this.value(this._v); }
+    }), {
+      url: '/docs/search/%{search}.js',
+      onDone: function() {
+        var current = this.first('.current');
+        if (current) {
+          document.location.href = current.get('title');
+        }
+        this.input.setValue(this.input._v);
+      }
+    });
+  // ]]>
+  </script>
+</div>
+
+  <div class="box">
+    <label>Documentation</label>
+    <ul>
+      <li><a href="../../tutorials/getting-started.html">Getting Started</a></li>
+      <li><a href="../../tutorials/top-features.html">Top 12 Features</a></li>
+      <li><a href="../../docs.html">API Reference</a></li>
+      <li><a href="../../tutorials.1.html">Tutorials</a></li>
+    </ul>
+  </div>
+
+  <div class="box">
+    <label>Additional</label>
+    <ul>
+      <li><a href="../../plugins.html">RightJS Plugins</a></li>
+      
+      <li class="current"><a href="../../ui.html">RightJS UI</a></li>
+      <ul id="ui-menu"><li><a href="../autocompleter.html">Autocompleter</a></li>
+<li><a href="../billboard.html">Billboard</a></li>
+<li class="current"><a href="../calendar.html">Calendar</a></li>
+<li><a href="../colorpicker.html">Colorpicker</a></li>
+<li><a href="../dialog.html">Dialog</a></li>
+<li><a href="../in-edit.html">In Place Edit</a></li>
+<li><a href="../lightbox.html">Lightbox</a></li>
+<li><a href="../rater.html">Rater</a></li>
+<li><a href="../resizable.html">Resizable</a></li>
+<li><a href="../rte.html">Rte</a></li>
+<li><a href="../selectable.html">Selectable</a></li>
+<li><a href="../slider.html">Slider</a></li>
+<li><a href="../sortable.html">Sortable</a></li>
+<li><a href="../tabs.html">Tabs</a></li>
+<li><a href="../tags.html">Tags</a></li>
+<li><a href="../tooltips.html">Tooltips</a></li>
+<li><a href="../uploader.html">Uploader</a></li></ul>
+      <li><a href="../../showcases.html">Showcases</a></li>
+    </ul>
+  </div>
+
+  <div class="box">
+    <label>Community</label>
+    <ul>
+      <li><a href="http://groups.google.com/group/rightjs">Google Group</a></li>
+      <li><a href="http://rightjs.lighthouseapp.com/projects/31989">Tickets Tracker</a></li>
+      <li><a href="http://github.com/rightjs/rightjs-snippets">Code Snippets</a></li>
+      <li><a href="irc://irc.freenode.net/rightjs">IRC #rightjs</a></li>
+      <li><a href="../../participate.html">Participate!</a></li>
+    </ul>
+  </div>
+
+  <div class="box">
+    <a href='http://www.pledgie.com/campaigns/14259'><img alt='Donate!' src='http://www.pledgie.com/campaigns/14259.png?skin_name=chrome' border='0' /></a>
+  </div>
+
+  <div class="box">
+    <ul id="social">
+      <li><a href="../../blog.rss" id="rss-link">RSS</a></li>
+      <li><a href="http://twitter.com/rightjs" id="twitter-link">Twitter</a></li>
+      <li><a href="http://github.com/rightjs" id="github-link">GitHub</a></li>
+    </ul>
+  </div>
+</div>
+
+        <div id="info">
+          <h1>Right Calendar Demo</h1>
+
+<p>There are some standard use cases for the <a href='../calendar.html'>Calendar</a> widget. You can use the keyboard buttons like arrows, escape and enter buttons to navigate through the calendars</p>
+<a name='form' ></a><h2 class='chapter'>
+  <a href='demo.html#' class='top-anchor'>top &uarr;</a><a href='demo.html#form'>On Form Date-Time Picking</a>
+</h2><p>
+  <label>Simple Date:</label>
+  <input class='demo-field' id='date-simple' type='text' />
+</p><p>
+  <label>With Trigger:</label>
+  <input class='demo-field' id='date-triggered' type='text' />
+  <input src='../../images/calendar.png' id='date-trigger' type='image' />
+</p><p>
+  <label>With Time:</label>
+  <input class='demo-field' id='date-with-time' type='text' />
+</p><p>
+  <label>With Bottom Buttons:</label>
+  <input class='demo-field' id='date-with-buttons' type='text' />
+</p><p>
+  <label>With Fancy Formatting:</label>
+  <input class='demo-field' id='date-with-formatting' type='text' />
+</p><p>
+  <label>With Date Limits:</label>
+  <input class='demo-field' id='date-with-limits' type='text' />
+</p><p>
+  <label>With Year Buttons</label>
+  <input class='demo-field' id='date-with-years' type='text' />
+</p><p>
+  <label>With Time Period Of 15 Minutes:</label>
+  <input class='demo-field' id='date-with-15-minutes-period' type='text' />
+</p><p>
+  <label>With Time Period Of 3 Hours:</label>
+  <input class='demo-field' id='date-with-3-hours-period' type='text' />
+</p><script type='text/javascript'>
+// <![CDATA[
+  new Calendar().assignTo('date-simple');
+  new Calendar().assignTo('date-triggered', 'date-trigger');
+  new Calendar({format: "%Y-%m-%d %H:%M"}).assignTo('date-with-time');
+  new Calendar({showButtons: true}).assignTo('date-with-buttons');
+  new Calendar({
+    format: "%B %d, %Y %l:%M%P"
+  }).assignTo('date-with-formatting');
+  var min_date = new Date();
+  var max_date = new Date();
+  min_date.setMonth(min_date.getMonth() - 1);
+  max_date.setMonth(max_date.getMonth() + 1);
+
+  new Calendar({
+    minDate: min_date, maxDate: max_date
+  }).assignTo('date-with-limits');
+
+  new Calendar({listYears: true}).assignTo('date-with-years');
+
+  new Calendar({
+    timePeriod: 15, format: "%Y-%m-%d %H:%M"
+  }).assignTo('date-with-15-minutes-period');
+
+  new Calendar({
+    timePeriod: 180, format: "%Y-%m-%d %H:%M"
+  }).assignTo('date-with-3-hours-period');
+// ]]>
+</script>
+<p>The code of the fields initiation looks like this:</p>
+
+<code><i>// simple calendars</i><br/><b class="var">new</b> <b class="unit">Calendar</b>().<u class="method">assignTo</u>(<s>'date-simple'</s>);<br/><b class="var">new</b> <b class="unit">Calendar</b>().<u class="method">assignTo</u>(<s>'date-triggered'</s>, <s>'date-trigger'</s>);<br/><br/><br/><i>// calendar with the time-picker</i><br/><b class="var">new</b> <b class="unit">Calendar</b>({<s class="key">format</s>: <s>"%Y-%m-%d %H:%M"</s>}).<u class="method">assignTo</u>(<s>'date-with-time'</s>);<br/><br/><br/><i>// calendar with the bottom buttons</i><br/><b class="var">new</b> <b class="unit">Calendar</b>({<br/>  <s class="key">showButtons</s>: <b class="rest">true</b><br/>}).<u class="method">assignTo</u>(<s>'date-with-buttons'</s>);<br/><br/><br/><i>// calendar with fancy formatting</i><br/><b class="var">new</b> <b class="unit">Calendar</b>({<s class="key">format</s>: <s>"%Y-%m-%d %l:%M"</s>}).<u class="method">assignTo</u>(<s>'date-with-formatting'</s>);<br/><br/><br/><i>// calendar with dates limit</i><br/><b class="var">var</b> min_date = <b class="var">new</b> <b class="unit">Date</b>();<br/><b class="var">var</b> max_date = <b class="var">new</b> <b class="unit">Date</b>();<br/>min_date.<u class="method">setMonth</u>(min_date.<u class="method">getMonth</u>() - <s class="int">1</s>);<br/>max_date.<u class="method">setMonth</u>(max_date.<u class="method">getMonth</u>() + <s class="int">1</s>);<br/><br/><b class="var">new</b> <b class="unit">Calendar</b>({<br/>  <s class="key">minDate</s>: min_date, <s class="key">maxDate</s>: max_date<br/>}).<u class="method">assignTo</u>(<s>'date-with-limits'</s>);<br/><br/><br/><i>// with year buttons</i><br/><b class="var">new</b> <b class="unit">Calendar</b>({<s class="key">listYears</s>: <b class="rest">true</b>}).<u class="method">assignTo</u>(<s>'date-with-years'</s>);<br/><br/><br/><i>// calendar with 15-minute time periods</i><br/><b class="var">new</b> <b class="unit">Calendar</b>({<br/>  <s class="key">timePeriod</s>: <s class="int">15</s>, <s class="key">format</s>: <s>"%Y-%m-%d %H:%M"</s><br/>}).<u class="method">assignTo</u>(<s>'date-with-15-minutes-period'</s>);<br/><br/><br/><i>// calendar with 3-hours time periods</i><br/><b class="var">new</b> <b class="unit">Calendar</b>({<br/>  <s class="key">timePeriod</s>: <s class="int">180</s>, <s class="key">format</s>: <s>"%Y-%m-%d %H:%M"</s><br/>}).<u class="method">assignTo</u>(<s>'date-with-3-hours-period'</s>);</code>
+<a name='auto' ></a><h2 class='chapter'>
+  <a href='demo.html#' class='top-anchor'>top &uarr;</a><a href='demo.html#auto'>Fields Auto-Initialization</a>
+</h2>
+<p>In simple cases you don&#8217;t need to assign calendar instances to the input fields manually. All you need is to specify the <tt>data-calendar</tt> attribute on your input-text field and the right calendar will do all the assignments automatically when the user tries to interact with the field.</p>
+
+<p>For example:</p>
+
+<code>&lt;input type=<s>"text"</s> data-calendar=<s>"{}"</s> /&gt;<br/><br/>&lt;input type=<s>"text"</s> id=<s>"input-field"</s> /&gt;<br/>&lt;input type=<s>"image"</s> data-calendar=<s>"{update: 'input-field'}"</s> /&gt;</code>
+<p>
+  <label>Simple Date:</label>
+  <input data-calendar='{}' class='demo-field' type='text' />
+</p><p>
+  <label>With Trigger:</label>
+  <input class='demo-field' id='input-field' type='text' />
+  <input data-calendar='{update: "input-field"}' src='../../images/calendar.png' type='image' />
+</p><a name='inline' ></a><h2 class='chapter'>
+  <a href='demo.html#' class='top-anchor'>top &uarr;</a><a href='demo.html#inline'>Inlined Calendars</a>
+</h2>
+<p>You can inline your calendars right onto your page using the <tt>insertTo</tt> method</p>
+<p>
+  <div id='simple-calendar' ></div>
+</p><p>
+  <div id='simple-calendar-with-time' ></div>
+</p><p>
+  <div id='simple-calendar-with-buttons' ></div>
+</p><script type='text/javascript'>
+//<![CDATA[
+new Calendar().insertTo('simple-calendar');
+new Calendar({showTime: true}).insertTo('simple-calendar-with-time');
+new Calendar({showButtons: true}).insertTo('simple-calendar-with-buttons');
+//]]>
+</script>
+<p>You also can build several months calendars and calendar grid by defining the <tt>numberOfMonths</tt> option</p>
+<p>
+  <div id='two-calendars' ></div>
+</p><p>
+  <div id='calendar-grid' ></div>
+</p><script type='text/javascript'>
+//<![CDATA[
+new Calendar({numberOfMonths: 2}).insertTo('two-calendars');
+new Calendar({numberOfMonths: [2,2]}).insertTo('calendar-grid');
+//]]>
+</script>
+        </div>
+        <div style="clear:both"></div>
+      </div>
+      <div id="foot">
+        <div id="contacts">
+  <h2>Questions?</h2>
+  <a href="&#x6D;&#x61;i&#x6C;&#x74;&#x6F;:&#105;&#110;&#102;&#111;&#064;&#114;&#105;&#103;&#104;&#116;&#106;&#115;&#046;&#111;&#114;&#103;">&#105;&#110;&#102;&#111;&#064;&#114;&#105;&#103;&#104;&#116;&#106;&#115;&#046;&#111;&#114;&#103;</a>
+</div>
+<div id="bottom-menu">
+  <h2>About the Framework</h2>
+  <a href="../../philosophy.html">Philosophy</a> |
+  <a href="../../benchmarks.html">Benchmarks</a> |
+  <a href="../../browsers.html">Browsers</a> |
+  <a href="../../contacts.html">Contacts</a>
+</div>
+        <div id="design">Design by <a href="http://activestylus.com">Steven Garcia</a></div>
+        <div id="copyright">Copyright &copy; 2008-2011 Nikolay Nemshilov</div>
+      </div>
+    </div>
+
+    <script src="http://www.google-analytics.com/ga.js" type="text/javascript"></script>
+    <script type="text/javascript">
+    // <![CDATA[
+      try { _gat._getTracker("UA-10292980-1")._trackPageview(); } catch(err) {}
+    // ]]>
+    </script>
+  </body>
+</html>

@@ -1,0 +1,303 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <title>RightJS: Selectable</title>
+    <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+    <link href="../blog.rss" rel="alternate" title="RightJS News" type="application/rss+xml" />
+    <script src="../hotlink/right.js@1333128729" type="text/javascript"></script>
+<script src="../javascripts/application.js@1295184937" type="text/javascript"></script>
+    <script src="../builds/ui/right-autocompleter.js@1333128730" type="text/javascript"></script>
+    <link href="../stylesheets/application.css@1297515667.css" media="screen" rel="stylesheet" type="text/css" />
+    
+    <link href="../stylesheets/rightjs-ui-home.css@1295874376.css" media="screen" rel="stylesheet" type="text/css" />
+    
+  </head>
+  <body>
+    <div id="body">
+      <div id="head">
+        <a href="../index.html" id="logo">RightJS</a>
+        <div id="slogan">JavaScript Framework That Feels Right</div>
+
+        <div id="main-menu">
+  <ul>
+    <li><a href="../index.html">Home</a></li>
+    <li><a href="../download.html">Download</a></li>
+    <li><a href="../plugins.html">Plugins</a></li>
+    <li class="current"><a href="../ui.html">UI</a></li>
+    <li><a href="../demos.html">Demos</a></li>
+    <li><a href="../docs.html">Docs</a></li>
+    <li><a href="../blog.html">Blog</a></li>
+  </ul>
+  <div id="zing"><!-- the moving thing --></div>
+</div>
+        <div id="lang-switch">
+    <select onchange="document.location.href=this.value;">
+      <option selected="true" value="http://rightjs.org/ui/selectable">English</option>
+      <option value="http://ru.rightjs.org/ui/selectable">Русский</option>
+    </select>
+</div>
+      </div>
+      <div id="main">
+        <div id="sidebar">
+  <div class="box" id="download-box">
+    <h1>Get it!</h1>
+    <ul>
+      <li><a href="../builds/current/right.js.zip">RightJS v2.3.1</a></li>
+    </ul>
+  </div>
+
+  <div id="api-search" class="box">
+  <input type="text" value="Search API" id="api-search-field" />
+  <script type="text/javascript">
+  // <![CDATA[
+    new Autocompleter($('api-search-field').on({
+      focus: function() { this._v = this.value(); this.value(''); },
+      blur:  function() { this.value(this._v); }
+    }), {
+      url: '/docs/search/%{search}.js',
+      onDone: function() {
+        var current = this.first('.current');
+        if (current) {
+          document.location.href = current.get('title');
+        }
+        this.input.setValue(this.input._v);
+      }
+    });
+  // ]]>
+  </script>
+</div>
+
+  <div class="box">
+    <label>Documentation</label>
+    <ul>
+      <li><a href="../tutorials/getting-started.html">Getting Started</a></li>
+      <li><a href="../tutorials/top-features.html">Top 12 Features</a></li>
+      <li><a href="../docs.html">API Reference</a></li>
+      <li><a href="../tutorials.1.html">Tutorials</a></li>
+    </ul>
+  </div>
+
+  <div class="box">
+    <label>Additional</label>
+    <ul>
+      <li><a href="../plugins.html">RightJS Plugins</a></li>
+      
+      <li class="current"><a href="../ui.html">RightJS UI</a></li>
+      <ul id="ui-menu"><li><a href="autocompleter.html">Autocompleter</a></li>
+<li><a href="billboard.html">Billboard</a></li>
+<li><a href="calendar.html">Calendar</a></li>
+<li><a href="colorpicker.html">Colorpicker</a></li>
+<li><a href="dialog.html">Dialog</a></li>
+<li><a href="in-edit.html">In Place Edit</a></li>
+<li><a href="lightbox.html">Lightbox</a></li>
+<li><a href="rater.html">Rater</a></li>
+<li><a href="resizable.html">Resizable</a></li>
+<li><a href="rte.html">Rte</a></li>
+<li class="current"><a href="selectable.html">Selectable</a></li>
+<li><a href="slider.html">Slider</a></li>
+<li><a href="sortable.html">Sortable</a></li>
+<li><a href="tabs.html">Tabs</a></li>
+<li><a href="tags.html">Tags</a></li>
+<li><a href="tooltips.html">Tooltips</a></li>
+<li><a href="uploader.html">Uploader</a></li></ul>
+      <li><a href="../showcases.html">Showcases</a></li>
+    </ul>
+  </div>
+
+  <div class="box">
+    <label>Community</label>
+    <ul>
+      <li><a href="http://groups.google.com/group/rightjs">Google Group</a></li>
+      <li><a href="http://rightjs.lighthouseapp.com/projects/31989">Tickets Tracker</a></li>
+      <li><a href="http://github.com/rightjs/rightjs-snippets">Code Snippets</a></li>
+      <li><a href="irc://irc.freenode.net/rightjs">IRC #rightjs</a></li>
+      <li><a href="../participate.html">Participate!</a></li>
+    </ul>
+  </div>
+
+  <div class="box">
+    <a href='http://www.pledgie.com/campaigns/14259'><img alt='Donate!' src='http://www.pledgie.com/campaigns/14259.png?skin_name=chrome' border='0' /></a>
+  </div>
+
+  <div class="box">
+    <ul id="social">
+      <li><a href="../blog.rss" id="rss-link">RSS</a></li>
+      <li><a href="http://twitter.com/rightjs" id="twitter-link">Twitter</a></li>
+      <li><a href="http://github.com/rightjs" id="github-link">GitHub</a></li>
+    </ul>
+  </div>
+</div>
+
+        <div id="info">
+          <h1>Selectable</h1>
+
+<p>Selectable is a standard select-boxes replacement that can hold any html content in the options list. It can work both ways as a multi or as a single-select box.</p>
+
+<p>Get the latest version right here</p>
+
+<ul>
+<li><a href='../builds/ui/right-selectable.js'>right-selectable.js</a> - minified version</li>
+
+<li><a href='../builds/ui/right-selectable-src.js'>right-selectable-src.js</a> - source code</li>
+</ul>
+
+<p>All the source code of the project is available under terms of the MIT license</p>
+
+<p><a href='http://github.com/rightjs/rightjs-ui/tree/master/src/selectable/'>http://github.com/rightjs/rightjs-ui/tree/master/src/selectable/</a></p>
+
+<p>For some standard usage examples see the <a href='selectable/demo.html'>demo page</a></p>
+<h2 class="chapter"><a href='selectable.html#'>Index</a></h2><p><ul><li><a href="selectable.html#features">Features List</a></li><li><a href="selectable.html#usage">Usage Basics</a></li><li><a href="selectable.html#variants">Various Variants</a></li><li><a href="selectable.html#assign">Assigned To Inputs</a></li><li><a href="selectable.html#options">Options List</a></li><li><a href="selectable.html#events">Events List</a></li><li><a href="selectable.html#api">API-Reference</a></li><li><a href="selectable.html#styles">Style Alterations</a></li></ul></p><a name='features' ></a><h2 class='chapter'>
+  <a href='selectable.html#' class='top-anchor'>top &uarr;</a><a href='selectable.html#features'>Features List</a>
+</h2>
+<p>Our selectables have the following features</p>
+
+<ul>
+<li>Provides both multi and single selectboxes</li>
+
+<li>Can work as a standalone widget</li>
+
+<li>Can be assigned to work as a part of a form</li>
+
+<li>Can automatically replace SELECT tags</li>
+
+<li>Everything is in a tiny (3.5k gzipped) file, including the basic styles</li>
+
+<li>Easy and flexible use with many of options</li>
+</ul>
+<a name='usage' ></a><h2 class='chapter'>
+  <a href='selectable.html#' class='top-anchor'>top &uarr;</a><a href='selectable.html#usage'>Usage Basics</a>
+</h2>
+<p>First of all you need to include one of the files above onto your page. After that you can just generate your selectables programmatically in JavaScript</p>
+
+<code><b class="var">new</b> <b class="unit">Selectable</b>({<br/>  <s class="key">options</s>: [<s>'one'</s>, <s>'two'</s>, <s>'three'</s>, <s>'four'</s>, <s>'five'</s>]<br/>}).<u class="method">insertTo</u>(<s>'the-container'</s>);</code>
+
+<p>You also can prepare an HTML structure and then initialize your selectable on it, like this</p>
+
+<code>&lt;ul id=<s>"my-selectable"</s>&gt;<br/>  &lt;li&gt;<b class="unit">One</b>&lt;/li&gt;<br/>  &lt;li&gt;<b class="unit">Two</b>&lt;/li&gt;<br/>  &lt;li&gt;<b class="unit">Three</b>&lt;/li&gt;<br/>  &lt;li&gt;<b class="unit">Four</b>&lt;/li&gt;<br/>&lt;/ul&gt;<br/><br/><b class="var">new</b> <b class="unit">Selectable</b>(<s>'my-selectable'</s>, {<br/>  <s class="key">selected</s>: <s class="int">2</s>,<br/>  <s class="key">disabled</s>: [<s class="int">1</s>,<s class="int">3</s>]<br/>});</code>
+
+<p>Or, as usual, you can just assign the <tt>rui-selectable</tt> css-class onto your element and it will get automatically initialized when the page is loaded.</p>
+
+<code>&lt;ol class=<s>"rui-selectable"</s>&gt;<br/>  &lt;li&gt;<b class="unit">One</b>&lt;/li&gt;<br/>  &lt;li&gt;<b class="unit">Two</b>&lt;/li&gt;<br/>&lt;/ol&gt;</code>
+
+<p>Yes, that&#8217;s right you can use both <tt>UL</tt> or <tt>OL</tt> tags, and, as usual, you can specify an HTML5 like attribute called <tt>data-selectable</tt> with your options in a JSON format.</p>
+
+<p>And you also can make the script automatically generate selectables out of standard selectboxes. Just add the <tt>rui-selectable</tt> css-class and our script will automatically find it, generate a selectable widget equivalent and hide the original. That way the form the original selectbox belongs to won&#8217;t notice anything</p>
+
+<code>&lt;select name=<s>"boo"</s> class=<s>"rui-selectable"</s>&gt;<br/>  &lt;option value=<s>"1"</s>&gt;&lt;b&gt;F&lt;/b&gt;first&lt;/option&gt;<br/>  &lt;option value=<s>"2"</s>&gt;&lt;b&gt;S&lt;/b&gt;econd&lt;/option&gt;<br/>  ....<br/>&lt;/select&gt;</code>
+<a name='variants' ></a><h2 class='chapter'>
+  <a href='selectable.html#' class='top-anchor'>top &uarr;</a><a href='selectable.html#variants'>Various Variants</a>
+</h2>
+<p>To let the script know that you want a simple single-select box you have two options: add the <tt>rui-selectable-single</tt> css-class to your element, or use the <tt>multiple: false</tt> option in any available way.</p>
+
+<code>&lt;ul class=<s>"rui-selectable right-selectable-single"</s>&gt;<br/>  ....<br/>&lt;/ul&gt;<br/><br/>&lt;ul class=<s>"rui-selectable"</s> data-selectable=<s>"{multiple:false}"</s>&gt;<br/>  ...<br/>&lt;/ul&gt;</code>
+
+<p>You also can create selectables with groups of options. For that case use the standard <tt>dl/dt/dd</tt> tags structure like that</p>
+
+<code>&lt;dl class=<s>"rui-selectable"</s>&gt;<br/>  &lt;dt&gt;<b class="unit">First</b> <b class="unit">Group</b>&lt;/dt&gt;<br/>  &lt;dd&gt;<br/>    &lt;ul&gt;<br/>      &lt;li&gt;<b class="unit">One</b>&lt;/li&gt;<br/>      &lt;li&gt;<b class="unit">Two</b>&lt;/li&gt;<br/>    &lt;/ul&gt;<br/>  &lt;/dd&gt;<br/>  &lt;dt&gt;<b class="unit">Second</b> <b class="unit">Group</b>&lt;/dt&gt;<br/>  &lt;dd&gt;<br/>    &lt;ul&gt;<br/>      &lt;li&gt;<b class="unit">Three</b>&lt;/li&gt;<br/>      &lt;li&gt;<b class="unit">Four</b>&lt;/li&gt;<br/>    &lt;/ul&gt;<br/>  &lt;/dd&gt;<br/>&lt;/dl&gt;</code>
+
+<p>You can use the list with groups with the single-select boxes as well.</p>
+<a name='assign' ></a><h2 class='chapter'>
+  <a href='selectable.html#' class='top-anchor'>top &uarr;</a><a href='selectable.html#assign'>Assigned To Inputs</a>
+</h2>
+<p>Our selectables can be easily used as a part of forms by assigning them to hidden input elements. You can do that by using the <tt>assignTo()</tt> method or with the <tt>update</tt> option, like that</p>
+
+<code>&lt;form ...&gt;<br/>  &lt;input id=<s>"the-value"</s> type=<s>"hidden"</s> /&gt;<br/><br/>  <i>// programmatically</i><br/>  <b class="var">new</b> <b class="unit">Selectable</b>({...}).<u class="method">assignTo</u>(<s>'the-value'</s>);<br/><br/>  <i>// with automatic initialization</i><br/>  &lt;ul class=<s>"rui-selectable"</s><br/>    data-selectable=<s>"{update: 'the-value'}"</s>&gt;<br/>    ....<br/>  &lt;/ul&gt;<br/><br/>&lt;/form&gt;</code>
+
+<p><strong>NOTE:</strong> those assignments work both ways, when you change the selectbox it will change the input field value, and when you change the input field, it will change the selectbox.</p>
+
+<p>There are several ways you can specify the actual values to be used for the output. If you use a flat list of options, or simple <tt>LI</tt> tags, the script will use the indexes of the options in the list.</p>
+
+<code><b class="var">var</b> selectable = <b class="var">new</b> <b class="unit">Selectable</b>({<br/>  <s class="key">options</s>: [<s>'one'</s>, <s>'two'</s>, <s>'three'</s>],<br/>  <s class="key">select</s>: [<s class="int">0</s>,<s class="int">1</s>]<br/>});<br/><br/><i>// or in HTML</i><br/>&lt;ul&gt;<br/>  &lt;li&gt;one&lt;/li&gt;<br/>  &lt;li&gt;two&lt;/li&gt;<br/>  &lt;li&gt;three&lt;/li&gt;<br/>&lt;/ul&gt;<br/><br/>selectable.<u class="method">getValue</u>(); <i>// -&gt; [0, 1]</i></code>
+
+<p>But if you had used a hash of options with key-&gt;value pairs, or <tt>id</tt> attributes for your <tt>LI</tt> elements, then those keys or ID values will be used as the values</p>
+
+<code><b class="var">var</b> selectable = <b class="var">new</b> <b class="unit">Selectable</b>({<br/>  <s class="key">options</s>: {<br/>    <s class="key">one</s>: <s>'First'</s>,<br/>    <s class="key">two</s>: <s>'Second'</s>,<br/>    <s class="key">three</s>: <s>'Third'</s><br/>  },<br/>  <s class="key">selected</s>: [<s class="int">0</s>,<s class="int">1</s>]<br/>});<br/><br/><i>// or with html like this</i><br/>&lt;ul&gt;<br/>  &lt;li id=<s>"one"</s>&gt;<b class="unit">First</b>&lt;/li&gt;<br/>  &lt;li id=<s>"two"</s>&gt;<b class="unit">Second</b>&lt;/li&gt;<br/>  &lt;li id=<s>"three"</s>&gt;<b class="unit">Third</b>&lt;/li&gt;<br/>&lt;/ul&gt;<br/><br/>selectable.<u class="method">getValue</u>(); <i>// -&gt; ['one', 'two']</i></code>
+
+<p>In case if you have the keys/IDs in a some sort of sequential way, like <tt>thing-1</tt>, <tt>thing-2</tt>, <tt>thing-3</tt>, you also can specify the <tt>parseIds</tt> option as <tt>true</tt> and then the script will automatically parse out the numerical part of the IDs to be used as the result value.</p>
+
+<code><b class="var">var</b> selectable = <b class="var">new</b> <b class="unit">Selectable</b>({<br/>  <s class="key">options</s>: {<br/>    <s>'thing-1'</s>: <s>'First'</s>,<br/>    <s>'thing-2'</s>: <s>'Second'</s>,<br/>    <s>'thing-3'</s>: <s>'Third'</s><br/>  },<br/>  <s class="key">selected</s>: [<s class="int">0</s>,<s class="int">1</s>],<br/>  <s class="key">parseIds</s>: <b class="rest">true</b><br/>});<br/><br/><i>// эквивалентный HTML</i><br/>&lt;ul&gt;<br/>  &lt;li id=<s>"thing-1"</s>&gt;<b class="unit">First</b>&lt;/li&gt;<br/>  &lt;li id=<s>"thing-2"</s>&gt;<b class="unit">Second</b>&lt;/li&gt;<br/>  &lt;li id=<s>"thing-3"</s>&gt;<b class="unit">Third</b>&lt;/li&gt;<br/>&lt;/ul&gt;<br/><br/>selectable.<u class="method">getValue</u>(); <i>// -&gt; [1, 2]</i></code>
+<a name='options' ></a><h2 class='chapter'>
+  <a href='selectable.html#' class='top-anchor'>top &uarr;</a><a href='selectable.html#options'>Options List</a>
+</h2>
+<p>You can use any of those options in an options hash with the <tt>Selectable</tt> class constructor, or in a JSON formatted hash inside your custom <tt>data-selectable</tt> attribute.</p>
+<table><thead><tr><th>Name</th><th>Default</th><th>Description</th></tr></thead><tbody><tr><td>options</td><td>null</td><td>a hash of key-value pairs or an array of options</td>
+</tr><tr><td>selected</td><td>null</td><td>an array of selected item indexes</td>
+</tr><tr><td>disabled</td><td>null</td><td>an array of disabled item indexes</td>
+</tr><tr><td>multiple</td><td>true</td><td>a flag if it should be a multi-select or a single select widget</td>
+</tr><tr><td>fxName</td><td>&#8216;slide&#8217;</td><td>the drop-down options list fx-name (null, &#8216;slide&#8217;, &#8216;fade&#8217;)</td>
+</tr><tr><td>fxDuration</td><td>&#8216;short&#8217;</td><td>the drop-down options list fx-duration</td>
+</tr><tr><td>update</td><td>null</td><td>a field to be assigned to</td>
+</tr><tr><td>parseIds</td><td>false</td><td>if it should parse integer ids out of the keys</td>
+</tr><tr><td>limit</td><td>null</td><td>the maximum number of items the user can choose on the list</td>
+</tr><tr><td>hCont</td><td>&#8217;&#38;bull;&#8217;</td><td>content for the single-select handle element</td>
+</tr></tbody></table><a name='events' ></a><h2 class='chapter'>
+  <a href='selectable.html#' class='top-anchor'>top &uarr;</a><a href='selectable.html#events'>Events List</a>
+</h2>
+<p>There is the following list of events the <tt>Selectable</tt> instances will handle by default</p>
+<table><thead><tr><th>Name</th><th>Description</th></tr></thead><tbody><tr><td>change</td><td>the value was changed</td>
+</tr><tr><td>select</td><td>an item was selected</td>
+</tr><tr><td>unselect</td><td>an item was unselected</td>
+</tr><tr><td>disable</td><td>an item was disabled</td>
+</tr><tr><td>enable</td><td>an item was enabled</td>
+</tr><tr><td>hover</td><td>an item was hovered with the cursor</td>
+</tr><tr><td>leave</td><td>an item was left by the cursor</td>
+</tr><tr><td>show</td><td>the drop-down menu was displayed</td>
+</tr><tr><td>hide</td><td>the drop-down menu was closed</td>
+</tr></tbody></table><a name='api' ></a><h2 class='chapter'>
+  <a href='selectable.html#' class='top-anchor'>top &uarr;</a><a href='selectable.html#api'>API-Reference</a>
+</h2>
+<p>There are several handy methods in the public API of the <tt>Selectable</tt> unit</p>
+<table><thead><tr><th>Name</th><th>Description</th></tr></thead><tbody><tr><td>initialize([element,] Object options)</td><td>basic constructor</td>
+</tr><tr><td>setValue(value)</td><td>sets the value</td>
+</tr><tr><td>getValue()</td><td>returns the current value</td>
+</tr><tr><td>select(item)</td><td>selects the item(s)</td>
+</tr><tr><td>unselect(item)</td><td>unselects the item(s)</td>
+</tr><tr><td>selected(item)</td><td>checks if the item(s) are selected</td>
+</tr><tr><td>disable(item)</td><td>disables the item(s)</td>
+</tr><tr><td>enable(item)</td><td>enables the item(s)</td>
+</tr><tr><td>disabled(item)</td><td>checks if the item(s) are disabled</td>
+</tr><tr><td>assignTo(element)</td><td>assigns the widget to work with the input element</td>
+</tr></tbody></table>
+<p><strong>NOTE:</strong> the item related methods, like <tt>select</tt>, <tt>unselect</tt>, etc, can receive several types of arguments, it might be numerical indexes in the items list, it can be keys/ids of the options, or the list item elements by themselves. You also can send either arrays or single items, works both ways.</p>
+
+<p>You also can call those methods without any arguments, in which case the script will assume that you want select/unselect/disable/enable/check <em>all</em> the items on the list.</p>
+<a name='styles' ></a><h2 class='chapter'>
+  <a href='selectable.html#' class='top-anchor'>top &uarr;</a><a href='selectable.html#styles'>Style Alterations</a>
+</h2>
+<p>The elements structure will be left intact pretty much as it described in the <a href='selectable.html#usage'>usage basics</a> chapter. The script will also use the <tt>rui-selectable-selected</tt> and <tt>rui-selectable-disabled</tt> css-classes for selected and disabled list items respectively.</p>
+
+<code>&lt;ul class=<s>"rui-selectable"</s>&gt;<br/>  &lt;li class=<s>"rui-selectable-selected"</s>&gt;<b class="unit">Selected</b> item&lt;/li&gt;<br/>  &lt;li class=<s>"rui-selectable-disabled"</s>&gt;<b class="unit">Disabled</b> item&lt;/li&gt;<br/>  &lt;li&gt;<b class="unit">Another</b> item&lt;/li&gt;<br/>&lt;/ul&gt;</code>
+
+<p>For the single-select boxes, it will add the <tt>rui-selectable-single</tt> class to the list element, and insert a simple structure like that, right before the list.</p>
+
+<code>&lt;div class=<s>"rui-selectable-container"</s>&gt;<br/>  &lt;div class=<s>"rui-selectable-handle"</s>&gt;&amp;bull;&lt;/div&gt;<br/>  &lt;ul class=<s>"rui-selectable-display"</s>&gt;<br/>    &lt;li&gt;<b class="unit">Selected</b> item&lt;/li&gt;<br/>  &lt;/ul&gt;<br/>&lt;/div&gt;</code>
+
+<p>That will work as the select-box visible element and the <tt>LI</tt> element will be cloned out of the currently selected item on the options list.</p>
+        </div>
+        <div style="clear:both"></div>
+      </div>
+      <div id="foot">
+        <div id="contacts">
+  <h2>Questions?</h2>
+  <a href="&#x6D;&#x61;i&#x6C;&#x74;&#x6F;:&#105;&#110;&#102;&#111;&#064;&#114;&#105;&#103;&#104;&#116;&#106;&#115;&#046;&#111;&#114;&#103;">&#105;&#110;&#102;&#111;&#064;&#114;&#105;&#103;&#104;&#116;&#106;&#115;&#046;&#111;&#114;&#103;</a>
+</div>
+<div id="bottom-menu">
+  <h2>About the Framework</h2>
+  <a href="../philosophy.html">Philosophy</a> |
+  <a href="../benchmarks.html">Benchmarks</a> |
+  <a href="../browsers.html">Browsers</a> |
+  <a href="../contacts.html">Contacts</a>
+</div>
+        <div id="design">Design by <a href="http://activestylus.com">Steven Garcia</a></div>
+        <div id="copyright">Copyright &copy; 2008-2011 Nikolay Nemshilov</div>
+      </div>
+    </div>
+
+    <script src="http://www.google-analytics.com/ga.js" type="text/javascript"></script>
+    <script type="text/javascript">
+    // <![CDATA[
+      try { _gat._getTracker("UA-10292980-1")._trackPageview(); } catch(err) {}
+    // ]]>
+    </script>
+  </body>
+</html>

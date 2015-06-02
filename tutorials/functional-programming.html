@@ -1,0 +1,262 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <title>RightJS: Functional Programming</title>
+    <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+    <link href="../blog.rss" rel="alternate" title="RightJS News" type="application/rss+xml" />
+    <script src="../hotlink/right.js@1333128729" type="text/javascript"></script>
+<script src="../javascripts/application.js@1295184937" type="text/javascript"></script>
+    <script src="../builds/ui/right-autocompleter.js@1333128730" type="text/javascript"></script>
+    <link href="../stylesheets/application.css@1297515667.css" media="screen" rel="stylesheet" type="text/css" />
+    
+    
+    
+  </head>
+  <body>
+    <div id="body">
+      <div id="head">
+        <a href="../index.html" id="logo">RightJS</a>
+        <div id="slogan">JavaScript Framework That Feels Right</div>
+
+        <div id="main-menu">
+  <ul>
+    <li><a href="../index.html">Home</a></li>
+    <li><a href="../download.html">Download</a></li>
+    <li><a href="../plugins.html">Plugins</a></li>
+    <li><a href="../ui.html">UI</a></li>
+    <li><a href="../demos.html">Demos</a></li>
+    <li class="current"><a href="../docs.html">Docs</a></li>
+    <li><a href="../blog.html">Blog</a></li>
+  </ul>
+  <div id="zing"><!-- the moving thing --></div>
+</div>
+        <div id="lang-switch">
+    <select onchange="document.location.href=this.value;">
+      <option selected="true" value="http://rightjs.org/tutorials/functional-programming">English</option>
+      <option value="http://ru.rightjs.org/tutorials/functional-programming">Русский</option>
+    </select>
+</div>
+      </div>
+      <div id="main">
+        <div id="sidebar">
+  <div class="box" id="download-box">
+    <h1>Get it!</h1>
+    <ul>
+      <li><a href="../builds/current/right.js.zip">RightJS v2.3.1</a></li>
+    </ul>
+  </div>
+
+  <div id="api-search" class="box">
+  <input type="text" value="Search API" id="api-search-field" />
+  <script type="text/javascript">
+  // <![CDATA[
+    new Autocompleter($('api-search-field').on({
+      focus: function() { this._v = this.value(); this.value(''); },
+      blur:  function() { this.value(this._v); }
+    }), {
+      url: '/docs/search/%{search}.js',
+      onDone: function() {
+        var current = this.first('.current');
+        if (current) {
+          document.location.href = current.get('title');
+        }
+        this.input.setValue(this.input._v);
+      }
+    });
+  // ]]>
+  </script>
+</div>
+
+  <div class="box">
+    <label>Documentation</label>
+    <ul>
+      <li><a href="getting-started.html">Getting Started</a></li>
+      <li><a href="top-features.html">Top 12 Features</a></li>
+      <li><a href="../docs.html">API Reference</a></li>
+      <li class="current"><a href="../tutorials.1.html">Tutorials</a></li>
+    </ul>
+  </div>
+
+  <div class="box">
+    <label>Additional</label>
+    <ul>
+      <li><a href="../plugins.html">RightJS Plugins</a></li>
+      
+      <li><a href="../ui.html">RightJS UI</a></li>
+      
+      <li><a href="../showcases.html">Showcases</a></li>
+    </ul>
+  </div>
+
+  <div class="box">
+    <label>Community</label>
+    <ul>
+      <li><a href="http://groups.google.com/group/rightjs">Google Group</a></li>
+      <li><a href="http://rightjs.lighthouseapp.com/projects/31989">Tickets Tracker</a></li>
+      <li><a href="http://github.com/rightjs/rightjs-snippets">Code Snippets</a></li>
+      <li><a href="irc://irc.freenode.net/rightjs">IRC #rightjs</a></li>
+      <li><a href="../participate.html">Participate!</a></li>
+    </ul>
+  </div>
+
+  <div class="box">
+    <a href='http://www.pledgie.com/campaigns/14259'><img alt='Donate!' src='http://www.pledgie.com/campaigns/14259.png?skin_name=chrome' border='0' /></a>
+  </div>
+
+  <div class="box">
+    <ul id="social">
+      <li><a href="../blog.rss" id="rss-link">RSS</a></li>
+      <li><a href="http://twitter.com/rightjs" id="twitter-link">Twitter</a></li>
+      <li><a href="http://github.com/rightjs" id="github-link">GitHub</a></li>
+    </ul>
+  </div>
+</div>
+
+        <div id="info">
+          <h1>Functional Programming</h1>
+
+<p>RightJS is a multi-paradigm framework and being such a tool it provides several standard functional programming features like binding, currying and chains.</p>
+<a name='currying' ></a><h2 class='chapter'>
+  <a href='functional-programming.html#' class='top-anchor'>top &uarr;</a><a href='functional-programming.html#currying'>Currying</a>
+</h2>
+<p>Currying is a simple FP concept, which means that if you have one function that accepts a number of arguments, you can create another function that will automatically preset some part of those arguments for you.</p>
+
+<p>A classical example. Say you have a function that multiply two numbers</p>
+
+<code><b class="var">var</b> multiply = <b>function</b>(x, y) {<br/>  <b>return</b> x * y;<br/>};<br/><br/>multiply(<s class="int">2</s>, <s class="int">3</s>); <i>// -&gt; 6</i></code>
+
+<p>Now basing on this function you can create another function that will always preset the first argument as <tt>2</tt> and as the result double incoming numbers</p>
+
+<code><b class="var">var</b> double = multiply.<u class="method">curry</u>(<s class="int">2</s>);<br/><br/>double(<s class="int">2</s>); <i>// -&gt; 4</i><br/>double(<s class="int">3</s>); <i>// -&gt; 6</i><br/>double(<s class="int">4</s>); <i>// -&gt; 8</i></code>
+
+<p>Or you can create another function that will triple the things</p>
+
+<code><b class="var">var</b> triple = multiply.<u class="method">curry</u>(<s class="int">3</s>);<br/><br/>triple(<s class="int">3</s>); <i>// -&gt; 9</i></code>
+
+<p>The main idea in here is that you have one basic function that contains the actual logic and then can have several other functions whose only purpose is to keep some arguments and create different versions of the basic logic.</p>
+<a name='curry_example' ></a><h2 class='chapter'>
+  <a href='functional-programming.html#' class='top-anchor'>top &uarr;</a><a href='functional-programming.html#curry_example'>Currying Example</a>
+</h2>
+<p>Currying is particularly useful when you don&#8217;t have any appropriate place to keep references to some variables or you need them only once, or you&#8217;d like to create different versions of the same basic function.</p>
+
+<p>A dummy example. Say you have some menu, and a function that logs a number.</p>
+
+<code>&lt;ul id=<s>"menu"</s>&gt;<br/>  &lt;li&gt;<b class="unit">One</b>&lt;/li&gt;<br/>  &lt;li&gt;<b class="unit">Two</b>&lt;/li&gt;<br/>  &lt;li&gt;<b class="unit">Three</b>&lt;/li&gt;<br/>&lt;/ul&gt;<br/><br/><b class="var">var</b> log_index = <b>function</b>(index) {<br/>  console.<u class="method">log</u>(index);<br/>};</code>
+
+<p>Now you want to attach this log function to every item on the list the way that when the user clicks any of them the function logged the index of the item on the list.</p>
+
+<p>You could simply create a function that will grab all the list items and find the index of the clicked one. But what if the list items might be tossed around and you need their original indexes?</p>
+
+<p>You can easily solve the problem using the currying feature like this.</p>
+
+<code>$$(<s>'#menu li'</s>).<u class="method">each</u>(<b>function</b>(item, index) {<br/>  item.<u class="method">onClick</u>(log_index.<u class="method">curry</u>(index));<br/>});</code>
+
+<p>With currying you simply create a bunch of anonymous functions that will keep the arguments inside.</p>
+<a name='left_and_right_curry' ></a><h2 class='chapter'>
+  <a href='functional-programming.html#' class='top-anchor'>top &uarr;</a><a href='functional-programming.html#left_and_right_curry'>Left And Right Currying</a>
+</h2>
+<p>There are two types of currying feature, left and right. The left one is what you&#8217;ve just seen, it is when you add your values on the left side of the arguments list. And the right currying, as you understand, is when you add your values on the right side of the list. For example:</p>
+
+<code><b class="var">var</b> minus = <b>function</b>(x, y) {<br/>  <b>return</b> x - y;<br/>};<br/><br/>minus(<s class="int">4</s>, <s class="int">2</s>); <i>// -&gt; 2</i><br/><br/><i>// left currying</i><br/><b class="var">var</b> four_minus = minus.<u class="method">curry</u>(<s class="int">4</s>);<br/><br/>four_minus(<s class="int">2</s>); <i>// -&gt; 2</i><br/>four_minus(<s class="int">3</s>); <i>// -&gt; 1</i><br/><br/><i>// right currying</i><br/><b class="var">var</b> minus_four = minus.<u class="method">rcurry</u>(<s class="int">4</s>);<br/><br/>minus_four(<s class="int">6</s>); <i>// -&gt; 2</i><br/>minus_four(<s class="int">5</s>); <i>// -&gt; 1</i></code>
+
+<p>As you can see, in the first case we subtract any given number from <tt>4</tt> and in the second case we do the opposite, subtract <tt>4</tt> from any given number.</p>
+<a name='binding' ></a><h2 class='chapter'>
+  <a href='functional-programming.html#' class='top-anchor'>top &uarr;</a><a href='functional-programming.html#binding'>Binding</a>
+</h2>
+<p>Binding is another concept, which in case of FP means that you associate a function to be called in a context of some particular object.</p>
+
+<p>For example, you have two objects that represent two persons and a function that builds and logs a person&#8217;s full name.</p>
+
+<code><b class="var">var</b> karl = {<s class="key">firstName</s>: <s>'Karl'</s>, <s class="key">lastName</s>: <s>'Marx'</s> };<br/><b class="var">var</b> bill = {<s class="key">firstName</s>: <s>'Bill'</s>, <s class="key">lastName</s>: <s>'Gates'</s>};<br/><br/><b class="var">var</b> log_name = <b>function</b>() {<br/>  console.<u class="method">log</u>(<b class="var">this</b>.<u>firstName</u> + <s>" "</s> + <b class="var">this</b>.<u>lastName</u>);<br/>};</code>
+
+<p>Note, that the function refers to <tt>this</tt> as it was an actual part of any of those objects. Then in JavaScript you can call this <tt>log_name</tt> function in the context of any of those objects, like that</p>
+
+<code>log_name.<u class="method">call</u>(karl); <i>// -&gt; 'Karl Marx'</i><br/>log_name.<u class="method">call</u>(bill); <i>// -&gt; 'Bill Gates'</i></code>
+
+<p>Using binding you can create another function that will call the original one in any given context.</p>
+
+<p>Say you have two buttons and you want one of them log on click &#8216;Karl Marx&#8217;, and another one log &#8216;Bill Gates&#8217;. You could create anonymous functions manually and call the <tt>log_name</tt> function explicitly, but you could use binding feature as well</p>
+
+<code>karl_button.<u class="method">onClick</u>(log_name.<u class="method">bind</u>(karl));<br/>bill_button.<u class="method">onClick</u>(log_name.<u class="method">bind</u>(bill));</code>
+
+<p>This way you isolate your original function and despite the fact that the <a href='../docs/element.html' class='api-ref'>Element</a> callbacks will be called in the context of the element where they are attached, when you use binding you can be sure that your original function will be called in the specified context.</p>
+<a name='binding_and_currying' ></a><h2 class='chapter'>
+  <a href='functional-programming.html#' class='top-anchor'>top &uarr;</a><a href='functional-programming.html#binding_and_currying'>Binding + Currying</a>
+</h2>
+<p>Binding and currying often go alongside and in RightJS you can use them together at the same time.</p>
+
+<p>Say you have the same two &#8216;Karl&#8217; and &#8216;Bill&#8217; buttons.</p>
+
+<code>&lt;input type=<s>"button"</s> id=<s>"karl"</s> value=<s>"Karl"</s> /&gt;<br/>&lt;input type=<s>"button"</s> id=<s>"bill"</s> value=<s>"Bill"</s> /&gt;</code>
+
+<p>But this time your log function takes an argument that refers to what kind of a person each of them is</p>
+
+<code><b class="var">var</b> log_name = <b>function</b>(kind) {<br/>  console.<u class="method">log</u>(<br/>    <b class="var">this</b>.<u>firstName</u> + <s>" "</s> + <b class="var">this</b>.<u>lastName</u> + <s>" is a "</s> + kind<br/>  );<br/>};</code>
+
+<p>You can use binding and currying at the same time to solve the problem</p>
+
+<code>$(<s>'karl'</s>).<u class="method">onClick</u>(log_name.<u class="method">bind</u>(karl, <s>'communist'</s>));<br/>$(<s>'bill'</s>).<u class="method">onClick</u>(log_name.<u class="method">bind</u>(bill, <s>'capitalist'</s>));</code>
+
+<p>In this case our <tt>log_name</tt> function will be called in contexts of the correct objects and at the same time curry some additional argument that will be sent into the function when some of the buttons was clicked.</p>
+<a name='binding_currying_and_events' ></a><h2 class='chapter'>
+  <a href='functional-programming.html#' class='top-anchor'>top &uarr;</a><a href='functional-programming.html#binding_currying_and_events'>Binding + Currying + Events</a>
+</h2>
+<p>Lets move this feature a bit further. Say you have all the same as in the previous example, but instead of buttons you have links, like that</p>
+
+<code>&lt;a href=<s>"#"</s> id=<s>"karl"</s>&gt;<b class="unit">Karl</b>&lt;/a&gt;<br/>&lt;a href=<s>"#"</s> id=<s>"bill"</s>&gt;<b class="unit">Bill</b>&lt;/a&gt;</code>
+
+<p>In this case you will need to stop the click event to prevent the page from jumping up. The problem is that the event attribute always goes first and your callback function should look like that</p>
+
+<code><b class="var">var</b> log_name = <b>function</b>(event, kind) {<br/>  event.<u class="method">stop</u>();<br/>  console.<u class="method">log</u>(...);<br/>};</code>
+
+<p>But when you bind it using currying at the same time, your callback will receive the currying string value as the first argument instead of the dom event object.</p>
+
+<p>To handle such cases <a href='../docs/function.html' class='api-ref'>Function</a> has another method called <a href='../docs/function.html#bindAsEventListener' class='api-ref'>bindAsEventListener</a>. When you bind a callback with this method the new function will always treat the first argument as an event object, collecting and bypassing it where it should be.</p>
+
+<code>$(<s>'karl'</s>).<u class="method">onClick</u>(log_name.<u class="method">bindAsEventListener</u>(karl, <s>'communist'</s>));<br/>$(<s>'bill'</s>).<u class="method">onClick</u>(log_name.<u class="method">bindAsEventListener</u>(bill, <s>'capitalist'</s>));</code>
+
+<p>In this case, the actual callback will automatically pass the dom-events as the first arguments and the callbacks will work as they supposed to.</p>
+<a name='chains' ></a><h2 class='chapter'>
+  <a href='functional-programming.html#' class='top-anchor'>top &uarr;</a><a href='functional-programming.html#chains'>Chain Of Calls</a>
+</h2>
+<p>And the last simple FP concept for this tutorial. Chain of calls.</p>
+
+<p>Chains are for the case when you need to call several functions in some particular order, one after another. You can create chain using the <a href='../docs/function.html#chain' class='api-ref'>chain</a> method</p>
+
+<code><b class="var">var</b> first  = <b>function</b>() { console.<u class="method">log</u>(<s class="int">1</s>); };<br/><b class="var">var</b> second = <b>function</b>() { console.<u class="method">log</u>(<s class="int">2</s>); };<br/><b class="var">var</b> third  = <b>function</b>() { console.<u class="method">log</u>(<s class="int">3</s>); };<br/><br/><b class="var">var</b> chain = first.<u class="method">chain</u>(second).<u class="method">chain</u>(third);<br/><br/>chain(); <i>// -&gt; 1, 2, 3</i></code>
+
+<p>The idea is that you create a new function that calls another function after itself, and then another and another. Once you have this end <tt>chain</tt> function you can safely send it wherever you want and be sure that when it invoked all your functions will be called in that exact order.</p>
+
+<p>You also can use chains and currying at the same time, like that</p>
+
+<code><b class="var">var</b> log_num = <b>function</b>(num) { console.<u class="method">log</u>(num); };<br/><br/><b class="var">var</b> chain = log_num.<u class="method">chain</u>(log_num, <s class="int">2</s>).<u class="method">chain</u>(log_num, <s class="int">3</s>);<br/><br/>chain(<s class="int">1</s>);  <i>// -&gt; 1, 2, 3</i></code>
+
+<p>In this case we have one function and we chain it after itself twice, each time with different values to curry.</p>
+        </div>
+        <div style="clear:both"></div>
+      </div>
+      <div id="foot">
+        <div id="contacts">
+  <h2>Questions?</h2>
+  <a href="&#x6D;&#x61;i&#x6C;&#x74;&#x6F;:&#105;&#110;&#102;&#111;&#064;&#114;&#105;&#103;&#104;&#116;&#106;&#115;&#046;&#111;&#114;&#103;">&#105;&#110;&#102;&#111;&#064;&#114;&#105;&#103;&#104;&#116;&#106;&#115;&#046;&#111;&#114;&#103;</a>
+</div>
+<div id="bottom-menu">
+  <h2>About the Framework</h2>
+  <a href="../philosophy.html">Philosophy</a> |
+  <a href="../benchmarks.html">Benchmarks</a> |
+  <a href="../browsers.html">Browsers</a> |
+  <a href="../contacts.html">Contacts</a>
+</div>
+        <div id="design">Design by <a href="http://activestylus.com">Steven Garcia</a></div>
+        <div id="copyright">Copyright &copy; 2008-2011 Nikolay Nemshilov</div>
+      </div>
+    </div>
+
+    <script src="http://www.google-analytics.com/ga.js" type="text/javascript"></script>
+    <script type="text/javascript">
+    // <![CDATA[
+      try { _gat._getTracker("UA-10292980-1")._trackPageview(); } catch(err) {}
+    // ]]>
+    </script>
+  </body>
+</html>

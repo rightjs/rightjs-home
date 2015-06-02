@@ -1,0 +1,212 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <title>RightJS: Unobtrusive Programming And Events Delegation</title>
+    <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+    <link href="../blog.rss" rel="alternate" title="RightJS News" type="application/rss+xml" />
+    <script src="../hotlink/right.js@1331880836" type="text/javascript"></script>
+<script src="../javascripts/application.js@1295184937" type="text/javascript"></script>
+    <script src="../builds/ui/right-autocompleter.js@1331880836" type="text/javascript"></script>
+    <link href="../stylesheets/application.css@1297515667.css" media="screen" rel="stylesheet" type="text/css" />
+    
+    
+    
+  </head>
+  <body>
+    <div id="body">
+      <div id="head">
+        <a href="../index.html" id="logo">RightJS</a>
+        <div id="slogan">JavaScript Framework That Feels Right</div>
+
+        <div id="main-menu">
+  <ul>
+    <li><a href="../index.html">Home</a></li>
+    <li><a href="../download.html">Download</a></li>
+    <li><a href="../plugins.html">Plugins</a></li>
+    <li><a href="../ui.html">UI</a></li>
+    <li><a href="../demos.html">Demos</a></li>
+    <li class="current"><a href="../docs.html">Docs</a></li>
+    <li><a href="../blog.html">Blog</a></li>
+  </ul>
+  <div id="zing"><!-- the moving thing --></div>
+</div>
+        <div id="lang-switch">
+    <select onchange="document.location.href=this.value;">
+      <option selected="true" value="http://rightjs.org/tutorials/events-delegation">English</option>
+      <option value="http://ru.rightjs.org/tutorials/events-delegation">Русский</option>
+    </select>
+</div>
+      </div>
+      <div id="main">
+        <div id="sidebar">
+  <div class="box" id="download-box">
+    <h1>Get it!</h1>
+    <ul>
+      <li><a href="../builds/current/right.js.zip">RightJS v2.3.1</a></li>
+    </ul>
+  </div>
+
+  <div id="api-search" class="box">
+  <input type="text" value="Search API" id="api-search-field" />
+  <script type="text/javascript">
+  // <![CDATA[
+    new Autocompleter($('api-search-field').on({
+      focus: function() { this._v = this.value(); this.value(''); },
+      blur:  function() { this.value(this._v); }
+    }), {
+      url: '/docs/search/%{search}.js',
+      onDone: function() {
+        var current = this.first('.current');
+        if (current) {
+          document.location.href = current.get('title');
+        }
+        this.input.setValue(this.input._v);
+      }
+    });
+  // ]]>
+  </script>
+</div>
+
+  <div class="box">
+    <label>Documentation</label>
+    <ul>
+      <li><a href="getting-started.html">Getting Started</a></li>
+      <li><a href="top-features.html">Top 12 Features</a></li>
+      <li><a href="../docs.html">API Reference</a></li>
+      <li class="current"><a href="../tutorials.1.html">Tutorials</a></li>
+    </ul>
+  </div>
+
+  <div class="box">
+    <label>Additional</label>
+    <ul>
+      <li><a href="../plugins.html">RightJS Plugins</a></li>
+      
+      <li><a href="../ui.html">RightJS UI</a></li>
+      
+      <li><a href="../showcases.html">Showcases</a></li>
+    </ul>
+  </div>
+
+  <div class="box">
+    <label>Community</label>
+    <ul>
+      <li><a href="http://groups.google.com/group/rightjs">Google Group</a></li>
+      <li><a href="http://rightjs.lighthouseapp.com/projects/31989">Tickets Tracker</a></li>
+      <li><a href="http://github.com/rightjs/rightjs-snippets">Code Snippets</a></li>
+      <li><a href="irc://irc.freenode.net/rightjs">IRC #rightjs</a></li>
+      <li><a href="../participate.html">Participate!</a></li>
+    </ul>
+  </div>
+
+  <div class="box">
+    <a href='http://www.pledgie.com/campaigns/14259'><img alt='Donate!' src='http://www.pledgie.com/campaigns/14259.png?skin_name=chrome' border='0' /></a>
+  </div>
+
+  <div class="box">
+    <ul id="social">
+      <li><a href="../blog.rss" id="rss-link">RSS</a></li>
+      <li><a href="http://twitter.com/rightjs" id="twitter-link">Twitter</a></li>
+      <li><a href="http://github.com/rightjs" id="github-link">GitHub</a></li>
+    </ul>
+  </div>
+</div>
+
+        <div id="info">
+          <h1>Unobtrusive Programming And Events Delegation</h1>
+
+<p>This article describes how you can write unobtrusive scripts in RightJS using the events delegation technique</p>
+<h2 class="chapter"><a href='events-delegation.html#'>Index</a></h2><p><ul><li><a href="events-delegation.html#what">What's Events Delegation?</a></li><li><a href="events-delegation.html#why">Why Do That?</a></li><li><a href="events-delegation.html#example">A Simple Example</a></li><li><a href="events-delegation.html#deeper">Deeper Features</a></li><li><a href="events-delegation.html#troubleshooting">Troubleshooting</a></li></ul></p><a name='what' ></a><h2 class='chapter'>
+  <a href='events-delegation.html#' class='top-anchor'>top &uarr;</a><a href='events-delegation.html#what'>What's Events Delegation?</a>
+</h2>
+<p>Events delegation is another way of DOM events handling on web-pages. It uses the dom-events bubbling effect to handle several elements in one place.</p>
+
+<p>For example, say you have the following web-page</p>
+
+<code>&lt;html&gt;<br/>  &lt;body&gt;<br/>    &lt;ul id=<s>"todos"</s>&gt;<br/>      &lt;li&gt;<b class="unit">Wake</b> up&lt;/li&gt;<br/>      &lt;li&gt;<b class="unit">Shave</b>&lt;/li&gt;<br/>      &lt;li&gt;<b class="unit">Feed</b> the fish&lt;/li&gt;<br/>      &lt;li&gt;<b class="unit">Take</b> over the world&lt;/li&gt;<br/>    &lt;/ul&gt;<br/>  &lt;/body&gt;<br/>&lt;/html&gt;</code>
+
+<p>Now when a user clicks on any of the <tt>LI</tt> elements, the <tt>click</tt> event will bubble from <tt>LI</tt> to the <tt>UL</tt> element, then to <tt>BODY</tt>, to <tt>HTML</tt>, all the way up to the <tt>document</tt> object.</p>
+
+<p>Normally, we simply attach event listeners to the target elements itself and take care of things locally, but generally we can catch the event at any of the levels and then call the listener in the context of the element that was actually clicked.</p>
+<a name='why' ></a><h2 class='chapter'>
+  <a href='events-delegation.html#' class='top-anchor'>top &uarr;</a><a href='events-delegation.html#why'>Why Do That?</a>
+</h2>
+<p>There are several reasons why you might need to use the events delegation technique.</p>
+
+<p>First of all you might have a huge grid of cells, say some 50x50 table. And you need to handle clicks on every cell simultaneously. In this case, instead of attaching the same function 2500 times to every cell, you can attach it only once at the table element itself and handle all clicks in one place. This way you can drastically decrease the initialization time for your application.</p>
+
+<p>The second classical usage is dynamic content cases. For example you need to dynamically add and remove cells on that grid table in the first example. If you handle your events on the cells level, then you&#8217;ll need to take care of proper event listeners attachment the same time you add new cells, which might overcomplicate your application logic. But if you attach your listener to the table level, then all new cells will get handled automatically with all the others. No need to initialize them specifically.</p>
+
+<p>And the third case is known as the unobtrusive scripting approach. The idea is that you can describe the application logic unobtrusively at the document level without accessing the page elements directly. It gives you several advantages in the application design and allows to create more safe applications that won&#8217;t interfere with each other.</p>
+
+<p>A good example would be widgets, we use the events delegation technique in a number of widgets, for example Lightbox, Calendar, Autocompleter, etc. This way they have a reduced initialization time, work with dynamic content and incapsulate all their logic inside just a few document level listeners.</p>
+<a name='example' ></a><h2 class='chapter'>
+  <a href='events-delegation.html#' class='top-anchor'>top &uarr;</a><a href='events-delegation.html#example'>A Simple Example</a>
+</h2>
+<p>Remember the todo list from the above? Lets say we&#8217;d like to toggle a css-class on the list items when the user clicks the items. Using the events delegation technique in RightJS, this script would look about like that</p>
+
+<code><s>"#todos li"</s>.<u class="method">on</u>(<s>'click'</s>, <b>function</b>() {<br/>  <b class="var">this</b>.<u class="method">toggleClass</u>(<s>'marked'</s>);<br/>});</code>
+
+<p>This simple piece of code will tell the <tt>document</tt> to watch clicks and when an element that matches the <tt>"#todos li"</tt> css rule was clicked, then call the given callback in the context of the clicked element.</p>
+
+<p>This might look a bit weird, calling the <tt>on</tt> method on a string, but if you read the actual code you&#8217;ll see that it is perfectly readable. More of that it has all the same API as the <a href='../docs/element.html#on' class='api-ref'>Element#on</a> method, you can send hashes, arrays and refer callbacks by name.</p>
+
+<code><s>"#todos li"</s>.<u class="method">on</u>({<br/>  <s class="key">click</s>: <b>function</b>() {<br/>    <b class="var">this</b>.<u class="method">toggleClass</u>(<s>'marked'</s>);<br/>  }<br/>});<br/><br/><i>// with a list of handlers</i><br/><s>"#todos li"</s>.<u class="method">on</u>(<s>'click'</s>, [<br/>  function1, function2, function3<br/>]);<br/><br/><i>// with by-name references</i><br/><s>"#todos li"</s>.<u class="method">on</u>(<s>'click'</s>, <s>'toggleClass'</s>, <s>'marked'</s>);<br/><br/><i>// and there shortcuts for the standard events too</i><br/><s>"#todos li"</s>.<u class="method">onClick</u>(<s>'toggleClass'</s>, <s>'marked'</s>);</code>
+
+<p>You can think about it as a global observer. It&#8217;s all the same as the <a href='../docs/element.html#on' class='api-ref'>Element#on</a> method, but it works globally for all elements on the page that match that css-rule.</p>
+<a name='deeper' ></a><h2 class='chapter'>
+  <a href='events-delegation.html#' class='top-anchor'>top &uarr;</a><a href='events-delegation.html#deeper'>Deeper Features</a>
+</h2>
+<p>That fancy <a href='../docs/string.html#on' class='api-ref'>String#on</a> method is a shortcut for the Document#delegate method. It simply attaches the events delegation listener to the <tt>document</tt> level. But there are also other methods like Document#delegates to check if the document delegates certain kinds of events, and Document#undelegate which terminates events delegation for cases you need. You can use them from the document level</p>
+
+<code>$(document).<u class="method">delegates</u>(<s>'click'</s>, <s>'#todos li'</s>);<br/>$(document).<u class="method">undelegate</u>(<s>'click'</s>, <s>'#todos li'</s>);</code>
+
+<p>And you also can use the <a href='../docs/string.html' class='api-ref'>String</a> level shortcuts for them too, they look the same way as the <a href='../docs/element.html' class='api-ref'>Element</a> level events handling</p>
+
+<code><s>"#todos li"</s>.<u class="method">observes</u>(<s>'click'</s>);<br/><s>"#todos li"</s>.<u class="method">stopObserving</u>(<s>'click'</s>);</code>
+
+<p>And finally, the <a href='../docs/element.html' class='api-ref'>Element</a> unit has the <a href='../docs/element.html#delegate' class='api-ref'>Element#delegate</a> and <a href='../docs/element.html#undelegate' class='api-ref'>Element#undelegate</a> methods as well and you can play events delegation at any level not just at the document. For example</p>
+
+<code>$(<s>'my-table'</s>).<u class="method">delegate</u>(<s>'click'</s>, {<br/>  <s>'thead th'</s>: <b>function</b>() {<br/>    <i>// highlight the column in here</i><br/>  },<br/><br/>  <s>'tbody td'</s>: <b>function</b>() {<br/>    <i>// highlight the row in here</i><br/>  }<br/>});</code>
+
+<p>This might be very useful if you need to deal with some events locally without disturbing the rest of the document tree.</p>
+<a name='troubleshooting' ></a><h2 class='chapter'>
+  <a href='events-delegation.html#' class='top-anchor'>top &uarr;</a><a href='events-delegation.html#troubleshooting'>Troubleshooting</a>
+</h2>
+<p>There is one common issue with events delegation technique that you should be aware of.</p>
+
+<p>Because it uses the events bubbling effect, events delegation will not work if some other event listener between the target and the receiver, stopped the event. For example</p>
+
+<code><s>"#todos li"</s>.<u class="method">on</u>(<s>"click"</s>, <s>"toggleClass"</s>, <s>"marked"</s>);<br/><br/>$(<s>'todos'</s>).<u class="method">onClick</u>(<b>function</b>(event) {<br/>  event.<u class="method">stop</u>();<br/>});</code>
+
+<p>In this case when the event reaches the <tt>UL</tt> element the event will be stopped from bubbling up. It will never reach the <tt>document</tt> level listener and because of that the class toggling will not work.</p>
+
+<p>If you want to cancel the event default effect, but still keep it bubbling, call the <a href='../docs/event.html#preventDefault' class='api-ref'>Event#preventDefault</a> method instead of <a href='../docs/event.html#stop' class='api-ref'>Event#stop</a></p>
+        </div>
+        <div style="clear:both"></div>
+      </div>
+      <div id="foot">
+        <div id="contacts">
+  <h2>Questions?</h2>
+  <a href="&#x6D;&#x61;i&#x6C;&#x74;&#x6F;:&#105;&#110;&#102;&#111;&#064;&#114;&#105;&#103;&#104;&#116;&#106;&#115;&#046;&#111;&#114;&#103;">&#105;&#110;&#102;&#111;&#064;&#114;&#105;&#103;&#104;&#116;&#106;&#115;&#046;&#111;&#114;&#103;</a>
+</div>
+<div id="bottom-menu">
+  <h2>About the Framework</h2>
+  <a href="../philosophy.html">Philosophy</a> |
+  <a href="../benchmarks.html">Benchmarks</a> |
+  <a href="../browsers.html">Browsers</a> |
+  <a href="../contacts.html">Contacts</a>
+</div>
+        <div id="design">Design by <a href="http://activestylus.com">Steven Garcia</a></div>
+        <div id="copyright">Copyright &copy; 2008-2011 Nikolay Nemshilov</div>
+      </div>
+    </div>
+
+    <script src="http://www.google-analytics.com/ga.js" type="text/javascript"></script>
+    <script type="text/javascript">
+    // <![CDATA[
+      try { _gat._getTracker("UA-10292980-1")._trackPageview(); } catch(err) {}
+    // ]]>
+    </script>
+  </body>
+</html>

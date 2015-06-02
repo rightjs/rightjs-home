@@ -1,0 +1,468 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <title>RightJS: Documentation: Form</title>
+    <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+    <link href="http://www.rightjs.org/blog.rss" rel="alternate" title="RightJS News" type="application/rss+xml" />
+    <script src="../hotlink/right.js@1333128729" type="text/javascript"></script>
+<script src="../javascripts/application.js@1295184937" type="text/javascript"></script>
+    <script src="../builds/ui/right-autocompleter.js@1333128730" type="text/javascript"></script>
+    <link href="../stylesheets/application.css@1297515667.css" media="screen" rel="stylesheet" type="text/css" />
+    
+    
+    
+  </head>
+  <body>
+    <div id="body">
+      <div id="head">
+        <a href="../index.html" id="logo">RightJS</a>
+        <div id="slogan">JavaScript Framework That Feels Right</div>
+
+        <div id="main-menu">
+  <ul>
+    <li><a href="../index.html">Home</a></li>
+    <li><a href="../download.html">Download</a></li>
+    <li><a href="../plugins.html">Plugins</a></li>
+    <li><a href="../ui.html">UI</a></li>
+    <li><a href="../demos.html">Demos</a></li>
+    <li class="current"><a href="../docs.html">Docs</a></li>
+    <li><a href="../blog.html">Blog</a></li>
+  </ul>
+  <div id="zing"><!-- the moving thing --></div>
+</div>
+        <div id="lang-switch">
+    <select onchange="document.location.href=this.value;">
+      <option selected="true" value="http://www.rightjs.org/docs/form">English</option>
+      <option value="http://ru.www.rightjs.org/docs/form">Русский</option>
+    </select>
+</div>
+      </div>
+      <div id="main">
+        <div id="sidebar">
+
+  <div id="api-search" class="box">
+  <input type="text" value="Search API" id="api-search-field" />
+  <script type="text/javascript">
+  // <![CDATA[
+    new Autocompleter($('api-search-field').on({
+      focus: function() { this._v = this.value(); this.value(''); },
+      blur:  function() { this.value(this._v); }
+    }), {
+      url: '/docs/search/%{search}.js',
+      onDone: function() {
+        var current = this.first('.current');
+        if (current) {
+          document.location.href = current.get('title');
+        }
+        this.input.setValue(this.input._v);
+      }
+    });
+  // ]]>
+  </script>
+</div>
+
+  <div class="box" id="api-lists">
+    <label>Core</label><ul><li><a href="browser.html">Browser</a></li><li><a href="class.html">Class</a></li><li><a href="util.html">Util</a></li></ul>
+<label>Dom</label><ul><li><a href="document.html">Document</a></li><li><a href="element.html">Element</a></li><li><a href="event.html">Event</a></li><li><a href="form.html">Form</a></li><ul><li><a href="form.html#include">include</a></li><li><a href="form.html#initialize">initialize</a></li><li><a href="form.html#blur">blur</a></li><li><a href="form.html#cancelXhr">cancelXhr</a></li><li><a href="form.html#disable">disable</a></li><li><a href="form.html#elements">elements</a></li><li><a href="form.html#enable">enable</a></li><li><a href="form.html#focus">focus</a></li><li><a href="form.html#input">input</a></li><li><a href="form.html#inputs">inputs</a></li><li><a href="form.html#remotize">remotize</a></li><li><a href="form.html#reset">reset</a></li><li><a href="form.html#send">send</a></li><li><a href="form.html#serialize">serialize</a></li><li><a href="form.html#submit">submit</a></li><li><a href="form.html#unremotize">unremotize</a></li><li><a href="form.html#values">values</a></li></ul><li><a href="input.html">Input</a></li><li><a href="window.html">Window</a></li></ul>
+<label>Fx</label><ul><li><a href="fx.html">Fx</a></li><li><a href="fx/attr.html">Fx.Attr</a></li><li><a href="fx/element.html">Fx.Element</a></li><li><a href="fx/fade.html">Fx.Fade</a></li><li><a href="fx/highlight.html">Fx.Highlight</a></li><li><a href="fx/morph.html">Fx.Morph</a></li><li><a href="fx/scroll.html">Fx.Scroll</a></li><li><a href="fx/slide.html">Fx.Slide</a></li></ul>
+<label>Lang</label><ul><li><a href="array.html">Array</a></li><li><a href="function.html">Function</a></li><li><a href="json.html">Json</a></li><li><a href="math.html">Math</a></li><li><a href="number.html">Number</a></li><li><a href="object.html">Object</a></li><li><a href="regexp.html">Regexp</a></li><li><a href="string.html">String</a></li></ul>
+<label>Util</label><ul><li><a href="cookie.html">Cookie</a></li><li><a href="observer.html">Observer</a></li><li><a href="options.html">Options</a></li><li><a href="xhr.html">Xhr</a></li></ul>
+  </div>
+
+  <div class="box">
+    <a href='http://www.pledgie.com/campaigns/14259'><img alt='Donate!' src='http://www.pledgie.com/campaigns/14259.png?skin_name=chrome' border='0' /></a>
+  </div>
+
+  <div class="box">
+    <ul id="social">
+      <li><a href="../blog.rss" id="rss-link">RSS</a></li>
+      <li><a href="http://twitter.com/rightjs" id="twitter-link">Twitter</a></li>
+      <li><a href="http://github.com/rightjs" id="github-link">GitHub</a></li>
+    </ul>
+  </div>
+</div>
+
+        <div id="info">
+          
+<h1>Form</h1>
+
+<p>RightJS inherits forms from the common <a href='element.html' class='api-ref'>Element</a> unit, which means you can do everything you can do with any other element plus several additional features which make the work with forms a lot easier</p>
+
+<h2>Ajax handling</h2>
+
+<p>To submit your form via an <a href='xhr.html' class='api-ref'>Xhr</a> request just call the <a href='form.html#send' class='api-ref'>send</a> method.</p>
+
+<code>$(<s>'some-form'</s>).<u class="method">send</u>();</code>
+
+<p>This will handle everything automatically, grab the request method, URL, options and so on. If your form contains files to upload, it will be nicely handled by an iframed request in just the same way. You don&#8217;t need to worry about anything.</p>
+
+<p>You can also mark the form as a remote one. When it gets submitted the form will go via a <a href='xhr.html' class='api-ref'>Xhr</a> request automatically.</p>
+
+<code>$(<s>'some-form'</s>).<u class="method">remotize</u>();</code>
+
+<p>You can specify any standard <a href='xhr.html' class='api-ref'>Xhr</a> options as well.</p>
+
+<code>$(<s>'some-form'</s>).<u class="method">send</u>({<br/>  <s class="key">onSuccess</s>: <b>function</b>(r) {<br/>    $(<s>'notices'</s>).<u class="method">update</u>(r.<u>responseText</u>);<br/>  }<br/>});</code>
+
+<p>If your form has an element with the CSS class <tt>spinner</tt>, it will be automatically used as a spinner for your form submission. You don&#8217;t need to define it explicitly.</p>
+
+<h1>Methods</h1>
+<p>
+  <a href="form.html#include">include</a>, <a href="form.html#initialize">initialize</a>, <a href="form.html#blur">blur</a>, <a href="form.html#cancelXhr">cancelXhr</a>, <a href="form.html#disable">disable</a>, <a href="form.html#elements">elements</a>, <a href="form.html#enable">enable</a>, <a href="form.html#focus">focus</a>, <a href="form.html#input">input</a>, <a href="form.html#inputs">inputs</a>, <a href="form.html#remotize">remotize</a>, <a href="form.html#reset">reset</a>, <a href="form.html#send">send</a>, <a href="form.html#serialize">serialize</a>, <a href="form.html#submit">submit</a>, <a href="form.html#unremotize">unremotize</a>, <a href="form.html#values">values</a>
+</p>
+
+<div class="method">
+  <a name="include"></a>
+  <h2><a class="top-anchor" href="form.html#">top &uarr;</a><a href="form.html#include">include</a></h2>
+
+  <p class="semantic">
+    <code>include(<b class="unit">Object</b> methods[, boolean dont_rewrite])</code>
+  </p>
+
+
+  <h4>Description</h4>
+  <p>Registers additional methods for the <tt>Form</tt> elements.</p>
+
+
+
+  <h4>Example</h4>
+  <p>
+    <code><b class="unit">Form</b>.<u class="method">include</u>({<br/>  <s class="key">myMethod</s>: <b>function</b>() {....}<br/>});<br/><br/>$(<s>'my_form'</s>).<u class="method">myMethod</u>();</code>
+  </p>
+
+</div><div class="method">
+  <a name="initialize"></a>
+  <h2><a class="top-anchor" href="form.html#">top &uarr;</a><a href="form.html#initialize">initialize</a></h2>
+
+  <p class="semantic">
+    <code>initialize([<b class="unit">Object</b> options])</code>
+  </p>
+
+
+  <h4>Description</h4>
+  <p>Basic constructor which receives all the common <a href='element.html' class='api-ref'>Element</a> unit options plus a boolean one named <tt>remote</tt> which tells whether you want the form to be submitted via a <a href='xhr.html' class='api-ref'>Xhr</a> request by default.</p>
+
+
+
+  <h4>Example</h4>
+  <p>
+    <code><b class="var">var</b> form = <b class="var">new</b> <b class="unit">Form</b>({<br/>  <s class="key">method</s>: <s>'post'</s>,<br/>  <s class="key">action</s>: <s>'some/action'</s><br/>});</code>
+  </p>
+
+</div><div class="method">
+  <a name="blur"></a>
+  <h2><a class="top-anchor" href="form.html#">top &uarr;</a><a href="form.html#blur">blur</a></h2>
+
+  <p class="semantic">
+    <code>blur() -&gt; <b class="unit">Form</b> <b class="var">self</b></code>
+  </p>
+
+
+  <h4>Description</h4>
+  <p>Looses focus on every element of the form.</p>
+
+
+
+  <h4>Example</h4>
+  <p>
+    <code>$(<s>'form'</s>).<u class="method">blur</u>();</code>
+  </p>
+
+</div><div class="method">
+  <a name="cancelXhr"></a>
+  <h2><a class="top-anchor" href="form.html#">top &uarr;</a><a href="form.html#cancelXhr">cancelXhr</a></h2>
+
+  <p class="semantic">
+    <code>cancelXhr() -&gt; <b class="unit">Form</b> <b class="var">self</b></code>
+  </p>
+
+
+  <h4>Description</h4>
+  <p>Cancels the currently running <a href='xhr.html' class='api-ref'>Xhr</a> request started with the <a href='form.html#send' class='api-ref'>send</a> method</p>
+
+
+
+  <h4>Example</h4>
+  <p>
+    <code>$(<s>'form'</s>).<u class="method">send</u>();<br/>$(<s>'form'</s>).<u class="method">cancelXhr</u>();</code>
+  </p>
+
+</div><div class="method">
+  <a name="disable"></a>
+  <h2><a class="top-anchor" href="form.html#">top &uarr;</a><a href="form.html#disable">disable</a></h2>
+
+  <p class="semantic">
+    <code>disable() -&gt; <b class="unit">Form</b> <b class="var">self</b></code>
+  </p>
+
+
+  <h4>Description</h4>
+  <p>Disables every visible element of the form.</p>
+
+
+
+  <h4>Example</h4>
+  <p>
+    <code>$(<s>'form'</s>).<u class="method">disable</u>();</code>
+  </p>
+
+</div><div class="method">
+  <a name="elements"></a>
+  <h2><a class="top-anchor" href="form.html#">top &uarr;</a><a href="form.html#elements">elements</a></h2>
+
+  <p class="semantic">
+    <code>elements() -&gt; <b class="unit">Array</b> of elements</code>
+  </p>
+
+
+  <h4>Description</h4>
+  <p>Returns the form elements list in an array.</p>
+
+
+
+  <h4>Example</h4>
+  <p>
+    <code><b class="var">var</b> form_elements = $(<s>'form'</s>).<u class="method">elements</u>();</code>
+  </p>
+
+</div><div class="method">
+  <a name="enable"></a>
+  <h2><a class="top-anchor" href="form.html#">top &uarr;</a><a href="form.html#enable">enable</a></h2>
+
+  <p class="semantic">
+    <code>enable() -&gt; <b class="unit">Form</b> <b class="var">self</b></code>
+  </p>
+
+
+  <h4>Description</h4>
+  <p>Enables all disabled elements of the form.</p>
+
+
+
+  <h4>Example</h4>
+  <p>
+    <code>$(<s>'form'</s>).<u class="method">enable</u>();</code>
+  </p>
+
+</div><div class="method">
+  <a name="focus"></a>
+  <h2><a class="top-anchor" href="form.html#">top &uarr;</a><a href="form.html#focus">focus</a></h2>
+
+  <p class="semantic">
+    <code>focus() -&gt; <b class="unit">Form</b> <b class="var">self</b></code>
+  </p>
+
+
+  <h4>Description</h4>
+  <p>Tries to put the focus on the first visible and not disabled input element of the form.</p>
+
+
+
+  <h4>Example</h4>
+  <p>
+    <code>$(<s>'form'</s>).<u class="method">focus</u>();</code>
+  </p>
+
+</div><div class="method">
+  <a name="input"></a>
+  <h2><a class="top-anchor" href="form.html#">top &uarr;</a><a href="form.html#input">input</a></h2>
+
+  <p class="semantic">
+    <code>input(<b class="unit">String</b> name) -&gt; <b class="unit">Input</b> with that name</code>
+  </p>
+
+
+  <h4>Description</h4>
+  <p>Returns a wrapped input field by it&#8217;s name attribute</p>
+
+
+
+  <h4>Example</h4>
+  <p>
+    <code>$(<s>'form'</s>).<u class="method">input</u>(<s>'username'</s>);<br/>$(<s>'form'</s>).<u class="method">input</u>(<s>'password'</s>);</code>
+  </p>
+
+</div><div class="method">
+  <a name="inputs"></a>
+  <h2><a class="top-anchor" href="form.html#">top &uarr;</a><a href="form.html#inputs">inputs</a></h2>
+
+  <p class="semantic">
+    <code>inputs() -&gt; <b class="unit">Array</b> of elements</code>
+  </p>
+
+
+  <h4>Description</h4>
+  <p>Returns a list of all the form input elements <em>except</em> the buttons.</p>
+
+
+
+  <h4>Example</h4>
+  <p>
+    <code>$(<s>'form'</s>).<u class="method">inputs</u>();</code>
+  </p>
+
+</div><div class="method">
+  <a name="remotize"></a>
+  <h2><a class="top-anchor" href="form.html#">top &uarr;</a><a href="form.html#remotize">remotize</a></h2>
+
+  <p class="semantic">
+    <code>remotize([<b class="unit">Object</b> options]) -&gt; <b class="unit">Form</b> <b class="var">self</b></code>
+  </p>
+
+
+  <h4>Description</h4>
+  <p>Marks the form to be automatically send via a <a href='xhr.html' class='api-ref'>Xhr</a> request when submitted. Optionally presets any standard <a href='xhr.html' class='api-ref'>Xhr</a> object options.</p>
+
+
+
+  <h4>Example</h4>
+  <p>
+    <code>$(<s>'form'</s>).<u class="method">remotize</u>({<s class="key">spinner</s>: $(<s>'some-image'</s>)});<br/><br/>$(<s>'form'</s>).<u class="method">submit</u>();  <i>// the form goes remotely</i></code>
+  </p>
+
+</div><div class="method">
+  <a name="reset"></a>
+  <h2><a class="top-anchor" href="form.html#">top &uarr;</a><a href="form.html#reset">reset</a></h2>
+
+  <p class="semantic">
+    <code>reset() -&gt; <b class="unit">Form</b> <b class="var">self</b></code>
+  </p>
+
+
+  <h4>Description</h4>
+  <p>A tunnel for the native <tt>reset</tt> method</p>
+
+
+
+  <h4>Example</h4>
+  <p>
+    <code>$(<s>'form'</s>).<u class="method">reset</u>();</code>
+  </p>
+
+</div><div class="method">
+  <a name="send"></a>
+  <h2><a class="top-anchor" href="form.html#">top &uarr;</a><a href="form.html#send">send</a></h2>
+
+  <p class="semantic">
+    <code>send([<b class="unit">Object</b> options]) -&gt; <b class="unit">Form</b> <b class="var">self</b></code>
+  </p>
+
+
+  <h4>Description</h4>
+  <p>Remotely submits the form via a <a href='xhr.html' class='api-ref'>Xhr</a> request. The argument may contain any standard <a href='xhr.html' class='api-ref'>Xhr</a> object options.</p>
+
+<p><strong>NOTE</strong>: Works with file uploads too!</p>
+
+
+
+  <h4>Example</h4>
+  <p>
+    <code>$(<s>'form'</s>).<u class="method">send</u>();<br/><br/>$(<s>'form'</s>).<u class="method">send</u>({<br/>  <s class="key">spinner</s>:    $(<s>'spinner'</s>),<br/>  <s class="key">onComplete</s>: call_the_function<br/>});</code>
+  </p>
+
+</div><div class="method">
+  <a name="serialize"></a>
+  <h2><a class="top-anchor" href="form.html#">top &uarr;</a><a href="form.html#serialize">serialize</a></h2>
+
+  <p class="semantic">
+    <code>serialize() -&gt; <b class="unit">String</b></code>
+  </p>
+
+
+  <h4>Description</h4>
+  <p>Collects all the values of the form and serializes them into a single URL query string.</p>
+
+
+
+  <h4>Example</h4>
+  <p>
+    <code>$(<s>'form'</s>).<u class="method">serialize</u>();</code>
+  </p>
+
+</div><div class="method">
+  <a name="submit"></a>
+  <h2><a class="top-anchor" href="form.html#">top &uarr;</a><a href="form.html#submit">submit</a></h2>
+
+  <p class="semantic">
+    <code>submit() -&gt; <b class="unit">Form</b> <b class="var">self</b></code>
+  </p>
+
+
+  <h4>Description</h4>
+  <p>Just a tunnel for the native <tt>submit</tt> method</p>
+
+
+
+  <h4>Example</h4>
+  <p>
+    <code>$(<s>'form'</s>).<u class="method">submit</u>();</code>
+  </p>
+
+</div><div class="method">
+  <a name="unremotize"></a>
+  <h2><a class="top-anchor" href="form.html#">top &uarr;</a><a href="form.html#unremotize">unremotize</a></h2>
+
+  <p class="semantic">
+    <code>unremotize() -&gt; <b class="unit">Form</b> <b class="var">self</b></code>
+  </p>
+
+
+  <h4>Description</h4>
+  <p>Undoes the <a href='form.html#remotize' class='api-ref'>remotize</a> method changes.</p>
+
+
+
+  <h4>Example</h4>
+  <p>
+    <code>$(<s>'form'</s>).<u class="method">remotize</u>();<br/>$(<s>'form'</s>).<u class="method">unremotize</u>();<br/><br/>$(<s>'form'</s>).<u class="method">submit</u>(); <i>// the form goes via usual HTTP request</i></code>
+  </p>
+
+</div><div class="method">
+  <a name="values"></a>
+  <h2><a class="top-anchor" href="form.html#">top &uarr;</a><a href="form.html#values">values</a></h2>
+
+  <p class="semantic">
+    <code>values() -&gt; <b class="unit">Object</b></code>
+  </p>
+
+
+  <h4>Description</h4>
+  <p>Returns a name-&gt;value hash of all form values.</p>
+
+
+
+  <h4>Example</h4>
+  <p>
+    <code>$(<s>'form'</s>).<u class="method">values</u>();</code>
+  </p>
+
+</div>
+
+        </div>
+        <div style="clear:both"></div>
+      </div>
+      <div id="foot">
+        <div id="contacts">
+  <h2>Questions?</h2>
+  <a href="&#x6D;&#x61;i&#x6C;&#x74;&#x6F;:&#105;&#110;&#102;&#111;&#064;&#114;&#105;&#103;&#104;&#116;&#106;&#115;&#046;&#111;&#114;&#103;">&#105;&#110;&#102;&#111;&#064;&#114;&#105;&#103;&#104;&#116;&#106;&#115;&#046;&#111;&#114;&#103;</a>
+</div>
+<div id="bottom-menu">
+  <h2>About the Framework</h2>
+  <a href="../philosophy.html">Philosophy</a> |
+  <a href="../benchmarks.html">Benchmarks</a> |
+  <a href="../browsers.html">Browsers</a> |
+  <a href="../contacts.html">Contacts</a>
+</div>
+        <div id="design">Design by <a href="http://activestylus.com">Steven Garcia</a></div>
+        <div id="copyright">Copyright &copy; 2008-2011 Nikolay Nemshilov</div>
+      </div>
+    </div>
+
+    <script src="http://www.google-analytics.com/ga.js" type="text/javascript"></script>
+    <script type="text/javascript">
+    // <![CDATA[
+      try { _gat._getTracker("UA-10292980-1")._trackPageview(); } catch(err) {}
+    // ]]>
+    </script>
+  </body>
+</html>

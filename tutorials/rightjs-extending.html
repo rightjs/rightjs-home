@@ -1,0 +1,196 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <title>RightJS: RightJS Extending Guide</title>
+    <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+    <link href="../blog.rss" rel="alternate" title="RightJS News" type="application/rss+xml" />
+    <script src="../hotlink/right.js@1331880836" type="text/javascript"></script>
+<script src="../javascripts/application.js@1295184937" type="text/javascript"></script>
+    <script src="../builds/ui/right-autocompleter.js@1331880836" type="text/javascript"></script>
+    <link href="../stylesheets/application.css@1297515667.css" media="screen" rel="stylesheet" type="text/css" />
+    
+    
+    
+  </head>
+  <body>
+    <div id="body">
+      <div id="head">
+        <a href="../index.html" id="logo">RightJS</a>
+        <div id="slogan">JavaScript Framework That Feels Right</div>
+
+        <div id="main-menu">
+  <ul>
+    <li><a href="../index.html">Home</a></li>
+    <li><a href="../download.html">Download</a></li>
+    <li><a href="../plugins.html">Plugins</a></li>
+    <li><a href="../ui.html">UI</a></li>
+    <li><a href="../demos.html">Demos</a></li>
+    <li class="current"><a href="../docs.html">Docs</a></li>
+    <li><a href="../blog.html">Blog</a></li>
+  </ul>
+  <div id="zing"><!-- the moving thing --></div>
+</div>
+        <div id="lang-switch">
+    <select onchange="document.location.href=this.value;">
+      <option selected="true" value="http://rightjs.org/tutorials/rightjs-extending">English</option>
+      <option value="http://ru.rightjs.org/tutorials/rightjs-extending">Русский</option>
+    </select>
+</div>
+      </div>
+      <div id="main">
+        <div id="sidebar">
+  <div class="box" id="download-box">
+    <h1>Get it!</h1>
+    <ul>
+      <li><a href="../builds/current/right.js.zip">RightJS v2.3.1</a></li>
+    </ul>
+  </div>
+
+  <div id="api-search" class="box">
+  <input type="text" value="Search API" id="api-search-field" />
+  <script type="text/javascript">
+  // <![CDATA[
+    new Autocompleter($('api-search-field').on({
+      focus: function() { this._v = this.value(); this.value(''); },
+      blur:  function() { this.value(this._v); }
+    }), {
+      url: '/docs/search/%{search}.js',
+      onDone: function() {
+        var current = this.first('.current');
+        if (current) {
+          document.location.href = current.get('title');
+        }
+        this.input.setValue(this.input._v);
+      }
+    });
+  // ]]>
+  </script>
+</div>
+
+  <div class="box">
+    <label>Documentation</label>
+    <ul>
+      <li><a href="getting-started.html">Getting Started</a></li>
+      <li><a href="top-features.html">Top 12 Features</a></li>
+      <li><a href="../docs.html">API Reference</a></li>
+      <li class="current"><a href="../tutorials.1.html">Tutorials</a></li>
+    </ul>
+  </div>
+
+  <div class="box">
+    <label>Additional</label>
+    <ul>
+      <li><a href="../plugins.html">RightJS Plugins</a></li>
+      
+      <li><a href="../ui.html">RightJS UI</a></li>
+      
+      <li><a href="../showcases.html">Showcases</a></li>
+    </ul>
+  </div>
+
+  <div class="box">
+    <label>Community</label>
+    <ul>
+      <li><a href="http://groups.google.com/group/rightjs">Google Group</a></li>
+      <li><a href="http://rightjs.lighthouseapp.com/projects/31989">Tickets Tracker</a></li>
+      <li><a href="http://github.com/rightjs/rightjs-snippets">Code Snippets</a></li>
+      <li><a href="irc://irc.freenode.net/rightjs">IRC #rightjs</a></li>
+      <li><a href="../participate.html">Participate!</a></li>
+    </ul>
+  </div>
+
+  <div class="box">
+    <a href='http://www.pledgie.com/campaigns/14259'><img alt='Donate!' src='http://www.pledgie.com/campaigns/14259.png?skin_name=chrome' border='0' /></a>
+  </div>
+
+  <div class="box">
+    <ul id="social">
+      <li><a href="../blog.rss" id="rss-link">RSS</a></li>
+      <li><a href="http://twitter.com/rightjs" id="twitter-link">Twitter</a></li>
+      <li><a href="http://github.com/rightjs" id="github-link">GitHub</a></li>
+    </ul>
+  </div>
+</div>
+
+        <div id="info">
+          <h1>RightJS Extending Guide</h1>
+
+<p>Since version 2.0.0 all units in RightJS are essentially normal JavaScript classes. At this angle there is nothing special about them and you can just go and change any unit&#8217;s <tt>prototype</tt> property right away</p>
+
+<code><b class="unit">String</b>.<u>prototype</u>.<u>isBob</u> = <b>function</b>() {<br/>  <b>return</b> <b class="var">this</b>.<u class="method">indexOf</u>(<s>'Bob'</s>) &gt; -<s class="int">1</s>;<br/>};<br/><br/><s>"Bob"</s>.<u class="method">isBob</u>();  <i>// true</i><br/><s>"Mary"</s>.<u class="method">isBob</u>(); <i>// false</i><br/><br/><b class="unit">Array</b>.<u>prototype</u>.<u>hasBob</u> = <b>function</b>() {<br/>  <b>return</b> <b class="var">this</b>.<u class="method">indexOf</u>(<s>'Bob'</s>) &gt; -<s class="int">1</s>;<br/>};<br/><br/>[<s>"Bob"</s>].<u class="method">hasBob</u>();   <i>// true</i><br/>[<s>"Mary"</s>].<u class="method">hasMary</u>(); <i>// true</i><br/><br/><b class="unit">Element</b>.<u>prototype</u>.<u>isBob</u> = <b>function</b>() {<br/>  <b>return</b> <b class="var">this</b>.<u class="method">hasClass</u>(<s>'bob'</s>);<br/>};<br/><br/><b class="unit">Event</b>.<u>prototype</u>.<u>isBob</u> = <b>function</b>() {<br/>  <b>return</b> <b class="var">this</b>.<u>target</u>.<u class="method">hasClass</u>(<s>'bob'</s>);<br/>};<br/><br/><b class="unit">Document</b>.<u>prototype</u>.<u>hasBob</u> = <b>function</b>() {<br/>  <b>return</b> <b class="var">this</b>.<u class="method">find</u>(<s>'.bob'</s>).<u>length</u> &gt; <s class="int">0</s>;<br/>};<br/><br/><b class="unit">Xhr</b>.<u>prototype</u>.<u>getBob</u> = <b>function</b>() {<br/>  <b>return</b> <b class="var">this</b>.<u class="method">load</u>(<s>'/bob'</s>);<br/>};</code>
+
+<p>You&#8217;ve got the picture. Basically any class in RightJS can be extended this way. But it is not 1999 anymore and we have much more for you to play with.</p>
+<a name='mixins' ></a><h2 class='chapter'>
+  <a href='rightjs-extending.html#' class='top-anchor'>top &uarr;</a><a href='rightjs-extending.html#mixins'>Ruby Style Mixins</a>
+</h2>
+<p>First of all, all the classes in RightJS support Ruby style functionality injection using shared modules. If you are not familiar with the terminology don&#8217;t get scared it is very simple. Say you have a hash of commonly used functions like this one</p>
+
+<code><b class="var">var</b> <b class="unit">BobOrNot</b> = {<br/>  <s class="key">hasBob</s>: <b>function</b>() {<br/>    <b>return</b> <b class="var">this</b>.<u class="method">indexOf</u>(<s>'Bob'</s>) &gt; -<s class="int">1</s>;<br/>  },<br/><br/>  <s class="key">hasNoBob</s>: <b>function</b>() {<br/>    <b>return</b> !<b class="var">this</b>.<u class="method">hasBob</u>();<br/>  }<br/>};</code>
+
+<p>We call such hashes a <tt>shared module</tt> or shortly <tt>mixin</tt>. Manly, because it&#8217;s a module and you can share it by injecting into other classes like that</p>
+
+<code><b class="unit">String</b>.<u class="method">include</u>(<b class="unit">BobOrNot</b>);<br/><b class="unit">Array</b>.<u class="method">include</u>(<b class="unit">BobOrNot</b>);<br/><br/><s>"Bob"</s>.<u class="method">hasBob</u>();    <i>// true</i><br/>[<s>"Bob"</s>].<u class="method">hasBob</u>();  <i>// true</i><br/><br/><s>"Mary"</s>.<u class="method">hasBob</u>();   <i>// false</i><br/>[<s>"Mary"</s>].<u class="method">hasBob</u>(); <i>// false</i></code>
+
+<p>Using <tt>.include()</tt> you can extend any units in RightJS and you also can feed them with several modules at once.</p>
+
+<code><b class="unit">Element</b>.<u class="method">include</u>(<b class="unit">Module1</b>, <b class="unit">Module2</b>, ...);<br/><b class="unit">Number</b>.<u class="method">include</u>(<b class="unit">Module1</b>, ..);<br/><b class="unit">Window</b>.<u class="method">include</u>(....);<br/><b class="unit">Xhr</b>.<u class="method">include</u>(...);<br/><b class="unit">Fx</b>.<u class="method">include</u>(...);</code>
+
+<p>This way you can easily share functionality between any classes including your own and keep your extensions library clean and organized</p>
+<a name='class' ></a><h2 class='chapter'>
+  <a href='rightjs-extending.html#' class='top-anchor'>top &uarr;</a><a href='rightjs-extending.html#class'>Class Level Extensions</a>
+</h2>
+<p>As you saw above, you can extend any class instances with additional functionality using the <tt>.include()</tt> method. But there is also another method to extend the class itself. It&#8217;s called <tt>.extend()</tt></p>
+
+<code><b class="unit">String</b><br/>  .<u class="method">include</u>({ <s class="key">method1</s>: <b>function</b>() {} })<br/>  .<u class="method">extend</u>({  <s class="key">method2</s>: <b>function</b>() {} });<br/><br/><i>// as the result you'll have the following</i><br/><s>"string"</s>.<u class="method">method1</u>();<br/><b class="unit">String</b>.<u class="method">method2</u>();</code>
+
+<p>The <tt>.extend()</tt> method also can take several modules if you need.</p>
+<a name='callbacks' ></a><h2 class='chapter'>
+  <a href='rightjs-extending.html#' class='top-anchor'>top &uarr;</a><a href='rightjs-extending.html#callbacks'>Post Injection Callbacks</a>
+</h2>
+<p>Then, there is also post-injection callbacks support. You might need it in case if you want to use the same module with different classes that have different API.</p>
+
+<p>For that reason you can add into your modules, methods named like <tt>selfIncluded</tt> or <tt>selfExtended</tt> (underscored versions <tt>self_included</tt> and <tt>self_extended</tt> are also supported). Once your module was injected into a class this method will receive the class as a parameter, and then you will be able to adjust the the things to make it working.</p>
+
+<p>For example. Say, for some reason I want to use that <tt>BobOrNot</tt> module not just with the <a href='../docs/string.html' class='api-ref'>String</a> and <a href='../docs/array.html' class='api-ref'>Array</a> classes, but also with <a href='../docs/element.html' class='api-ref'>Element</a> and <a href='../docs/document.html' class='api-ref'>Document</a> instances as well. I don&#8217;t know, maybe I want some common polymorphic interface. I can do that easily using the post-injection callbacks like so</p>
+
+<code><b class="var">var</b> <b class="unit">BobOrNot</b> = {<br/>  <s class="key">selfIncluded</s>: <b>function</b>(klass) {<br/>    <b>if</b> (klass === <b class="unit">Element</b>) {<br/>      <b class="unit">Element</b>.<u>prototype</u>.<u>hasBob</u> = <b>function</b>() {<br/>        <b>return</b> <b class="var">this</b>.<u class="method">hasClass</u>(<s>'bob'</s>);<br/>      };<br/>    } <b>else</b> <b>if</b> (klass === <b class="unit">Document</b>) {<br/>      <b class="unit">Document</b>.<u>prototype</u>.<u>hasBob</u> = <b>function</b>() {<br/>        <b>return</b> <b class="var">this</b>.<u class="method">find</u>(<s>'div.bob'</s>).<u>length</u> &gt; <s class="int">0</s>;<br/>      };<br/>    }<br/>  },<br/><br/>  <i>// the rest of the methods...</i><br/>};<br/><br/><i>// now we can inject the module anywhere</i><br/><b class="unit">String</b>.<u class="method">include</u>(<b class="unit">BobOrNot</b>);<br/><b class="unit">Array</b>.<u class="method">include</u>(<b class="unit">BobOrNot</b>);<br/><b class="unit">Element</b>.<u class="method">include</u>(<b class="unit">BobOrNot</b>);<br/><b class="unit">Document</b>.<u class="method">include</u>(<b class="unit">BobOrNot</b>);</code>
+
+<p>Note though, the callback method itself won&#8217;t be transferred to the class, the <tt>.include()</tt> method will simply skip it.</p>
+<a name='overloading' ></a><h2 class='chapter'>
+  <a href='rightjs-extending.html#' class='top-anchor'>top &uarr;</a><a href='rightjs-extending.html#overloading'>Methods Overloading</a>
+</h2>
+<p>Sometimes you need to not just insert a new method, but overload an existing one. And not just overload, but you also might want to call the original method on some conditions. You can do that by injecting your method with a module and making the usual <tt>$super</tt> call when you need it</p>
+
+<code><b class="unit">Element</b>.<u class="method">include</u>({<br/>  <s class="key">append</s>: <b>function</b>() {<br/>    <b>if</b> (my_conditions) {<br/>      <i>// do something special in here</i><br/>    } <b>else</b> {<br/>      <b>return</b> <b class="var">this</b>.<u>$super</u>.<u class="method">apply</u>(<b class="var">this</b>, arguments);<br/>    }<br/>  }<br/>});</code>
+
+<p>As you can see the trick is simple. You don&#8217;t have to use <tt>.apply</tt> call, but as this particular method can take any number of arguments we make the super-call via the <tt>.apply</tt> construction to make sure that all the arguments were passed back correctly.</p>
+
+<p>That&#8217;s all.</p>
+        </div>
+        <div style="clear:both"></div>
+      </div>
+      <div id="foot">
+        <div id="contacts">
+  <h2>Questions?</h2>
+  <a href="&#x6D;&#x61;i&#x6C;&#x74;&#x6F;:&#105;&#110;&#102;&#111;&#064;&#114;&#105;&#103;&#104;&#116;&#106;&#115;&#046;&#111;&#114;&#103;">&#105;&#110;&#102;&#111;&#064;&#114;&#105;&#103;&#104;&#116;&#106;&#115;&#046;&#111;&#114;&#103;</a>
+</div>
+<div id="bottom-menu">
+  <h2>About the Framework</h2>
+  <a href="../philosophy.html">Philosophy</a> |
+  <a href="../benchmarks.html">Benchmarks</a> |
+  <a href="../browsers.html">Browsers</a> |
+  <a href="../contacts.html">Contacts</a>
+</div>
+        <div id="design">Design by <a href="http://activestylus.com">Steven Garcia</a></div>
+        <div id="copyright">Copyright &copy; 2008-2011 Nikolay Nemshilov</div>
+      </div>
+    </div>
+
+    <script src="http://www.google-analytics.com/ga.js" type="text/javascript"></script>
+    <script type="text/javascript">
+    // <![CDATA[
+      try { _gat._getTracker("UA-10292980-1")._trackPageview(); } catch(err) {}
+    // ]]>
+    </script>
+  </body>
+</html>

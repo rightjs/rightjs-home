@@ -1,0 +1,187 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <title>RightJS: News: RightJS 2.3.0 Is Released</title>
+    <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+    <link href="../blog.rss" rel="alternate" title="RightJS News" type="application/rss+xml" />
+    <script src="../hotlink/right.js@1333128729" type="text/javascript"></script>
+<script src="../javascripts/application.js@1295184937" type="text/javascript"></script>
+    <script src="../builds/ui/right-autocompleter.js@1333128730" type="text/javascript"></script>
+    <link href="../stylesheets/application.css@1297515667.css" media="screen" rel="stylesheet" type="text/css" />
+    
+    
+    
+  </head>
+  <body>
+    <div id="body">
+      <div id="head">
+        <a href="../index.html" id="logo">RightJS</a>
+        <div id="slogan">JavaScript Framework That Feels Right</div>
+
+        <div id="main-menu">
+  <ul>
+    <li><a href="../index.html">Home</a></li>
+    <li><a href="../download.html">Download</a></li>
+    <li><a href="../plugins.html">Plugins</a></li>
+    <li><a href="../ui.html">UI</a></li>
+    <li><a href="../demos.html">Demos</a></li>
+    <li><a href="../docs.html">Docs</a></li>
+    <li class="current"><a href="../blog.html">Blog</a></li>
+  </ul>
+  <div id="zing"><!-- the moving thing --></div>
+</div>
+        <div id="lang-switch">
+    <select onchange="document.location.href=this.value;">
+      <option selected="true" value="http://rightjs.org/blog/rightjs-2-3-0-is-released">English</option>
+      <option value="http://ru.rightjs.org/blog/rightjs-2-3-0-is-released">Русский</option>
+    </select>
+</div>
+      </div>
+      <div id="main">
+        <div id="sidebar">
+  <div class="box" id="download-box">
+    <h1>Get it!</h1>
+    <ul>
+      <li><a href="../builds/current/right.js.zip">RightJS v2.3.1</a></li>
+    </ul>
+  </div>
+
+  <div id="api-search" class="box">
+  <input type="text" value="Search API" id="api-search-field" />
+  <script type="text/javascript">
+  // <![CDATA[
+    new Autocompleter($('api-search-field').on({
+      focus: function() { this._v = this.value(); this.value(''); },
+      blur:  function() { this.value(this._v); }
+    }), {
+      url: '/docs/search/%{search}.js',
+      onDone: function() {
+        var current = this.first('.current');
+        if (current) {
+          document.location.href = current.get('title');
+        }
+        this.input.setValue(this.input._v);
+      }
+    });
+  // ]]>
+  </script>
+</div>
+
+  <div class="box">
+    <label>Documentation</label>
+    <ul>
+      <li><a href="../tutorials/getting-started.html">Getting Started</a></li>
+      <li><a href="../tutorials/top-features.html">Top 12 Features</a></li>
+      <li><a href="../docs.html">API Reference</a></li>
+      <li><a href="../tutorials.1.html">Tutorials</a></li>
+    </ul>
+  </div>
+
+  <div class="box">
+    <label>Additional</label>
+    <ul>
+      <li><a href="../plugins.html">RightJS Plugins</a></li>
+      
+      <li><a href="../ui.html">RightJS UI</a></li>
+      
+      <li><a href="../showcases.html">Showcases</a></li>
+    </ul>
+  </div>
+
+  <div class="box">
+    <label>Community</label>
+    <ul>
+      <li><a href="http://groups.google.com/group/rightjs">Google Group</a></li>
+      <li><a href="http://rightjs.lighthouseapp.com/projects/31989">Tickets Tracker</a></li>
+      <li><a href="http://github.com/rightjs/rightjs-snippets">Code Snippets</a></li>
+      <li><a href="irc://irc.freenode.net/rightjs">IRC #rightjs</a></li>
+      <li><a href="../participate.html">Participate!</a></li>
+    </ul>
+  </div>
+
+  <div class="box">
+    <a href='http://www.pledgie.com/campaigns/14259'><img alt='Donate!' src='http://www.pledgie.com/campaigns/14259.png?skin_name=chrome' border='0' /></a>
+  </div>
+
+  <div class="box">
+    <ul id="social">
+      <li><a href="../blog.rss" id="rss-link">RSS</a></li>
+      <li><a href="http://twitter.com/rightjs" id="twitter-link">Twitter</a></li>
+      <li><a href="http://github.com/rightjs" id="github-link">GitHub</a></li>
+    </ul>
+  </div>
+</div>
+
+        <div id="info">
+          <h1>RightJS 2.3.0 Is Released</h1>
+
+<p class="text">
+  <p>My dear fellas, it's been a while, but RightJS 2.3.0 is finally here!</p>
+
+<p>RightJS 2.3.0 is the next major update of the framework, there are new features, fixes and all sorts of updates in Plugins and UI modules.</p>
+
+<p><h2>RightJS Core</h2></p>
+
+<p><ul class="changelog">
+  <li>JSON plugin was merged into the core. Those days JSON format is a vital part of web-applications, and because of that the plugin was merged into the core, so that you could enjoy the standard JSON functionality on any browsers</li>
+  <li><a href='../docs/element.html#data' class='api-ref'>Element#data</a> method was added (thanks to Arkady  https://github.com/pyromaniac). This method provides standard HTML5 datasets access feature that available in all browsers. See the API documentation for examples</li>
+  <li><a href='../docs/element.html#set' class='api-ref'>Element#set</a> method doesn't put 'data-' attributes in the instance anymore (kudos to Jakub Pawlowicz)</li>
+  <li><a href='../docs/form.html#values' class='api-ref'>Form#values</a> now parses <tt>name[smth]</tt> attributes into a proper nested object structure</li>
+  <li>BUTTON elements support fix for old IE browsers (thanks to Claus Klingberg @cjk)</li>
+  <li><a href='../docs/number.html#to' class='api-ref'>Number#to</a> method was added. (kudos to Rafaël Blais Masson @rafBM)</li>
+  <li>String#dasherized method was added</li>
+  <li><a href='../docs/fx.html' class='api-ref'>Fx</a> module now uses the CSS3 cubic-bezier notation for the <tt>transition</tt> option by default</li>
+  <li><a href='../docs/cookie.html' class='api-ref'>Cookie</a> now transparently import/export data in JSON format, so you can save objects and arrays in cookies</li>
+  <li><a href='../docs/xhr.html' class='api-ref'>Xhr</a> now handles the X-JSON headers and automatically extracts JSON data from there. (thanks to Oleg Ivanov @morphekil)</li>
+  <li><a href='../docs/xhr.html' class='api-ref'>Xhr</a> extracts JSON data on 'complete' instead of 'success'</li>
+  <li><a href='../docs/object.html#toQueryString' class='api-ref'>Object#toQueryString</a> now handles nested objects of any depth</li>
+  <li><tt>isNumber(NaN)</tt> now returns <tt>false</tt></li>
+  <li>Smooth window scrolling fix</li>
+</ul></p>
+
+<p><h2>Plugin And UI Updates</h2></p>
+
+<p><ul class="changelog">
+  <li><a href="../ui/calendar.html">Calendar</a> now supports the <tt>highlight</tt> option where you can specify a list of dates you want to be highlighted in the calendar</li>
+  <li><a href="../ui/slider.html">Slider</a> now supports two handle configurations to work with ranges</li>
+  <li><a href="../ui/rte.html">RTEE</a> was updated with several bug-fixes</li>
+  <li><a href="../plugins/rails.html">Rails Support</a> module was updated with several important fixes and the <tt>data-disable-with</tt> attributes support (thanks to Alexander Dryzhuk https://github.com/amdest)</li>
+</ul></p>
+
+<p><a href="../../cdn.rightjs.org/index.html">RightJS CDN</a> is also was updated. The right-rails gem will be updated shortly as well.</p>
+
+<p>This about it I think. Also thanks to everyone who is not mentioned in the change log but came up with ideas and bug reports, your feedback really helps!</p>
+</p>
+
+<p class="action-links">
+  <a href="../blog.html">Back to the news</a>
+</p>
+
+        </div>
+        <div style="clear:both"></div>
+      </div>
+      <div id="foot">
+        <div id="contacts">
+  <h2>Questions?</h2>
+  <a href="&#x6D;&#x61;i&#x6C;&#x74;&#x6F;:&#105;&#110;&#102;&#111;&#064;&#114;&#105;&#103;&#104;&#116;&#106;&#115;&#046;&#111;&#114;&#103;">&#105;&#110;&#102;&#111;&#064;&#114;&#105;&#103;&#104;&#116;&#106;&#115;&#046;&#111;&#114;&#103;</a>
+</div>
+<div id="bottom-menu">
+  <h2>About the Framework</h2>
+  <a href="../philosophy.html">Philosophy</a> |
+  <a href="../benchmarks.html">Benchmarks</a> |
+  <a href="../browsers.html">Browsers</a> |
+  <a href="../contacts.html">Contacts</a>
+</div>
+        <div id="design">Design by <a href="http://activestylus.com">Steven Garcia</a></div>
+        <div id="copyright">Copyright &copy; 2008-2011 Nikolay Nemshilov</div>
+      </div>
+    </div>
+
+    <script src="http://www.google-analytics.com/ga.js" type="text/javascript"></script>
+    <script type="text/javascript">
+    // <![CDATA[
+      try { _gat._getTracker("UA-10292980-1")._trackPageview(); } catch(err) {}
+    // ]]>
+    </script>
+  </body>
+</html>

@@ -1,0 +1,101 @@
+/** The landing page features */
+#promo {
+  border: none;
+  margin-top: .22em;
+}
+#promo .rui-tabs-list {
+  margin: 0;
+  padding: 0;
+  height: 2.5em;
+  border-bottom: 4px solid #CFCEBD;
+  text-align: center;
+}
+#promo .rui-tabs-list a,
+#promo .rui-tabs-list a:hover,
+#promo .rui-tabs-list .rui-tabs-current a,
+#promo .rui-tabs-list .rui-tabs-current a:hover {
+  top: 0;
+  height: 2.5em;
+  line-height: 2em;
+  margin-top: 1px;
+  padding: 0;
+  background: transparent;
+  border: none;
+  border-bottom: 4px solid transparent;
+  text-align: left;
+}
+
+
+#promo .rui-tabs-list a h1,
+#promo .rui-tabs-list .rui-tabs-current a h1 {
+  display: block;
+  _display: inline;
+  margin: 0;
+  font-style: normal;
+}
+
+#promo .rui-tabs-list .rui-tabs-current a,
+#promo .rui-tabs-list .rui-tabs-current a:hover {
+  border-bottom-color: #DE4200;
+}
+
+
+#promo #friendly-tab {
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+}
+#promo #fast-tab {
+  position: absolute;
+  right: 0;
+  bottom: -4px;
+}
+#promo #compact-tab a {
+  top: -1px;
+}
+
+#features {
+  height: 40em;
+}
+
+#features dt {
+  font-size: 1em;
+  margin-bottom: .1em;
+}
+#features dt a,
+#features dt.rui-tabs-current a {
+  font-weight: normal;
+  color: #444;
+  height: 2em;
+  line-height: 2em;
+  background-color: #FFFEFC;
+  border: 1px solid #DFDECD;
+  border-radius: .2em;
+  -webkit-border-radius: .2em;
+  -moz-border-radius: .2em;
+  -webkit-box-shadow: #EFEEDD 0px 0px .5em;
+  -moz-box-shadow: #EFEEDD 0px 0px .5em;
+  box-shadow: #EFEEDD 0px 0px .5em;
+  background-image: url('../images/design.png');
+  background-position: right -422px;
+  background-repeat: no-repeat;
+}
+#features dt.rui-tabs-current a {
+  background-position: right -472px;
+}
+#features dt h2 {
+  margin: 0;
+  display: inline-block;
+* display: inline;
+* zoom: 1;
+  font-size: 1.4em;
+  width: 8em;
+}
+#features dt i {
+  font-style: normal;
+  color: #555;
+}
+
+#features dd ul {
+  margin: .4em;
+}

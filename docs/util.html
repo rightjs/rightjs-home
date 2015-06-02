@@ -1,0 +1,452 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <title>RightJS: Documentation: Util</title>
+    <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+    <link href="http://www.ru.rightjs.org/blog.rss" rel="alternate" title="RightJS News" type="application/rss+xml" />
+    <script src="../hotlink/right.js@1331880836" type="text/javascript"></script>
+<script src="../javascripts/application.js@1295184937" type="text/javascript"></script>
+    <script src="../builds/ui/right-autocompleter.js@1331880836" type="text/javascript"></script>
+    <link href="../stylesheets/application.css@1297515667.css" media="screen" rel="stylesheet" type="text/css" />
+    
+    
+    
+  </head>
+  <body>
+    <div id="body">
+      <div id="head">
+        <a href="../index.html" id="logo">RightJS</a>
+        <div id="slogan">JavaScript Framework That Feels Right</div>
+
+        <div id="main-menu">
+  <ul>
+    <li><a href="../index.html">Home</a></li>
+    <li><a href="../download.html">Download</a></li>
+    <li><a href="../plugins.html">Plugins</a></li>
+    <li><a href="../ui.html">UI</a></li>
+    <li><a href="../demos.html">Demos</a></li>
+    <li class="current"><a href="../docs.html">Docs</a></li>
+    <li><a href="../blog.html">Blog</a></li>
+  </ul>
+  <div id="zing"><!-- the moving thing --></div>
+</div>
+        <div id="lang-switch">
+    <select onchange="document.location.href=this.value;">
+      <option selected="true" value="http://www.rightjs.org/docs/util">English</option>
+      <option value="http://ru.www.rightjs.org/docs/util">Русский</option>
+    </select>
+</div>
+      </div>
+      <div id="main">
+        <div id="sidebar">
+
+  <div id="api-search" class="box">
+  <input type="text" value="Search API" id="api-search-field" />
+  <script type="text/javascript">
+  // <![CDATA[
+    new Autocompleter($('api-search-field').on({
+      focus: function() { this._v = this.value(); this.value(''); },
+      blur:  function() { this.value(this._v); }
+    }), {
+      url: '/docs/search/%{search}.js',
+      onDone: function() {
+        var current = this.first('.current');
+        if (current) {
+          document.location.href = current.get('title');
+        }
+        this.input.setValue(this.input._v);
+      }
+    });
+  // ]]>
+  </script>
+</div>
+
+  <div class="box" id="api-lists">
+    <label>Core</label><ul><li><a href="browser.html">Browser</a></li><li><a href="class.html">Class</a></li><li class="current"><a href="util.html">Util</a></li><ul><li><a href="util.html#$">$</a></li><li><a href="util.html#$$">$$</a></li><li><a href="util.html#$A">$A</a></li><li><a href="util.html#$E">$E</a></li><li><a href="util.html#$alias">$alias</a></li><li><a href="util.html#$break">$break</a></li><li><a href="util.html#$eval">$eval</a></li><li><a href="util.html#$ext">$ext</a></li><li><a href="util.html#$w">$w</a></li><li><a href="util.html#defined">defined</a></li><li><a href="util.html#isArray">isArray</a></li><li><a href="util.html#isElement">isElement</a></li><li><a href="util.html#isFunction">isFunction</a></li><li><a href="util.html#isHash">isHash</a></li><li><a href="util.html#isNode">isNode</a></li><li><a href="util.html#isNumber">isNumber</a></li><li><a href="util.html#isString">isString</a></li></ul></ul>
+<label>Dom</label><ul><li><a href="document.html">Document</a></li><li><a href="element.html">Element</a></li><li><a href="event.html">Event</a></li><li><a href="form.html">Form</a></li><li><a href="input.html">Input</a></li><li><a href="window.html">Window</a></li></ul>
+<label>Fx</label><ul><li><a href="fx.html">Fx</a></li><li><a href="fx/attr.html">Fx.Attr</a></li><li><a href="fx/element.html">Fx.Element</a></li><li><a href="fx/fade.html">Fx.Fade</a></li><li><a href="fx/highlight.html">Fx.Highlight</a></li><li><a href="fx/morph.html">Fx.Morph</a></li><li><a href="fx/scroll.html">Fx.Scroll</a></li><li><a href="fx/slide.html">Fx.Slide</a></li></ul>
+<label>Lang</label><ul><li><a href="array.html">Array</a></li><li><a href="function.html">Function</a></li><li><a href="json.html">Json</a></li><li><a href="math.html">Math</a></li><li><a href="number.html">Number</a></li><li><a href="object.html">Object</a></li><li><a href="regexp.html">Regexp</a></li><li><a href="string.html">String</a></li></ul>
+<label>Util</label><ul><li><a href="cookie.html">Cookie</a></li><li><a href="observer.html">Observer</a></li><li><a href="options.html">Options</a></li><li><a href="xhr.html">Xhr</a></li></ul>
+  </div>
+
+  <div class="box">
+    <a href='http://www.pledgie.com/campaigns/14259'><img alt='Donate!' src='http://www.pledgie.com/campaigns/14259.png?skin_name=chrome' border='0' /></a>
+  </div>
+
+  <div class="box">
+    <ul id="social">
+      <li><a href="../blog.rss" id="rss-link">RSS</a></li>
+      <li><a href="http://twitter.com/rightjs" id="twitter-link">Twitter</a></li>
+      <li><a href="http://github.com/rightjs" id="github-link">GitHub</a></li>
+    </ul>
+  </div>
+</div>
+
+        <div id="info">
+          
+<h1>Utility Functions</h1>
+
+<p>RightJS comes with a collection of utility functions for the most common JavaScript development operations. Most of them might be seen in other frameworks like <a href='http://prototypejs.org'>Prototype</a> or <a href='http://mootools.net'>Mootools</a>, in RightJS they have the same meaning and interfaces.</p>
+
+<h1>Methods</h1>
+<p>
+  <a href="util.html#$">$</a>, <a href="util.html#$$">$$</a>, <a href="util.html#$A">$A</a>, <a href="util.html#$E">$E</a>, <a href="util.html#$alias">$alias</a>, <a href="util.html#$break">$break</a>, <a href="util.html#$eval">$eval</a>, <a href="util.html#$ext">$ext</a>, <a href="util.html#$w">$w</a>, <a href="util.html#defined">defined</a>, <a href="util.html#isArray">isArray</a>, <a href="util.html#isElement">isElement</a>, <a href="util.html#isFunction">isFunction</a>, <a href="util.html#isHash">isHash</a>, <a href="util.html#isNode">isNode</a>, <a href="util.html#isNumber">isNumber</a>, <a href="util.html#isString">isString</a>
+</p>
+
+<div class="method">
+  <a name="$"></a>
+  <h2><a class="top-anchor" href="util.html#">top &uarr;</a><a href="util.html#$">$</a></h2>
+
+  <p class="semantic">
+    <code>$(<b class="unit">String</b> element_id) -&gt; <b class="unit">Element</b><br/>$(<b class="unit">Element</b> element)   -&gt; <b class="unit">Element</b></code>
+  </p>
+
+
+  <h4>Description</h4>
+  <p>Finds an element by its ID or wraps a raw dom element with a dom-wrapper</p>
+
+
+
+  <h4>Example</h4>
+  <p>
+    <code>$(<s>'some-id'</s>);<br/>$(element);<br/>$(window);<br/>$(document);</code>
+  </p>
+
+</div><div class="method">
+  <a name="$$"></a>
+  <h2><a class="top-anchor" href="util.html#">top &uarr;</a><a href="util.html#$$">$$</a></h2>
+
+  <p class="semantic">
+    <code>$$(<b class="unit">String</b> css_rule[, boolean raw]) -&gt; <b class="unit">Array</b> of elements</code>
+  </p>
+
+
+  <h4>Description</h4>
+  <p>Finds all the elements on the page that match the given CSS rule. It supports all valid CSS3 selectors.</p>
+
+<p><strong>NOTE</strong>: if the second attribute is <tt>true</tt> then it will return a list of raw dom elements.</p>
+
+
+
+  <h4>Example</h4>
+  <p>
+    <code>$$(<s>'div &gt; span.foo'</s>);       <i>// -&gt; [Element, ....]</i><br/>$$(<s>'div &gt; span.foo'</s>, <b class="rest">true</b>); <i>// -&gt; [HTMLElement, ...]</i></code>
+  </p>
+
+</div><div class="method">
+  <a name="$A"></a>
+  <h2><a class="top-anchor" href="util.html#">top &uarr;</a><a href="util.html#$A">$A</a></h2>
+
+  <p class="semantic">
+    <code>$A(<b class="unit">Iterable</b> it) -&gt; <b class="unit">Array</b></code>
+  </p>
+
+
+  <h4>Description</h4>
+  <p>Converts any iterable object into an <a href='array.html' class='api-ref'>Array</a> instance.</p>
+
+
+
+  <h4>Example</h4>
+  <p>
+    <code><b>function</b>() {<br/>  <b class="var">var</b> args = $A(arguments);<br/>  <b class="var">var</b> first = args.<u class="method">shift</u>();<br/>};</code>
+  </p>
+
+</div><div class="method">
+  <a name="$E"></a>
+  <h2><a class="top-anchor" href="util.html#">top &uarr;</a><a href="util.html#$E">$E</a></h2>
+
+  <p class="semantic">
+    <code>$E(<b class="unit">String</b> tag_name[, <b class="unit">Object</b> options]) -&gt; <b class="unit">Element</b> <b class="var">new</b></code>
+  </p>
+
+
+  <h4>Description</h4>
+  <p>A shortcut for <tt>new Element</tt></p>
+
+
+
+  <h4>Example</h4>
+  <p>
+    <code><b class="var">var</b> div = $E(<s>'div'</s>, {<s class="key">id</s>: <s>'some-id'</s>});</code>
+  </p>
+
+</div><div class="method">
+  <a name="$alias"></a>
+  <h2><a class="top-anchor" href="util.html#">top &uarr;</a><a href="util.html#$alias">$alias</a></h2>
+
+  <p class="semantic">
+    <code>$alias(<b class="unit">Object</b> object, <b class="unit">Object</b> aliases) -&gt; <b class="unit">Object</b> the first</code>
+  </p>
+
+
+  <h4>Description</h4>
+  <p>Creates the first object property aliases.</p>
+
+
+
+  <h4>Example</h4>
+  <p>
+    <code><b class="var">var</b> object = {<br/>  <s class="key">foo</s>: <b>function</b>() {};<br/>};<br/><br/>$alias(object, {<br/>  <s class="key">bar</s>: <s>'foo'</s><br/>});<br/><br/><i>// now 'foo' and 'bar' both refer to the same function</i></code>
+  </p>
+
+</div><div class="method">
+  <a name="$break"></a>
+  <h2><a class="top-anchor" href="util.html#">top &uarr;</a><a href="util.html#$break">$break</a></h2>
+
+  <p class="semantic">
+    <code>$break() -&gt; void</code>
+  </p>
+
+
+  <h4>Description</h4>
+  <p>Initiates a manual break in case of callback based iterations.</p>
+
+
+
+  <h4>Example</h4>
+  <p>
+    <code>[<s class="int">1</s>,<s class="int">2</s>,<s class="int">3</s>,<s class="int">4</s>].<u class="method">walk</u>(<b>function</b>(value, i) {<br/>  <b>if</b> (i &gt; <s class="int">1</s>) $break();<br/>  <b>return</b> i * <s class="int">2</s>;<br/>});<br/><br/><i>// [2,4,3,4]</i></code>
+  </p>
+
+</div><div class="method">
+  <a name="$eval"></a>
+  <h2><a class="top-anchor" href="util.html#">top &uarr;</a><a href="util.html#$eval">$eval</a></h2>
+
+  <p class="semantic">
+    <code>$eval(<b class="unit">String</b> code) -&gt; void</code>
+  </p>
+
+
+  <h4>Description</h4>
+  <p>Evaluates the given piece of JavaScript code in the context of the current window.</p>
+
+
+
+  <h4>Example</h4>
+  <p>
+    <code>$eval(<s>'var foo = "bar";'</s>);<br/><br/>window[<s>'foo'</s>]; <i>// -&gt; 'bar'</i></code>
+  </p>
+
+</div><div class="method">
+  <a name="$ext"></a>
+  <h2><a class="top-anchor" href="util.html#">top &uarr;</a><a href="util.html#$ext">$ext</a></h2>
+
+  <p class="semantic">
+    <code>$ext(<b class="unit">Object</b> first, <b class="unit">Object</b> second[, boolean dont_overwrite]) -&gt; <b class="unit">Object</b> first</code>
+  </p>
+
+
+  <h4>Description</h4>
+  <p>Extends the first object with data from the second one.</p>
+
+<p>If the third argument is <tt>true</tt>, it skips all the overlapping keys.</p>
+
+
+
+  <h4>Example</h4>
+  <p>
+    <code><b class="var">var</b> o = {<s class="int">1</s>:<s class="int">1</s>};<br/>$ext(o, {<s class="int">2</s>:<s class="int">2</s>}); <i>// -&gt; {1:1, 2:2}</i><br/><br/>$ext(o, {<s class="int">2</s>:<s class="int">4</s>, <s class="int">3</s>:<s class="int">3</s>}, <b class="rest">true</b>); <i>// -&gt; {1:1, 2:2, 3:3}</i></code>
+  </p>
+
+</div><div class="method">
+  <a name="$w"></a>
+  <h2><a class="top-anchor" href="util.html#">top &uarr;</a><a href="util.html#$w">$w</a></h2>
+
+  <p class="semantic">
+    <code>$w(<b class="unit">String</b> string) -&gt; <b class="unit">Array</b> of strings</code>
+  </p>
+
+
+  <h4>Description</h4>
+  <p>Splits the given string into a list of words (separated by spaces).</p>
+
+
+
+  <h4>Example</h4>
+  <p>
+    <code>$w(<s>'one two    three'</s>); <i>// -&gt; ['one', 'two', 'three']</i></code>
+  </p>
+
+</div><div class="method">
+  <a name="defined"></a>
+  <h2><a class="top-anchor" href="util.html#">top &uarr;</a><a href="util.html#defined">defined</a></h2>
+
+  <p class="semantic">
+    <code>defined(mixed value) -&gt; boolean check result</code>
+  </p>
+
+
+  <h4>Description</h4>
+  <p>Checks if the given value is not equal to <tt>undefined</tt>.</p>
+
+
+
+  <h4>Example</h4>
+  <p>
+    <code><b class="var">var</b> object = {<br/>  <s class="key">foo</s>: <s>'foo'</s><br/>};<br/><br/>defined(object.<u>foo</u>); <i>// -&gt; true</i><br/>defined(object.<u>bar</u>); <i>// -&gt; false</i></code>
+  </p>
+
+</div><div class="method">
+  <a name="isArray"></a>
+  <h2><a class="top-anchor" href="util.html#">top &uarr;</a><a href="util.html#isArray">isArray</a></h2>
+
+  <p class="semantic">
+    <code>isArray(mixed value) -&gt; boolean check result</code>
+  </p>
+
+
+  <h4>Description</h4>
+  <p>Checks if the given value is an instance of <a href='array.html' class='api-ref'>Array</a>.</p>
+
+
+
+  <h4>Example</h4>
+  <p>
+    <code>isArray({}); <i>// -&gt; false</i><br/>isArray(<s>''</s>); <i>// -&gt; false</i><br/>isArray([]); <i>// -&gt; true</i></code>
+  </p>
+
+</div><div class="method">
+  <a name="isElement"></a>
+  <h2><a class="top-anchor" href="util.html#">top &uarr;</a><a href="util.html#isElement">isElement</a></h2>
+
+  <p class="semantic">
+    <code>isElement(mixed value) -&gt; boolean check result</code>
+  </p>
+
+
+  <h4>Description</h4>
+  <p>Checks if the given value is an HTMLElement instance.</p>
+
+
+
+  <h4>Example</h4>
+  <p>
+    <code>isElement(document.<u class="method">createTextNode</u>(<s>'boo'</s>)); <i>// -&gt; false</i><br/>isElement(document.<u class="method">createElement</u>(<s>'div'</s>));  <i>// -&gt; true</i></code>
+  </p>
+
+</div><div class="method">
+  <a name="isFunction"></a>
+  <h2><a class="top-anchor" href="util.html#">top &uarr;</a><a href="util.html#isFunction">isFunction</a></h2>
+
+  <p class="semantic">
+    <code>isFunction(mixed value) -&gt; boolean check result</code>
+  </p>
+
+
+  <h4>Description</h4>
+  <p>Checks if the given value is a <a href='function.html' class='api-ref'>Function</a>.</p>
+
+
+
+  <h4>Example</h4>
+  <p>
+    <code>isFunction(<s>'boo'</s>);         <i>// -&gt; false</i><br/>isFunction(<b>function</b>() {}); <i>// -&gt; true</i></code>
+  </p>
+
+</div><div class="method">
+  <a name="isHash"></a>
+  <h2><a class="top-anchor" href="util.html#">top &uarr;</a><a href="util.html#isHash">isHash</a></h2>
+
+  <p class="semantic">
+    <code>isHash(mixed value) -&gt; boolean check result</code>
+  </p>
+
+
+  <h4>Description</h4>
+  <p>Checks if the given value is a pure JavaScript object (a hash).</p>
+
+
+
+  <h4>Example</h4>
+  <p>
+    <code>isHash([<s class="int">1</s>,<s class="int">2</s>,<s class="int">3</s>]);      <i>// -&gt; false</i><br/>isHash(<s>'foo bar'</s>);    <i>// -&gt; false</i><br/>isHash({<s class="key">foo</s>: <s>'bar'</s>}); <i>// -&gt; true</i></code>
+  </p>
+
+</div><div class="method">
+  <a name="isNode"></a>
+  <h2><a class="top-anchor" href="util.html#">top &uarr;</a><a href="util.html#isNode">isNode</a></h2>
+
+  <p class="semantic">
+    <code>isNode(mixed value) -&gt; boolean check result</code>
+  </p>
+
+
+  <h4>Description</h4>
+  <p>Checks if the given value is a DOM node (both TextNode or HTMLElement).</p>
+
+
+
+  <h4>Example</h4>
+  <p>
+    <code>isNode(document.<u class="method">createTextNode</u>(<s>'boo'</s>)); <i>// -&gt; true</i><br/>isNode(document.<u class="method">createElement</u>(<s>'div'</s>));  <i>// -&gt; true</i><br/><br/>isNode(<s>'foo'</s>); <i>// -&gt; false</i></code>
+  </p>
+
+</div><div class="method">
+  <a name="isNumber"></a>
+  <h2><a class="top-anchor" href="util.html#">top &uarr;</a><a href="util.html#isNumber">isNumber</a></h2>
+
+  <p class="semantic">
+    <code>isNumber(mixed value) -&gt; boolean check result</code>
+  </p>
+
+
+  <h4>Description</h4>
+  <p>Checks if the given value is a <a href='number.html' class='api-ref'>Number</a>.</p>
+
+
+
+  <h4>Example</h4>
+  <p>
+    <code>isNumber(<s>'1'</s>); <i>//  -&gt; false</i><br/>isNumber(<s class="int">111</s>); <i>//  -&gt; true</i><br/>isNumber(<s class="float">1.1</s>); <i>//  -&gt; true</i></code>
+  </p>
+
+</div><div class="method">
+  <a name="isString"></a>
+  <h2><a class="top-anchor" href="util.html#">top &uarr;</a><a href="util.html#isString">isString</a></h2>
+
+  <p class="semantic">
+    <code>isString(mixed value) -&gt; boolean check result</code>
+  </p>
+
+
+  <h4>Description</h4>
+  <p>Checks if the given value is a <a href='string.html' class='api-ref'>String</a>.</p>
+
+
+
+  <h4>Example</h4>
+  <p>
+    <code>isString([]); <i>// -&gt; false</i><br/>isString({}); <i>// -&gt; false</i><br/>isString(<s>''</s>); <i>// -&gt; true</i></code>
+  </p>
+
+</div>
+
+        </div>
+        <div style="clear:both"></div>
+      </div>
+      <div id="foot">
+        <div id="contacts">
+  <h2>Questions?</h2>
+  <a href="&#x6D;&#x61;i&#x6C;&#x74;&#x6F;:&#105;&#110;&#102;&#111;&#064;&#114;&#105;&#103;&#104;&#116;&#106;&#115;&#046;&#111;&#114;&#103;">&#105;&#110;&#102;&#111;&#064;&#114;&#105;&#103;&#104;&#116;&#106;&#115;&#046;&#111;&#114;&#103;</a>
+</div>
+<div id="bottom-menu">
+  <h2>About the Framework</h2>
+  <a href="../philosophy.html">Philosophy</a> |
+  <a href="../benchmarks.html">Benchmarks</a> |
+  <a href="../browsers.html">Browsers</a> |
+  <a href="../contacts.html">Contacts</a>
+</div>
+        <div id="design">Design by <a href="http://activestylus.com">Steven Garcia</a></div>
+        <div id="copyright">Copyright &copy; 2008-2011 Nikolay Nemshilov</div>
+      </div>
+    </div>
+
+    <script src="http://www.google-analytics.com/ga.js" type="text/javascript"></script>
+    <script type="text/javascript">
+    // <![CDATA[
+      try { _gat._getTracker("UA-10292980-1")._trackPageview(); } catch(err) {}
+    // ]]>
+    </script>
+  </body>
+</html>

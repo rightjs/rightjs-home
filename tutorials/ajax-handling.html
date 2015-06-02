@@ -1,0 +1,271 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <title>RightJS: Ajax Handling</title>
+    <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+    <link href="../blog.rss" rel="alternate" title="RightJS News" type="application/rss+xml" />
+    <script src="../hotlink/right.js@1333128729" type="text/javascript"></script>
+<script src="../javascripts/application.js@1295184937" type="text/javascript"></script>
+    <script src="../builds/ui/right-autocompleter.js@1333128730" type="text/javascript"></script>
+    <link href="../stylesheets/application.css@1297515667.css" media="screen" rel="stylesheet" type="text/css" />
+    
+    
+    
+  </head>
+  <body>
+    <div id="body">
+      <div id="head">
+        <a href="../index.html" id="logo">RightJS</a>
+        <div id="slogan">JavaScript Framework That Feels Right</div>
+
+        <div id="main-menu">
+  <ul>
+    <li><a href="../index.html">Home</a></li>
+    <li><a href="../download.html">Download</a></li>
+    <li><a href="../plugins.html">Plugins</a></li>
+    <li><a href="../ui.html">UI</a></li>
+    <li><a href="../demos.html">Demos</a></li>
+    <li class="current"><a href="../docs.html">Docs</a></li>
+    <li><a href="../blog.html">Blog</a></li>
+  </ul>
+  <div id="zing"><!-- the moving thing --></div>
+</div>
+        <div id="lang-switch">
+    <select onchange="document.location.href=this.value;">
+      <option selected="true" value="http://rightjs.org/tutorials/ajax-handling">English</option>
+      <option value="http://ru.rightjs.org/tutorials/ajax-handling">Русский</option>
+    </select>
+</div>
+      </div>
+      <div id="main">
+        <div id="sidebar">
+  <div class="box" id="download-box">
+    <h1>Get it!</h1>
+    <ul>
+      <li><a href="../builds/current/right.js.zip">RightJS v2.3.1</a></li>
+    </ul>
+  </div>
+
+  <div id="api-search" class="box">
+  <input type="text" value="Search API" id="api-search-field" />
+  <script type="text/javascript">
+  // <![CDATA[
+    new Autocompleter($('api-search-field').on({
+      focus: function() { this._v = this.value(); this.value(''); },
+      blur:  function() { this.value(this._v); }
+    }), {
+      url: '/docs/search/%{search}.js',
+      onDone: function() {
+        var current = this.first('.current');
+        if (current) {
+          document.location.href = current.get('title');
+        }
+        this.input.setValue(this.input._v);
+      }
+    });
+  // ]]>
+  </script>
+</div>
+
+  <div class="box">
+    <label>Documentation</label>
+    <ul>
+      <li><a href="getting-started.html">Getting Started</a></li>
+      <li><a href="top-features.html">Top 12 Features</a></li>
+      <li><a href="../docs.html">API Reference</a></li>
+      <li class="current"><a href="../tutorials.1.html">Tutorials</a></li>
+    </ul>
+  </div>
+
+  <div class="box">
+    <label>Additional</label>
+    <ul>
+      <li><a href="../plugins.html">RightJS Plugins</a></li>
+      
+      <li><a href="../ui.html">RightJS UI</a></li>
+      
+      <li><a href="../showcases.html">Showcases</a></li>
+    </ul>
+  </div>
+
+  <div class="box">
+    <label>Community</label>
+    <ul>
+      <li><a href="http://groups.google.com/group/rightjs">Google Group</a></li>
+      <li><a href="http://rightjs.lighthouseapp.com/projects/31989">Tickets Tracker</a></li>
+      <li><a href="http://github.com/rightjs/rightjs-snippets">Code Snippets</a></li>
+      <li><a href="irc://irc.freenode.net/rightjs">IRC #rightjs</a></li>
+      <li><a href="../participate.html">Participate!</a></li>
+    </ul>
+  </div>
+
+  <div class="box">
+    <a href='http://www.pledgie.com/campaigns/14259'><img alt='Donate!' src='http://www.pledgie.com/campaigns/14259.png?skin_name=chrome' border='0' /></a>
+  </div>
+
+  <div class="box">
+    <ul id="social">
+      <li><a href="../blog.rss" id="rss-link">RSS</a></li>
+      <li><a href="http://twitter.com/rightjs" id="twitter-link">Twitter</a></li>
+      <li><a href="http://github.com/rightjs" id="github-link">GitHub</a></li>
+    </ul>
+  </div>
+</div>
+
+        <div id="info">
+          <h1>Ajax Handling</h1>
+
+<p>Generally there is just one simple class called <a href='../docs/xhr.html' class='api-ref'>Xhr</a> that responsible for almost all the ajax functionality in RightJS</p>
+
+<p>Some simple examples might look the following way</p>
+
+<code><b class="var">new</b> <b class="unit">Xhr</b>(<s>'/some/url'</s>).<u class="method">send</u>();<br/><b class="var">new</b> <b class="unit">Xhr</b>(<s>'/some/url'</s>).<u class="method">send</u>(<s>'param=value'</s>);<br/><b class="var">new</b> <b class="unit">Xhr</b>(<s>'/some/url'</s>, {<s class="key">onFinish</s>: <b>function</b>() {..}}).<u class="method">send</u>();</code>
+<a name='options' ></a><h2 class='chapter'>
+  <a href='ajax-handling.html#' class='top-anchor'>top &uarr;</a><a href='ajax-handling.html#options'>Options List</a>
+</h2>
+<p><a href='../docs/xhr.html' class='api-ref'>Xhr</a> supports options with the following keys</p>
+<table><thead><tr><th>Key</th><th>Default</th><th>Description</th></tr></thead><tbody><tr><td>method</td><td>‘post’</td><td>request method</td>
+</tr><tr><td>encoding</td><td>‘utf-8’</td><td>encoding</td>
+</tr><tr><td>async</td><td>true</td><td>asynchronous request</td>
+</tr><tr><td>evalScripts</td><td>false</td><td>extract/eval javascripts from the response</td>
+</tr><tr><td>evalResponse</td><td>false</td><td>eval response as a javascript code</td>
+</tr><tr><td>evalJS</td><td>true</td><td>automatically eval responses with <tt>javascript</tt> content-type</td>
+</tr><tr><td>evalJSON</td><td>true</td><td>eval json responses automatically</td>
+</tr><tr><td>secureJSON</td><td>true</td><td>if it should validate json responses</td>
+</tr><tr><td>urlEncoded</td><td>true</td><td>urlencode the parameters</td>
+</tr><tr><td>spinner</td><td>null</td><td>spinner element or element id</td>
+</tr><tr><td>spinnerFx</td><td>&#8216;fade&#8217;</td><td>spinner handling visual effect</td>
+</tr><tr><td>params</td><td>null</td><td>default parameters</td>
+</tr><tr><td>jsonp</td><td>false</td><td><tt>true</tt> or a callback name for a JSONP request</td>
+</tr></tbody></table>
+<p>You can send any of the options in a hash as the second argument of the <a href='../docs/xhr.html' class='api-ref'>Xhr</a> constructor, or you can set them up globally for all the <a href='../docs/xhr.html' class='api-ref'>Xhr</a> requests by changing the <a href='../docs/xhr.html#Options' class='api-ref'>Xhr.Options</a> variable. When you do so all the following <a href='../docs/xhr.html' class='api-ref'>Xhr</a> requests will take the new options.</p>
+
+<code><b class="unit">Xhr</b>.<b class="unit">Options</b>.<u>spinner</u> = <s>'global-spinner-id'</s>;<br/><b class="unit">Xhr</b>.<b class="unit">Options</b>.<u>params</u>  = <s>'my=params&amp;global=options'</s>;</code>
+<a name='events' ></a><h2 class='chapter'>
+  <a href='ajax-handling.html#' class='top-anchor'>top &uarr;</a><a href='ajax-handling.html#events'>Events List</a>
+</h2>
+<p><a href='../docs/xhr.html' class='api-ref'>Xhr</a> class provides the standard <a href='../docs/observer.html' class='api-ref'>Observer</a> functionality and supports the following events.</p>
+
+<ul>
+<li>create</li>
+
+<li>request</li>
+
+<li>complete</li>
+
+<li>success</li>
+
+<li>failure</li>
+
+<li>cancel</li>
+</ul>
+
+<p>You can send your callbacks along with the constructor options or handle by <a href='../docs/observer.html' class='api-ref'>Observer</a> methods in the standard way.</p>
+
+<code><b class="var">new</b> <b class="unit">Xhr</b>(<s>'/some/url'</s>, {<s class="key">onFinish</s>: <b>function</b>() {...}}).<u class="method">send</u>();<br/><b class="var">new</b> <b class="unit">Xhr</b>(<s>'/some/url'</s>).<u class="method">on</u>(<s>'finish'</s>, <b>function</b>() {...}).<u class="method">send</u>();<br/><b class="var">new</b> <b class="unit">Xhr</b>(<s>'/some/url'</s>).<u class="method">onFinish</u>(<b>function</b>() {...}).<u class="method">send</u>();<br/><br/><b class="var">var</b> xhr = <b class="var">new</b> <b class="unit">Xhr</b>(<s>'/some/url'</s>);<br/>xhr.<u class="method">onComplete</u>(some_function);<br/>xhr.<u class="method">stopObserving</u>(some_function);</code>
+
+<p>Surely you can add your own events if you need so</p>
+
+<code><b class="var">var</b> xhr = <b class="var">new</b> <b class="unit">Xhr</b>(<s>'/some/url'</s>);<br/><br/>xhr.<u class="method">on</u>(<s>'my-event'</s>, <b>function</b>() {...});<br/>xhr.<u>checkMyEvent</u> = <b>function</b>() {<br/>  <b>if</b> (<b class="var">this</b>.<u>something</u>) {<br/>    <b class="var">this</b>.<u class="method">fire</u>(<s>'my-event'</s>);<br/>  }<br/>};<br/><br/>xhr.<u class="method">onComplete</u>(<s>'checkMyEvent'</s>);</code>
+
+<p><strong>NOTE</strong>: all the callbacks will be called in the context of the request and receive two arguments, current request instance and the original XMLHttpRequest object.</p>
+
+<p>Additionally you can use the <a href='../docs/xhr.html' class='api-ref'>Xhr</a> class level <a href='../docs/observer.html' class='api-ref'>Observer</a> interface to attach global event listeners for all the xhr requests.</p>
+
+<code><b class="unit">Xhr</b>.<u class="method">onCreate</u>(call_that_function);<br/><br/><b class="var">new</b> <b class="unit">Xhr</b>(<s>'/some/url'</s>).<u class="method">send</u>(); <i>// &lt;- will automatically call that function</i></code>
+<a name='spinners' ></a><h2 class='chapter'>
+  <a href='ajax-handling.html#' class='top-anchor'>top &uarr;</a><a href='ajax-handling.html#spinners'>Spinners Handling</a>
+</h2>
+<p><a href='../docs/xhr.html' class='api-ref'>Xhr</a> class in RightJS has a built-in support of spinners handling. You don&#8217;t need to attach event listeners to show and hide them. You just specify a reference to your spinner and <a href='../docs/xhr.html' class='api-ref'>Xhr</a> will do it for you automatically.</p>
+
+<p>You can specify a global spinner for all the <a href='../docs/xhr.html' class='api-ref'>Xhr</a> requests or set custom spinners per request.</p>
+
+<code><b class="unit">Xhr</b>.<b class="unit">Options</b>.<u>spinner</u> = $(<s>'spinner'</s>);<br/><b class="unit">Xhr</b>.<b class="unit">Options</b>.<u>spinner</u> = <s>'global-spinner-id'</s>;<br/><br/><i>// or per request</i><br/><b class="var">new</b> <b class="unit">Xhr</b>(<s>'/some/url'</s>, {<s class="key">spinner</s>: <s>'custom-spinner'</s>}).<u class="method">send</u>();</code>
+
+<p><strong>NOTE</strong>: if you did specify both global and local spinners, both of them will be shown.</p>
+<a name='parameters' ></a><h2 class='chapter'>
+  <a href='ajax-handling.html#' class='top-anchor'>top &uarr;</a><a href='ajax-handling.html#parameters'>Parameters Handling</a>
+</h2>
+<p>There are three levels of parameters you can specify to be sent with any request. Global, per instance and per send.</p>
+
+<p>Global parameters might be set at the <a href='../docs/xhr.html#Options' class='api-ref'>Xhr.Options</a> object and will be sent with every request. Instance level parameters might be specified with the constructor options and will be sent every time you send the request. And eventually you can specify some additional parameters with the <a href='../docs/xhr.html#send' class='api-ref'>Xhr#send</a> method.</p>
+
+<p>If you specify the parameters on several levels, they will be merged with the &#8216;last win&#8217; strategy.</p>
+
+<code><b class="unit">Xhr</b>.<b class="unit">Options</b>.<u>params</u> = <s>'my_cite_key=123234'</s>;<br/><br/><b class="var">var</b> xhr = <b class="var">new</b> <b class="unit">Xhr</b>(<s>'/some/url'</s>, {<s class="key">params</s>: <s>'request=params'</s>});<br/><br/>xhr.<u class="method">send</u>(<s>'some_more=params&amp;send=options'</s>);</code>
+
+<p>Parameters might be url-encoded strings or hashes. Hashes will be converted into strings and url-encoded if necessary.</p>
+
+<code><b class="var">new</b> <b class="unit">Xhr</b>(<s>'/some.url'</s>).<u class="method">send</u>(<s>'some=params&amp;more=options'</s>);<br/><br/><i>// or like this</i><br/><b class="var">new</b> <b class="unit">Xhr</b>(<s>'/some.url'</s>).<u class="method">send</u>({<s class="key">some</s>: <s>'params'</s>, <s class="key">more</s>: <s>'options'</s>});</code>
+
+<p>Additionally, you can send a form element instance to the <a href='../docs/xhr.html#send' class='api-ref'>Xhr#send</a> method, <a href='../docs/xhr.html' class='api-ref'>Xhr</a> will automatically grab the form data and convert into parameters.</p>
+
+<code><b class="var">new</b> <b class="unit">Xhr</b>(<s>'/some/url'</s>).<u class="method">send</u>($(<s>'my-form'</s>));</code>
+<a name='json' ></a><h2 class='chapter'>
+  <a href='ajax-handling.html#' class='top-anchor'>top &uarr;</a><a href='ajax-handling.html#json'>JSON Responses</a>
+</h2>
+<p>By default <a href='../docs/xhr.html' class='api-ref'>Xhr</a> if received a response with the json content-type, will try to evaluate the response and assign the json object to the <tt>responseJSON</tt> attribute of the request.</p>
+
+<code><b class="var">new</b> <b class="unit">Xhr</b>(<s>'/some.json'</s>, {<br/>  <s class="key">onSuccess</s>: <b>function</b>() {<br/>    <b class="var">var</b> json = <b class="var">this</b>.<u>responseJSON</u>;<br/>  }<br/>}).<u class="method">send</u>();</code>
+
+<p>You can switch the feature off by setting the <tt>evalJSON</tt> option to <tt>false</tt></p>
+<a name='jsonp' ></a><h2 class='chapter'>
+  <a href='ajax-handling.html#' class='top-anchor'>top &uarr;</a><a href='ajax-handling.html#jsonp'>JSONP Support</a>
+</h2>
+<p>You also can make <tt>JSONP</tt> responses with the <a href='../docs/xhr.html' class='api-ref'>Xhr</a> class. It all looks just the same as any other request, just in addition you specify the <tt>jsonp</tt> option</p>
+
+<code><b class="var">new</b> <b class="unit">Xhr</b>(<s>'/some.json'</s>, {<br/>  <s class="key">jsonp</s>: <b class="rest">true</b>,<br/>  <s class="key">onSuccess</s>: <b>function</b>() {<br/>    <b class="var">var</b> json = <b class="var">this</b>.<u>responseJSON</u>;<br/>  }<br/>}).<u class="method">send</u>();</code>
+
+<p>The <tt>true</tt> value means the default callback name <tt>callback</tt>, but you can specify any name instead.</p>
+<a name='shortcuts' ></a><h2 class='chapter'>
+  <a href='ajax-handling.html#' class='top-anchor'>top &uarr;</a><a href='ajax-handling.html#shortcuts'>Shortcuts and DOM support</a>
+</h2>
+<p>There are view shortcuts and additional methods that will make your live easier when you implement an ajax application.</p>
+
+<p>To shortify <a href='../docs/xhr.html' class='api-ref'>Xhr</a> instancing you can use the <a href='../docs/xhr.html#load' class='api-ref'>Xhr.load</a> method that will create an <a href='../docs/xhr.html' class='api-ref'>Xhr</a> instance and send the request.</p>
+
+<code><b class="unit">Xhr</b>.<u class="method">load</u>(<s>'/some/url'</s>, {<br/>  <s class="key">method</s>: <s>'get'</s>,<br/>  <s class="key">onSuccess</s>: <b>function</b>(request) {<br/>    <i>// do something about it</i><br/>  }<br/>});</code>
+
+<p>With the <a href='../docs/xhr.html#update' class='api-ref'>Xhr#update</a> method you can update elements content with the requests response</p>
+
+<code><b class="var">new</b> <b class="unit">Xhr</b>(<s>'/some/url'</s>).<u class="method">update</u>(<s>'element'</s>);</code>
+
+<p>You can also initiate a xhr-request directly from an element instance by calling the <a href='../docs/element.html#load' class='api-ref'>Element#load</a> method. This will initiate applicable xhr request and update the element content when the request is complete</p>
+
+<code>$(<s>'element'</s>).<u class="method">load</u>(<s>'/some/url'</s>);<br/><br/>$(<s>'element'</s>).<u class="method">load</u>(<s>'/some/url'</s>, {<s class="key">method</s>: <s>'get'</s>});</code>
+
+<p>End eventually you can submit your forms via ajax requests directly from the forms by calling the <a href='../docs/form.html#send' class='api-ref'>Form#send</a> method. It will read the form <tt>action</tt> and <tt>method</tt> attributes, initiate a suitable xhr request, serialize the form data and send it to the server</p>
+
+<code>$(<s>'my-form'</s>).<u class="method">send</u>();<br/>$(<s>'my-form'</s>).<u class="method">send</u>({<br/>  <s class="key">spinner</s>: <s>'form-spinner'</s>,<br/>  <s class="key">onSuccess</s>: <b>function</b>() {<br/>    $(<s>'notices'</s>).<u class="method">update</u>(<b class="var">this</b>.<u>responseText</u>);<br/>  }<br/>});</code>
+
+<p><strong>NOTE</strong>: This feature supports files uploading too. If your form has the <tt>enctype</tt> attribute equals to <tt>multipart/form-data</tt>, then the form will be sent via virtual ajax request through some hidden iframe.</p>
+
+<p>The interface although stay the same and everything will get happened automatically.</p>
+        </div>
+        <div style="clear:both"></div>
+      </div>
+      <div id="foot">
+        <div id="contacts">
+  <h2>Questions?</h2>
+  <a href="&#x6D;&#x61;i&#x6C;&#x74;&#x6F;:&#105;&#110;&#102;&#111;&#064;&#114;&#105;&#103;&#104;&#116;&#106;&#115;&#046;&#111;&#114;&#103;">&#105;&#110;&#102;&#111;&#064;&#114;&#105;&#103;&#104;&#116;&#106;&#115;&#046;&#111;&#114;&#103;</a>
+</div>
+<div id="bottom-menu">
+  <h2>About the Framework</h2>
+  <a href="../philosophy.html">Philosophy</a> |
+  <a href="../benchmarks.html">Benchmarks</a> |
+  <a href="../browsers.html">Browsers</a> |
+  <a href="../contacts.html">Contacts</a>
+</div>
+        <div id="design">Design by <a href="http://activestylus.com">Steven Garcia</a></div>
+        <div id="copyright">Copyright &copy; 2008-2011 Nikolay Nemshilov</div>
+      </div>
+    </div>
+
+    <script src="http://www.google-analytics.com/ga.js" type="text/javascript"></script>
+    <script type="text/javascript">
+    // <![CDATA[
+      try { _gat._getTracker("UA-10292980-1")._trackPageview(); } catch(err) {}
+    // ]]>
+    </script>
+  </body>
+</html>

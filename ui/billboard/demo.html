@@ -1,0 +1,233 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <title>RightJS: Billboard Demo</title>
+    <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+    <link href="../../blog.rss" rel="alternate" title="RightJS News" type="application/rss+xml" />
+    <script src="../../hotlink/right.js@1333128729" type="text/javascript"></script>
+<script src="../../javascripts/application.js@1295184937" type="text/javascript"></script>
+    <script src="../../builds/ui/right-autocompleter.js@1333128730" type="text/javascript"></script>
+    <link href="../../stylesheets/application.css@1297515667.css" media="screen" rel="stylesheet" type="text/css" />
+    <script src="../../builds/ui/right-billboard.js@1333128730" type="text/javascript"></script>
+    <link href="../../stylesheets/rightjs-ui-home.css@1295874376.css" media="screen" rel="stylesheet" type="text/css" />
+    
+  </head>
+  <body>
+    <div id="body">
+      <div id="head">
+        <a href="../../index.html" id="logo">RightJS</a>
+        <div id="slogan">JavaScript Framework That Feels Right</div>
+
+        <div id="main-menu">
+  <ul>
+    <li><a href="../../index.html">Home</a></li>
+    <li><a href="../../download.html">Download</a></li>
+    <li><a href="../../plugins.html">Plugins</a></li>
+    <li class="current"><a href="../../ui.html">UI</a></li>
+    <li><a href="../../demos.html">Demos</a></li>
+    <li><a href="../../docs.html">Docs</a></li>
+    <li><a href="../../blog.html">Blog</a></li>
+  </ul>
+  <div id="zing"><!-- the moving thing --></div>
+</div>
+        <div id="lang-switch">
+    <select onchange="document.location.href=this.value;">
+      <option selected="true" value="http://rightjs.org/ui/billboard/demo">English</option>
+      <option value="http://ru.rightjs.org/ui/billboard/demo">Русский</option>
+    </select>
+</div>
+      </div>
+      <div id="main">
+        <div id="sidebar">
+  <div class="box" id="download-box">
+    <h1>Get it!</h1>
+    <ul>
+      <li><a href="../../builds/current/right.js.zip">RightJS v2.3.1</a></li>
+    </ul>
+  </div>
+
+  <div id="api-search" class="box">
+  <input type="text" value="Search API" id="api-search-field" />
+  <script type="text/javascript">
+  // <![CDATA[
+    new Autocompleter($('api-search-field').on({
+      focus: function() { this._v = this.value(); this.value(''); },
+      blur:  function() { this.value(this._v); }
+    }), {
+      url: '/docs/search/%{search}.js',
+      onDone: function() {
+        var current = this.first('.current');
+        if (current) {
+          document.location.href = current.get('title');
+        }
+        this.input.setValue(this.input._v);
+      }
+    });
+  // ]]>
+  </script>
+</div>
+
+  <div class="box">
+    <label>Documentation</label>
+    <ul>
+      <li><a href="../../tutorials/getting-started.html">Getting Started</a></li>
+      <li><a href="../../tutorials/top-features.html">Top 12 Features</a></li>
+      <li><a href="../../docs.html">API Reference</a></li>
+      <li><a href="../../tutorials.1.html">Tutorials</a></li>
+    </ul>
+  </div>
+
+  <div class="box">
+    <label>Additional</label>
+    <ul>
+      <li><a href="../../plugins.html">RightJS Plugins</a></li>
+      
+      <li class="current"><a href="../../ui.html">RightJS UI</a></li>
+      <ul id="ui-menu"><li><a href="../autocompleter.html">Autocompleter</a></li>
+<li class="current"><a href="../billboard.html">Billboard</a></li>
+<li><a href="../calendar.html">Calendar</a></li>
+<li><a href="../colorpicker.html">Colorpicker</a></li>
+<li><a href="../dialog.html">Dialog</a></li>
+<li><a href="../in-edit.html">In Place Edit</a></li>
+<li><a href="../lightbox.html">Lightbox</a></li>
+<li><a href="../rater.html">Rater</a></li>
+<li><a href="../resizable.html">Resizable</a></li>
+<li><a href="../rte.html">Rte</a></li>
+<li><a href="../selectable.html">Selectable</a></li>
+<li><a href="../slider.html">Slider</a></li>
+<li><a href="../sortable.html">Sortable</a></li>
+<li><a href="../tabs.html">Tabs</a></li>
+<li><a href="../tags.html">Tags</a></li>
+<li><a href="../tooltips.html">Tooltips</a></li>
+<li><a href="../uploader.html">Uploader</a></li></ul>
+      <li><a href="../../showcases.html">Showcases</a></li>
+    </ul>
+  </div>
+
+  <div class="box">
+    <label>Community</label>
+    <ul>
+      <li><a href="http://groups.google.com/group/rightjs">Google Group</a></li>
+      <li><a href="http://rightjs.lighthouseapp.com/projects/31989">Tickets Tracker</a></li>
+      <li><a href="http://github.com/rightjs/rightjs-snippets">Code Snippets</a></li>
+      <li><a href="irc://irc.freenode.net/rightjs">IRC #rightjs</a></li>
+      <li><a href="../../participate.html">Participate!</a></li>
+    </ul>
+  </div>
+
+  <div class="box">
+    <a href='http://www.pledgie.com/campaigns/14259'><img alt='Donate!' src='http://www.pledgie.com/campaigns/14259.png?skin_name=chrome' border='0' /></a>
+  </div>
+
+  <div class="box">
+    <ul id="social">
+      <li><a href="../../blog.rss" id="rss-link">RSS</a></li>
+      <li><a href="http://twitter.com/rightjs" id="twitter-link">Twitter</a></li>
+      <li><a href="http://github.com/rightjs" id="github-link">GitHub</a></li>
+    </ul>
+  </div>
+</div>
+
+        <div id="info">
+          <h1>Billboard Demo</h1>
+
+<p>Some basic <a href='../billboard.html'>billboard</a> widget examples</p>
+<a name='default' ></a><h2 class='chapter'>
+  <a href='demo.html#' class='top-anchor'>top &uarr;</a><a href='demo.html#default'>Default Billboard</a>
+</h2><style type='text/css'>
+  ul.rui-billboard {
+    border: 3px solid #CFCEBD;
+    border-radius: 3px;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+  }
+
+  ul.rui-billboard li img {
+    width: 400px;
+    height: 265px;
+    display: block;
+  }
+
+  div.swap-links {
+    margin-top: .5em;
+  }
+  div.swap-links a {
+    outline: none;
+  }
+  ul.text-example {
+
+  }
+  ul.text-example li {
+    width: 30em;
+    height: 12em;
+    text-align: justify;
+  }
+</style><p>
+  <ul class='rui-billboard'>
+    <li><img src='../../images/test/2-med.jpg' /></li>
+    <li><img src='../../images/test/3-med.jpg' /></li>
+    <li><img src='../../images/test/4-med.jpg' /></li>
+  </ul>
+</p><a name='slideshow' ></a><h2 class='chapter'>
+  <a href='demo.html#' class='top-anchor'>top &uarr;</a><a href='demo.html#slideshow'>Slideshow</a>
+</h2><p>
+  <ul class='rui-billboard' data-billboard='{fxName: "slide", autostart: false}'>
+    <li><img src='../../images/test/2-med.jpg' /></li>
+    <li><img src='../../images/test/3-med.jpg' /></li>
+    <li><img src='../../images/test/4-med.jpg' /></li>
+  </ul>
+</p><a name='fade' ></a><h2 class='chapter'>
+  <a href='demo.html#' class='top-anchor'>top &uarr;</a><a href='demo.html#fade'>Fading Transitions</a>
+</h2><p>
+  <ul class='rui-billboard' data-billboard='{fxName: "fade", autostart: false}'>
+    <li><img src='../../images/test/2-med.jpg' /></li>
+    <li><img src='../../images/test/3-med.jpg' /></li>
+    <li><img src='../../images/test/4-med.jpg' /></li>
+  </ul>
+</p><a name='text' ></a><h2 class='chapter'>
+  <a href='demo.html#' class='top-anchor'>top &uarr;</a><a href='demo.html#text'>Textual Content</a>
+</h2><p>
+  <ul class='rui-billboard text-example' data-billboard='{prevButton: "prev-txt", nextButton: "next-txt", autostart: false}'>
+    <li style='background: white'>
+      Lorem ipsum dolor sit amet, <b>consectetur</b> adipisicing elit, sed do <em>eiusmod t</em>empor incididunt ut labore et dolore magna aliqua. <u>Ut enim ad mi</u>nim veniam, quis nostrud <i>exercitati</i>on ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in volu<b>ptate velit </b>esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupida<u>tat non proident</u>, sunt in culpa qui officia deserunt mollit anim id est laborum.
+    </li>
+    <li style='background: yellow'>
+      Duis aute irure dolor in reprehenderit in volu<b>ptate velit </b>esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupida<u>tat non proident</u>, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, <b>consectetur</b> adipisicing elit, sed do <em>eiusmod t</em>empor incididunt ut labore et dolore magna aliqua. <u>Ut enim ad mi</u>nim veniam, quis nostrud <i>exercitati</i>on ullamco laboris nisi ut aliquip ex ea commodo consequat.
+    </li>
+    <li style='background: pink'>
+       <u>Ut enim ad mi</u>nim veniam, quis nostrud <i>exercitati</i>on ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in volu<b>ptate velit </b>esse cillum dolore eu fugiat nulla pariatur. Lorem ipsum dolor sit amet, <b>consectetur</b> adipisicing elit, sed do <em>eiusmod t</em>empor incididunt ut labore et dolore magna aliqua. Excepteur sint occaecat cupida<u>tat non proident</u>, sunt in culpa qui officia deserunt mollit anim id est laborum.
+    </li>
+  </ul>
+  <div class='swap-links'>
+    <a href='demo.html' id='prev-txt'>&larr; Prev</a> |
+    <a href='demo.html' id='next-txt'>Next &rarr;</a>
+  </div>
+</p>
+        </div>
+        <div style="clear:both"></div>
+      </div>
+      <div id="foot">
+        <div id="contacts">
+  <h2>Questions?</h2>
+  <a href="&#x6D;&#x61;i&#x6C;&#x74;&#x6F;:&#105;&#110;&#102;&#111;&#064;&#114;&#105;&#103;&#104;&#116;&#106;&#115;&#046;&#111;&#114;&#103;">&#105;&#110;&#102;&#111;&#064;&#114;&#105;&#103;&#104;&#116;&#106;&#115;&#046;&#111;&#114;&#103;</a>
+</div>
+<div id="bottom-menu">
+  <h2>About the Framework</h2>
+  <a href="../../philosophy.html">Philosophy</a> |
+  <a href="../../benchmarks.html">Benchmarks</a> |
+  <a href="../../browsers.html">Browsers</a> |
+  <a href="../../contacts.html">Contacts</a>
+</div>
+        <div id="design">Design by <a href="http://activestylus.com">Steven Garcia</a></div>
+        <div id="copyright">Copyright &copy; 2008-2011 Nikolay Nemshilov</div>
+      </div>
+    </div>
+
+    <script src="http://www.google-analytics.com/ga.js" type="text/javascript"></script>
+    <script type="text/javascript">
+    // <![CDATA[
+      try { _gat._getTracker("UA-10292980-1")._trackPageview(); } catch(err) {}
+    // ]]>
+    </script>
+  </body>
+</html>

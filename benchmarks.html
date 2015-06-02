@@ -1,0 +1,210 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <title>RightJS: Performance Benchmarks</title>
+    <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+    <link href="blog.rss" rel="alternate" title="RightJS News" type="application/rss+xml" />
+    <script src="hotlink/right.js@1333128729" type="text/javascript"></script>
+<script src="javascripts/application.js@1295184937" type="text/javascript"></script>
+    <script src="builds/ui/right-autocompleter.js@1333128730" type="text/javascript"></script>
+    <link href="stylesheets/application.css@1297515667.css" media="screen" rel="stylesheet" type="text/css" />
+    
+    
+    
+  </head>
+  <body>
+    <div id="body">
+      <div id="head">
+        <a href="index.html" id="logo">RightJS</a>
+        <div id="slogan">JavaScript Framework That Feels Right</div>
+
+        <div id="main-menu">
+  <ul>
+    <li><a href="index.html">Home</a></li>
+    <li><a href="download.html">Download</a></li>
+    <li><a href="plugins.html">Plugins</a></li>
+    <li><a href="ui.html">UI</a></li>
+    <li><a href="demos.html">Demos</a></li>
+    <li><a href="docs.html">Docs</a></li>
+    <li><a href="blog.html">Blog</a></li>
+  </ul>
+  <div id="zing"><!-- the moving thing --></div>
+</div>
+        <div id="lang-switch">
+    <select onchange="document.location.href=this.value;">
+      <option selected="true" value="http://rightjs.org/benchmarks">English</option>
+      <option value="http://ru.rightjs.org/benchmarks">Русский</option>
+    </select>
+</div>
+      </div>
+      <div id="main">
+        <div id="sidebar">
+  <div class="box" id="download-box">
+    <h1>Get it!</h1>
+    <ul>
+      <li><a href="builds/current/right.js.zip">RightJS v2.3.1</a></li>
+    </ul>
+  </div>
+
+  <div id="api-search" class="box">
+  <input type="text" value="Search API" id="api-search-field" />
+  <script type="text/javascript">
+  // <![CDATA[
+    new Autocompleter($('api-search-field').on({
+      focus: function() { this._v = this.value(); this.value(''); },
+      blur:  function() { this.value(this._v); }
+    }), {
+      url: '/docs/search/%{search}.js',
+      onDone: function() {
+        var current = this.first('.current');
+        if (current) {
+          document.location.href = current.get('title');
+        }
+        this.input.setValue(this.input._v);
+      }
+    });
+  // ]]>
+  </script>
+</div>
+
+  <div class="box">
+    <label>Documentation</label>
+    <ul>
+      <li><a href="tutorials/getting-started.html">Getting Started</a></li>
+      <li><a href="tutorials/top-features.html">Top 12 Features</a></li>
+      <li><a href="docs.html">API Reference</a></li>
+      <li><a href="tutorials.1.html">Tutorials</a></li>
+    </ul>
+  </div>
+
+  <div class="box">
+    <label>Additional</label>
+    <ul>
+      <li><a href="plugins.html">RightJS Plugins</a></li>
+      
+      <li><a href="ui.html">RightJS UI</a></li>
+      
+      <li><a href="showcases.html">Showcases</a></li>
+    </ul>
+  </div>
+
+  <div class="box">
+    <label>Community</label>
+    <ul>
+      <li><a href="http://groups.google.com/group/rightjs">Google Group</a></li>
+      <li><a href="http://rightjs.lighthouseapp.com/projects/31989">Tickets Tracker</a></li>
+      <li><a href="http://github.com/rightjs/rightjs-snippets">Code Snippets</a></li>
+      <li><a href="irc://irc.freenode.net/rightjs">IRC #rightjs</a></li>
+      <li><a href="participate.html">Participate!</a></li>
+    </ul>
+  </div>
+
+  <div class="box">
+    <a href='http://www.pledgie.com/campaigns/14259'><img alt='Donate!' src='http://www.pledgie.com/campaigns/14259.png?skin_name=chrome' border='0' /></a>
+  </div>
+
+  <div class="box">
+    <ul id="social">
+      <li><a href="blog.rss" id="rss-link">RSS</a></li>
+      <li><a href="http://twitter.com/rightjs" id="twitter-link">Twitter</a></li>
+      <li><a href="http://github.com/rightjs" id="github-link">GitHub</a></li>
+    </ul>
+  </div>
+</div>
+
+        <div id="info">
+          <h1>Performance Benchmarks</h1>
+
+<p>To give you an idea of the project quality and abilities, some performance measurements were taken. All the tests were done with the the <tt>TaskSpeed</tt> suite, you find the exact version used along with all tests for RightJS here <a href='http://github.com/MadRabbit/taskspeed'>http://github.com/MadRabbit/taskspeed</a>.</p>
+
+<p>Hardware: MacBook 2GHz Intel Core 2 Duo, 4 GB 1067 MHz DDR3, Mac OS X 10.6.6</p>
+
+<p>The following browsers were used</p>
+<ul>
+  <li><a href='benchmarks.html#firefox'>Firefox</a> 3.6.13 (Gecko/20101203) OS X 10.6.6</li>
+  <li><a href='benchmarks.html#safari'>Safari</a> 5.0.3 (6533.19.4) OS X 10.6.6</li>
+  <li><a href='benchmarks.html#chrome'>Google Chrome</a> 9.0.597.102  OS X 10.6.6</li>
+  <li><a href='benchmarks.html#opera'>Opera</a> 11.01 (Build 1190) OS X 10.6.6</li>
+  <li><a href='benchmarks.html#konq'>Konqueror</a> 4.4.5 Ubuntu 10.04, VMWare Fusion</li>
+  <li><a href='benchmarks.html#ie8'>Internet Explorer 8</a> (8.0.6001.18702) Windows XP SP3, VMWare Fusion</li>
+  <li><a href='benchmarks.html#ie7'>Internet Explorer 7</a> (7.0.5730.13) Windows XP SP3, VMWare Fusion</li>
+  <li><a href='benchmarks.html#ie6'>Internet Explorer 6</a> (6.0.2900.5512) Windows XP SP3, VMWare Fusion</li>
+</ul>
+<p>If you feel uncomfortable with these test results, there is <a href='http://st-on-it.blogspot.com/2009/12/meet-shakker-mano-mano-javascript.html'>another test</a> available that was done with a different testing utility.</p>
+<a name='firefox' ></a><h2 class='chapter'>
+  <a href='benchmarks.html#' class='top-anchor'>top &uarr;</a><a href='benchmarks.html#firefox'>Firefox</a>
+</h2><p>
+  <div class='shot'>
+    <a href='images/benchmarks/ff.png' target='_blank'><img src='images/benchmarks/ff-thmb.png@1297515667' alt='Ff-thmb' /></a>
+  </div>
+</p><a name='safari' ></a><h2 class='chapter'>
+  <a href='benchmarks.html#' class='top-anchor'>top &uarr;</a><a href='benchmarks.html#safari'>Safari</a>
+</h2><p>
+  <div class='shot'>
+    <a href='images/benchmarks/safari.png' target='_blank'><img src='images/benchmarks/safari-thmb.png@1297515667' alt='Safari-thmb' /></a>
+  </div>
+</p><a name='chrome' ></a><h2 class='chapter'>
+  <a href='benchmarks.html#' class='top-anchor'>top &uarr;</a><a href='benchmarks.html#chrome'>Google Chrome</a>
+</h2><p>
+  <div class='shot'>
+    <a href='images/benchmarks/chrome.png' target='_blank'><img src='images/benchmarks/chrome-thmb.png@1297515667' alt='Chrome-thmb' /></a>
+  </div>
+</p><a name='opera' ></a><h2 class='chapter'>
+  <a href='benchmarks.html#' class='top-anchor'>top &uarr;</a><a href='benchmarks.html#opera'>Opera</a>
+</h2><p>
+  <div class='shot'>
+    <a href='images/benchmarks/opera.png' target='_blank'><img src='images/benchmarks/opera-thmb.png@1297515667' alt='Opera-thmb' /></a>
+  </div>
+</p><a name='konq' ></a><h2 class='chapter'>
+  <a href='benchmarks.html#' class='top-anchor'>top &uarr;</a><a href='benchmarks.html#konq'>Konqueror</a>
+</h2><p>
+  <div class='shot'>
+    <a href='images/benchmarks/konq.png' target='_blank'><img src='images/benchmarks/konq-thmb.png@1297515667' alt='Konq-thmb' /></a>
+  </div>
+</p><a name='ie8' ></a><h2 class='chapter'>
+  <a href='benchmarks.html#' class='top-anchor'>top &uarr;</a><a href='benchmarks.html#ie8'>Internet Explorer 8</a>
+</h2><p>
+  <div class='shot'>
+    <a href='images/benchmarks/ie8.png' target='_blank'><img src='images/benchmarks/ie8-thmb.png@1297515667' alt='Ie8-thmb' /></a>
+  </div>
+</p><a name='ie7' ></a><h2 class='chapter'>
+  <a href='benchmarks.html#' class='top-anchor'>top &uarr;</a><a href='benchmarks.html#ie7'>Internet Explorer 7</a>
+</h2><p>
+  <div class='shot'>
+    <a href='images/benchmarks/ie7.png' target='_blank'><img src='images/benchmarks/ie7-thmb.png@1297515667' alt='Ie7-thmb' /></a>
+  </div>
+</p><a name='ie6' ></a><h2 class='chapter'>
+  <a href='benchmarks.html#' class='top-anchor'>top &uarr;</a><a href='benchmarks.html#ie6'>Internet Explorer 6</a>
+</h2><p>
+  <div class='shot'>
+    <a href='images/benchmarks/ie6.png' target='_blank'><img src='images/benchmarks/ie6-thmb.png@1297515667' alt='Ie6-thmb' /></a>
+  </div>
+</p>
+        </div>
+        <div style="clear:both"></div>
+      </div>
+      <div id="foot">
+        <div id="contacts">
+  <h2>Questions?</h2>
+  <a href="&#x6D;&#x61;i&#x6C;&#x74;&#x6F;:&#105;&#110;&#102;&#111;&#064;&#114;&#105;&#103;&#104;&#116;&#106;&#115;&#046;&#111;&#114;&#103;">&#105;&#110;&#102;&#111;&#064;&#114;&#105;&#103;&#104;&#116;&#106;&#115;&#046;&#111;&#114;&#103;</a>
+</div>
+<div id="bottom-menu">
+  <h2>About the Framework</h2>
+  <a href="philosophy.html">Philosophy</a> |
+  <a href="benchmarks.html">Benchmarks</a> |
+  <a href="browsers.html">Browsers</a> |
+  <a href="contacts.html">Contacts</a>
+</div>
+        <div id="design">Design by <a href="http://activestylus.com">Steven Garcia</a></div>
+        <div id="copyright">Copyright &copy; 2008-2011 Nikolay Nemshilov</div>
+      </div>
+    </div>
+
+    <script src="http://www.google-analytics.com/ga.js" type="text/javascript"></script>
+    <script type="text/javascript">
+    // <![CDATA[
+      try { _gat._getTracker("UA-10292980-1")._trackPageview(); } catch(err) {}
+    // ]]>
+    </script>
+  </body>
+</html>

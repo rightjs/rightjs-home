@@ -1,0 +1,183 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <title>RightJS: Droppable</title>
+    <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+    <link href="../../blog.rss" rel="alternate" title="RightJS News" type="application/rss+xml" />
+    <script src="../../hotlink/right.js@1331880836" type="text/javascript"></script>
+<script src="../../javascripts/application.js@1295184937" type="text/javascript"></script>
+    <script src="../../builds/ui/right-autocompleter.js@1331880836" type="text/javascript"></script>
+    <link href="../../stylesheets/application.css@1297515667.css" media="screen" rel="stylesheet" type="text/css" />
+    
+    
+    
+  </head>
+  <body>
+    <div id="body">
+      <div id="head">
+        <a href="../../index.html" id="logo">RightJS</a>
+        <div id="slogan">JavaScript Framework That Feels Right</div>
+
+        <div id="main-menu">
+  <ul>
+    <li><a href="../../index.html">Home</a></li>
+    <li><a href="../../download.html">Download</a></li>
+    <li class="current"><a href="../../plugins.html">Plugins</a></li>
+    <li><a href="../../ui.html">UI</a></li>
+    <li><a href="../../demos.html">Demos</a></li>
+    <li><a href="../../docs.html">Docs</a></li>
+    <li><a href="../../blog.html">Blog</a></li>
+  </ul>
+  <div id="zing"><!-- the moving thing --></div>
+</div>
+        <div id="lang-switch">
+    <select onchange="document.location.href=this.value;">
+      <option selected="true" value="http://rightjs.org/plugins/drag-and-drop/droppable">English</option>
+      <option value="http://ru.rightjs.org/plugins/drag-and-drop/droppable">Русский</option>
+    </select>
+</div>
+      </div>
+      <div id="main">
+        <div id="sidebar">
+  <div class="box" id="download-box">
+    <h1>Get it!</h1>
+    <ul>
+      <li><a href="../../builds/current/right.js.zip">RightJS v2.3.1</a></li>
+    </ul>
+  </div>
+
+  <div id="api-search" class="box">
+  <input type="text" value="Search API" id="api-search-field" />
+  <script type="text/javascript">
+  // <![CDATA[
+    new Autocompleter($('api-search-field').on({
+      focus: function() { this._v = this.value(); this.value(''); },
+      blur:  function() { this.value(this._v); }
+    }), {
+      url: '/docs/search/%{search}.js',
+      onDone: function() {
+        var current = this.first('.current');
+        if (current) {
+          document.location.href = current.get('title');
+        }
+        this.input.setValue(this.input._v);
+      }
+    });
+  // ]]>
+  </script>
+</div>
+
+  <div class="box">
+    <label>Documentation</label>
+    <ul>
+      <li><a href="../../tutorials/getting-started.html">Getting Started</a></li>
+      <li><a href="../../tutorials/top-features.html">Top 12 Features</a></li>
+      <li><a href="../../docs.html">API Reference</a></li>
+      <li><a href="../../tutorials.1.html">Tutorials</a></li>
+    </ul>
+  </div>
+
+  <div class="box">
+    <label>Additional</label>
+    <ul>
+      <li class="current"><a href="../../plugins.html">RightJS Plugins</a></li>
+      <ul id="plugins-menu"><li><a href="../effects.html">Additional Effects</a></li>
+<li><a href="../casting.html">Casting Plugin</a></li>
+<li class="current"><a href="../drag-and-drop.html">Drag'n'Drop Module</a></li>
+<li><a href="../keys.html">Pretty Keys</a></li>
+<li><a href="../rails.html">RubyOnRails Support</a></li>
+<li><a href="../sizzle.html">Sizzle Support</a></li>
+<li><a href="../table.html">Table DOM-Wrapper</a></li>
+<li><a href="../jquerysh.html">jQuery Emulator</a></li></ul>
+      <li><a href="../../ui.html">RightJS UI</a></li>
+      
+      <li><a href="../../showcases.html">Showcases</a></li>
+    </ul>
+  </div>
+
+  <div class="box">
+    <label>Community</label>
+    <ul>
+      <li><a href="http://groups.google.com/group/rightjs">Google Group</a></li>
+      <li><a href="http://rightjs.lighthouseapp.com/projects/31989">Tickets Tracker</a></li>
+      <li><a href="http://github.com/rightjs/rightjs-snippets">Code Snippets</a></li>
+      <li><a href="irc://irc.freenode.net/rightjs">IRC #rightjs</a></li>
+      <li><a href="../../participate.html">Participate!</a></li>
+    </ul>
+  </div>
+
+  <div class="box">
+    <a href='http://www.pledgie.com/campaigns/14259'><img alt='Donate!' src='http://www.pledgie.com/campaigns/14259.png?skin_name=chrome' border='0' /></a>
+  </div>
+
+  <div class="box">
+    <ul id="social">
+      <li><a href="../../blog.rss" id="rss-link">RSS</a></li>
+      <li><a href="http://twitter.com/rightjs" id="twitter-link">Twitter</a></li>
+      <li><a href="http://github.com/rightjs" id="github-link">GitHub</a></li>
+    </ul>
+  </div>
+</div>
+
+        <div id="info">
+          <h1>Droppable</h1>
+
+<p><tt>Droppable</tt> is the standard droppable units handling class from the <a href='../drag-and-drop.html'>drag-and-drop</a> library.</p>
+
+<p>The public API consists of only two methods: constructor and destructor. The constructor receives a reference to an element and the options hash while the destructor is just a method which detaches all the events handling from the element thus rendering it not droppable anymore.</p>
+
+<code><i>// Make 'my-element' droppable ...</i><br/><b class="var">var</b> droppable = <b class="var">new</b> <b class="unit">Droppable</b>(<s>'my-element'</s>, {<s class="key">accept</s>: <s>'div'</s>});<br/><br/><i>// ... and remove the dropping ability again</i><br/>droppable.<u class="method">destroy</u>();</code>
+
+<p>You can also use the auto-initialization feature and the <a href='../../docs/element.html' class='api-ref'>Element</a> level shortcuts to create droppables. See the main <a href='../drag-and-drop.html'>drag-and-drop</a> page for more details.</p>
+<h2 class="chapter"><a href='droppable.html#'>Index</a></h2><p><ul><li><a href="droppable.html#options">Options List</a></li><li><a href="droppable.html#events">Events List</a></li></ul></p><a name='options' ></a><h2 class='chapter'>
+  <a href='droppable.html#' class='top-anchor'>top &uarr;</a><a href='droppable.html#options'>Options List</a>
+</h2>
+<p>There are a number of options you can specify for your droppables:</p>
+<table><thead><tr><th>Name</th><th>Default</th><th>Description</th></tr></thead><tbody><tr><td>accept</td><td>&#8217;*&#8217;</td><td>CSS rule to filter out acceptable elements</td>
+</tr><tr><td>containment</td><td>null</td><td>list of elements (or ids) that should be accepted</td>
+</tr><tr><td>overlap</td><td>null</td><td><tt>x/y/horizontal/vertical/both</tt> draggable - droppable overlapping condition</td>
+</tr><tr><td>overlapSize</td><td>0.5</td><td>the overlapping level, 0 for nothing 1 for the whole thing</td>
+</tr><tr><td>allowClass</td><td>&#8216;droppable-allow&#8217;</td><td>CSS class for elements that should accept draggables</td>
+</tr><tr><td>denyClass</td><td>&#8216;droppable-deny&#8217;</td><td>CSS class for elements that shouldn&#8217;t accept a draggables</td>
+</tr><tr><td>relName</td><td>&#8216;droppable&#8217;</td><td>automatically initialized items feature key</td>
+</tr></tbody></table>
+<p>As usual you can specify them as initialization options for every particular droppable unit or customize the <tt>Draggable.Options</tt> in order to change the global settings.</p>
+<a name='events' ></a><h2 class='chapter'>
+  <a href='droppable.html#' class='top-anchor'>top &uarr;</a><a href='droppable.html#events'>Events List</a>
+</h2>
+<p>There are a few events to notify your application about droppables:</p>
+<table><thead><tr><th>Name</th><th>Description</th></tr></thead><tbody><tr><td>hover</td><td>when a draggable is hovered over the droppable</td>
+</tr><tr><td>leave</td><td>when a draggable leaves the droppable</td>
+</tr><tr><td>drop</td><td>when a draggable was accepted and dropped</td>
+</tr></tbody></table>
+<p>All these event listeners receive three arguments: the draggable object, the droppable object and the mouse event that caused the event.</p>
+
+<code><b class="var">new</b> <b class="unit">Droppable</b>(<s>'my-element'</s>, {<br/>  <s class="key">onDrop</s>: <b>function</b>(draggable, droppable, event) {<br/>    <i>//...</i><br/>  }<br/>});</code>
+        </div>
+        <div style="clear:both"></div>
+      </div>
+      <div id="foot">
+        <div id="contacts">
+  <h2>Questions?</h2>
+  <a href="&#x6D;&#x61;i&#x6C;&#x74;&#x6F;:&#105;&#110;&#102;&#111;&#064;&#114;&#105;&#103;&#104;&#116;&#106;&#115;&#046;&#111;&#114;&#103;">&#105;&#110;&#102;&#111;&#064;&#114;&#105;&#103;&#104;&#116;&#106;&#115;&#046;&#111;&#114;&#103;</a>
+</div>
+<div id="bottom-menu">
+  <h2>About the Framework</h2>
+  <a href="../../philosophy.html">Philosophy</a> |
+  <a href="../../benchmarks.html">Benchmarks</a> |
+  <a href="../../browsers.html">Browsers</a> |
+  <a href="../../contacts.html">Contacts</a>
+</div>
+        <div id="design">Design by <a href="http://activestylus.com">Steven Garcia</a></div>
+        <div id="copyright">Copyright &copy; 2008-2011 Nikolay Nemshilov</div>
+      </div>
+    </div>
+
+    <script src="http://www.google-analytics.com/ga.js" type="text/javascript"></script>
+    <script type="text/javascript">
+    // <![CDATA[
+      try { _gat._getTracker("UA-10292980-1")._trackPageview(); } catch(err) {}
+    // ]]>
+    </script>
+  </body>
+</html>

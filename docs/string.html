@@ -1,0 +1,511 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <title>RightJS: Documentation: String</title>
+    <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+    <link href="../blog.rss" rel="alternate" title="RightJS News" type="application/rss+xml" />
+    <script src="../hotlink/right.js@1333128729" type="text/javascript"></script>
+<script src="../javascripts/application.js@1295184937" type="text/javascript"></script>
+    <script src="../builds/ui/right-autocompleter.js@1333128730" type="text/javascript"></script>
+    <link href="../stylesheets/application.css@1297515667.css" media="screen" rel="stylesheet" type="text/css" />
+    
+    
+    
+  </head>
+  <body>
+    <div id="body">
+      <div id="head">
+        <a href="../index.html" id="logo">RightJS</a>
+        <div id="slogan">JavaScript Framework That Feels Right</div>
+
+        <div id="main-menu">
+  <ul>
+    <li><a href="../index.html">Home</a></li>
+    <li><a href="../download.html">Download</a></li>
+    <li><a href="../plugins.html">Plugins</a></li>
+    <li><a href="../ui.html">UI</a></li>
+    <li><a href="../demos.html">Demos</a></li>
+    <li class="current"><a href="../docs.html">Docs</a></li>
+    <li><a href="../blog.html">Blog</a></li>
+  </ul>
+  <div id="zing"><!-- the moving thing --></div>
+</div>
+        <div id="lang-switch">
+    <select onchange="document.location.href=this.value;">
+      <option selected="true" value="http://rightjs.org/docs/string">English</option>
+      <option value="http://ru.rightjs.org/docs/string">Русский</option>
+    </select>
+</div>
+      </div>
+      <div id="main">
+        <div id="sidebar">
+
+  <div id="api-search" class="box">
+  <input type="text" value="Search API" id="api-search-field" />
+  <script type="text/javascript">
+  // <![CDATA[
+    new Autocompleter($('api-search-field').on({
+      focus: function() { this._v = this.value(); this.value(''); },
+      blur:  function() { this.value(this._v); }
+    }), {
+      url: '/docs/search/%{search}.js',
+      onDone: function() {
+        var current = this.first('.current');
+        if (current) {
+          document.location.href = current.get('title');
+        }
+        this.input.setValue(this.input._v);
+      }
+    });
+  // ]]>
+  </script>
+</div>
+
+  <div class="box" id="api-lists">
+    <label>Core</label><ul><li><a href="browser.html">Browser</a></li><li><a href="class.html">Class</a></li><li><a href="util.html">Util</a></li></ul>
+<label>Dom</label><ul><li><a href="document.html">Document</a></li><li><a href="element.html">Element</a></li><li><a href="event.html">Event</a></li><li><a href="form.html">Form</a></li><li><a href="input.html">Input</a></li><li><a href="window.html">Window</a></li></ul>
+<label>Fx</label><ul><li><a href="fx.html">Fx</a></li><li><a href="fx/attr.html">Fx.Attr</a></li><li><a href="fx/element.html">Fx.Element</a></li><li><a href="fx/fade.html">Fx.Fade</a></li><li><a href="fx/highlight.html">Fx.Highlight</a></li><li><a href="fx/morph.html">Fx.Morph</a></li><li><a href="fx/scroll.html">Fx.Scroll</a></li><li><a href="fx/slide.html">Fx.Slide</a></li></ul>
+<label>Lang</label><ul><li><a href="array.html">Array</a></li><li><a href="function.html">Function</a></li><li><a href="json.html">Json</a></li><li><a href="math.html">Math</a></li><li><a href="number.html">Number</a></li><li><a href="object.html">Object</a></li><li><a href="regexp.html">Regexp</a></li><li><a href="string.html">String</a></li><ul><li><a href="string.html#include">include</a></li><li><a href="string.html#blank">blank</a></li><li><a href="string.html#camelize">camelize</a></li><li><a href="string.html#capitalize">capitalize</a></li><li><a href="string.html#dasherize">dasherize</a></li><li><a href="string.html#empty">empty</a></li><li><a href="string.html#endsWith">endsWith</a></li><li><a href="string.html#evalScripts">evalScripts</a></li><li><a href="string.html#extractScripts">extractScripts</a></li><li><a href="string.html#includes">includes</a></li><li><a href="string.html#on">on</a></li><li><a href="string.html#startsWith">startsWith</a></li><li><a href="string.html#stripScripts">stripScripts</a></li><li><a href="string.html#stripTags">stripTags</a></li><li><a href="string.html#toFloat">toFloat</a></li><li><a href="string.html#toInt">toInt</a></li><li><a href="string.html#trim">trim</a></li><li><a href="string.html#underscored">underscored</a></li></ul></ul>
+<label>Util</label><ul><li><a href="cookie.html">Cookie</a></li><li><a href="observer.html">Observer</a></li><li><a href="options.html">Options</a></li><li><a href="xhr.html">Xhr</a></li></ul>
+  </div>
+
+  <div class="box">
+    <a href='http://www.pledgie.com/campaigns/14259'><img alt='Donate!' src='http://www.pledgie.com/campaigns/14259.png?skin_name=chrome' border='0' /></a>
+  </div>
+
+  <div class="box">
+    <ul id="social">
+      <li><a href="../blog.rss" id="rss-link">RSS</a></li>
+      <li><a href="http://twitter.com/rightjs" id="twitter-link">Twitter</a></li>
+      <li><a href="http://github.com/rightjs" id="github-link">GitHub</a></li>
+    </ul>
+  </div>
+</div>
+
+        <div id="info">
+          
+<h1>String</h1>
+
+<p>RightJS extends the native String class with some additional powerful methods to make your life easier.</p>
+
+<h2>DOM Shortcuts</h2>
+
+<p>Most of the <a href='element.html' class='api-ref'>Element</a> and <a href='input.html' class='api-ref'>Input</a> methods are available as shortcuts from strings, for example</p>
+
+<code><s>"div.something"</s>.<u class="method">addClass</u>(<s>'marked'</s>);<br/><s>"div#something"</s>.<u class="method">highlight</u>();</code>
+
+<p>In both cases it is the same as those ones</p>
+
+<code>$$(<s>"div.something"</s>).<u class="method">each</u>(<b>function</b>(element) {<br/>  element.<u class="method">addClass</u>(<s>'marked'</s>);<br/>});<br/><br/>$$(<s>"div#something"</s>).<u class="method">each</u>(<s>'highlight'</s>);</code>
+
+<p><strong>BUT</strong>: data retrieval methods, like <a href='element.html#get' class='api-ref'>Element#get</a> or <a href='element.html#children' class='api-ref'>Element#children</a> will return the result of call on the <em>first</em> matching element</p>
+
+<code><s>"div#some-id"</s>.<u class="method">get</u>(<s>'id'</s>);     <i>// -&gt; 'some-id'</i><br/><s>"div.some-class"</s>.<u class="method">getClass</u>(); <i>// -&gt; 'some-class'</i></code>
+
+<p>Which is the same as calling</p>
+
+<code>$$(<s>"div#some-id"</s>).<u class="method">first</u>().<u class="method">get</u>(<s>'id'</s>);<br/>$$(<s>"div.some-class"</s>).<u class="method">first</u>().<u class="method">getClass</u>();</code>
+
+<p>If you need results of all the method calls from all the elements, please use the standard {$$} and <a href='array.html#map' class='api-ref'>Array#map</a> methods combination, for example</p>
+
+<code>$$(<s>"div.some-class"</s>).<u class="method">map</u>(<s>"getClass"</s>);</code>
+
+<h2>UJS Shortcuts</h2>
+
+<p>Methods like <a href='element.html#on' class='api-ref'>Element#on</a>, <a href='element.html#stopObserving' class='api-ref'>Element#stopObserving</a>, etc when called from strings <em>will not</em> attach the event handlers directly to the elements, but use will <em>UJS</em> listeners instead.</p>
+
+<code><s>"div.something"</s>.<u class="method">onClick</u>(<s>'toggleClass'</s>, <s>'clicked'</s>);</code>
+
+<p>It is same as calling</p>
+
+<code>$(document).<u class="method">delegate</u>(<s>'click'</s>, <s>'div.something'</s>, <s>'toggleClass'</s>, <s>'clicked'</s>);</code>
+
+<p>If you really need to attach event listeners directly to every matching element, please use {$$} and <a href='array.html#each' class='api-ref'>Array#each</a> calls as it shown above.</p>
+
+<h1>Methods</h1>
+<p>
+  <a href="string.html#include">include</a>, <a href="string.html#blank">blank</a>, <a href="string.html#camelize">camelize</a>, <a href="string.html#capitalize">capitalize</a>, <a href="string.html#dasherize">dasherize</a>, <a href="string.html#empty">empty</a>, <a href="string.html#endsWith">endsWith</a>, <a href="string.html#evalScripts">evalScripts</a>, <a href="string.html#extractScripts">extractScripts</a>, <a href="string.html#includes">includes</a>, <a href="string.html#on">on</a>, <a href="string.html#startsWith">startsWith</a>, <a href="string.html#stripScripts">stripScripts</a>, <a href="string.html#stripTags">stripTags</a>, <a href="string.html#toFloat">toFloat</a>, <a href="string.html#toInt">toInt</a>, <a href="string.html#trim">trim</a>, <a href="string.html#underscored">underscored</a>
+</p>
+
+<div class="method">
+  <a name="include"></a>
+  <h2><a class="top-anchor" href="string.html#">top &uarr;</a><a href="string.html#include">include</a></h2>
+
+  <p class="semantic">
+    <code><b class="unit">String</b>.<u class="method">include</u>(<b class="unit">Object</b> new_methods[, <b class="unit">Boolean</b> dont_overwrite) -&gt; <b class="unit">String</b></code>
+  </p>
+
+
+  <h4>Description</h4>
+  <p>Registers new functionality for <tt>String</tt> instances</p>
+
+<p>If the second argument is <tt>true</tt>, then the method <em>will skip</em> already existing methods</p>
+
+
+
+  <h4>Example</h4>
+  <p>
+    <code><b class="unit">String</b>.<u class="method">include</u>({<br/>  <s class="key">double</s>: <b>function</b>() {<br/>    <b>return</b> <b class="var">this</b> + <s>' '</s> + <b class="var">this</b>;<br/>  }<br/>});<br/><br/><s>'boo'</s>.<u class="method">double</u>(); <i>// -&gt; 'boo boo'</i></code>
+  </p>
+
+</div><div class="method">
+  <a name="blank"></a>
+  <h2><a class="top-anchor" href="string.html#">top &uarr;</a><a href="string.html#blank">blank</a></h2>
+
+  <p class="semantic">
+    <code>blank() -&gt; boolean</code>
+  </p>
+
+
+  <h4>Description</h4>
+  <p>Checks if the string is empty or contains whitespaces only.</p>
+
+
+
+  <h4>Example</h4>
+  <p>
+    <code><s>''</s>.<u class="method">blank</u>();   <i>// -&gt; true</i><br/><s>' '</s>.<u class="method">blank</u>();  <i>// -&gt; true</i><br/><s>"\n"</s>.<u class="method">blank</u>(); <i>// -&gt; true</i><br/><s>' a'</s>.<u class="method">blank</u>(); <i>// -&gt; false</i></code>
+  </p>
+
+</div><div class="method">
+  <a name="camelize"></a>
+  <h2><a class="top-anchor" href="string.html#">top &uarr;</a><a href="string.html#camelize">camelize</a></h2>
+
+  <p class="semantic">
+    <code>camelize() -&gt; <b class="unit">String</b> <b class="var">new</b></code>
+  </p>
+
+
+  <h4>Description</h4>
+  <p>Converts the string from underscored or dashed to camel case.</p>
+
+
+
+  <h4>Example</h4>
+  <p>
+    <code><s>'foo_bar'</s>.<u class="method">camelize</u>(); <i>// -&gt; 'fooBar'</i><br/><s>'foo-bar'</s>.<u class="method">camelize</u>(); <i>// -&gt; 'fooBar'</i></code>
+  </p>
+
+</div><div class="method">
+  <a name="capitalize"></a>
+  <h2><a class="top-anchor" href="string.html#">top &uarr;</a><a href="string.html#capitalize">capitalize</a></h2>
+
+  <p class="semantic">
+    <code>capitalize() -&gt; <b class="unit">String</b> <b class="var">new</b></code>
+  </p>
+
+
+  <h4>Description</h4>
+  <p>Creates a capitalized version of the string.</p>
+
+<p><strong>NOTE</strong>: This method supports most of the UTF-8 symbols.</p>
+
+
+
+  <h4>Example</h4>
+  <p>
+    <code><s>'boo boo boo'</s>.<u class="method">capitalize</u>();    <i>// -&gt; 'Boo boo boo'</i><br/><s>'йокарный бабай'</s>.<u class="method">capitalize</u>(); <i>// -&gt; 'Йокарный бабай'</i></code>
+  </p>
+
+</div><div class="method">
+  <a name="dasherize"></a>
+  <h2><a class="top-anchor" href="string.html#">top &uarr;</a><a href="string.html#dasherize">dasherize</a></h2>
+
+  <p class="semantic">
+    <code>dasherize() -&gt; <b class="unit">String</b> <b class="var">new</b></code>
+  </p>
+
+
+  <h4>Description</h4>
+  <p>Creates a dashed version of the string</p>
+
+
+
+  <h4>Example</h4>
+  <p>
+    <code><s>'fooBar'</s>.<u class="method">dasherize</u>();  <i>// -&gt; 'foo-bar'</i><br/><s>'foo_bar'</s>.<u class="method">dasherize</u>(); <i>// -&gt; 'foo-bar'</i></code>
+  </p>
+
+</div><div class="method">
+  <a name="empty"></a>
+  <h2><a class="top-anchor" href="string.html#">top &uarr;</a><a href="string.html#empty">empty</a></h2>
+
+  <p class="semantic">
+    <code>empty() -&gt; boolean</code>
+  </p>
+
+
+  <h4>Description</h4>
+  <p>Checks if the string is empty.</p>
+
+
+
+  <h4>Example</h4>
+  <p>
+    <code><s>''</s>.<u class="method">empty</u>();  <i>// -&gt; true</i><br/><s>' '</s>.<u class="method">empty</u>(); <i>// -&gt; false</i><br/><s>'a'</s>.<u class="method">empty</u>(); <i>// -&gt; false</i></code>
+  </p>
+
+</div><div class="method">
+  <a name="endsWith"></a>
+  <h2><a class="top-anchor" href="string.html#">top &uarr;</a><a href="string.html#endsWith">endsWith</a></h2>
+
+  <p class="semantic">
+    <code>endsWith(<b class="unit">String</b> token[, boolean ignorecase]) -&gt; boolean</code>
+  </p>
+
+
+  <h4>Description</h4>
+  <p>Checks if the string ends with the given substring.</p>
+
+
+
+  <h4>Example</h4>
+  <p>
+    <code><s>'image.gif'</s>.<u class="method">endsWith</u>(<s>'.gif'</s>);       <i>// -&gt; true</i><br/><br/><s>'image.gif'</s>.<u class="method">endsWith</u>(<s>'.GIF'</s>);       <i>// -&gt; false</i><br/><s>'image.gif'</s>.<u class="method">endsWith</u>(<s>'.GIF'</s>, <b class="rest">true</b>); <i>// -&gt; true</i></code>
+  </p>
+
+</div><div class="method">
+  <a name="evalScripts"></a>
+  <h2><a class="top-anchor" href="string.html#">top &uarr;</a><a href="string.html#evalScripts">evalScripts</a></h2>
+
+  <p class="semantic">
+    <code>evalScripts() -&gt; <b class="unit">String</b> <b class="var">self</b></code>
+  </p>
+
+
+  <h4>Description</h4>
+  <p>Evals scripts in the string.</p>
+
+<p><strong>NOTE:</strong> This method will not remove the scripts from the string.</p>
+
+
+
+  <h4>Example</h4>
+  <p>
+    <code><b class="var">var</b> string = <s>'asdf &lt;script&gt;alert(1);&lt;/script&gt;'</s>;<br/><br/>string.<u class="method">evalScripts</u>(); <i>// 'asdf &lt;script&gt;alert(1);&lt;/script&gt;' and you'll see the alert</i></code>
+  </p>
+
+</div><div class="method">
+  <a name="extractScripts"></a>
+  <h2><a class="top-anchor" href="string.html#">top &uarr;</a><a href="string.html#extractScripts">extractScripts</a></h2>
+
+  <p class="semantic">
+    <code>extractScripts() -&gt; <b class="unit">String</b> scripts</code>
+  </p>
+
+
+  <h4>Description</h4>
+  <p>Extracts the bodies of every JavaScript tag in the string and returns them as a single string.</p>
+
+
+
+  <h4>Example</h4>
+  <p>
+    <code><b class="var">var</b> string = <s>'asdf &lt;script&gt;alert(1);&lt;/script&gt;asdf&lt;script&gt;alert(2);&lt;/script&gt;'</s>;<br/><br/>string.<u class="method">extractScripts</u>(); <i>// -&gt; 'alert(1);alert(2);'</i></code>
+  </p>
+
+</div><div class="method">
+  <a name="includes"></a>
+  <h2><a class="top-anchor" href="string.html#">top &uarr;</a><a href="string.html#includes">includes</a></h2>
+
+  <p class="semantic">
+    <code>includes(<b class="unit">String</b> token) -&gt; boolean</code>
+  </p>
+
+
+  <h4>Description</h4>
+  <p>Checks if the string contains the given substring.</p>
+
+
+
+  <h4>Example</h4>
+  <p>
+    <code><s>'foo'</s>.<u class="method">includes</u>(<s>'bar'</s>); <i>// -&gt; false</i><br/><s>'foo'</s>.<u class="method">includes</u>(<s>'oo'</s>);  <i>// -&gt; true</i></code>
+  </p>
+
+</div><div class="method">
+  <a name="on"></a>
+  <h2><a class="top-anchor" href="string.html#">top &uarr;</a><a href="string.html#on">on</a></h2>
+
+  <p class="semantic">
+    <code>on(<b class="unit">String</b> event, <b class="unit">Function</b> callback)              -&gt; void<br/>on(<b class="unit">String</b> event, <b class="unit">String</b> callback[, arg, arg...]) -&gt; void<br/>on(<b class="unit">Object</b> events_hash)                           -&gt; void</code>
+  </p>
+
+
+  <h4>Description</h4>
+  <p>Attaches a document level events delegation listener.</p>
+
+
+
+  <h4>Example</h4>
+  <p>
+    <code><i>// simple case</i><br/><s>"div.red"</s>.<u class="method">on</u>(<s>'click'</s>, <b>function</b>() {<br/>  alert(<s>"That's red"</s>)<br/>});<br/><br/><i>// by name reference</i><br/><s>"div.red"</s>.<u class="method">on</u>(<s>'click'</s>, <s>'addClass'</s>, <s>'that-was-red'</s>);<br/><br/><i>// several event callbacks attachment</i><br/><s>"div.red"</s>.<u class="method">on</u>({<br/>  <s class="key">mouseover</s>: <b>function</b>() { <b class="var">this</b>.<u class="method">addClas</u>(<s>'that-was-red'</s>)},<br/>  <s class="key">mouseout</s>:  [<s>'removeClass'</s>, <s>'that-was-red'</s>],<br/>  <s class="key">click</s>:     <s>'hide'</s><br/>});</code>
+  </p>
+
+</div><div class="method">
+  <a name="startsWith"></a>
+  <h2><a class="top-anchor" href="string.html#">top &uarr;</a><a href="string.html#startsWith">startsWith</a></h2>
+
+  <p class="semantic">
+    <code>startsWith(<b class="unit">String</b> token[, boolean ignorecase]) -&gt; boolean</code>
+  </p>
+
+
+  <h4>Description</h4>
+  <p>Checks if the string starts with the given substring.</p>
+
+
+
+  <h4>Example</h4>
+  <p>
+    <code><s>'onSomething'</s>.<u class="method">startsWith</u>(<s>'on'</s>);           <i>// -&gt; true</i><br/><br/><s>'onSomething'</s>.<u class="method">startsWith</u>(<s>'onsome'</s>);       <i>// -&gt; false</i><br/><s>'onSomething'</s>.<u class="method">startsWith</u>(<s>'onsome'</s>, <b class="rest">true</b>); <i>// -&gt; true</i></code>
+  </p>
+
+</div><div class="method">
+  <a name="stripScripts"></a>
+  <h2><a class="top-anchor" href="string.html#">top &uarr;</a><a href="string.html#stripScripts">stripScripts</a></h2>
+
+  <p class="semantic">
+    <code>stripScripts();                  -&gt; <b class="unit">String</b> <b class="var">new</b><br/>stripScripts(<b class="rest">true</b>);              -&gt; <b class="unit">String</b> <b class="var">new</b><br/>stripScripts(<b class="unit">Function</b> receiver); -&gt; <b class="unit">String</b> <b class="var">new</b></code>
+  </p>
+
+
+  <h4>Description</h4>
+  <p>Strips all JavaScript tags from the string.</p>
+
+<p>This method takes several possible arguments. If a boolean <tt>true</tt> is passed then the scripts will be evaluated after extraction. If a function is passed every script body will be tossed into the function.</p>
+
+
+
+  <h4>Example</h4>
+  <p>
+    <code><b class="var">var</b> string = <s>'asdf&lt;script&gt;alert('</s>bla<s>');&lt;/script&gt;'</s>;<br/><br/>string.<u class="method">stripScripts</u>();     <i>// -&gt; 'asdf'</i><br/>string.<u class="method">stripScripts</u>(<b class="rest">true</b>); <i>// -&gt; 'asdf' and you'll see the alert</i><br/><br/>string.<u class="method">stripScripts</u>(<b>function</b>(script) {<br/>  <i>// do something with the script in here</i><br/>});<br/><br/><i>// will return 'asdf'</i></code>
+  </p>
+
+</div><div class="method">
+  <a name="stripTags"></a>
+  <h2><a class="top-anchor" href="string.html#">top &uarr;</a><a href="string.html#stripTags">stripTags</a></h2>
+
+  <p class="semantic">
+    <code>stripTags(); -&gt; <b class="unit">String</b> <b class="var">new</b></code>
+  </p>
+
+
+  <h4>Description</h4>
+  <p>Removes all tags from the string.</p>
+
+
+
+  <h4>Example</h4>
+  <p>
+    <code><s>'a &lt;b&gt;c&lt;/b&gt; d'</s>.<u class="method">stripTags</u>(); <i>// -&gt; 'a c d'</i></code>
+  </p>
+
+</div><div class="method">
+  <a name="toFloat"></a>
+  <h2><a class="top-anchor" href="string.html#">top &uarr;</a><a href="string.html#toFloat">toFloat</a></h2>
+
+  <p class="semantic">
+    <code>toFloat() -&gt; <b class="unit">Float</b></code>
+  </p>
+
+
+  <h4>Description</h4>
+  <p>Converts the string to a float number.</p>
+
+<p><strong>NOTE:</strong> Processes dashes and commas as decimal markers unless you pass the argument <tt>true</tt>.</p>
+
+
+
+  <h4>Example</h4>
+  <p>
+    <code><s>'123.45'</s>.<u class="method">toFloat</u>(); <i>// -&gt; 123.45</i><br/><s>'123,45'</s>.<u class="method">toFloat</u>(); <i>// -&gt; 123.45</i><br/><s>'123-45'</s>.<u class="method">toFloat</u>(); <i>// -&gt; 123.45</i></code>
+  </p>
+
+</div><div class="method">
+  <a name="toInt"></a>
+  <h2><a class="top-anchor" href="string.html#">top &uarr;</a><a href="string.html#toInt">toInt</a></h2>
+
+  <p class="semantic">
+    <code>toInt([<b class="unit">Integer</b> base]) -&gt; <b class="unit">Integer</b></code>
+  </p>
+
+
+  <h4>Description</h4>
+  <p>Converts the string to an Integer number.</p>
+
+
+
+  <h4>Example</h4>
+  <p>
+    <code><s>'123'</s>.<u class="method">toInt</u>(); <i>// -&gt; 123</i></code>
+  </p>
+
+</div><div class="method">
+  <a name="trim"></a>
+  <h2><a class="top-anchor" href="string.html#">top &uarr;</a><a href="string.html#trim">trim</a></h2>
+
+  <p class="semantic">
+    <code>trim() -&gt; <b class="unit">String</b> <b class="var">new</b></code>
+  </p>
+
+
+  <h4>Description</h4>
+  <p>Removes whitespaces from the beginning and the end of the string.</p>
+
+
+
+  <h4>Example</h4>
+  <p>
+    <code><s>' asdf '</s>.<u class="method">trim</u>(); <i>// -&gt; 'asdf'</i></code>
+  </p>
+
+</div><div class="method">
+  <a name="underscored"></a>
+  <h2><a class="top-anchor" href="string.html#">top &uarr;</a><a href="string.html#underscored">underscored</a></h2>
+
+  <p class="semantic">
+    <code>underscored() -&gt; <b class="unit">String</b> <b class="var">new</b></code>
+  </p>
+
+
+  <h4>Description</h4>
+  <p>Converts the string from camel or dashed to underscored case.</p>
+
+
+
+  <h4>Example</h4>
+  <p>
+    <code><s>'fooBar'</s>.<u class="method">underscored</u>();  <i>// -&gt; 'foo_bar'</i><br/><s>'foo-bar'</s>.<u class="method">underscored</u>(); <i>// -&gt; 'foo_bar'</i></code>
+  </p>
+
+</div>
+
+        </div>
+        <div style="clear:both"></div>
+      </div>
+      <div id="foot">
+        <div id="contacts">
+  <h2>Questions?</h2>
+  <a href="&#x6D;&#x61;i&#x6C;&#x74;&#x6F;:&#105;&#110;&#102;&#111;&#064;&#114;&#105;&#103;&#104;&#116;&#106;&#115;&#046;&#111;&#114;&#103;">&#105;&#110;&#102;&#111;&#064;&#114;&#105;&#103;&#104;&#116;&#106;&#115;&#046;&#111;&#114;&#103;</a>
+</div>
+<div id="bottom-menu">
+  <h2>About the Framework</h2>
+  <a href="../philosophy.html">Philosophy</a> |
+  <a href="../benchmarks.html">Benchmarks</a> |
+  <a href="../browsers.html">Browsers</a> |
+  <a href="../contacts.html">Contacts</a>
+</div>
+        <div id="design">Design by <a href="http://activestylus.com">Steven Garcia</a></div>
+        <div id="copyright">Copyright &copy; 2008-2011 Nikolay Nemshilov</div>
+      </div>
+    </div>
+
+    <script src="http://www.google-analytics.com/ga.js" type="text/javascript"></script>
+    <script type="text/javascript">
+    // <![CDATA[
+      try { _gat._getTracker("UA-10292980-1")._trackPageview(); } catch(err) {}
+    // ]]>
+    </script>
+  </body>
+</html>

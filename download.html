@@ -1,0 +1,222 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <title>RightJS: Download</title>
+    <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+    <link href="blog.rss" rel="alternate" title="RightJS News" type="application/rss+xml" />
+    <script src="hotlink/right.js@1333128729" type="text/javascript"></script>
+<script src="javascripts/application.js@1295184937" type="text/javascript"></script>
+    <script src="builds/ui/right-autocompleter.js@1333128730" type="text/javascript"></script>
+    <link href="stylesheets/application.css@1297515667.css" media="screen" rel="stylesheet" type="text/css" />
+    
+    
+    
+  </head>
+  <body>
+    <div id="body">
+      <div id="head">
+        <a href="index.html" id="logo">RightJS</a>
+        <div id="slogan">JavaScript Framework That Feels Right</div>
+
+        <div id="main-menu">
+  <ul>
+    <li><a href="index.html">Home</a></li>
+    <li class="current"><a href="download.html">Download</a></li>
+    <li><a href="plugins.html">Plugins</a></li>
+    <li><a href="ui.html">UI</a></li>
+    <li><a href="demos.html">Demos</a></li>
+    <li><a href="docs.html">Docs</a></li>
+    <li><a href="blog.html">Blog</a></li>
+  </ul>
+  <div id="zing"><!-- the moving thing --></div>
+</div>
+        <div id="lang-switch">
+    <select onchange="document.location.href=this.value;">
+      <option selected="true" value="http://rightjs.org/download">English</option>
+      <option value="http://ru.rightjs.org/download">Русский</option>
+    </select>
+</div>
+      </div>
+      <div id="main">
+        <div id="sidebar">
+  <div class="box" id="download-box">
+    <h1>Get it!</h1>
+    <ul>
+      <li><a href="builds/current/right.js.zip">RightJS v2.3.1</a></li>
+    </ul>
+  </div>
+
+  <div id="api-search" class="box">
+  <input type="text" value="Search API" id="api-search-field" />
+  <script type="text/javascript">
+  // <![CDATA[
+    new Autocompleter($('api-search-field').on({
+      focus: function() { this._v = this.value(); this.value(''); },
+      blur:  function() { this.value(this._v); }
+    }), {
+      url: '/docs/search/%{search}.js',
+      onDone: function() {
+        var current = this.first('.current');
+        if (current) {
+          document.location.href = current.get('title');
+        }
+        this.input.setValue(this.input._v);
+      }
+    });
+  // ]]>
+  </script>
+</div>
+
+  <div class="box">
+    <label>Documentation</label>
+    <ul>
+      <li><a href="tutorials/getting-started.html">Getting Started</a></li>
+      <li><a href="tutorials/top-features.html">Top 12 Features</a></li>
+      <li><a href="docs.html">API Reference</a></li>
+      <li><a href="tutorials.1.html">Tutorials</a></li>
+    </ul>
+  </div>
+
+  <div class="box">
+    <label>Additional</label>
+    <ul>
+      <li><a href="plugins.html">RightJS Plugins</a></li>
+      
+      <li><a href="ui.html">RightJS UI</a></li>
+      
+      <li><a href="showcases.html">Showcases</a></li>
+    </ul>
+  </div>
+
+  <div class="box">
+    <label>Community</label>
+    <ul>
+      <li><a href="http://groups.google.com/group/rightjs">Google Group</a></li>
+      <li><a href="http://rightjs.lighthouseapp.com/projects/31989">Tickets Tracker</a></li>
+      <li><a href="http://github.com/rightjs/rightjs-snippets">Code Snippets</a></li>
+      <li><a href="irc://irc.freenode.net/rightjs">IRC #rightjs</a></li>
+      <li><a href="participate.html">Participate!</a></li>
+    </ul>
+  </div>
+
+  <div class="box">
+    <a href='http://www.pledgie.com/campaigns/14259'><img alt='Donate!' src='http://www.pledgie.com/campaigns/14259.png?skin_name=chrome' border='0' /></a>
+  </div>
+
+  <div class="box">
+    <ul id="social">
+      <li><a href="blog.rss" id="rss-link">RSS</a></li>
+      <li><a href="http://twitter.com/rightjs" id="twitter-link">Twitter</a></li>
+      <li><a href="http://github.com/rightjs" id="github-link">GitHub</a></li>
+    </ul>
+  </div>
+</div>
+
+        <div id="info">
+          <h1>Download</h1>
+
+<p>By default RightJS comes in two files. One of them is the actual core, which works for all the modern browsers while the other one is a dynamically loadable module with patches for old browsers (older than IE8, FF 3.5, Opera 10.10 and all Konqs).</p>
+<dl id='download-options'>
+  <dt>Standard Builds</dt>
+  <ul>
+    <li><a href='builds/current/right.js.zip'>right.js.zip</a> - minified version</li>
+    <li><a href='builds/current/right-src.js.zip'>right-src.js.zip</a> - source code</li>
+    <li><a href='builds/current/right-safe.js.zip'>right-safe.js.zip</a> - safe-mode version</li>
+  </ul>
+  <dt>Server Side</dt>
+  <ul>
+    <li><a href='builds/current/right-server.js'>right-server.js</a></li>
+  </ul>
+  <dt>Hot Link</dt>
+  <ul>
+    <li><a href='../cdn.rightjs.org/right.js'>right.js</a> - always latest version</li>
+    <li><a href='../cdn.rightjs.org/right-2.3.1.js'>right-2.3.1.js</a> - always this exact version</li>
+  </ul>
+  <dt>All In One</dt>
+  <ul>
+    <li><a href='builds/rightjs-all.zip'>rightjs-all.zip</a> - everything in one file, core and plugins</li>
+  </ul>
+</dl>
+<h1>Two-Files Build Usage Principles</h1>
+
+<ol>
+<li>
+<p>Copy both the core and the old browsers support module files into your JavaScript directory.</p>
+</li>
+
+<li>
+<p>Include the core file as usual:</p>
+
+<code>&lt;script src=<s>"where/it/is/right.js"</s>&gt;&lt;/script&gt;</code>
+</li>
+
+<li>
+<p>Don&#8217;t worry about the olds file, RightJS will automatically load it when needed.</p>
+</li>
+
+<li>
+<p>Make sure the file names remain as follows:</p>
+
+<code>right[bla-bla-bla].<u>js</u><br/>right-olds[bla-bla-bla].<u>js</u></code>
+</li>
+</ol>
+
+<h1>RightJS CDN</h1>
+
+<p>RightJS has it&#8217;s own <a href='../cdn.rightjs.org/index.html'>CDN Server</a> where you can hot link all the recent builds of the core and plugins. It is hosted at google&#8217;s host and powered by their app-engine.</p>
+
+<h1>Custom Build</h1>
+
+<p>By default RightJS comes with several plugins like advanced form handling, cookies and so on already baked in. You can switch things you don&#8217;t use off and thus reduce the size of build.</p>
+
+<p><a href='builds.1.html'>Custom Build Page</a></p>
+
+<h1>Server-Side Build</h1>
+
+<p>RightJS is also available as a server-side library. In this case it contains only the native JavaScript unit extensions and the <a href='docs/class.html' class='api-ref'>Class</a>, <a href='docs/observer.html' class='api-ref'>Observer</a>, <a href='docs/options.html' class='api-ref'>Options</a> units along with all the non-DOM utility functions from the <a href='docs/util.html' class='api-ref'>Util</a> module.</p>
+
+<p>Our server-side build follows the CommonJS principles and is ready for use with the <a href='http://nodejs.org'>node.js</a> framework.</p>
+
+<h1>GitHub Repository</h1>
+
+<p>The original source code of the project can be found on Github:</p>
+
+<p><a href='http://github.com/rightjs/rightjs-core'>http://github.com/rightjs/rightjs-core</a></p>
+
+<p><tt>git clone git://github.com/rightjs/rightjs-core.git</tt></p>
+
+<h1>License</h1>
+
+<p>RightJS is an open-source project.</p>
+
+<p>All the source code are released under the terms of the MIT-License.</p>
+
+<p>All the documentation on this site is released under the <a href='http://creativecommons.org/licenses/by-nc-sa/3.0/'>Creative Commons 3</a> license</p>
+        </div>
+        <div style="clear:both"></div>
+      </div>
+      <div id="foot">
+        <div id="contacts">
+  <h2>Questions?</h2>
+  <a href="&#x6D;&#x61;i&#x6C;&#x74;&#x6F;:&#105;&#110;&#102;&#111;&#064;&#114;&#105;&#103;&#104;&#116;&#106;&#115;&#046;&#111;&#114;&#103;">&#105;&#110;&#102;&#111;&#064;&#114;&#105;&#103;&#104;&#116;&#106;&#115;&#046;&#111;&#114;&#103;</a>
+</div>
+<div id="bottom-menu">
+  <h2>About the Framework</h2>
+  <a href="philosophy.html">Philosophy</a> |
+  <a href="benchmarks.html">Benchmarks</a> |
+  <a href="browsers.html">Browsers</a> |
+  <a href="contacts.html">Contacts</a>
+</div>
+        <div id="design">Design by <a href="http://activestylus.com">Steven Garcia</a></div>
+        <div id="copyright">Copyright &copy; 2008-2011 Nikolay Nemshilov</div>
+      </div>
+    </div>
+
+    <script src="http://www.google-analytics.com/ga.js" type="text/javascript"></script>
+    <script type="text/javascript">
+    // <![CDATA[
+      try { _gat._getTracker("UA-10292980-1")._trackPageview(); } catch(err) {}
+    // ]]>
+    </script>
+  </body>
+</html>

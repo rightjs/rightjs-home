@@ -1,0 +1,192 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <title>RightJS: Elements Visual State Toggling</title>
+    <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+    <link href="../blog.rss" rel="alternate" title="RightJS News" type="application/rss+xml" />
+    <script src="../hotlink/right.js@1331880836" type="text/javascript"></script>
+<script src="../javascripts/application.js@1295184937" type="text/javascript"></script>
+    <script src="../builds/ui/right-autocompleter.js@1331880836" type="text/javascript"></script>
+    <link href="../stylesheets/application.css@1297515667.css" media="screen" rel="stylesheet" type="text/css" />
+    
+    
+    
+  </head>
+  <body>
+    <div id="body">
+      <div id="head">
+        <a href="../index.html" id="logo">RightJS</a>
+        <div id="slogan">JavaScript Framework That Feels Right</div>
+
+        <div id="main-menu">
+  <ul>
+    <li><a href="../index.html">Home</a></li>
+    <li><a href="../download.html">Download</a></li>
+    <li><a href="../plugins.html">Plugins</a></li>
+    <li><a href="../ui.html">UI</a></li>
+    <li><a href="../demos.html">Demos</a></li>
+    <li class="current"><a href="../docs.html">Docs</a></li>
+    <li><a href="../blog.html">Blog</a></li>
+  </ul>
+  <div id="zing"><!-- the moving thing --></div>
+</div>
+        <div id="lang-switch">
+    <select onchange="document.location.href=this.value;">
+      <option selected="true" value="http://rightjs.org/tutorials/elements-toggling">English</option>
+      <option value="http://ru.rightjs.org/tutorials/elements-toggling">Русский</option>
+    </select>
+</div>
+      </div>
+      <div id="main">
+        <div id="sidebar">
+  <div class="box" id="download-box">
+    <h1>Get it!</h1>
+    <ul>
+      <li><a href="../builds/current/right.js.zip">RightJS v2.3.1</a></li>
+    </ul>
+  </div>
+
+  <div id="api-search" class="box">
+  <input type="text" value="Search API" id="api-search-field" />
+  <script type="text/javascript">
+  // <![CDATA[
+    new Autocompleter($('api-search-field').on({
+      focus: function() { this._v = this.value(); this.value(''); },
+      blur:  function() { this.value(this._v); }
+    }), {
+      url: '/docs/search/%{search}.js',
+      onDone: function() {
+        var current = this.first('.current');
+        if (current) {
+          document.location.href = current.get('title');
+        }
+        this.input.setValue(this.input._v);
+      }
+    });
+  // ]]>
+  </script>
+</div>
+
+  <div class="box">
+    <label>Documentation</label>
+    <ul>
+      <li><a href="getting-started.html">Getting Started</a></li>
+      <li><a href="top-features.html">Top 12 Features</a></li>
+      <li><a href="../docs.html">API Reference</a></li>
+      <li class="current"><a href="../tutorials.1.html">Tutorials</a></li>
+    </ul>
+  </div>
+
+  <div class="box">
+    <label>Additional</label>
+    <ul>
+      <li><a href="../plugins.html">RightJS Plugins</a></li>
+      
+      <li><a href="../ui.html">RightJS UI</a></li>
+      
+      <li><a href="../showcases.html">Showcases</a></li>
+    </ul>
+  </div>
+
+  <div class="box">
+    <label>Community</label>
+    <ul>
+      <li><a href="http://groups.google.com/group/rightjs">Google Group</a></li>
+      <li><a href="http://rightjs.lighthouseapp.com/projects/31989">Tickets Tracker</a></li>
+      <li><a href="http://github.com/rightjs/rightjs-snippets">Code Snippets</a></li>
+      <li><a href="irc://irc.freenode.net/rightjs">IRC #rightjs</a></li>
+      <li><a href="../participate.html">Participate!</a></li>
+    </ul>
+  </div>
+
+  <div class="box">
+    <a href='http://www.pledgie.com/campaigns/14259'><img alt='Donate!' src='http://www.pledgie.com/campaigns/14259.png?skin_name=chrome' border='0' /></a>
+  </div>
+
+  <div class="box">
+    <ul id="social">
+      <li><a href="../blog.rss" id="rss-link">RSS</a></li>
+      <li><a href="http://twitter.com/rightjs" id="twitter-link">Twitter</a></li>
+      <li><a href="http://github.com/rightjs" id="github-link">GitHub</a></li>
+    </ul>
+  </div>
+</div>
+
+        <div id="info">
+          <h1>Elements Visual State Toggling</h1>
+
+<p>There are several methods in RightJS that supposed to help you to switch dom-elements visual state. Most of them are standard but there some additional features and details that might be useful to know.</p>
+<a name='standard' ></a><h2 class='chapter'>
+  <a href='elements-toggling.html#' class='top-anchor'>top &uarr;</a><a href='elements-toggling.html#standard'>Standard Visibility Toggling</a>
+</h2>
+<p>RightJS has all the standard methods like <a href='../docs/element.html#hide' class='api-ref'>hide</a>, <a href='../docs/element.html#show' class='api-ref'>show</a>, <a href='../docs/element.html#toggle' class='api-ref'>toggle</a> to switch the dom-elements visibility status on and off. Additionally there is the <a href='../docs/element.html#radio' class='api-ref'>radio</a> method that might be seen in some other frameworks. This method shows the element and hides all the siblings.</p>
+
+<p>There are two important things you should know about those methods.</p>
+
+<p>First of all those methods preserve the element style <tt>display</tt> property. So that if you has changed an element style then hidden it and then shown again, the element will remain the original <tt>display</tt> value.</p>
+
+<code>$(element).<u>style</u>.<u>display</u> = <s>'inline-block'</s>;<br/><br/>$(element).<u class="method">hide</u>();<br/>$(element).<u class="method">show</u>();<br/><br/>$(element).<u>style</u>.<u>display</u>; <i>// -&gt; 'inline-block'</i></code>
+
+<p>Secondly as all the methods in RightJS that change an object, those methods return reference to the element back, so that you could write nice and readable phrases in your code. Like that:</p>
+
+<code>$(element).<u class="method">show</u>().<u class="method">update</u>(<s>'with text'</s>).<u class="method">highlight</u>();</code>
+<a name='css' ></a><h2 class='chapter'>
+  <a href='elements-toggling.html#' class='top-anchor'>top &uarr;</a><a href='elements-toggling.html#css'>CSS Classes Toggling</a>
+</h2>
+<p>There is a list of standard methods to manage css-classes presence on dom-elements <a href='../docs/element.html#addClass' class='api-ref'>addClass</a>, <a href='../docs/element.html#removeClass' class='api-ref'>removeClass</a>, <a href='../docs/element.html#hasClass' class='api-ref'>hasClass</a>, <a href='../docs/element.html#toggleClass' class='api-ref'>toggleClass</a>, <a href='../docs/element.html#radioClass' class='api-ref'>radioClass</a>.</p>
+
+<p>The usage of them is pretty straight forward:</p>
+
+<code><i>/*<br/>  &lt;ul id="some-menu"&gt;<br/>    &lt;li&gt;one&lt;/li&gt;<br/>    &lt;li&gt;two&lt;/li&gt;<br/>    &lt;li&gt;three&lt;/li&gt;<br/>  &lt;/ul&gt;<br/>*/</i><br/><br/>$(<s>'some-menu'</s>).<u class="method">find</u>(<s>'li'</s>).<u class="method">each</u>(<s>'onClick'</s>, <s>'radioClass'</s>, <s>'marked'</s>);</code>
+<a name='effects' ></a><h2 class='chapter'>
+  <a href='elements-toggling.html#' class='top-anchor'>top &uarr;</a><a href='elements-toggling.html#effects'>Visibility Toggling With Visual Effects</a>
+</h2>
+<p>Some visual effects like <a href='../docs/fx/slide.html' class='api-ref'>Fx.Slide</a> and <a href='../docs/fx/fade.html' class='api-ref'>Fx.Fade</a> are bidirectional. Which means that they can work in both directions to show and to hide an element.</p>
+
+<p>By default they will automatically determine an element current state and work towards the opposite one. It is an fx equivalent of the <a href='../docs/element.html#toggle' class='api-ref'>toggle</a> method if you will.</p>
+
+<code>$(element).<u>style</u>.<u>display</u> = <s>'none'</s>;<br/><br/>$(element).<u class="method">fade</u>(); <i>// -&gt; shows</i><br/>$(element).<u class="method">fade</u>(); <i>// -&gt; hides</i></code>
+
+<p>If you need an effect to work in some direction specifically you can define it manually, like that:</p>
+
+<code>$(element).<u class="method">slide</u>(<s>'out'</s>); <i>// hides despite on the element state</i><br/>$(element).<u class="method">slide</u>(<s>'in'</s>);</code>
+<a name='mixed' ></a><h2 class='chapter'>
+  <a href='elements-toggling.html#' class='top-anchor'>top &uarr;</a><a href='elements-toggling.html#mixed'>Mixed Approach</a>
+</h2>
+<p>The visual effects library in RightJS is not a required module and can be switched off by the <a href='../builds.1.html'>custom build</a> process.</p>
+
+<p>In case when you write some sort of a plugin or widget, which supposed to work in both cases whenever the <a href='../docs/fx.html' class='api-ref'>Fx</a> module is included or not, you might find the mixed approach useful.</p>
+
+<p>The idea is simple: you use the standard <a href='../docs/element.html#hide' class='api-ref'>hide</a>, <a href='../docs/element.html#show' class='api-ref'>show</a>, etc. methods and pass the desired visual effect name and options as the arguments to the method, like this:</p>
+
+<code>$(element).<u class="method">hide</u>(<s>'fade'</s>);<br/>$(element).<u class="method">show</u>(<s>'slide'</s>, {<s class="key">direction</s>: <s>'right'</s>});</code>
+
+<p>In this case, if there is the <a href='../docs/fx.html' class='api-ref'>Fx</a> library then the element will be processed with the specified visual effect and if the <a href='../docs/fx.html' class='api-ref'>Fx</a> library is not available, then the element will get simply hidden/shown immediately.</p>
+        </div>
+        <div style="clear:both"></div>
+      </div>
+      <div id="foot">
+        <div id="contacts">
+  <h2>Questions?</h2>
+  <a href="&#x6D;&#x61;i&#x6C;&#x74;&#x6F;:&#105;&#110;&#102;&#111;&#064;&#114;&#105;&#103;&#104;&#116;&#106;&#115;&#046;&#111;&#114;&#103;">&#105;&#110;&#102;&#111;&#064;&#114;&#105;&#103;&#104;&#116;&#106;&#115;&#046;&#111;&#114;&#103;</a>
+</div>
+<div id="bottom-menu">
+  <h2>About the Framework</h2>
+  <a href="../philosophy.html">Philosophy</a> |
+  <a href="../benchmarks.html">Benchmarks</a> |
+  <a href="../browsers.html">Browsers</a> |
+  <a href="../contacts.html">Contacts</a>
+</div>
+        <div id="design">Design by <a href="http://activestylus.com">Steven Garcia</a></div>
+        <div id="copyright">Copyright &copy; 2008-2011 Nikolay Nemshilov</div>
+      </div>
+    </div>
+
+    <script src="http://www.google-analytics.com/ga.js" type="text/javascript"></script>
+    <script type="text/javascript">
+    // <![CDATA[
+      try { _gat._getTracker("UA-10292980-1")._trackPageview(); } catch(err) {}
+    // ]]>
+    </script>
+  </body>
+</html>

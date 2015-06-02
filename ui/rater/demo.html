@@ -1,0 +1,245 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <title>RightJS: Rater Demo</title>
+    <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+    <link href="../../blog.rss" rel="alternate" title="RightJS News" type="application/rss+xml" />
+    <script src="../../hotlink/right.js@1331880836" type="text/javascript"></script>
+<script src="../../javascripts/application.js@1295184937" type="text/javascript"></script>
+    <script src="../../builds/ui/right-autocompleter.js@1331880836" type="text/javascript"></script>
+    <link href="../../stylesheets/application.css@1297515667.css" media="screen" rel="stylesheet" type="text/css" />
+    <script src="../../builds/ui/right-rater.js@1331880837" type="text/javascript"></script>
+    <link href="../../stylesheets/rightjs-ui-home.css@1295874376.css" media="screen" rel="stylesheet" type="text/css" />
+    
+  </head>
+  <body>
+    <div id="body">
+      <div id="head">
+        <a href="../../index.html" id="logo">RightJS</a>
+        <div id="slogan">JavaScript Framework That Feels Right</div>
+
+        <div id="main-menu">
+  <ul>
+    <li><a href="../../index.html">Home</a></li>
+    <li><a href="../../download.html">Download</a></li>
+    <li><a href="../../plugins.html">Plugins</a></li>
+    <li class="current"><a href="../../ui.html">UI</a></li>
+    <li><a href="../../demos.html">Demos</a></li>
+    <li><a href="../../docs.html">Docs</a></li>
+    <li><a href="../../blog.html">Blog</a></li>
+  </ul>
+  <div id="zing"><!-- the moving thing --></div>
+</div>
+        <div id="lang-switch">
+    <select onchange="document.location.href=this.value;">
+      <option selected="true" value="http://rightjs.org/ui/rater/demo">English</option>
+      <option value="http://ru.rightjs.org/ui/rater/demo">Русский</option>
+    </select>
+</div>
+      </div>
+      <div id="main">
+        <div id="sidebar">
+  <div class="box" id="download-box">
+    <h1>Get it!</h1>
+    <ul>
+      <li><a href="../../builds/current/right.js.zip">RightJS v2.3.1</a></li>
+    </ul>
+  </div>
+
+  <div id="api-search" class="box">
+  <input type="text" value="Search API" id="api-search-field" />
+  <script type="text/javascript">
+  // <![CDATA[
+    new Autocompleter($('api-search-field').on({
+      focus: function() { this._v = this.value(); this.value(''); },
+      blur:  function() { this.value(this._v); }
+    }), {
+      url: '/docs/search/%{search}.js',
+      onDone: function() {
+        var current = this.first('.current');
+        if (current) {
+          document.location.href = current.get('title');
+        }
+        this.input.setValue(this.input._v);
+      }
+    });
+  // ]]>
+  </script>
+</div>
+
+  <div class="box">
+    <label>Documentation</label>
+    <ul>
+      <li><a href="../../tutorials/getting-started.html">Getting Started</a></li>
+      <li><a href="../../tutorials/top-features.html">Top 12 Features</a></li>
+      <li><a href="../../docs.html">API Reference</a></li>
+      <li><a href="../../tutorials.1.html">Tutorials</a></li>
+    </ul>
+  </div>
+
+  <div class="box">
+    <label>Additional</label>
+    <ul>
+      <li><a href="../../plugins.html">RightJS Plugins</a></li>
+      
+      <li class="current"><a href="../../ui.html">RightJS UI</a></li>
+      <ul id="ui-menu"><li><a href="../autocompleter/demo.html">Autocompleter</a></li>
+<li><a href="../billboard/demo.html">Billboard</a></li>
+<li><a href="../calendar/demo.html">Calendar</a></li>
+<li><a href="../colorpicker/demo.html">Colorpicker</a></li>
+<li><a href="../dialog/demo.html">Dialog</a></li>
+<li><a href="../in-edit/demo.html">In Place Edit</a></li>
+<li><a href="../lightbox/demo.html">Lightbox</a></li>
+<li class="current"><a href="demo.html">Rater</a></li>
+<li><a href="../resizable/demo.html">Resizable</a></li>
+<li><a href="../rte/demo.html">Rte</a></li>
+<li><a href="../selectable/demo.html">Selectable</a></li>
+<li><a href="../slider/demo.html">Slider</a></li>
+<li><a href="../sortable/demo.html">Sortable</a></li>
+<li><a href="../tabs/demo.html">Tabs</a></li>
+<li><a href="../tags/demo.html">Tags</a></li>
+<li><a href="../tooltips/demo.html">Tooltips</a></li>
+<li><a href="../uploader/demo.html">Uploader</a></li></ul>
+      <li><a href="../../showcases.html">Showcases</a></li>
+    </ul>
+  </div>
+
+  <div class="box">
+    <label>Community</label>
+    <ul>
+      <li><a href="http://groups.google.com/group/rightjs">Google Group</a></li>
+      <li><a href="http://rightjs.lighthouseapp.com/projects/31989">Tickets Tracker</a></li>
+      <li><a href="http://github.com/rightjs/rightjs-snippets">Code Snippets</a></li>
+      <li><a href="irc://irc.freenode.net/rightjs">IRC #rightjs</a></li>
+      <li><a href="../../participate.html">Participate!</a></li>
+    </ul>
+  </div>
+
+  <div class="box">
+    <a href='http://www.pledgie.com/campaigns/14259'><img alt='Donate!' src='http://www.pledgie.com/campaigns/14259.png?skin_name=chrome' border='0' /></a>
+  </div>
+
+  <div class="box">
+    <ul id="social">
+      <li><a href="../../blog.rss" id="rss-link">RSS</a></li>
+      <li><a href="http://twitter.com/rightjs" id="twitter-link">Twitter</a></li>
+      <li><a href="http://github.com/rightjs" id="github-link">GitHub</a></li>
+    </ul>
+  </div>
+</div>
+
+        <div id="info">
+          <h1>Rater Demo</h1>
+
+<p>There are some basic use-cases for the <a href='../rater.html'>Rater</a> widget out of the <a href='../../ui.html'>RightJS UI</a> library.</p>
+<a name='simple' ></a><h2 class='chapter'>
+  <a href='demo.html#' class='top-anchor'>top &uarr;</a><a href='demo.html#simple'>Simple Raters</a>
+</h2><p>
+  <div class='rui-rater'>
+    <div>&#9733;</div><div>&#9733;</div><div>&#9733;</div><div>&#9733;</div><div>&#9733;</div>
+  </div>
+</p><p>
+  <div class='rui-rater'>
+    <div class='active'>&#9733;</div><div>&#9733;</div><div>&#9733;</div><div>&#9733;</div><div>&#9733;</div>
+  </div>
+</p><p>
+  <div class='rui-rater'>
+    <div class='active'>&#9733;</div>
+    <div class='active'>&#9733;</div>
+    <div>&#9733;</div><div>&#9733;</div><div>&#9733;</div>
+  </div>
+</p><p>
+  <div class='rui-rater'>
+    <div class='active'>&#9733;</div>
+    <div class='active'>&#9733;</div>
+    <div class='active'>&#9733;</div>
+    <div>&#9733;</div><div>&#9733;</div>
+  </div>
+</p><p>
+  <div class='rui-rater'>
+    <div class='active'>&#9733;</div>
+    <div class='active'>&#9733;</div>
+    <div class='active'>&#9733;</div>
+    <div class='active'>&#9733;</div><div>&#9733;</div>
+  </div>
+</p><p>
+  <div class='rui-rater'>
+    <div class='active'>&#9733;</div>
+    <div class='active'>&#9733;</div>
+    <div class='active'>&#9733;</div>
+    <div class='active'>&#9733;</div>
+    <div class='active'>&#9733;</div>
+  </div>
+</p><a name='disabled' ></a><h2 class='chapter'>
+  <a href='demo.html#' class='top-anchor'>top &uarr;</a><a href='demo.html#disabled'>Disabled Raters</a>
+</h2><p>
+  <div class='rui-rater' data-rater='{disabled:true}'>
+    <div class='active'>&#9733;</div>
+    <div class='active'>&#9733;</div>
+    <div>&#9733;</div><div>&#9733;</div><div>&#9733;</div>
+  </div>
+  This rater is disabled
+</p><p>
+  <div class='rui-rater' data-rater='{disableOnVote:true}'>
+    <div class='active'>&#9733;</div>
+    <div class='active'>&#9733;</div>
+    <div>&#9733;</div><div>&#9733;</div><div>&#9733;</div>
+  </div>
+  This rater will get disabled once you click on it
+</p><a name='assigned' ></a><h2 class='chapter'>
+  <a href='demo.html#' class='top-anchor'>top &uarr;</a><a href='demo.html#assigned'>Assigned Rater</a>
+</h2><p>
+  <div class='rui-rater' data-rater='{update:"the-field"}'>
+    <div class='active'>&#9733;</div>
+    <div class='active'>&#9733;</div>
+    <div>&#9733;</div><div>&#9733;</div><div>&#9733;</div>
+  </div>
+  <input size='1' id='the-field' type='text' value='2' />
+</p><a name='remote' ></a><h2 class='chapter'>
+  <a href='demo.html#' class='top-anchor'>top &uarr;</a><a href='demo.html#remote'>Remote Rater</a>
+</h2><p>
+  <div class='rui-rater' data-rater='{url:"test", Xhr:{evalScripts:true,spinner:"rate-spinner"}}'>
+    <div class='active'>&#9733;</div><div>&#9733;</div><div>&#9733;</div><div>&#9733;</div><div>&#9733;</div>
+  </div>
+
+  <img src='../../images/spinner.gif@1261565425' id='rate-spinner' alt='Spinner' style='display:none' />
+  <span id='remote-rater-output'> </span>
+</p><a name='generated' ></a><h2 class='chapter'>
+  <a href='demo.html#' class='top-anchor'>top &uarr;</a><a href='demo.html#generated'>Automatically Generated Raters</a>
+</h2><div id='auto-generated'> </div><script type='text/javascript'>
+// <![CDATA[
+  6..times(function(i) {
+    new Rater({
+      halfs: true, value: i
+    }).insertTo($E('p').insertTo('auto-generated'));
+  });
+// ]]>
+</script><div style='height: 10em'> </div>
+        </div>
+        <div style="clear:both"></div>
+      </div>
+      <div id="foot">
+        <div id="contacts">
+  <h2>Questions?</h2>
+  <a href="&#x6D;&#x61;i&#x6C;&#x74;&#x6F;:&#105;&#110;&#102;&#111;&#064;&#114;&#105;&#103;&#104;&#116;&#106;&#115;&#046;&#111;&#114;&#103;">&#105;&#110;&#102;&#111;&#064;&#114;&#105;&#103;&#104;&#116;&#106;&#115;&#046;&#111;&#114;&#103;</a>
+</div>
+<div id="bottom-menu">
+  <h2>About the Framework</h2>
+  <a href="../../philosophy.html">Philosophy</a> |
+  <a href="../../benchmarks.html">Benchmarks</a> |
+  <a href="../../browsers.html">Browsers</a> |
+  <a href="../../contacts.html">Contacts</a>
+</div>
+        <div id="design">Design by <a href="http://activestylus.com">Steven Garcia</a></div>
+        <div id="copyright">Copyright &copy; 2008-2011 Nikolay Nemshilov</div>
+      </div>
+    </div>
+
+    <script src="http://www.google-analytics.com/ga.js" type="text/javascript"></script>
+    <script type="text/javascript">
+    // <![CDATA[
+      try { _gat._getTracker("UA-10292980-1")._trackPageview(); } catch(err) {}
+    // ]]>
+    </script>
+  </body>
+</html>

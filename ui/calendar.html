@@ -1,0 +1,299 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <title>RightJS: Right Calendar</title>
+    <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+    <link href="../blog.rss" rel="alternate" title="RightJS News" type="application/rss+xml" />
+    <script src="../hotlink/right.js@1333128729" type="text/javascript"></script>
+<script src="../javascripts/application.js@1295184937" type="text/javascript"></script>
+    <script src="../builds/ui/right-autocompleter.js@1333128730" type="text/javascript"></script>
+    <link href="../stylesheets/application.css@1297515667.css" media="screen" rel="stylesheet" type="text/css" />
+    
+    <link href="../stylesheets/rightjs-ui-home.css@1295874376.css" media="screen" rel="stylesheet" type="text/css" />
+    
+  </head>
+  <body>
+    <div id="body">
+      <div id="head">
+        <a href="../index.html" id="logo">RightJS</a>
+        <div id="slogan">JavaScript Framework That Feels Right</div>
+
+        <div id="main-menu">
+  <ul>
+    <li><a href="../index.html">Home</a></li>
+    <li><a href="../download.html">Download</a></li>
+    <li><a href="../plugins.html">Plugins</a></li>
+    <li class="current"><a href="../ui.html">UI</a></li>
+    <li><a href="../demos.html">Demos</a></li>
+    <li><a href="../docs.html">Docs</a></li>
+    <li><a href="../blog.html">Blog</a></li>
+  </ul>
+  <div id="zing"><!-- the moving thing --></div>
+</div>
+        <div id="lang-switch">
+    <select onchange="document.location.href=this.value;">
+      <option selected="true" value="http://rightjs.org/ui/calendar">English</option>
+      <option value="http://ru.rightjs.org/ui/calendar">Русский</option>
+    </select>
+</div>
+      </div>
+      <div id="main">
+        <div id="sidebar">
+  <div class="box" id="download-box">
+    <h1>Get it!</h1>
+    <ul>
+      <li><a href="../builds/current/right.js.zip">RightJS v2.3.1</a></li>
+    </ul>
+  </div>
+
+  <div id="api-search" class="box">
+  <input type="text" value="Search API" id="api-search-field" />
+  <script type="text/javascript">
+  // <![CDATA[
+    new Autocompleter($('api-search-field').on({
+      focus: function() { this._v = this.value(); this.value(''); },
+      blur:  function() { this.value(this._v); }
+    }), {
+      url: '/docs/search/%{search}.js',
+      onDone: function() {
+        var current = this.first('.current');
+        if (current) {
+          document.location.href = current.get('title');
+        }
+        this.input.setValue(this.input._v);
+      }
+    });
+  // ]]>
+  </script>
+</div>
+
+  <div class="box">
+    <label>Documentation</label>
+    <ul>
+      <li><a href="../tutorials/getting-started.html">Getting Started</a></li>
+      <li><a href="../tutorials/top-features.html">Top 12 Features</a></li>
+      <li><a href="../docs.html">API Reference</a></li>
+      <li><a href="../tutorials.1.html">Tutorials</a></li>
+    </ul>
+  </div>
+
+  <div class="box">
+    <label>Additional</label>
+    <ul>
+      <li><a href="../plugins.html">RightJS Plugins</a></li>
+      
+      <li class="current"><a href="../ui.html">RightJS UI</a></li>
+      <ul id="ui-menu"><li><a href="autocompleter.html">Autocompleter</a></li>
+<li><a href="billboard.html">Billboard</a></li>
+<li class="current"><a href="calendar.html">Calendar</a></li>
+<li><a href="colorpicker.html">Colorpicker</a></li>
+<li><a href="dialog.html">Dialog</a></li>
+<li><a href="in-edit.html">In Place Edit</a></li>
+<li><a href="lightbox.html">Lightbox</a></li>
+<li><a href="rater.html">Rater</a></li>
+<li><a href="resizable.html">Resizable</a></li>
+<li><a href="rte.html">Rte</a></li>
+<li><a href="selectable.html">Selectable</a></li>
+<li><a href="slider.html">Slider</a></li>
+<li><a href="sortable.html">Sortable</a></li>
+<li><a href="tabs.html">Tabs</a></li>
+<li><a href="tags.html">Tags</a></li>
+<li><a href="tooltips.html">Tooltips</a></li>
+<li><a href="uploader.html">Uploader</a></li></ul>
+      <li><a href="../showcases.html">Showcases</a></li>
+    </ul>
+  </div>
+
+  <div class="box">
+    <label>Community</label>
+    <ul>
+      <li><a href="http://groups.google.com/group/rightjs">Google Group</a></li>
+      <li><a href="http://rightjs.lighthouseapp.com/projects/31989">Tickets Tracker</a></li>
+      <li><a href="http://github.com/rightjs/rightjs-snippets">Code Snippets</a></li>
+      <li><a href="irc://irc.freenode.net/rightjs">IRC #rightjs</a></li>
+      <li><a href="../participate.html">Participate!</a></li>
+    </ul>
+  </div>
+
+  <div class="box">
+    <a href='http://www.pledgie.com/campaigns/14259'><img alt='Donate!' src='http://www.pledgie.com/campaigns/14259.png?skin_name=chrome' border='0' /></a>
+  </div>
+
+  <div class="box">
+    <ul id="social">
+      <li><a href="../blog.rss" id="rss-link">RSS</a></li>
+      <li><a href="http://twitter.com/rightjs" id="twitter-link">Twitter</a></li>
+      <li><a href="http://github.com/rightjs" id="github-link">GitHub</a></li>
+    </ul>
+  </div>
+</div>
+
+        <div id="info">
+          <h1>Right Calendar</h1>
+
+<p>Right Calendar is the standard calendar/datepicker feature for RightJS</p>
+
+<p>Get the latest version right here</p>
+
+<ul>
+<li><a href='../builds/ui/right-calendar.js'>right-calendar.js</a> - minified version</li>
+
+<li><a href='../builds/ui/right-calendar-src.js'>right-calendar-src.js</a> - source code</li>
+</ul>
+
+<p>All the source code of the project is available under terms of the MIT license</p>
+
+<p><a href='http://github.com/rightjs/rightjs-ui/tree/master/src/calendar/'>http://github.com/rightjs/rightjs-ui/tree/master/src/calendar/</a></p>
+
+<p>For some standard usage examples see the <a href='calendar/demo.html'>demo page</a></p>
+<h2 class="chapter"><a href='calendar.html#'>Index</a></h2><p><ul><li><a href="calendar.html#features">Features List</a></li><li><a href="calendar.html#usage">Usage Basics</a></li><li><a href="calendar.html#initialization">Inputs Auto-Initialization</a></li><li><a href="calendar.html#options">Options List</a></li><li><a href="calendar.html#formatting">Dates Formatting</a></li><li><a href="calendar.html#events">Events List</a></li><li><a href="calendar.html#api">API Reference</a></li><li><a href="calendar.html#styles">Style Alterations</a></li></ul></p><a name='features' ></a><h2 class='chapter'>
+  <a href='calendar.html#' class='top-anchor'>top &uarr;</a><a href='calendar.html#features'>Features List</a>
+</h2>
+<p>Right Calendar has the following features:</p>
+
+<ul>
+<li>Allows to pick dates and times</li>
+
+<li>Supports multiple months in a grid</li>
+
+<li>Supports date/time limits</li>
+
+<li>Can be used as an inline widget</li>
+
+<li>Can automatically initialize on input fields as a helper</li>
+
+<li>Tiny (just 6k gzipped) file, no image or css dependencies</li>
+
+<li>Everything is included in a single file</li>
+
+<li>i18n support</li>
+</ul>
+<a name='usage' ></a><h2 class='chapter'>
+  <a href='calendar.html#' class='top-anchor'>top &uarr;</a><a href='calendar.html#usage'>Usage Basics</a>
+</h2>
+<p>The usage of Right Calendar is really simple. Just grab the file above, include it on your page and you are good to go. Right Calendar does not require any images and all the styles are inlined inside the javascript file</p>
+
+<code>&lt;script src=<s>"/javascripts/right-calendar.js"</s> type=<s>"text/javascript"</s>&gt;&lt;/script&gt;</code>
+
+<p>After that you will have the <tt>Calendar</tt> unit available</p>
+
+<code><b class="var">new</b> <b class="unit">Calendar</b>({<s class="key">format</s>: <s>'US'</s>}).<u class="method">insertTo</u>(<s>'that-element'</s>);<br/><br/><b class="var">new</b> <b class="unit">Calendar</b>({<s class="key">showTime</s>: <b class="rest">true</b>}).<u class="method">assignTo</u>(<s>'that-input'</s>);</code>
+<a name='initialization' ></a><h2 class='chapter'>
+  <a href='calendar.html#' class='top-anchor'>top &uarr;</a><a href='calendar.html#initialization'>Inputs Auto-Initialization</a>
+</h2>
+<p>Calendars can automatically initialize on input fields as popup helpers. For that simply use the standard HTML5 attribute <tt>data-calendar</tt>, like that:</p>
+
+<code>&lt;input type=<s>"text"</s> data-calendar=<s>""</s> /&gt;<br/><br/>&lt;input type=<s>"text"</s> data-calendar=<s>"{format: 'US'}"</s> /&gt;</code>
+
+<p>You also can specify the external trigger element, like an icon.</p>
+
+<code>&lt;input type=<s>"text"</s> id=<s>"my-input"</s> /&gt;<br/>&lt;img src=<s>"calendar.png"</s> data-calendar=<s>"{update: 'my-input'}"</s> /&gt;</code>
+
+<p>All the initialization happens on demand when the user starts to interact with the fields</p>
+<a name='options' ></a><h2 class='chapter'>
+  <a href='calendar.html#' class='top-anchor'>top &uarr;</a><a href='calendar.html#options'>Options List</a>
+</h2>
+<p>There are several options you can pass into the <tt>Calendar</tt> constructor or use with the auto-initialization feature</p>
+<table><thead><tr><th>Name</th><th>Default</th><th>Description</th></tr></thead><tbody><tr><td>format</td><td>&#8216;ISO&#8217;</td><td>one of the predefined formats name or a format string</td>
+</tr><tr><td>showTime</td><td>null</td><td>a marker if the time picker should be displayed</td>
+</tr><tr><td>showButtons</td><td>false</td><td>a marker if the bottom buttons should be displayed</td>
+</tr><tr><td>minDate</td><td>null</td><td>the minimum date you can select</td>
+</tr><tr><td>maxDate</td><td>null</td><td>the maximum date you can select</td>
+</tr><tr><td>fxName</td><td>&#8216;fade&#8217;</td><td>the visual effect name, use <tt>null</tt> if you don&#8217;t want any fx</td>
+</tr><tr><td>fxDuration</td><td>&#8216;short&#8217;</td><td>the visual effects duration</td>
+</tr><tr><td>firstDay</td><td>1</td><td>1 for Monday, 0 for Sunday</td>
+</tr><tr><td>numberOfMonths</td><td>1</td><td>a number of month to display, or a [x,y] grid size</td>
+</tr><tr><td>timePeriod</td><td>1</td><td>the time picker min time quantity in minutes</td>
+</tr><tr><td>twentyFourHour</td><td>null</td><td>a marker if the 24 or 12 hours time picker should be used</td>
+</tr><tr><td>listYears</td><td>false</td><td>show the year switching buttons</td>
+</tr><tr><td>hideOnPick</td><td>false</td><td>a marker if the popup should get hidden when user picks a date</td>
+</tr><tr><td>update</td><td>null</td><td>an input field that should be updated when the user picks a date</td>
+</tr><tr><td>trigger</td><td>null</td><td>a trigger element reference for calendar helpers</td>
+</tr><tr><td>highlight</td><td>null</td><td>a list of dates to highlight</td>
+</tr><tr><td>cssRule</td><td>&#8217;*[data-calendar]&#8217;</td><td>the auto-initializable calendar elements css-rule</td>
+</tr></tbody></table>
+<p>You also can alter the <tt>Calendar.Options</tt> object to make the changes global.</p>
+
+<p>The <tt>showTime</tt> and <tt>twentyFourHour</tt> options have <tt>null</tt> value by default, which means that those options will be automatically determined depending on the specified time format option. You also might specify a boolean value to enforce those options.</p>
+<a name='formatting' ></a><h2 class='chapter'>
+  <a href='calendar.html#' class='top-anchor'>top &uarr;</a><a href='calendar.html#formatting'>Dates Formatting</a>
+</h2>
+<p>Right Calendar uses the <a href='http://www.gnu.org/software/libc/manual/html%5Fnode/Formatting-Calendar-Time.html#index-strftime-2660'>GNU strftime</a> formatting system and there are the following placeholders available:</p>
+<table><thead><tr><th>Key</th><th>Description</th></tr></thead><tbody><tr><td>%a</td><td>The abbreviated weekday name (&#8216;Sun&#8217;)</td>
+</tr><tr><td>%A</td><td>The full weekday name (&#8216;Sunday&#8217;)</td>
+</tr><tr><td>%b</td><td>The abbreviated month name (&#8216;Jan&#8217;)</td>
+</tr><tr><td>%B</td><td>The full month name (&#8216;January&#8217;)</td>
+</tr><tr><td>%d</td><td>Day of the month (01..31)</td>
+</tr><tr><td>%e</td><td>Day of the month without leading zero (1..31)</td>
+</tr><tr><td>%m</td><td>Month of the year (01..12)</td>
+</tr><tr><td>%y</td><td>Year without a century (00..99)</td>
+</tr><tr><td>%Y</td><td>Year with century</td>
+</tr><tr><td>%H</td><td>Hour of the day, 24-hour clock (00..23)</td>
+</tr><tr><td>%k</td><td>Hour of the day, 24-hour clock without leading zero (0..23)</td>
+</tr><tr><td>%I</td><td>Hour of the day, 12-hour clock (01..12)</td>
+</tr><tr><td>%l</td><td>Hour of the day, 12-hour clock without leading zero (0..12)</td>
+</tr><tr><td>%p</td><td>Meridian indicator (&#8216;AM&#8217; or &#8216;PM&#8217;)</td>
+</tr><tr><td>%P</td><td>Meridian indicator (&#8216;pm&#8217; or &#8216;pm&#8217;)</td>
+</tr><tr><td>%M</td><td>Minute of the hour (00..59)</td>
+</tr><tr><td>%S</td><td>Second of the minute (00..59)</td>
+</tr><tr><td>%%</td><td>Literal &#8217;%&#8217; character</td>
+</tr></tbody></table>
+<p>There are also few predefined date formats are available:</p>
+<table><thead><tr><th>Name</th><th>Format</th><th>Example</th></tr></thead><tbody><tr><td>ISO</td><td>&#8216;%Y-%m-%d&#8217;</td><td>2009-08-18</td>
+</tr><tr><td>POSIX</td><td>&#8216;%Y/%m/%d&#8217;</td><td>2009/08/18</td>
+</tr><tr><td>EUR</td><td>&#8216;%d-%m-%Y&#8217;</td><td>18-08-2009</td>
+</tr><tr><td>US</td><td>&#8216;%m/%d/%Y&#8217;</td><td>08/18/2009</td>
+</tr></tbody></table><a name='events' ></a><h2 class='chapter'>
+  <a href='calendar.html#' class='top-anchor'>top &uarr;</a><a href='calendar.html#events'>Events List</a>
+</h2>
+<p>Right calendar supports the following list of events</p>
+<table><thead><tr><th>Name</th><th>Description</th></tr></thead><tbody><tr><td>show</td><td>the calendar element was shown</td>
+</tr><tr><td>hide</td><td>the calendar element was hidden</td>
+</tr><tr><td>change</td><td>user selects a date or time</td>
+</tr><tr><td>done</td><td>user hits the &#8216;done&#8217; button</td>
+</tr></tbody></table>
+<p>You can use any standard <a href='../docs/observer.html' class='api-ref'>Observer</a> methods to process those events. Shortcuts like <tt>onChange</tt>, <tt>onDone</tt> are also available.</p>
+<a name='api' ></a><h2 class='chapter'>
+  <a href='calendar.html#' class='top-anchor'>top &uarr;</a><a href='calendar.html#api'>API Reference</a>
+</h2>
+<p>Right Calendar has all the same API as <a href='../docs/element.html' class='api-ref'>Element</a> plus the following methods:</p>
+<table><thead><tr><th>Method</th><th>Description</th></tr></thead><tbody><tr><td>setDate(date)</td><td>sets the date, the date might be a Date instance or a String</td>
+</tr><tr><td>getDate()</td><td>returns the current date</td>
+</tr><tr><td>setValue(String date)</td><td>sets the date by a string value</td>
+</tr><tr><td>getValue()</td><td>returns the date as a formatted string</td>
+</tr><tr><td>format([String format])</td><td>returns a string representation of the current date</td>
+</tr><tr><td>assignTo(element[,trigger])</td><td>assigns the calendar to auto appear at the element; if the trigger is specified a calendar will appear only by clicking on the trigger element</td>
+</tr></tbody></table><a name='styles' ></a><h2 class='chapter'>
+  <a href='calendar.html#' class='top-anchor'>top &uarr;</a><a href='calendar.html#styles'>Style Alterations</a>
+</h2>
+<p>If you need to alter the calendar view to make it fit your design, please use the following elements structure description as a guidance.</p>
+
+<code>&lt;div class=<s>"rui-calendar rui-panel"</s>&gt;<br/>  &lt;div class=<s>"swaps"</s>&gt;<br/>    &lt;div class=<s>"rui-button next-month"</s>&gt;&amp;lsaquo;&lt;/div&gt;<br/>    &lt;div class=<s>"rui-button prev-month"</s>&gt;&amp;<s class="key">rsaquo</s>:&lt;/div&gt;<br/>  &lt;/div&gt;<br/><br/>  &lt;table class=<s>"grid"</s>&gt;<br/>    &lt;tr&gt;&lt;td&gt;<br/><br/>      &lt;table class=<s>"month"</s>&gt;<br/>        &lt;caption&gt;<b class="unit">January</b>&lt;/caption&gt;<br/>        &lt;thead&gt;&lt;tr&gt;<br/>          &lt;th&gt;<b class="unit">Mo</b>&lt;th&gt;<b class="unit">Tu</b>&lt;th&gt;...<br/>        &lt;/tr&gt;&lt;/thead&gt;<br/>        &lt;tbody&gt;<br/>          &lt;tr&gt;<br/>            &lt;td class=<s>"blank"</s>&gt;<br/>            &lt;td class=<s>"selected"</s>&gt;<br/>            &lt;td class=<s>"disabled"</s>&gt;<br/>            &lt;td class=<s>"highlighted"</s>&gt;<br/>            &lt;td&gt;&lt;td&gt;&lt;td&gt;&lt;td&gt;...<br/>          .....<br/>        &lt;/tbody&gt;<br/>      &lt;/table&gt;<br/><br/>    &lt;/td&gt;&lt;/tr&gt;<br/>  &lt;/table&gt;<br/><br/>  &lt;div class=<s>"timepicker"</s>&gt;<br/>    &lt;select&gt;&lt;/select&gt; : &lt;select&gt;&lt;/select&gt;<br/>  &lt;/div&gt;<br/><br/>  &lt;div class=<s>"buttons"</s>&gt;<br/>    &lt;div class=<s>"rui-button"</s>&gt;<b class="unit">Now</b>&lt;/div&gt;<br/>    &lt;div class=<s>"rui-button"</s>&gt;<b class="unit">Done</b>&lt;/div&gt;<br/>  &lt;/div&gt;<br/>&lt;/div&gt;</code>
+        </div>
+        <div style="clear:both"></div>
+      </div>
+      <div id="foot">
+        <div id="contacts">
+  <h2>Questions?</h2>
+  <a href="&#x6D;&#x61;i&#x6C;&#x74;&#x6F;:&#105;&#110;&#102;&#111;&#064;&#114;&#105;&#103;&#104;&#116;&#106;&#115;&#046;&#111;&#114;&#103;">&#105;&#110;&#102;&#111;&#064;&#114;&#105;&#103;&#104;&#116;&#106;&#115;&#046;&#111;&#114;&#103;</a>
+</div>
+<div id="bottom-menu">
+  <h2>About the Framework</h2>
+  <a href="../philosophy.html">Philosophy</a> |
+  <a href="../benchmarks.html">Benchmarks</a> |
+  <a href="../browsers.html">Browsers</a> |
+  <a href="../contacts.html">Contacts</a>
+</div>
+        <div id="design">Design by <a href="http://activestylus.com">Steven Garcia</a></div>
+        <div id="copyright">Copyright &copy; 2008-2011 Nikolay Nemshilov</div>
+      </div>
+    </div>
+
+    <script src="http://www.google-analytics.com/ga.js" type="text/javascript"></script>
+    <script type="text/javascript">
+    // <![CDATA[
+      try { _gat._getTracker("UA-10292980-1")._trackPageview(); } catch(err) {}
+    // ]]>
+    </script>
+  </body>
+</html>

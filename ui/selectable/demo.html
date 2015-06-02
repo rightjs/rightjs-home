@@ -1,0 +1,334 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <title>RightJS: Selectable Demo</title>
+    <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+    <link href="../../blog.rss" rel="alternate" title="RightJS News" type="application/rss+xml" />
+    <script src="../../hotlink/right.js@1331880836" type="text/javascript"></script>
+<script src="../../javascripts/application.js@1295184937" type="text/javascript"></script>
+    <script src="../../builds/ui/right-autocompleter.js@1331880836" type="text/javascript"></script>
+    <link href="../../stylesheets/application.css@1297515667.css" media="screen" rel="stylesheet" type="text/css" />
+    <script src="../../builds/ui/right-selectable.js@1331880836" type="text/javascript"></script>
+    <link href="../../stylesheets/rightjs-ui-home.css@1295874376.css" media="screen" rel="stylesheet" type="text/css" />
+    
+  </head>
+  <body>
+    <div id="body">
+      <div id="head">
+        <a href="../../index.html" id="logo">RightJS</a>
+        <div id="slogan">JavaScript Framework That Feels Right</div>
+
+        <div id="main-menu">
+  <ul>
+    <li><a href="../../index.html">Home</a></li>
+    <li><a href="../../download.html">Download</a></li>
+    <li><a href="../../plugins.html">Plugins</a></li>
+    <li class="current"><a href="../../ui.html">UI</a></li>
+    <li><a href="../../demos.html">Demos</a></li>
+    <li><a href="../../docs.html">Docs</a></li>
+    <li><a href="../../blog.html">Blog</a></li>
+  </ul>
+  <div id="zing"><!-- the moving thing --></div>
+</div>
+        <div id="lang-switch">
+    <select onchange="document.location.href=this.value;">
+      <option selected="true" value="http://rightjs.org/ui/selectable/demo">English</option>
+      <option value="http://ru.rightjs.org/ui/selectable/demo">Русский</option>
+    </select>
+</div>
+      </div>
+      <div id="main">
+        <div id="sidebar">
+  <div class="box" id="download-box">
+    <h1>Get it!</h1>
+    <ul>
+      <li><a href="../../builds/current/right.js.zip">RightJS v2.3.1</a></li>
+    </ul>
+  </div>
+
+  <div id="api-search" class="box">
+  <input type="text" value="Search API" id="api-search-field" />
+  <script type="text/javascript">
+  // <![CDATA[
+    new Autocompleter($('api-search-field').on({
+      focus: function() { this._v = this.value(); this.value(''); },
+      blur:  function() { this.value(this._v); }
+    }), {
+      url: '/docs/search/%{search}.js',
+      onDone: function() {
+        var current = this.first('.current');
+        if (current) {
+          document.location.href = current.get('title');
+        }
+        this.input.setValue(this.input._v);
+      }
+    });
+  // ]]>
+  </script>
+</div>
+
+  <div class="box">
+    <label>Documentation</label>
+    <ul>
+      <li><a href="../../tutorials/getting-started.html">Getting Started</a></li>
+      <li><a href="../../tutorials/top-features.html">Top 12 Features</a></li>
+      <li><a href="../../docs.html">API Reference</a></li>
+      <li><a href="../../tutorials.1.html">Tutorials</a></li>
+    </ul>
+  </div>
+
+  <div class="box">
+    <label>Additional</label>
+    <ul>
+      <li><a href="../../plugins.html">RightJS Plugins</a></li>
+      
+      <li class="current"><a href="../../ui.html">RightJS UI</a></li>
+      <ul id="ui-menu"><li><a href="../autocompleter/demo.html">Autocompleter</a></li>
+<li><a href="../billboard/demo.html">Billboard</a></li>
+<li><a href="../calendar/demo.html">Calendar</a></li>
+<li><a href="../colorpicker/demo.html">Colorpicker</a></li>
+<li><a href="../dialog/demo.html">Dialog</a></li>
+<li><a href="../in-edit/demo.html">In Place Edit</a></li>
+<li><a href="../lightbox/demo.html">Lightbox</a></li>
+<li><a href="../rater/demo.html">Rater</a></li>
+<li><a href="../resizable/demo.html">Resizable</a></li>
+<li><a href="../rte/demo.html">Rte</a></li>
+<li class="current"><a href="demo.html">Selectable</a></li>
+<li><a href="../slider/demo.html">Slider</a></li>
+<li><a href="../sortable/demo.html">Sortable</a></li>
+<li><a href="../tabs/demo.html">Tabs</a></li>
+<li><a href="../tags/demo.html">Tags</a></li>
+<li><a href="../tooltips/demo.html">Tooltips</a></li>
+<li><a href="../uploader/demo.html">Uploader</a></li></ul>
+      <li><a href="../../showcases.html">Showcases</a></li>
+    </ul>
+  </div>
+
+  <div class="box">
+    <label>Community</label>
+    <ul>
+      <li><a href="http://groups.google.com/group/rightjs">Google Group</a></li>
+      <li><a href="http://rightjs.lighthouseapp.com/projects/31989">Tickets Tracker</a></li>
+      <li><a href="http://github.com/rightjs/rightjs-snippets">Code Snippets</a></li>
+      <li><a href="irc://irc.freenode.net/rightjs">IRC #rightjs</a></li>
+      <li><a href="../../participate.html">Participate!</a></li>
+    </ul>
+  </div>
+
+  <div class="box">
+    <a href='http://www.pledgie.com/campaigns/14259'><img alt='Donate!' src='http://www.pledgie.com/campaigns/14259.png?skin_name=chrome' border='0' /></a>
+  </div>
+
+  <div class="box">
+    <ul id="social">
+      <li><a href="../../blog.rss" id="rss-link">RSS</a></li>
+      <li><a href="http://twitter.com/rightjs" id="twitter-link">Twitter</a></li>
+      <li><a href="http://github.com/rightjs" id="github-link">GitHub</a></li>
+    </ul>
+  </div>
+</div>
+
+        <div id="info">
+          <h1>Selectable Demo</h1>
+<style type='text/css'>
+  dl.right-selectable dt {
+    font-size: 1em;
+  }
+</style>
+<p>There are several basic use-cases for the <a href='../selectable.html'>Selectable</a> unit out of the <a href='../../ui.html'>RightJS UI</a> library.</p>
+<a name='simple' ></a><h2 class='chapter'>
+  <a href='demo.html#' class='top-anchor'>top &uarr;</a><a href='demo.html#simple'>Simple Selectable</a>
+</h2><p>
+  <ul class='rui-selectable'>
+    <li>One</li>
+    <li>Two</li>
+    <li>Three</li>
+    <li>Four</li>
+    <li>Five</li>
+    <li>Six</li>
+    <li>Seven</li>
+    <li>Eight</li>
+  </ul>
+</p><a name='groups' ></a><h2 class='chapter'>
+  <a href='demo.html#' class='top-anchor'>top &uarr;</a><a href='demo.html#groups'>Selectable With Groups</a>
+</h2><p>
+  <dl class='rui-selectable'>
+    <dt>First Group</dt>
+    <dd>
+      <ul>
+        <li>One</li>
+        <li>Two</li>
+        <li>Three</li>
+        <li>Four</li>
+      </ul>
+    </dd>
+    <dt>Second Group</dt>
+    <dd>
+      <ul>
+        <li>Five</li>
+        <li>Six</li>
+        <li>Seven</li>
+        <li>Eight</li>
+      </ul>
+    </dd>
+  </dl>
+</p><a name='single' ></a><h2 class='chapter'>
+  <a href='demo.html#' class='top-anchor'>top &uarr;</a><a href='demo.html#single'>With A Single Option</a>
+</h2><p>
+  <ul class='rui-selectable rui-selectable-single'>
+    <li>One</li>
+    <li>Two</li>
+    <li>Three</li>
+    <li>Four</li>
+    <li>Five</li>
+    <li>Six</li>
+    <li>Seven</li>
+    <li>Eight</li>
+  </ul>
+</p><a name='single-groups' ></a><h2 class='chapter'>
+  <a href='demo.html#' class='top-anchor'>top &uarr;</a><a href='demo.html#single-groups'>With A Single Option And Groups</a>
+</h2><p>
+  <dl class='rui-selectable rui-selectable-single'>
+    <dt>First Group</dt>
+    <dd>
+      <ul>
+        <li>One</li>
+        <li>Two</li>
+        <li>Three</li>
+        <li>Four</li>
+      </ul>
+    </dd>
+    <dt>Second Group</dt>
+    <dd>
+      <ul>
+        <li>Five</li>
+        <li>Six</li>
+        <li>Seven</li>
+        <li>Eight</li>
+      </ul>
+    </dd>
+  </dl>
+</p><a name='disabled' ></a><h2 class='chapter'>
+  <a href='demo.html#' class='top-anchor'>top &uarr;</a><a href='demo.html#disabled'>With Disabled Options</a>
+</h2><p>
+  <ul class='rui-selectable' data-selectable='{disabled:[1,4]}'>
+    <li>One</li>
+    <li>Two</li>
+    <li>Three</li>
+    <li>Four</li>
+    <li>Five</li>
+    <li>Six</li>
+    <li>Seven</li>
+    <li>Eight</li>
+  </ul>
+</p><a name='assigned' ></a><h2 class='chapter'>
+  <a href='demo.html#' class='top-anchor'>top &uarr;</a><a href='demo.html#assigned'>Assigned To An Input</a>
+</h2><p>
+  This one works with indexes
+  <ul class='rui-selectable' data-selectable='{update: "input-1"}'>
+    <li>One</li>
+    <li>Two</li>
+    <li>Three</li>
+    <li>Four</li>
+  </ul>
+
+  <input id='input-1' type='text' />
+</p><p>
+  This one works with IDs
+  <ul class='rui-selectable' data-selectable='{update: "input-2"}'>
+    <li id='one-1'>One</li>
+    <li id='two-2'>Two</li>
+    <li id='three-3'>Three</li>
+    <li id='four-4'>Four</li>
+  </ul>
+
+  <input id='input-2' type='text' />
+</p><p>
+  This one automatically parses number out of IDs
+  <ul class='rui-selectable' data-selectable='{update: "input-3", parseIds: true}'>
+    <li id='one-1'>One</li>
+    <li id='two-2'>Two</li>
+    <li id='three-3'>Three</li>
+    <li id='four-4'>Four</li>
+  </ul>
+
+  <input id='input-3' type='text' />
+</p><p>
+  With a single select and IDs
+  <ul class='rui-selectable' data-selectable='{update: "input-4", multiple: false}'>
+    <li id='one-1'>One</li>
+    <li id='two-2'>Two</li>
+    <li id='three-3'>Three</li>
+    <li id='four-4'>Four</li>
+  </ul>
+
+  <input id='input-4' type='text' />
+</p><a name='limited' ></a><h2 class='chapter'>
+  <a href='demo.html#' class='top-anchor'>top &uarr;</a><a href='demo.html#limited'>With Limited Number Of Options To Select</a>
+</h2><p>
+  You can pick only 3 items on the list
+  <ul class='rui-selectable' data-selectable='{limit: 3}'>
+    <li>One</li>
+    <li>Two</li>
+    <li>Three</li>
+    <li>Four</li>
+    <li>Five</li>
+  </ul>
+</p><a name='generated' ></a><h2 class='chapter'>
+  <a href='demo.html#' class='top-anchor'>top &uarr;</a><a href='demo.html#generated'>Programmatically Generated</a>
+</h2><div id='generated-selects'> </div><script type='text/javascript'>
+// <![CDATA[
+  var keys = {
+    'option-1': 'One',
+    'option-2': 'Two',
+    'option-3': 'Three',
+    'option-4': 'Four'
+  };
+
+  new Selectable({
+    options: Object.values(keys),
+    selected: 2,
+    multiple: false
+  }).insertTo($E('p').insertTo('generated-selects'));
+
+  new Selectable({
+    options: keys,
+    selected: [0,2],
+    multiple: true
+  }).insertTo($E('p').insertTo('generated-selects'));
+
+  new Selectable({
+    options: keys,
+    selected: [0,2]
+  }).setValue([1,3])
+    .insertTo($E('p').insertTo('generated-selects'));
+// ]]>
+</script><div style='height: 10em'> </div>
+        </div>
+        <div style="clear:both"></div>
+      </div>
+      <div id="foot">
+        <div id="contacts">
+  <h2>Questions?</h2>
+  <a href="&#x6D;&#x61;i&#x6C;&#x74;&#x6F;:&#105;&#110;&#102;&#111;&#064;&#114;&#105;&#103;&#104;&#116;&#106;&#115;&#046;&#111;&#114;&#103;">&#105;&#110;&#102;&#111;&#064;&#114;&#105;&#103;&#104;&#116;&#106;&#115;&#046;&#111;&#114;&#103;</a>
+</div>
+<div id="bottom-menu">
+  <h2>About the Framework</h2>
+  <a href="../../philosophy.html">Philosophy</a> |
+  <a href="../../benchmarks.html">Benchmarks</a> |
+  <a href="../../browsers.html">Browsers</a> |
+  <a href="../../contacts.html">Contacts</a>
+</div>
+        <div id="design">Design by <a href="http://activestylus.com">Steven Garcia</a></div>
+        <div id="copyright">Copyright &copy; 2008-2011 Nikolay Nemshilov</div>
+      </div>
+    </div>
+
+    <script src="http://www.google-analytics.com/ga.js" type="text/javascript"></script>
+    <script type="text/javascript">
+    // <![CDATA[
+      try { _gat._getTracker("UA-10292980-1")._trackPageview(); } catch(err) {}
+    // ]]>
+    </script>
+  </body>
+</html>

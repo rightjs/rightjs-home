@@ -1,0 +1,251 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <title>RightJS: Colorpicker</title>
+    <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+    <link href="../blog.rss" rel="alternate" title="RightJS News" type="application/rss+xml" />
+    <script src="../hotlink/right.js@1333128729" type="text/javascript"></script>
+<script src="../javascripts/application.js@1295184937" type="text/javascript"></script>
+    <script src="../builds/ui/right-autocompleter.js@1333128730" type="text/javascript"></script>
+    <link href="../stylesheets/application.css@1297515667.css" media="screen" rel="stylesheet" type="text/css" />
+    
+    <link href="../stylesheets/rightjs-ui-home.css@1295874376.css" media="screen" rel="stylesheet" type="text/css" />
+    
+  </head>
+  <body>
+    <div id="body">
+      <div id="head">
+        <a href="../index.html" id="logo">RightJS</a>
+        <div id="slogan">JavaScript Framework That Feels Right</div>
+
+        <div id="main-menu">
+  <ul>
+    <li><a href="../index.html">Home</a></li>
+    <li><a href="../download.html">Download</a></li>
+    <li><a href="../plugins.html">Plugins</a></li>
+    <li class="current"><a href="../ui.html">UI</a></li>
+    <li><a href="../demos.html">Demos</a></li>
+    <li><a href="../docs.html">Docs</a></li>
+    <li><a href="../blog.html">Blog</a></li>
+  </ul>
+  <div id="zing"><!-- the moving thing --></div>
+</div>
+        <div id="lang-switch">
+    <select onchange="document.location.href=this.value;">
+      <option selected="true" value="http://rightjs.org/ui/colorpicker">English</option>
+      <option value="http://ru.rightjs.org/ui/colorpicker">Русский</option>
+    </select>
+</div>
+      </div>
+      <div id="main">
+        <div id="sidebar">
+  <div class="box" id="download-box">
+    <h1>Get it!</h1>
+    <ul>
+      <li><a href="../builds/current/right.js.zip">RightJS v2.3.1</a></li>
+    </ul>
+  </div>
+
+  <div id="api-search" class="box">
+  <input type="text" value="Search API" id="api-search-field" />
+  <script type="text/javascript">
+  // <![CDATA[
+    new Autocompleter($('api-search-field').on({
+      focus: function() { this._v = this.value(); this.value(''); },
+      blur:  function() { this.value(this._v); }
+    }), {
+      url: '/docs/search/%{search}.js',
+      onDone: function() {
+        var current = this.first('.current');
+        if (current) {
+          document.location.href = current.get('title');
+        }
+        this.input.setValue(this.input._v);
+      }
+    });
+  // ]]>
+  </script>
+</div>
+
+  <div class="box">
+    <label>Documentation</label>
+    <ul>
+      <li><a href="../tutorials/getting-started.html">Getting Started</a></li>
+      <li><a href="../tutorials/top-features.html">Top 12 Features</a></li>
+      <li><a href="../docs.html">API Reference</a></li>
+      <li><a href="../tutorials.1.html">Tutorials</a></li>
+    </ul>
+  </div>
+
+  <div class="box">
+    <label>Additional</label>
+    <ul>
+      <li><a href="../plugins.html">RightJS Plugins</a></li>
+      
+      <li class="current"><a href="../ui.html">RightJS UI</a></li>
+      <ul id="ui-menu"><li><a href="autocompleter.html">Autocompleter</a></li>
+<li><a href="billboard.html">Billboard</a></li>
+<li><a href="calendar.html">Calendar</a></li>
+<li class="current"><a href="colorpicker.html">Colorpicker</a></li>
+<li><a href="dialog.html">Dialog</a></li>
+<li><a href="in-edit.html">In Place Edit</a></li>
+<li><a href="lightbox.html">Lightbox</a></li>
+<li><a href="rater.html">Rater</a></li>
+<li><a href="resizable.html">Resizable</a></li>
+<li><a href="rte.html">Rte</a></li>
+<li><a href="selectable.html">Selectable</a></li>
+<li><a href="slider.html">Slider</a></li>
+<li><a href="sortable.html">Sortable</a></li>
+<li><a href="tabs.html">Tabs</a></li>
+<li><a href="tags.html">Tags</a></li>
+<li><a href="tooltips.html">Tooltips</a></li>
+<li><a href="uploader.html">Uploader</a></li></ul>
+      <li><a href="../showcases.html">Showcases</a></li>
+    </ul>
+  </div>
+
+  <div class="box">
+    <label>Community</label>
+    <ul>
+      <li><a href="http://groups.google.com/group/rightjs">Google Group</a></li>
+      <li><a href="http://rightjs.lighthouseapp.com/projects/31989">Tickets Tracker</a></li>
+      <li><a href="http://github.com/rightjs/rightjs-snippets">Code Snippets</a></li>
+      <li><a href="irc://irc.freenode.net/rightjs">IRC #rightjs</a></li>
+      <li><a href="../participate.html">Participate!</a></li>
+    </ul>
+  </div>
+
+  <div class="box">
+    <a href='http://www.pledgie.com/campaigns/14259'><img alt='Donate!' src='http://www.pledgie.com/campaigns/14259.png?skin_name=chrome' border='0' /></a>
+  </div>
+
+  <div class="box">
+    <ul id="social">
+      <li><a href="../blog.rss" id="rss-link">RSS</a></li>
+      <li><a href="http://twitter.com/rightjs" id="twitter-link">Twitter</a></li>
+      <li><a href="http://github.com/rightjs" id="github-link">GitHub</a></li>
+    </ul>
+  </div>
+</div>
+
+        <div id="info">
+          <h1>Colorpicker</h1>
+
+<p><tt>Colorpicker</tt> is a simple widget that allows the user to choose any sort of colors in a photoshop-like dialog.</p>
+
+<p>Get the latest version right here</p>
+
+<ul>
+<li><a href='../builds/ui/right-colorpicker.js'>right-colorpicker.js</a> - minified version</li>
+
+<li><a href='../builds/ui/right-colorpicker-src.js'>right-colorpicker-src.js</a> - source code</li>
+</ul>
+
+<p>All the source code of the project is available under terms of the MIT license</p>
+
+<p><a href='http://github.com/rightjs/rightjs-ui/tree/master/src/colorpicker/'>http://github.com/rightjs/rightjs-ui/tree/master/src/colorpicker/</a></p>
+
+<p>For some standard usage examples see the <a href='colorpicker/demo.html'>demo page</a></p>
+<h2 class="chapter"><a href='colorpicker.html#'>Index</a></h2><p><ul><li><a href="colorpicker.html#features">Features List</a></li><li><a href="colorpicker.html#usage">Usage Basics</a></li><li><a href="colorpicker.html#options">Options List</a></li><li><a href="colorpicker.html#events">Events List</a></li><li><a href="colorpicker.html#api">API Reference</a></li><li><a href="colorpicker.html#styles">Style Alterations</a></li></ul></p><a name='features' ></a><h2 class='chapter'>
+  <a href='colorpicker.html#' class='top-anchor'>top &uarr;</a><a href='colorpicker.html#features'>Features List</a>
+</h2>
+<ul>
+<li>Works as a standalone widget</li>
+
+<li>Works in pair with input fields</li>
+
+<li>Can automatically update another element&#8217;s background</li>
+
+<li>Simple and flexible usage</li>
+</ul>
+<a name='usage' ></a><h2 class='chapter'>
+  <a href='colorpicker.html#' class='top-anchor'>top &uarr;</a><a href='colorpicker.html#usage'>Usage Basics</a>
+</h2>
+<p>First, copy in place one of the files above, as you usually do. Then copy <a href='../images/rightjs-ui/colorpicker.png'>this image</a> to the same location on your server. (check the <a href='colorpicker.html#styles'>styles section</a> for more options on this regard)</p>
+
+<p>After that the usage principles are pretty much the same as for the <a href='calendar.html'>Calendar</a> widget. You can use it as an inline widget by inserting it at any place on your page</p>
+
+<code>&lt;div id=<s>"my-element"</s>&gt;&lt;/div&gt;<br/><br/><b class="var">new</b> <b class="unit">Colorpicker</b>().<u class="method">insertTo</u>(<s>'my-element'</s>);</code>
+
+<p>Or you can assign it to an input element to make it work in pair with it</p>
+
+<code>&lt;input type=<s>"text"</s> id=<s>"my-field"</s> /&gt;<br/><br/><b class="var">new</b> <b class="unit">Colorpicker</b>().<u class="method">assignTo</u>(<s>'my-field'</s>);</code>
+
+<p>You also can use an input-field and a trigger pair like that</p>
+
+<code>&lt;input type=<s>"text"</s> id=<s>"my-field"</s> /&gt;<br/>&lt;input type=<s>"image"</s> id=<s>"trigger"</s> /&gt;<br/><br/><b class="var">new</b> <b class="unit">Colorpicker</b>().<u class="method">assignTo</u>(<s>'my-field'</s>, <s>'trigger'</s>);</code>
+
+<p>And you can let the script automatically initialize and assign pickers by using the standard for RightJS HTML5 attribute <tt>data-colorpicker</tt></p>
+
+<code><i>// a single inputfield with colorpicker</i><br/>&lt;input type=<s>"text"</s> data-colorpcker=<s>""</s> /&gt;<br/>&lt;input type=<s>"text"</s> data-colorpcker=<s>"{format: 'rgb'}"</s> /&gt;<br/><br/><i>// an input field with a trigger</i><br/>&lt;input type=<s>"text"</s> id=<s>"my-field"</s> /&gt;<br/>&lt;input type=<s>"image"</s> data-colorpicker=<s>"{update: 'my-field'}"</s> /&gt;</code>
+
+<p><strong>NOTE</strong>: you can use any sort of elements for the trigger, it doesn&#8217;t have to be an input element.</p>
+<a name='options' ></a><h2 class='chapter'>
+  <a href='colorpicker.html#' class='top-anchor'>top &uarr;</a><a href='colorpicker.html#options'>Options List</a>
+</h2>
+<p>There is a small and simple list of options available for this widget</p>
+<table><thead><tr><th>Name</th><th>Default</th><th>Description</th></tr></thead><tbody><tr><td>format</td><td>&#8216;hex&#8217;</td><td>the output format, <tt>'hex'</tt> or <tt>'rgb'</tt></td>
+</tr><tr><td>update</td><td>null</td><td>an element to update with the color text</td>
+</tr><tr><td>updateBg</td><td>null</td><td>an element to update it&#8217;s background color</td>
+</tr><tr><td>trigger</td><td>null</td><td>a trigger element reference</td>
+</tr><tr><td>fxName</td><td>&#8216;fade&#8217;</td><td>the popup showing/hiding visual effect</td>
+</tr><tr><td>fxDuration</td><td>&#8216;short&#8217;</td><td>the visual effect duration</td>
+</tr><tr><td>cssRule</td><td>&#8217;*[data-colorpicker]&#8217;</td><td>the auto initialization feature css-rule</td>
+</tr></tbody></table>
+<p>As usual you can use any of those options with the <tt>Colorpicker</tt> class constructor or use the <tt>data-colorpicker</tt> HTML5 attribute to set options for the automatically initialized fields</p>
+<a name='events' ></a><h2 class='chapter'>
+  <a href='colorpicker.html#' class='top-anchor'>top &uarr;</a><a href='colorpicker.html#events'>Events List</a>
+</h2>
+<p>There is a short list of events available to be used with this widget</p>
+<table><thead><tr><th>Name</th><th>Description</th></tr></thead><tbody><tr><td>change</td><td>when the color was changed</td>
+</tr><tr><td>show</td><td>when the popup <tt>show</tt> action was called</td>
+</tr><tr><td>hide</td><td>when the popup <tt>hide</tt> action was called</td>
+</tr><tr><td>done</td><td>when the <tt>Done</tt> button was clicked</td>
+</tr></tbody></table><a name='api' ></a><h2 class='chapter'>
+  <a href='colorpicker.html#' class='top-anchor'>top &uarr;</a><a href='colorpicker.html#api'>API Reference</a>
+</h2>
+<p>There are several additional public methods available to help you work with colorpickers</p>
+<table><thead><tr><th>Name</th><th>Description</th></tr></thead><tbody><tr><td>setValue(color)</td><td>sets the current color, can be in the HEX or RGB format</td>
+</tr><tr><td>getValue()</td><td>returns the current color string formatted by the options</td>
+</tr><tr><td>toRgb()</td><td>returns the current color in the RGB format</td>
+</tr><tr><td>toHex()</td><td>returns the current color in the HEX format</td>
+</tr><tr><td>assignTo(element[, trigger])</td><td>assigns the colorpicker as a popup dialog</td>
+</tr><tr><td>updateBg(element)</td><td>assigns the element&#8217;s background to be automatically updated</td>
+</tr></tbody></table><a name='styles' ></a><h2 class='chapter'>
+  <a href='colorpicker.html#' class='top-anchor'>top &uarr;</a><a href='colorpicker.html#styles'>Style Alterations</a>
+</h2>
+<p>The colorpicker widget has the following HTML structure</p>
+
+<code>&lt;div class=<s>"rui-colorpicker rui-panel"</s>&gt;<br/>  &lt;div class=<s>"field"</s>&gt;<br/>    &lt;div class=<s>"pointer"</s>&gt;&lt;/div&gt;<br/>  &lt;/div&gt;<br/>  &lt;div class=<s>"colors"</s>&gt;<br/>    &lt;div class=<s>"pointer"</s>&gt;&lt;/div&gt;<br/>  &lt;/div&gt;<br/>  &lt;div class=<s>"controls"</s>&gt;<br/>    &lt;div class=<s>"preview"</s>&gt;&lt;/div&gt;<br/>    &lt;input type=<s>"text"</s> class=<s>"display"</s> /&gt;<br/>    &lt;div class=<s>"rgb-display"</s>&gt;<br/>      &lt;div&gt;&lt;label&gt;<s class="key">R</s>:&lt;/label&gt;&lt;input type=<s>"text"</s> <s class="re">/&gt;&lt;/</s>div&gt;<br/>      &lt;div&gt;&lt;label&gt;<s class="key">G</s>:&lt;/label&gt;&lt;input type=<s>"text"</s> <s class="re">/&gt;&lt;/</s>div&gt;<br/>      &lt;div&gt;&lt;label&gt;<s class="key">B</s>:&lt;/label&gt;&lt;input type=<s>"text"</s> <s class="re">/&gt;&lt;/</s>div&gt;<br/>    &lt;/div&gt;<br/>    &lt;input type=<s>"button"</s> class=<s>"rui-button"</s> /&gt;<br/>  &lt;/div&gt;<br/>&lt;/div&gt;</code>
+
+<p><strong>NOTE</strong>: This widget needs <a href='../images/rightjs-ui/colorpicker.png'>this image</a>, you should save it at the same location in your project, or define another one in your CSS layer like that</p>
+
+<code>div.<u>rui</u>-colorpicker div.<u>field</u>,<br/>div.<u>rui</u>-colorpicker div.<u>field</u> div.<u>pointer</u>,<br/>div.<u>rui</u>-colorpicker div.<u>colors</u>,<br/>div.<u>rui</u>-colorpicker div.<u>colors</u> div.<u>pointer</u> {<br/>  background-<s class="key">image</s>: url(<s class="re">/my/</s>image.<u>png</u>);<br/>}</code>
+        </div>
+        <div style="clear:both"></div>
+      </div>
+      <div id="foot">
+        <div id="contacts">
+  <h2>Questions?</h2>
+  <a href="&#x6D;&#x61;i&#x6C;&#x74;&#x6F;:&#105;&#110;&#102;&#111;&#064;&#114;&#105;&#103;&#104;&#116;&#106;&#115;&#046;&#111;&#114;&#103;">&#105;&#110;&#102;&#111;&#064;&#114;&#105;&#103;&#104;&#116;&#106;&#115;&#046;&#111;&#114;&#103;</a>
+</div>
+<div id="bottom-menu">
+  <h2>About the Framework</h2>
+  <a href="../philosophy.html">Philosophy</a> |
+  <a href="../benchmarks.html">Benchmarks</a> |
+  <a href="../browsers.html">Browsers</a> |
+  <a href="../contacts.html">Contacts</a>
+</div>
+        <div id="design">Design by <a href="http://activestylus.com">Steven Garcia</a></div>
+        <div id="copyright">Copyright &copy; 2008-2011 Nikolay Nemshilov</div>
+      </div>
+    </div>
+
+    <script src="http://www.google-analytics.com/ga.js" type="text/javascript"></script>
+    <script type="text/javascript">
+    // <![CDATA[
+      try { _gat._getTracker("UA-10292980-1")._trackPageview(); } catch(err) {}
+    // ]]>
+    </script>
+  </body>
+</html>

@@ -1,0 +1,220 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <title>RightJS: Documentation: Fx.Element</title>
+    <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+    <link href="../../blog.rss" rel="alternate" title="RightJS News" type="application/rss+xml" />
+    <script src="../../hotlink/right.js@1331880836" type="text/javascript"></script>
+<script src="../../javascripts/application.js@1295184937" type="text/javascript"></script>
+    <script src="../../builds/ui/right-autocompleter.js@1331880836" type="text/javascript"></script>
+    <link href="../../stylesheets/application.css@1297515667.css" media="screen" rel="stylesheet" type="text/css" />
+    
+    
+    
+  </head>
+  <body>
+    <div id="body">
+      <div id="head">
+        <a href="../../index.html" id="logo">RightJS</a>
+        <div id="slogan">JavaScript Framework That Feels Right</div>
+
+        <div id="main-menu">
+  <ul>
+    <li><a href="../../index.html">Home</a></li>
+    <li><a href="../../download.html">Download</a></li>
+    <li><a href="../../plugins.html">Plugins</a></li>
+    <li><a href="../../ui.html">UI</a></li>
+    <li><a href="../../demos.html">Demos</a></li>
+    <li class="current"><a href="../../docs.html">Docs</a></li>
+    <li><a href="../../blog.html">Blog</a></li>
+  </ul>
+  <div id="zing"><!-- the moving thing --></div>
+</div>
+        <div id="lang-switch">
+    <select onchange="document.location.href=this.value;">
+      <option selected="true" value="http://rightjs.org/docs/fx/element">English</option>
+      <option value="http://ru.rightjs.org/docs/fx/element">Русский</option>
+    </select>
+</div>
+      </div>
+      <div id="main">
+        <div id="sidebar">
+
+  <div id="api-search" class="box">
+  <input type="text" value="Search API" id="api-search-field" />
+  <script type="text/javascript">
+  // <![CDATA[
+    new Autocompleter($('api-search-field').on({
+      focus: function() { this._v = this.value(); this.value(''); },
+      blur:  function() { this.value(this._v); }
+    }), {
+      url: '/docs/search/%{search}.js',
+      onDone: function() {
+        var current = this.first('.current');
+        if (current) {
+          document.location.href = current.get('title');
+        }
+        this.input.setValue(this.input._v);
+      }
+    });
+  // ]]>
+  </script>
+</div>
+
+  <div class="box" id="api-lists">
+    <label>Core</label><ul><li><a href="../browser.html">Browser</a></li><li><a href="../class.html">Class</a></li><li><a href="../util.html">Util</a></li></ul>
+<label>Dom</label><ul><li><a href="../document.html">Document</a></li><li><a href="../element.html">Element</a></li><li><a href="../event.html">Event</a></li><li><a href="../form.html">Form</a></li><li><a href="../input.html">Input</a></li><li><a href="../window.html">Window</a></li></ul>
+<label>Fx</label><ul><li><a href="../fx.html">Fx</a></li><li><a href="attr.html">Fx.Attr</a></li><li class="current"><a href="element.html">Fx.Element</a></li><ul><li><a href="element.html#fade">fade</a></li><li><a href="element.html#highlight">highlight</a></li><li><a href="element.html#morph">morph</a></li><li><a href="element.html#scroll">scroll</a></li><li><a href="element.html#slide">slide</a></li></ul><li><a href="fade.html">Fx.Fade</a></li><li><a href="highlight.html">Fx.Highlight</a></li><li><a href="morph.html">Fx.Morph</a></li><li><a href="scroll.html">Fx.Scroll</a></li><li><a href="slide.html">Fx.Slide</a></li></ul>
+<label>Lang</label><ul><li><a href="../array.html">Array</a></li><li><a href="../function.html">Function</a></li><li><a href="../json.html">Json</a></li><li><a href="../math.html">Math</a></li><li><a href="../number.html">Number</a></li><li><a href="../object.html">Object</a></li><li><a href="../regexp.html">Regexp</a></li><li><a href="../string.html">String</a></li></ul>
+<label>Util</label><ul><li><a href="../cookie.html">Cookie</a></li><li><a href="../observer.html">Observer</a></li><li><a href="../options.html">Options</a></li><li><a href="../xhr.html">Xhr</a></li></ul>
+  </div>
+
+  <div class="box">
+    <a href='http://www.pledgie.com/campaigns/14259'><img alt='Donate!' src='http://www.pledgie.com/campaigns/14259.png?skin_name=chrome' border='0' /></a>
+  </div>
+
+  <div class="box">
+    <ul id="social">
+      <li><a href="../../blog.rss" id="rss-link">RSS</a></li>
+      <li><a href="http://twitter.com/rightjs" id="twitter-link">Twitter</a></li>
+      <li><a href="http://github.com/rightjs" id="github-link">GitHub</a></li>
+    </ul>
+  </div>
+</div>
+
+        <div id="info">
+          
+<h1>Fx Element Extensions</h1>
+
+<p>There are several shortcuts to initiate visual effects on DOM elements.</p>
+
+<h1>Methods</h1>
+<p>
+  <a href="element.html#fade">fade</a>, <a href="element.html#highlight">highlight</a>, <a href="element.html#morph">morph</a>, <a href="element.html#scroll">scroll</a>, <a href="element.html#slide">slide</a>
+</p>
+
+<div class="method">
+  <a name="fade"></a>
+  <h2><a class="top-anchor" href="element.html#">top &uarr;</a><a href="element.html#fade">fade</a></h2>
+
+  <p class="semantic">
+    <code>fade([<b class="unit">String</b> how[, <b class="unit">Object</b> options]]) -&gt; <b class="unit">Element</b> <b class="var">self</b><br/>fade([<b class="unit">Object</b> options])               -&gt; <b class="unit">Element</b> <b class="var">self</b></code>
+  </p>
+
+
+  <h4>Description</h4>
+  <p>Runs the <a href='fade.html' class='api-ref'>Fx.Fade</a> effect on the element.</p>
+
+
+
+  <h4>Example</h4>
+  <p>
+    <code>$(element).<u class="method">fade</u>();<br/><br/>$(element).<u class="method">fade</u>(<s>'out'</s>);<br/>$(element).<u class="method">fade</u>(<s>'in'</s>, {<s class="key">onFinish</s>: <b>function</b>() {}});</code>
+  </p>
+
+</div><div class="method">
+  <a name="highlight"></a>
+  <h2><a class="top-anchor" href="element.html#">top &uarr;</a><a href="element.html#highlight">highlight</a></h2>
+
+  <p class="semantic">
+    <code>highlight([<b class="unit">String</b> color[, <b class="unit">String</b> end_color[, <b class="unit">Object</b> fx_options]]]) -&gt; <b class="unit">Element</b> <b class="var">self</b><br/>highlight([<b class="unit">String</b> color[, <b class="unit">Object</b> fx_options]]) -&gt; <b class="unit">Element</b> <b class="var">self</b><br/>highlight([<b class="unit">Object</b> fx_options])                 -&gt; <b class="unit">Element</b> <b class="var">self</b></code>
+  </p>
+
+
+  <h4>Description</h4>
+  <p>Runs the <a href='highlight.html' class='api-ref'>Fx.Highlight</a> effect on the element.</p>
+
+
+
+  <h4>Example</h4>
+  <p>
+    <code>$(element).<u class="method">highlight</u>();<br/><br/>$(element).<u class="method">highlight</u>(<s>'blue'</s>);<br/>$(element).<u class="method">highlight</u>({<s class="key">onFinish</s>: <b>function</b>() {}});</code>
+  </p>
+
+</div><div class="method">
+  <a name="morph"></a>
+  <h2><a class="top-anchor" href="element.html#">top &uarr;</a><a href="element.html#morph">morph</a></h2>
+
+  <p class="semantic">
+    <code>morph(<b class="unit">Object</b> style[, <b class="unit">Object</b> fx_options]) -&gt; <b class="unit">Element</b> <b class="var">self</b></code>
+  </p>
+
+
+  <h4>Description</h4>
+  <p>Runs the <a href='morph.html' class='api-ref'>Fx.Morph</a> effect on the element.</p>
+
+
+
+  <h4>Example</h4>
+  <p>
+    <code>$(element).<u class="method">morph</u>({<br/>  <s class="key">width</s>: <s>'200px'</s>,<br/>  <s class="key">height</s>: <s>'400px'</s><br/>});</code>
+  </p>
+
+</div><div class="method">
+  <a name="scroll"></a>
+  <h2><a class="top-anchor" href="element.html#">top &uarr;</a><a href="element.html#scroll">scroll</a></h2>
+
+  <p class="semantic">
+    <code>scroll(<b class="unit">Object</b> {<s class="key">x</s>:N, <s class="key">y</s>:N}[, <b class="unit">Object</b> options]) -&gt; <b class="unit">Element</b> <b class="var">self</b></code>
+  </p>
+
+
+  <h4>Description</h4>
+  <p>Smoothly scrolls to the given position.</p>
+
+
+
+  <h4>Example</h4>
+  <p>
+    <code>$(element).<u class="method">scroll</u>({<s class="key">x</s>: <s class="int">100</s>});<br/>$(element).<u class="method">scroll</u>({<s class="key">y</s>: <s class="int">200</s>});<br/>$(element).<u class="method">scroll</u>({<s class="key">x</s>: <s class="int">10</s>, <s class="key">y</s>: <s class="int">20</s>});<br/><br/>$(element).<u class="method">scroll</u>({<s class="key">x</s>: <s class="int">100</s>}, {<s class="key">duration</s>: <s>'long'</s>});</code>
+  </p>
+
+</div><div class="method">
+  <a name="slide"></a>
+  <h2><a class="top-anchor" href="element.html#">top &uarr;</a><a href="element.html#slide">slide</a></h2>
+
+  <p class="semantic">
+    <code>slide([<b class="unit">String</b> how[, <b class="unit">Object</b> fx_options]]) -&gt; <b class="unit">Element</b> <b class="var">self</b><br/>slide([<b class="unit">Object</b> fx_options])               -&gt; <b class="unit">Element</b> <b class="var">self</b></code>
+  </p>
+
+
+  <h4>Description</h4>
+  <p>Runs the <a href='slide.html' class='api-ref'>Fx.Slide</a> effect on the element.</p>
+
+
+
+  <h4>Example</h4>
+  <p>
+    <code>$(element).<u class="method">slide</u>();<br/><br/>$(element).<u class="method">slide</u>(<s>'out'</s>);<br/>$(element).<u class="method">slide</u>({<s class="key">onFinish</s>: <b>function</b>() {}});</code>
+  </p>
+
+</div>
+
+        </div>
+        <div style="clear:both"></div>
+      </div>
+      <div id="foot">
+        <div id="contacts">
+  <h2>Questions?</h2>
+  <a href="&#x6D;&#x61;i&#x6C;&#x74;&#x6F;:&#105;&#110;&#102;&#111;&#064;&#114;&#105;&#103;&#104;&#116;&#106;&#115;&#046;&#111;&#114;&#103;">&#105;&#110;&#102;&#111;&#064;&#114;&#105;&#103;&#104;&#116;&#106;&#115;&#046;&#111;&#114;&#103;</a>
+</div>
+<div id="bottom-menu">
+  <h2>About the Framework</h2>
+  <a href="../../philosophy.html">Philosophy</a> |
+  <a href="../../benchmarks.html">Benchmarks</a> |
+  <a href="../../browsers.html">Browsers</a> |
+  <a href="../../contacts.html">Contacts</a>
+</div>
+        <div id="design">Design by <a href="http://activestylus.com">Steven Garcia</a></div>
+        <div id="copyright">Copyright &copy; 2008-2011 Nikolay Nemshilov</div>
+      </div>
+    </div>
+
+    <script src="http://www.google-analytics.com/ga.js" type="text/javascript"></script>
+    <script type="text/javascript">
+    // <![CDATA[
+      try { _gat._getTracker("UA-10292980-1")._trackPageview(); } catch(err) {}
+    // ]]>
+    </script>
+  </body>
+</html>

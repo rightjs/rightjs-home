@@ -1,0 +1,270 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <title>RightJS: Lightbox</title>
+    <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+    <link href="../blog.rss" rel="alternate" title="RightJS News" type="application/rss+xml" />
+    <script src="../hotlink/right.js@1333128729" type="text/javascript"></script>
+<script src="../javascripts/application.js@1295184937" type="text/javascript"></script>
+    <script src="../builds/ui/right-autocompleter.js@1333128730" type="text/javascript"></script>
+    <link href="../stylesheets/application.css@1297515667.css" media="screen" rel="stylesheet" type="text/css" />
+    
+    <link href="../stylesheets/rightjs-ui-home.css@1295874376.css" media="screen" rel="stylesheet" type="text/css" />
+    
+  </head>
+  <body>
+    <div id="body">
+      <div id="head">
+        <a href="../index.html" id="logo">RightJS</a>
+        <div id="slogan">JavaScript Framework That Feels Right</div>
+
+        <div id="main-menu">
+  <ul>
+    <li><a href="../index.html">Home</a></li>
+    <li><a href="../download.html">Download</a></li>
+    <li><a href="../plugins.html">Plugins</a></li>
+    <li class="current"><a href="../ui.html">UI</a></li>
+    <li><a href="../demos.html">Demos</a></li>
+    <li><a href="../docs.html">Docs</a></li>
+    <li><a href="../blog.html">Blog</a></li>
+  </ul>
+  <div id="zing"><!-- the moving thing --></div>
+</div>
+        <div id="lang-switch">
+    <select onchange="document.location.href=this.value;">
+      <option selected="true" value="http://rightjs.org/ui/lightbox">English</option>
+      <option value="http://ru.rightjs.org/ui/lightbox">Русский</option>
+    </select>
+</div>
+      </div>
+      <div id="main">
+        <div id="sidebar">
+  <div class="box" id="download-box">
+    <h1>Get it!</h1>
+    <ul>
+      <li><a href="../builds/current/right.js.zip">RightJS v2.3.1</a></li>
+    </ul>
+  </div>
+
+  <div id="api-search" class="box">
+  <input type="text" value="Search API" id="api-search-field" />
+  <script type="text/javascript">
+  // <![CDATA[
+    new Autocompleter($('api-search-field').on({
+      focus: function() { this._v = this.value(); this.value(''); },
+      blur:  function() { this.value(this._v); }
+    }), {
+      url: '/docs/search/%{search}.js',
+      onDone: function() {
+        var current = this.first('.current');
+        if (current) {
+          document.location.href = current.get('title');
+        }
+        this.input.setValue(this.input._v);
+      }
+    });
+  // ]]>
+  </script>
+</div>
+
+  <div class="box">
+    <label>Documentation</label>
+    <ul>
+      <li><a href="../tutorials/getting-started.html">Getting Started</a></li>
+      <li><a href="../tutorials/top-features.html">Top 12 Features</a></li>
+      <li><a href="../docs.html">API Reference</a></li>
+      <li><a href="../tutorials.1.html">Tutorials</a></li>
+    </ul>
+  </div>
+
+  <div class="box">
+    <label>Additional</label>
+    <ul>
+      <li><a href="../plugins.html">RightJS Plugins</a></li>
+      
+      <li class="current"><a href="../ui.html">RightJS UI</a></li>
+      <ul id="ui-menu"><li><a href="autocompleter.html">Autocompleter</a></li>
+<li><a href="billboard.html">Billboard</a></li>
+<li><a href="calendar.html">Calendar</a></li>
+<li><a href="colorpicker.html">Colorpicker</a></li>
+<li><a href="dialog.html">Dialog</a></li>
+<li><a href="in-edit.html">In Place Edit</a></li>
+<li class="current"><a href="lightbox.html">Lightbox</a></li>
+<li><a href="rater.html">Rater</a></li>
+<li><a href="resizable.html">Resizable</a></li>
+<li><a href="rte.html">Rte</a></li>
+<li><a href="selectable.html">Selectable</a></li>
+<li><a href="slider.html">Slider</a></li>
+<li><a href="sortable.html">Sortable</a></li>
+<li><a href="tabs.html">Tabs</a></li>
+<li><a href="tags.html">Tags</a></li>
+<li><a href="tooltips.html">Tooltips</a></li>
+<li><a href="uploader.html">Uploader</a></li></ul>
+      <li><a href="../showcases.html">Showcases</a></li>
+    </ul>
+  </div>
+
+  <div class="box">
+    <label>Community</label>
+    <ul>
+      <li><a href="http://groups.google.com/group/rightjs">Google Group</a></li>
+      <li><a href="http://rightjs.lighthouseapp.com/projects/31989">Tickets Tracker</a></li>
+      <li><a href="http://github.com/rightjs/rightjs-snippets">Code Snippets</a></li>
+      <li><a href="irc://irc.freenode.net/rightjs">IRC #rightjs</a></li>
+      <li><a href="../participate.html">Participate!</a></li>
+    </ul>
+  </div>
+
+  <div class="box">
+    <a href='http://www.pledgie.com/campaigns/14259'><img alt='Donate!' src='http://www.pledgie.com/campaigns/14259.png?skin_name=chrome' border='0' /></a>
+  </div>
+
+  <div class="box">
+    <ul id="social">
+      <li><a href="../blog.rss" id="rss-link">RSS</a></li>
+      <li><a href="http://twitter.com/rightjs" id="twitter-link">Twitter</a></li>
+      <li><a href="http://github.com/rightjs" id="github-link">GitHub</a></li>
+    </ul>
+  </div>
+</div>
+
+        <div id="info">
+          <h1>Lightbox</h1>
+
+<p>Lightbox is the standard lightbox-popup feature for RightJS</p>
+
+<p>Get the latest version right here</p>
+
+<ul>
+<li><a href='../builds/ui/right-lightbox.js'>right-lightbox.js</a> - minified version</li>
+
+<li><a href='../builds/ui/right-lightbox-src.js'>right-lightbox-src.js</a> - source code</li>
+</ul>
+
+<p>All the source code of the project is available under terms of the MIT license</p>
+
+<p><a href='http://github.com/rightjs/rightjs-ui/tree/master/src/lightbox/'>http://github.com/rightjs/rightjs-ui/tree/master/src/lightbox/</a></p>
+
+<p>For some standard usage examples see the <a href='lightbox/demo.html'>demo page</a></p>
+<h2 class="chapter"><a href='lightbox.html#'>Index</a></h2><p><ul><li><a href="lightbox.html#features">Features List</a></li><li><a href="lightbox.html#usage">Usage Basics</a></li><li><a href="lightbox.html#api">API Reference</a></li><li><a href="lightbox.html#links">Links Automatic Processing</a></li><li><a href="lightbox.html#video">Video Streams</a></li><li><a href="lightbox.html#options">Options List</a></li><li><a href="lightbox.html#styles">Style Adjustments</a></li></ul></p><a name='features' ></a><h2 class='chapter'>
+  <a href='lightbox.html#' class='top-anchor'>top &uarr;</a><a href='lightbox.html#features'>Features List</a>
+</h2>
+<p>Right Lightbox has the following features</p>
+
+<ul>
+<li>Can display any html content you need</li>
+
+<li>Supports content loading via ajax</li>
+
+<li>Supports links to video streams</li>
+
+<li>Groups and collections support</li>
+
+<li>Content auto initialization via the <tt>rel="lightbox"</tt> attribute</li>
+
+<li>It has really tiny size of just 4k gzipped and doesn&#8217;t need any images</li>
+
+<li>Everything is included in one single file</li>
+</ul>
+<a name='usage' ></a><h2 class='chapter'>
+  <a href='lightbox.html#' class='top-anchor'>top &uarr;</a><a href='lightbox.html#usage'>Usage Basics</a>
+</h2>
+<p>The usage of Right Lightbox is really simple. Just grab the file above, include it on your page and you are good to go</p>
+
+<code>&lt;script src=<s>"/javascripts/right-lightbox.js"</s> type=<s>"text/javascript"</s>&gt;&lt;/script&gt;</code>
+
+<p>Right Lightbox does not require any images and all the styles are inlined inside the javascript file</p>
+<a name='api' ></a><h2 class='chapter'>
+  <a href='lightbox.html#' class='top-anchor'>top &uarr;</a><a href='lightbox.html#api'>API Reference</a>
+</h2>
+<p>Right Lightbox has a really simple interface</p>
+<table><thead><tr><th>Method</th><th>Description</th></tr></thead><tbody><tr><td>show(mixed content[, Object size])</td><td>shows any given content</td>
+</tr><tr><td>load(String url[, Object options])</td><td>loads content via an ajax request</td>
+</tr><tr><td>hide()</td><td>hides the lightbox</td>
+</tr></tbody></table>
+<p>You can use those methods to work with Lightbox as with a single class</p>
+
+<code><b class="unit">Lightbox</b>.<u class="method">show</u>(<s>'some content'</s>);<br/><b class="unit">Lightbox</b>.<u class="method">load</u>(<s>'/some/address'</s>);<br/><b class="unit">Lightbox</b>.<u class="method">hide</u>();</code>
+
+<p>Or you can have usual instances of the Lightbox class</p>
+
+<code><b class="var">var</b> box = <b class="var">new</b> <b class="unit">Lightbox</b>();<br/>box.<u class="method">show</u>(<s>'some content'</s>);<br/>box.<u class="method">load</u>(<s>'/some/url'</s>);<br/>box.<u class="method">hide</u>();</code>
+<a name='links' ></a><h2 class='chapter'>
+  <a href='lightbox.html#' class='top-anchor'>top &uarr;</a><a href='lightbox.html#links'>Links Automatic Processing</a>
+</h2>
+<p>When you pass a link node into the <tt>show</tt> method, Lightbox will automatically grab its url address and title, then load the content referred by the link, show it and set the link&#8217;s title on the box.</p>
+
+<code><i>// &lt;a href="/some/url" title="Some Content" id="the-link"&gt;click me&lt;/a&gt;</i><br/><br/><b class="unit">Lightbox</b>.<u class="method">show</u>($(<s>'the-link'</s>));</code>
+
+<p>Right Lightbox will automatically check the url address, if it is an image it will be shown as an image, if it&#8217;s a link to a video stream it will build an embedded video object. And at the bottom it will try to load the content via an <a href='../docs/xhr.html' class='api-ref'>Xhr</a> request and show. You don&#8217;t need to do anything about it.</p>
+
+<p>And you don&#8217;t need to do those things manually. In similarity to the <a href='http://www.huddletogether.com/projects/lightbox2'>Lightbox 2</a> project, you can set the attribute <tt>rel="lightbox"</tt> and Lightbox will automatically hook those links to be shown in the lightboxes.</p>
+
+<p>Galleries with the <tt>rel="lightbox[roadtrip]"</tt> attributes work too</p>
+<a name='video' ></a><h2 class='chapter'>
+  <a href='lightbox.html#' class='top-anchor'>top &uarr;</a><a href='lightbox.html#video'>Video Streams</a>
+</h2>
+<p>This Lightbox implementation supports links to video streams. Basically there is nothing special about the actual links and all of them will be processed the same way as any other links.</p>
+
+<code>&lt;a href=<s>"http:/www.youtube.com/watch?v=VAfnbIrQTSk"</s><br/>   rel=<s>"lightbox"</s>&gt;<b class="unit">Funny</b> <b class="unit">Youtube</b> video&lt;/a&gt;</code>
+
+<p>Currently, Lightbox supports links to the following resources</p>
+
+<ul>
+<li>YouTube</li>
+
+<li>Google Video</li>
+
+<li>Vimeo</li>
+</ul>
+<a name='options' ></a><h2 class='chapter'>
+  <a href='lightbox.html#' class='top-anchor'>top &uarr;</a><a href='lightbox.html#options'>Options List</a>
+</h2>
+<p>There are several options when you are using Right Lightbox</p>
+<table><thead><tr><th>Name</th><th>Default</th><th>Description</th></tr></thead><tbody><tr><td>endOpacity</td><td>0.8</td><td>the locker end opacity</td>
+</tr><tr><td>fxDuration</td><td>200</td><td>the visual effects duration</td>
+</tr><tr><td>hideOnEsc</td><td>true</td><td>should the lightbox be closed on the Esc button</td>
+</tr><tr><td>hideOnOutClick</td><td>true</td><td>should the lightbox be closed on click outside of the box</td>
+</tr><tr><td>showCloseButton</td><td>true</td><td>should the close button be available</td>
+</tr><tr><td>group</td><td>null</td><td>a name of a group for galleries</td>
+</tr><tr><td>cssRule</td><td>&#8220;a[data-lightbox]&#8221;</td><td>css-rule for automatically processable lightbox links</td>
+</tr><tr><td>mediaWidth</td><td>425</td><td>video player width</td>
+</tr><tr><td>mediaHeight</td><td>350</td><td>video player height</td>
+</tr></tbody></table>
+<p>You can pass those options as a hash for the constructor, or change them globally at the <tt>Lightbox.Options</tt> object</p>
+
+<code><b class="var">var</b> hard_box = <b class="var">new</b> <b class="unit">Lightbox</b>({<s class="key">hideOnEsc</s>: <b class="rest">false</b>, <s class="key">hideOnOutClick</s>: <b class="rest">false</b>, <s class="key">showCloseButton</s>: <b class="rest">false</b>});<br/>hard_box.<u class="method">setTitle</u>(<s>'Fill It Up'</s>);<br/>hard_box.<u class="method">show</u>(<s>'some required form'</s>);</code>
+<a name='styles' ></a><h2 class='chapter'>
+  <a href='lightbox.html#' class='top-anchor'>top &uarr;</a><a href='lightbox.html#styles'>Style Adjustments</a>
+</h2>
+<p>If you need to alter the lightbox view to make it fit your design, please use the following elements structure description as a guidance.</p>
+
+<code>&lt;div class=<s>"rui-lightbox"</s>&gt;<br/>  &lt;div class=<s>"rui-lightbox-locker"</s>&gt;&lt;/div&gt;<br/><br/>  &lt;div class=<s>"rui-lightbox-dialog"</s>&gt;<br/>    &lt;div class=<s>"rui-lightbox-title"</s>&gt;&lt;/div&gt;<br/><br/>    &lt;div class=<s>"rui-lightbox-body"</s>&gt;<br/>      &lt;div class=<s>"rui-lightbox-body-inner"</s>&gt;<br/>        &lt;div class=<s>"rui-lightbox-body-locker"</s>&gt;<br/>          &lt;div class=<s>"rui-spinner"</s>&gt;&lt;/div&gt;<br/>        &lt;/div&gt;<br/>        &lt;div class=<s>"rui-lightbox-scroller"</s>&gt;<br/>          &lt;div class=<s>"rui-lightbox-content"</s>&gt;<br/>            <b class="unit">Your</b> content in here<br/>          &lt;/div&gt;<br/>        &lt;/div&gt;<br/>      &lt;/div&gt;<br/>    &lt;/div&gt;<br/><br/>    &lt;div class=<s>"rui-lightbox-nav"</s>&gt;<br/>      &lt;div class=<s>"close"</s>&gt;&amp;times;&lt;/div&gt;<br/>      &lt;div class=<s>"prev"</s>&gt;&amp;larrow;&lt;/div&gt;<br/>      &lt;div class=<s>"next"</s>&gt;&amp;rarrow;&lt;/div&gt;<br/>    &lt;/div&gt;<br/>  &lt;/div&gt;<br/>&lt;/div&gt;</code>
+        </div>
+        <div style="clear:both"></div>
+      </div>
+      <div id="foot">
+        <div id="contacts">
+  <h2>Questions?</h2>
+  <a href="&#x6D;&#x61;i&#x6C;&#x74;&#x6F;:&#105;&#110;&#102;&#111;&#064;&#114;&#105;&#103;&#104;&#116;&#106;&#115;&#046;&#111;&#114;&#103;">&#105;&#110;&#102;&#111;&#064;&#114;&#105;&#103;&#104;&#116;&#106;&#115;&#046;&#111;&#114;&#103;</a>
+</div>
+<div id="bottom-menu">
+  <h2>About the Framework</h2>
+  <a href="../philosophy.html">Philosophy</a> |
+  <a href="../benchmarks.html">Benchmarks</a> |
+  <a href="../browsers.html">Browsers</a> |
+  <a href="../contacts.html">Contacts</a>
+</div>
+        <div id="design">Design by <a href="http://activestylus.com">Steven Garcia</a></div>
+        <div id="copyright">Copyright &copy; 2008-2011 Nikolay Nemshilov</div>
+      </div>
+    </div>
+
+    <script src="http://www.google-analytics.com/ga.js" type="text/javascript"></script>
+    <script type="text/javascript">
+    // <![CDATA[
+      try { _gat._getTracker("UA-10292980-1")._trackPageview(); } catch(err) {}
+    // ]]>
+    </script>
+  </body>
+</html>

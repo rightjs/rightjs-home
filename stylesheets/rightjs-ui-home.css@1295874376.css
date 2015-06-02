@@ -1,0 +1,127 @@
+/** RightJS UI modules official site like styles */
+ul.rui-autocompleter li.current {
+  list-style: none;
+  background: #C4C3B3;
+}
+
+
+div.rui-calendar {
+  background: #E8E6E0;
+}
+
+*.rui-ui-button, table.month td {
+  background: #F8F6F0;
+}
+*.rui-ui-button:hover, table.month td:hover {
+  background: #DDDDCC;
+}
+div.rui-calendar table.month th {
+  color: #7A5E43;
+  font-family: "Trebuchet MS", Garuda, sans-serif;
+}
+div.rui-calendar table.month td.selected {
+  color: #4D3A2A;
+  background: #D8D6D0;
+}
+
+
+
+*.rui-selectable, div.rui-selectable-container {
+  background: #FFFEFC;
+}
+*.rui-selectable {
+  list-style: none;
+  list-style-image: none;
+}
+
+*.rui-selectable li:hover, *.rui-selectable li.rui-selectable-selected, dl.rui-selectable dt {
+  background: #D8D6D0;
+}
+dl.rui-selectable dt {
+  font-size: 11pt;
+}
+
+*.rui-selectable li.rui-selectable-disabled,
+*.rui-selectable li.rui-selectable-disabled:hover {
+  background: #C4C3B4;
+}
+
+div.rui-selectable-container div.rui-selectable-handle {
+  background: #D8D6D0;
+}
+*.rui-selectable, *.rui-selectable * {
+  list-style: none;
+}
+
+
+div.rui-slider {
+  background: #E8E6E0;
+}
+div.rui-slider .level {
+  background: #d8d6d0;
+}
+div.rui-slider .handle {
+  background: #b8b6b0;
+}
+
+
+.rui-tabs * {
+  border-color: #CFCEBD;
+}
+.rui-tabs ul, .rui-tabs li {
+  list-style-image: none;
+}
+.rui-tabs-tab a,
+.rui-tabs .rui-tabs-scroller .rui-tabs-scroll-left,
+.rui-tabs .rui-tabs-scroller .rui-tabs-scroll-right {
+  background: #E8E6E0;
+}
+.rui-tabs-tab a:hover,
+.rui-tabs .rui-tabs-scroller .rui-tabs-scroll-left:hover,
+.rui-tabs .rui-tabs-scroller .rui-tabs-scroll-right:hover {
+  background: #D8D6D0;
+}
+.rui-tabs .rui-tabs-list .rui-tabs-current a, dl.rui-tabs dt.rui-tabs-current a  {
+  background: #F8F6F0;
+  color: #4D3A2A;
+}
+.rui-tabs-disabled, .rui-tabs-disabled a, .rui-tabs-disabled a:hover {
+  background: #E8E6E0;
+}
+.rui-tabs-carousel .rui-tabs-tab a,
+.rui-tabs-carousel .rui-tabs-scroller .rui-tabs-scroller-prev,
+.rui-tabs-carousel .rui-tabs-scroller .rui-tabs-scroller-next {
+  height: 80px;
+  line-height: 80px;
+}
+.rui-tabs-carousel .rui-tabs-tab a img {
+  margin-top: .2em;
+}
+dl.rui-tabs dt.rui-tabs-current a {
+  background: #E8E6E0;
+}
+
+div.rui-colorpicker input.display {
+  margin-top: .4em;
+}
+
+div.rui-colorpicker div.rgb-display {
+  margin-top: .4em;
+}
+
+.rui-colorpicker label,
+.rui-colorpicker input {
+  font-weight: normal;
+  vertical-align: middle;
+}
+
+.rui-billboard {
+  list-style: none !important;
+  list-style-image: none !important;
+  padding-left: 0 !important;
+}
+
+.rui-sortable {
+  list-style: none !important;
+  list-style-image: none !important;
+}

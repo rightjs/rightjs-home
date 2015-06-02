@@ -1,0 +1,345 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <title>RightJS: Tabs</title>
+    <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+    <link href="http://www.rightjs.org/blog.rss" rel="alternate" title="RightJS News" type="application/rss+xml" />
+    <script src="../hotlink/right.js@1333128729" type="text/javascript"></script>
+<script src="../javascripts/application.js@1295184937" type="text/javascript"></script>
+    <script src="../builds/ui/right-autocompleter.js@1333128730" type="text/javascript"></script>
+    <link href="../stylesheets/application.css@1297515667.css" media="screen" rel="stylesheet" type="text/css" />
+    
+    <link href="../stylesheets/rightjs-ui-home.css@1295874376.css" media="screen" rel="stylesheet" type="text/css" />
+    
+  </head>
+  <body>
+    <div id="body">
+      <div id="head">
+        <a href="../index.html" id="logo">RightJS</a>
+        <div id="slogan">JavaScript Framework That Feels Right</div>
+
+        <div id="main-menu">
+  <ul>
+    <li><a href="../index.html">Home</a></li>
+    <li><a href="../download.html">Download</a></li>
+    <li><a href="../plugins.html">Plugins</a></li>
+    <li class="current"><a href="../ui.html">UI</a></li>
+    <li><a href="../demos.html">Demos</a></li>
+    <li><a href="../docs.html">Docs</a></li>
+    <li><a href="../blog.html">Blog</a></li>
+  </ul>
+  <div id="zing"><!-- the moving thing --></div>
+</div>
+        <div id="lang-switch">
+    <select onchange="document.location.href=this.value;">
+      <option selected="true" value="http://www.rightjs.org/ui/tabs">English</option>
+      <option value="http://ru.www.rightjs.org/ui/tabs">Русский</option>
+    </select>
+</div>
+      </div>
+      <div id="main">
+        <div id="sidebar">
+  <div class="box" id="download-box">
+    <h1>Get it!</h1>
+    <ul>
+      <li><a href="../builds/current/right.js.zip">RightJS v2.3.1</a></li>
+    </ul>
+  </div>
+
+  <div id="api-search" class="box">
+  <input type="text" value="Search API" id="api-search-field" />
+  <script type="text/javascript">
+  // <![CDATA[
+    new Autocompleter($('api-search-field').on({
+      focus: function() { this._v = this.value(); this.value(''); },
+      blur:  function() { this.value(this._v); }
+    }), {
+      url: '/docs/search/%{search}.js',
+      onDone: function() {
+        var current = this.first('.current');
+        if (current) {
+          document.location.href = current.get('title');
+        }
+        this.input.setValue(this.input._v);
+      }
+    });
+  // ]]>
+  </script>
+</div>
+
+  <div class="box">
+    <label>Documentation</label>
+    <ul>
+      <li><a href="../tutorials/getting-started.html">Getting Started</a></li>
+      <li><a href="../tutorials/top-features.html">Top 12 Features</a></li>
+      <li><a href="../docs.html">API Reference</a></li>
+      <li><a href="../tutorials.1.html">Tutorials</a></li>
+    </ul>
+  </div>
+
+  <div class="box">
+    <label>Additional</label>
+    <ul>
+      <li><a href="../plugins.html">RightJS Plugins</a></li>
+      
+      <li class="current"><a href="../ui.html">RightJS UI</a></li>
+      <ul id="ui-menu"><li><a href="autocompleter.html">Autocompleter</a></li>
+<li><a href="billboard.html">Billboard</a></li>
+<li><a href="calendar.html">Calendar</a></li>
+<li><a href="colorpicker.html">Colorpicker</a></li>
+<li><a href="dialog.html">Dialog</a></li>
+<li><a href="in-edit.html">In Place Edit</a></li>
+<li><a href="lightbox.html">Lightbox</a></li>
+<li><a href="rater.html">Rater</a></li>
+<li><a href="resizable.html">Resizable</a></li>
+<li><a href="rte.html">Rte</a></li>
+<li><a href="selectable.html">Selectable</a></li>
+<li><a href="slider.html">Slider</a></li>
+<li><a href="sortable.html">Sortable</a></li>
+<li class="current"><a href="tabs.html">Tabs</a></li>
+<li><a href="tags.html">Tags</a></li>
+<li><a href="tooltips.html">Tooltips</a></li>
+<li><a href="uploader.html">Uploader</a></li></ul>
+      <li><a href="../showcases.html">Showcases</a></li>
+    </ul>
+  </div>
+
+  <div class="box">
+    <label>Community</label>
+    <ul>
+      <li><a href="http://groups.google.com/group/rightjs">Google Group</a></li>
+      <li><a href="http://rightjs.lighthouseapp.com/projects/31989">Tickets Tracker</a></li>
+      <li><a href="http://github.com/rightjs/rightjs-snippets">Code Snippets</a></li>
+      <li><a href="irc://irc.freenode.net/rightjs">IRC #rightjs</a></li>
+      <li><a href="../participate.html">Participate!</a></li>
+    </ul>
+  </div>
+
+  <div class="box">
+    <a href='http://www.pledgie.com/campaigns/14259'><img alt='Donate!' src='http://www.pledgie.com/campaigns/14259.png?skin_name=chrome' border='0' /></a>
+  </div>
+
+  <div class="box">
+    <ul id="social">
+      <li><a href="../blog.rss" id="rss-link">RSS</a></li>
+      <li><a href="http://twitter.com/rightjs" id="twitter-link">Twitter</a></li>
+      <li><a href="http://github.com/rightjs" id="github-link">GitHub</a></li>
+    </ul>
+  </div>
+</div>
+
+        <div id="info">
+          <h1>Tabs</h1>
+
+<p>Right Tabs is the standard tabs engine for the RightJS UI project. It provides an easy way of creating usual tabs, and also carousel and harmonica widgets, joining them under a single unified engine.</p>
+
+<p>Get the latest version right here</p>
+
+<ul>
+<li><a href='../builds/ui/right-tabs.js'>right-tabs.js</a> - minified version</li>
+
+<li><a href='../builds/ui/right-tabs-src.js'>right-tabs-src.js</a> - source code</li>
+</ul>
+
+<p>All the source code of the project is available under terms of the MIT license</p>
+
+<p><a href='http://github.com/rightjs/rightjs-ui/tree/master/src/tabs/'>http://github.com/rightjs/rightjs-ui/tree/master/src/tabs/</a></p>
+
+<p>For some standard usage examples see the <a href='tabs/demo.html'>demo page</a></p>
+<h2 class="chapter"><a href='tabs.html#'>Index</a></h2><p><ul><li><a href="tabs.html#features">Features List</a></li><li><a href="tabs.html#usage">Usage Basics</a></li><li><a href="tabs.html#variants">Variants Definition</a></li><li><a href="tabs.html#remote">Remote Tabs</a></li><li><a href="tabs.html#current">Current Tab Definition</a></li><li><a href="tabs.html#options">Options List</a></li><li><a href="tabs.html#events">Events List</a></li><li><a href="tabs.html#api">API Reference</a></li><li><a href="tabs.html#styles">Style Alterations</a></li></ul></p><a name='features' ></a><h2 class='chapter'>
+  <a href='tabs.html#' class='top-anchor'>top &uarr;</a><a href='tabs.html#features'>Features List</a>
+</h2>
+<p>Right Tabs are served with the following features:</p>
+
+<ul>
+<li>An uniformed three in one (tabs, carousel, harmonica) package</li>
+
+<li>Everything is included in a single tiny (~5k gzipped) file</li>
+
+<li>Pure CSS design, and no image dependencies</li>
+
+<li>Simple and easy usage</li>
+
+<li>Remote content loading via ajax</li>
+
+<li>An interface to create/move/remote tabs programmatically</li>
+
+<li>Restoring the tabs state by an URL anchor and/or cookies</li>
+
+<li>Semantically friendly and jQuery Tabs compatible markup</li>
+</ul>
+<a name='usage' ></a><h2 class='chapter'>
+  <a href='tabs.html#' class='top-anchor'>top &uarr;</a><a href='tabs.html#usage'>Usage Basics</a>
+</h2>
+<p>The usage is simple as usual. Include one of those files onto your page and then prepare your tabs element as the following structure.</p>
+
+<code>&lt;ul&gt;<br/>  &lt;ul&gt;<br/>    &lt;li&gt;&lt;a href=<s>"#tab-1"</s>&gt;<b class="unit">Tab</b> <s class="int">1</s>&lt;/a&gt;&lt;/li&gt;<br/>    &lt;li&gt;&lt;a href=<s>"#tab-2"</s>&gt;<b class="unit">Tab</b> <s class="int">2</s>&lt;/a&gt;&lt;/li&gt;<br/>  &lt;/ul&gt;<br/><br/>  &lt;li id=<s>"tab-1"</s>&gt;<b class="unit">Tab</b> <s class="int">1</s> <b class="unit">Content</b>&lt;/li&gt;<br/>  &lt;li id=<s>"tab-2"</s>&gt;<b class="unit">Tab</b> <s class="int">2</s> <b class="unit">Content</b>&lt;/li&gt;<br/>&lt;/ul&gt;</code>
+
+<p>You also can use the jQuery&#8217;s original structure with DIVs</p>
+
+<code>&lt;div&gt;<br/>  &lt;ul&gt;<br/>    &lt;li&gt;&lt;a href=<s>"#tab-1"</s>&gt;<b class="unit">Tab</b> <s class="int">1</s>&lt;/a&gt;&lt;/li&gt;<br/>    &lt;li&gt;&lt;a href=<s>"#tab-2"</s>&gt;<b class="unit">Tab</b> <s class="int">2</s>&lt;/a&gt;&lt;/li&gt;<br/>  &lt;/ul&gt;<br/><br/>  &lt;div id=<s>"tab-1"</s>&gt;<b class="unit">Tab</b> <s class="int">1</s> <b class="unit">Content</b>&lt;/div&gt;<br/>  &lt;div id=<s>"tab-2"</s>&gt;<b class="unit">Tab</b> <s class="int">2</s> <b class="unit">Content</b>&lt;/div&gt;<br/>&lt;/div&gt;</code>
+
+<p>After that you&#8217;ll need to instantiate the tabs object, with a simple javascript code</p>
+
+<code>&lt;ul id=<s>"my-tabs"</s>&gt;<br/><i>//...</i><br/><b class="var">new</b> <b class="unit">Tabs</b>(<s>'my-tabs'</s>);</code>
+
+<p>Or as a variant you can assign the <tt>rui-tabs</tt> css class for your tabs element and our script will automatically find and instantiate it when the page&#8217;s loaded</p>
+
+<code>&lt;ul class=<s>"rui-tabs"</s>&gt;<br/>  <i>// ...</i><br/>&lt;/ul&gt;</code>
+
+<p>The HTML5 style options attribute is available too</p>
+
+<code>&lt;ul class=<s>"rui-tabs"</s> data-tabs=<s>"{select:2}"</s>&gt;<br/>  <i>// ...</i><br/>&lt;/ul&gt;</code>
+<a name='variants' ></a><h2 class='chapter'>
+  <a href='tabs.html#' class='top-anchor'>top &uarr;</a><a href='tabs.html#variants'>Variants Definition</a>
+</h2>
+<p>To create a carousel widget simply add the <tt>rui-tabs-carousel</tt> css-class to your tabs element and the engine will know that you want a carousel.</p>
+
+<code>&lt;ul id=<s>"my-carousel"</s> class=<s>"rui-tabs-carousel"</s>&gt;<br/>  <i>// ...</i><br/>&lt;/ul&gt;</code>
+
+<p>For the harmonica widget use the standard DL/DT/DD tags construction.</p>
+
+<code>&lt;dl&gt;<br/>  &lt;dt&gt;&lt;a href=<s>"#"</s>&gt;<b class="unit">Tab</b> <s class="int">1</s>&lt;/a&gt;&lt;/dt&gt;<br/>  &lt;dd&gt;<b class="unit">Tab</b> <s class="int">1</s> <b class="unit">Content</b>&lt;/dd&gt;<br/>  &lt;dt&gt;&lt;a href=<s>"#"</s>&gt;<b class="unit">Tab</b> <s class="int">2</s>&lt;/a&gt;&lt;/dt&gt;<br/>  &lt;dd&gt;<b class="unit">Tab</b> <s class="int">2</s> <b class="unit">Content</b>&lt;/dd&gt;<br/>&lt;/dl&gt;</code>
+
+<p>All the other features like remote tabs loading, options and events are common over all three types of the tabs and can be used with any of them</p>
+<a name='remote' ></a><h2 class='chapter'>
+  <a href='tabs.html#' class='top-anchor'>top &uarr;</a><a href='tabs.html#remote'>Remote Tabs</a>
+</h2>
+<p>To make the engine load your tabs content via <a href='../docs/xhr.html' class='api-ref'>Xhr</a> requests, just specify the url-addresses instead of the anchor hashes and you&#8217;re good to go. And in this case you don&#8217;t need to specify any panels, they will be generated on fly.</p>
+
+<code>&lt;ul&gt;<br/>  &lt;ul&gt;<br/>    &lt;li&gt;&lt;a href=<s>"content/tab-1.html"</s>&gt;<b class="unit">Tab</b> <s class="int">1</s>&lt;/a&gt;&lt;/li&gt;<br/>    &lt;li&gt;&lt;a href=<s>"content/tab-2.html"</s>&gt;<b class="unit">Tab</b> <s class="int">2</s>&lt;/a&gt;&lt;/li&gt;<br/>  &lt;/ul&gt;<br/>&lt;/ul&gt;</code>
+
+<p>There is also a mixed approach available. You can use your tabs with hash names and then specify a common url-address with an <tt>%{id}</tt> placeholder as an option, like this</p>
+
+<code>&lt;ul id=<s>"my-tabs"</s>&gt;<br/>  &lt;ul&gt;<br/>    &lt;li&gt;&lt;a href=<s>"#tab-1"</s>&gt;<b class="unit">Tab</b> <s class="int">1</s>&lt;/a&gt;&lt;/li&gt;<br/>    &lt;li&gt;&lt;a href=<s>"#tab-2"</s>&gt;<b class="unit">Tab</b> <s class="int">2</s>&lt;/a&gt;&lt;/li&gt;<br/>  &lt;/ul&gt;<br/>&lt;/ul&gt;<br/><i>// ...</i><br/><b class="var">new</b> <b class="unit">Tabs</b>(<s>'my-tabs'</s>, {<s class="key">url</s>: <s>'/content/%{id}.html'</s>});</code>
+
+<p>In this case the script will use the tab hash names as the ids and hit urls like this</p>
+
+<code>/content/tab-1.<u>html</u><br/><s class="re">/content/</s>tab-2.<u>html</u></code>
+<a name='current' ></a><h2 class='chapter'>
+  <a href='tabs.html#' class='top-anchor'>top &uarr;</a><a href='tabs.html#current'>Current Tab Definition</a>
+</h2>
+<p>There are several ways how you can specify the tab that the user will see by default.</p>
+
+<p>First of all you can specify the <tt>rui-tabs-current</tt> css-class on your current tab.</p>
+
+<code>&lt;ul id=<s>"my-tabs"</s>&gt;<br/>  &lt;ul&gt;<br/>    &lt;li&gt;&lt;a href=<s>"#tab-1"</s>&gt;<b class="unit">Tab</b> <s class="int">1</s>&lt;/a&gt;&lt;/li&gt;<br/>    &lt;li class=<s>"rui-tabs-current"</s>&gt;&lt;a href=<s>"#tab-2"</s>&gt;<b class="unit">Tab</b> <s class="int">2</s>&lt;/a&gt;&lt;/li&gt;<br/>  &lt;/ul&gt;<br/>&lt;/ul&gt;</code>
+
+<p>You also can use the <tt>selected</tt> option with the constructor or the custom <tt>data-tabs</tt> attribute. Then you can activate the <tt>Cookie</tt> option and the script will keep the current tab index in cookies</p>
+
+<p>And eventually the engine watches the url-address hash and if there is one it will check it against the available tab hash names. Once a match is found it will automatically activate the tab. This way you can refer a specific tab via an url-address.</p>
+
+<p>The priority of the current tab checks is the following</p>
+
+<code><b class="unit">URL</b> -&gt; <b class="unit">Cookie</b> -&gt; <b class="unit">CSS</b> <b class="unit">Class</b> -&gt; <b class="unit">First</b></code>
+<a name='options' ></a><h2 class='chapter'>
+  <a href='tabs.html#' class='top-anchor'>top &uarr;</a><a href='tabs.html#options'>Options List</a>
+</h2>
+<p>There is the following list of supported options for the tabs engine</p>
+<table><thead><tr><th>Name</th><th>Default</th><th>Description</th></tr></thead><tbody><tr><td>idPrefix</td><td>&#8221;</td><td>the tab-panel elements id prefix</td>
+</tr><tr><td>tabsElement</td><td>null</td><td>the tabs list element reference, in case it is somewhere else</td>
+</tr><tr><td>resizeFx</td><td>&#8216;both&#8217;</td><td>&#8216;slide&#8217;, &#8216;fade&#8217;, &#8216;both&#8217; or null for no fx</td>
+</tr><tr><td>resizeDuration</td><td>400</td><td>the tab panels resize fx duration</td>
+</tr><tr><td>scrollTabs</td><td>false</td><td>use the tabs list scrolling</td>
+</tr><tr><td>scrollDuration</td><td>400</td><td>the tabs scrolling fx duration</td>
+</tr><tr><td>selected</td><td>null</td><td>an index of a tab to open</td>
+</tr><tr><td>disabled</td><td>[]</td><td>list of disabled tab indexes</td>
+</tr><tr><td>closable</td><td>false</td><td>set true if you want a close icon on your tabs</td>
+</tr><tr><td>loop</td><td>false</td><td>you can specify a delay in milliseconds in here to have a slideshow</td>
+</tr><tr><td>loopPause</td><td>true</td><td>makes the slideshow get paused when the user moves the mouse over it</td>
+</tr><tr><td>url</td><td>false</td><td>a common remote tabs url, should have the %{id} placeholder</td>
+</tr><tr><td>cache</td><td>false</td><td>marker if the remote tabs should be cached</td>
+</tr><tr><td>Xhr</td><td>null</td><td>the <a href='../docs/xhr.html' class='api-ref'>Xhr</a> requests additional options</td>
+</tr><tr><td>Cookie</td><td>null</td><td>set the <a href='../docs/cookie.html' class='api-ref'>Cookie</a> options if you&#8217;d like to keep the last selected tab index in cookies</td>
+</tr></tbody></table>
+<p>You can send any of those options as the constructor options, like this</p>
+
+<code><b class="var">new</b> <b class="unit">Tabs</b>(<s>'my-tabs'</s>, {<br/>  <s class="key">idPrefix</s>: <s>'my-'</s>,<br/>  <s class="key">selected</s>: <s class="int">2</s>,<br/>  <s class="key">Xhr</s>: {<s class="key">spinner</s>: <s>'spinner'</s>}<br/>});</code>
+
+<p>Or you can use the HTML5 like attribute called <tt>data-tabs</tt> directly on your tabs element</p>
+
+<code>&lt;ul data-tabs=<s>"{idPrefix:'my-', selected:4}"</s>&gt;<br/>  <i>// ...</i><br/>&lt;/ul&gt;</code>
+<a name='events' ></a><h2 class='chapter'>
+  <a href='tabs.html#' class='top-anchor'>top &uarr;</a><a href='tabs.html#events'>Events List</a>
+</h2>
+<p>This script provides you an access to the following events</p>
+<table><thead><tr><th>Name</th><th>Description</th></tr></thead><tbody><tr><td>select</td><td>when a tab was selected</td>
+</tr><tr><td>hide</td><td>when a tab gets hidden</td>
+</tr><tr><td>load</td><td>when a remote tab is loaded</td>
+</tr><tr><td>disable</td><td>when a tab gets disabled</td>
+</tr><tr><td>enable</td><td>when a tab gets enabled</td>
+</tr><tr><td>add</td><td>when a new tabs was added</td>
+</tr><tr><td>remove</td><td>when a tab was removed</td>
+</tr><tr><td>move</td><td>when a tab was moved to a new position</td>
+</tr></tbody></table>
+<p>Every event listener will receive a tab object instance as an argument.</p>
+<a name='api' ></a><h2 class='chapter'>
+  <a href='tabs.html#' class='top-anchor'>top &uarr;</a><a href='tabs.html#api'>API Reference</a>
+</h2>
+<p>There is a simple public API for all the <tt>Tabs</tt> class instances</p>
+<table><thead><tr><th>Name</th><th>Description</th></tr></thead><tbody><tr><td>select(index)</td><td>shows the tab by an <em>integer</em> index</td>
+</tr><tr><td>add(title, content[, options])</td><td>creates a new tab</td>
+</tr><tr><td>remove(index[s])</td><td>removes the tab(s)</td>
+</tr><tr><td>move(index, position)</td><td>moves the tab to the position</td>
+</tr><tr><td>disable(index[s])</td><td>disables the tab(s)</td>
+</tr><tr><td>enable(index[s])</td><td>enables the tab(s)</td>
+</tr><tr><td>startLoop([delay_ms])</td><td>starts a slideshow loop</td>
+</tr><tr><td>stopLoop()</td><td>stops the slideshow</td>
+</tr></tbody></table>
+<p>The <tt>add</tt> method can receive options with the following keys</p>
+
+<ul>
+<li><tt>id</tt> - the tab hash-name</li>
+
+<li><tt>url</tt> - the tab content remote url-address</li>
+
+<li><tt>position</tt> - the tab position</li>
+</ul>
+<a name='styles' ></a><h2 class='chapter'>
+  <a href='tabs.html#' class='top-anchor'>top &uarr;</a><a href='tabs.html#styles'>Style Alterations</a>
+</h2>
+<p>In the most basic case after a tabs module is instantiated it will assign css-classes for your tabs-element, like this</p>
+
+<code>&lt;ul class=<s>"rui-tabs"</s>&gt;<br/>  &lt;ul class=<s>"rui-tabs-list"</s>&gt;<br/>    &lt;li class=<s>"rui-tabs-tab rui-tabs-current"</s>&gt;&lt;a href=<s>"#"</s>&gt;<b class="unit">Tab</b> <s class="int">1</s>&lt;/a&gt;&lt;/li&gt;<br/>    &lt;li class=<s>"rui-tabs-tab"</s>&gt;&lt;a href=<s>"#"</s>&gt;<b class="unit">Tab</b> <s class="int">2</s>&lt;/a&gt;&lt;/li&gt;<br/>  &lt;/ul&gt;<br/><br/>  &lt;li class=<s>"rui-tabs-panel rui-tabs-current"</s>&gt;<b class="unit">Content</b> <s class="int">1</s>&lt;/li&gt;<br/>  &lt;li class=<s>"rui-tabs-panel"</s>&gt;<b class="unit">Content</b> <s class="int">2</s>&lt;/li&gt;<br/>&lt;/ul&gt;</code>
+
+<p>It will use the <tt>rui-tabs-current</tt> and <tt>rui-tabs-disabled</tt> classes at the tab-elements to paint the current and disabled tabs.</p>
+
+<p>For the carousel widget and scrollable tabs the script will transform the structure to create the scrollbar</p>
+
+<code>&lt;ul class=<s>"rui-tabs"</s>&gt;<br/>  &lt;div class=<s>"rui-tabs-scroller"</s>&gt;<br/>    &lt;div class=<s>"rui-tabs-scroller-prev"</s>&gt;&amp;laquo;&lt;/div&gt;<br/>    &lt;div class=<s>"rui-tabs-scroller-next"</s>&gt;&amp;raquo;&lt;/div&gt;<br/><br/>    &lt;ul class=<s>"rui-tabs-list"</s>&gt;<br/>      ..........<br/>    &lt;/ul&gt;<br/>  &lt;/div&gt;<br/><br/>  ............<br/>&lt;/ul&gt;</code>
+
+<p>Then, for the remote tabs it will be using a textual spinner with the following structure</p>
+
+<code>&lt;ul class=<s>"rui-tabs"</s>&gt;<br/>  &lt;ul class=<s>"rui-tabs-list"</s>&gt;<br/>    <i>// ...</i><br/>  &lt;/ul&gt;<br/><br/>  &lt;li class=<s>"rui-tabs-panel"</s>&gt;<br/>    &lt;div class=<s>"rui-tabs-panel-locker"</s>&gt;<br/>      &lt;div class=<s>"rui-spinner"</s>&gt;<br/>        &lt;div class=<s>"glow"</s>&gt;&lt;/div&gt;&lt;div&gt;&lt;/div&gt;&lt;div&gt;&lt;/div&gt;&lt;div&gt;&lt;/div&gt;<br/>      &lt;/div&gt;<br/>    &lt;/div&gt;<br/>  &lt;/li&gt;<br/>&lt;/ul&gt;</code>
+
+<p>The harmonica widget will remain the same structure with a similar css-class assignments</p>
+
+<code>&lt;dl class=<s>"rui-tabs"</s>&gt;<br/>  &lt;dt class=<s>"rui-tabs-tab"</s>&gt;<b class="unit">Tab</b> <s class="int">1</s>&lt;/dt&gt;<br/>  &lt;dd class=<s>"rui-tabs-panel"</s>&gt;<b class="unit">Tab</b> <b class="unit">Content</b>&lt;/dd&gt;<br/>  <i>// ...</i><br/>&lt;/dl&gt;</code>
+        </div>
+        <div style="clear:both"></div>
+      </div>
+      <div id="foot">
+        <div id="contacts">
+  <h2>Questions?</h2>
+  <a href="&#x6D;&#x61;i&#x6C;&#x74;&#x6F;:&#105;&#110;&#102;&#111;&#064;&#114;&#105;&#103;&#104;&#116;&#106;&#115;&#046;&#111;&#114;&#103;">&#105;&#110;&#102;&#111;&#064;&#114;&#105;&#103;&#104;&#116;&#106;&#115;&#046;&#111;&#114;&#103;</a>
+</div>
+<div id="bottom-menu">
+  <h2>About the Framework</h2>
+  <a href="../philosophy.html">Philosophy</a> |
+  <a href="../benchmarks.html">Benchmarks</a> |
+  <a href="../browsers.html">Browsers</a> |
+  <a href="../contacts.html">Contacts</a>
+</div>
+        <div id="design">Design by <a href="http://activestylus.com">Steven Garcia</a></div>
+        <div id="copyright">Copyright &copy; 2008-2011 Nikolay Nemshilov</div>
+      </div>
+    </div>
+
+    <script src="http://www.google-analytics.com/ga.js" type="text/javascript"></script>
+    <script type="text/javascript">
+    // <![CDATA[
+      try { _gat._getTracker("UA-10292980-1")._trackPageview(); } catch(err) {}
+    // ]]>
+    </script>
+  </body>
+</html>

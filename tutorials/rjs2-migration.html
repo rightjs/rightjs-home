@@ -1,0 +1,216 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <title>RightJS: RightJS 2 Migration Guide</title>
+    <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+    <link href="../blog.rss" rel="alternate" title="RightJS News" type="application/rss+xml" />
+    <script src="../hotlink/right.js@1331880836" type="text/javascript"></script>
+<script src="../javascripts/application.js@1295184937" type="text/javascript"></script>
+    <script src="../builds/ui/right-autocompleter.js@1331880836" type="text/javascript"></script>
+    <link href="../stylesheets/application.css@1297515667.css" media="screen" rel="stylesheet" type="text/css" />
+    
+    
+    
+  </head>
+  <body>
+    <div id="body">
+      <div id="head">
+        <a href="../index.html" id="logo">RightJS</a>
+        <div id="slogan">JavaScript Framework That Feels Right</div>
+
+        <div id="main-menu">
+  <ul>
+    <li><a href="../index.html">Home</a></li>
+    <li><a href="../download.html">Download</a></li>
+    <li><a href="../plugins.html">Plugins</a></li>
+    <li><a href="../ui.html">UI</a></li>
+    <li><a href="../demos.html">Demos</a></li>
+    <li class="current"><a href="../docs.html">Docs</a></li>
+    <li><a href="../blog.html">Blog</a></li>
+  </ul>
+  <div id="zing"><!-- the moving thing --></div>
+</div>
+        <div id="lang-switch">
+    <select onchange="document.location.href=this.value;">
+      <option selected="true" value="http://rightjs.org/tutorials/rjs2-migration">English</option>
+      <option value="http://ru.rightjs.org/tutorials/rjs2-migration">Русский</option>
+    </select>
+</div>
+      </div>
+      <div id="main">
+        <div id="sidebar">
+  <div class="box" id="download-box">
+    <h1>Get it!</h1>
+    <ul>
+      <li><a href="../builds/current/right.js.zip">RightJS v2.3.1</a></li>
+    </ul>
+  </div>
+
+  <div id="api-search" class="box">
+  <input type="text" value="Search API" id="api-search-field" />
+  <script type="text/javascript">
+  // <![CDATA[
+    new Autocompleter($('api-search-field').on({
+      focus: function() { this._v = this.value(); this.value(''); },
+      blur:  function() { this.value(this._v); }
+    }), {
+      url: '/docs/search/%{search}.js',
+      onDone: function() {
+        var current = this.first('.current');
+        if (current) {
+          document.location.href = current.get('title');
+        }
+        this.input.setValue(this.input._v);
+      }
+    });
+  // ]]>
+  </script>
+</div>
+
+  <div class="box">
+    <label>Documentation</label>
+    <ul>
+      <li><a href="getting-started.html">Getting Started</a></li>
+      <li><a href="top-features.html">Top 12 Features</a></li>
+      <li><a href="../docs.html">API Reference</a></li>
+      <li class="current"><a href="../tutorials.1.html">Tutorials</a></li>
+    </ul>
+  </div>
+
+  <div class="box">
+    <label>Additional</label>
+    <ul>
+      <li><a href="../plugins.html">RightJS Plugins</a></li>
+      
+      <li><a href="../ui.html">RightJS UI</a></li>
+      
+      <li><a href="../showcases.html">Showcases</a></li>
+    </ul>
+  </div>
+
+  <div class="box">
+    <label>Community</label>
+    <ul>
+      <li><a href="http://groups.google.com/group/rightjs">Google Group</a></li>
+      <li><a href="http://rightjs.lighthouseapp.com/projects/31989">Tickets Tracker</a></li>
+      <li><a href="http://github.com/rightjs/rightjs-snippets">Code Snippets</a></li>
+      <li><a href="irc://irc.freenode.net/rightjs">IRC #rightjs</a></li>
+      <li><a href="../participate.html">Participate!</a></li>
+    </ul>
+  </div>
+
+  <div class="box">
+    <a href='http://www.pledgie.com/campaigns/14259'><img alt='Donate!' src='http://www.pledgie.com/campaigns/14259.png?skin_name=chrome' border='0' /></a>
+  </div>
+
+  <div class="box">
+    <ul id="social">
+      <li><a href="../blog.rss" id="rss-link">RSS</a></li>
+      <li><a href="http://twitter.com/rightjs" id="twitter-link">Twitter</a></li>
+      <li><a href="http://github.com/rightjs" id="github-link">GitHub</a></li>
+    </ul>
+  </div>
+</div>
+
+        <div id="info">
+          <h1>RightJS 2 Migration Guide</h1>
+
+<p>Before moving any further, please check the following articles, they will give you the basic overview of all the changes RightJS 2 brings in</p>
+
+<ul>
+<li><a href='what-new-in-rjs2.html'>What&#8217;s New in RightJS 2</a></li>
+
+<li><a href='what-new-in-rui2.html'>What&#8217;s New in RightJS UI 2</a></li>
+</ul>
+
+<p>Once you&#8217;ve finished that, you will generally know what to do, but lets summarize the things in a simple pre-flight check</p>
+<a name='builds' ></a><h2 class='chapter'>
+  <a href='rjs2-migration.html#' class='top-anchor'>top &uarr;</a><a href='rjs2-migration.html#builds'>1. Update Builds</a>
+</h2>
+<p>First of all for sure, go to the <a href='../download.html'>Downloads</a> page and grab new builds, save them instead of the old ones. You also will need fresh builds of all <a href='../ui.html'>UI</a> and <a href='../plugins.html'>Plugins</a>. And also don&#8217;t forget to update the <a href='http://github.com/rightjs/rightjs-ui/tree/master/i18n/'>i18n modules</a> if you use them, there were some changes too.</p>
+
+<p>If you use <a href='http://github.com/MadRabbit/right-rails'>right-rails</a>, just run the standard <tt>right_rails</tt> generator, it will replace all your old files with the new ones</p>
+<a name='args' ></a><h2 class='chapter'>
+  <a href='rjs2-migration.html#' class='top-anchor'>top &uarr;</a><a href='rjs2-migration.html#args'>2. Check Arguments Access</a>
+</h2>
+<p>This is the most painful part of migration. Because we switching from direct elements access to dom-wrappers, you don&#8217;t have immediate access to elements properties and need to use the <a href='../docs/element.html#set' class='api-ref'>Element#set</a> and <a href='../docs/element.html#get' class='api-ref'>Element#get</a> methods.</p>
+
+<code><i>// old</i><br/>element.<u>id</u>;<br/><i>// new</i><br/>element.<u class="method">get</u>(<s>'id'</s>);<br/><br/><i>//old</i><br/>element.<u>id</u> = <s>'my-id'</s>;<br/><i>// new</i><br/>element.<u class="method">set</u>(<s>'id'</s>, <s>'my-id'</s>);</code>
+
+<p>But you can cheat in here and access your elements directly via the <tt>_</tt> property, which refers directly to the raw dom-object.</p>
+
+<code>element.<u>_</u>.<u>id</u>;<br/>element.<u>_</u>.<u>id</u> = <s>'my-id'</s>;</code>
+
+<p>It&#8217;s perfectly legit, so don&#8217;t hesitate, use it. To work with the <tt>innerHTML</tt> property use the <a href='../docs/element.html#html' class='api-ref'>Element#html</a> method, it work both ways</p>
+
+<code>element.<u class="method">html</u>(); <i>// -&gt; returns the innerHTML property</i><br/>element.<u class="method">html</u>(<s>'boo hoo!'</s>); <i>// sets the innerHTML</i></code>
+
+<p>There is also a list of several new <a href='../docs/element.html' class='api-ref'>Element</a> methods that might be helpful, you can find them <a href='what-new-in-rjs2.html#new-dom-methods'>over here</a></p>
+<a name='windoc' ></a><h2 class='chapter'>
+  <a href='rjs2-migration.html#' class='top-anchor'>top &uarr;</a><a href='rjs2-migration.html#windoc'>3. Window and Document access</a>
+</h2>
+<p>If you need the <tt>window</tt> and <tt>document</tt> object extensions, use the same <tt>$()</tt> function on them as you do with any other element on the page.</p>
+
+<code>$(window).<u class="method">size</u>();<br/>$(document).<u class="method">onReady</u>();</code>
+
+<p>We don&#8217;t extend the dom-elements anymore. Any of them.</p>
+<a name='ujs' ></a><h2 class='chapter'>
+  <a href='rjs2-migration.html#' class='top-anchor'>top &uarr;</a><a href='rjs2-migration.html#ujs'>4. Events Delegation</a>
+</h2>
+<p>UJS support in RightJS 2 was cleaned up, updated and extended. The sweet <a href='../docs/string.html#on' class='api-ref'>String#on</a> method is still in place, but the <tt>Event.delegate</tt> hacks were removed in favor of the <a href='../docs/element.html#delegate' class='api-ref'>Element#delegate</a> and <a href='../docs/element.html#undelegate' class='api-ref'>Element#undelegate</a> methods.</p>
+
+<p>If you used <tt>Event.delegate</tt>, check those. They have pretty close API and simplify lots of things.</p>
+<a name='deprecations' ></a><h2 class='chapter'>
+  <a href='rjs2-migration.html#' class='top-anchor'>top &uarr;</a><a href='rjs2-migration.html#deprecations'>5. Deprecated Methods</a>
+</h2>
+<p>Because dom-wrappers don&#8217;t put any constrains on us anymore, some methods were renamed a bit to make them more meaningful. Check the list of new dom methods <a href='what-new-in-rjs2.html#new-dom-methods'>over here</a>.</p>
+
+<p>The old methods will be around for a while, so no hurry with that, you can skip this step if short on time.</p>
+<a name='ui' ></a><h2 class='chapter'>
+  <a href='rjs2-migration.html#' class='top-anchor'>top &uarr;</a><a href='rjs2-migration.html#ui'>6. UI Module Updates</a>
+</h2>
+<p>UI modules at their core are pretty much the same, but there were several major adjustments that supposed to make them more consistent with each other and easier to use.</p>
+
+<ol>
+<li>
+<p>The css class names prefix was changed from <tt>right-</tt> to <tt>rui-</tt>. It is less arrogant and fun, but have less chances to interrupt with the user&#8217;s classes.</p>
+</li>
+
+<li>
+<p>Automatic UI initialization was changed from all sorts of classes and attributes to standard HTML5 attributes with names like <tt>data-[widget-name]</tt></p>
+</li>
+
+<li>
+<p>All widgets are elements now, and therefore the events system was changed a bit, instead of feeding your listeners with all sorts of arguments, widgets now fire custom dom-events and all the data is attached to the event objects.</p>
+</li>
+</ol>
+
+<p>There also were small fixes in the HTML structure, CSS, i18n here and there, some options were added, some removed, so if you use some widgets more than &#8220;as is&#8221;, you should check their pages at the <a href='../ui.html'>UI</a> section.</p>
+        </div>
+        <div style="clear:both"></div>
+      </div>
+      <div id="foot">
+        <div id="contacts">
+  <h2>Questions?</h2>
+  <a href="&#x6D;&#x61;i&#x6C;&#x74;&#x6F;:&#105;&#110;&#102;&#111;&#064;&#114;&#105;&#103;&#104;&#116;&#106;&#115;&#046;&#111;&#114;&#103;">&#105;&#110;&#102;&#111;&#064;&#114;&#105;&#103;&#104;&#116;&#106;&#115;&#046;&#111;&#114;&#103;</a>
+</div>
+<div id="bottom-menu">
+  <h2>About the Framework</h2>
+  <a href="../philosophy.html">Philosophy</a> |
+  <a href="../benchmarks.html">Benchmarks</a> |
+  <a href="../browsers.html">Browsers</a> |
+  <a href="../contacts.html">Contacts</a>
+</div>
+        <div id="design">Design by <a href="http://activestylus.com">Steven Garcia</a></div>
+        <div id="copyright">Copyright &copy; 2008-2011 Nikolay Nemshilov</div>
+      </div>
+    </div>
+
+    <script src="http://www.google-analytics.com/ga.js" type="text/javascript"></script>
+    <script type="text/javascript">
+    // <![CDATA[
+      try { _gat._getTracker("UA-10292980-1")._trackPageview(); } catch(err) {}
+    // ]]>
+    </script>
+  </body>
+</html>

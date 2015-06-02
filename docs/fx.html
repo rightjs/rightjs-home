@@ -1,0 +1,244 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <title>RightJS: Documentation: Fx</title>
+    <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+    <link href="http://www.rightjs.org/blog.rss" rel="alternate" title="RightJS News" type="application/rss+xml" />
+    <script src="../hotlink/right.js@1333128729" type="text/javascript"></script>
+<script src="../javascripts/application.js@1295184937" type="text/javascript"></script>
+    <script src="../builds/ui/right-autocompleter.js@1333128730" type="text/javascript"></script>
+    <link href="../stylesheets/application.css@1297515667.css" media="screen" rel="stylesheet" type="text/css" />
+    
+    
+    
+  </head>
+  <body>
+    <div id="body">
+      <div id="head">
+        <a href="../index.html" id="logo">RightJS</a>
+        <div id="slogan">JavaScript Framework That Feels Right</div>
+
+        <div id="main-menu">
+  <ul>
+    <li><a href="../index.html">Home</a></li>
+    <li><a href="../download.html">Download</a></li>
+    <li><a href="../plugins.html">Plugins</a></li>
+    <li><a href="../ui.html">UI</a></li>
+    <li><a href="../demos.html">Demos</a></li>
+    <li class="current"><a href="../docs.html">Docs</a></li>
+    <li><a href="../blog.html">Blog</a></li>
+  </ul>
+  <div id="zing"><!-- the moving thing --></div>
+</div>
+        <div id="lang-switch">
+    <select onchange="document.location.href=this.value;">
+      <option selected="true" value="http://www.rightjs.org/docs/fx">English</option>
+      <option value="http://ru.www.rightjs.org/docs/fx">Русский</option>
+    </select>
+</div>
+      </div>
+      <div id="main">
+        <div id="sidebar">
+
+  <div id="api-search" class="box">
+  <input type="text" value="Search API" id="api-search-field" />
+  <script type="text/javascript">
+  // <![CDATA[
+    new Autocompleter($('api-search-field').on({
+      focus: function() { this._v = this.value(); this.value(''); },
+      blur:  function() { this.value(this._v); }
+    }), {
+      url: '/docs/search/%{search}.js',
+      onDone: function() {
+        var current = this.first('.current');
+        if (current) {
+          document.location.href = current.get('title');
+        }
+        this.input.setValue(this.input._v);
+      }
+    });
+  // ]]>
+  </script>
+</div>
+
+  <div class="box" id="api-lists">
+    <label>Core</label><ul><li><a href="browser.html">Browser</a></li><li><a href="class.html">Class</a></li><li><a href="util.html">Util</a></li></ul>
+<label>Dom</label><ul><li><a href="document.html">Document</a></li><li><a href="element.html">Element</a></li><li><a href="event.html">Event</a></li><li><a href="form.html">Form</a></li><li><a href="input.html">Input</a></li><li><a href="window.html">Window</a></li></ul>
+<label>Fx</label><ul><li><a href="fx.html">Fx</a></li><ul><li><a href="fx.html#initialize">initialize</a></li><li><a href="fx.html#cancel">cancel</a></li><li><a href="fx.html#finish">finish</a></li><li><a href="fx.html#prepare">prepare</a></li><li><a href="fx.html#render">render</a></li><li><a href="fx.html#start">start</a></li></ul><li><a href="fx/attr.html">Fx.Attr</a></li><li><a href="fx/element.html">Fx.Element</a></li><li><a href="fx/fade.html">Fx.Fade</a></li><li><a href="fx/highlight.html">Fx.Highlight</a></li><li><a href="fx/morph.html">Fx.Morph</a></li><li><a href="fx/scroll.html">Fx.Scroll</a></li><li><a href="fx/slide.html">Fx.Slide</a></li></ul>
+<label>Lang</label><ul><li><a href="array.html">Array</a></li><li><a href="function.html">Function</a></li><li><a href="json.html">Json</a></li><li><a href="math.html">Math</a></li><li><a href="number.html">Number</a></li><li><a href="object.html">Object</a></li><li><a href="regexp.html">Regexp</a></li><li><a href="string.html">String</a></li></ul>
+<label>Util</label><ul><li><a href="cookie.html">Cookie</a></li><li><a href="observer.html">Observer</a></li><li><a href="options.html">Options</a></li><li><a href="xhr.html">Xhr</a></li></ul>
+  </div>
+
+  <div class="box">
+    <a href='http://www.pledgie.com/campaigns/14259'><img alt='Donate!' src='http://www.pledgie.com/campaigns/14259.png?skin_name=chrome' border='0' /></a>
+  </div>
+
+  <div class="box">
+    <ul id="social">
+      <li><a href="../blog.rss" id="rss-link">RSS</a></li>
+      <li><a href="http://twitter.com/rightjs" id="twitter-link">Twitter</a></li>
+      <li><a href="http://github.com/rightjs" id="github-link">GitHub</a></li>
+    </ul>
+  </div>
+</div>
+
+        <div id="info">
+          
+<h1>Fx Basics</h1>
+
+<p>By default RightJS comes with the basic visual effects package. It has one base (abstract) class <tt>Fx</tt>, which defines the common visual effects interface and is used as the basis for all the other effect classes.</p>
+
+<h2>Events</h2>
+
+<p><tt>Fx</tt> objects handle the following events:</p>
+
+<ul>
+<li>start</li>
+
+<li>finish</li>
+
+<li>cancel</li>
+</ul>
+
+<p>In line with the general events handling convention this means that you can use all the common <tt>on</tt>, <tt>stopObserving</tt> etc methods as well as <tt>onStart</tt>, <tt>onFinish</tt>, <tt>onCancel</tt> shortcuts.</p>
+
+<h2>Options</h2>
+
+<p>All visual effects support the following options:</p>
+<table><thead><tr><th>Name</th><th>Default</th><th>Description</th></tr></thead><tbody><tr><td>duration</td><td>&#8216;normal&#8217;</td><td>the effect duration in ms or a string predefined name</td>
+</tr><tr><td>transition</td><td>&#8216;Sin&#8217;</td><td>the transition algorithm used for the effect</td>
+</tr><tr><td>queue</td><td>true</td><td>boolean marker if the effect should be queued</td>
+</tr><tr><td>engine</td><td>null</td><td>the engine used by Fx.Morph, defined automatically</td>
+</tr></tbody></table>
+<h2>Durations</h2>
+
+<p>There are three named durations which an be used in <tt>Fx</tt> options:</p>
+<table><thead><tr><th>Name</th><th>Value</th></tr></thead><tbody><tr><td>short</td><td>200 ms</td>
+</tr><tr><td>normal</td><td>400 ms (default)</td>
+</tr><tr><td>long</td><td>800 ms</td>
+</tr></tbody></table>
+<h2>Transitions</h2>
+
+<p>Since RightJS 2.3.0 the transition attribute can be defined via standard CSS3 cubic bezier functions.</p>
+
+<h1>Methods</h1>
+<p>
+  <a href="fx.html#initialize">initialize</a>, <a href="fx.html#cancel">cancel</a>, <a href="fx.html#finish">finish</a>, <a href="fx.html#prepare">prepare</a>, <a href="fx.html#render">render</a>, <a href="fx.html#start">start</a>
+</p>
+
+<div class="method">
+  <a name="initialize"></a>
+  <h2><a class="top-anchor" href="fx.html#">top &uarr;</a><a href="fx.html#initialize">initialize</a></h2>
+
+  <p class="semantic">
+    <code>initialize([<b class="unit">Element</b> element[, <b class="unit">Object</b> options]])</code>
+  </p>
+
+
+  <h4>Description</h4>
+  <p>The basic constructor</p>
+
+
+
+</div><div class="method">
+  <a name="cancel"></a>
+  <h2><a class="top-anchor" href="fx.html#">top &uarr;</a><a href="fx.html#cancel">cancel</a></h2>
+
+  <p class="semantic">
+    <code>cancel() -&gt; <b class="unit">Fx</b> <b class="var">self</b></code>
+  </p>
+
+
+  <h4>Description</h4>
+  <p>Cancels the effect and interrupts the visual effects queue.</p>
+
+
+
+</div><div class="method">
+  <a name="finish"></a>
+  <h2><a class="top-anchor" href="fx.html#">top &uarr;</a><a href="fx.html#finish">finish</a></h2>
+
+  <p class="semantic">
+    <code>finish() -&gt; <b class="unit">Fx</b> <b class="var">self</b></code>
+  </p>
+
+
+  <h4>Description</h4>
+  <p>Forces the effect to stop and marks it as a completely finished.</p>
+
+
+
+</div><div class="method">
+  <a name="prepare"></a>
+  <h2><a class="top-anchor" href="fx.html#">top &uarr;</a><a href="fx.html#prepare">prepare</a></h2>
+
+  <p class="semantic">
+    <code>prepare([....]) -&gt; void</code>
+  </p>
+
+
+  <h4>Description</h4>
+  <p>Abstract method which gets called with the same arguments as the <a href='fx.html#start' class='api-ref'>start</a> method when the visual effects queue reaches this effect.</p>
+
+
+
+</div><div class="method">
+  <a name="render"></a>
+  <h2><a class="top-anchor" href="fx.html#">top &uarr;</a><a href="fx.html#render">render</a></h2>
+
+  <p class="semantic">
+    <code>render(<b class="unit">Float</b> position) -&gt; void</code>
+  </p>
+
+
+  <h4>Description</h4>
+  <p>Abstract protected method where the actual effect rendering is supposed to happen. During the effect run it receives float numbers from <tt>0</tt> to <tt>1</tt> that represent the position of the effect from the beginning to the end.</p>
+
+
+
+</div><div class="method">
+  <a name="start"></a>
+  <h2><a class="top-anchor" href="fx.html#">top &uarr;</a><a href="fx.html#start">start</a></h2>
+
+  <p class="semantic">
+    <code>start() -&gt; <b class="unit">Fx</b> <b class="var">self</b></code>
+  </p>
+
+
+  <h4>Description</h4>
+  <p>Starts the effect.</p>
+
+<p><strong>NOTE</strong>: <em>DO NOT</em> overload this method! If you need to make some preparations in your effect, use the <a href='fx.html#prepare' class='api-ref'>prepare</a> method. This method just receives your attributes and holds them inside the visual effects queue.</p>
+
+
+
+</div>
+
+        </div>
+        <div style="clear:both"></div>
+      </div>
+      <div id="foot">
+        <div id="contacts">
+  <h2>Questions?</h2>
+  <a href="&#x6D;&#x61;i&#x6C;&#x74;&#x6F;:&#105;&#110;&#102;&#111;&#064;&#114;&#105;&#103;&#104;&#116;&#106;&#115;&#046;&#111;&#114;&#103;">&#105;&#110;&#102;&#111;&#064;&#114;&#105;&#103;&#104;&#116;&#106;&#115;&#046;&#111;&#114;&#103;</a>
+</div>
+<div id="bottom-menu">
+  <h2>About the Framework</h2>
+  <a href="../philosophy.html">Philosophy</a> |
+  <a href="../benchmarks.html">Benchmarks</a> |
+  <a href="../browsers.html">Browsers</a> |
+  <a href="../contacts.html">Contacts</a>
+</div>
+        <div id="design">Design by <a href="http://activestylus.com">Steven Garcia</a></div>
+        <div id="copyright">Copyright &copy; 2008-2011 Nikolay Nemshilov</div>
+      </div>
+    </div>
+
+    <script src="http://www.google-analytics.com/ga.js" type="text/javascript"></script>
+    <script type="text/javascript">
+    // <![CDATA[
+      try { _gat._getTracker("UA-10292980-1")._trackPageview(); } catch(err) {}
+    // ]]>
+    </script>
+  </body>
+</html>

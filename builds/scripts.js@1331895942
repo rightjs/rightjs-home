@@ -1,0 +1,68 @@
+// some nice looking calculator method
+
+var build_keys  = ["cookie", "form", "xhr", "fx", "events", "olds", "safe", "minify"];
+var build_sizes_t = "e3:9efb,61:854d,96:a13f,de:894a,54:2140d,66:a690,df:8570,97:9d65,a2:ad6e,30:1f91a,55:a664,ea:981b,78:1a2ff,67:a2b6,a:bc8d,79:7c94,a3:a994,31:9e9d,eb:9441,b:b8b3,38:1c623,36:8ed8,5c:1e53f,7e:7985,14:23f9d,5d:9baa,ba:8063,37:8afe,7f:75ab,42:ba10,15:b398,39:872c,bb:7c89,43:b636,3e:841a,f2:8084,2:c74b,4a:af56,3f:8040,d0:1f92f,84:29800,a8:21e86,cc:23da2,f3:7caa,3:c371,85:d20e,4b:ab7c,a9:a5a2,d1:a3c3,cd:ba20,fa:75ca,1a:9a3c,b2:8b1d,ae:a2b0,d6:9404,d7:902a,fb:71f0,9c:2076d,b3:8743,af:9ed6,70:1d5f6,6c:21a69,c0:18df3,1b:9662,9d:a521,24:26c5b,71:9409,6d:aa66,c1:78b9,25:bfb2,2c:23d8d,76:843f,8a:b8d2,c6:b655,77:8065,8b:b4f8,c7:b27b,e0:1976a,2d:b4f4,94:2363b,dc:1dbdd,e1:8194,dd:97f1,95:afdf,64:24937,e6:a2d5,65:b520,a0:1c2fa,8:25cef,52:97bf,e8:1fb62,e7:9efb,a1:8eca,53:93e5,e9:9b0a,9:bf70,e:bc8d,a6:ad6e,34:20a96,ee:981b,7c:1b8a4,12:a4fa,40:19755,5a:8d05,b8:1bcc1,a7:a994,35:9d83,ef:9441,7d:8837,13:a120,41:7c6e,f:b8b3,b9:8373,5b:892b,46:ba10,3c:1dbc8,be:8063,47:b636,48:2315f,ca:ab9b,f0:1cc94,3d:92c5,bf:7c89,0:2a162,82:c390,49:b236,cb:a7c1,f1:9050,1:d5c7,83:bfb6,f6:8084,b0:1efb8,4e:af56,ac:2342b,d4:20aab,f8:1999d,6:c74b,ad:b13b,4f:ab7c,d5:a2ab,f7:7caa,18:1fb2a,9a:9681,7:c371,22:b129,b1:9ae4,6a:9bd6,f9:78db,19:9d41,9b:92a7,23:ad4f,b6:8b1d,6b:97fc,fe:75ca,1e:9a3c,ff:71f0,b7:8743,74:1e772,88:2538d,c4:26c70,1f:9662,89:bbb7,2a:a66b,75:92f1,c5:c4da,2b:a291,92:a13f,8e:b8d2,da:894a,62:a690,8f:b4f8,e4:23fd5,93:9d65,db:8570,50:20291,63:a2b6,e5:b167,51:a77c,7a:7985,ec:21107,32:8ed8,a4:262f9,56:97bf,58:1cf9a,10:22e21,57:93e5,c:27294,33:8afe,7b:75ab,ed:a6ad,11:b4b2,d:cb09,59:9007,a5:bbf9,16:a4fa,44:275d2,3a:841a,5e:8d05,bc:1d266,80:17431,c8:227fd,17:a120,45:c893,3b:8040,5f:892b,bd:8f10,81:71da,c9:ae7d,4:2a162,86:c390,4c:24704,ce:ab9b,f4:1de10,d2:9404,98:1f1c8,5:d5c7,aa:a2b0,4d:bdd9,f5:8f38,87:bfb6,ab:9ed6,20:1cc5c,d3:902a,cf:a7c1,68:204c4,99:9988,1c:210cf,21:9283,9e:9681,b4:20134,69:9ec3,fc:1af42,c2:b655,1d:a8da,26:b129,b5:99ca,6e:9bd6,fd:847e,9f:92a7,28:227e8,72:843f,6f:97fc,29:a95b,27:ad4f,73:8065,c3:b27b,8c:26932,d8:1c638,2e:a66b,90:224bf,d9:8c4e,60:1a0cc,e2:a2d5,2f:a291,91:b0f9,8d:c750";
+var build_sizes = {};
+build_sizes_t.split(',').each(function(pair) {
+  pair = pair.split(':');
+  var key = pair[0].toInt(16).toString(2).split('');
+  while (key.length < build_keys.length) key.unshift('0');
+  build_sizes[key.join('')] = pair[1].toInt(16);
+});
+
+var max_size    = Math.max.apply(null, Object.values(build_sizes));
+var min_size    = Math.min.apply(null, Object.values(build_sizes));
+
+$(document).onReady(function() {
+  var build_form  = $('custom-build-form');
+
+  var calc     = $E('div', {id: 'calc'});
+  var calc_bar = $E('div', {id: 'bar'}).insertTo(calc);
+  var calc_num = $E('div', {id: 'num'}).insertTo(calc_bar);
+
+  build_form.insert(calc, 'top');
+
+  var CalcFx = new Class(Fx.Morph, {
+    prepare: function(start_size, end_size) {
+      this.startSize = start_size;
+      this.endSize   = end_size;
+
+      this.element.highlight('brown', 'green', {queue: false});
+
+      this.$super({height: (calc.sizes().y * (end_size / max_size)) + 'px'});
+    },
+
+    render: function(delta) {
+      var size = this.startSize + (this.endSize - this.startSize) * delta;
+      size = ((size/100).round()/10).toString();
+      if (!size.includes('.')) size += ".0";
+      calc_num.update(size + 'k');
+
+      this.$super(delta);
+    }
+  });
+
+  var prev_size = 0;
+  var update_calc = function() {
+    var options = build_keys.map(function(key) {
+      return $("options_"+key)._.checked ? 0 : 1;
+    }).join('');
+    var new_size = build_sizes[options];
+    if (new_size) {
+      new CalcFx(calc_bar).start(prev_size, new_size);
+      prev_size = new_size;
+    }
+  };
+
+  build_form.inputs().each(function(input) {
+    if (input._.type == 'checkbox') {
+      input.on('click', update_calc);
+    }
+  });
+  $('form-reset').on('click', function() { update_calc.delay(50); });
+
+  update_calc();
+});
+
+
+

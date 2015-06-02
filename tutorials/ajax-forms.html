@@ -1,0 +1,206 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <title>RightJS: Ajax Forms</title>
+    <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+    <link href="../blog.rss" rel="alternate" title="RightJS News" type="application/rss+xml" />
+    <script src="../hotlink/right.js@1333128729" type="text/javascript"></script>
+<script src="../javascripts/application.js@1295184937" type="text/javascript"></script>
+    <script src="../builds/ui/right-autocompleter.js@1333128730" type="text/javascript"></script>
+    <link href="../stylesheets/application.css@1297515667.css" media="screen" rel="stylesheet" type="text/css" />
+    
+    
+    
+  </head>
+  <body>
+    <div id="body">
+      <div id="head">
+        <a href="../index.html" id="logo">RightJS</a>
+        <div id="slogan">JavaScript Framework That Feels Right</div>
+
+        <div id="main-menu">
+  <ul>
+    <li><a href="../index.html">Home</a></li>
+    <li><a href="../download.html">Download</a></li>
+    <li><a href="../plugins.html">Plugins</a></li>
+    <li><a href="../ui.html">UI</a></li>
+    <li><a href="../demos.html">Demos</a></li>
+    <li class="current"><a href="../docs.html">Docs</a></li>
+    <li><a href="../blog.html">Blog</a></li>
+  </ul>
+  <div id="zing"><!-- the moving thing --></div>
+</div>
+        <div id="lang-switch">
+    <select onchange="document.location.href=this.value;">
+      <option selected="true" value="http://rightjs.org/tutorials/ajax-forms">English</option>
+      <option value="http://ru.rightjs.org/tutorials/ajax-forms">Русский</option>
+    </select>
+</div>
+      </div>
+      <div id="main">
+        <div id="sidebar">
+  <div class="box" id="download-box">
+    <h1>Get it!</h1>
+    <ul>
+      <li><a href="../builds/current/right.js.zip">RightJS v2.3.1</a></li>
+    </ul>
+  </div>
+
+  <div id="api-search" class="box">
+  <input type="text" value="Search API" id="api-search-field" />
+  <script type="text/javascript">
+  // <![CDATA[
+    new Autocompleter($('api-search-field').on({
+      focus: function() { this._v = this.value(); this.value(''); },
+      blur:  function() { this.value(this._v); }
+    }), {
+      url: '/docs/search/%{search}.js',
+      onDone: function() {
+        var current = this.first('.current');
+        if (current) {
+          document.location.href = current.get('title');
+        }
+        this.input.setValue(this.input._v);
+      }
+    });
+  // ]]>
+  </script>
+</div>
+
+  <div class="box">
+    <label>Documentation</label>
+    <ul>
+      <li><a href="getting-started.html">Getting Started</a></li>
+      <li><a href="top-features.html">Top 12 Features</a></li>
+      <li><a href="../docs.html">API Reference</a></li>
+      <li class="current"><a href="../tutorials.1.html">Tutorials</a></li>
+    </ul>
+  </div>
+
+  <div class="box">
+    <label>Additional</label>
+    <ul>
+      <li><a href="../plugins.html">RightJS Plugins</a></li>
+      
+      <li><a href="../ui.html">RightJS UI</a></li>
+      
+      <li><a href="../showcases.html">Showcases</a></li>
+    </ul>
+  </div>
+
+  <div class="box">
+    <label>Community</label>
+    <ul>
+      <li><a href="http://groups.google.com/group/rightjs">Google Group</a></li>
+      <li><a href="http://rightjs.lighthouseapp.com/projects/31989">Tickets Tracker</a></li>
+      <li><a href="http://github.com/rightjs/rightjs-snippets">Code Snippets</a></li>
+      <li><a href="irc://irc.freenode.net/rightjs">IRC #rightjs</a></li>
+      <li><a href="../participate.html">Participate!</a></li>
+    </ul>
+  </div>
+
+  <div class="box">
+    <a href='http://www.pledgie.com/campaigns/14259'><img alt='Donate!' src='http://www.pledgie.com/campaigns/14259.png?skin_name=chrome' border='0' /></a>
+  </div>
+
+  <div class="box">
+    <ul id="social">
+      <li><a href="../blog.rss" id="rss-link">RSS</a></li>
+      <li><a href="http://twitter.com/rightjs" id="twitter-link">Twitter</a></li>
+      <li><a href="http://github.com/rightjs" id="github-link">GitHub</a></li>
+    </ul>
+  </div>
+</div>
+
+        <div id="info">
+          <h1>Ajax Forms</h1>
+
+<p>This article covers various questions about working with forms via ajax.</p>
+<a name='sending' ></a><h2 class='chapter'>
+  <a href='ajax-forms.html#' class='top-anchor'>top &uarr;</a><a href='ajax-forms.html#sending'>Sending Forms Via Ajax</a>
+</h2>
+<p>Basically there is just one method you should know to send any sort of forms via ajax <a href='../docs/form.html#send' class='api-ref'>Form#send</a>, which in a simple case looks like that</p>
+
+<code>&lt;form id=<s>"my-form"</s> ...&gt;<br/>  <i>// ...</i><br/>&lt;/form&gt;<br/><br/>$(<s>'my-form'</s>).<u class="method">send</u>();</code>
+
+<p>This method does all the routine operations automatically, it grabs the form attributes, like the <tt>url</tt> and <tt>method</tt>, then collects all the data on the form, serializes, escapes, then creates an <a href='../docs/xhr.html' class='api-ref'>Xhr</a> request, sends it, receives and handles the response. It also will automatically block the form during the request to the server.</p>
+<a name='remotize' ></a><h2 class='chapter'>
+  <a href='ajax-forms.html#' class='top-anchor'>top &uarr;</a><a href='ajax-forms.html#remotize'>Marking Forms Remote</a>
+</h2>
+<p>In many cases you don&#8217;t need to send a form programmatically, instead of that you need to mark somehow the form so that it was automatically going via ajax, no matter when and how it was submitted. For such cases use the method <a href='../docs/form.html#remotize' class='api-ref'>Form#remotize</a>, it will do exactly that.</p>
+
+<code>$(<s>'my-form'</s>).<u class="method">remotize</u>();<br/><br/>$(<s>'my-form'</s>).<u class="method">submit</u>(); <i>// -&gt; goes via ajax</i></code>
+
+<p>After this, when the user or your script submits the form in any way, it will be automatically sent via ajax. To bring the form back and undo the changes, use the method <a href='../docs/form.html#unremotize' class='api-ref'>Form#unremotize</a></p>
+
+<code>$(<s>'my-form'</s>).<u class="method">unremotize</u>();<br/><br/>$(<s>'my-form'</s>).<u class="method">submit</u>(); <i>// -&gt; goes via http</i></code>
+
+<p>You also can use the <tt>remote</tt> option when you create your form programmatically, in this case it will be marked as remote by default</p>
+
+<code><b class="var">var</b> form = <b class="var">new</b> <b class="unit">Form</b>({<s class="key">remote</s>: <b class="rest">true</b>, <s class="key">action</s>: <s>'/url'</s>});<br/><br/>form.<u class="method">submit</u>(); <i>// -&gt; goes via ajax</i></code>
+<a name='options' ></a><h2 class='chapter'>
+  <a href='ajax-forms.html#' class='top-anchor'>top &uarr;</a><a href='ajax-forms.html#options'>Specifying Options</a>
+</h2>
+<p>Ajax forms in RightJS work entirely through the <a href='../docs/xhr.html' class='api-ref'>Xhr</a> class interface. Therefore you can use all the same options with the <a href='../docs/form.html#send' class='api-ref'>Form#send</a> method</p>
+
+<code>$(<s>'my-form'</s>).<u class="method">send</u>({<br/>  <s class="key">onSuccess</s>: <b>function</b>() {<br/>    console.<u class="method">log</u>(<s>"Succesful"</s>, <b class="var">this</b>.<u>text</u>);<br/>  },<br/>  <s class="key">onFailure</s>: <b>function</b>() {<br/>    console.<u class="method">log</u>(<s>"Failed"</s>, <b class="var">this</b>.<u>text</u>);<br/>  }<br/>});</code>
+
+<p>And you also can use those options with the <a href='../docs/form.html#remotize' class='api-ref'>Form#remotize</a> method, in which case all your options will be stored internally and then used to send the form via ajax when someone submits it</p>
+
+<code>$(<s>'my-form'</s>).<u class="method">remotize</u>({<br/>  <s class="key">onComplete</s>: <b>function</b>() {<br/>    console.<u class="method">log</u>(<s>"Completed"</s>, <b class="var">this</b>.<u class="method">getHeaders</u>());<br/>  }<br/>});</code>
+<a name='spinners' ></a><h2 class='chapter'>
+  <a href='ajax-forms.html#' class='top-anchor'>top &uarr;</a><a href='ajax-forms.html#spinners'>Spinners Handling</a>
+</h2>
+<p>The <a href='../docs/xhr.html' class='api-ref'>Xhr</a> unit in RightJS has a baked in spinners handling feature, so you simply specify a reference to your spinner element in options and it will be nicely handled.</p>
+
+<code>$(<s>'my-form'</s>).<u class="method">send</u>({<br/>  <s class="key">spinner</s>: <s>'the-spinner-element'</s><br/>});</code>
+
+<p>But in case of ajax forms you don&#8217;t need to do even that. When you try to submit a form via ajax, RightJS will check if the form contains an element with the css-class <tt>spinner</tt> and if finds one will automatically use it as the current spinner</p>
+
+<code>&lt;form id=<s>"my-form"</s>&gt;<br/>  &lt;img src=<s>"spinner.gif"</s> class=<s>"spinner"</s> /&gt;<br/>&lt;/form&gt;<br/><br/>$(<s>'my-form'</s>).<u class="method">send</u>(); <i>// uses the 'img.spinner'</i></code>
+<a name='uploading' ></a><h2 class='chapter'>
+  <a href='ajax-forms.html#' class='top-anchor'>top &uarr;</a><a href='ajax-forms.html#uploading'>Files Uploading Via Ajax</a>
+</h2>
+<p>RightJS has a built-in files uploading handling via Ajax. Generally all the interfaces in this case remain the same, you simply call the <a href='../docs/form.html#send' class='api-ref'>Form#send</a> method, but there are some tricky moments that you should keep in mind.</p>
+
+<p>The problem is, that normally you cannot send files via <a href='../docs/xhr.html' class='api-ref'>Xhr</a> requests, because <tt>XmlHTTPRequest</tt> objects simply don&#8217;t support this feature. So, when you need to submit a form with a file on it, you use a hidden <tt>IFrame</tt> element instead of an <tt>XmlHTTPRequest</tt> object to send your form to the server.</p>
+
+<p>RightJS does it all automatically in the background, so you don&#8217;t need to worry about that, but as we use the <tt>IFrame</tt> element there are some limitations and tricks.</p>
+
+<p>First of all, the only type of responses from the server that you can use with <tt>IFrame</tt> elements is plain html. Otherwise, if you say send back a piece of JavaScript, IE browsers will offer the user to save it on his disk. Secondly, all your response will be handled in the context of that hidden frame element. Thirdly any pieces of text or HTML will be transformed by the browser, which will try to make a normal web-page out of your content.</p>
+
+<p>So, the only type of communication between the server and your script is if you embed your JavaScript in a simple HTML page layout like that.</p>
+
+<code>&lt;html&gt;<br/>  &lt;head&gt;<br/>    &lt;script type=<s>"text/javascript"</s>&gt;<br/>      with (window.<u>parent</u>) {<br/>        <i>// your JavaScript goes in here</i><br/>      }<br/>    &lt;/script&gt;<br/>  &lt;/head&gt;<br/>&lt;/html&gt;</code>
+
+<p>The trick is that you send back a normal page that contains a piece of JavaScript, which gets evaluated in the context of your actual working window.</p>
+
+<p><strong>NOTE</strong>: as the script will be evaluated automatically by the browser, you should not specify the <tt>evalScripts</tt> key with your options, otherwise it will be run twice.</p>
+        </div>
+        <div style="clear:both"></div>
+      </div>
+      <div id="foot">
+        <div id="contacts">
+  <h2>Questions?</h2>
+  <a href="&#x6D;&#x61;i&#x6C;&#x74;&#x6F;:&#105;&#110;&#102;&#111;&#064;&#114;&#105;&#103;&#104;&#116;&#106;&#115;&#046;&#111;&#114;&#103;">&#105;&#110;&#102;&#111;&#064;&#114;&#105;&#103;&#104;&#116;&#106;&#115;&#046;&#111;&#114;&#103;</a>
+</div>
+<div id="bottom-menu">
+  <h2>About the Framework</h2>
+  <a href="../philosophy.html">Philosophy</a> |
+  <a href="../benchmarks.html">Benchmarks</a> |
+  <a href="../browsers.html">Browsers</a> |
+  <a href="../contacts.html">Contacts</a>
+</div>
+        <div id="design">Design by <a href="http://activestylus.com">Steven Garcia</a></div>
+        <div id="copyright">Copyright &copy; 2008-2011 Nikolay Nemshilov</div>
+      </div>
+    </div>
+
+    <script src="http://www.google-analytics.com/ga.js" type="text/javascript"></script>
+    <script type="text/javascript">
+    // <![CDATA[
+      try { _gat._getTracker("UA-10292980-1")._trackPageview(); } catch(err) {}
+    // ]]>
+    </script>
+  </body>
+</html>

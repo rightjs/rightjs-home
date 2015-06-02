@@ -1,0 +1,190 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <title>RightJS: Work With Numbers</title>
+    <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+    <link href="../blog.rss" rel="alternate" title="RightJS News" type="application/rss+xml" />
+    <script src="../hotlink/right.js@1331880836" type="text/javascript"></script>
+<script src="../javascripts/application.js@1295184937" type="text/javascript"></script>
+    <script src="../builds/ui/right-autocompleter.js@1331880836" type="text/javascript"></script>
+    <link href="../stylesheets/application.css@1297515667.css" media="screen" rel="stylesheet" type="text/css" />
+    
+    
+    
+  </head>
+  <body>
+    <div id="body">
+      <div id="head">
+        <a href="../index.html" id="logo">RightJS</a>
+        <div id="slogan">JavaScript Framework That Feels Right</div>
+
+        <div id="main-menu">
+  <ul>
+    <li><a href="../index.html">Home</a></li>
+    <li><a href="../download.html">Download</a></li>
+    <li><a href="../plugins.html">Plugins</a></li>
+    <li><a href="../ui.html">UI</a></li>
+    <li><a href="../demos.html">Demos</a></li>
+    <li class="current"><a href="../docs.html">Docs</a></li>
+    <li><a href="../blog.html">Blog</a></li>
+  </ul>
+  <div id="zing"><!-- the moving thing --></div>
+</div>
+        <div id="lang-switch">
+    <select onchange="document.location.href=this.value;">
+      <option selected="true" value="http://rightjs.org/tutorials/work-with-numbers">English</option>
+      <option value="http://ru.rightjs.org/tutorials/work-with-numbers">Русский</option>
+    </select>
+</div>
+      </div>
+      <div id="main">
+        <div id="sidebar">
+  <div class="box" id="download-box">
+    <h1>Get it!</h1>
+    <ul>
+      <li><a href="../builds/current/right.js.zip">RightJS v2.3.1</a></li>
+    </ul>
+  </div>
+
+  <div id="api-search" class="box">
+  <input type="text" value="Search API" id="api-search-field" />
+  <script type="text/javascript">
+  // <![CDATA[
+    new Autocompleter($('api-search-field').on({
+      focus: function() { this._v = this.value(); this.value(''); },
+      blur:  function() { this.value(this._v); }
+    }), {
+      url: '/docs/search/%{search}.js',
+      onDone: function() {
+        var current = this.first('.current');
+        if (current) {
+          document.location.href = current.get('title');
+        }
+        this.input.setValue(this.input._v);
+      }
+    });
+  // ]]>
+  </script>
+</div>
+
+  <div class="box">
+    <label>Documentation</label>
+    <ul>
+      <li><a href="getting-started.html">Getting Started</a></li>
+      <li><a href="top-features.html">Top 12 Features</a></li>
+      <li><a href="../docs.html">API Reference</a></li>
+      <li class="current"><a href="../tutorials.1.html">Tutorials</a></li>
+    </ul>
+  </div>
+
+  <div class="box">
+    <label>Additional</label>
+    <ul>
+      <li><a href="../plugins.html">RightJS Plugins</a></li>
+      
+      <li><a href="../ui.html">RightJS UI</a></li>
+      
+      <li><a href="../showcases.html">Showcases</a></li>
+    </ul>
+  </div>
+
+  <div class="box">
+    <label>Community</label>
+    <ul>
+      <li><a href="http://groups.google.com/group/rightjs">Google Group</a></li>
+      <li><a href="http://rightjs.lighthouseapp.com/projects/31989">Tickets Tracker</a></li>
+      <li><a href="http://github.com/rightjs/rightjs-snippets">Code Snippets</a></li>
+      <li><a href="irc://irc.freenode.net/rightjs">IRC #rightjs</a></li>
+      <li><a href="../participate.html">Participate!</a></li>
+    </ul>
+  </div>
+
+  <div class="box">
+    <a href='http://www.pledgie.com/campaigns/14259'><img alt='Donate!' src='http://www.pledgie.com/campaigns/14259.png?skin_name=chrome' border='0' /></a>
+  </div>
+
+  <div class="box">
+    <ul id="social">
+      <li><a href="../blog.rss" id="rss-link">RSS</a></li>
+      <li><a href="http://twitter.com/rightjs" id="twitter-link">Twitter</a></li>
+      <li><a href="http://github.com/rightjs" id="github-link">GitHub</a></li>
+    </ul>
+  </div>
+</div>
+
+        <div id="info">
+          <h1>Work With Numbers</h1>
+
+<p>RightJS provides several small but handy features that might make the work with numbers easier and more natural for object oriented programmers</p>
+<a name='conversion' ></a><h2 class='chapter'>
+  <a href='work-with-numbers.html#' class='top-anchor'>top &uarr;</a><a href='work-with-numbers.html#conversion'>Strings To Numbers Conversion</a>
+</h2>
+<p>The <a href='../docs/string.html' class='api-ref'>String</a> class has two methods to convert its instances to numbers, <a href='../docs/string.html#toInt' class='api-ref'>String#toInt</a> and <a href='../docs/string.html#toFloat' class='api-ref'>String#toFloat</a>. The usage is simple</p>
+
+<code><s>'10px'</s>.<u class="method">toInt</u>();    <i>// -&gt; 10</i><br/><s>'0.001'</s>.<u class="method">toFloat</u>(); <i>// -&gt; 0.001</i></code>
+
+<p>You also can use the <a href='../docs/string.html#toInt' class='api-ref'>String#toInt</a> method to convert hex values into decimal numbers</p>
+
+<code><s>'FF'</s>.<u class="method">toInt</u>(<s class="int">16</s>);  <i>// -&gt; 255</i><br/><s>'8B'</s>.<u class="method">toInt</u>(<s class="int">16</s>);  <i>// -&gt; 139</i></code>
+
+<p>The <a href='../docs/string.html#toFloat' class='api-ref'>String#toFloat</a> method will also automatically recognize a comma and dash symbols as the decimal point.</p>
+
+<code><s>'0.01'</s>.<u class="method">toFloat</u>(); <i>// -&gt; 0.01</i><br/><s>'0,02'</s>.<u class="method">toFloat</u>(); <i>// -&gt; 0.02</i><br/><s>'0-03'</s>.<u class="method">toFloat</u>(); <i>// -&gt; 0.03</i></code>
+
+<p>If you want to disable this feature, just pass <tt>true</tt> as the argument</p>
+
+<code><s>'0.01'</s>.<u class="method">toFloat</u>(<b class="rest">true</b>); <i>// -&gt; 0.01</i><br/><s>'0,02'</s>.<u class="method">toFloat</u>(<b class="rest">true</b>); <i>// -&gt; 0</i><br/><s>'0-03'</s>.<u class="method">toFloat</u>(<b class="rest">true</b>); <i>// -&gt; 0</i></code>
+<a name='extensions' ></a><h2 class='chapter'>
+  <a href='work-with-numbers.html#' class='top-anchor'>top &uarr;</a><a href='work-with-numbers.html#extensions'>Standard Number Extensions</a>
+</h2>
+<p>The <a href='../docs/number.html' class='api-ref'>Number</a> class has most of the <tt>Math</tt> module methods like <tt>abs</tt>, <tt>floor</tt>, <tt>ceil</tt>, <tt>round</tt> attached to the instance level, so that you can work with them directly without calling the <tt>Math</tt> module.</p>
+
+<code>15.4.<u class="method">abs</u>();   <i>// -&gt; 15.4</i><br/>15.4.<u class="method">round</u>(); <i>// -&gt; 15</i><br/>15.4.<u class="method">ceil</u>();  <i>// -&gt; 16</i><br/>15.4.<u class="method">floor</u>(); <i>// -&gt; 15</i></code>
+<a name='limits' ></a><h2 class='chapter'>
+  <a href='work-with-numbers.html#' class='top-anchor'>top &uarr;</a><a href='work-with-numbers.html#limits'>Number Value Limits</a>
+</h2>
+<p>RightJS also adds couple of methods to quickly limit a number to a certain value: <tt>min</tt> and <tt>max</tt></p>
+
+<code><i>// instead of this</i><br/><b>if</b> (number &lt; <s class="int">4</s>) { number = <s class="int">4</s>; }<br/><b>if</b> (number &gt; <s class="int">8</s>) { number = <s class="int">8</s>; }<br/><br/><i>// you can write it like that</i><br/>number = number.<u class="method">min</u>(<s class="int">4</s>).<u class="method">max</u>(<s class="int">8</s>);</code>
+<a name='loops' ></a><h2 class='chapter'>
+  <a href='work-with-numbers.html#' class='top-anchor'>top &uarr;</a><a href='work-with-numbers.html#loops'>Ruby Style Loops</a>
+</h2>
+<p>In additional the <a href='../docs/number.html' class='api-ref'>Number</a> class supports the Ruby language style loops for the numbers: <a href='../docs/number.html#times' class='api-ref'>Number#times</a>, <a href='../docs/number.html#downto' class='api-ref'>Number#downto</a> and <a href='../docs/number.html#upto' class='api-ref'>Number#upto</a></p>
+
+<code>4..<u class="method">times</u>(<b>function</b>(i) {<br/>  <i>// ....</i><br/>});<br/><br/>4..<u class="method">downto</u>(<s class="int">2</s>, <b>function</b>(i) {<br/>  <i>// ....</i><br/>});<br/><br/>4..<u class="method">upto</u>(<s class="int">8</s>, <b>function</b>(i) {<br/>  <i>// ....</i><br/>});</code>
+<a name='random' ></a><h2 class='chapter'>
+  <a href='work-with-numbers.html#' class='top-anchor'>top &uarr;</a><a href='work-with-numbers.html#random'>Random Numbers Generator</a>
+</h2>
+<p>By default the <a href='../docs/math.html#random' class='api-ref'>Math.random</a> method returns float numbers between 0 and 1. RigthJS extends this method and makes it generate integer numbers in a given range, if specified.</p>
+
+<code><b class="unit">Math</b>.<u class="method">random</u>();    <i>// a Float    between 0 and 1</i><br/><br/><b class="unit">Math</b>.<u class="method">random</u>(<s class="int">8</s>);   <i>// an Integer between 0 and 8</i><br/><br/><b class="unit">Math</b>.<u class="method">random</u>(<s class="int">1</s>,<s class="int">4</s>); <i>// an Integer between 1 and 4</i></code>
+<p>&nbsp;</p>
+<p>That&#8217;s it. Have fun!</p>
+        </div>
+        <div style="clear:both"></div>
+      </div>
+      <div id="foot">
+        <div id="contacts">
+  <h2>Questions?</h2>
+  <a href="&#x6D;&#x61;i&#x6C;&#x74;&#x6F;:&#105;&#110;&#102;&#111;&#064;&#114;&#105;&#103;&#104;&#116;&#106;&#115;&#046;&#111;&#114;&#103;">&#105;&#110;&#102;&#111;&#064;&#114;&#105;&#103;&#104;&#116;&#106;&#115;&#046;&#111;&#114;&#103;</a>
+</div>
+<div id="bottom-menu">
+  <h2>About the Framework</h2>
+  <a href="../philosophy.html">Philosophy</a> |
+  <a href="../benchmarks.html">Benchmarks</a> |
+  <a href="../browsers.html">Browsers</a> |
+  <a href="../contacts.html">Contacts</a>
+</div>
+        <div id="design">Design by <a href="http://activestylus.com">Steven Garcia</a></div>
+        <div id="copyright">Copyright &copy; 2008-2011 Nikolay Nemshilov</div>
+      </div>
+    </div>
+
+    <script src="http://www.google-analytics.com/ga.js" type="text/javascript"></script>
+    <script type="text/javascript">
+    // <![CDATA[
+      try { _gat._getTracker("UA-10292980-1")._trackPageview(); } catch(err) {}
+    // ]]>
+    </script>
+  </body>
+</html>

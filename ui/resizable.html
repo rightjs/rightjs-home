@@ -1,0 +1,262 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <title>RightJS: Resizable</title>
+    <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+    <link href="http://www.rightjs.org/blog.rss" rel="alternate" title="RightJS News" type="application/rss+xml" />
+    <script src="../hotlink/right.js@1333128729" type="text/javascript"></script>
+<script src="../javascripts/application.js@1295184937" type="text/javascript"></script>
+    <script src="../builds/ui/right-autocompleter.js@1333128730" type="text/javascript"></script>
+    <link href="../stylesheets/application.css@1297515667.css" media="screen" rel="stylesheet" type="text/css" />
+    
+    <link href="../stylesheets/rightjs-ui-home.css@1295874376.css" media="screen" rel="stylesheet" type="text/css" />
+    
+  </head>
+  <body>
+    <div id="body">
+      <div id="head">
+        <a href="../index.html" id="logo">RightJS</a>
+        <div id="slogan">JavaScript Framework That Feels Right</div>
+
+        <div id="main-menu">
+  <ul>
+    <li><a href="../index.html">Home</a></li>
+    <li><a href="../download.html">Download</a></li>
+    <li><a href="../plugins.html">Plugins</a></li>
+    <li class="current"><a href="../ui.html">UI</a></li>
+    <li><a href="../demos.html">Demos</a></li>
+    <li><a href="../docs.html">Docs</a></li>
+    <li><a href="../blog.html">Blog</a></li>
+  </ul>
+  <div id="zing"><!-- the moving thing --></div>
+</div>
+        <div id="lang-switch">
+    <select onchange="document.location.href=this.value;">
+      <option selected="true" value="http://www.rightjs.org/ui/resizable">English</option>
+      <option value="http://ru.www.rightjs.org/ui/resizable">Русский</option>
+    </select>
+</div>
+      </div>
+      <div id="main">
+        <div id="sidebar">
+  <div class="box" id="download-box">
+    <h1>Get it!</h1>
+    <ul>
+      <li><a href="../builds/current/right.js.zip">RightJS v2.3.1</a></li>
+    </ul>
+  </div>
+
+  <div id="api-search" class="box">
+  <input type="text" value="Search API" id="api-search-field" />
+  <script type="text/javascript">
+  // <![CDATA[
+    new Autocompleter($('api-search-field').on({
+      focus: function() { this._v = this.value(); this.value(''); },
+      blur:  function() { this.value(this._v); }
+    }), {
+      url: '/docs/search/%{search}.js',
+      onDone: function() {
+        var current = this.first('.current');
+        if (current) {
+          document.location.href = current.get('title');
+        }
+        this.input.setValue(this.input._v);
+      }
+    });
+  // ]]>
+  </script>
+</div>
+
+  <div class="box">
+    <label>Documentation</label>
+    <ul>
+      <li><a href="../tutorials/getting-started.html">Getting Started</a></li>
+      <li><a href="../tutorials/top-features.html">Top 12 Features</a></li>
+      <li><a href="../docs.html">API Reference</a></li>
+      <li><a href="../tutorials.1.html">Tutorials</a></li>
+    </ul>
+  </div>
+
+  <div class="box">
+    <label>Additional</label>
+    <ul>
+      <li><a href="../plugins.html">RightJS Plugins</a></li>
+      
+      <li class="current"><a href="../ui.html">RightJS UI</a></li>
+      <ul id="ui-menu"><li><a href="autocompleter.html">Autocompleter</a></li>
+<li><a href="billboard.html">Billboard</a></li>
+<li><a href="calendar.html">Calendar</a></li>
+<li><a href="colorpicker.html">Colorpicker</a></li>
+<li><a href="dialog.html">Dialog</a></li>
+<li><a href="in-edit.html">In Place Edit</a></li>
+<li><a href="lightbox.html">Lightbox</a></li>
+<li><a href="rater.html">Rater</a></li>
+<li class="current"><a href="resizable.html">Resizable</a></li>
+<li><a href="rte.html">Rte</a></li>
+<li><a href="selectable.html">Selectable</a></li>
+<li><a href="slider.html">Slider</a></li>
+<li><a href="sortable.html">Sortable</a></li>
+<li><a href="tabs.html">Tabs</a></li>
+<li><a href="tags.html">Tags</a></li>
+<li><a href="tooltips.html">Tooltips</a></li>
+<li><a href="uploader.html">Uploader</a></li></ul>
+      <li><a href="../showcases.html">Showcases</a></li>
+    </ul>
+  </div>
+
+  <div class="box">
+    <label>Community</label>
+    <ul>
+      <li><a href="http://groups.google.com/group/rightjs">Google Group</a></li>
+      <li><a href="http://rightjs.lighthouseapp.com/projects/31989">Tickets Tracker</a></li>
+      <li><a href="http://github.com/rightjs/rightjs-snippets">Code Snippets</a></li>
+      <li><a href="irc://irc.freenode.net/rightjs">IRC #rightjs</a></li>
+      <li><a href="../participate.html">Participate!</a></li>
+    </ul>
+  </div>
+
+  <div class="box">
+    <a href='http://www.pledgie.com/campaigns/14259'><img alt='Donate!' src='http://www.pledgie.com/campaigns/14259.png?skin_name=chrome' border='0' /></a>
+  </div>
+
+  <div class="box">
+    <ul id="social">
+      <li><a href="../blog.rss" id="rss-link">RSS</a></li>
+      <li><a href="http://twitter.com/rightjs" id="twitter-link">Twitter</a></li>
+      <li><a href="http://github.com/rightjs" id="github-link">GitHub</a></li>
+    </ul>
+  </div>
+</div>
+
+        <div id="info">
+          <h1>Resizable</h1>
+
+<p><tt>Resizable</tt> is a simple widget that will help you to create elements on your page what can be resized by the user.</p>
+
+<p>Get the latest version right here</p>
+
+<ul>
+<li><a href='../builds/ui/right-resizable.js'>right-resizable.js</a> - minified version</li>
+
+<li><a href='../builds/ui/right-resizable-src.js'>right-resizable-src.js</a> - source code</li>
+</ul>
+
+<p>All the source code of the project is available under terms of the MIT license</p>
+
+<p><a href='http://github.com/rightjs/rightjs-ui/tree/master/src/resizable/'>http://github.com/rightjs/rightjs-ui/tree/master/src/resizable/</a></p>
+
+<p>For some standard usage examples see the <a href='resizable/demo.html'>demo page</a></p>
+<h2 class="chapter"><a href='resizable.html#'>Index</a></h2><p><ul><li><a href="resizable.html#features">Features List</a></li><li><a href="resizable.html#usage">Usage Basics</a></li><li><a href="resizable.html#directions">Defining Directions</a></li><li><a href="resizable.html#boundaries">Defining Boundaries</a></li><li><a href="resizable.html#options">Options List</a></li><li><a href="resizable.html#options">Events List</a></li><li><a href="resizable.html#styles">Style Alterations</a></li></ul></p><a name='features' ></a><h2 class='chapter'>
+  <a href='resizable.html#' class='top-anchor'>top &uarr;</a><a href='resizable.html#features'>Features List</a>
+</h2>
+<ul>
+<li>Easy and flexible usage</li>
+
+<li>Can work with any direction</li>
+
+<li>Fully CSS based design</li>
+
+<li>Tiny (2k gzipped) build file</li>
+
+<li>No drag-n-drop dependencies</li>
+</ul>
+<a name='usage' ></a><h2 class='chapter'>
+  <a href='resizable.html#' class='top-anchor'>top &uarr;</a><a href='resizable.html#usage'>Usage Basics</a>
+</h2>
+<p>First, copy in place one of the files above, as you usually do. Then copy <a href='../images/rightjs-ui/resizable.png'>this image</a> to the same location on your server. (check the <a href='resizable.html#styles'>styles section</a> for more options on this regard)</p>
+
+<p>After that you have three ways to create resizable blocks. First, you can simply define an HTML structure like that</p>
+
+<code>&lt;div class=<s>"rui-resizable"</s>&gt;<br/>  &lt;div class=<s>"rui-resizable-content"</s>&gt;<br/>    <i>// your content goes in here</i><br/>  &lt;/div&gt;<br/>  &lt;div class=<s>"rui-resizable-handle"</s>&gt;&lt;/div&gt;<br/>&lt;/div&gt;</code>
+
+<p>In this case RightJS will use lazy initialization of the widget on demand. Or you can turn any element on your page into resizable widget programmatically like that.</p>
+
+<code>&lt;div id=<s>"my-element"</s>&gt;<br/>  <i>// Some content in here</i><br/>&lt;/div&gt;<br/><br/>$(<s>'my-element'</s>).<u class="method">makeResizable</u>();</code>
+
+<p>In this case RightJS will initialize a resizable unit instantly. To switch the functionality off use the <tt>undoResizable()</tt> method.</p>
+
+<p>And finally you can use the <tt>Resizable</tt> unit as a class</p>
+
+<code><b class="var">var</b> resizable = <b class="var">new</b> <b class="unit">Resizable</b>(<s>'my-element'</s>, {<br/>  <s class="key">direction</s>: <s>'bottom'</s><br/>});<br/><br/>resizable.<u class="method">setSize</u>(<s class="int">200</s>, <s class="int">200</s>);<br/><br/>resizable.<u class="method">destroy</u>(); <i>// the destructor</i></code>
+<a name='directions' ></a><h2 class='chapter'>
+  <a href='resizable.html#' class='top-anchor'>top &uarr;</a><a href='resizable.html#directions'>Defining Directions</a>
+</h2>
+<p>By default your resizables will be bidirectional, with a handle at the right bottom corner. But this widget can work with any of the four directions specifically.</p>
+
+<p>If you create your resizable as a HTML structure, then simply use css classes, like <tt>rui-resizable-right</tt>, <tt>rui-resizable-bottom</tt>, and so on.</p>
+
+<code>&lt;div class=<s>"rui-resizable-bottom"</s>&gt;<br/>  <i>// the rest of the stuff in here</i><br/>&lt;/div&gt;</code>
+
+<p>If you create your resizable programmatically then use the <tt>direction</tt> option</p>
+
+<code>$(<s>'my-element'</s>).<u class="method">makeResizable</u>({<s class="key">direction</s>: <s>'right'</s>});</code>
+
+<p>It will automatically assign necessary classes for you.</p>
+<a name='boundaries' ></a><h2 class='chapter'>
+  <a href='resizable.html#' class='top-anchor'>top &uarr;</a><a href='resizable.html#boundaries'>Defining Boundaries</a>
+</h2>
+<p>This widget will automatically respect your CSS level settings like <tt>min-width</tt>, <tt>max-height</tt>, etc.</p>
+
+<code>&lt;div class=<s>"rui-resizable"</s> style=<s>"min-width: 10em"</s>&gt;<br/>  <i>// the rest of the construction in here</i><br/>&lt;/div&gt;</code>
+
+<p>And you also can define the limits with the options, like that</p>
+
+<code>$(<s>'my-element'</s>).<u class="method">makeResizable</u>({<br/>  <s class="key">minWidth</s>:  <s class="int">100</s>,<br/>  <s class="key">maxHeight</s>: <s>'20em'</s><br/>});</code>
+
+<p><strong>NOTE</strong>: You can use any type of values, numbers, sizes with dimensions, even percents.</p>
+<a name='options' ></a><h2 class='chapter'>
+  <a href='resizable.html#' class='top-anchor'>top &uarr;</a><a href='resizable.html#options'>Options List</a>
+</h2>
+<p>The list of options is pretty short and we went through all of them in the previous two chapters</p>
+<table><thead><tr><th>Name</th><th>Default</th><th>Description</th></tr></thead><tbody><tr><td>direction</td><td>null</td><td><tt>top</tt>, <tt>left</tt>, <tt>right</tt>, <tt>bottom</tt> or <tt>null</tt> for bidirectional</td>
+</tr><tr><td>minWidth</td><td>null</td><td>minimal width limit</td>
+</tr><tr><td>maxWidth</td><td>null</td><td>maximal width limit</td>
+</tr><tr><td>minHeight</td><td>null</td><td>minimal height limit</td>
+</tr><tr><td>maxHeight</td><td>null</td><td>maximal height limit</td>
+</tr></tbody></table>
+<p>As usual you can use any of those options with constructor, the <tt>makeResizable</tt> method or with the <tt>data-resizable</tt> HTML5 attribute.</p>
+<a name='options' ></a><h2 class='chapter'>
+  <a href='resizable.html#' class='top-anchor'>top &uarr;</a><a href='resizable.html#options'>Events List</a>
+</h2>
+<p>There is a simple list of events this widget supports</p>
+<table><thead><tr><th>Name</th><th>Description</th></tr></thead><tbody><tr><td>start</td><td>when the resize starts</td>
+</tr><tr><td>resize</td><td>when the widget is resized by the user</td>
+</tr><tr><td>release</td><td>when the resize ends</td>
+</tr></tbody></table><a name='styles' ></a><h2 class='chapter'>
+  <a href='resizable.html#' class='top-anchor'>top &uarr;</a><a href='resizable.html#styles'>Style Alterations</a>
+</h2>
+<p>Resizables have a pretty simple structure, which you can create by yourself or let the script to create it for you</p>
+
+<code>&lt;div class=<s>"rui-resizable"</s>&gt;<br/>  &lt;div class=<s>"rui-resizable-content"</s>&gt;<br/>    <i>// your content goes in here</i><br/>  &lt;/div&gt;<br/>  &lt;div class=<s>"rui-resizable-handle"</s>&gt;&lt;/div&gt;<br/>&lt;/div&gt;</code>
+
+<p><strong>NOTE:</strong> this widget has an image dependency which is used as the background for the handle elements. You can grab it <a href='../images/rightjs-ui/resizable.png'>over here</a> and save to the same location on your server. Or you can use your own image and define it in your CSS layer like that</p>
+
+<code>.<u>rui</u>-resizable-handle {<br/>  background-<s class="key">image</s>: url(<s class="re">/url/</s>to/my-image.<u>png</u>);<br/>}</code>
+        </div>
+        <div style="clear:both"></div>
+      </div>
+      <div id="foot">
+        <div id="contacts">
+  <h2>Questions?</h2>
+  <a href="&#x6D;&#x61;i&#x6C;&#x74;&#x6F;:&#105;&#110;&#102;&#111;&#064;&#114;&#105;&#103;&#104;&#116;&#106;&#115;&#046;&#111;&#114;&#103;">&#105;&#110;&#102;&#111;&#064;&#114;&#105;&#103;&#104;&#116;&#106;&#115;&#046;&#111;&#114;&#103;</a>
+</div>
+<div id="bottom-menu">
+  <h2>About the Framework</h2>
+  <a href="../philosophy.html">Philosophy</a> |
+  <a href="../benchmarks.html">Benchmarks</a> |
+  <a href="../browsers.html">Browsers</a> |
+  <a href="../contacts.html">Contacts</a>
+</div>
+        <div id="design">Design by <a href="http://activestylus.com">Steven Garcia</a></div>
+        <div id="copyright">Copyright &copy; 2008-2011 Nikolay Nemshilov</div>
+      </div>
+    </div>
+
+    <script src="http://www.google-analytics.com/ga.js" type="text/javascript"></script>
+    <script type="text/javascript">
+    // <![CDATA[
+      try { _gat._getTracker("UA-10292980-1")._trackPageview(); } catch(err) {}
+    // ]]>
+    </script>
+  </body>
+</html>

@@ -1,0 +1,304 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <title>RightJS: What&#8217;s New In RightJS 2.2</title>
+    <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+    <link href="../blog.rss" rel="alternate" title="RightJS News" type="application/rss+xml" />
+    <script src="../hotlink/right.js@1333128729" type="text/javascript"></script>
+<script src="../javascripts/application.js@1295184937" type="text/javascript"></script>
+    <script src="../builds/ui/right-autocompleter.js@1333128730" type="text/javascript"></script>
+    <link href="../stylesheets/application.css@1297515667.css" media="screen" rel="stylesheet" type="text/css" />
+    
+    
+    
+  </head>
+  <body>
+    <div id="body">
+      <div id="head">
+        <a href="../index.html" id="logo">RightJS</a>
+        <div id="slogan">JavaScript Framework That Feels Right</div>
+
+        <div id="main-menu">
+  <ul>
+    <li><a href="../index.html">Home</a></li>
+    <li><a href="../download.html">Download</a></li>
+    <li><a href="../plugins.html">Plugins</a></li>
+    <li><a href="../ui.html">UI</a></li>
+    <li><a href="../demos.html">Demos</a></li>
+    <li class="current"><a href="../docs.html">Docs</a></li>
+    <li><a href="../blog.html">Blog</a></li>
+  </ul>
+  <div id="zing"><!-- the moving thing --></div>
+</div>
+        <div id="lang-switch">
+    <select onchange="document.location.href=this.value;">
+      <option selected="true" value="http://rightjs.org/tutorials/what-new-in-rjs22">English</option>
+      <option value="http://ru.rightjs.org/tutorials/what-new-in-rjs22">Русский</option>
+    </select>
+</div>
+      </div>
+      <div id="main">
+        <div id="sidebar">
+  <div class="box" id="download-box">
+    <h1>Get it!</h1>
+    <ul>
+      <li><a href="../builds/current/right.js.zip">RightJS v2.3.1</a></li>
+    </ul>
+  </div>
+
+  <div id="api-search" class="box">
+  <input type="text" value="Search API" id="api-search-field" />
+  <script type="text/javascript">
+  // <![CDATA[
+    new Autocompleter($('api-search-field').on({
+      focus: function() { this._v = this.value(); this.value(''); },
+      blur:  function() { this.value(this._v); }
+    }), {
+      url: '/docs/search/%{search}.js',
+      onDone: function() {
+        var current = this.first('.current');
+        if (current) {
+          document.location.href = current.get('title');
+        }
+        this.input.setValue(this.input._v);
+      }
+    });
+  // ]]>
+  </script>
+</div>
+
+  <div class="box">
+    <label>Documentation</label>
+    <ul>
+      <li><a href="getting-started.html">Getting Started</a></li>
+      <li><a href="top-features.html">Top 12 Features</a></li>
+      <li><a href="../docs.html">API Reference</a></li>
+      <li class="current"><a href="../tutorials.1.html">Tutorials</a></li>
+    </ul>
+  </div>
+
+  <div class="box">
+    <label>Additional</label>
+    <ul>
+      <li><a href="../plugins.html">RightJS Plugins</a></li>
+      
+      <li><a href="../ui.html">RightJS UI</a></li>
+      
+      <li><a href="../showcases.html">Showcases</a></li>
+    </ul>
+  </div>
+
+  <div class="box">
+    <label>Community</label>
+    <ul>
+      <li><a href="http://groups.google.com/group/rightjs">Google Group</a></li>
+      <li><a href="http://rightjs.lighthouseapp.com/projects/31989">Tickets Tracker</a></li>
+      <li><a href="http://github.com/rightjs/rightjs-snippets">Code Snippets</a></li>
+      <li><a href="irc://irc.freenode.net/rightjs">IRC #rightjs</a></li>
+      <li><a href="../participate.html">Participate!</a></li>
+    </ul>
+  </div>
+
+  <div class="box">
+    <a href='http://www.pledgie.com/campaigns/14259'><img alt='Donate!' src='http://www.pledgie.com/campaigns/14259.png?skin_name=chrome' border='0' /></a>
+  </div>
+
+  <div class="box">
+    <ul id="social">
+      <li><a href="../blog.rss" id="rss-link">RSS</a></li>
+      <li><a href="http://twitter.com/rightjs" id="twitter-link">Twitter</a></li>
+      <li><a href="http://github.com/rightjs" id="github-link">GitHub</a></li>
+    </ul>
+  </div>
+</div>
+
+        <div id="info">
+          <h1>What&#8217;s New In RightJS 2.2</h1>
+
+<p>RightJS 2.2 is the next major update of the RightJS core and plugins, it brings lots of new small and large changes, fixes, optimizations and certainly sweet little features.</p>
+<h2 class="chapter"><a href='what-new-in-rjs22.html#'>Index</a></h2><p><ul><li><a href="what-new-in-rjs22.html#fx">Native CSS Transitions Support In Fx</a></li><li><a href="what-new-in-rjs22.html#attr">Fx.Attr Class</a></li><li><a href="what-new-in-rjs22.html#ujs">Better UJS</a></li><li><a href="what-new-in-rjs22.html#mouseio">Mouseenter/Mouseleave Handlers</a></li><li><a href="what-new-in-rjs22.html#shortcuts">DOM-Shortcuts For Strings</a></li><li><a href="what-new-in-rjs22.html#class">Class And Wrapper Merge</a></li><li><a href="what-new-in-rjs22.html#supercalls">Supercalls On Modules</a></li><li><a href="what-new-in-rjs22.html#ie8">IE8 Kicked Out In the Olds Module</a></li><li><a href="what-new-in-rjs22.html#css3">Full Stack CSS3 Support</a></li><li><a href="what-new-in-rjs22.html#object">Object.merge With Deep Merge</a></li><li><a href="what-new-in-rjs22.html#index">Element#index method</a></li><li><a href="what-new-in-rjs22.html#search">Raw DOM Search</a></li><li><a href="what-new-in-rjs22.html#uid">IE Native UID</a></li><li><a href="what-new-in-rjs22.html#deprecations">Deprecations Removed</a></li><li><a href="what-new-in-rjs22.html#optimizations">Optimizations And Cleanups</a></li></ul></p><a name='fx' ></a><h2 class='chapter'>
+  <a href='what-new-in-rjs22.html#' class='top-anchor'>top &uarr;</a><a href='what-new-in-rjs22.html#fx'>Native CSS Transitions Support In Fx</a>
+</h2>
+<p>Native css-transitions were out there for a while now, we have them in Safari, Chrome, FF4 and latest versions of Opera, so it&#8217;s time to put them in a good use for real.</p>
+
+<p>RightJS now uses this native feature to handle element animations like Element#morph, Element#slide, Element#fade and so on. There is practically no change in the existing API, RightJS will automatically determine if the feature is supported and use it internally when available.</p>
+
+<p>Currently we use native css-transitions as default engine on Safari, Chrome and FF4. Although the feature is supported in Opera, it was disabled by default in this browser because of incomplete support and poor performance.</p>
+
+<p>To handle this sort of things there is a new option in the <a href='../docs/fx.html' class='api-ref'>Fx</a> module called <tt>'engine'</tt>. You can set it to <tt>'javascript'</tt> for disabling native support or you can set it to <tt>'native'</tt> for enabling native feature support anyways.</p>
+<a name='attr' ></a><h2 class='chapter'>
+  <a href='what-new-in-rjs22.html#' class='top-anchor'>top &uarr;</a><a href='what-new-in-rjs22.html#attr'>Fx.Attr Class</a>
+</h2>
+<p>The built in <a href='../docs/fx.html' class='api-ref'>Fx</a> collection of RightJS was extended with one more class <a href='../docs/fx/attr.html' class='api-ref'>Fx.Attr</a>, which is used to gradually change all sorts of element attributes. Currently, it is used as the parent for the <a href='../docs/fx/scroll.html' class='api-ref'>Fx.Scroll</a> class, but generally it can be used for any sort of element properties</p>
+<a name='ujs' ></a><h2 class='chapter'>
+  <a href='what-new-in-rjs22.html#' class='top-anchor'>top &uarr;</a><a href='what-new-in-rjs22.html#ujs'>Better UJS</a>
+</h2>
+<p>The UJS module of RightJS was reworked in many ways, first of all it was optimized to provide better response time. And secondly, UJS handlers are now react not to the specified elements only, but to all their subelements as well. Just like it happens with normal event listeners.</p>
+
+<p>For example, say if you have an elements structure like that</p>
+
+<code>&lt;div class=<s>"something"</s>&gt;<br/>  &lt;div class=<s>"corners"</s>&gt;<br/>    &lt;div class=<s>"paddings"</s>&gt;<br/>      <b class="unit">The</b> actual text<br/>    &lt;/div&gt;<br/>  &lt;/div&gt;<br/>&lt;/div&gt;</code>
+
+<p>And you attach your UJS listener to the top element like this one</p>
+
+<code><s>"div.something"</s>.<u class="method">onClick</u>(<s>'toggleClass'</s>, <s>'clicked'</s>);</code>
+
+<p>In previous versions of RightJS it would react only if the user clicks the <tt>div.something</tt> element itself, now it will also react to clicks on any internal elements as well, which is more standard/predictable behavior and very handy in many situations.</p>
+<a name='mouseio' ></a><h2 class='chapter'>
+  <a href='what-new-in-rjs22.html#' class='top-anchor'>top &uarr;</a><a href='what-new-in-rjs22.html#mouseio'>Mouseenter/Mouseleave Handlers</a>
+</h2>
+<p>Since version 2.2 RightJS will provide the <tt>mouseenter</tt>/<tt>mouseleave</tt> events emulation out of the box, which are very useful say with dynamic menus, popups and all sorts of things.</p>
+
+<p>There is nothing special in our implementation, no need for any specific methods or anything. Just use those two <tt>'mouseenter'</tt> and <tt>'mouseleave'</tt> names as you do with any other events</p>
+
+<code>$(<s>'element'</s>).<u class="method">on</u>(<s>'mouseenter'</s>, func1);<br/>$(<s>'element'</s>).<u class="method">on</u>(<s>'mouseleave'</s>, func2);<br/><br/><i>// or with shortcuts</i><br/>$(<s>'element'</s>).<u class="method">onMouseenter</u>(func1);<br/>$(<s>'element'</s>).<u class="method">onMouseleave</u>(func2);</code>
+
+<p>And it also works with UJS features as well</p>
+
+<code><s>"div.something"</s>.<u class="method">onMouseenter</u>(func1);<br/><s>"div.something"</s>.<u class="method">onMouseleave</u>(func2);</code>
+<a name='shortcuts' ></a><h2 class='chapter'>
+  <a href='what-new-in-rjs22.html#' class='top-anchor'>top &uarr;</a><a href='what-new-in-rjs22.html#shortcuts'>DOM-Shortcuts For Strings</a>
+</h2>
+<p>Everyone who tried our <a href='../docs/string.html#on' class='api-ref'>String#on</a> shortcuts to handle UJS features finds it quite weird, but likes it right away. RightJS 2.2 extends the feature and now allows you to run any dom-wrapper methods from strings.</p>
+
+<p>There are basically two modes for that. First is a collection alteration. When you call any method that changes an element it will be applied to <em>every</em> matching element.</p>
+
+<code><s>"div.something"</s>.<u class="method">addClass</u>(<s>'boo-hoo'</s>);<br/><s>"div.something"</s>.<u class="method">update</u>(<s>'Boo Hoo!'</s>);<br/><s>"div.something"</s>.<u class="method">highlight</u>();<br/><s>"div.something"</s>.<u class="method">remove</u>();<br/><i>// ...</i></code>
+
+<p>You also can call data-retrieval methods to access attributes, navigate and so one. In this case the string shortcuts will return data from the <em>first</em> element that matches the rule</p>
+
+<code><s>"div.something"</s>.<u class="method">get</u>(<s>'id'</s>);  <i>// -&gt; String</i><br/><s>"div.something"</s>.<u class="method">parent</u>();   <i>// -&gt; String</i><br/><s>"div.something"</s>.<u class="method">children</u>(); <i>// -&gt; String</i><br/><i>// ...</i></code>
+
+<p>Basically the deal is pretty much the same as they have in jQuery. So if you managed to scramble your brains over it, but still love RightJS, this is your chance to be happy :)</p>
+<a name='class' ></a><h2 class='chapter'>
+  <a href='what-new-in-rjs22.html#' class='top-anchor'>top &uarr;</a><a href='what-new-in-rjs22.html#class'>Class And Wrapper Merge</a>
+</h2>
+<p>When dom-wrappers were first introduced in RightJS 2.0 they were monkeying existing <a href='../docs/class.html' class='api-ref'>Class</a> unit, but presented a completely separated block of code specifically tuned to handle dom wrapping processes.</p>
+
+<p>In RightJS 2.2 dom-wrappers and <a href='../docs/class.html' class='api-ref'>Class</a> unit were properly merged into a single, uniformed structure, with the <a href='../docs/class.html' class='api-ref'>Class</a> unit being on the top of the hierarchy. That gives us a few interesting advantages.</p>
+
+<p>First of all now you can use the standard <tt>new Class</tt> calls no matter whether you define a dom-wrapper or a plain class:</p>
+
+<code><b class="var">var</b> <b class="unit">MyKlass</b> = <b class="var">new</b> <b class="unit">Class</b>({<br/>  <i>// ...</i><br/>});<br/><br/><b class="var">var</b> <b class="unit">MyElement</b> = <b class="var">new</b> <b class="unit">Class</b>(<b class="unit">Element</b>, {<br/>  <i>// ...</i><br/>});</code>
+
+<p>All of them will have the same same features and abilities, for example now you can use <tt>'prebind'</tt> lists with dom-wrappers</p>
+
+<code><b class="var">var</b> <b class="unit">MyElement</b> = <b class="var">new</b> <b class="unit">Class</b>(<b class="unit">Element</b>, {<br/>  <s>'prebind'</s>: [<s>'method1'</s>, <s>'method2'</s>],<br/><br/>  <s class="key">method1</s>: <b>function</b>() {},<br/>  <s class="key">method2</s>: <b>function</b>() {}<br/>});</code>
+
+<p>Another thing that this merge had produced is that the <a href='../docs/class.html' class='api-ref'>Class</a> unit now is the top class of everything in the system.</p>
+
+<code><b class="var">var</b> <b class="unit">MyClass</b>   = <b class="var">new</b> <b class="unit">Class</b>({});<br/><b class="var">var</b> <b class="unit">MyElement</b> = <b class="var">new</b> <b class="unit">Class</b>(<b class="unit">Element</b>, {});<br/><br/><b class="var">new</b> <b class="unit">MyClass</b>(<s>'param'</s>) <b>instanceof</b> <b class="unit">Class</b>; <i>// -&gt; true</i><br/><b class="var">new</b> <b class="unit">MyElement</b>(<s>'div'</s>) <b>instanceof</b> <b class="unit">Class</b>; <i>// -&gt; true</i></code>
+
+<p>This provides some additional features, like for example now you can always check objects if they are based on RightJS technology. Or you also might have global, system level changes by tweaking the <a href='../docs/class.html' class='api-ref'>Class</a> unit and so on.</p>
+<a name='supercalls' ></a><h2 class='chapter'>
+  <a href='what-new-in-rjs22.html#' class='top-anchor'>top &uarr;</a><a href='what-new-in-rjs22.html#supercalls'>Supercalls On Modules</a>
+</h2>
+<p>Another result of the <a href='../docs/class.html' class='api-ref'>Class</a> unit updates is that now it supports supercalls on injected modules as well as on inherited classes. The problem here is that sometimes you need to overload methods right in a class without using inheritance.</p>
+
+<p>RightJS functionality injection feature allows you to do that, but calls to the original methods were quite tricky, you had to stash them somewhere and then reapply manually. Those days are gone. Now you can make supercalls on injected methods the same exact way as you do on inherited classes</p>
+
+<code><b class="var">var</b> <b class="unit">MyClass</b> = <b class="var">new</b> <b class="unit">Class</b>({<br/>  <s class="key">method</s>: <b>function</b>() {<br/>    <b>return</b> <s>'original'</s>;<br/>  }<br/>});<br/><br/><i>// injecting the first module</i><br/><b class="unit">MyClass</b>.<u class="method">include</u>({<br/>  <s class="key">method</s>: <b>function</b>() {<br/>    <b>return</b> <b class="var">this</b>.<u class="method">$super</u>() + <s>'+module1'</s>;<br/>  }<br/>});<br/><br/><i>// injecting another one</i><br/><b class="unit">MyClass</b>.<u class="method">include</u>({<br/>  <s class="key">method</s>: <b>function</b>() {<br/>    <b>return</b> <b class="var">this</b>.<u class="method">$super</u>() + <s>'+module2'</s>;<br/>  }<br/>});<br/><br/><b class="var">new</b> <b class="unit">MyClass</b>().<u class="method">method</u>(); <i>// -&gt; 'original+module1+module2'</i></code>
+
+<p>It all nice and civilized now, no need to hack this thing around anymore!</p>
+<a name='ie8' ></a><h2 class='chapter'>
+  <a href='what-new-in-rjs22.html#' class='top-anchor'>top &uarr;</a><a href='what-new-in-rjs22.html#ie8'>IE8 Kicked Out In the Olds Module</a>
+</h2>
+<p>A consilium of Russian nuclear physicists had decided that IE8 is an old pail of sweet goodness and so, it was kicked out of the core into the olds module.</p>
+
+<p>There are several good reasons for that. First of all IE8 has a lack of proper CSS3 selectors support, secondly it still has some issues with the <tt>change</tt> / <tt>submit</tt> events, thirdly it constantly falls back into the IE7 mode and downloads the olds module anyways.</p>
+
+<p>As the result, now RightJS core basically represents pure W3C browsers support and has almost no IE related hacks in it anymore.</p>
+<a name='css3' ></a><h2 class='chapter'>
+  <a href='what-new-in-rjs22.html#' class='top-anchor'>top &uarr;</a><a href='what-new-in-rjs22.html#css3'>Full Stack CSS3 Support</a>
+</h2>
+<p>With IE8 being kicked out into the olds module, we finally had a chance to fix its problems with CSS3 selectors.</p>
+
+<p>So now, all the standard CSS3 selectors are officially supported in all the browsers. Congratulations!</p>
+<a name='object' ></a><h2 class='chapter'>
+  <a href='what-new-in-rjs22.html#' class='top-anchor'>top &uarr;</a><a href='what-new-in-rjs22.html#object'>Object.merge With Deep Merge</a>
+</h2>
+<p>The <a href='../docs/object.html#merge' class='api-ref'>Object.merge</a> method was updated and now performs a proper deep-merge recursively merging all the inner hashes of incoming objects.</p>
+
+<code><b class="unit">Object</b>.<u class="method">merge</u>(<br/>  {<s class="key">a</s>: {<s class="key">b</s>: {<s class="key">c</s>: <s>'d'</s>}, <s class="key">e</s>: <s>'f'</s>}},<br/>  {<s class="key">a</s>: {<s class="key">b</s>: {<s class="key">c</s>: <s>'d'</s>, <s class="key">e</s>: <s>'f'</s>}}}<br/>);<br/><i>// -&gt; {a: {b: {c: 'd', e: 'f'}, e: 'f'}}</i></code>
+
+<p>If you need the old one-level merging functionality, please use the <tt>$ext</tt> function out of the <a href='../docs/util.html' class='api-ref'>Util</a> library</p>
+<a name='index' ></a><h2 class='chapter'>
+  <a href='what-new-in-rjs22.html#' class='top-anchor'>top &uarr;</a><a href='what-new-in-rjs22.html#index'>Element#index method</a>
+</h2>
+<p>The <a href='../docs/element.html' class='api-ref'>Element</a> class had received one more simple method called <a href='../docs/element.html#index' class='api-ref'>Element#index</a> which returns the index of the element among its siblings</p>
+
+<code>&lt;ul&gt;<br/>  &lt;li id=<s>"one"</s>&gt;<b class="unit">One</b>&lt;/li&gt;<br/>  &lt;li id=<s>"two"</s>&gt;<b class="unit">Two</b>&lt;/li&gt;<br/>&lt;/ul&gt;<br/><br/>$(<s>'one'</s>).<u class="method">index</u>(); <i>// -&gt; 0</i><br/>$(<s>'two'</s>).<u class="method">index</u>(); <i>// -&gt; 1</i></code>
+
+<p>Pretty standard.</p>
+<a name='search' ></a><h2 class='chapter'>
+  <a href='what-new-in-rjs22.html#' class='top-anchor'>top &uarr;</a><a href='what-new-in-rjs22.html#search'>Raw DOM Search</a>
+</h2>
+<p>The dom-search methods of RightJS, like <a href='../docs/element.html#find' class='api-ref'>Element#find</a>, Document#find or <tt>$$</tt> now can perform a quick raw dom-elements search without wrapping them into the <a href='../docs/element.html' class='api-ref'>Element</a> class instances.</p>
+
+<p>To use the feature, just pass <tt>true</tt> right after the css-rule of yours</p>
+
+<code>$(<s>'my-element'</s>).<u class="method">find</u>(<s>'div.something'</s>, <b class="rest">true</b>); <i>// -&gt; [HTMLElement, ...]</i><br/>$(document).<u class="method">find</u>(<s>'div.something'</s>, <b class="rest">true</b>);     <i>// -&gt; [HTMLElement, ...]</i><br/><br/><i>// or like that</i><br/>$$(<s>'div.something'</s>, <b class="rest">true</b>); <i>// -&gt; [HTMLElement, ...]</i></code>
+
+<p>Feel free to use it at any moment when you need a quick dom-search without using the wrappers.</p>
+<a name='uid' ></a><h2 class='chapter'>
+  <a href='what-new-in-rjs22.html#' class='top-anchor'>top &uarr;</a><a href='what-new-in-rjs22.html#uid'>IE Native UID</a>
+</h2>
+<p>In RightJS 2.0 we used our own UID sequencing feature to ensure single instances of dom-wrappers all over the page. It is a pretty much standard procedure, but it has a drawback, those UID markers appear as element attributes in IE.</p>
+
+<p>In RightJS 2.2 we have reused IE&#8217;s native UID sequencing feature and now have practically no footprint on the system at all. It&#8217;s all nice and clean now.</p>
+<a name='deprecations' ></a><h2 class='chapter'>
+  <a href='what-new-in-rjs22.html#' class='top-anchor'>top &uarr;</a><a href='what-new-in-rjs22.html#deprecations'>Deprecations Removed</a>
+</h2>
+<p>All sorts of old deprecations were removed.</p>
+
+<code><b class="unit">Element</b>#select   -&gt; <b class="unit">Element</b>#find<br/><b class="unit">Element</b>#subNodes -&gt; <b class="unit">Element</b>#children<br/><b class="unit">Element</b>#sizes    -&gt; <b class="unit">Element</b>#size<br/><b class="unit">Element</b>#document -&gt; <b class="unit">Element</b>#doc<br/><b class="unit">Element</b>#window   -&gt; <b class="unit">Element</b>#win<br/><br/><b class="unit">Form</b>#getElements -&gt; <b class="unit">Form</b>#elements<br/><br/><b class="unit">Document</b>#select  -&gt; <b class="unit">Document</b>#find<br/><br/><b class="unit">Window</b>#sizes     -&gt; <b class="unit">Window</b>#size<br/><b class="unit">Window</b>#onReady   -&gt; <b class="unit">Document</b>#onReady<br/><br/><b class="var">new</b> <b class="unit">Wrapper</b>      -&gt; <b class="var">new</b> <b class="unit">Class</b></code>
+
+<p>You might want to check your code if you used any of those</p>
+<a name='optimizations' ></a><h2 class='chapter'>
+  <a href='what-new-in-rjs22.html#' class='top-anchor'>top &uarr;</a><a href='what-new-in-rjs22.html#optimizations'>Optimizations And Cleanups</a>
+</h2>
+<p>Traditionally, we also have some optimizations and cleanups in RightJS core and plugins.</p>
+
+<p>First we&#8217;ve optimized dom-wrappings and search processes, you might not notice much of a difference in the <tt>TaskSpeed</tt> test, but those changes had a great deal of impact on things like <a href='../docs/element.html#match' class='api-ref'>Element#match</a> and <a href='../docs/event.html#find' class='api-ref'>Event#find</a>. Which make UJS and general events handling to work faster and as the result make your apps more responsive.</p>
+
+<p>Secondly, the <a href='../docs/fx.html' class='api-ref'>Fx</a> engine was also optimized, it certainly depends on a complexity of things you do, but in general, our effects now run a bit smoother. In Opera our javascript based engine works even faster than the native css-transitions :)</p>
+
+<p>Thirdly, lots of code compression optimizations took place. Despite of all the new features, the size of the builds practically didn&#8217;t change.</p>
+
+<p>RightJS 2.0 weighs <tt>15.5k</tt> gzipped</p>
+
+<p>RightJS 2.2 weighs <tt>15.6k</tt> gzipped</p>
+
+<p>And last, but not least, RightJS was cleaned up from all the nasty <tt>eval</tt> and <tt>document.write</tt> hacks that we inherited from RightJS 1, so that now RightJS is nice and clean and ready to be used with all those asynchronous scripts loaders like RequireJS and so on.</p>
+
+<p>&#160;</p>
+
+<p>That&#8217;s all we have, enjoy!</p>
+        </div>
+        <div style="clear:both"></div>
+      </div>
+      <div id="foot">
+        <div id="contacts">
+  <h2>Questions?</h2>
+  <a href="&#x6D;&#x61;i&#x6C;&#x74;&#x6F;:&#105;&#110;&#102;&#111;&#064;&#114;&#105;&#103;&#104;&#116;&#106;&#115;&#046;&#111;&#114;&#103;">&#105;&#110;&#102;&#111;&#064;&#114;&#105;&#103;&#104;&#116;&#106;&#115;&#046;&#111;&#114;&#103;</a>
+</div>
+<div id="bottom-menu">
+  <h2>About the Framework</h2>
+  <a href="../philosophy.html">Philosophy</a> |
+  <a href="../benchmarks.html">Benchmarks</a> |
+  <a href="../browsers.html">Browsers</a> |
+  <a href="../contacts.html">Contacts</a>
+</div>
+        <div id="design">Design by <a href="http://activestylus.com">Steven Garcia</a></div>
+        <div id="copyright">Copyright &copy; 2008-2011 Nikolay Nemshilov</div>
+      </div>
+    </div>
+
+    <script src="http://www.google-analytics.com/ga.js" type="text/javascript"></script>
+    <script type="text/javascript">
+    // <![CDATA[
+      try { _gat._getTracker("UA-10292980-1")._trackPageview(); } catch(err) {}
+    // ]]>
+    </script>
+  </body>
+</html>

@@ -1,0 +1,321 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <title>RightJS: Dialog Demo</title>
+    <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+    <link href="../../blog.rss" rel="alternate" title="RightJS News" type="application/rss+xml" />
+    <script src="../../hotlink/right.js@1333128729" type="text/javascript"></script>
+<script src="../../javascripts/application.js@1295184937" type="text/javascript"></script>
+    <script src="../../builds/ui/right-autocompleter.js@1333128730" type="text/javascript"></script>
+    <link href="../../stylesheets/application.css@1297515667.css" media="screen" rel="stylesheet" type="text/css" />
+    <script src="../../builds/ui/right-dialog.js@1333128730" type="text/javascript"></script>
+    <link href="../../stylesheets/rightjs-ui-home.css@1295874376.css" media="screen" rel="stylesheet" type="text/css" />
+    
+  </head>
+  <body>
+    <div id="body">
+      <div id="head">
+        <a href="../../index.html" id="logo">RightJS</a>
+        <div id="slogan">JavaScript Framework That Feels Right</div>
+
+        <div id="main-menu">
+  <ul>
+    <li><a href="../../index.html">Home</a></li>
+    <li><a href="../../download.html">Download</a></li>
+    <li><a href="../../plugins.html">Plugins</a></li>
+    <li class="current"><a href="../../ui.html">UI</a></li>
+    <li><a href="../../demos.html">Demos</a></li>
+    <li><a href="../../docs.html">Docs</a></li>
+    <li><a href="../../blog.html">Blog</a></li>
+  </ul>
+  <div id="zing"><!-- the moving thing --></div>
+</div>
+        <div id="lang-switch">
+    <select onchange="document.location.href=this.value;">
+      <option selected="true" value="http://rightjs.org/ui/dialog/demo">English</option>
+      <option value="http://ru.rightjs.org/ui/dialog/demo">Русский</option>
+    </select>
+</div>
+      </div>
+      <div id="main">
+        <div id="sidebar">
+  <div class="box" id="download-box">
+    <h1>Get it!</h1>
+    <ul>
+      <li><a href="../../builds/current/right.js.zip">RightJS v2.3.1</a></li>
+    </ul>
+  </div>
+
+  <div id="api-search" class="box">
+  <input type="text" value="Search API" id="api-search-field" />
+  <script type="text/javascript">
+  // <![CDATA[
+    new Autocompleter($('api-search-field').on({
+      focus: function() { this._v = this.value(); this.value(''); },
+      blur:  function() { this.value(this._v); }
+    }), {
+      url: '/docs/search/%{search}.js',
+      onDone: function() {
+        var current = this.first('.current');
+        if (current) {
+          document.location.href = current.get('title');
+        }
+        this.input.setValue(this.input._v);
+      }
+    });
+  // ]]>
+  </script>
+</div>
+
+  <div class="box">
+    <label>Documentation</label>
+    <ul>
+      <li><a href="../../tutorials/getting-started.html">Getting Started</a></li>
+      <li><a href="../../tutorials/top-features.html">Top 12 Features</a></li>
+      <li><a href="../../docs.html">API Reference</a></li>
+      <li><a href="../../tutorials.1.html">Tutorials</a></li>
+    </ul>
+  </div>
+
+  <div class="box">
+    <label>Additional</label>
+    <ul>
+      <li><a href="../../plugins.html">RightJS Plugins</a></li>
+      
+      <li class="current"><a href="../../ui.html">RightJS UI</a></li>
+      <ul id="ui-menu"><li><a href="../autocompleter.html">Autocompleter</a></li>
+<li><a href="../billboard.html">Billboard</a></li>
+<li><a href="../calendar.html">Calendar</a></li>
+<li><a href="../colorpicker.html">Colorpicker</a></li>
+<li class="current"><a href="../dialog.html">Dialog</a></li>
+<li><a href="../in-edit.html">In Place Edit</a></li>
+<li><a href="../lightbox.html">Lightbox</a></li>
+<li><a href="../rater.html">Rater</a></li>
+<li><a href="../resizable.html">Resizable</a></li>
+<li><a href="../rte.html">Rte</a></li>
+<li><a href="../selectable.html">Selectable</a></li>
+<li><a href="../slider.html">Slider</a></li>
+<li><a href="../sortable.html">Sortable</a></li>
+<li><a href="../tabs.html">Tabs</a></li>
+<li><a href="../tags.html">Tags</a></li>
+<li><a href="../tooltips.html">Tooltips</a></li>
+<li><a href="../uploader.html">Uploader</a></li></ul>
+      <li><a href="../../showcases.html">Showcases</a></li>
+    </ul>
+  </div>
+
+  <div class="box">
+    <label>Community</label>
+    <ul>
+      <li><a href="http://groups.google.com/group/rightjs">Google Group</a></li>
+      <li><a href="http://rightjs.lighthouseapp.com/projects/31989">Tickets Tracker</a></li>
+      <li><a href="http://github.com/rightjs/rightjs-snippets">Code Snippets</a></li>
+      <li><a href="irc://irc.freenode.net/rightjs">IRC #rightjs</a></li>
+      <li><a href="../../participate.html">Participate!</a></li>
+    </ul>
+  </div>
+
+  <div class="box">
+    <a href='http://www.pledgie.com/campaigns/14259'><img alt='Donate!' src='http://www.pledgie.com/campaigns/14259.png?skin_name=chrome' border='0' /></a>
+  </div>
+
+  <div class="box">
+    <ul id="social">
+      <li><a href="../../blog.rss" id="rss-link">RSS</a></li>
+      <li><a href="http://twitter.com/rightjs" id="twitter-link">Twitter</a></li>
+      <li><a href="http://github.com/rightjs" id="github-link">GitHub</a></li>
+    </ul>
+  </div>
+</div>
+
+        <div id="info">
+          <h1>Dialog Demo</h1>
+<script type='text/javascript'>
+// <![CDATA[
+  "a#demo-text".onClick(function() {
+    new Dialog({
+      title: 'Basic Example',
+      html:  $('lorem').html()
+    }).setStyle('width: 30em').show();
+
+    return false;
+  });
+
+  "a#demo-scroll".onClick(function() {
+    new Dialog({
+      title: 'Example With Scrolls',
+      html:  $('lorem').html() + '<br/>' + $('lorem').html()
+    }).setStyle('width: 30em; height: 12em').show();
+
+    return false;
+  });
+
+  "a#demo-ajax".onClick(function() {
+    new Dialog()
+      .title("Ajax Example")
+      .load('./lorem');
+
+    return false;
+  });
+
+  "a#demo-nolock".onClick(function() {
+    new Dialog({
+      lockScreen: false,
+      title: 'No Screen Lock',
+      html:  $('lorem').html()
+    }).setStyle('width: 30em').show();
+
+    return false;
+  });
+
+  "a#demo-noclose".onClick(function() {
+    new Dialog({
+      closeable: false,
+      title: "You Can't Close Me!",
+      html:  $('lorem').html()
+    }).setStyle('width: 30em').show();
+
+    return false;
+  });
+
+  "a#demo-nodrag".onClick(function() {
+    new Dialog({
+      draggable: false,
+      title: "You Can't Drag Me!",
+      html:  $('lorem').html()
+    }).setStyle('width: 30em').show();
+
+    return false;
+  });
+
+  "a#demo-expand".onClick(function() {
+    new Dialog({
+      expandable: true,
+      title: "Expand Me!",
+      html:  $('lorem').html() + '<br/>' + $('lorem').html() + '<br/>' + $('lorem').html()
+    }).setStyle('width: 30em; height: 10em').show();
+
+    return false;
+  });
+
+  "a#demo-help".onClick(function() {
+    new Dialog({
+      showHelp: true,
+      title: "I Have The Help Button!",
+      html:  $('lorem').html()
+    })
+    .setStyle('width: 30em')
+    .onHelp(function() { this.html('Help is coming!')})
+    .show();
+
+    return false;
+  });
+
+  "a#demo-alert".onClick(function() {
+    new Dialog.Alert({
+      html: "Oh dude, you're so screwed!"
+    }).show();
+
+    return false;
+  });
+
+  "a#demo-confirm".onClick(function() {
+    new Dialog.Confirm({
+      html: "Are you sure?"
+    }).show();
+
+    return false;
+  });
+
+  "a#demo-prompt".onClick(function() {
+    new Dialog.Prompt({
+      label: 'Enter your name'
+    }).show();
+
+    return false;
+  });
+
+  "a#demo-password".onClick(function() {
+    new Dialog.Prompt({
+      label: 'Enter your password',
+      input: {
+        type: 'password'
+      }
+    }).show();
+
+    return false;
+  });
+
+  "a#demo-textarea".onClick(function() {
+    new Dialog.Prompt({
+      label: "What's your story?",
+      input: {
+        type: 'textarea',
+        value: 'The story goes like that'
+      }
+    }).show();
+    return false;
+  });
+
+// ]]>
+</script><p id='lorem' style='display:none'>
+  Lorem ipsum dolor <u>sit</u> amet, consectetur adipisicing elit, <b>sed</b> do eiusmod tempor incididunt ut labore et dolore <i>magna</i> aliqua. Ut enim ad minim veniam, quis nostrud <u>exercitation</u> ullamco laboris nisi ut aliquip ex ea commodo <b>consequat</b>. Duis aute irure dolor in <i>reprehenderit</i> in voluptate velit esse cillum <u>dolore</u> eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non <b>proident</b>, sunt in culpa qui <i>officia</i> deserunt mollit anim id est laborum.
+</p>
+<p>There are several use cases for the <a href='../dialog.html'>Dialog</a> widget</p>
+<a name='basic' ></a><h2 class='chapter'>
+  <a href='demo.html#' class='top-anchor'>top &uarr;</a><a href='demo.html#basic'>Basic Dialogs</a>
+</h2><p>
+  <ul>
+    <li><a href='demo.html' id='demo-text'>Basic Dialog With Text</a></li>
+    <li><a href='demo.html' id='demo-scroll'>Basic Dialog With Scrolls</a></li>
+    <li><a href='demo.html' id='demo-ajax'>Ajax Dialog</a></li>
+  </ul>
+</p><a name='options' ></a><h2 class='chapter'>
+  <a href='demo.html#' class='top-anchor'>top &uarr;</a><a href='demo.html#options'>Dialogs With Options</a>
+</h2><p>
+  <ul>
+    <li><a href='demo.html' id='demo-nolock'>Dialog Without Window Lock</a></li>
+    <li><a href='demo.html' id='demo-noclose'>Uncloseable Dialog</a></li>
+    <li><a href='demo.html' id='demo-nodrag'>Undraggable Dialog</a></li>
+    <li><a href='demo.html' id='demo-expand'>Expandable Dialog</a></li>
+    <li><a href='demo.html' id='demo-help'>Dialog With Help Button</a></li>
+  </ul>
+</p><a name='standard' ></a><h2 class='chapter'>
+  <a href='demo.html#' class='top-anchor'>top &uarr;</a><a href='demo.html#standard'>Standard Dialogs</a>
+</h2><p>
+  <ul>
+    <li><a href='demo.html' id='demo-alert'>Alert Dialog</a></li>
+    <li><a href='demo.html' id='demo-confirm'>Confirmation Dialog</a></li>
+    <li><a href='demo.html' id='demo-prompt'>Standard Prompt Dialog</a></li>
+    <li><a href='demo.html' id='demo-password'>Password Prompt Dialog</a></li>
+    <li><a href='demo.html' id='demo-textarea'>Textarea Prompt Dialog</a></li>
+  </ul>
+</p>
+        </div>
+        <div style="clear:both"></div>
+      </div>
+      <div id="foot">
+        <div id="contacts">
+  <h2>Questions?</h2>
+  <a href="&#x6D;&#x61;i&#x6C;&#x74;&#x6F;:&#105;&#110;&#102;&#111;&#064;&#114;&#105;&#103;&#104;&#116;&#106;&#115;&#046;&#111;&#114;&#103;">&#105;&#110;&#102;&#111;&#064;&#114;&#105;&#103;&#104;&#116;&#106;&#115;&#046;&#111;&#114;&#103;</a>
+</div>
+<div id="bottom-menu">
+  <h2>About the Framework</h2>
+  <a href="../../philosophy.html">Philosophy</a> |
+  <a href="../../benchmarks.html">Benchmarks</a> |
+  <a href="../../browsers.html">Browsers</a> |
+  <a href="../../contacts.html">Contacts</a>
+</div>
+        <div id="design">Design by <a href="http://activestylus.com">Steven Garcia</a></div>
+        <div id="copyright">Copyright &copy; 2008-2011 Nikolay Nemshilov</div>
+      </div>
+    </div>
+
+    <script src="http://www.google-analytics.com/ga.js" type="text/javascript"></script>
+    <script type="text/javascript">
+    // <![CDATA[
+      try { _gat._getTracker("UA-10292980-1")._trackPageview(); } catch(err) {}
+    // ]]>
+    </script>
+  </body>
+</html>

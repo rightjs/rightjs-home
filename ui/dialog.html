@@ -1,0 +1,280 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <title>RightJS: Dialog Widget</title>
+    <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+    <link href="../blog.rss" rel="alternate" title="RightJS News" type="application/rss+xml" />
+    <script src="../hotlink/right.js@1333128729" type="text/javascript"></script>
+<script src="../javascripts/application.js@1295184937" type="text/javascript"></script>
+    <script src="../builds/ui/right-autocompleter.js@1333128730" type="text/javascript"></script>
+    <link href="../stylesheets/application.css@1297515667.css" media="screen" rel="stylesheet" type="text/css" />
+    
+    <link href="../stylesheets/rightjs-ui-home.css@1295874376.css" media="screen" rel="stylesheet" type="text/css" />
+    
+  </head>
+  <body>
+    <div id="body">
+      <div id="head">
+        <a href="../index.html" id="logo">RightJS</a>
+        <div id="slogan">JavaScript Framework That Feels Right</div>
+
+        <div id="main-menu">
+  <ul>
+    <li><a href="../index.html">Home</a></li>
+    <li><a href="../download.html">Download</a></li>
+    <li><a href="../plugins.html">Plugins</a></li>
+    <li class="current"><a href="../ui.html">UI</a></li>
+    <li><a href="../demos.html">Demos</a></li>
+    <li><a href="../docs.html">Docs</a></li>
+    <li><a href="../blog.html">Blog</a></li>
+  </ul>
+  <div id="zing"><!-- the moving thing --></div>
+</div>
+        <div id="lang-switch">
+    <select onchange="document.location.href=this.value;">
+      <option selected="true" value="http://rightjs.org/ui/dialog">English</option>
+      <option value="http://ru.rightjs.org/ui/dialog">Русский</option>
+    </select>
+</div>
+      </div>
+      <div id="main">
+        <div id="sidebar">
+  <div class="box" id="download-box">
+    <h1>Get it!</h1>
+    <ul>
+      <li><a href="../builds/current/right.js.zip">RightJS v2.3.1</a></li>
+    </ul>
+  </div>
+
+  <div id="api-search" class="box">
+  <input type="text" value="Search API" id="api-search-field" />
+  <script type="text/javascript">
+  // <![CDATA[
+    new Autocompleter($('api-search-field').on({
+      focus: function() { this._v = this.value(); this.value(''); },
+      blur:  function() { this.value(this._v); }
+    }), {
+      url: '/docs/search/%{search}.js',
+      onDone: function() {
+        var current = this.first('.current');
+        if (current) {
+          document.location.href = current.get('title');
+        }
+        this.input.setValue(this.input._v);
+      }
+    });
+  // ]]>
+  </script>
+</div>
+
+  <div class="box">
+    <label>Documentation</label>
+    <ul>
+      <li><a href="../tutorials/getting-started.html">Getting Started</a></li>
+      <li><a href="../tutorials/top-features.html">Top 12 Features</a></li>
+      <li><a href="../docs.html">API Reference</a></li>
+      <li><a href="../tutorials.1.html">Tutorials</a></li>
+    </ul>
+  </div>
+
+  <div class="box">
+    <label>Additional</label>
+    <ul>
+      <li><a href="../plugins.html">RightJS Plugins</a></li>
+      
+      <li class="current"><a href="../ui.html">RightJS UI</a></li>
+      <ul id="ui-menu"><li><a href="autocompleter.html">Autocompleter</a></li>
+<li><a href="billboard.html">Billboard</a></li>
+<li><a href="calendar.html">Calendar</a></li>
+<li><a href="colorpicker.html">Colorpicker</a></li>
+<li class="current"><a href="dialog.html">Dialog</a></li>
+<li><a href="in-edit.html">In Place Edit</a></li>
+<li><a href="lightbox.html">Lightbox</a></li>
+<li><a href="rater.html">Rater</a></li>
+<li><a href="resizable.html">Resizable</a></li>
+<li><a href="rte.html">Rte</a></li>
+<li><a href="selectable.html">Selectable</a></li>
+<li><a href="slider.html">Slider</a></li>
+<li><a href="sortable.html">Sortable</a></li>
+<li><a href="tabs.html">Tabs</a></li>
+<li><a href="tags.html">Tags</a></li>
+<li><a href="tooltips.html">Tooltips</a></li>
+<li><a href="uploader.html">Uploader</a></li></ul>
+      <li><a href="../showcases.html">Showcases</a></li>
+    </ul>
+  </div>
+
+  <div class="box">
+    <label>Community</label>
+    <ul>
+      <li><a href="http://groups.google.com/group/rightjs">Google Group</a></li>
+      <li><a href="http://rightjs.lighthouseapp.com/projects/31989">Tickets Tracker</a></li>
+      <li><a href="http://github.com/rightjs/rightjs-snippets">Code Snippets</a></li>
+      <li><a href="irc://irc.freenode.net/rightjs">IRC #rightjs</a></li>
+      <li><a href="../participate.html">Participate!</a></li>
+    </ul>
+  </div>
+
+  <div class="box">
+    <a href='http://www.pledgie.com/campaigns/14259'><img alt='Donate!' src='http://www.pledgie.com/campaigns/14259.png?skin_name=chrome' border='0' /></a>
+  </div>
+
+  <div class="box">
+    <ul id="social">
+      <li><a href="../blog.rss" id="rss-link">RSS</a></li>
+      <li><a href="http://twitter.com/rightjs" id="twitter-link">Twitter</a></li>
+      <li><a href="http://github.com/rightjs" id="github-link">GitHub</a></li>
+    </ul>
+  </div>
+</div>
+
+        <div id="info">
+          <h1>Dialog Widget</h1>
+
+<p>Dialog is a standard dialog widgets solution for RightJS</p>
+
+<p>Get the latest version right here</p>
+
+<ul>
+<li><a href='../builds/ui/right-dialog.js'>right-dialog.js</a> - minified version</li>
+
+<li><a href='../builds/ui/right-dialog-src.js'>right-dialog-src.js</a> - source code</li>
+</ul>
+
+<p>All the source code of the project is available under terms of the MIT license</p>
+
+<p><a href='http://github.com/rightjs/rightjs-ui/tree/master/src/dialog/'>http://github.com/rightjs/rightjs-ui/tree/master/src/dialog/</a></p>
+
+<p>For some standard usage examples see the <a href='dialog/demo.html'>demo page</a></p>
+<h2 class="chapter"><a href='dialog.html#'>Index</a></h2><p><ul><li><a href="dialog.html#features">Features List</a></li><li><a href="dialog.html#usage">Usage Basics</a></li><li><a href="dialog.html#standard">Standard Dialogs</a></li><li><a href="dialog.html#options">Options List</a></li><li><a href="dialog.html#event">Events List</a></li><li><a href="dialog.html#api">API Reference</a></li><li><a href="dialog.html#styles">Style Alterations</a></li></ul></p><a name='features' ></a><h2 class='chapter'>
+  <a href='dialog.html#' class='top-anchor'>top &uarr;</a><a href='dialog.html#features'>Features List</a>
+</h2>
+<ul>
+<li>Works with any HTML content</li>
+
+<li>Works with ajax requests</li>
+
+<li>Provides standard Alert, Confirm and Prompt dialogs</li>
+
+<li>It can be dragged around the window</li>
+
+<li>It can be expanded to the window-wide mode</li>
+
+<li>Supports i18n modules</li>
+
+<li>Everything in a small (3.6k gzipped) file</li>
+</ul>
+<a name='usage' ></a><h2 class='chapter'>
+  <a href='dialog.html#' class='top-anchor'>top &uarr;</a><a href='dialog.html#usage'>Usage Basics</a>
+</h2>
+<p>There is nothing really special about this widget, it&#8217;s all simple and predictable. Just include on of the files above on your page and start making your dialogs.</p>
+
+<code><b class="var">new</b> <b class="unit">Dialog</b>({<br/>  <s class="key">title</s>: <s>'Hello World!'</s>,<br/>  <s class="key">html</s>:  <s>'Here I come!'</s><br/>}).<u class="method">show</u>();<br/><br/><i>// or like that</i><br/><b class="var">new</b> <b class="unit">Dialog</b>()<br/>  .<u class="method">title</u>(<s>'Hello World!'</s>)<br/>  .<u class="method">html</u>(<s>'Here I come!'</s>)<br/>  .<u class="method">show</u>();</code>
+
+<p>Dialogs have most of the content related methods from the <a href='../docs/element.html' class='api-ref'>Element</a> API overloaded so they bypass the data right into the body block</p>
+
+<code><b class="var">new</b> <b class="unit">Dialog</b>()<br/>  .<u class="method">html</u>(<s>'Hi there!'</s>)<br/>  .<u class="method">update</u>(<s>'A new one!'</s>)<br/>  .<u class="method">load</u>(<s>'/some/url.html'</s>);</code>
+
+<p>Just use them as nothing happened</p>
+<a name='standard' ></a><h2 class='chapter'>
+  <a href='dialog.html#' class='top-anchor'>top &uarr;</a><a href='dialog.html#standard'>Standard Dialogs</a>
+</h2>
+<p>This dialog widget comes with several standard dialog types already baked in. We have your normal alerts</p>
+
+<code><b class="var">new</b> <b class="unit">Dialog</b>.<b class="unit">Alert</b>()<br/>  .<u class="method">html</u>(<s>"You're done!"</s>)<br/>  .<u class="method">onOk</u>(<b>function</b>() {<br/>    console.<u class="method">log</u>(<s>"I'm done"</s>);<br/>  })<br/>  .<u class="method">show</u>();</code>
+
+<p>Then we have the standard confirmation dialog</p>
+
+<code><b class="var">new</b> <b class="unit">Dialog</b>.<b class="unit">Confirm</b>()<br/>  .<u class="method">html</u>(<s>"Are you sure?"</s>)<br/>  .<u class="method">onOk</u>(one_callback)<br/>  .<u class="method">onCancel</u>(anotehr_callback)<br/>  .<u class="method">show</u>();</code>
+
+<p>And we also have the prompts dialog, which can take some additional options</p>
+
+<code><b class="var">new</b> <b class="unit">Dialog</b>.<b class="unit">Prompt</b>({<s class="key">label</s>: <s>'Enter your name'</s>})<br/>  .<u class="method">onOk</u>(<b>function</b>() {<br/>    console.<u class="method">log</u>(<s>"Your name is: "</s> + <b class="var">this</b>.<u>input</u>.<u class="method">value</u>());<br/>  }).<u class="method">show</u>();</code>
+
+<p>And you also can specify all sorts of options for the <a href='../docs/input.html' class='api-ref'>Input</a> field</p>
+
+<code><b class="var">new</b> <b class="unit">Dialog</b>.<b class="unit">Prompt</b>({<br/>  <s class="key">label</s>: <s>'Enter the password'</s>,<br/>  <s class="key">input</s>: {<br/>    <s class="key">type</s>:  <s>'password'</s>,<br/>    <s class="key">value</s>: <s>'secret'</s><br/>  }<br/>})<br/>.<u class="method">onOk</u>(process_the_input)<br/>.<u class="method">show</u>();</code>
+
+<p>You can use anything you like, textareas, selectboxes and so on.</p>
+<a name='options' ></a><h2 class='chapter'>
+  <a href='dialog.html#' class='top-anchor'>top &uarr;</a><a href='dialog.html#options'>Options List</a>
+</h2>
+<p>There is a number of options the <tt>Dialog</tt> instances support</p>
+<table><thead><tr><th>Name</th><th>Default</th><th>Description</th></tr></thead><tbody><tr><td>lockScreen</td><td>true</td><td>if you need it to lock the screen</td>
+</tr><tr><td>fxDuration</td><td>&#8216;short&#8217;</td><td>dialog block appearance fx duration</td>
+</tr><tr><td>draggable</td><td>true</td><td>allows the user to drag the dialog around</td>
+</tr><tr><td>closeable</td><td>true</td><td>allows the user to close the dialog</td>
+</tr><tr><td>expandable</td><td>false</td><td>show the user to expand/collapse the dialog window wide</td>
+</tr><tr><td>showHelp</td><td>false</td><td>show the &#8216;Help&#8217; button</td>
+</tr><tr><td>showIcon</td><td>null</td><td><tt>null</tt> or some text to be show in the dialog body icon</td>
+</tr><tr><td>title</td><td>null</td><td>default title to preset</td>
+</tr><tr><td>html</td><td>null</td><td>html content to set on instance</td>
+</tr><tr><td>url</td><td>null</td><td>url address that should be loaded on instance</td>
+</tr></tbody></table>
+<p>The <tt>Dialog.Prompt</tt> class also supports two additional options</p>
+
+<ul>
+<li><tt>label</tt> - the label above the input field</li>
+
+<li><tt>input</tt> - the input field options (see <a href='../docs/input.html' class='api-ref'>Input</a>)</li>
+</ul>
+<a name='event' ></a><h2 class='chapter'>
+  <a href='dialog.html#' class='top-anchor'>top &uarr;</a><a href='dialog.html#event'>Events List</a>
+</h2>
+<p>There is also a number of events that you can hook to your dialogs</p>
+<table><thead><tr><th>Name</th><th>Description</th></tr></thead><tbody><tr><td>ok</td><td>when the <tt>Ok</tt> button was pressed</td>
+</tr><tr><td>cancel</td><td>when the user dismisses the dialog in any way</td>
+</tr><tr><td>help</td><td>when the <tt>Help</tt> button was pressed</td>
+</tr><tr><td>expand</td><td>when the user expands the dialog window-wide</td>
+</tr><tr><td>collapse</td><td>when the user collapses the dialog from the window-wide mode</td>
+</tr><tr><td>resize</td><td>when the dialog gets resized</td>
+</tr><tr><td>load</td><td>when the dialog receives some content via ajax</td>
+</tr></tbody></table><a name='api' ></a><h2 class='chapter'>
+  <a href='dialog.html#' class='top-anchor'>top &uarr;</a><a href='dialog.html#api'>API Reference</a>
+</h2>
+<p>Basically <tt>Dialog</tt> unit is a subclass of <a href='../docs/element.html' class='api-ref'>Element</a> class and has all the same methods, but we have some new ones as well, plus some of the content management methods were changed a bit</p>
+<table><thead><tr><th>Name</th><th>Description</th></tr></thead><tbody><tr><td>show()</td><td>inserts the dialog into the document and shows it</td>
+</tr><tr><td>hide()</td><td>hides the dialog and removes it out of the document</td>
+</tr><tr><td>resize([size])</td><td>changes the size of the dialog and centers its position</td>
+</tr><tr><td>title([text])</td><td>a method that sets/gets the title of the dialog</td>
+</tr><tr><td>update(content)</td><td>bypasses the content to the body element</td>
+</tr><tr><td>html([content])</td><td>tunnels everything to the body element</td>
+</tr><tr><td>load(url[, options])</td><td>loads data into the body element via ajax</td>
+</tr><tr><td>expand()</td><td>expands the dialog window-wide</td>
+</tr><tr><td>collapse()</td><td>collapses the dialog back from the window-wide mode</td>
+</tr></tbody></table><a name='styles' ></a><h2 class='chapter'>
+  <a href='dialog.html#' class='top-anchor'>top &uarr;</a><a href='dialog.html#styles'>Style Alterations</a>
+</h2>
+<p>Use the following basic HTML structure description if you need to alter any styles</p>
+
+<code>&lt;div class=<s>"rui-dialog"</s>&gt;<br/>  &lt;div class=<s>"rui-dialog-head"</s>&gt;<br/>    &lt;div class=<s>"icon"</s>&gt;&lt;/div&gt;<br/>    &lt;div class=<s>"title"</s>&gt;...&lt;/div&gt;<br/><br/>    &lt;div class=<s>"tools"</s>&gt;<br/>      &lt;div class=<s>"expand"</s>&gt;&amp;equiv;&lt;/div&gt;<br/>      &lt;div class=<s>"close"</s>&gt;&amp;times;&lt;/div&gt;<br/>    &lt;/div&gt;<br/>  &lt;/div&gt;<br/><br/>  &lt;div class=<s>"rui-dialog-body"</s>&gt;<br/>    <b class="unit">Your</b> content in here<br/>  &lt;/div&gt;<br/><br/>  &lt;div class=<s>"rui-dialog-foot"</s>&gt;<br/>    &lt;div class=<s>"rui-button help"</s>&gt;<b class="unit">Help</b>&lt;/div&gt;<br/>    &lt;div class=<s>"rui-button ok"</s>&gt;<b class="unit">Ok</b>&lt;/div&gt;<br/>    &lt;div class=<s>"rui-button cancel"</s>&gt;<b class="unit">Cancel</b>&lt;/div&gt;<br/>  &lt;/div&gt;<br/>&lt;/div&gt;</code>
+
+<p>The standard dialogs like Alert, Confirm and Prompt will also receive additional classes like <tt>rui-dialog-alert</tt>, <tt>rui-dialog-confirm</tt> and <tt>rui-dialog-prompt</tt> so you can paint them separately.</p>
+        </div>
+        <div style="clear:both"></div>
+      </div>
+      <div id="foot">
+        <div id="contacts">
+  <h2>Questions?</h2>
+  <a href="&#x6D;&#x61;i&#x6C;&#x74;&#x6F;:&#105;&#110;&#102;&#111;&#064;&#114;&#105;&#103;&#104;&#116;&#106;&#115;&#046;&#111;&#114;&#103;">&#105;&#110;&#102;&#111;&#064;&#114;&#105;&#103;&#104;&#116;&#106;&#115;&#046;&#111;&#114;&#103;</a>
+</div>
+<div id="bottom-menu">
+  <h2>About the Framework</h2>
+  <a href="../philosophy.html">Philosophy</a> |
+  <a href="../benchmarks.html">Benchmarks</a> |
+  <a href="../browsers.html">Browsers</a> |
+  <a href="../contacts.html">Contacts</a>
+</div>
+        <div id="design">Design by <a href="http://activestylus.com">Steven Garcia</a></div>
+        <div id="copyright">Copyright &copy; 2008-2011 Nikolay Nemshilov</div>
+      </div>
+    </div>
+
+    <script src="http://www.google-analytics.com/ga.js" type="text/javascript"></script>
+    <script type="text/javascript">
+    // <![CDATA[
+      try { _gat._getTracker("UA-10292980-1")._trackPageview(); } catch(err) {}
+    // ]]>
+    </script>
+  </body>
+</html>

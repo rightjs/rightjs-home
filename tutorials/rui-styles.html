@@ -1,0 +1,204 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <title>RightJS: RightJS UI Styles Alteration Tutorial</title>
+    <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+    <link href="../blog.rss" rel="alternate" title="RightJS News" type="application/rss+xml" />
+    <script src="../hotlink/right.js@1333128729" type="text/javascript"></script>
+<script src="../javascripts/application.js@1295184937" type="text/javascript"></script>
+    <script src="../builds/ui/right-autocompleter.js@1333128730" type="text/javascript"></script>
+    <link href="../stylesheets/application.css@1297515667.css" media="screen" rel="stylesheet" type="text/css" />
+    
+    
+    
+  </head>
+  <body>
+    <div id="body">
+      <div id="head">
+        <a href="../index.html" id="logo">RightJS</a>
+        <div id="slogan">JavaScript Framework That Feels Right</div>
+
+        <div id="main-menu">
+  <ul>
+    <li><a href="../index.html">Home</a></li>
+    <li><a href="../download.html">Download</a></li>
+    <li><a href="../plugins.html">Plugins</a></li>
+    <li><a href="../ui.html">UI</a></li>
+    <li><a href="../demos.html">Demos</a></li>
+    <li class="current"><a href="../docs.html">Docs</a></li>
+    <li><a href="../blog.html">Blog</a></li>
+  </ul>
+  <div id="zing"><!-- the moving thing --></div>
+</div>
+        <div id="lang-switch">
+    <select onchange="document.location.href=this.value;">
+      <option selected="true" value="http://rightjs.org/tutorials/rui-styles">English</option>
+      <option value="http://ru.rightjs.org/tutorials/rui-styles">Русский</option>
+    </select>
+</div>
+      </div>
+      <div id="main">
+        <div id="sidebar">
+  <div class="box" id="download-box">
+    <h1>Get it!</h1>
+    <ul>
+      <li><a href="../builds/current/right.js.zip">RightJS v2.3.1</a></li>
+    </ul>
+  </div>
+
+  <div id="api-search" class="box">
+  <input type="text" value="Search API" id="api-search-field" />
+  <script type="text/javascript">
+  // <![CDATA[
+    new Autocompleter($('api-search-field').on({
+      focus: function() { this._v = this.value(); this.value(''); },
+      blur:  function() { this.value(this._v); }
+    }), {
+      url: '/docs/search/%{search}.js',
+      onDone: function() {
+        var current = this.first('.current');
+        if (current) {
+          document.location.href = current.get('title');
+        }
+        this.input.setValue(this.input._v);
+      }
+    });
+  // ]]>
+  </script>
+</div>
+
+  <div class="box">
+    <label>Documentation</label>
+    <ul>
+      <li><a href="getting-started.html">Getting Started</a></li>
+      <li><a href="top-features.html">Top 12 Features</a></li>
+      <li><a href="../docs.html">API Reference</a></li>
+      <li class="current"><a href="../tutorials.1.html">Tutorials</a></li>
+    </ul>
+  </div>
+
+  <div class="box">
+    <label>Additional</label>
+    <ul>
+      <li><a href="../plugins.html">RightJS Plugins</a></li>
+      
+      <li><a href="../ui.html">RightJS UI</a></li>
+      
+      <li><a href="../showcases.html">Showcases</a></li>
+    </ul>
+  </div>
+
+  <div class="box">
+    <label>Community</label>
+    <ul>
+      <li><a href="http://groups.google.com/group/rightjs">Google Group</a></li>
+      <li><a href="http://rightjs.lighthouseapp.com/projects/31989">Tickets Tracker</a></li>
+      <li><a href="http://github.com/rightjs/rightjs-snippets">Code Snippets</a></li>
+      <li><a href="irc://irc.freenode.net/rightjs">IRC #rightjs</a></li>
+      <li><a href="../participate.html">Participate!</a></li>
+    </ul>
+  </div>
+
+  <div class="box">
+    <a href='http://www.pledgie.com/campaigns/14259'><img alt='Donate!' src='http://www.pledgie.com/campaigns/14259.png?skin_name=chrome' border='0' /></a>
+  </div>
+
+  <div class="box">
+    <ul id="social">
+      <li><a href="../blog.rss" id="rss-link">RSS</a></li>
+      <li><a href="http://twitter.com/rightjs" id="twitter-link">Twitter</a></li>
+      <li><a href="http://github.com/rightjs" id="github-link">GitHub</a></li>
+    </ul>
+  </div>
+</div>
+
+        <div id="info">
+          <h1>RightJS UI Styles Alteration Tutorial</h1>
+
+<p>This beginners level tutorial describes the basics of the stylesheets organization in RightJS UI.</p>
+<h2 class="chapter"><a href='rui-styles.html#'>Index</a></h2><p><ul><li><a href="rui-styles.html#inline">Inlined Styles</a></li><li><a href="rui-styles.html#gotcha">Inlined Styles Gotcha</a></li><li><a href="rui-styles.html#classes">Classes System</a></li><li><a href="rui-styles.html#elements">Elements System</a></li><li><a href="rui-styles.html#customization">Unit Customization</a></li><li><a href="rui-styles.html#ie6">IE6 And Pals</a></li></ul></p><a name='inline' ></a><h2 class='chapter'>
+  <a href='rui-styles.html#' class='top-anchor'>top &uarr;</a><a href='rui-styles.html#inline'>Inlined Styles</a>
+</h2>
+<p>RightJS UI has one tricky part, we inline all the css right into the javascript files. If you open up any widget&#8217;s script and scroll it down, at the very bottom of it you&#8217;ll see the <tt>document.write</tt> section that carries the widget&#8217;s styles.</p>
+
+<p>There are several good reasons why we do that. First of all is simplicity in use and distribution. Most of our widgets come in a single JS file, you just put it on your page and you&#8217;re ready to rock, no need to worry about hooking up anything else.</p>
+
+<p>The other reason is that this way we reduce the number of hits your server takes. Instead of asking it for scripts and styles separately, we download it all in one request.</p>
+
+<p>Thirdly, it provides better gzip compression, because stylesheets and javascript usually share lots of common things like class names, keywords and so on.</p>
+<a name='gotcha' ></a><h2 class='chapter'>
+  <a href='rui-styles.html#' class='top-anchor'>top &uarr;</a><a href='rui-styles.html#gotcha'>Inlined Styles Gotcha</a>
+</h2>
+<p>As cool as it is, inlined styles come with a small gotcha that you should keep in mind.</p>
+
+<p>Because the styles are inlined into the javascript file, they will be put on the page right where the javascript file included. This means that if you need to customize some styles, you should include your stylesheets <em>after</em> the rightjs ui files.</p>
+
+<code>&lt;script src=<s>"right-calendar.js"</s>&gt;&lt;/script&gt;<br/>&lt;style&gt;<br/>  .<u>rui</u>-calendar {<br/>    <s class="key">background</s>: green;<br/>  }<br/>&lt;/stlye&gt;</code>
+
+<p>Otherwise your changes won&#8217;t have any effect, coz will be overwritten by styles from the javascript file.</p>
+<a name='classes' ></a><h2 class='chapter'>
+  <a href='rui-styles.html#' class='top-anchor'>top &uarr;</a><a href='rui-styles.html#classes'>Classes System</a>
+</h2>
+<p>RightJS UI has a simple and strict class-names system. Every widget in the collection always has a class name that look like that <tt>rui-[widget-name]</tt>.</p>
+
+<code>.<u>rui</u>-calendar {<br/>  font-<s class="key">size</s>: <s class="int">80</s>%;<br/>  <s class="key">background</s>: yellow;<br/>}<br/><br/>.<u>rui</u>-autocompleter {<br/>  font-<s class="key">family</s>: <b class="unit">Arial</b>;<br/>  <s class="key">background</s>: pink;<br/>}</code>
+
+<p>This way you can always customize some basic things without going into the details</p>
+<a name='elements' ></a><h2 class='chapter'>
+  <a href='rui-styles.html#' class='top-anchor'>top &uarr;</a><a href='rui-styles.html#elements'>Elements System</a>
+</h2>
+<p>In RightJS UI widgets are not standalone independent units, they are composed of various building blocks, like panels, buttons, spinners, etc. All those small elements have global classes and styles, which can be adjusted in one place and work for the entire system</p>
+
+<code>.<u>rui</u>-button {<br/>  <s class="key">background</s>: yellow;<br/>  font-<s class="key">weight</s>: bold;<br/>}<br/><br/>.<u>rui</u>-panel {<br/>  <s class="key">background</s>: pink;<br/>}<br/><br/>.<u>rui</u>-spinner {<br/>  <s class="key">border</s>: none;<br/>  <s class="key">width</s>: 20px;<br/>  <s class="key">height</s>: 20px<br/>  <s class="key">background</s>: url(<s>'spinner.gif'</s>);<br/>}</code>
+
+<p>For complete list of blocks you need to check the source code in the <a href='http://github.com/rightjs/rightjs-ui/tree/master/lib/css/'>github repository</a></p>
+<a name='customization' ></a><h2 class='chapter'>
+  <a href='rui-styles.html#' class='top-anchor'>top &uarr;</a><a href='rui-styles.html#customization'>Unit Customization</a>
+</h2>
+<p>If you need more detailed customization of any of the widgets there are couple of places where you can start.</p>
+
+<p>First of all you should look into the <a href='../ui.html'>ui-documentation</a>. Find a widget you&#8217;re trying to customize and scroll it&#8217;s page down to the very bottom. There you will see the widget&#8217;s HTML structure. For example <a href='../ui/dialog.html#styles'>dialog widget</a></p>
+
+<p>Secondly, you also can check the real styles on the <a href='http://github.com/rightjs/rightjs-ui/tree/master/src/'>github repository</a>. Every folder has a single css file that contains the basic stylesheet for a corresponding widget.</p>
+
+<p>Those two sources will give you a complete overview of the existing styles used by default with every widget and you will be able to adjust them just as you like.</p>
+<a name='ie6' ></a><h2 class='chapter'>
+  <a href='rui-styles.html#' class='top-anchor'>top &uarr;</a><a href='rui-styles.html#ie6'>IE6 And Pals</a>
+</h2>
+<p>Some widgets from RightJS UI don&#8217;t look correctly in the IE6 browser out of the box. This is not exactly a technical issue, but more like a political decision.</p>
+
+<p>All the issues can be fixed by adding additional css-classes here and there, and throwing in a bunch of IE6 hacks in the stylesheets. The problem is that this will make the widgets system more complicated and the source code bigger.</p>
+
+<p>Yes, there are still countries and companies where share of IE6 users is still significant, but it is not the reason why the rest of the world should suffer.</p>
+
+<p>So, RightJS UI does not provide full IE6 support, instead it gives you the choice, either you install a normal browser or you pay your developers to make it work on what you have.</p>
+
+<p>Consider this as our input into the getting rid of IE6 movement.</p>
+        </div>
+        <div style="clear:both"></div>
+      </div>
+      <div id="foot">
+        <div id="contacts">
+  <h2>Questions?</h2>
+  <a href="&#x6D;&#x61;i&#x6C;&#x74;&#x6F;:&#105;&#110;&#102;&#111;&#064;&#114;&#105;&#103;&#104;&#116;&#106;&#115;&#046;&#111;&#114;&#103;">&#105;&#110;&#102;&#111;&#064;&#114;&#105;&#103;&#104;&#116;&#106;&#115;&#046;&#111;&#114;&#103;</a>
+</div>
+<div id="bottom-menu">
+  <h2>About the Framework</h2>
+  <a href="../philosophy.html">Philosophy</a> |
+  <a href="../benchmarks.html">Benchmarks</a> |
+  <a href="../browsers.html">Browsers</a> |
+  <a href="../contacts.html">Contacts</a>
+</div>
+        <div id="design">Design by <a href="http://activestylus.com">Steven Garcia</a></div>
+        <div id="copyright">Copyright &copy; 2008-2011 Nikolay Nemshilov</div>
+      </div>
+    </div>
+
+    <script src="http://www.google-analytics.com/ga.js" type="text/javascript"></script>
+    <script type="text/javascript">
+    // <![CDATA[
+      try { _gat._getTracker("UA-10292980-1")._trackPageview(); } catch(err) {}
+    // ]]>
+    </script>
+  </body>
+</html>

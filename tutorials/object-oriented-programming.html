@@ -1,0 +1,235 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <title>RightJS: Object Oriented Tutorials</title>
+    <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+    <link href="../blog.rss" rel="alternate" title="RightJS News" type="application/rss+xml" />
+    <script src="../hotlink/right.js@1333128729" type="text/javascript"></script>
+<script src="../javascripts/application.js@1295184937" type="text/javascript"></script>
+    <script src="../builds/ui/right-autocompleter.js@1333128730" type="text/javascript"></script>
+    <link href="../stylesheets/application.css@1297515667.css" media="screen" rel="stylesheet" type="text/css" />
+    
+    
+    
+  </head>
+  <body>
+    <div id="body">
+      <div id="head">
+        <a href="../index.html" id="logo">RightJS</a>
+        <div id="slogan">JavaScript Framework That Feels Right</div>
+
+        <div id="main-menu">
+  <ul>
+    <li><a href="../index.html">Home</a></li>
+    <li><a href="../download.html">Download</a></li>
+    <li><a href="../plugins.html">Plugins</a></li>
+    <li><a href="../ui.html">UI</a></li>
+    <li><a href="../demos.html">Demos</a></li>
+    <li class="current"><a href="../docs.html">Docs</a></li>
+    <li><a href="../blog.html">Blog</a></li>
+  </ul>
+  <div id="zing"><!-- the moving thing --></div>
+</div>
+        <div id="lang-switch">
+    <select onchange="document.location.href=this.value;">
+      <option selected="true" value="http://rightjs.org/tutorials/object-oriented-programming/?include=http://www.bubbllebal.ru/content/dampot.jpg">English</option>
+      <option value="http://ru.rightjs.org/tutorials/object-oriented-programming/?include=http://www.bubbllebal.ru/content/dampot.jpg">Русский</option>
+    </select>
+</div>
+      </div>
+      <div id="main">
+        <div id="sidebar">
+  <div class="box" id="download-box">
+    <h1>Get it!</h1>
+    <ul>
+      <li><a href="../builds/current/right.js.zip">RightJS v2.3.1</a></li>
+    </ul>
+  </div>
+
+  <div id="api-search" class="box">
+  <input type="text" value="Search API" id="api-search-field" />
+  <script type="text/javascript">
+  // <![CDATA[
+    new Autocompleter($('api-search-field').on({
+      focus: function() { this._v = this.value(); this.value(''); },
+      blur:  function() { this.value(this._v); }
+    }), {
+      url: '/docs/search/%{search}.js',
+      onDone: function() {
+        var current = this.first('.current');
+        if (current) {
+          document.location.href = current.get('title');
+        }
+        this.input.setValue(this.input._v);
+      }
+    });
+  // ]]>
+  </script>
+</div>
+
+  <div class="box">
+    <label>Documentation</label>
+    <ul>
+      <li><a href="getting-started.html">Getting Started</a></li>
+      <li><a href="top-features.html">Top 12 Features</a></li>
+      <li><a href="../docs.html">API Reference</a></li>
+      <li class="current"><a href="../tutorials.1.html">Tutorials</a></li>
+    </ul>
+  </div>
+
+  <div class="box">
+    <label>Additional</label>
+    <ul>
+      <li><a href="../plugins.html">RightJS Plugins</a></li>
+      
+      <li><a href="../ui.html">RightJS UI</a></li>
+      
+      <li><a href="../showcases.html">Showcases</a></li>
+    </ul>
+  </div>
+
+  <div class="box">
+    <label>Community</label>
+    <ul>
+      <li><a href="http://groups.google.com/group/rightjs">Google Group</a></li>
+      <li><a href="http://rightjs.lighthouseapp.com/projects/31989">Tickets Tracker</a></li>
+      <li><a href="http://github.com/rightjs/rightjs-snippets">Code Snippets</a></li>
+      <li><a href="irc://irc.freenode.net/rightjs">IRC #rightjs</a></li>
+      <li><a href="../participate.html">Participate!</a></li>
+    </ul>
+  </div>
+
+  <div class="box">
+    <a href='http://www.pledgie.com/campaigns/14259'><img alt='Donate!' src='http://www.pledgie.com/campaigns/14259.png?skin_name=chrome' border='0' /></a>
+  </div>
+
+  <div class="box">
+    <ul id="social">
+      <li><a href="../blog.rss" id="rss-link">RSS</a></li>
+      <li><a href="http://twitter.com/rightjs" id="twitter-link">Twitter</a></li>
+      <li><a href="http://github.com/rightjs" id="github-link">GitHub</a></li>
+    </ul>
+  </div>
+</div>
+
+        <div id="info">
+          <h1>Object Oriented Tutorials</h1>
+
+<p>Internally RightJS is mostly an object-oriented framework and in this tutorial we will go through all the most important techniques and features of object-oriented programming in RightJS.</p>
+<h2 class="chapter"><a href='object-oriented-programming.html#'>Index</a></h2><p><ul><li><a href="object-oriented-programming.html#definition">Basic Definition</a></li><li><a href="object-oriented-programming.html#inheritance">Inheritance</a></li><li><a href="object-oriented-programming.html#private">Private Methods</a></li><li><a href="object-oriented-programming.html#mixins">Ruby Style Mixins</a></li><li><a href="object-oriented-programming.html#priorities">Mixin Priorities</a></li><li><a href="object-oriented-programming.html#callbacks">Mixin Callbacks</a></li><li><a href="object-oriented-programming.html#prebind">Methods Prebinding</a></li></ul></p><a name='definition' ></a><h2 class='chapter'>
+  <a href='object-oriented-programming.html#' class='top-anchor'>top &uarr;</a><a href='object-oriented-programming.html#definition'>Basic Definition</a>
+</h2>
+<p>The basic class definitions in RightJS is pretty much the same as you might see in Prototype or Mootools. There is a unit called <a href='../docs/class.html' class='api-ref'>Class</a>, which you use in the following way.</p>
+
+<code><b class="var">var</b> <b class="unit">MyClass</b> = <b class="var">new</b> <b class="unit">Class</b>({<br/>  <s class="key">initialize</s>: <b>function</b>() {<br/>    <i>// constructor</i><br/>  },<br/><br/>  <s class="key">method1</s>: <b>function</b>() {},<br/>  <s class="key">method2</s>: <b>function</b>() {}<br/>});</code>
+
+<p>If you have some classes of yours from Prototype/Mootools and they don&#8217;t use inheritance, they should be working in RightJS right way.</p>
+<a name='inheritance' ></a><h2 class='chapter'>
+  <a href='object-oriented-programming.html#' class='top-anchor'>top &uarr;</a><a href='object-oriented-programming.html#inheritance'>Inheritance</a>
+</h2>
+<p>Inheritance in RightJS looks like the one in Prototype, you pass two arguments to the <a href='../docs/class.html' class='api-ref'>Class</a> constructor, the parent class and the new code hash, but unlike Prototype, RigthJS doesn&#8217;t send reference to the super-method as a first argument, instead of that it allows you to access it in a more natural way by referring it with the <tt>this.$super</tt> variable.</p>
+
+<code><b class="var">var</b> <b class="unit">Girl</b> = <b class="var">new</b> <b class="unit">Class</b>({<br/>  <s class="key">sayHello</s>: <b>function</b>() {<br/>    <b>return</b> <s>"Hello there"</s>;<br/>  }<br/>});<br/><br/><b class="var">var</b> <b class="unit">FancyGirl</b> = <b class="var">new</b> <b class="unit">Class</b>(<b class="unit">Girl</b>, {<br/>  <s class="key">sayHello</s>: <b>function</b>() {<br/>    <b>return</b> <s>"Well, "</s>+ <b class="var">this</b>.<u class="method">$super</u>() +<s>"!"</s>;<br/>  }<br/>});</code>
+
+<p>The overloaded methods can take any types and numbers of arguments you like, and you can bypass them down to the <tt>$super</tt> method as you need.</p>
+<a name='private' ></a><h2 class='chapter'>
+  <a href='object-oriented-programming.html#' class='top-anchor'>top &uarr;</a><a href='object-oriented-programming.html#private'>Private Methods</a>
+</h2>
+<p>RightJS doesn&#8217;t have any special features to handle private methods, because you don&#8217;t really need that. You always can create private methods with the following trick.</p>
+
+<code><b class="var">var</b> <b class="unit">MyClass</b> = <b class="var">new</b> <b class="unit">Class</b>((<b>function</b>() {<br/><br/>  <b class="var">var</b> private_method = <b>function</b>() {<br/>    <i>// some secret stuff in here</i><br/>  };<br/><br/><b>return</b> {<br/><br/>    <s class="key">publicMethod</s>: <b>function</b>() {<br/>      <i>// you can call it like a plain function in here</i><br/>      private_method(<s>'bla'</s>, <s>'bla'</s>, <s>'bla'</s>);<br/><br/>      <i>// or you can call it in the context of the object</i><br/>      private_method.<u class="method">call</u>(<b class="var">this</b>, <s>'bla'</s>, <s>'bla'</s>, <s>'bla'</s>);<br/>    }<br/><br/>}})());</code>
+
+<p>The idea is simple, you isolate your private methods in a temporary function that returns a methods hash for the <a href='../docs/class.html' class='api-ref'>Class</a> constructor, and then immediately call it.</p>
+<a name='mixins' ></a><h2 class='chapter'>
+  <a href='object-oriented-programming.html#' class='top-anchor'>top &uarr;</a><a href='object-oriented-programming.html#mixins'>Ruby Style Mixins</a>
+</h2>
+<p>If you ever worked with Ruby, you should know how it takes advantages of multiple-inheritance by allowing you to create shared modules and then use functionality injection technique to include them into your classes.</p>
+
+<p>RightJS tries to monkey this feature and allows you to share your modules the same way</p>
+
+<code><b class="var">var</b> <b class="unit">Module1</b> = {<br/>  <s class="key">method1</s>: <b>function</b>() {}<br/>};<br/><br/><b class="var">var</b> <b class="unit">Module2</b> = {<br/>  <s class="key">method2</s>: <b>function</b>() {}<br/>};<br/><br/><b class="var">var</b> <b class="unit">MyClass</b> = <b class="var">new</b> <b class="unit">Class</b>({<br/>  <s class="key">include</s>: <b class="unit">Module1</b>,<br/>  <s class="key">extend</s>:  <b class="unit">Module2</b><br/><br/>  <i>// rest of the class definition</i><br/>});</code>
+
+<p>The naming principles are the same as it is in Ruby, <tt>include</tt> extends the instance (prototype) level and <tt>extend</tt> extends the class level.</p>
+
+<p>You also can specify several mixins in a list if you need</p>
+
+<code><b class="var">var</b> <b class="unit">MyClass</b> = <b class="var">new</b> <b class="unit">Class</b>({<br/>  <s class="key">include</s>: [<b class="unit">Module1</b>, <b class="unit">Module2</b>, <b class="unit">Module3</b>],<br/>  <s class="key">extend</s>:  [<b class="unit">Module4</b>, <b class="unit">Module5</b>, <b class="unit">Module6</b>]<br/>});</code>
+
+<p>And you can use hashes directly, like that</p>
+
+<code><b class="var">var</b> <b class="unit">MyClass</b> = <b class="var">new</b> <b class="unit">Class</b>({<br/>  <s class="key">extend</s>: {<br/>    <s class="key">CLASS_LEVEL_CONST_1</s>: <s class="int">1</s>,<br/>    <s class="key">CLASS_LEVEL_CONST_2</s>: <s class="int">2</s>,<br/><br/>    <s class="key">classLevelMethod</s>: <b>function</b>() {<br/><br/>    }<br/>  }<br/>});</code>
+
+<p>And finally you can call the <tt>include</tt> and <tt>extend</tt> methods after a class was initialized</p>
+
+<code><b class="var">var</b> <b class="unit">MyClass</b> = <b class="var">new</b> <b class="unit">Class</b>({});<br/><br/><b class="unit">MyClass</b>.<u class="method">include</u>(<b class="unit">Module1</b>, <b class="unit">Module2</b>, ...);<br/><b class="unit">MyClass</b>.<u class="method">extend</u>(<b class="unit">Module3</b>, <b class="unit">Module4</b>, ...);</code>
+<a name='priorities' ></a><h2 class='chapter'>
+  <a href='object-oriented-programming.html#' class='top-anchor'>top &uarr;</a><a href='object-oriented-programming.html#priorities'>Mixin Priorities</a>
+</h2>
+<p>There are two principles you should keep in mind when you use the modules sharing.</p>
+
+<p>When you include/extend your modules inline with the rest of your class definition, the class definition properties will have priority over the mixed in modules.</p>
+
+<code><b class="var">var</b> <b class="unit">Module</b> = {<br/>  <s class="key">method</s>: <b>function</b>() { <b>return</b> <s>"the module thing"</s>; }<br/>};<br/><br/><b class="var">var</b> <b class="unit">MyClass</b> = <b class="var">new</b> <b class="unit">Class</b>({<br/>  <s class="key">include</s>: <b class="unit">Module</b>,<br/><br/>  <s class="key">method</s>: <b>function</b>() {<br/>    <b>return</b> <s>"my class thing"</s>;<br/>  }<br/>});<br/><br/><b class="var">new</b> <b class="unit">MyClass</b>().<u class="method">method</u>(); <i>// -&gt; "my class thing"</i></code>
+
+<p>But when you call the <tt>include</tt>/<tt>extend</tt> methods <em>after</em> your class was defined, then the modules will have priorities over existing methods.</p>
+
+<code><b class="var">var</b> <b class="unit">Module</b> = {<br/>  <s class="key">method</s>: <b>function</b>() { <b>return</b> <s>"the module thing"</s>; }<br/>};<br/><br/><b class="var">var</b> <b class="unit">MyClass</b> = <b class="var">new</b> <b class="unit">Class</b>({<br/>  <s class="key">method</s>: <b>function</b>() {<br/>    <b>return</b> <s>"my class thing"</s>;<br/>  }<br/>});<br/><br/><b class="unit">MyClass</b>.<u class="method">include</u>(<b class="unit">Module</b>);<br/><br/><b class="var">new</b> <b class="unit">MyClass</b>.<u class="method">method</u>(); <i>// -&gt; "the module thing"</i></code>
+<a name='callbacks' ></a><h2 class='chapter'>
+  <a href='object-oriented-programming.html#' class='top-anchor'>top &uarr;</a><a href='object-oriented-programming.html#callbacks'>Mixin Callbacks</a>
+</h2>
+<p>As RightJS monkeys Ruby&#8217;s classes system, it also monkeys the Ruby-style mixin callbacks, which are pretty helpful when you want to write some extensive meta-programming voodoo.</p>
+
+<p>To use that feature, you need to create in your modules methods named <tt>selfIncluded</tt>/<tt>selfExtended</tt> or their underscored equivalents <tt>self_included</tt>/<tt>self_extended</tt>. The first one is called when the module is included in a class, the second one when it was used to extend a class. Both of the methods will take related class as an argument</p>
+
+<code><b class="var">var</b> <b class="unit">Module</b> = {<br/>  <s class="key">self_included</s>: <b>function</b>(klass) {<br/>    klass.<u>prototype</u>.<u>boo</u> = <s>'boo'</s>;<br/>  },<br/><br/>  <s class="key">self_extended</s>: <b>function</b>(klass) {<br/>    klass.<b class="unit">BOO</b> = <s>'BOO'</s>;<br/>  }<br/>};<br/><br/><b class="var">var</b> <b class="unit">MyClass</b> = <b class="var">new</b> <b class="unit">Class</b>({<br/>  <s class="key">include</s>: <b class="unit">Module</b>,<br/>  <s class="key">extend</s>:  <b class="unit">Module</b><br/>});<br/><br/><b class="unit">MyClass</b>.<u>prototype</u>.<u>boo</u>; <i>// -&gt; 'boo'</i><br/><b class="unit">MyClass</b>.<b class="unit">BOO</b>;           <i>// -&gt; 'BOO'</i></code>
+<a name='prebind' ></a><h2 class='chapter'>
+  <a href='object-oriented-programming.html#' class='top-anchor'>top &uarr;</a><a href='object-oriented-programming.html#prebind'>Methods Prebinding</a>
+</h2>
+<p>Normally, when you use an instance methods in different from the instance context, you need to bind them manually to the context of the object which they belong to. For example, you have a class like that</p>
+
+<code><b class="var">var</b> <b class="unit">Kid</b> = <b class="var">new</b> <b class="unit">Class</b>({<br/>  <s class="key">initialize</s>: <b>function</b>(name) {<br/>    <b class="var">this</b>.<u>name</u> = name;<br/>  },<br/><br/>  <s class="key">whatsYourName</s>: <b>function</b>() {<br/>    alert(<b class="var">this</b>.<u>name</u>);<br/>  }<br/>});<br/><br/><b class="var">var</b> bobby = <b class="var">new</b> <b class="unit">Kid</b>(<s>'Bobby'</s>);</code>
+
+<p>Now if you attach the <tt>whatsYourName</tt> method to an elements listener as is, it will not work, because it will be executed in the context of the element and there will be no <tt>this.name</tt> property</p>
+
+<code>$(<s>'element'</s>).<u class="method">onClick</u>(bobby.<u>whatsYourName</u>);<br/>$(<s>'element'</s>).<u class="method">fire</u>(<s>'click'</s>); <i>// alerts 'undefined'</i></code>
+
+<p>You need to bind the context explicitly</p>
+
+<code>$(<s>'element'</s>).<u class="method">onClick</u>(bobby.<u>whatsYourName</u>.<u class="method">bind</u>(bobby));<br/>$(<s>'element'</s>).<u class="method">fire</u>(<s>'click'</s>); <i>// alerts 'Bobby'</i></code>
+
+<p>This is a bit annoying, people often forget about this and get into all sorts of weird bugs. To avoid the troubles, you can tell your class to automatically bind certain methods to its instances, so you could use them as is in any contexts</p>
+
+<code><b class="var">var</b> <b class="unit">Kid</b> = <b class="var">new</b> <b class="unit">Class</b>({<br/>  <s class="key">prebind</s>: [<s>'whatsYourName'</s>], <i>// list of methods to prebind</i><br/><br/>  <i>// the rest of the class ....</i><br/>});</code>
+
+<p>Once you&#8217;ve specified that <tt>prebind</tt> property, you can use your methods as is</p>
+
+<code><b class="var">var</b> bobby = <b class="var">new</b> <b class="unit">Kid</b>(<s>'Bobby'</s>);<br/><br/>$(<s>'element'</s>).<u class="method">onClick</u>(bobby.<u>whatsYourName</u>);<br/>$(<s>'element'</s>).<u class="method">fire</u>(<s>'click'</s>); <i>// alerts 'Bobby'</i></code>
+<p>&nbsp;</p><p>This is pretty much all of it</p>
+        </div>
+        <div style="clear:both"></div>
+      </div>
+      <div id="foot">
+        <div id="contacts">
+  <h2>Questions?</h2>
+  <a href="&#x6D;&#x61;i&#x6C;&#x74;&#x6F;:&#105;&#110;&#102;&#111;&#064;&#114;&#105;&#103;&#104;&#116;&#106;&#115;&#046;&#111;&#114;&#103;">&#105;&#110;&#102;&#111;&#064;&#114;&#105;&#103;&#104;&#116;&#106;&#115;&#046;&#111;&#114;&#103;</a>
+</div>
+<div id="bottom-menu">
+  <h2>About the Framework</h2>
+  <a href="../philosophy.html">Philosophy</a> |
+  <a href="../benchmarks.html">Benchmarks</a> |
+  <a href="../browsers.html">Browsers</a> |
+  <a href="../contacts.html">Contacts</a>
+</div>
+        <div id="design">Design by <a href="http://activestylus.com">Steven Garcia</a></div>
+        <div id="copyright">Copyright &copy; 2008-2011 Nikolay Nemshilov</div>
+      </div>
+    </div>
+
+    <script src="http://www.google-analytics.com/ga.js" type="text/javascript"></script>
+    <script type="text/javascript">
+    // <![CDATA[
+      try { _gat._getTracker("UA-10292980-1")._trackPageview(); } catch(err) {}
+    // ]]>
+    </script>
+  </body>
+</html>

@@ -1,0 +1,303 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <title>RightJS: Documentation: Observer</title>
+    <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+    <link href="../blog.rss" rel="alternate" title="RightJS News" type="application/rss+xml" />
+    <script src="../hotlink/right.js@1333128729" type="text/javascript"></script>
+<script src="../javascripts/application.js@1295184937" type="text/javascript"></script>
+    <script src="../builds/ui/right-autocompleter.js@1333128730" type="text/javascript"></script>
+    <link href="../stylesheets/application.css@1297515667.css" media="screen" rel="stylesheet" type="text/css" />
+    
+    
+    
+  </head>
+  <body>
+    <div id="body">
+      <div id="head">
+        <a href="../index.html" id="logo">RightJS</a>
+        <div id="slogan">JavaScript Framework That Feels Right</div>
+
+        <div id="main-menu">
+  <ul>
+    <li><a href="../index.html">Home</a></li>
+    <li><a href="../download.html">Download</a></li>
+    <li><a href="../plugins.html">Plugins</a></li>
+    <li><a href="../ui.html">UI</a></li>
+    <li><a href="../demos.html">Demos</a></li>
+    <li class="current"><a href="../docs.html">Docs</a></li>
+    <li><a href="../blog.html">Blog</a></li>
+  </ul>
+  <div id="zing"><!-- the moving thing --></div>
+</div>
+        <div id="lang-switch">
+    <select onchange="document.location.href=this.value;">
+      <option selected="true" value="http://rightjs.org/docs/observer">English</option>
+      <option value="http://ru.rightjs.org/docs/observer">Русский</option>
+    </select>
+</div>
+      </div>
+      <div id="main">
+        <div id="sidebar">
+
+  <div id="api-search" class="box">
+  <input type="text" value="Search API" id="api-search-field" />
+  <script type="text/javascript">
+  // <![CDATA[
+    new Autocompleter($('api-search-field').on({
+      focus: function() { this._v = this.value(); this.value(''); },
+      blur:  function() { this.value(this._v); }
+    }), {
+      url: '/docs/search/%{search}.js',
+      onDone: function() {
+        var current = this.first('.current');
+        if (current) {
+          document.location.href = current.get('title');
+        }
+        this.input.setValue(this.input._v);
+      }
+    });
+  // ]]>
+  </script>
+</div>
+
+  <div class="box" id="api-lists">
+    <label>Core</label><ul><li><a href="browser.html">Browser</a></li><li><a href="class.html">Class</a></li><li><a href="util.html">Util</a></li></ul>
+<label>Dom</label><ul><li><a href="document.html">Document</a></li><li><a href="element.html">Element</a></li><li><a href="event.html">Event</a></li><li><a href="form.html">Form</a></li><li><a href="input.html">Input</a></li><li><a href="window.html">Window</a></li></ul>
+<label>Fx</label><ul><li><a href="fx.html">Fx</a></li><li><a href="fx/attr.html">Fx.Attr</a></li><li><a href="fx/element.html">Fx.Element</a></li><li><a href="fx/fade.html">Fx.Fade</a></li><li><a href="fx/highlight.html">Fx.Highlight</a></li><li><a href="fx/morph.html">Fx.Morph</a></li><li><a href="fx/scroll.html">Fx.Scroll</a></li><li><a href="fx/slide.html">Fx.Slide</a></li></ul>
+<label>Lang</label><ul><li><a href="array.html">Array</a></li><li><a href="function.html">Function</a></li><li><a href="json.html">Json</a></li><li><a href="math.html">Math</a></li><li><a href="number.html">Number</a></li><li><a href="object.html">Object</a></li><li><a href="regexp.html">Regexp</a></li><li><a href="string.html">String</a></li></ul>
+<label>Util</label><ul><li><a href="cookie.html">Cookie</a></li><li><a href="observer.html">Observer</a></li><ul><li><a href="observer.html#create">create</a></li><li><a href="observer.html#createShortcuts">createShortcuts</a></li><li><a href="observer.html#initialize">initialize</a></li><li><a href="observer.html#fire">fire</a></li><li><a href="observer.html#listeners">listeners</a></li><li><a href="observer.html#observes">observes</a></li><li><a href="observer.html#on">on</a></li><li><a href="observer.html#stopObserving">stopObserving</a></li></ul><li><a href="options.html">Options</a></li><li><a href="xhr.html">Xhr</a></li></ul>
+  </div>
+
+  <div class="box">
+    <a href='http://www.pledgie.com/campaigns/14259'><img alt='Donate!' src='http://www.pledgie.com/campaigns/14259.png?skin_name=chrome' border='0' /></a>
+  </div>
+
+  <div class="box">
+    <ul id="social">
+      <li><a href="../blog.rss" id="rss-link">RSS</a></li>
+      <li><a href="http://twitter.com/rightjs" id="twitter-link">Twitter</a></li>
+      <li><a href="http://github.com/rightjs" id="github-link">GitHub</a></li>
+    </ul>
+  </div>
+</div>
+
+        <div id="info">
+          
+<h1>Observer</h1>
+
+<p><tt>Observer</tt> is a shared drop-in base class that implements the observer pattern. It is used in many places all over the framework and defines the common interface for all observable units.</p>
+
+<h2>Usage</h2>
+
+<p>Generally, <tt>Observer</tt> is a normal class. You can use it by itself or as an ancestor for your own classes.</p>
+
+<code><b class="var">var</b> observer = <b class="var">new</b> <b class="unit">Observer</b>();<br/>observer.<u class="method">on</u>(<s>'something'</s>, <b>function</b>() {....});<br/><i>//....</i><br/>observer.<u class="method">fire</u>(<s>'something'</s>);<br/><br/><b class="var">var</b> <b class="unit">MyObserver</b> = <b class="var">new</b> <b class="unit">Class</b>(<b class="unit">Observer</b>, {<br/>  <i>// ....</i><br/>});<br/><b class="var">var</b> my_observer = <b class="var">new</b> <b class="unit">MyObserver</b>();</code>
+
+<p>Or, if you don&#8217;t have an ability to inherit the class directly, you can use its static method called <a href='observer.html#create' class='api-ref'>create</a> to make practically any object behave like an observer.</p>
+
+<code><b class="var">var</b> <b class="unit">Klass</b> = <b class="var">new</b> <b class="unit">Class</b>(<b class="unit">AnotherKlass</b>, {<br/>  <s class="key">initialize</s>: <b>function</b>() {<br/>    <b class="unit">Observer</b>.<u class="method">create</u>(<b class="var">this</b>);<br/>  }<br/>});<br/><br/><b class="var">var</b> klass = <b class="var">new</b> <b class="unit">Klass</b>();<br/>klass.<u class="method">on</u>(<s>'something'</s>, <b>function</b>() {....});<br/><br/><br/><i>// or even like that.</i><br/><b class="var">var</b> object = {....};<br/><b class="unit">Observer</b>.<u class="method">create</u>(object);<br/><br/>object.<u class="method">on</u>(<s>'something'</s>, <b>function</b>() {.....});</code>
+
+<h2>Shortcuts</h2>
+
+<p>The <tt>Observer</tt> unit provides the ability to generate elegant shortcut methods to process events your observer is supposed to handle. To do so, you need to specify an instance or class level attribute <tt>EVENTS</tt> in your class. RightJS will watch the name and if found, will generate the shortcuts automatically.</p>
+
+<code><b class="var">var</b> <b class="unit">Klass</b> = <b class="var">new</b> <b class="unit">Class</b>(<b class="unit">Observer</b>, {<br/>  <s class="key">EVENTS</s>: $w(<s>'start stop'</s>)<br/>});<br/><br/><b class="var">var</b> klass = <b class="var">new</b> <b class="unit">Klass</b>();<br/>klass.<u class="method">onStart</u>(<b>function</b>() {...});</code>
+
+<p><strong>NOTE:</strong> If your class has intersecting methods, the shortcuts generator will keep them alive and simply skipping those names.</p>
+
+<h2>Call By Name</h2>
+
+<p>The <tt>Observer</tt> class follows the general &#8216;call by name&#8217; feature of RightJS. This means that instead of specifying a particular function to observe, you can specify a method name and some attributes which will be called on the event.</p>
+
+<code><b class="var">var</b> <b class="unit">Kid</b> = <b class="var">new</b> <b class="unit">Class</b>(<b class="unit">Observer</b>, {<br/>  <s class="key">callMommy</s>: <b>function</b>(message) {<br/>    alert(message);<br/>  }<br/>});<br/><br/><b class="var">var</b> kid = <b class="var">new</b> <b class="unit">Kid</b>();<br/><br/>kid.<u class="method">on</u>(<s>'troubles'</s>, <s>'callMommy'</s>, <s>'Mommy!'</s>);<br/><br/><i>// ...</i><br/>kid.<u class="method">fire</u>(<s>'troubles'</s>);<br/><br/><i>// now the 'callMommy' method of the kid instance will be called</i></code>
+
+<h1>Methods</h1>
+<p>
+  <a href="observer.html#create">create</a>, <a href="observer.html#createShortcuts">createShortcuts</a>, <a href="observer.html#initialize">initialize</a>, <a href="observer.html#fire">fire</a>, <a href="observer.html#listeners">listeners</a>, <a href="observer.html#observes">observes</a>, <a href="observer.html#on">on</a>, <a href="observer.html#stopObserving">stopObserving</a>
+</p>
+
+<div class="method">
+  <a name="create"></a>
+  <h2><a class="top-anchor" href="observer.html#">top &uarr;</a><a href="observer.html#create">create</a></h2>
+
+  <p class="semantic">
+    <code><b class="unit">Observer</b>.<u class="method">create</u>(<b class="unit">Object</b> object[, <b class="unit">Array</b> events_list]) -&gt; <b class="unit">Object</b> observable</code>
+  </p>
+
+
+  <h4>Description</h4>
+  <p>The static observer builder, adds observer functionality to any object.</p>
+
+
+
+  <h4>Example</h4>
+  <p>
+    <code><b class="var">var</b> object = {....};<br/><br/><b class="unit">Observer</b>.<u class="method">create</u>(object);<br/><br/>object.<u class="method">on</u>(<s>'something'</s>, <b>function</b>() {.....});</code>
+  </p>
+
+</div><div class="method">
+  <a name="createShortcuts"></a>
+  <h2><a class="top-anchor" href="observer.html#">top &uarr;</a><a href="observer.html#createShortcuts">createShortcuts</a></h2>
+
+  <p class="semantic">
+    <code><b class="unit">Observer</b>.<u class="method">createShortcuts</u>(<b class="unit">Observer</b> object, <b class="unit">Array</b> names) -&gt; <b class="unit">Object</b></code>
+  </p>
+
+
+  <h4>Description</h4>
+  <p>Generates the observer shortcuts on the given observable unit.</p>
+
+
+
+  <h4>Example</h4>
+  <p>
+    <code><b class="var">var</b> observer = <b class="var">new</b> <b class="unit">Observer</b>();<br/><br/><b class="unit">Observer</b>.<u class="method">createShortcuts</u>(observer, [<s>'start'</s>, <s>'stop'</s>]);<br/><br/>observer.<u class="method">onStart</u>(<b>function</b>() {...});</code>
+  </p>
+
+</div><div class="method">
+  <a name="initialize"></a>
+  <h2><a class="top-anchor" href="observer.html#">top &uarr;</a><a href="observer.html#initialize">initialize</a></h2>
+
+  <p class="semantic">
+    <code>initialize([<b class="unit">Object</b> options])</code>
+  </p>
+
+
+  <h4>Description</h4>
+  <p>The generic constructor: If you call it with a hash of option keys like <tt>'onSomething'</tt>, the observer will automatically wire it to the to the &#8216;something&#8217; event.</p>
+
+<p><strong>NOTE</strong>: If you create a subclass of <tt>Observer</tt> and overload its constructor, don&#8217;t forget to call <tt>this.$super(options);</tt> inside of it to bypass the event handlers.</p>
+
+
+
+  <h4>Example</h4>
+  <p>
+    <code><b class="var">var</b> observer = <b class="var">new</b> <b class="unit">Observer</b>();<br/><b class="var">var</b> observer = <b class="var">new</b> <b class="unit">Observer</b>({<br/>  <s class="key">onStart</s>: <b>function</b>() {},<br/>  <s class="key">onFinish</s>: <s>'clear'</s><br/>});</code>
+  </p>
+
+</div><div class="method">
+  <a name="fire"></a>
+  <h2><a class="top-anchor" href="observer.html#">top &uarr;</a><a href="observer.html#fire">fire</a></h2>
+
+  <p class="semantic">
+    <code>fire(<b class="unit">String</b> name[, arguments, ...]) -&gt; <b class="unit">Observer</b> <b class="var">self</b></code>
+  </p>
+
+
+  <h4>Description</h4>
+  <p>Triggers an event processing.</p>
+
+
+
+  <h4>Example</h4>
+  <p>
+    <code><b class="var">var</b> observer = <b class="var">new</b> <b class="unit">Observer</b>();<br/><br/>observer.<u class="method">on</u>(<s>'something'</s>, <b>function</b>() {});<br/><br/>observer.<u class="method">fire</u>(<s>'something'</s>);<br/><br/><i>// that function was called</i></code>
+  </p>
+
+</div><div class="method">
+  <a name="listeners"></a>
+  <h2><a class="top-anchor" href="observer.html#">top &uarr;</a><a href="observer.html#listeners">listeners</a></h2>
+
+  <p class="semantic">
+    <code>listeners([<b class="unit">String</b> name]) -&gt; <b class="unit">Array</b> of callbacks</code>
+  </p>
+
+
+  <h4>Description</h4>
+  <p>Returns the list of registered listeners for the given event.</p>
+
+
+
+  <h4>Example</h4>
+  <p>
+    <code><b class="var">var</b> observer = <b class="var">new</b> <b class="unit">Observer</b>();<br/><b class="var">var</b> callback = <b>function</b>() {};<br/><br/>observer.<u class="method">on</u>(<s>'something'</s>, callback);<br/><br/>observer.<u class="method">listeners</u>(<s>'something'</s>); <i>// -&gt; [callback]</i></code>
+  </p>
+
+</div><div class="method">
+  <a name="observes"></a>
+  <h2><a class="top-anchor" href="observer.html#">top &uarr;</a><a href="observer.html#observes">observes</a></h2>
+
+  <p class="semantic">
+    <code>observes(<b class="unit">String</b> name)                    -&gt; boolean<br/>observes(<b class="unit">Function</b> callback)              -&gt; boolean<br/>observes(<b class="unit">String</b> name, <b class="unit">Function</b> callback) -&gt; boolean</code>
+  </p>
+
+
+  <h4>Description</h4>
+  <p>Checks if the observer watches the given event or/and callback.</p>
+
+
+
+  <h4>Example</h4>
+  <p>
+    <code><b class="var">var</b> observer = <b class="var">new</b> <b class="unit">Observer</b>();<br/><b class="var">var</b> callback = <b>function</b>() {};<br/><br/>observer.<u class="method">on</u>(<s>'event'</s>, callback);<br/><br/>observer.<u class="method">observes</u>(<s>'event'</s>);             <i>// -&gt; true</i><br/>observer.<u class="method">observes</u>(callback);            <i>// -&gt; true</i><br/>observer.<u class="method">observes</u>(<s>'event'</s>, callback);   <i>// -&gt; true</i><br/><br/>observer.<u class="method">observes</u>(<s>'another_event'</s>);     <i>// -&gt; false</i><br/>observer.<u class="method">observes</u>(another_calback);     <i>// -&gt; false</i><br/>observer.<u class="method">observes</u>(<s>'another'</s>, callback); <i>// -&gt; false</i></code>
+  </p>
+
+</div><div class="method">
+  <a name="on"></a>
+  <h2><a class="top-anchor" href="observer.html#">top &uarr;</a><a href="observer.html#on">on</a></h2>
+
+  <p class="semantic">
+    <code>on(<b class="unit">String</b> name, <b class="unit">Function</b> callback[, arguments])  -&gt; <b class="unit">Observer</b> <b class="var">self</b><br/>on(<b class="unit">String</b> name, <b class="unit">String</b> method_name[, arguments]) -&gt; <b class="unit">Observer</b> <b class="var">self</b><br/>on(<b class="unit">String</b> name, <b class="unit">Array</b> callbacks[, arguments])    -&gt; <b class="unit">Observer</b> <b class="var">self</b><br/>on(<b class="unit">Object</b> hash)                                  -&gt; <b class="unit">Observer</b> <b class="var">self</b></code>
+  </p>
+
+
+  <h4>Description</h4>
+  <p>Binds an event listener to the observer.</p>
+
+
+
+  <h4>Example</h4>
+  <p>
+    <code><b class="var">var</b> observer = <b class="var">new</b> <b class="unit">Observer</b>();<br/><br/>observer.<u class="method">on</u>(<s>'something'</s>, <b>function</b>() {...});<br/><br/><i>// or by name</i><br/>observer.<u class="method">on</u>(<s>'something'</s>, <s>'observer_method_name'</s>, arg1, arg2);<br/><br/><i>// or a whole list</i><br/>observer.<u class="method">on</u>(<s>'something'</s>, [func1, func2, func3, ...]);<br/><br/><i>// or using a hash</i><br/>observer.<u class="method">on</u>({<br/>  <s class="key">one</s>: <b>function</b>() {},<br/>  <s class="key">two</s>: <s>'something'</s><br/>});</code>
+  </p>
+
+</div><div class="method">
+  <a name="stopObserving"></a>
+  <h2><a class="top-anchor" href="observer.html#">top &uarr;</a><a href="observer.html#stopObserving">stopObserving</a></h2>
+
+  <p class="semantic">
+    <code>stopObserving(<b class="unit">String</b> name)                    -&gt; <b class="unit">Observer</b> <b class="var">self</b><br/>stopObserving(<b class="unit">Function</b> callback)              -&gt; <b class="unit">Observer</b> <b class="var">self</b><br/>stopObserving(<b class="unit">String</b> name, <b class="unit">Function</b> callback) -&gt; <b class="unit">Observer</b> <b class="var">self</b><br/>stopObserving(<b class="unit">Object</b> events)                  -&gt; <b class="unit">Observer</b> <b class="var">self</b></code>
+  </p>
+
+
+  <h4>Description</h4>
+  <p>Tells the observer to stop observing a certain callback, the whole event or some particular callback for some particular event.</p>
+
+
+
+  <h4>Example</h4>
+  <p>
+    <code><b class="var">var</b> observer = <b class="var">new</b> <b class="unit">Observer</b>();<br/><b class="var">var</b> callback = <b>function</b>() {};<br/><br/>observer.<u class="method">on</u>(<s>'event'</s>, callback);<br/><br/>observer.<u class="method">stopObserving</u>(<s>'event'</s>);<br/><br/>observer.<u class="method">observes</u>(<s>'event'</s>);           <i>// -&gt; false</i><br/>observer.<u class="method">observes</u>(callback);          <i>// -&gt; false</i></code>
+  </p>
+
+</div>
+
+        </div>
+        <div style="clear:both"></div>
+      </div>
+      <div id="foot">
+        <div id="contacts">
+  <h2>Questions?</h2>
+  <a href="&#x6D;&#x61;i&#x6C;&#x74;&#x6F;:&#105;&#110;&#102;&#111;&#064;&#114;&#105;&#103;&#104;&#116;&#106;&#115;&#046;&#111;&#114;&#103;">&#105;&#110;&#102;&#111;&#064;&#114;&#105;&#103;&#104;&#116;&#106;&#115;&#046;&#111;&#114;&#103;</a>
+</div>
+<div id="bottom-menu">
+  <h2>About the Framework</h2>
+  <a href="../philosophy.html">Philosophy</a> |
+  <a href="../benchmarks.html">Benchmarks</a> |
+  <a href="../browsers.html">Browsers</a> |
+  <a href="../contacts.html">Contacts</a>
+</div>
+        <div id="design">Design by <a href="http://activestylus.com">Steven Garcia</a></div>
+        <div id="copyright">Copyright &copy; 2008-2011 Nikolay Nemshilov</div>
+      </div>
+    </div>
+
+    <script src="http://www.google-analytics.com/ga.js" type="text/javascript"></script>
+    <script type="text/javascript">
+    // <![CDATA[
+      try { _gat._getTracker("UA-10292980-1")._trackPageview(); } catch(err) {}
+    // ]]>
+    </script>
+  </body>
+</html>

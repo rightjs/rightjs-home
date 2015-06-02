@@ -1,0 +1,273 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <title>RightJS: Visual Effects</title>
+    <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+    <link href="http://www.ru.rightjs.org/blog.rss" rel="alternate" title="RightJS News" type="application/rss+xml" />
+    <script src="../hotlink/right.js@1331880836" type="text/javascript"></script>
+<script src="../javascripts/application.js@1295184937" type="text/javascript"></script>
+    <script src="../builds/ui/right-autocompleter.js@1331880836" type="text/javascript"></script>
+    <link href="../stylesheets/application.css@1297515667.css" media="screen" rel="stylesheet" type="text/css" />
+    
+    
+    
+  </head>
+  <body>
+    <div id="body">
+      <div id="head">
+        <a href="../index.html" id="logo">RightJS</a>
+        <div id="slogan">JavaScript Framework That Feels Right</div>
+
+        <div id="main-menu">
+  <ul>
+    <li><a href="../index.html">Home</a></li>
+    <li><a href="../download.html">Download</a></li>
+    <li><a href="../plugins.html">Plugins</a></li>
+    <li><a href="../ui.html">UI</a></li>
+    <li><a href="../demos.html">Demos</a></li>
+    <li class="current"><a href="../docs.html">Docs</a></li>
+    <li><a href="../blog.html">Blog</a></li>
+  </ul>
+  <div id="zing"><!-- the moving thing --></div>
+</div>
+        <div id="lang-switch">
+    <select onchange="document.location.href=this.value;">
+      <option selected="true" value="http://www.rightjs.org/tutorials/visual-effects">English</option>
+      <option value="http://ru.www.rightjs.org/tutorials/visual-effects">Русский</option>
+    </select>
+</div>
+      </div>
+      <div id="main">
+        <div id="sidebar">
+  <div class="box" id="download-box">
+    <h1>Get it!</h1>
+    <ul>
+      <li><a href="../builds/current/right.js.zip">RightJS v2.3.1</a></li>
+    </ul>
+  </div>
+
+  <div id="api-search" class="box">
+  <input type="text" value="Search API" id="api-search-field" />
+  <script type="text/javascript">
+  // <![CDATA[
+    new Autocompleter($('api-search-field').on({
+      focus: function() { this._v = this.value(); this.value(''); },
+      blur:  function() { this.value(this._v); }
+    }), {
+      url: '/docs/search/%{search}.js',
+      onDone: function() {
+        var current = this.first('.current');
+        if (current) {
+          document.location.href = current.get('title');
+        }
+        this.input.setValue(this.input._v);
+      }
+    });
+  // ]]>
+  </script>
+</div>
+
+  <div class="box">
+    <label>Documentation</label>
+    <ul>
+      <li><a href="getting-started.html">Getting Started</a></li>
+      <li><a href="top-features.html">Top 12 Features</a></li>
+      <li><a href="../docs.html">API Reference</a></li>
+      <li class="current"><a href="../tutorials.1.html">Tutorials</a></li>
+    </ul>
+  </div>
+
+  <div class="box">
+    <label>Additional</label>
+    <ul>
+      <li><a href="../plugins.html">RightJS Plugins</a></li>
+      
+      <li><a href="../ui.html">RightJS UI</a></li>
+      
+      <li><a href="../showcases.html">Showcases</a></li>
+    </ul>
+  </div>
+
+  <div class="box">
+    <label>Community</label>
+    <ul>
+      <li><a href="http://groups.google.com/group/rightjs">Google Group</a></li>
+      <li><a href="http://rightjs.lighthouseapp.com/projects/31989">Tickets Tracker</a></li>
+      <li><a href="http://github.com/rightjs/rightjs-snippets">Code Snippets</a></li>
+      <li><a href="irc://irc.freenode.net/rightjs">IRC #rightjs</a></li>
+      <li><a href="../participate.html">Participate!</a></li>
+    </ul>
+  </div>
+
+  <div class="box">
+    <a href='http://www.pledgie.com/campaigns/14259'><img alt='Donate!' src='http://www.pledgie.com/campaigns/14259.png?skin_name=chrome' border='0' /></a>
+  </div>
+
+  <div class="box">
+    <ul id="social">
+      <li><a href="../blog.rss" id="rss-link">RSS</a></li>
+      <li><a href="http://twitter.com/rightjs" id="twitter-link">Twitter</a></li>
+      <li><a href="http://github.com/rightjs" id="github-link">GitHub</a></li>
+    </ul>
+  </div>
+</div>
+
+        <div id="info">
+          <h1>Visual Effects</h1>
+
+<p>By default RightJS comes with the basic visual effects engine, and a few most common effects implemented on it. As RigthJS is an object-oriented framework, most of the effects are normal classes, that can be easily extended and reworked, but we also have some options, nice dom-level shortcuts, open interface, etc.</p>
+
+<p>Lets go through them step by step.</p>
+<a name='generic' ></a><h2 class='chapter'>
+  <a href='visual-effects.html#' class='top-anchor'>top &uarr;</a><a href='visual-effects.html#generic'>Basic Fx.Morph Interface</a>
+</h2>
+<p><a href='../docs/fx/morph.html' class='api-ref'>Fx.Morph</a> is the basic class for all the element visual effects. It provides a generic interface where you can morph your element styles from their current state to any other. There is nothing tricky, you just specify the end style and some options if you need, and then the things happen automatically.</p>
+
+<code><b class="var">new</b> <b class="unit">Fx</b>.<b class="unit">Morph</b>(<s>'element'</s>).<u class="method">start</u>({<br/>  <s class="key">background</s>: <s>'yellow'</s>,<br/>  <s class="key">width</s>: <s>'200px'</s><br/>});<br/><br/><b class="var">new</b> <b class="unit">Fx</b>.<b class="unit">Morph</b>(<s>'element'</s>, {<br/>  <s class="key">duration</s>: <s>'short'</s>, <s class="key">transition</s>: <s>'Sin'</s><br/>}).<u class="method">start</u>({...});</code>
+
+<p>You free to use any standard css notation in your styles, colors in short or long hex form, colors in rgb form, or any of the 12 standard color names. Dimensions might be in any units, but it&#8217;s better if you keep them consistent, say in pixels or points. And yes you can use the one-line definitions like <tt>border: 10px solid yellow</tt> or <tt>margin: 1px 2px 3px 4px</tt></p>
+
+<p>You can specify as much styles as you want for this effect it will process all of them simultaneously</p>
+<a name='options' ></a><h2 class='chapter'>
+  <a href='visual-effects.html#' class='top-anchor'>top &uarr;</a><a href='visual-effects.html#options'>Options List</a>
+</h2>
+<p>The basic visual effects constructor can receive an options hash with the following keys</p>
+<table><thead><tr><th>Name</th><th>Default</th><th>Description</th></tr></thead><tbody><tr><td>duration</td><td>&#8216;normal&#8217;</td><td>the effect duration (name or number in ms)</td>
+</tr><tr><td>transition</td><td>&#8216;Sin&#8217;</td><td>type of the effect transition</td>
+</tr><tr><td>queue</td><td>true</td><td>marker if the effect should be queued</td>
+</tr></tbody></table>
+<p>The duration option can be one of the following</p>
+
+<ul>
+<li>&#8216;short&#8217; - 200 ms</li>
+
+<li>&#8216;normal&#8217; - 400 ms (default)</li>
+
+<li>&#8216;long&#8217; - 800 ms</li>
+
+<li>Any number value representing the duration in milliseconds</li>
+</ul>
+
+<p>The transition option might be one of the following</p>
+
+<ul>
+<li>&#8216;Cos&#8217; - slow at the beginning and the end, and fast in the middle</li>
+
+<li>&#8216;Sin&#8217; - fast at the beginning and the end, and slow in the middle</li>
+
+<li>&#8216;Exp&#8217; - slow at the beginning and rapidly throttles to the end</li>
+
+<li>&#8216;Log&#8217; - fast at the beginning and rapidly slows down to the end</li>
+
+<li>&#8216;Lin&#8217; - a constant speed transition</li>
+
+<li>Any function that represents your own custom transition</li>
+</ul>
+
+<p>Additionally, every effect has the <a href='../docs/observer.html' class='api-ref'>Observer</a> interface and you can use the following event names to attach your listeners</p>
+
+<ul>
+<li>start</li>
+
+<li>finish</li>
+
+<li>cancel</li>
+</ul>
+<a name='frequently' ></a><h2 class='chapter'>
+  <a href='visual-effects.html#' class='top-anchor'>top &uarr;</a><a href='visual-effects.html#frequently'>Default Effects Collection</a>
+</h2>
+<p>In the default package RightJS provides several frequently used visual effects</p>
+
+<ul>
+<li><a href='../docs/fx/highlight.html' class='api-ref'>Fx.Highlight</a></li>
+
+<li><a href='../docs/fx/fade.html' class='api-ref'>Fx.Fade</a></li>
+
+<li><a href='../docs/fx/slide.html' class='api-ref'>Fx.Slide</a></li>
+
+<li><a href='../docs/fx/scroll.html' class='api-ref'>Fx.Scroll</a></li>
+</ul>
+
+<p>All of them are subclasses of the <a href='../docs/fx/morph.html' class='api-ref'>Fx.Morph</a> effect and have the same exact interface</p>
+
+<code><b class="var">new</b> <b class="unit">Fx</b>.<b class="unit">Highlight</b>(<s>'element'</s>).<u class="method">start</u>();<br/><br/><b class="var">new</b> <b class="unit">Fx</b>.<b class="unit">Fade</b>(<s>'element'</s>).<u class="method">start</u>();<br/><br/><b class="var">new</b> <b class="unit">Fx</b>.<b class="unit">Slide</b>(<s>'element'</s>).<u class="method">start</u>();</code>
+<a name='bidirectional' ></a><h2 class='chapter'>
+  <a href='visual-effects.html#' class='top-anchor'>top &uarr;</a><a href='visual-effects.html#bidirectional'>Bidirectional Effects</a>
+</h2>
+<p>The <a href='../docs/fx/fade.html' class='api-ref'>Fx.Fade</a> and <a href='../docs/fx/slide.html' class='api-ref'>Fx.Slide</a> effects belong to the family of bidirectional effects. Those effects can work in both directions to hide and to show an element. By default the effects will check the element current state and determine the direction automatically, but you can specify the direction manually if you need.</p>
+
+<code><i>// hide -&gt; show -&gt; hide -&gt; show</i><br/><b class="var">new</b> <b class="unit">Fx</b>.<b class="unit">Fade</b>(<s>'element'</s>).<u class="method">start</u>();<br/><b class="var">new</b> <b class="unit">Fx</b>.<b class="unit">Fade</b>(<s>'element'</s>).<u class="method">start</u>();<br/><b class="var">new</b> <b class="unit">Fx</b>.<b class="unit">Fade</b>(<s>'element'</s>).<u class="method">start</u>();<br/><b class="var">new</b> <b class="unit">Fx</b>.<b class="unit">Fade</b>(<s>'element'</s>).<u class="method">start</u>();<br/><br/><br/><i>// hide -&gt; hide -&gt; show -&gt; show</i><br/><b class="var">new</b> <b class="unit">Fx</b>.<b class="unit">Slide</b>(<s>'element'</s>).<u class="method">start</u>(<s>'out'</s>);<br/><b class="var">new</b> <b class="unit">Fx</b>.<b class="unit">Slide</b>(<s>'element'</s>).<u class="method">start</u>(<s>'out'</s>);<br/><b class="var">new</b> <b class="unit">Fx</b>.<b class="unit">Slide</b>(<s>'element'</s>).<u class="method">start</u>(<s>'in'</s>);<br/><b class="var">new</b> <b class="unit">Fx</b>.<b class="unit">Slide</b>(<s>'element'</s>).<u class="method">start</u>(<s>'in'</s>);</code>
+<a name='shortcuts' ></a><h2 class='chapter'>
+  <a href='visual-effects.html#' class='top-anchor'>top &uarr;</a><a href='visual-effects.html#shortcuts'>DOM Level Visual Effect Shortcuts</a>
+</h2>
+<p>There are several shortcuts, which let you run visual effects directly from the dom-element instances, without manual effects instantiating and getting dirty with the classes</p>
+
+<ul>
+<li><a href='../docs/fx/element.html#morph' class='api-ref'>morph</a>(mixed style[, Object fx_options])</li>
+
+<li><a href='../docs/fx/element.html#highlight' class='api-ref'>highlight</a>([end_color[, start_color[, Object fx_options]]])</li>
+
+<li><a href='../docs/fx/element.html#fade' class='api-ref'>fade</a>([String direction[, Object fx_options]])</li>
+
+<li><a href='../docs/fx/element.html#slide' class='api-ref'>slide</a>(<span>String direction[, Object fx_options]])</span></li>
+
+<li><a href='../docs/fx/element.html#scroll' class='api-ref'>scroll</a>(Object position)</li>
+</ul>
+
+<p>Some examples</p>
+
+<code>$(<s>'element'</s>).<u class="method">morph</u>({<s class="key">background</s>: <s>'green'</s>});<br/><br/>$(<s>'element'</s>).<u class="method">highlight</u>();<br/><br/>$(<s>'element'</s>).<u class="method">fade</u>();<br/><br/>$(<s>'element'</s>).<u class="method">slide</u>();</code>
+
+<p>Additionally, you can send effect name and options directly into the element <tt>hide/show/toggle/radio</tt> methods.</p>
+
+<code>$(<s>'element'</s>).<u class="method">hide</u>(<s>'slide'</s>);<br/>$(<s>'element'</s>).<u class="method">show</u>(<s>'fade'</s>);<br/><br/>$(<s>'element'</s>).<u class="method">toggle</u>(<s>'slide'</s>, {<br/>  <s class="key">direction</s>: <s>'left'</s>, <s class="key">duration</s>: <s>'long'</s><br/>});</code>
+<a name='queueing' ></a><h2 class='chapter'>
+  <a href='visual-effects.html#' class='top-anchor'>top &uarr;</a><a href='visual-effects.html#queueing'>Effects Queueing</a>
+</h2>
+<p>By default RightJS will queue all the visual effects you run on any elements, so you could safely define an element effects chain from your code like that.</p>
+
+<code>$(<s>'element'</s>).<u class="method">morph</u>({<br/>  <s class="key">width</s>: <s>'400px'</s>, <s class="key">fontSize</s>: <s>'40px'</s><br/>}).<u class="method">highlight</u>();<br/><br/>$(<s>'element'</s>).<u class="method">show</u>(<s>'fade'</s>).<u class="method">highlight</u>();<br/><br/><i>// etc.</i></code>
+
+<p>But if you need two or more effects were running simultaneously, you can specify the option <tt>queue: false</tt> with your effect options and then this effect won&#8217;t get queued and will start immediately.</p>
+
+<code><b class="var">new</b> <b class="unit">Fx</b>.<b class="unit">Morph</b>(<s>'element'</s>).<u class="method">start</u>({<s class="key">width</s>: <s>'400px'</s>});<br/><b class="var">new</b> <b class="unit">Fx</b>.<b class="unit">Highlight</b>(<s>'element'</s>, {<s class="key">queue</s>: <b class="rest">false</b>}).<u class="method">start</u>();<br/><br/>$(<s>'element'</s>).<u class="method">fade</u>(<s>'out'</s>, {<s class="key">queue</s>: <b class="rest">false</b>});</code>
+<a name='custom' ></a><h2 class='chapter'>
+  <a href='visual-effects.html#' class='top-anchor'>top &uarr;</a><a href='visual-effects.html#custom'>Custom Visual Effects</a>
+</h2>
+<p>With RightJS it is really simple to create your own reusable visual effects, which will do exactly what you need in your application.</p>
+
+<p>For example take a look at the <a href='../builds.1.html'>custom build page</a>. There is some sort of sleek progress bar, which shows you the size of the result build. This is generally a morph effect, but then it nicely changes the size number while the effect running, plus there is a fancy highlighting happens simultaneously.</p>
+
+<p>You can do such things realy simple. There are two methods in every visual effect that need to be implemented <tt>prepare</tt> and <tt>render</tt>, first one gets called right before the effect runs and receives all the same arguments you send into the <tt>start</tt> method when you start the effect, and the <tt>render</tt> method is the place where you calculate and make all the changes in the element at every step, during the effect run this method will receive float numbers from <tt>0</tt> to <tt>1</tt>, which you can use to calculate your current state.</p>
+
+<p>Then you just use the exceptional OOP abilities of RightJS, inherit the basic visual effect class and add your custom code. For example that build calculator visual effect looks like that.</p>
+
+<code><b class="var">var</b> <b class="unit">CalcFx</b> = <b class="var">new</b> <b class="unit">Class</b>(<b class="unit">Fx</b>.<b class="unit">Morph</b>, {<br/>  <s class="key">prepare</s>: <b>function</b>(start_size, end_size) {<br/>    <b class="var">this</b>.<u>startSize</u> = start_size;<br/>    <b class="var">this</b>.<u>endSize</u>   = end_size;<br/><br/>    <b class="var">this</b>.<u>element</u>.<u class="method">highlight</u>(<s>'brown'</s>, <s>'#8A7'</s>, {<s class="key">queue</s>: <b class="rest">false</b>});<br/><br/>    <b class="var">this</b>.<u class="method">$super</u>({<br/>      <s class="key">height</s>: $(<s>'calc-box'</s>).<u class="method">sizes</u>().<u>y</u> * (end_size/max_size) + <s>'px'</s><br/>    });<br/>  },<br/><br/>  <s class="key">render</s>: <b>function</b>(delta) {<br/>    <b class="var">var</b> size = <b class="var">this</b>.<u>startSize</u> + (<b class="var">this</b>.<u>endSize</u> - <b class="var">this</b>.<u>startSize</u>) * delta;<br/><br/>    $(<s>'calc-num'</s>).<u class="method">update</u>((size<s class="re">/100).round()/</s><s class="int">10</s> + <s>'k'</s>);<br/><br/>    <b class="var">this</b>.<u class="method">$super</u>(delta);<br/>  }<br/>});</code>
+        </div>
+        <div style="clear:both"></div>
+      </div>
+      <div id="foot">
+        <div id="contacts">
+  <h2>Questions?</h2>
+  <a href="&#x6D;&#x61;i&#x6C;&#x74;&#x6F;:&#105;&#110;&#102;&#111;&#064;&#114;&#105;&#103;&#104;&#116;&#106;&#115;&#046;&#111;&#114;&#103;">&#105;&#110;&#102;&#111;&#064;&#114;&#105;&#103;&#104;&#116;&#106;&#115;&#046;&#111;&#114;&#103;</a>
+</div>
+<div id="bottom-menu">
+  <h2>About the Framework</h2>
+  <a href="../philosophy.html">Philosophy</a> |
+  <a href="../benchmarks.html">Benchmarks</a> |
+  <a href="../browsers.html">Browsers</a> |
+  <a href="../contacts.html">Contacts</a>
+</div>
+        <div id="design">Design by <a href="http://activestylus.com">Steven Garcia</a></div>
+        <div id="copyright">Copyright &copy; 2008-2011 Nikolay Nemshilov</div>
+      </div>
+    </div>
+
+    <script src="http://www.google-analytics.com/ga.js" type="text/javascript"></script>
+    <script type="text/javascript">
+    // <![CDATA[
+      try { _gat._getTracker("UA-10292980-1")._trackPageview(); } catch(err) {}
+    // ]]>
+    </script>
+  </body>
+</html>

@@ -1,0 +1,254 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <title>RightJS: DOM-Wrappers in RightJS 2</title>
+    <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+    <link href="../blog.rss" rel="alternate" title="RightJS News" type="application/rss+xml" />
+    <script src="../hotlink/right.js@1333128729" type="text/javascript"></script>
+<script src="../javascripts/application.js@1295184937" type="text/javascript"></script>
+    <script src="../builds/ui/right-autocompleter.js@1333128730" type="text/javascript"></script>
+    <link href="../stylesheets/application.css@1297515667.css" media="screen" rel="stylesheet" type="text/css" />
+    
+    
+    
+  </head>
+  <body>
+    <div id="body">
+      <div id="head">
+        <a href="../index.html" id="logo">RightJS</a>
+        <div id="slogan">JavaScript Framework That Feels Right</div>
+
+        <div id="main-menu">
+  <ul>
+    <li><a href="../index.html">Home</a></li>
+    <li><a href="../download.html">Download</a></li>
+    <li><a href="../plugins.html">Plugins</a></li>
+    <li><a href="../ui.html">UI</a></li>
+    <li><a href="../demos.html">Demos</a></li>
+    <li class="current"><a href="../docs.html">Docs</a></li>
+    <li><a href="../blog.html">Blog</a></li>
+  </ul>
+  <div id="zing"><!-- the moving thing --></div>
+</div>
+        <div id="lang-switch">
+    <select onchange="document.location.href=this.value;">
+      <option selected="true" value="http://rightjs.org/tutorials/dom-wrappers">English</option>
+      <option value="http://ru.rightjs.org/tutorials/dom-wrappers">Русский</option>
+    </select>
+</div>
+      </div>
+      <div id="main">
+        <div id="sidebar">
+  <div class="box" id="download-box">
+    <h1>Get it!</h1>
+    <ul>
+      <li><a href="../builds/current/right.js.zip">RightJS v2.3.1</a></li>
+    </ul>
+  </div>
+
+  <div id="api-search" class="box">
+  <input type="text" value="Search API" id="api-search-field" />
+  <script type="text/javascript">
+  // <![CDATA[
+    new Autocompleter($('api-search-field').on({
+      focus: function() { this._v = this.value(); this.value(''); },
+      blur:  function() { this.value(this._v); }
+    }), {
+      url: '/docs/search/%{search}.js',
+      onDone: function() {
+        var current = this.first('.current');
+        if (current) {
+          document.location.href = current.get('title');
+        }
+        this.input.setValue(this.input._v);
+      }
+    });
+  // ]]>
+  </script>
+</div>
+
+  <div class="box">
+    <label>Documentation</label>
+    <ul>
+      <li><a href="getting-started.html">Getting Started</a></li>
+      <li><a href="top-features.html">Top 12 Features</a></li>
+      <li><a href="../docs.html">API Reference</a></li>
+      <li class="current"><a href="../tutorials.1.html">Tutorials</a></li>
+    </ul>
+  </div>
+
+  <div class="box">
+    <label>Additional</label>
+    <ul>
+      <li><a href="../plugins.html">RightJS Plugins</a></li>
+      
+      <li><a href="../ui.html">RightJS UI</a></li>
+      
+      <li><a href="../showcases.html">Showcases</a></li>
+    </ul>
+  </div>
+
+  <div class="box">
+    <label>Community</label>
+    <ul>
+      <li><a href="http://groups.google.com/group/rightjs">Google Group</a></li>
+      <li><a href="http://rightjs.lighthouseapp.com/projects/31989">Tickets Tracker</a></li>
+      <li><a href="http://github.com/rightjs/rightjs-snippets">Code Snippets</a></li>
+      <li><a href="irc://irc.freenode.net/rightjs">IRC #rightjs</a></li>
+      <li><a href="../participate.html">Participate!</a></li>
+    </ul>
+  </div>
+
+  <div class="box">
+    <a href='http://www.pledgie.com/campaigns/14259'><img alt='Donate!' src='http://www.pledgie.com/campaigns/14259.png?skin_name=chrome' border='0' /></a>
+  </div>
+
+  <div class="box">
+    <ul id="social">
+      <li><a href="../blog.rss" id="rss-link">RSS</a></li>
+      <li><a href="http://twitter.com/rightjs" id="twitter-link">Twitter</a></li>
+      <li><a href="http://github.com/rightjs" id="github-link">GitHub</a></li>
+    </ul>
+  </div>
+</div>
+
+        <div id="info">
+          <h1>DOM-Wrappers in RightJS 2</h1>
+
+<p>RightJS 1 was a pretty simple system, we extended native dom-units directly and always worked with actual dom-elements. That a pretty convenient approach but sadly it is pretty naughty and risky business, because first of all it doesn&#8217;t leave any space for other scripts on the page and can be easily screwed by browser updates.</p>
+
+<p>And as RightJS is known for setting the things right, with the version 2.0.0 we switched from direct elements access to dom-wrappers.</p>
+<h2 class="chapter"><a href='dom-wrappers.html#'>Index</a></h2><p><ul><li><a href="dom-wrappers.html#what">What are DOM-Wrappers?</a></li><li><a href="dom-wrappers.html#how">How Does It Look Like in RightJS?</a></li><li><a href="dom-wrappers.html#raw">Raw DOM Objects Access</a></li><li><a href="dom-wrappers.html#classes">DOM-Wrappers == Classes</a></li><li><a href="dom-wrappers.html#custom">Custom Types</a></li><li><a href="dom-wrappers.html#private">Private Wrappers</a></li><li><a href="dom-wrappers.html#caching">Wrappers Caching</a></li></ul></p><a name='what' ></a><h2 class='chapter'>
+  <a href='dom-wrappers.html#' class='top-anchor'>top &uarr;</a><a href='dom-wrappers.html#what'>What are DOM-Wrappers?</a>
+</h2>
+<p>A dom-wrapper is basically a proxy object that keeps the real dom-element somewhere inside and then provides you with some interface through which you suppose to do all your work.</p>
+
+<p>This way you keep all your fancy methods and extensions in one isolated space and don&#8217;t extend the actual dom-element, which allows other scripts on the page interact with the same elements without even noticing the presence of your extensions.</p>
+
+<p>With dom-wrappers, you also provide a long term stability for your scripts, because as all your extensions are in a separated space, any new native methods that browsers might add couple of years later, will not affect your proxy objects.</p>
+<a name='how' ></a><h2 class='chapter'>
+  <a href='dom-wrappers.html#' class='top-anchor'>top &uarr;</a><a href='dom-wrappers.html#how'>How Does It Look Like in RightJS?</a>
+</h2>
+<p>There are many ways to implement dom-wrappers, and, as it usually happens over here, we choose the right one.</p>
+
+<p>Dom-wrappers in RightJS 2 have the same exact API as dom-extensions in RightJS 1, and because of that it looks and feels exactly the same way, like nothing happened</p>
+
+<code>$(<s>'element'</s>).<u class="method">addClass</u>(<s>'marked'</s>);<br/><br/>$(<s>'element'</s>).<u class="method">onClick</u>(<b>function</b>(event) {<br/>  event.<u class="method">stop</u>();<br/>  <b class="var">this</b>.<u class="method">toggleClass</u>(<s>'marked'</s>);<br/>});<br/><br/>$$(<s>'div.class'</s>).<u class="method">each</u>(<b>function</b>(element) {<br/>  element.<u class="method">addClass</u>(<s>'my-element'</s>);<br/>  <i>// .....</i><br/>});<br/><br/>$(raw_dom_element).<u class="method">removeClass</u>(<s>'marked'</s>);</code>
+
+<p>It all practically the same as it was before, except the fact that instead of the actual dom-element you work now with proxy objects. And as the result, most of your code should be in working condition after you switch to RightJS 2.</p>
+
+<p>There are also couple of differences. First of all, because you work with proxy objects, you don&#8217;t have direct access to element properties and should use the <a href='../docs/element.html#get' class='api-ref'>Element#get</a> and <a href='../docs/element.html#set' class='api-ref'>Element#set</a> methods.</p>
+
+<code>$(<s>'element-id'</s>).<u>id</u>;        <i>// -&gt; null</i><br/>$(<s>'element-id'</s>).<u class="method">get</u>(<s>'id'</s>); <i>// -&gt; 'element-id'</i><br/><br/>$(<s>'element'</s>).<u>title</u>;        <i>// -&gt; null</i><br/>$(<s>'element'</s>).<u class="method">set</u>(<s>'title'</s>, <s>'Boo!'</s>);<br/>$(<s>'element'</s>).<u>title</u>;        <i>// -&gt; still null</i><br/>$(<s>'element'</s>).<u class="method">get</u>(<s>'title'</s>); <i>// -&gt; 'Boo!'</i></code>
+
+<p>The second biggest difference is that now you should access the <tt>window</tt> and <tt>document</tt> objects via the same <tt>$()</tt> function if you need access their extensions</p>
+
+<code>window.<u>sizes</u>;       <i>// -&gt; null</i><br/>$(window).<u>sizes</u>;    <i>// -&gt; function</i><br/><br/>document.<u>onReady</u>    <i>// -&gt; null</i><br/>$(document).<u>onReady</u> <i>// -&gt; function</i></code>
+
+<p>And there are also several additional <a href='../docs/element.html' class='api-ref'>Element</a> methods to help you deal with all sorts of links and attributes, you can find the list at the <a href='what-new-in-rjs2.html#new-dom-methods'>what&#8217;s new in RightJS 2</a> page.</p>
+<a name='raw' ></a><h2 class='chapter'>
+  <a href='dom-wrappers.html#' class='top-anchor'>top &uarr;</a><a href='dom-wrappers.html#raw'>Raw DOM Objects Access</a>
+</h2>
+<p>When you work with your document, RightJS will automatically and transparently wrap most of the dom-objects when you access them, that includes dom-elements windows, documents and events.</p>
+
+<p>And despite the superb RightJS API, from time to time you might need to access the actual raw dom-object, and we have a conventional way to do that.</p>
+
+<p>Every dom-wrapper in RightJS has the <tt>_</tt> property, which link it to the raw dom-object it wraps.</p>
+
+<code>$(<s>'my-div'</s>).<u>_</u>  <i>// -&gt; DIV element</i><br/>$(window).<u>_</u>    <i>// -&gt; window object</i><br/>$(document).<u>_</u>  <i>// -&gt; document object</i><br/><br/>$(element).<u class="method">onClick</u>(<b>function</b>(event) {<br/>  event.<u>_</u>      <i>// -&gt; the dom-event object</i><br/>});</code>
+
+<p>This is the official and the right way to do that, use it any time you feel like it.</p>
+<a name='classes' ></a><h2 class='chapter'>
+  <a href='dom-wrappers.html#' class='top-anchor'>top &uarr;</a><a href='dom-wrappers.html#classes'>DOM-Wrappers == Classes</a>
+</h2>
+<p>Now to the good parts. Because we have them.</p>
+
+<p>All dom-wrappers in RightJS are created by the Wrapper unit, which is essentially the same good old <a href='../docs/class.html' class='api-ref'>Class</a>, just tuned a bit for the task of dom-objects wrapping. Which means that first of all we have normal types</p>
+
+<code>$(<s>'my-div'</s>) <b>instanceof</b> <b class="unit">Element</b><br/>$(document) <b>instanceof</b> <b class="unit">Document</b><br/>$(window)   <b>instanceof</b> <b class="unit">Window</b></code>
+
+<p>It also supports inheritance. Say for example we have two more units in the system <a href='../docs/form.html' class='api-ref'>Form</a> and <a href='../docs/input.html' class='api-ref'>Input</a>. Both of them are inherited from the <a href='../docs/element.html' class='api-ref'>Element</a> class and it all works correctly when you check the object types</p>
+
+<code>$(<s>'my-div'</s>) <b>instanceof</b> <b class="unit">Element</b>; <i>// true</i><br/>$(<s>'my-div'</s>) <b>instanceof</b> <b class="unit">Input</b>;   <i>// false</i><br/>$(<s>'my-div'</s>) <b>instanceof</b> <b class="unit">Form</b>;    <i>// false</i><br/><br/>$(<s>'my-form'</s>) <b>instanceof</b> <b class="unit">Element</b>; <i>// true</i><br/>$(<s>'my-form'</s>) <b>instanceof</b> <b class="unit">Input</b>;   <i>// false</i><br/>$(<s>'my-form'</s>) <b>instanceof</b> <b class="unit">Form</b>;    <i>// true</i><br/><br/>$(<s>'my-input'</s>) <b>instanceof</b> <b class="unit">Element</b>; <i>// true</i><br/>$(<s>'my-input'</s>) <b>instanceof</b> <b class="unit">Input</b>;   <i>// true</i><br/>$(<s>'my-input'</s>) <b>instanceof</b> <b class="unit">Form</b>;    <i>// false</i></code>
+
+<p>You can extend each of the classes separately using functionality injection and the extensions will correctly apply to the inheritance structure</p>
+
+<code><b class="unit">Element</b>.<u class="method">include</u>({<br/>  <s class="key">global_method</s>: <b>function</b> () {}<br/>});<br/><br/><b class="unit">Input</b>.<u class="method">include</u>({<br/>  <s class="key">inputs_only_method</s>: <b>function</b>() {}<br/>});<br/><br/><b class="unit">Form</b>.<u class="method">include</u>({<br/>  <s class="key">forms_only_method</s>: <b>function</b>() {}<br/>});</code>
+
+<p>You can extend any of the dom-wrappers in the system <a href='../docs/element.html' class='api-ref'>Element</a>, <a href='../docs/input.html' class='api-ref'>Input</a>, <a href='../docs/form.html' class='api-ref'>Form</a>, <a href='../docs/window.html' class='api-ref'>Window</a>, <a href='../docs/document.html' class='api-ref'>Document</a>, <a href='../docs/event.html' class='api-ref'>Event</a></p>
+<a name='custom' ></a><h2 class='chapter'>
+  <a href='dom-wrappers.html#' class='top-anchor'>top &uarr;</a><a href='dom-wrappers.html#custom'>Custom Types</a>
+</h2>
+<p>The system of dom-wrappers in RightJS is an open structure and you&#8217;re free to create your own types that will handle elements with certain tags. For example you can add the <tt>TABLE</tt> elements specific wrapper like so</p>
+
+<code><b class="var">var</b> <b class="unit">Table</b> = <b class="var">new</b> <b class="unit">Class</b>(<b class="unit">Element</b>, {<br/>  <s class="key">sort</s>: <b>function</b>() {<br/>    <i>// sort your table in here</i><br/>  },<br/><br/>  <s class="key">load</s>: <b>function</b>() {<br/>    <i>// overloading the Element#load</i><br/>    <i>// so it updated the TBODY part only</i><br/>  }<br/>});<br/><br/><i>// registering the wrapper in the system</i><br/><b class="unit">Element</b>.<b class="unit">Wrappers</b>.<b class="unit">TABLE</b> = <b class="unit">Table</b>;</code>
+
+<p>Once you&#8217;ve done that, any time you access a table element on your page it will be wrapped with your custom wrapper</p>
+
+<code>$(<s>'my-table'</s>) <b>instanceof</b> <b class="unit">Table</b>;   <i>// true</i><br/>$(<s>'my-table'</s>) <b>instanceof</b> <b class="unit">Element</b>; <i>// true</i></code>
+
+<p>You&#8217;re allowed to override any tags you want, and add/replace any methods you need. Once you&#8217;ve registered them in the Element.Wrappers object, RightJS will dynamically typecast all elements you access.</p>
+<a name='private' ></a><h2 class='chapter'>
+  <a href='dom-wrappers.html#' class='top-anchor'>top &uarr;</a><a href='dom-wrappers.html#private'>Private Wrappers</a>
+</h2>
+<p>Although you can create types for certain tag, as it described in the chapter above, you&#8217;re not really tied to the tags structure, you can create any number of your own private types. Say if you like to have two wrappers for tables that&#8217;s cool with RightJS</p>
+
+<code><b class="var">var</b> <b class="unit">Table1</b> = <b class="var">new</b> <b class="unit">Class</b>(<b class="unit">Element</b>, {<br/>  <s class="key">initialize</s>: <b>function</b>() {<br/>    <b class="var">this</b>.<u class="method">$super</u>(<s>'table'</s>, {<s>'class'</s>: <s>'table-1'</s>});<br/>  }<br/>});<br/><br/><b class="var">var</b> <b class="unit">Table2</b> = <b class="var">new</b> <b class="unit">Class</b>(<b class="unit">Element</b>, {<br/>  <s class="key">initialize</s>: <b>function</b>() {<br/>    <b class="var">this</b>.<u class="method">$super</u>(<s>'table'</s>, {<s>'class'</s>: <s>'table-2'</s>});<br/>  }<br/>});<br/><br/><b class="var">var</b> t1 = <b class="var">new</b> <b class="unit">Table1</b>();<br/><b class="var">var</b> t2 = <b class="var">new</b> <b class="unit">Table2</b>();</code>
+
+<p>This is especially useful with all sorts of widgets development. If in RightJS 1, when you create a widget, you use the <a href='../docs/class.html' class='api-ref'>Class</a> unit and incapsulate an element inside, kinda like that</p>
+
+<code><b class="var">var</b> <b class="unit">MyWidget</b> = <b class="var">new</b> <b class="unit">Class</b>(<b class="unit">Observer</b>, {<br/>  <s class="key">initialize</s>: <b>function</b>() {<br/>    <b class="var">this</b>.<u>element</u> = <b class="var">new</b> <b class="unit">Element</b>();<br/><br/>    <b class="var">this</b>.<u>element</u>.<u class="method">onClick</u>(<b class="var">this</b>.<u>_clicked</u>.<u class="method">bind</u>(<b class="var">this</b>));<br/>  },<br/><br/>  <s class="key">insertTo</s>: <b>function</b>(element, position) {<br/>    <b class="var">this</b>.<u class="method">element</u>(element, position)<br/>  },<br/><br/>  <s class="key">_clicked</s>: <b>function</b>() {<br/>    <i>// do something about the click</i><br/>    <b class="var">this</b>.<u>element</u>.<u class="method">addClass</u>(<s>'clicked'</s>);<br/>  }<br/>});</code>
+
+<p>As you can see there quite a lot of headache with stitching the contexts of the widget and the element, you also need to tunnel some methods so the user could work with your widget, and so on, and so on. Those things are getting really messy very quick.</p>
+
+<p>But, you don&#8217;t have to suffer anymore! Because in RightJS 2 you can define your widget as another private wrapper, just like that</p>
+
+<code><b class="var">var</b> <b class="unit">MyWidget</b> = <b class="var">new</b> <b class="unit">Class</b>(<b class="unit">Element</b>, {<br/>  <s class="key">initialize</s>: <b>function</b>() {<br/>    <b class="var">this</b>.<u class="method">$super</u>(<s>'div'</s>, {<s>'class'</s>: <s>'my-widget'</s>});<br/>    <b class="var">this</b>.<u class="method">onClick</u>(<b class="var">this</b>.<u>_clicked</u>);<br/>  },<br/><br/>  <s class="key">_clicked</s>: <b>function</b>() {<br/>    <b class="var">this</b>.<u class="method">addClass</u>(<s>'clicked'</s>);<br/>  }<br/>});</code>
+
+<p>As you can see it simplifies the things alot, plus you never leave the context of your element and therefore don&#8217;t need to bind the event listeners in any way. More of that your widget will have all the regular <a href='../docs/element.html' class='api-ref'>Element</a> API baked in by default and the users can manipulate with your widget just the same way they manipulate with any other elements on the page</p>
+
+<code><b class="var">var</b> widget = <b class="var">new</b> <b class="unit">MyWidget</b>();<br/><br/>widget.<u class="method">addClass</u>(<s>'custompization'</s>);<br/>widget.<u class="method">insertTo</u>(document.<u>body</u>, <s>'top'</s>);<br/>widget.<u class="method">onClick</u>(my_additional_handler);<br/><i>// and so on ....</i></code>
+
+<p>This will allow you to create much nicer and easier to maintain widgets than before, more of that they will be much compacter and simpler to understand.</p>
+<a name='caching' ></a><h2 class='chapter'>
+  <a href='dom-wrappers.html#' class='top-anchor'>top &uarr;</a><a href='dom-wrappers.html#caching'>Wrappers Caching</a>
+</h2>
+<p>And some more fancy stuff to finish you up.</p>
+
+<p>When you play with dom-wrappers, RightJS keeps the track of all the wrappers you create and then automatically uses them when you access the dom-elements in any way.</p>
+
+<code><b class="var">var</b> widget = <b class="var">new</b> <b class="unit">MyWidget</b>();<br/>widget.<u class="method">set</u>(<s>'id'</s>, <s>'my-widget'</s>);<br/>widget.<u class="method">insertTo</u>(document.<u>body</u>);<br/><br/><i>// now you can access the element by id</i><br/>$(<s>'my-widget'</s>) <b>instanceof</b> <b class="unit">MyWidget</b>; <i>// true</i><br/><br/><i>// or any other way, for example</i><br/>$$(<s>'div.my-widget'</s>).<u class="method">last</u>();         <i>// -&gt; MyWidget</i><br/>$(document.<u>body</u>).<u class="method">children</u>().<u class="method">last</u>(); <i>// -&gt; MyWidget</i><br/>....</code>
+
+<p>To remove your wrapper from the cache, you can either reinitialize the raw element with any wrapper, or remove the cache by an UID key.</p>
+
+<code><b class="var">var</b> widget = <b class="var">new</b> <b class="unit">MyWidget</b>();<br/>widget.<u class="method">set</u>(<s>'id'</s>, <s>'my-widget'</s>);<br/><br/>$(<s>'my-widget'</s>) <b>instanceof</b> <b class="unit">MyWidget</b>; <i>// true</i><br/><br/><i>// replace the cache by instatiation</i><br/>widget = <b class="var">new</b> <b class="unit">Element</b>(widget.<u>_</u>);<br/>$(<s>'my-widget'</s>) <b>instanceof</b> <b class="unit">MyWidget</b>; <i>// false</i><br/><br/><i>// clean cache directly</i><br/><b class="var">var</b> uid = widget.<u class="method">uuid</u>();<br/>delete(<b class="unit">Wrapper</b>.<b class="unit">Cache</b>[uid]);</code>
+
+<p>This probably concludes the tutorial. Have fun!</p>
+        </div>
+        <div style="clear:both"></div>
+      </div>
+      <div id="foot">
+        <div id="contacts">
+  <h2>Questions?</h2>
+  <a href="&#x6D;&#x61;i&#x6C;&#x74;&#x6F;:&#105;&#110;&#102;&#111;&#064;&#114;&#105;&#103;&#104;&#116;&#106;&#115;&#046;&#111;&#114;&#103;">&#105;&#110;&#102;&#111;&#064;&#114;&#105;&#103;&#104;&#116;&#106;&#115;&#046;&#111;&#114;&#103;</a>
+</div>
+<div id="bottom-menu">
+  <h2>About the Framework</h2>
+  <a href="../philosophy.html">Philosophy</a> |
+  <a href="../benchmarks.html">Benchmarks</a> |
+  <a href="../browsers.html">Browsers</a> |
+  <a href="../contacts.html">Contacts</a>
+</div>
+        <div id="design">Design by <a href="http://activestylus.com">Steven Garcia</a></div>
+        <div id="copyright">Copyright &copy; 2008-2011 Nikolay Nemshilov</div>
+      </div>
+    </div>
+
+    <script src="http://www.google-analytics.com/ga.js" type="text/javascript"></script>
+    <script type="text/javascript">
+    // <![CDATA[
+      try { _gat._getTracker("UA-10292980-1")._trackPageview(); } catch(err) {}
+    // ]]>
+    </script>
+  </body>
+</html>

@@ -1,0 +1,282 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <title>RightJS: Documentation: Cookie</title>
+    <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+    <link href="http://www.rightjs.org/blog.rss" rel="alternate" title="RightJS News" type="application/rss+xml" />
+    <script src="../hotlink/right.js@1331880836" type="text/javascript"></script>
+<script src="../javascripts/application.js@1295184937" type="text/javascript"></script>
+    <script src="../builds/ui/right-autocompleter.js@1331880836" type="text/javascript"></script>
+    <link href="../stylesheets/application.css@1297515667.css" media="screen" rel="stylesheet" type="text/css" />
+    
+    
+    
+  </head>
+  <body>
+    <div id="body">
+      <div id="head">
+        <a href="../index.html" id="logo">RightJS</a>
+        <div id="slogan">JavaScript Framework That Feels Right</div>
+
+        <div id="main-menu">
+  <ul>
+    <li><a href="../index.html">Home</a></li>
+    <li><a href="../download.html">Download</a></li>
+    <li><a href="../plugins.html">Plugins</a></li>
+    <li><a href="../ui.html">UI</a></li>
+    <li><a href="../demos.html">Demos</a></li>
+    <li class="current"><a href="../docs.html">Docs</a></li>
+    <li><a href="../blog.html">Blog</a></li>
+  </ul>
+  <div id="zing"><!-- the moving thing --></div>
+</div>
+        <div id="lang-switch">
+    <select onchange="document.location.href=this.value;">
+      <option selected="true" value="http://www.rightjs.org/docs/cookie">English</option>
+      <option value="http://ru.www.rightjs.org/docs/cookie">Русский</option>
+    </select>
+</div>
+      </div>
+      <div id="main">
+        <div id="sidebar">
+
+  <div id="api-search" class="box">
+  <input type="text" value="Search API" id="api-search-field" />
+  <script type="text/javascript">
+  // <![CDATA[
+    new Autocompleter($('api-search-field').on({
+      focus: function() { this._v = this.value(); this.value(''); },
+      blur:  function() { this.value(this._v); }
+    }), {
+      url: '/docs/search/%{search}.js',
+      onDone: function() {
+        var current = this.first('.current');
+        if (current) {
+          document.location.href = current.get('title');
+        }
+        this.input.setValue(this.input._v);
+      }
+    });
+  // ]]>
+  </script>
+</div>
+
+  <div class="box" id="api-lists">
+    <label>Core</label><ul><li><a href="browser.html">Browser</a></li><li><a href="class.html">Class</a></li><li><a href="util.html">Util</a></li></ul>
+<label>Dom</label><ul><li><a href="document.html">Document</a></li><li><a href="element.html">Element</a></li><li><a href="event.html">Event</a></li><li><a href="form.html">Form</a></li><li><a href="input.html">Input</a></li><li><a href="window.html">Window</a></li></ul>
+<label>Fx</label><ul><li><a href="fx.html">Fx</a></li><li><a href="fx/attr.html">Fx.Attr</a></li><li><a href="fx/element.html">Fx.Element</a></li><li><a href="fx/fade.html">Fx.Fade</a></li><li><a href="fx/highlight.html">Fx.Highlight</a></li><li><a href="fx/morph.html">Fx.Morph</a></li><li><a href="fx/scroll.html">Fx.Scroll</a></li><li><a href="fx/slide.html">Fx.Slide</a></li></ul>
+<label>Lang</label><ul><li><a href="array.html">Array</a></li><li><a href="function.html">Function</a></li><li><a href="json.html">Json</a></li><li><a href="math.html">Math</a></li><li><a href="number.html">Number</a></li><li><a href="object.html">Object</a></li><li><a href="regexp.html">Regexp</a></li><li><a href="string.html">String</a></li></ul>
+<label>Util</label><ul><li class="current"><a href="cookie.html">Cookie</a></li><ul><li><a href="cookie.html#get">get</a></li><li><a href="cookie.html#remove">remove</a></li><li><a href="cookie.html#set">set</a></li><li><a href="cookie.html#initialize">initialize</a></li><li><a href="cookie.html#get">get</a></li><li><a href="cookie.html#remove">remove</a></li><li><a href="cookie.html#set">set</a></li></ul><li><a href="observer.html">Observer</a></li><li><a href="options.html">Options</a></li><li><a href="xhr.html">Xhr</a></li></ul>
+  </div>
+
+  <div class="box">
+    <a href='http://www.pledgie.com/campaigns/14259'><img alt='Donate!' src='http://www.pledgie.com/campaigns/14259.png?skin_name=chrome' border='0' /></a>
+  </div>
+
+  <div class="box">
+    <ul id="social">
+      <li><a href="../blog.rss" id="rss-link">RSS</a></li>
+      <li><a href="http://twitter.com/rightjs" id="twitter-link">Twitter</a></li>
+      <li><a href="http://github.com/rightjs" id="github-link">GitHub</a></li>
+    </ul>
+  </div>
+</div>
+
+        <div id="info">
+          
+<h1>Cookie</h1>
+
+<p><tt>Cookie</tt> is an object oriented wrapper around the native cookie support of a browser.</p>
+
+<p>You can work with the <tt>Cookie</tt> object at class level.</p>
+
+<code><b class="unit">Cookie</b>.<u class="method">set</u>(<s>'name'</s>, <s>'value'</s>);<br/><b class="unit">Cookie</b>.<u class="method">set</u>(<s>'name'</s>, <s>'value'</s>, {<s class="key">duration</s>: <s class="int">10</s>});<br/><br/><b class="unit">Cookie</b>.<u class="method">get</u>(<s>'name'</s>);<br/><br/><b class="unit">Cookie</b>.<u class="method">remove</u>(<s>'name'</s>);</code>
+
+<p>Or you can use instances like this:</p>
+
+<code><b class="var">var</b> cookie = <b class="var">new</b> <b class="unit">Cookie</b>(<s>'name'</s>);<br/><b class="var">var</b> cookie = <b class="var">new</b> <b class="unit">Cookie</b>(<s>'name'</s>, {<s class="key">duration</s>: <s class="int">4</s>});<br/><br/>cookie.<u class="method">set</u>(<s>'value'</s>);<br/><br/>cookie.<u class="method">remove</u>();</code>
+
+<h2>Options</h2>
+
+<p>You can use the following options with your cookies:</p>
+<table><thead><tr><th>Name</th><th>Duration</th></tr></thead><tbody><tr><td>duration</td><td>number of days the cookie will stay alive</td>
+</tr><tr><td>domain</td><td>a string domain name</td>
+</tr><tr><td>path</td><td>a string path</td>
+</tr><tr><td>secure</td><td>boolean to set if the cookie should get marked as secure</td>
+</tr></tbody></table>
+<h2>Values Escaping</h2>
+
+<p>You can safely feed the API with any strings, all the values will be automatically encoded and decoded.</p>
+
+<code><b class="unit">Cookie</b>.<u class="method">set</u>(<s>'name'</s>, <s>'%"&amp;=*"'</s>);<br/><br/><b class="unit">Cookie</b>.<u class="method">get</u>(<s>'name'</s>); <i>// -&gt; '%"&amp;=*"'</i></code>
+
+<p>And if you include the <a href='../plugins/json.html'>JSON</a> feature on your page, you will be able to save/retrieve any JSON exportable objects, like booleans, arrays or plain objects.</p>
+
+<h1>Methods</h1>
+<p>
+  <a href="cookie.html#get">get</a>, <a href="cookie.html#remove">remove</a>, <a href="cookie.html#set">set</a>, <a href="cookie.html#initialize">initialize</a>, <a href="cookie.html#get">get</a>, <a href="cookie.html#remove">remove</a>, <a href="cookie.html#set">set</a>
+</p>
+
+<div class="method">
+  <a name="get"></a>
+  <h2><a class="top-anchor" href="cookie.html#">top &uarr;</a><a href="cookie.html#get">get</a></h2>
+
+  <p class="semantic">
+    <code><b class="unit">Cookie</b>.<u class="method">get</u>(<b class="unit">String</b> name) -&gt; <b class="unit">String</b> value or <b class="rest">null</b></code>
+  </p>
+
+
+  <h4>Description</h4>
+  <p>Finds and reads a cookie by name. Returns null if nothing is found.</p>
+
+
+
+  <h4>Example</h4>
+  <p>
+    <code><b class="unit">Cookie</b>.<u class="method">set</u>(<s>'name'</s>, <s>'value'</s>);<br/><br/><b class="unit">Cookie</b>.<u class="method">get</u>(<s>'name'</s>); <i>// -&gt; 'value'</i></code>
+  </p>
+
+</div><div class="method">
+  <a name="remove"></a>
+  <h2><a class="top-anchor" href="cookie.html#">top &uarr;</a><a href="cookie.html#remove">remove</a></h2>
+
+  <p class="semantic">
+    <code><b class="unit">Cookie</b>.<u class="method">remove</u>(<b class="unit">String</b> name) -&gt; <b class="unit">Cookie</b></code>
+  </p>
+
+
+  <h4>Description</h4>
+  <p>Erases a cookie value by name.</p>
+
+
+
+  <h4>Example</h4>
+  <p>
+    <code><b class="unit">Cookie</b>.<u class="method">set</u>(<s>'name'</s>, <s>'value'</s>);<br/><br/><b class="unit">Cookie</b>.<u class="method">remove</u>(<s>'name'</s>);<br/><br/><b class="unit">Cookie</b>.<u class="method">get</u>(<s>'name'</s>); <i>// -&gt; null</i></code>
+  </p>
+
+</div><div class="method">
+  <a name="set"></a>
+  <h2><a class="top-anchor" href="cookie.html#">top &uarr;</a><a href="cookie.html#set">set</a></h2>
+
+  <p class="semantic">
+    <code><b class="unit">Cookie</b>.<u class="method">set</u>(<b class="unit">String</b> name, <b class="unit">String</b> value[, <b class="unit">Object</b> options]) -&gt; <b class="unit">Cookie</b></code>
+  </p>
+
+
+  <h4>Description</h4>
+  <p>Sets the cookie.</p>
+
+
+
+  <h4>Example</h4>
+  <p>
+    <code><b class="unit">Cookie</b>.<u class="method">set</u>(<s>'name'</s>, <s>'value'</s>);<br/><b class="unit">Cookie</b>.<u class="method">set</u>(<s>'name'</s>, <s>'value'</s>, {<s class="key">duration</s>: <s class="int">4</s>});</code>
+  </p>
+
+</div><div class="method">
+  <a name="initialize"></a>
+  <h2><a class="top-anchor" href="cookie.html#">top &uarr;</a><a href="cookie.html#initialize">initialize</a></h2>
+
+  <p class="semantic">
+    <code>initialize(<b class="unit">String</b> name[, <b class="unit">Object</b> options])</code>
+  </p>
+
+
+  <h4>Description</h4>
+  <p>Basic constructor. See the list of options in the description above.</p>
+
+
+
+  <h4>Example</h4>
+  <p>
+    <code><b class="var">var</b> cookie = <b class="var">new</b> <b class="unit">Cookie</b>(<s>'name'</s>);<br/><b class="var">var</b> cookie = <b class="var">new</b> <b class="unit">Cookie</b>(<s>'name'</s>, {<s class="key">duration</s>: <s class="int">2</s>});</code>
+  </p>
+
+</div><div class="method">
+  <a name="get"></a>
+  <h2><a class="top-anchor" href="cookie.html#">top &uarr;</a><a href="cookie.html#get">get</a></h2>
+
+  <p class="semantic">
+    <code>get() -&gt; <b class="unit">String</b> value or <b class="rest">null</b></code>
+  </p>
+
+
+  <h4>Description</h4>
+  <p>Reads the cookie value.</p>
+
+
+
+  <h4>Example</h4>
+  <p>
+    <code><b class="var">var</b> cookie = <b class="var">new</b> <b class="unit">Cookie</b>(<s>'name'</s>);<br/><br/>cookie.<u class="method">set</u>(<s>'value'</s>);<br/><br/>cookie.<u class="method">get</u>(); <i>// -&gt; 'value'</i></code>
+  </p>
+
+</div><div class="method">
+  <a name="remove"></a>
+  <h2><a class="top-anchor" href="cookie.html#">top &uarr;</a><a href="cookie.html#remove">remove</a></h2>
+
+  <p class="semantic">
+    <code>remove() -&gt; <b class="unit">Cookie</b> <b class="var">self</b></code>
+  </p>
+
+
+  <h4>Description</h4>
+  <p>Removes the cookie from of the browser memory.</p>
+
+
+
+  <h4>Example</h4>
+  <p>
+    <code><b class="var">var</b> cookie = <b class="var">new</b> <b class="unit">Cookie</b>(<s>'name'</s>);<br/>cookie.<u class="method">set</u>(<s>'value'</s>);<br/>cookie.<u class="method">get</u>(); <i>// -&gt; 'value'</i><br/><br/>cookie.<u class="method">remove</u>();<br/><br/>cookie.<u class="method">get</u>(); <i>// -&gt; null</i></code>
+  </p>
+
+</div><div class="method">
+  <a name="set"></a>
+  <h2><a class="top-anchor" href="cookie.html#">top &uarr;</a><a href="cookie.html#set">set</a></h2>
+
+  <p class="semantic">
+    <code>set(<b class="unit">String</b> value) -&gt; <b class="unit">Cookie</b> <b class="var">self</b></code>
+  </p>
+
+
+  <h4>Description</h4>
+  <p>Sets the cookie value.</p>
+
+
+
+  <h4>Example</h4>
+  <p>
+    <code><b class="var">var</b> cookie = <b class="var">new</b> <b class="unit">Cookie</b>(<s>'name'</s>);<br/><br/>cookie.<u class="method">set</u>(<s>'value'</s>);<br/><br/>cookie.<u class="method">get</u>(); <i>// -&gt; 'value'</i></code>
+  </p>
+
+</div>
+
+        </div>
+        <div style="clear:both"></div>
+      </div>
+      <div id="foot">
+        <div id="contacts">
+  <h2>Questions?</h2>
+  <a href="&#x6D;&#x61;i&#x6C;&#x74;&#x6F;:&#105;&#110;&#102;&#111;&#064;&#114;&#105;&#103;&#104;&#116;&#106;&#115;&#046;&#111;&#114;&#103;">&#105;&#110;&#102;&#111;&#064;&#114;&#105;&#103;&#104;&#116;&#106;&#115;&#046;&#111;&#114;&#103;</a>
+</div>
+<div id="bottom-menu">
+  <h2>About the Framework</h2>
+  <a href="../philosophy.html">Philosophy</a> |
+  <a href="../benchmarks.html">Benchmarks</a> |
+  <a href="../browsers.html">Browsers</a> |
+  <a href="../contacts.html">Contacts</a>
+</div>
+        <div id="design">Design by <a href="http://activestylus.com">Steven Garcia</a></div>
+        <div id="copyright">Copyright &copy; 2008-2011 Nikolay Nemshilov</div>
+      </div>
+    </div>
+
+    <script src="http://www.google-analytics.com/ga.js" type="text/javascript"></script>
+    <script type="text/javascript">
+    // <![CDATA[
+      try { _gat._getTracker("UA-10292980-1")._trackPageview(); } catch(err) {}
+    // ]]>
+    </script>
+  </body>
+</html>

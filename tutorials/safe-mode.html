@@ -1,0 +1,188 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <title>RightJS: Safe Mode, Normal Mode, Semi-Safe Mode</title>
+    <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+    <link href="http://www.ru.rightjs.org/blog.rss" rel="alternate" title="RightJS News" type="application/rss+xml" />
+    <script src="../hotlink/right.js@1331880836" type="text/javascript"></script>
+<script src="../javascripts/application.js@1295184937" type="text/javascript"></script>
+    <script src="../builds/ui/right-autocompleter.js@1331880836" type="text/javascript"></script>
+    <link href="../stylesheets/application.css@1297515667.css" media="screen" rel="stylesheet" type="text/css" />
+    
+    
+    
+  </head>
+  <body>
+    <div id="body">
+      <div id="head">
+        <a href="../index.html" id="logo">RightJS</a>
+        <div id="slogan">JavaScript Framework That Feels Right</div>
+
+        <div id="main-menu">
+  <ul>
+    <li><a href="../index.html">Home</a></li>
+    <li><a href="../download.html">Download</a></li>
+    <li><a href="../plugins.html">Plugins</a></li>
+    <li><a href="../ui.html">UI</a></li>
+    <li><a href="../demos.html">Demos</a></li>
+    <li class="current"><a href="../docs.html">Docs</a></li>
+    <li><a href="../blog.html">Blog</a></li>
+  </ul>
+  <div id="zing"><!-- the moving thing --></div>
+</div>
+        <div id="lang-switch">
+    <select onchange="document.location.href=this.value;">
+      <option selected="true" value="http://www.rightjs.org/tutorials/safe-mode">English</option>
+      <option value="http://ru.www.rightjs.org/tutorials/safe-mode">Русский</option>
+    </select>
+</div>
+      </div>
+      <div id="main">
+        <div id="sidebar">
+  <div class="box" id="download-box">
+    <h1>Get it!</h1>
+    <ul>
+      <li><a href="../builds/current/right.js.zip">RightJS v2.3.1</a></li>
+    </ul>
+  </div>
+
+  <div id="api-search" class="box">
+  <input type="text" value="Search API" id="api-search-field" />
+  <script type="text/javascript">
+  // <![CDATA[
+    new Autocompleter($('api-search-field').on({
+      focus: function() { this._v = this.value(); this.value(''); },
+      blur:  function() { this.value(this._v); }
+    }), {
+      url: '/docs/search/%{search}.js',
+      onDone: function() {
+        var current = this.first('.current');
+        if (current) {
+          document.location.href = current.get('title');
+        }
+        this.input.setValue(this.input._v);
+      }
+    });
+  // ]]>
+  </script>
+</div>
+
+  <div class="box">
+    <label>Documentation</label>
+    <ul>
+      <li><a href="getting-started.html">Getting Started</a></li>
+      <li><a href="top-features.html">Top 12 Features</a></li>
+      <li><a href="../docs.html">API Reference</a></li>
+      <li class="current"><a href="../tutorials.1.html">Tutorials</a></li>
+    </ul>
+  </div>
+
+  <div class="box">
+    <label>Additional</label>
+    <ul>
+      <li><a href="../plugins.html">RightJS Plugins</a></li>
+      
+      <li><a href="../ui.html">RightJS UI</a></li>
+      
+      <li><a href="../showcases.html">Showcases</a></li>
+    </ul>
+  </div>
+
+  <div class="box">
+    <label>Community</label>
+    <ul>
+      <li><a href="http://groups.google.com/group/rightjs">Google Group</a></li>
+      <li><a href="http://rightjs.lighthouseapp.com/projects/31989">Tickets Tracker</a></li>
+      <li><a href="http://github.com/rightjs/rightjs-snippets">Code Snippets</a></li>
+      <li><a href="irc://irc.freenode.net/rightjs">IRC #rightjs</a></li>
+      <li><a href="../participate.html">Participate!</a></li>
+    </ul>
+  </div>
+
+  <div class="box">
+    <a href='http://www.pledgie.com/campaigns/14259'><img alt='Donate!' src='http://www.pledgie.com/campaigns/14259.png?skin_name=chrome' border='0' /></a>
+  </div>
+
+  <div class="box">
+    <ul id="social">
+      <li><a href="../blog.rss" id="rss-link">RSS</a></li>
+      <li><a href="http://twitter.com/rightjs" id="twitter-link">Twitter</a></li>
+      <li><a href="http://github.com/rightjs" id="github-link">GitHub</a></li>
+    </ul>
+  </div>
+</div>
+
+        <div id="info">
+          <h1>Safe Mode, Normal Mode, Semi-Safe Mode</h1>
+
+<p>Since the version 2.0.0 RightJS comes with a safe-mode feature, and this article covers all the &#8216;what&#8217; and &#8216;how&#8217; questions related to the topic</p>
+<h2 class="chapter"><a href='safe-mode.html#'>Index</a></h2><p><ul><li><a href="safe-mode.html#normal">Normal Mode</a></li><li><a href="safe-mode.html#safe">Safe Mode</a></li><li><a href="safe-mode.html#semi-safe">Semi-Safe Mode</a></li></ul></p><a name='normal' ></a><h2 class='chapter'>
+  <a href='safe-mode.html#' class='top-anchor'>top &uarr;</a><a href='safe-mode.html#normal'>Normal Mode</a>
+</h2>
+<p>Normal mode is what you got used to in RightJS 1. In normal mode RightJS will patch and extend the JavaScript core units like <a href='../docs/array.html' class='api-ref'>Array</a>, <a href='../docs/string.html' class='api-ref'>String</a>, <a href='../docs/function.html' class='api-ref'>Function</a>, etc. and it also will put all the core functions and units in the global scope.</p>
+
+<p>Normal mode is basically for cases when you use RightJS as the primary framework in your application and you want quick and fun access to everything you need.</p>
+
+<p>All the examples and documentation on this site describe RightJS in this very normal mode.</p>
+<a name='safe' ></a><h2 class='chapter'>
+  <a href='safe-mode.html#' class='top-anchor'>top &uarr;</a><a href='safe-mode.html#safe'>Safe Mode</a>
+</h2>
+<p>Safe mode in RightJS is presented by a special build of RightJS, which you can obtain at the <a href='../download.html'>downloads</a> page.</p>
+
+<p>In this safe-mode, RightJS does not extend anything and does not put its functions and classes into the global scope (except the <tt>RightJS</tt> object itself). The idea of this safe-mode is to provide you with a version of RightJS that will be transparent to the other scripts on the page, which will allow you to use RightJS alongside with anything else, without worrying about names or functionality collisions.</p>
+
+<p>It might sound a bit complicated, but it all work very simple. Basically, you have all the same things as in the normal mode, just within the <tt>RightJS.</tt> scope.</p>
+
+<code><b class="var">var</b> element = <b class="var">new</b> <b class="unit">RightJS</b>.<b class="unit">Element</b>(<s>'div'</s>);<br/><b class="var">var</b> <b class="unit">Klass</b>   = <b class="var">new</b> <b class="unit">RightJS</b>.<b class="unit">Class</b>({});<br/><br/><b class="unit">RightJS</b>.<b class="unit">Xhr</b>.<u class="method">load</u>(<s>'/my/url'</s>, {<s class="key">spinner</s>: <s>'my-spinner-id'</s>});<br/><br/><b class="unit">RightJS</b>.<u class="method">$</u>(<s>'element-id'</s>)<br/>  .<u class="method">addClass</u>(<s>'boo hoo'</s>)<br/>  .<u class="method">onClick</u>(<s>'toggleClass'</s>, <s>'marked'</s>)<br/>  .<u class="method">set</u>(<s>'title'</s>, <s>'Boo hoo!'</s>)<br/>  ...<br/><br/><b class="unit">RightJS</b>.<u>$</u>$(<s>'div.css-rule'</s>).<u class="method">each</u>(<b>function</b>(element) {<br/>  element.<u class="method">onClick</u>(<s>'toggleClass'</s>, <s>'marked'</s>);<br/>});</code>
+
+<p><tt>RightJS</tt> is basically a normal object, you can rename it or use with a <tt>with</tt> call</p>
+
+<code><b class="var">var</b> R = <b class="unit">RightJS</b>;<br/><br/>R.<u class="method">$</u>(<s>'my-id'</s>);<br/>R.<u>$</u>$(<s>'div.class'</s>);<br/><br/>with (<b class="unit">RightJS</b>) {<br/>  <b class="var">var</b> <b class="unit">Klass</b> = <b class="var">new</b> <b class="unit">Class</b>(<b class="unit">Observer</b>, {<br/>    <s class="key">EVENTS</s>: $w(<s>'one two three'</s>),<br/><br/>    <s class="key">initialize</s>: <b>function</b>() {<br/><br/>    }<br/>  });<br/>}</code>
+
+<p>In the safe-mode, RightJS does not extend the JavaScript core classes, but you still can access those handy features by simply passing your data trough the <tt>RightJS</tt> object like a function.</p>
+
+<code><b class="var">var</b> R = <b class="unit">RightJS</b>;<br/><br/><s>'boo hoo!'</s>.<u class="method">endsWith</u>(<s>'!'</s>);    <i>// error 'no such method'</i><br/>R(<s>'boo hoo!'</s>).<u class="method">endsWith</u>(<s>'!'</s>); <i>// true</i><br/><br/>4..<u class="method">times</u>(<b>function</b>(i) {});    <i>// error 'no such method'</i><br/>R(<s class="int">4</s>).<u class="method">times</u>(<b>function</b>(i) {});  <i>// works perfectly</i><br/><br/>[<s>'any banny twenny'</s>].<u class="method">random</u>();    <i>// error</i><br/>R([<s>'any banny twenny'</s>]).<u class="method">random</u>(); <i>// probably a 'banny'</i><br/><br/>R(<b>function</b>() {}).<u class="method">bind</u>(context);<br/><br/>R.<b class="unit">Object</b>.<u class="method">merge</u>(hash1, hash2, hash3);<br/>R.<b class="unit">RegExp</b>.<u class="method">escape</u>(<s>'{[&lt;**?/]}'</s>);<br/>R.<b class="unit">Math</b>.<u class="method">random</u>(<s class="int">1</s>, <s class="int">4</s>);</code>
+
+<p>And so on.</p>
+
+<p>This way you can take a full advantage of RightJS power without interrupting with any other things on the page.</p>
+<a name='semi-safe' ></a><h2 class='chapter'>
+  <a href='safe-mode.html#' class='top-anchor'>top &uarr;</a><a href='safe-mode.html#semi-safe'>Semi-Safe Mode</a>
+</h2>
+<p>Semi-safe mode is not a really existing mode, it is more a concept RightJS provides.</p>
+
+<p>The thing is that RightJS initializes inside of it&#8217;s own private space and all the global functions and classes are simply links to the features inside of RightJS scope.</p>
+
+<p>As the result all the things that you saw in the safe-mode are available in the normal mode as well. This way if you say write a plugin and want it to be working in both safe and normal modes, you can write your code for the safe mode and it will work perfectly in normal mode.</p>
+
+<p>The other thing that semi-safe mode provides you with is an ability to tweak the global functions and classes. RightJS does not dependent on those global functions and classes anymore, because they are just external links. You can replace or simply delete any of them, RightJS will still be working just fine.</p>
+
+<p>For example, check the <a href='../plugins/jquerysh.html'>jQuerysh</a> plugin. It changes the <tt>$()</tt> function behavior to the one jQuery users got used to. Now you can easily and legally do such things with RightJS. It will be perfectly cool with that.</p>
+        </div>
+        <div style="clear:both"></div>
+      </div>
+      <div id="foot">
+        <div id="contacts">
+  <h2>Questions?</h2>
+  <a href="&#x6D;&#x61;i&#x6C;&#x74;&#x6F;:&#105;&#110;&#102;&#111;&#064;&#114;&#105;&#103;&#104;&#116;&#106;&#115;&#046;&#111;&#114;&#103;">&#105;&#110;&#102;&#111;&#064;&#114;&#105;&#103;&#104;&#116;&#106;&#115;&#046;&#111;&#114;&#103;</a>
+</div>
+<div id="bottom-menu">
+  <h2>About the Framework</h2>
+  <a href="../philosophy.html">Philosophy</a> |
+  <a href="../benchmarks.html">Benchmarks</a> |
+  <a href="../browsers.html">Browsers</a> |
+  <a href="../contacts.html">Contacts</a>
+</div>
+        <div id="design">Design by <a href="http://activestylus.com">Steven Garcia</a></div>
+        <div id="copyright">Copyright &copy; 2008-2011 Nikolay Nemshilov</div>
+      </div>
+    </div>
+
+    <script src="http://www.google-analytics.com/ga.js" type="text/javascript"></script>
+    <script type="text/javascript">
+    // <![CDATA[
+      try { _gat._getTracker("UA-10292980-1")._trackPageview(); } catch(err) {}
+    // ]]>
+    </script>
+  </body>
+</html>

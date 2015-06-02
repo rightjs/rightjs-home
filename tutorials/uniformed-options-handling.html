@@ -1,0 +1,186 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <title>RightJS: Uniformed Options Handling</title>
+    <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+    <link href="http://www.ru.rightjs.org/blog.rss" rel="alternate" title="RightJS News" type="application/rss+xml" />
+    <script src="../hotlink/right.js@1331880836" type="text/javascript"></script>
+<script src="../javascripts/application.js@1295184937" type="text/javascript"></script>
+    <script src="../builds/ui/right-autocompleter.js@1331880836" type="text/javascript"></script>
+    <link href="../stylesheets/application.css@1297515667.css" media="screen" rel="stylesheet" type="text/css" />
+    
+    
+    
+  </head>
+  <body>
+    <div id="body">
+      <div id="head">
+        <a href="../index.html" id="logo">RightJS</a>
+        <div id="slogan">JavaScript Framework That Feels Right</div>
+
+        <div id="main-menu">
+  <ul>
+    <li><a href="../index.html">Home</a></li>
+    <li><a href="../download.html">Download</a></li>
+    <li><a href="../plugins.html">Plugins</a></li>
+    <li><a href="../ui.html">UI</a></li>
+    <li><a href="../demos.html">Demos</a></li>
+    <li class="current"><a href="../docs.html">Docs</a></li>
+    <li><a href="../blog.html">Blog</a></li>
+  </ul>
+  <div id="zing"><!-- the moving thing --></div>
+</div>
+        <div id="lang-switch">
+    <select onchange="document.location.href=this.value;">
+      <option selected="true" value="http://www.rightjs.org/tutorials/uniformed-options-handling">English</option>
+      <option value="http://ru.www.rightjs.org/tutorials/uniformed-options-handling">Русский</option>
+    </select>
+</div>
+      </div>
+      <div id="main">
+        <div id="sidebar">
+  <div class="box" id="download-box">
+    <h1>Get it!</h1>
+    <ul>
+      <li><a href="../builds/current/right.js.zip">RightJS v2.3.1</a></li>
+    </ul>
+  </div>
+
+  <div id="api-search" class="box">
+  <input type="text" value="Search API" id="api-search-field" />
+  <script type="text/javascript">
+  // <![CDATA[
+    new Autocompleter($('api-search-field').on({
+      focus: function() { this._v = this.value(); this.value(''); },
+      blur:  function() { this.value(this._v); }
+    }), {
+      url: '/docs/search/%{search}.js',
+      onDone: function() {
+        var current = this.first('.current');
+        if (current) {
+          document.location.href = current.get('title');
+        }
+        this.input.setValue(this.input._v);
+      }
+    });
+  // ]]>
+  </script>
+</div>
+
+  <div class="box">
+    <label>Documentation</label>
+    <ul>
+      <li><a href="getting-started.html">Getting Started</a></li>
+      <li><a href="top-features.html">Top 12 Features</a></li>
+      <li><a href="../docs.html">API Reference</a></li>
+      <li class="current"><a href="../tutorials.1.html">Tutorials</a></li>
+    </ul>
+  </div>
+
+  <div class="box">
+    <label>Additional</label>
+    <ul>
+      <li><a href="../plugins.html">RightJS Plugins</a></li>
+      
+      <li><a href="../ui.html">RightJS UI</a></li>
+      
+      <li><a href="../showcases.html">Showcases</a></li>
+    </ul>
+  </div>
+
+  <div class="box">
+    <label>Community</label>
+    <ul>
+      <li><a href="http://groups.google.com/group/rightjs">Google Group</a></li>
+      <li><a href="http://rightjs.lighthouseapp.com/projects/31989">Tickets Tracker</a></li>
+      <li><a href="http://github.com/rightjs/rightjs-snippets">Code Snippets</a></li>
+      <li><a href="irc://irc.freenode.net/rightjs">IRC #rightjs</a></li>
+      <li><a href="../participate.html">Participate!</a></li>
+    </ul>
+  </div>
+
+  <div class="box">
+    <a href='http://www.pledgie.com/campaigns/14259'><img alt='Donate!' src='http://www.pledgie.com/campaigns/14259.png?skin_name=chrome' border='0' /></a>
+  </div>
+
+  <div class="box">
+    <ul id="social">
+      <li><a href="../blog.rss" id="rss-link">RSS</a></li>
+      <li><a href="http://twitter.com/rightjs" id="twitter-link">Twitter</a></li>
+      <li><a href="http://github.com/rightjs" id="github-link">GitHub</a></li>
+    </ul>
+  </div>
+</div>
+
+        <div id="info">
+          <h1>Uniformed Options Handling</h1>
+
+<p>RightJS has its own conventional way to process options in all the configurable units like <a href='../docs/xhr.html' class='api-ref'>Xhr</a>, <a href='../docs/fx.html' class='api-ref'>Fx</a>, <a href='../docs/cookie.html' class='api-ref'>Cookie</a> and all the modules out of the the <a href='../plugins.html'>Plugins</a> and <a href='../ui.html'>UI</a> libraries.</p>
+
+<p>For this purpose there is a simple shared module called <a href='../docs/options.html' class='api-ref'>Options</a>. All the RightJS units use it and so can you.</p>
+<a name='convention' ></a><h2 class='chapter'>
+  <a href='uniformed-options-handling.html#' class='top-anchor'>top &uarr;</a><a href='uniformed-options-handling.html#convention'>Convention</a>
+</h2>
+<p>The <a href='../docs/options.html' class='api-ref'>Options</a> module might be used in several different ways, but in order to organize the things in a single uniformed way, we use the following convention.</p>
+
+<p>Every configurable class has a class-level property called <tt>Options</tt>, which is a simple hash that contains the default options for the class instances. That what it will have if you won&#8217;t specify any options at all.</p>
+
+<p>For example the <a href='../docs/xhr.html' class='api-ref'>Xhr</a> class has the <tt>Options</tt> property that looks like that</p>
+
+<code><b class="unit">Xhr</b>.<b class="unit">Options</b> = {<br/>  <s class="key">method</s>:   <s>'post'</s>,<br/>  <s class="key">encoding</s>: <s>'utf-8'</s>,<br/>  ....<br/>}</code>
+
+<p>When you create an instance of a configurable class, the options you send into its constructor, will be <em>merged</em> with the default ones, and then the instance will have a property called <tt>options</tt> (downcased), which will contain the actual merged options of your object.</p>
+
+<code><i>// with default options</i><br/><b class="var">var</b> xhr = <b class="var">new</b> <b class="unit">Xhr</b>();<br/>xhr.<u>options</u>.<u>method</u>   <i>// -&gt; 'post'</i><br/>xhr.<u>options</u>.<u>encoding</u> <i>// -&gt; 'utf-8'</i><br/><br/><i>// with custom options</i><br/><b class="var">var</b> xhr = <b class="var">new</b> <b class="unit">Xhr</b>({<s class="key">method</s>: <s>'get'</s>});<br/>xhr.<u>options</u>.<u>method</u>   <i>// -&gt; 'get'</i><br/>xhr.<u>options</u>.<u>encoding</u> <i>// -&gt; 'utf-8'</i></code>
+<a name='alterations' ></a><h2 class='chapter'>
+  <a href='uniformed-options-handling.html#' class='top-anchor'>top &uarr;</a><a href='uniformed-options-handling.html#alterations'>Alterations</a>
+</h2>
+<p>Having such a conventional way, gives you a good flexibility over your application configuration.</p>
+
+<p>When you see a list of supported options for a class, say like <a href='../ui/calendar.html#options'>Calendar widget options</a> You can feed each constructor with any of those options like that</p>
+
+<code><b class="var">var</b> calendar = <b class="var">new</b> <b class="unit">Calendar</b>({<br/>  <s class="key">format</s>:  <s>'US'</s>,<br/>  <s class="key">firstDay</s>: <s class="int">0</s><br/>});<br/><br/>calendar.<u>options</u>.<u>format</u>   <i>// -&gt; 'US'</i><br/>calendar.<u>options</u>.<u>firstDay</u> <i>// -&gt; 0</i></code>
+
+<p>Or you can alter the <tt>Calendar.Options</tt> object and change behavior of all the class instances in a single place like that</p>
+
+<code>$ext(<b class="unit">Calendar</b>.<b class="unit">Options</b>, {<br/>  <s class="key">format</s>:  <s>'US'</s>,<br/>  <s class="key">firstDay</s>: <s class="int">0</s><br/>});<br/><br/><i>// after that</i><br/><b class="var">var</b> calendar = <b class="var">new</b> <b class="unit">Calendar</b>();<br/>calendar.<u>options</u>.<u>format</u>   <i>// -&gt; 'US'</i><br/>calendar.<u>options</u>.<u>firstDay</u> <i>// -&gt; 0</i></code>
+
+<p>Those principles work all over the framework with all the configurable classes.</p>
+<a name='ui' ></a><h2 class='chapter'>
+  <a href='uniformed-options-handling.html#' class='top-anchor'>top &uarr;</a><a href='uniformed-options-handling.html#ui'>RigthJS UI Library Options</a>
+</h2>
+<p>Most of the <a href='../ui.html'>RightJS UI</a> library units can be initialized without actually writing any JavaScript code, for this reason they use special HTML5 attributes named like <tt>data-[unit-name]</tt> where you can specify your options in JSON format, like that:</p>
+
+<code><i>// a calendar field</i><br/>&lt;input type=<s>"text"</s> data-calendar=<s>"{format:'US'}"</s> /&gt;<br/><br/><i>// autocompleter</i><br/>&lt;input type=<s>"text"</s> data-autocompleter=<s>"{url:'/my/url'}"</s>&gt;<br/><br/><i>// or a lightbox link</i><br/>&lt;a data-lightbox=<s>"{blockContent: true}"</s>&gt;<br/>  &lt;img src=<s>"/.../..."</s> /&gt;<br/>&lt;/a&gt;</code>
+
+<p>When the user starts to interact with those elements, the scripts catch them up, extract the options and initialize everything automatically.</p>
+
+<p>This principle works with all auto-initializable units out of the <a href='../ui.html'>UI</a> and <a href='../plugins.html'>Plugins</a> libraries</p>
+        </div>
+        <div style="clear:both"></div>
+      </div>
+      <div id="foot">
+        <div id="contacts">
+  <h2>Questions?</h2>
+  <a href="&#x6D;&#x61;i&#x6C;&#x74;&#x6F;:&#105;&#110;&#102;&#111;&#064;&#114;&#105;&#103;&#104;&#116;&#106;&#115;&#046;&#111;&#114;&#103;">&#105;&#110;&#102;&#111;&#064;&#114;&#105;&#103;&#104;&#116;&#106;&#115;&#046;&#111;&#114;&#103;</a>
+</div>
+<div id="bottom-menu">
+  <h2>About the Framework</h2>
+  <a href="../philosophy.html">Philosophy</a> |
+  <a href="../benchmarks.html">Benchmarks</a> |
+  <a href="../browsers.html">Browsers</a> |
+  <a href="../contacts.html">Contacts</a>
+</div>
+        <div id="design">Design by <a href="http://activestylus.com">Steven Garcia</a></div>
+        <div id="copyright">Copyright &copy; 2008-2011 Nikolay Nemshilov</div>
+      </div>
+    </div>
+
+    <script src="http://www.google-analytics.com/ga.js" type="text/javascript"></script>
+    <script type="text/javascript">
+    // <![CDATA[
+      try { _gat._getTracker("UA-10292980-1")._trackPageview(); } catch(err) {}
+    // ]]>
+    </script>
+  </body>
+</html>

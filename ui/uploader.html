@@ -1,0 +1,244 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <title>RightJS: Uploader</title>
+    <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+    <link href="../blog.rss" rel="alternate" title="RightJS News" type="application/rss+xml" />
+    <script src="../hotlink/right.js@1333128729" type="text/javascript"></script>
+<script src="../javascripts/application.js@1295184937" type="text/javascript"></script>
+    <script src="../builds/ui/right-autocompleter.js@1333128730" type="text/javascript"></script>
+    <link href="../stylesheets/application.css@1297515667.css" media="screen" rel="stylesheet" type="text/css" />
+    
+    <link href="../stylesheets/rightjs-ui-home.css@1295874376.css" media="screen" rel="stylesheet" type="text/css" />
+    
+  </head>
+  <body>
+    <div id="body">
+      <div id="head">
+        <a href="../index.html" id="logo">RightJS</a>
+        <div id="slogan">JavaScript Framework That Feels Right</div>
+
+        <div id="main-menu">
+  <ul>
+    <li><a href="../index.html">Home</a></li>
+    <li><a href="../download.html">Download</a></li>
+    <li><a href="../plugins.html">Plugins</a></li>
+    <li class="current"><a href="../ui.html">UI</a></li>
+    <li><a href="../demos.html">Demos</a></li>
+    <li><a href="../docs.html">Docs</a></li>
+    <li><a href="../blog.html">Blog</a></li>
+  </ul>
+  <div id="zing"><!-- the moving thing --></div>
+</div>
+        <div id="lang-switch">
+    <select onchange="document.location.href=this.value;">
+      <option selected="true" value="http://rightjs.org/ui/uploader">English</option>
+      <option value="http://ru.rightjs.org/ui/uploader">Русский</option>
+    </select>
+</div>
+      </div>
+      <div id="main">
+        <div id="sidebar">
+  <div class="box" id="download-box">
+    <h1>Get it!</h1>
+    <ul>
+      <li><a href="../builds/current/right.js.zip">RightJS v2.3.1</a></li>
+    </ul>
+  </div>
+
+  <div id="api-search" class="box">
+  <input type="text" value="Search API" id="api-search-field" />
+  <script type="text/javascript">
+  // <![CDATA[
+    new Autocompleter($('api-search-field').on({
+      focus: function() { this._v = this.value(); this.value(''); },
+      blur:  function() { this.value(this._v); }
+    }), {
+      url: '/docs/search/%{search}.js',
+      onDone: function() {
+        var current = this.first('.current');
+        if (current) {
+          document.location.href = current.get('title');
+        }
+        this.input.setValue(this.input._v);
+      }
+    });
+  // ]]>
+  </script>
+</div>
+
+  <div class="box">
+    <label>Documentation</label>
+    <ul>
+      <li><a href="../tutorials/getting-started.html">Getting Started</a></li>
+      <li><a href="../tutorials/top-features.html">Top 12 Features</a></li>
+      <li><a href="../docs.html">API Reference</a></li>
+      <li><a href="../tutorials.1.html">Tutorials</a></li>
+    </ul>
+  </div>
+
+  <div class="box">
+    <label>Additional</label>
+    <ul>
+      <li><a href="../plugins.html">RightJS Plugins</a></li>
+      
+      <li class="current"><a href="../ui.html">RightJS UI</a></li>
+      <ul id="ui-menu"><li><a href="autocompleter.html">Autocompleter</a></li>
+<li><a href="billboard.html">Billboard</a></li>
+<li><a href="calendar.html">Calendar</a></li>
+<li><a href="colorpicker.html">Colorpicker</a></li>
+<li><a href="dialog.html">Dialog</a></li>
+<li><a href="in-edit.html">In Place Edit</a></li>
+<li><a href="lightbox.html">Lightbox</a></li>
+<li><a href="rater.html">Rater</a></li>
+<li><a href="resizable.html">Resizable</a></li>
+<li><a href="rte.html">Rte</a></li>
+<li><a href="selectable.html">Selectable</a></li>
+<li><a href="slider.html">Slider</a></li>
+<li><a href="sortable.html">Sortable</a></li>
+<li><a href="tabs.html">Tabs</a></li>
+<li><a href="tags.html">Tags</a></li>
+<li><a href="tooltips.html">Tooltips</a></li>
+<li class="current"><a href="uploader.html">Uploader</a></li></ul>
+      <li><a href="../showcases.html">Showcases</a></li>
+    </ul>
+  </div>
+
+  <div class="box">
+    <label>Community</label>
+    <ul>
+      <li><a href="http://groups.google.com/group/rightjs">Google Group</a></li>
+      <li><a href="http://rightjs.lighthouseapp.com/projects/31989">Tickets Tracker</a></li>
+      <li><a href="http://github.com/rightjs/rightjs-snippets">Code Snippets</a></li>
+      <li><a href="irc://irc.freenode.net/rightjs">IRC #rightjs</a></li>
+      <li><a href="../participate.html">Participate!</a></li>
+    </ul>
+  </div>
+
+  <div class="box">
+    <a href='http://www.pledgie.com/campaigns/14259'><img alt='Donate!' src='http://www.pledgie.com/campaigns/14259.png?skin_name=chrome' border='0' /></a>
+  </div>
+
+  <div class="box">
+    <ul id="social">
+      <li><a href="../blog.rss" id="rss-link">RSS</a></li>
+      <li><a href="http://twitter.com/rightjs" id="twitter-link">Twitter</a></li>
+      <li><a href="http://github.com/rightjs" id="github-link">GitHub</a></li>
+    </ul>
+  </div>
+</div>
+
+        <div id="info">
+          <h1>Uploader</h1>
+
+<p><tt>Uploader</tt> is a simple form uploading progress widget for RightJS</p>
+
+<p>Get the latest version right here</p>
+
+<ul>
+<li><a href='../builds/ui/right-uploader.js'>right-uploader.js</a> - minified version</li>
+
+<li><a href='../builds/ui/right-uploader-src.js'>right-uploader-src.js</a> - source code</li>
+</ul>
+
+<p>All the source code of the project is available under terms of the MIT license</p>
+
+<p><a href='http://github.com/rightjs/rightjs-ui/tree/master/src/uploader/'>http://github.com/rightjs/rightjs-ui/tree/master/src/uploader/</a></p>
+
+<p>For some standard usage examples see the <a href='uploader/demo.html'>demo page</a></p>
+<h2 class="chapter"><a href='uploader.html#'>Index</a></h2><p><ul><li><a href="uploader.html#features">Features List</a></li><li><a href="uploader.html#server">Server-Side Configuration</a></li><li><a href="uploader.html#usage">Usage Basics</a></li><li><a href="uploader.html#options">Options List</a></li><li><a href="uploader.html#events">Events List</a></li><li><a href="uploader.html#styles">Style Alterations</a></li></ul></p><a name='features' ></a><h2 class='chapter'>
+  <a href='uploader.html#' class='top-anchor'>top &uarr;</a><a href='uploader.html#features'>Features List</a>
+</h2>
+<ul>
+<li>Super easy usage</li>
+
+<li>Pure HTML/CSS based design</li>
+
+<li>Everything in a tiny (2.5k) single file</li>
+</ul>
+<a name='server' ></a><h2 class='chapter'>
+  <a href='uploader.html#' class='top-anchor'>top &uarr;</a><a href='uploader.html#server'>Server-Side Configuration</a>
+</h2>
+<p>This script is designed to work with standard web-server modules, for more information on how to install and configure them, please take a look by the following links</p>
+
+<ul>
+<li><a href='http://piotrsarnacki.com/2008/06/18/upload-progress-bar-with-mod_passenger-and-apache'>Apache</a></li>
+
+<li><a href='http://upload.lighttpd.net'>Lighttpd</a></li>
+
+<li><a href='http://wiki.nginx.org/NginxHttpUploadProgressModule'>Nginx</a></li>
+</ul>
+<a name='usage' ></a><h2 class='chapter'>
+  <a href='uploader.html#' class='top-anchor'>top &uarr;</a><a href='uploader.html#usage'>Usage Basics</a>
+</h2>
+<p>The usage of the script is super easy, all you need is to include this script on your page and add the <tt>data-uploader</tt> HTML5 attribute to your form.</p>
+
+<code>&lt;script src=<s>".../right-uploader.js"</s>&gt;&lt;/script&gt;<br/><br/>&lt;form data-uploader=<s>""</s> ...&gt;<br/>  ....<br/>&lt;/form&gt;</code>
+
+<p>That&#8217;s all it takes. After that the script will automatically build a progress bar widget at the <em>bottom</em> of your form and show it when the form is submitted in any way.</p>
+
+<p>If you need the progress bar to be in any other place on your form or have additional styles, you can create the progress-bar element manually where and how you want it</p>
+
+<code>&lt;form data-uploader=<s>""</s>&gt;<br/>  &lt;div class=<s>"rui-uploader"</s>&gt;&lt;/div&gt;<br/><br/>  &lt;p&gt;<br/>    &lt;input type=<s>"file"</s> name=<s>"picture"</s> /&gt;<br/>    &lt;input type=<s>"submit"</s> value=<s>"Send"</s> /&gt;<br/>  &lt;/p&gt;<br/>&lt;/form&gt;</code>
+
+<p>You can either create it empty or with some standard content as described in the <a href='uploader.html#styles'>style alterations</a> section. In any case the script will find it and use as the uploading progress bar widget.</p>
+
+<p>And finally you can create uploaders programmatically by using the <tt>Uploader</tt> class</p>
+
+<code><b class="var">var</b> uploader = <b class="var">new</b> <b class="unit">Uploader</b>(<s>'my-form'</s>, {<br/>  <s class="key">timeout</s>: <s class="int">400</s>,<br/>  <s class="key">onError</s>: <b>function</b>() {<br/>    alert(<s>"Oh shizzel!"</s>);<br/>  }<br/>});</code>
+<a name='options' ></a><h2 class='chapter'>
+  <a href='uploader.html#' class='top-anchor'>top &uarr;</a><a href='uploader.html#options'>Options List</a>
+</h2>
+<p>There is the following simple list of options, which you can use in any standard for RightJS way: by altering them globally at the <tt>Uploader.Options</tt> variable, with the <tt>Uploader</tt> class constructor, or by specifying a custom form element attribute named <tt>data-uploader</tt></p>
+<table><thead><tr><th>Name</th><th>Default</th><th>Description</th></tr></thead><tbody><tr><td>url</td><td>&#8216;/progress&#8217;</td><td>Url where to ask for the uploading status</td>
+</tr><tr><td>param</td><td>&#8216;X-Progress-ID&#8217;</td><td>The uploading ID parameter name</td>
+</tr><tr><td>timeout</td><td>1000</td><td>Timeout in ms between status updates</td>
+</tr><tr><td>round</td><td>0</td><td>How many numbers after coma should be left</td>
+</tr><tr><td>fxDuration</td><td>400</td><td>The status update fx duration. Set to <tt>0</tt> to switch it off</td>
+</tr><tr><td>formCssRule</td><td>&#8216;[data-uploader]&#8217;</td><td>Css-rule that identifies a form with progress bar</td>
+</tr></tbody></table><a name='events' ></a><h2 class='chapter'>
+  <a href='uploader.html#' class='top-anchor'>top &uarr;</a><a href='uploader.html#events'>Events List</a>
+</h2>
+<p>This script handles the following list of events</p>
+<table><thead><tr><th>Name</th><th>Description</th></tr></thead><tbody><tr><td>start</td><td>when uploading is started</td>
+</tr><tr><td>update</td><td>when a status update was received</td>
+</tr><tr><td>finish</td><td>when uploading is <em>successfully</em> finished</td>
+</tr><tr><td>error</td><td>when uploading was interrupted <em>with an error</em></td>
+</tr></tbody></table>
+<p>All listeners will receive an object (hash) of the status data received from the server.</p>
+<a name='styles' ></a><h2 class='chapter'>
+  <a href='uploader.html#' class='top-anchor'>top &uarr;</a><a href='uploader.html#styles'>Style Alterations</a>
+</h2>
+<p>Uploader is a really simple widget that has the following structure:</p>
+
+<code>&lt;div class=<s>"rui-uploader rui-progress-bar"</s>&gt;<br/>  &lt;div class=<s>"bar"</s>&gt;&lt;/div&gt;<br/>  &lt;div class=<s>"num"</s>&gt;<s class="int">0</s>%&lt;/div&gt;<br/>&lt;/div&gt;</code>
+
+<p>If an uploading was interrupted with an error this element will also receive the <tt>rui-progress-bar-failed</tt> css-class.</p>
+        </div>
+        <div style="clear:both"></div>
+      </div>
+      <div id="foot">
+        <div id="contacts">
+  <h2>Questions?</h2>
+  <a href="&#x6D;&#x61;i&#x6C;&#x74;&#x6F;:&#105;&#110;&#102;&#111;&#064;&#114;&#105;&#103;&#104;&#116;&#106;&#115;&#046;&#111;&#114;&#103;">&#105;&#110;&#102;&#111;&#064;&#114;&#105;&#103;&#104;&#116;&#106;&#115;&#046;&#111;&#114;&#103;</a>
+</div>
+<div id="bottom-menu">
+  <h2>About the Framework</h2>
+  <a href="../philosophy.html">Philosophy</a> |
+  <a href="../benchmarks.html">Benchmarks</a> |
+  <a href="../browsers.html">Browsers</a> |
+  <a href="../contacts.html">Contacts</a>
+</div>
+        <div id="design">Design by <a href="http://activestylus.com">Steven Garcia</a></div>
+        <div id="copyright">Copyright &copy; 2008-2011 Nikolay Nemshilov</div>
+      </div>
+    </div>
+
+    <script src="http://www.google-analytics.com/ga.js" type="text/javascript"></script>
+    <script type="text/javascript">
+    // <![CDATA[
+      try { _gat._getTracker("UA-10292980-1")._trackPageview(); } catch(err) {}
+    // ]]>
+    </script>
+  </body>
+</html>

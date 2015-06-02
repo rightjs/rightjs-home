@@ -1,0 +1,362 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <title>RightJS: What&#8217;s New in RightJS 2</title>
+    <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+    <link href="../blog.rss" rel="alternate" title="RightJS News" type="application/rss+xml" />
+    <script src="../hotlink/right.js@1333128729" type="text/javascript"></script>
+<script src="../javascripts/application.js@1295184937" type="text/javascript"></script>
+    <script src="../builds/ui/right-autocompleter.js@1333128730" type="text/javascript"></script>
+    <link href="../stylesheets/application.css@1297515667.css" media="screen" rel="stylesheet" type="text/css" />
+    
+    
+    
+  </head>
+  <body>
+    <div id="body">
+      <div id="head">
+        <a href="../index.html" id="logo">RightJS</a>
+        <div id="slogan">JavaScript Framework That Feels Right</div>
+
+        <div id="main-menu">
+  <ul>
+    <li><a href="../index.html">Home</a></li>
+    <li><a href="../download.html">Download</a></li>
+    <li><a href="../plugins.html">Plugins</a></li>
+    <li><a href="../ui.html">UI</a></li>
+    <li><a href="../demos.html">Demos</a></li>
+    <li class="current"><a href="../docs.html">Docs</a></li>
+    <li><a href="../blog.html">Blog</a></li>
+  </ul>
+  <div id="zing"><!-- the moving thing --></div>
+</div>
+        <div id="lang-switch">
+    <select onchange="document.location.href=this.value;">
+      <option selected="true" value="http://rightjs.org/tutorials/what-new-in-rjs2">English</option>
+      <option value="http://ru.rightjs.org/tutorials/what-new-in-rjs2">Русский</option>
+    </select>
+</div>
+      </div>
+      <div id="main">
+        <div id="sidebar">
+  <div class="box" id="download-box">
+    <h1>Get it!</h1>
+    <ul>
+      <li><a href="../builds/current/right.js.zip">RightJS v2.3.1</a></li>
+    </ul>
+  </div>
+
+  <div id="api-search" class="box">
+  <input type="text" value="Search API" id="api-search-field" />
+  <script type="text/javascript">
+  // <![CDATA[
+    new Autocompleter($('api-search-field').on({
+      focus: function() { this._v = this.value(); this.value(''); },
+      blur:  function() { this.value(this._v); }
+    }), {
+      url: '/docs/search/%{search}.js',
+      onDone: function() {
+        var current = this.first('.current');
+        if (current) {
+          document.location.href = current.get('title');
+        }
+        this.input.setValue(this.input._v);
+      }
+    });
+  // ]]>
+  </script>
+</div>
+
+  <div class="box">
+    <label>Documentation</label>
+    <ul>
+      <li><a href="getting-started.html">Getting Started</a></li>
+      <li><a href="top-features.html">Top 12 Features</a></li>
+      <li><a href="../docs.html">API Reference</a></li>
+      <li class="current"><a href="../tutorials.1.html">Tutorials</a></li>
+    </ul>
+  </div>
+
+  <div class="box">
+    <label>Additional</label>
+    <ul>
+      <li><a href="../plugins.html">RightJS Plugins</a></li>
+      
+      <li><a href="../ui.html">RightJS UI</a></li>
+      
+      <li><a href="../showcases.html">Showcases</a></li>
+    </ul>
+  </div>
+
+  <div class="box">
+    <label>Community</label>
+    <ul>
+      <li><a href="http://groups.google.com/group/rightjs">Google Group</a></li>
+      <li><a href="http://rightjs.lighthouseapp.com/projects/31989">Tickets Tracker</a></li>
+      <li><a href="http://github.com/rightjs/rightjs-snippets">Code Snippets</a></li>
+      <li><a href="irc://irc.freenode.net/rightjs">IRC #rightjs</a></li>
+      <li><a href="../participate.html">Participate!</a></li>
+    </ul>
+  </div>
+
+  <div class="box">
+    <a href='http://www.pledgie.com/campaigns/14259'><img alt='Donate!' src='http://www.pledgie.com/campaigns/14259.png?skin_name=chrome' border='0' /></a>
+  </div>
+
+  <div class="box">
+    <ul id="social">
+      <li><a href="../blog.rss" id="rss-link">RSS</a></li>
+      <li><a href="http://twitter.com/rightjs" id="twitter-link">Twitter</a></li>
+      <li><a href="http://github.com/rightjs" id="github-link">GitHub</a></li>
+    </ul>
+  </div>
+</div>
+
+        <div id="info">
+          <h1>What&#8217;s New in RightJS 2</h1>
+
+<p>RightJS 2 is not just a regular functionality update, but a giant leap and basically a complete restart of the framework. We took everything you loved about RightJS 1 and brought it to the completely new level.</p>
+
+<p>Let&#8217;s get through the changes, shall we?</p>
+<h2 class="chapter"><a href='what-new-in-rjs2.html#'>Index</a></h2><p><ul><li><a href="what-new-in-rjs2.html#wrappers">DOM-Wrappers</a></li><li><a href="what-new-in-rjs2.html#safe-mode">Safe Mode, Normal Mode, Semi-Safe Mode</a></li><li><a href="what-new-in-rjs2.html#bubble">Bubbling Events</a></li><li><a href="what-new-in-rjs2.html#events-delegation">New Events Delegation API</a></li><li><a href="what-new-in-rjs2.html#stop">Stop Events By Return False</a></li><li><a href="what-new-in-rjs2.html#frames">Cross-Frame Safe</a></li><li><a href="what-new-in-rjs2.html#new-dom-methods">New DOM Level Methods</a></li><li><a href="what-new-in-rjs2.html#new-js-methods">New JavaScript Core Methods</a></li><li><a href="what-new-in-rjs2.html#prebind">Class Methods Prebinding</a></li><li><a href="what-new-in-rjs2.html#performance">Performance Updates</a></li><li><a href="what-new-in-rjs2.html#packing">New Packing System and Size Updates</a></li></ul></p><a name='wrappers' ></a><h2 class='chapter'>
+  <a href='what-new-in-rjs2.html#' class='top-anchor'>top &uarr;</a><a href='what-new-in-rjs2.html#wrappers'>DOM-Wrappers</a>
+</h2>
+<p>The idea of dom-wrappers is simple, instead of providing direct access to a dom-element, you provide a proxy object, which manipulates with the dom-unit internally. This way we don&#8217;t extend the DOM classes anymore and therefore have a light footprint on the system and also gain stability against any tricky functionality browsers might add to their DOM engines.</p>
+
+<p>DOM-Wrappers in RightJS 2 work transparently and have all the same fancy API as RightJS 1 dom-unit extensions. Basically you don&#8217;t need to learn anything, the code will look just the same way</p>
+
+<code>$(<s>'element'</s>).<u class="method">onClick</u>(<b>function</b>(event) {<br/>  <b class="var">this</b>.<u class="method">addClass</u>(<s>'marked'</s>);<br/>  event.<u class="method">stop</u>();<br/>});<br/><br/>$(<s>'element'</s>).<u class="method">onClick</u>(<s>'toggleClass'</s>, <s>'marked'</s>);<br/>$$(<s>'div.class'</s>).<u class="method">each</u>(<s>'onClick'</s>, <s>'addClass'</s>, <s>'marked'</s>);</code>
+
+<p>The only significant difference is that you won&#8217;t have direct access to element properties and will have to use <a href='../docs/element.html#set' class='api-ref'>Element#set</a> and <a href='../docs/element.html#get' class='api-ref'>Element#get</a> methods</p>
+
+<code>$(<s>'element-id'</s>).<u>id</u>;        <i>// -&gt; null</i><br/>$(<s>'element-id'</s>).<u class="method">get</u>(<s>'id'</s>); <i>// -&gt; 'element-id'</i><br/><br/>$(<s>'element'</s>).<u>title</u>;        <i>// -&gt; null</i><br/>$(<s>'element'</s>).<u class="method">set</u>(<s>'title'</s>, <s>'Boo!'</s>);<br/>$(<s>'element'</s>).<u>title</u>;        <i>// -&gt; still null</i><br/>$(<s>'element'</s>).<u class="method">get</u>(<s>'title'</s>); <i>// -&gt; 'Boo!'</i></code>
+
+<p>And you also will need to access the <tt>document</tt> and <tt>window</tt> objects via the <tt>$()</tt> function.</p>
+
+<code>window.<u>sizes</u>;       <i>// -&gt; null</i><br/>$(window).<u>sizes</u>;    <i>// -&gt; function</i><br/><br/>document.<u>onReady</u>    <i>// -&gt; null</i><br/>$(document).<u>onReady</u> <i>// -&gt; function</i></code>
+
+<p>But, as always, there are lot more than that, because dom-wrappers in RightJS essentially are classes, with types, inheritance and functionality injection support, and this gives you so many fancy new things you can do with RightJS!</p>
+
+<p>Check the <a href='dom-wrappers.html'>DOM-Wrappers Tutorial</a> and also take a look <a href='what-new-in-rui2.html'>what&#8217;s new in RightJS UI 2</a></p>
+<a name='safe-mode' ></a><h2 class='chapter'>
+  <a href='what-new-in-rjs2.html#' class='top-anchor'>top &uarr;</a><a href='what-new-in-rjs2.html#safe-mode'>Safe Mode, Normal Mode, Semi-Safe Mode</a>
+</h2>
+<p>The second biggest change in RightJS 2 is how it initializes. If RightJS 1 was just a bunch of scripts thrown together in the global scope, RightJS 2 is a pretty much independent structure that initializes inside of its own space.</p>
+
+<p>You still have all those nice quick-access functions in the global scope, but all of them are simply links to functions inside of the <tt>RightJS</tt> object. RightJS doesn&#8217;t need the global functions anymore, which gives you several options.</p>
+
+<p>In normal mode RightJS 2 looks and feels just like RightJS 1, you have all the global functions and JavaScript language extensions.</p>
+
+<p>But you also have a safe-mode build, where you have everything as in the normal mode, but with the <tt>RightJS.</tt> prefix, like this.</p>
+
+<code><b class="var">var</b> element  = <b class="var">new</b> <b class="unit">RightJS</b>.<b class="unit">Element</b>();<br/><b class="var">var</b> element  = <b class="unit">RightJS</b>.<u class="method">$</u>(<s>'element-ids'</s>);<br/><b class="var">var</b> elements = <b class="unit">RightJS</b>.<u>$</u>$(<s>'div.class'</s>);</code>
+
+<p>In safe mode RightJS works completely transparently to the other scripts and <em>does not</em> extend the JavaScript language. But you still will be able to use those extensions if you need by simply passing your variables through the <tt>RightJS</tt> object.</p>
+
+<code><s>"Boo hoo!"</s>.<u>endsWith</u>;          <i>// -&gt; null</i><br/><b class="unit">RightJS</b>(<s>"Boo hoo!"</s>).<u>endsWith</u>; <i>// -&gt; function</i><br/><br/>(<s class="int">4</s>).<u>times</u>;                    <i>// -&gt; null</i><br/><b class="unit">RightJS</b>(<s class="int">4</s>).<u>times</u>;             <i>// -&gt; function</i></code>
+
+<p>And so on. All the JavaScript extensions are available this way.</p>
+
+<p>RightJS also provides you with something called the <tt>semi-safe</tt> mode. As all the global functions in RightJS 2 are simply links, you can allow other scripts to replace them with something else, or you can alter them by yourself as you pleased.</p>
+
+<p>Take a look for example at the <a href='../plugins/jquerysh.html'>jQuerish</a> plugin, it changes the <tt>$()</tt> function behavior to the one that familiar to jQuery users. You can easily do those things with RightJS 2.</p>
+
+<p>Check the <a href='safe-mode.html'>Safe Mode Tutorial</a> for more information on this topic</p>
+<a name='bubble' ></a><h2 class='chapter'>
+  <a href='what-new-in-rjs2.html#' class='top-anchor'>top &uarr;</a><a href='what-new-in-rjs2.html#bubble'>Bubbling Events</a>
+</h2>
+<p>As we all know, there are quite a few particularly troubling events out there that behave in different ways on different browsers. I&#8217;m speaking of things like <tt>submit</tt>, <tt>focus</tt>, <tt>blur</tt>, <tt>change</tt>, etc. Some of them bubble some of them don&#8217;t, some of them bubble in different ways, which obviously doesn&#8217;t make the developer&#8217;s live easier.</p>
+
+<p>RightJS is here to help. Now we catch, fix and patch all those events and then bubble them manually through the tree, so that you don&#8217;t need to worry about those things at all. There are no special names, no special arguments, no special nothing, just write your code as all the events were one happy family</p>
+
+<code>$(<s>'element'</s>).<u class="method">on</u>({<br/>  <s class="key">blur</s>:   <b>function</b>() { },<br/>  <s class="key">focus</s>:  <b>function</b>() { },<br/>  <s class="key">change</s>: <b>function</b>() { },<br/>  <s class="key">submit</s>: <b>function</b>() { }<br/>});</code>
+
+<p>More of that, in RightJS 2 all custom events bubble too, just the same way as any other event does. You can have as much events of your own as you&#8217;re pleased, all of them will be handled the same exact way.</p>
+<a name='events-delegation' ></a><h2 class='chapter'>
+  <a href='what-new-in-rjs2.html#' class='top-anchor'>top &uarr;</a><a href='what-new-in-rjs2.html#events-delegation'>New Events Delegation API</a>
+</h2>
+<p>The latest versions of RightJS 1.5 already had some elements of events delegation handling, now RightJS 2 takes over with the new, nice and cool API.</p>
+
+<p>First of all the <a href='../docs/string.html' class='api-ref'>String</a> class now has all the same API for events handling as the <a href='../docs/element.html' class='api-ref'>Element</a> unit. If in RightJS 1 it was just the <a href='../docs/string.html#on' class='api-ref'>String#on</a> method, now you have a whole bunch of things to play with</p>
+
+<code><i>// it has shortcuts for standard events</i><br/><s>"div.class"</s>.<u class="method">onClick</u>(<b>function</b>() {...});<br/><br/><i>// it works with troubled events</i><br/><s>"div.class"</s>.<u class="method">onFocus</u>(<s>'addClass'</s>, <s>'hovered'</s>);<br/><s>"div.class"</s>.<u class="method">onBlur</u>(<s>'removeClass'</s>, <s>'hovered'</s>);<br/><br/><i>// it works with custom events</i><br/><s>"div.class"</s>.<u class="method">on</u>(<s>'my-event'</s>, <s>'addClass'</s>, <s>'my-class'</s>);<br/><br/><i>// you can check if something is observed</i><br/><s>"div.class"</s>.<u class="method">observes</u>(<s>'click'</s>);   <i>// -&gt; true</i><br/><br/><i>// and you can remove listeners the same way</i><br/><s>"div.class"</s>.<u class="method">stopObserving</u>(<s>'click'</s>);</code>
+
+<p>And that is not all, because the <a href='../docs/element.html' class='api-ref'>Element</a> class received a whole new API specifically for events-delegation handling. Now you can play with events delegation not only at the document level, but at any level you like</p>
+
+<code>$(<s>'my-list'</s>).<u class="method">delegate</u>(<s>'click'</s>, {<br/>  <s>'li.completed'</s>:  completed_items_handler,<br/>  <s>'li.incomplete'</s>: incomplete_items_handler,<br/>  ...<br/>});<br/><br/><i>// and you can check if an element delegates events</i><br/>$(<s>'my-list'</s>).<u class="method">delegates</u>(<s>'click'</s>); <i>// -&gt; true</i><br/><br/><i>// and certainly you can make it stop</i><br/>$(<s>'my-list'</s>).<u class="method">undelegate</u>(<s>'click'</s>);</code>
+
+<p>For more information see the <a href='../docs/element.html#delegate'>API Documentation</a> and <a href='events-delegation.html'>Events Delegation Tutorial</a></p>
+<a name='stop' ></a><h2 class='chapter'>
+  <a href='what-new-in-rjs2.html#' class='top-anchor'>top &uarr;</a><a href='what-new-in-rjs2.html#stop'>Stop Events By Return False</a>
+</h2>
+<p>There is a thing upon which many folks stumble. When you specify your event listener as an element attribute, you can use <tt>return false</tt> to prevent the default event handling, like that</p>
+
+<code><b class="var">var</b> element = document.<u class="method">getElementById</u>(<s>'my-element'</s>);<br/><br/>element.<u>onclick</u> = <b>function</b>() {<br/>  <b>return</b> <b class="rest">false</b>; <i>// will stop the click</i><br/>};</code>
+
+<p>But when you do the same thing by putting your listener into the listeners queue with the <tt>addEventListener</tt>, method it doesn&#8217;t work.</p>
+
+<code>element.<u class="method">addEventListener</u>(<s>'click'</s>, <b>function</b>() {<br/>  <b>return</b> <b class="rest">false</b>; <i>// have no effect</i><br/>}, <b class="rest">false</b>);</code>
+
+<p>In this case you need to receive the event object and explicitly tell it that you love it so much and want it to stop and stay with you forever. Which is kinda annoying.</p>
+
+<p>Here at RightJS, we are in business of setting thing right and being nice to our users. So the <a href='../docs/element.html#on' class='api-ref'>Element#on</a> function was changed a bit and now when you <tt>return false</tt> in your listener, RightJS will understand that you actually want your event to be stopped and it will stop that sneaky bastard for you.</p>
+
+<code>$(<s>'my-element'</s>).<u class="method">onClick</u>(<b>function</b>() {<br/>  <b>return</b> <b class="rest">false</b>; <i>// will effectivly stop the event</i><br/>});</code>
+<a name='frames' ></a><h2 class='chapter'>
+  <a href='what-new-in-rjs2.html#' class='top-anchor'>top &uarr;</a><a href='what-new-in-rjs2.html#frames'>Cross-Frame Safe</a>
+</h2>
+<p>Because of all the DOM-Wrappers and safe-mode changes, RightJS is now officially cross-frame safe. It all works pretty much transparently for the API, and you can navigate through other frames the same way you work with the main document</p>
+
+<code>$(other_document).<u class="method">find</u>(<s>'div.class'</s>).<u class="method">each</u>(<b>function</b>(element) {<br/>  element.<u class="method">onClick</u>(<s>'toggleClass'</s>, <s>'marked'</s>);<br/>});</code>
+
+<h2>JSONP Support</h2>
+
+<p>Besides the XHR and IFramed tunnels, the <a href='../docs/xhr.html' class='api-ref'>Xhr</a> class now also supports the JSONP format out of box. And it all nice and civilized, all you need to make a jsonp request is to specify the <tt>jsonp</tt> option</p>
+
+<code><b class="unit">Xhr</b>.<u class="method">load</u>(<s>'/mysite.json'</s>, {<br/>  <s class="key">jsonp</s>:      <b class="rest">true</b>,<br/>  <s class="key">spinner</s>:    <s>'my-spinner'</s>,<br/>  <s class="key">onComplete</s>: <b>function</b>() {<br/>    <i>// and here you have your json data</i><br/>    allert(<b class="var">this</b>.<u>json</u>.<u>somstuff</u>);<br/>  }<br/>});</code>
+
+<p>You also can specify any name of the callback parameter instead of the <tt>true</tt> value, all the other things are pretty much the same as for any normal <a href='../docs/xhr.html' class='api-ref'>Xhr</a> request.</p>
+<a name='new-dom-methods' ></a><h2 class='chapter'>
+  <a href='what-new-in-rjs2.html#' class='top-anchor'>top &uarr;</a><a href='what-new-in-rjs2.html#new-dom-methods'>New DOM Level Methods</a>
+</h2>
+<p>As RightJS 2 switched from direct dom-units access to dom-wrappers, it opened a door for a whole new list of things and method names which we couldn&#8217;t have before because of name conflicts withe native functionality.</p>
+
+<p>Some methods were simply renamed (the old ones will still be available for a while):</p>
+
+<ul>
+<li>Element#select -&gt; <a href='../docs/element.html#find' class='api-ref'>Element#find</a></li>
+
+<li>Element#subNodes -&gt; <a href='../docs/element.html#children' class='api-ref'>Element#children</a></li>
+
+<li>Element#sizes -&gt; <a href='../docs/element.html#size' class='api-ref'>Element#size</a></li>
+
+<li>Window#sizes -&gt; <a href='../docs/window.html#size' class='api-ref'>Window#size</a></li>
+
+<li>Document#select -&gt; Document#find</li>
+
+<li>Form#getElements -&gt; <a href='../docs/form.html#elements' class='api-ref'>Form#elements</a></li>
+</ul>
+
+<p>Then, there are some new methods</p>
+
+<ul>
+<li><a href='../docs/element.html#html' class='api-ref'>Element#html</a> - a bidirectional method to get/set the <tt>innerHTML</tt> property</li>
+
+<li><a href='../docs/element.html#append' class='api-ref'>Element#append</a> - a shortcut for <a href='../docs/element.html#insert' class='api-ref'>Element#insert</a></li>
+
+<li><a href='../docs/element.html#clone' class='api-ref'>Element#clone</a> - clones the element with all the content</li>
+
+<li>Element#document - returns the <a href='../docs/document.html' class='api-ref'>Document</a> object for the element</li>
+
+<li>Element#window - returns the <a href='../docs/window.html' class='api-ref'>Window</a> object for the element</li>
+
+<li><a href='../docs/form.html#input' class='api-ref'>Form#input</a> - returns an <a href='../docs/input.html' class='api-ref'>Input</a> field by name</li>
+
+<li><a href='../docs/form.html#submit' class='api-ref'>Form#submit</a> - tunnels the form.submit method</li>
+
+<li><a href='../docs/form.html#reset' class='api-ref'>Form#reset</a> - tunnels the form.reset method</li>
+</ul>
+
+<p>The <tt>Form.Element</tt> class was renamed to <a href='../docs/input.html' class='api-ref'>Input</a>. Now it has a unformed constructor and you can specify all sorts of <tt>type</tt> attribute</p>
+
+<code><b class="var">new</b> <b class="unit">Input</b>(); <i>// type == 'text' by default</i><br/><b class="var">new</b> <b class="unit">Input</b>({<s class="key">type</s>: <s>'password'</s>});<br/><b class="var">new</b> <b class="unit">Input</b>({<s class="key">type</s>: <s>'textarea'</s>});<br/><b class="var">new</b> <b class="unit">Input</b>({<s class="key">type</s>: <s>'select'</s>});<br/><b class="var">new</b> <b class="unit">Input</b>({<s class="key">type</s>: <s>'multi-select'</s>});</code>
+
+<p>It also has several new methods</p>
+
+<ul>
+<li><a href='../docs/input.html#form' class='api-ref'>Input#form</a> - returns the <a href='../docs/form.html' class='api-ref'>Form</a> object which it belongs to</li>
+
+<li><a href='../docs/input.html#value' class='api-ref'>Input#value</a> - a bidirectional method to get/set values</li>
+
+<li><a href='../docs/input.html#disabled' class='api-ref'>Input#disabled</a> - tunnels the <tt>disabled</tt> property</li>
+
+<li><a href='../docs/input.html#checked' class='api-ref'>Input#checked</a> - tunnels the <tt>checked</tt> property</li>
+</ul>
+
+<p>There is also a new events-delegation API for the <a href='../docs/element.html' class='api-ref'>Element</a> class which is described in a chapter above.</p>
+<a name='new-js-methods' ></a><h2 class='chapter'>
+  <a href='what-new-in-rjs2.html#' class='top-anchor'>top &uarr;</a><a href='what-new-in-rjs2.html#new-js-methods'>New JavaScript Core Methods</a>
+</h2>
+<p>The JavaScript core units also have received a few new handy methods</p>
+
+<ul>
+<li><a href='../docs/array.html#reject' class='api-ref'>Array#reject</a> - the opposite for <a href='../docs/array.html#filter' class='api-ref'>Array#filter</a></li>
+
+<li><a href='../docs/array.html#min' class='api-ref'>Array#min</a> - the smallest value in the array</li>
+
+<li><a href='../docs/array.html#max' class='api-ref'>Array#max</a> - the biggest value in the array</li>
+
+<li><a href='../docs/array.html#sum' class='api-ref'>Array#sum</a> - a sum of all the elements in the array</li>
+
+<li><a href='../docs/number.html#min' class='api-ref'>Number#min</a> - limits the number by a minimal value</li>
+
+<li><a href='../docs/number.html#max' class='api-ref'>Number#max</a> - limits the number by a maximal value</li>
+</ul>
+<a name='prebind' ></a><h2 class='chapter'>
+  <a href='what-new-in-rjs2.html#' class='top-anchor'>top &uarr;</a><a href='what-new-in-rjs2.html#prebind'>Class Methods Prebinding</a>
+</h2>
+<p>The <a href='../docs/class.html' class='api-ref'>Class</a> unit now allows you to prebind methods to the contexts of its instances. The idea is simple, say if you use an instance methods in other contexts, you always need to bind them manually to the instances, like that</p>
+
+<code><b class="var">var</b> <b class="unit">Klass</b> = <b class="var">new</b> <b class="unit">Class</b>({<br/>  <s class="key">name</s>: <s>'Klass'</s><br/>  <s class="key">alert</s>: <b>function</b>() {<br/>    alert(<b class="var">this</b>.<u>name</u>);<br/>  }<br/>});<br/><br/><b class="var">var</b> inst = <b class="var">new</b> <b class="unit">Klass</b>();<br/><br/>$(<s>'element'</s>).<u class="method">onClick</u>(inst.<u>alert</u>.<u class="method">bind</u>(inst));</code>
+
+<p>It is quite annoying and sometimes you forget it, which leads to all sorts of bugs, and so on. Say no more! Because now you can make the class to automatically prebind specified methods on instance, like that</p>
+
+<code><b class="var">var</b> <b class="unit">Klass</b> = <b class="var">new</b> <b class="unit">Class</b>({<br/>  <s class="key">prebind</s>: [<s>'method1'</s>, <s>'method2'</s>, <s>'method3'</s>]<br/>});</code>
+
+<p>After that you can use those methods as is and they will be automatically called in the context of the instance they belong to.</p>
+
+<p>Check the <a href='object-oriented-programming.html'>OOP Tutorial</a> for more info about classes in RightJS.</p>
+<a name='performance' ></a><h2 class='chapter'>
+  <a href='what-new-in-rjs2.html#' class='top-anchor'>top &uarr;</a><a href='what-new-in-rjs2.html#performance'>Performance Updates</a>
+</h2>
+<p>Every new version of RightJS brought some performance updates keeping RightJS on the top of the list, and certainly RightJS 2 is not an exception.</p>
+
+<p>First of all we optimized the important things like dom-manipulation and events binding. Somewhere it is more noticeable, somewhere less, but judging by the latest versions of FF and Opera it is about 25% boost comparing to RightJS 1.5.6</p>
+
+<p>Elements construction got faster by about 30% in Opera. And because we don&#8217;t extend dom-elements anymore the speed of construction and elements access went sky-rocketing in the IE6 and IE7 browsers.</p>
+
+<p>Check the very popular <a href='../benchmarks.html'>benchmarks page</a> for more details.</p>
+<a name='packing' ></a><h2 class='chapter'>
+  <a href='what-new-in-rjs2.html#' class='top-anchor'>top &uarr;</a><a href='what-new-in-rjs2.html#packing'>New Packing System and Size Updates</a>
+</h2>
+<p>With all the fancy new features in RightJS 2, we had quite an impact on the size of the builds, so we took care of those things too.</p>
+
+<p>First of all, now we initialize RightJS in a private scope, which allowed us to pack things much tighter. Secondly we switched from the FrontCompiler to Google&#8217;s Closure Compiler. Thirdly, I got rid of the packed versions of the builds and concentrated on how it will be compressed by gzip on the server side.</p>
+
+<p>The result is the following.</p>
+
+<p>RigthJS 1.5.6 weighs 42k minified and 14.5k gzipped</p>
+
+<p>RightJS 2.0.0 weighs 44k minified and 15.5k gzipped</p>
+
+<p>Which I think, is a pretty darn good exchange for all the new features we have in RightJS 2. And you should agree with me and we shall all live happily ever after.</p>
+
+<p>That&#8217;s all we have folks. Have a good fun with it!</p>
+        </div>
+        <div style="clear:both"></div>
+      </div>
+      <div id="foot">
+        <div id="contacts">
+  <h2>Questions?</h2>
+  <a href="&#x6D;&#x61;i&#x6C;&#x74;&#x6F;:&#105;&#110;&#102;&#111;&#064;&#114;&#105;&#103;&#104;&#116;&#106;&#115;&#046;&#111;&#114;&#103;">&#105;&#110;&#102;&#111;&#064;&#114;&#105;&#103;&#104;&#116;&#106;&#115;&#046;&#111;&#114;&#103;</a>
+</div>
+<div id="bottom-menu">
+  <h2>About the Framework</h2>
+  <a href="../philosophy.html">Philosophy</a> |
+  <a href="../benchmarks.html">Benchmarks</a> |
+  <a href="../browsers.html">Browsers</a> |
+  <a href="../contacts.html">Contacts</a>
+</div>
+        <div id="design">Design by <a href="http://activestylus.com">Steven Garcia</a></div>
+        <div id="copyright">Copyright &copy; 2008-2011 Nikolay Nemshilov</div>
+      </div>
+    </div>
+
+    <script src="http://www.google-analytics.com/ga.js" type="text/javascript"></script>
+    <script type="text/javascript">
+    // <![CDATA[
+      try { _gat._getTracker("UA-10292980-1")._trackPageview(); } catch(err) {}
+    // ]]>
+    </script>
+  </body>
+</html>

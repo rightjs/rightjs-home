@@ -1,0 +1,238 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <title>RightJS: Getting Started</title>
+    <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+    <link href="../blog.rss" rel="alternate" title="RightJS News" type="application/rss+xml" />
+    <script src="../hotlink/right.js@1333128729" type="text/javascript"></script>
+<script src="../javascripts/application.js@1295184937" type="text/javascript"></script>
+    <script src="../builds/ui/right-autocompleter.js@1333128730" type="text/javascript"></script>
+    <link href="../stylesheets/application.css@1297515667.css" media="screen" rel="stylesheet" type="text/css" />
+    
+    
+    
+  </head>
+  <body>
+    <div id="body">
+      <div id="head">
+        <a href="../index.html" id="logo">RightJS</a>
+        <div id="slogan">JavaScript Framework That Feels Right</div>
+
+        <div id="main-menu">
+  <ul>
+    <li><a href="../index.html">Home</a></li>
+    <li><a href="../download.html">Download</a></li>
+    <li><a href="../plugins.html">Plugins</a></li>
+    <li><a href="../ui.html">UI</a></li>
+    <li><a href="../demos.html">Demos</a></li>
+    <li class="current"><a href="../docs.html">Docs</a></li>
+    <li><a href="../blog.html">Blog</a></li>
+  </ul>
+  <div id="zing"><!-- the moving thing --></div>
+</div>
+        <div id="lang-switch">
+    <select onchange="document.location.href=this.value;">
+      <option selected="true" value="http://rightjs.org/tutorials/getting-started">English</option>
+      <option value="http://ru.rightjs.org/tutorials/getting-started">Русский</option>
+    </select>
+</div>
+      </div>
+      <div id="main">
+        <div id="sidebar">
+  <div class="box" id="download-box">
+    <h1>Get it!</h1>
+    <ul>
+      <li><a href="../builds/current/right.js.zip">RightJS v2.3.1</a></li>
+    </ul>
+  </div>
+
+  <div id="api-search" class="box">
+  <input type="text" value="Search API" id="api-search-field" />
+  <script type="text/javascript">
+  // <![CDATA[
+    new Autocompleter($('api-search-field').on({
+      focus: function() { this._v = this.value(); this.value(''); },
+      blur:  function() { this.value(this._v); }
+    }), {
+      url: '/docs/search/%{search}.js',
+      onDone: function() {
+        var current = this.first('.current');
+        if (current) {
+          document.location.href = current.get('title');
+        }
+        this.input.setValue(this.input._v);
+      }
+    });
+  // ]]>
+  </script>
+</div>
+
+  <div class="box">
+    <label>Documentation</label>
+    <ul>
+      <li class="current"><a href="getting-started.html">Getting Started</a></li>
+      <li><a href="top-features.html">Top 12 Features</a></li>
+      <li><a href="../docs.html">API Reference</a></li>
+      <li class="current"><a href="../tutorials.1.html">Tutorials</a></li>
+    </ul>
+  </div>
+
+  <div class="box">
+    <label>Additional</label>
+    <ul>
+      <li><a href="../plugins.html">RightJS Plugins</a></li>
+      
+      <li><a href="../ui.html">RightJS UI</a></li>
+      
+      <li><a href="../showcases.html">Showcases</a></li>
+    </ul>
+  </div>
+
+  <div class="box">
+    <label>Community</label>
+    <ul>
+      <li><a href="http://groups.google.com/group/rightjs">Google Group</a></li>
+      <li><a href="http://rightjs.lighthouseapp.com/projects/31989">Tickets Tracker</a></li>
+      <li><a href="http://github.com/rightjs/rightjs-snippets">Code Snippets</a></li>
+      <li><a href="irc://irc.freenode.net/rightjs">IRC #rightjs</a></li>
+      <li><a href="../participate.html">Participate!</a></li>
+    </ul>
+  </div>
+
+  <div class="box">
+    <a href='http://www.pledgie.com/campaigns/14259'><img alt='Donate!' src='http://www.pledgie.com/campaigns/14259.png?skin_name=chrome' border='0' /></a>
+  </div>
+
+  <div class="box">
+    <ul id="social">
+      <li><a href="../blog.rss" id="rss-link">RSS</a></li>
+      <li><a href="http://twitter.com/rightjs" id="twitter-link">Twitter</a></li>
+      <li><a href="http://github.com/rightjs" id="github-link">GitHub</a></li>
+    </ul>
+  </div>
+</div>
+
+        <div id="info">
+          <h1>Getting Started</h1>
+
+<p>This article is meant to give you a basic overview for the most common features and use cases of RightJS.</p>
+<h2 class="chapter"><a href='getting-started.html#'>Index</a></h2><p><ul><li><a href="getting-started.html#installation">Installation</a></li><li><a href="getting-started.html#navigation">DOM Navigation</a></li><li><a href="getting-started.html#collections">Working With Collections</a></li><li><a href="getting-started.html#events">Events handling</a></li><li><a href="getting-started.html#unobtrusive">Unobtrusive Programming</a></li><li><a href="getting-started.html#fx">Visual Effects</a></li><li><a href="getting-started.html#ajax">AJAX Operations</a></li><li><a href="getting-started.html#oop">Object Oriented Programming</a></li><li><a href="getting-started.html#cookies">Cookies Handling</a></li></ul></p><a name='installation' ></a><h2 class='chapter'>
+  <a href='getting-started.html#' class='top-anchor'>top &uarr;</a><a href='getting-started.html#installation'>Installation</a>
+</h2>
+<p>The only tricky part of RightJS installation is that it comes in two files. One of them is the actual core and the other one contains old-browsers support code. But don&#8217;t worry, for the installation process it doesn&#8217;t change anything. Just <a href='../download.html'>download</a> the files, drop them both next to each other where you want them and then include the <em>core</em> file in the usual way.</p>
+
+<code>&lt;script src=<s>"/javascript/right.js"</s>&gt;&lt;/script&gt;</code>
+
+<p>Don&#8217;t worry about the second file. RightJS will automatically hook it up when needed.</p>
+<a name='navigation' ></a><h2 class='chapter'>
+  <a href='getting-started.html#' class='top-anchor'>top &uarr;</a><a href='getting-started.html#navigation'>DOM Navigation</a>
+</h2>
+<p>RightJS mostly inherits the dom-navigation principles from the Prototype and Mootools frameworks. That means you have two top level functions <tt>$(id)</tt> and <tt>$$(css_rule)</tt></p>
+
+<code>$(<s>'element-id'</s>);     <i>// -&gt; Element</i><br/><br/>$$(<s>'div &gt; div.boo'</s>); <i>// -&gt; Array</i></code>
+
+<p>Then, every <a href='../docs/element.html' class='api-ref'>Element</a> instance has a number of methods to navigate around its neighborhood, like <tt>find</tt>, <tt>children</tt>, <tt>siblings</tt>, etc. Each of them can be used as is or can receive a string css-rule that will filter the result.</p>
+
+<code>element.<u class="method">find</u>(<s>'div.boo span.foo'</s>); <i>// all levels descendants</i><br/><br/>element.<u class="method">parent</u>();        <i>// the first parent</i><br/>element.<u class="method">parent</u>(<s>'div'</s>);   <i>// the first DIV parent</i></code>
+
+<p>RightJS supports all the standard CSS3 selectors in all browsers.</p>
+
+<p><a href='dom-navigation-and-manipulations.html'>Read more</a></p>
+<a name='collections' ></a><h2 class='chapter'>
+  <a href='getting-started.html#' class='top-anchor'>top &uarr;</a><a href='getting-started.html#collections'>Working With Collections</a>
+</h2>
+<p>There are two ways to process dom-collections in RightJS. First of all you can use very simple shortcuts to call any <a href='../docs/element.html' class='api-ref'>Element</a> and <a href='../docs/input.html' class='api-ref'>Input</a> methods on a group of elements, just like that</p>
+
+<code><s>"div.some-rule"</s>.<u class="method">addClass</u>(<s>'another-class'</s>);<br/><s>"div.some-rule"</s>.<u class="method">highlight</u>();<br/><s>"div.some-rule"</s>.<u class="method">remove</u>();<br/><i>// ....</i></code>
+
+<p>The other way is to handle collections of dom elements as <a href='../docs/array.html' class='api-ref'>Array</a> instances, by specifying callback functions, or simply name of method/property you need to access/call</p>
+
+<code><b class="var">var</b> ids = $$(<s>'div'</s>).<u class="method">map</u>(<s>'get'</s>, <s>'id'</s>);<br/><b class="var">var</b> classes = $$(<s>'div'</s>).<u class="method">map</u>(<s>'get'</s>, <s>'className'</s>).<u class="method">map</u>(<s>'split'</s>, <s class="re">/\s+/</s>).<u class="method">flatten</u>();<br/><br/>$$(<s>'input'</s>).<u class="method">each</u>(<s>'disable'</s>);<br/>$$(<s>'input'</s>).<u class="method">filter</u>(<s>'disabled'</s>);<br/><br/>$$(<s>'div'</s>).<u class="method">each</u>(<s>'update'</s>, <s>'with the text'</s>);<br/>$$(<s>'div'</s>).<u class="method">each</u>(<s>'addClass'</s>, <s>'marked'</s>);<br/>$$(<s>'div'</s>).<u class="method">each</u>(<s>'onClick'</s>, <s>'addClass'</s>, <s>'marked'</s>);</code>
+
+<p>Read <a href='call-by-name.html'>this article</a> for more information about the feature.</p>
+<a name='events' ></a><h2 class='chapter'>
+  <a href='getting-started.html#' class='top-anchor'>top &uarr;</a><a href='getting-started.html#events'>Events handling</a>
+</h2>
+<p>Events handling in RightJS is kind of a mix of Prototype and jQuery ideas. There is a basic method called <tt>on</tt>, which can take various sort of arguments and a list of shortcuts for all the standard dom-events</p>
+
+<code>element.<u class="method">on</u>(<s>'click'</s>, <b>function</b>() {});<br/>element.<u class="method">on</u>({<s class="key">click</s>: <b>function</b>(){}, <s class="key">mouseover</s>: <b>function</b>() {} });<br/>element.<u class="method">on</u>(<s>'click'</s>, [func1, func2, func3, func4]);<br/><br/><i>// standard event shortcuts</i><br/>element.<u class="method">onClick</u>(<b>function</b>() {});<br/>element.<u class="method">onMouseover</u>(<b>function</b>() {});<br/><br/><i>// it also supports the by-name event handlers</i><br/>element.<u class="method">onClick</u>(<s>'addClass'</s>, <s>'marked'</s>);<br/>element.<u class="method">onClick</u>(<s>'morph'</s>, {<s class="key">background</s>: <s>'green'</s>});</code>
+
+<p>See the <a href='dom-events-handling.html'>dom-event basics</a> for more information</p>
+<a name='unobtrusive' ></a><h2 class='chapter'>
+  <a href='getting-started.html#' class='top-anchor'>top &uarr;</a><a href='getting-started.html#unobtrusive'>Unobtrusive Programming</a>
+</h2>
+<p>RightJS supports unobtrusive programming using the events delegation technique. In a simple case it looks like that</p>
+
+<code><s>"#todos li"</s>.<u class="method">onClick</u>(<b>function</b>() {<br/>  <b class="var">this</b>.<u class="method">toggleClass</u>(<s>'marked'</s>);<br/>});<br/><br/><i>// you also can use hashes</i><br/><s>"#todos li"</s>.<u class="method">on</u>({<br/>  <s class="key">mouseover</s>: <b>function</b>() { <b class="var">this</b>.<u class="method">addClass</u>(<s>'hovered'</s>);    },<br/>  <s class="key">mouseout</s>:  <b>function</b>() { <b class="var">this</b>.<u class="method">removeClass</u>(<s>'hovered'</s>); }<br/>});<br/><br/><i>// by-name references are also available</i><br/><s>"#todos li"</s>.<u class="method">onClick</u>(<s>'toggleClass'</s>, <s>'marked'</s>);</code>
+
+<p>See the <a href='events-delegation.html'>events delegation article</a> for more information.</p>
+<a name='fx' ></a><h2 class='chapter'>
+  <a href='getting-started.html#' class='top-anchor'>top &uarr;</a><a href='getting-started.html#fx'>Visual Effects</a>
+</h2>
+<p>By default RightJS comes with an extensive visual effects engine that allows you to smoothly morph any dom-element to any style, plus there are a number of standard effects like <tt>highlight</tt>, <tt>fade</tt>, <tt>slide</tt>, <tt>scroll</tt>.</p>
+
+<p>You can do both, use them in an OOP way like Scriptaculous, or use dom-level methods like jQuery.</p>
+
+<code><b class="var">new</b> <b class="unit">Fx</b>.<b class="unit">Morph</b>(<s>'element'</s>).<u class="method">start</u>({<s class="key">background</s>: <s>'green'</s>});<br/><br/>$(<s>'element'</s>).<u class="method">morph</u>({<s class="key">background</s>: <s>'green'</s>, <s class="key">fontSize</s>: <s>'20px'</s>});<br/><br/>$(<s>'element'</s>).<u class="method">fade</u>().<u class="method">slide</u>().<u class="method">highlight</u>();</code>
+
+<p>You can see the visual effects demo <a href='../fx-demo.html'>over here</a>, and read more about them in <a href='visual-effects.html'>this article</a></p>
+<a name='ajax' ></a><h2 class='chapter'>
+  <a href='getting-started.html#' class='top-anchor'>top &uarr;</a><a href='getting-started.html#ajax'>AJAX Operations</a>
+</h2>
+<p>There is the main interface for ajax operations called <a href='../docs/xhr.html' class='api-ref'>Xhr</a> (after XmlHTTPRequest). You can use it as a class like in Prototype, or you can use it in a procedural way like in jQuery.</p>
+
+<code><b class="var">new</b> <b class="unit">Xhr</b>(<s>'/url'</s>).<u class="method">send</u>();<br/><b class="var">new</b> <b class="unit">Xhr</b>(<s>'/url'</s>, {<s class="key">method</s>: <s>'get'</s>}).<u class="method">update</u>(<s>'element'</s>);<br/><br/><b class="unit">Xhr</b>.<u class="method">load</u>(<s>'/url'</s>);<br/>$(<s>'element'</s>).<u class="method">load</u>(<s>'/url'</s>, {<s class="key">method</s>: <s>'get'</s>});</code>
+
+<p>Hey, we have a backed in spinners handling in there!</p>
+
+<code><b class="unit">Xhr</b>.<u class="method">load</u>(<s>'/url'</s>, {<s class="key">spinner</s>: <s>'spinner'</s>});</code>
+
+<p>And we can send forms via ajax just like that (including forms with files to upload)</p>
+
+<code>$(<s>'my-form'</s>).<u class="method">send</u>({<s class="key">onFinish</s>: callback});<br/><br/><i>// or like that</i><br/>$(<s>'my-form'</s>).<u class="method">remotize</u>();<br/>$(<s>'my-form'</s>).<u class="method">submit</u>();</code>
+
+<p>Read more about that in <a href='ajax-handling.html'>this article</a> and in the API documentation for <a href='../docs/xhr.html' class='api-ref'>Xhr</a></p>
+<a name='oop' ></a><h2 class='chapter'>
+  <a href='getting-started.html#' class='top-anchor'>top &uarr;</a><a href='getting-started.html#oop'>Object Oriented Programming</a>
+</h2>
+<p>RightJS is an object oriented framework and it provides extensive abilities for the OOP approach. In a basic case it looks like Prototype classes.</p>
+
+<code><b class="var">var</b> <b class="unit">MyClass</b> = <b class="var">new</b> <b class="unit">Class</b>({<br/>  <s class="key">initialize</s>: <b>function</b>() {<br/>    <i>// constructor</i><br/>  },<br/><br/>  <s class="key">method1</s>: <b>function</b>() {},<br/>  <s class="key">method2</s>: <b>function</b>() {}<br/>});</code>
+
+<p>But classes in RightJS also support inheritance and Ruby-style modules sharing. Read <a href='object-oriented-programming.html'>this article</a> for more information on this topic.</p>
+<a name='cookies' ></a><h2 class='chapter'>
+  <a href='getting-started.html#' class='top-anchor'>top &uarr;</a><a href='getting-started.html#cookies'>Cookies Handling</a>
+</h2>
+<p>By default RightJS has a simple interface to help you work with the cookies. It automatically escapes/unescapes the values, sets expiration dates and makes other helpful things. And if you hook up the <a href='../plugins/json.html'>JSON</a> module it will transparently save and retrieve any JSON exportable values like arrays, objects, booleans, etc.</p>
+
+<code><b class="unit">Cookie</b>.<u class="method">set</u>(<s>'key'</s>, <s>'value'</s>);<br/><b class="unit">Cookie</b>.<u class="method">get</u>(<s>'key'</s>);<br/><b class="unit">Cookie</b>.<u class="method">remove</u>(<s>'key'</s>);</code>
+
+<p>Read the api documentation for <a href='../docs/cookie.html' class='api-ref'>Cookie</a> for more details</p>
+        </div>
+        <div style="clear:both"></div>
+      </div>
+      <div id="foot">
+        <div id="contacts">
+  <h2>Questions?</h2>
+  <a href="&#x6D;&#x61;i&#x6C;&#x74;&#x6F;:&#105;&#110;&#102;&#111;&#064;&#114;&#105;&#103;&#104;&#116;&#106;&#115;&#046;&#111;&#114;&#103;">&#105;&#110;&#102;&#111;&#064;&#114;&#105;&#103;&#104;&#116;&#106;&#115;&#046;&#111;&#114;&#103;</a>
+</div>
+<div id="bottom-menu">
+  <h2>About the Framework</h2>
+  <a href="../philosophy.html">Philosophy</a> |
+  <a href="../benchmarks.html">Benchmarks</a> |
+  <a href="../browsers.html">Browsers</a> |
+  <a href="../contacts.html">Contacts</a>
+</div>
+        <div id="design">Design by <a href="http://activestylus.com">Steven Garcia</a></div>
+        <div id="copyright">Copyright &copy; 2008-2011 Nikolay Nemshilov</div>
+      </div>
+    </div>
+
+    <script src="http://www.google-analytics.com/ga.js" type="text/javascript"></script>
+    <script type="text/javascript">
+    // <![CDATA[
+      try { _gat._getTracker("UA-10292980-1")._trackPageview(); } catch(err) {}
+    // ]]>
+    </script>
+  </body>
+</html>

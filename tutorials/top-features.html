@@ -1,0 +1,258 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <title>RightJS: Top 12 Features of RightJS</title>
+    <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+    <link href="../blog.rss" rel="alternate" title="RightJS News" type="application/rss+xml" />
+    <script src="../hotlink/right.js@1333128729" type="text/javascript"></script>
+<script src="../javascripts/application.js@1295184937" type="text/javascript"></script>
+    <script src="../builds/ui/right-autocompleter.js@1333128730" type="text/javascript"></script>
+    <link href="../stylesheets/application.css@1297515667.css" media="screen" rel="stylesheet" type="text/css" />
+    
+    
+    
+  </head>
+  <body>
+    <div id="body">
+      <div id="head">
+        <a href="../index.html" id="logo">RightJS</a>
+        <div id="slogan">JavaScript Framework That Feels Right</div>
+
+        <div id="main-menu">
+  <ul>
+    <li><a href="../index.html">Home</a></li>
+    <li><a href="../download.html">Download</a></li>
+    <li><a href="../plugins.html">Plugins</a></li>
+    <li><a href="../ui.html">UI</a></li>
+    <li><a href="../demos.html">Demos</a></li>
+    <li class="current"><a href="../docs.html">Docs</a></li>
+    <li><a href="../blog.html">Blog</a></li>
+  </ul>
+  <div id="zing"><!-- the moving thing --></div>
+</div>
+        <div id="lang-switch">
+    <select onchange="document.location.href=this.value;">
+      <option selected="true" value="http://rightjs.org/tutorials/top-features">English</option>
+      <option value="http://ru.rightjs.org/tutorials/top-features">Русский</option>
+    </select>
+</div>
+      </div>
+      <div id="main">
+        <div id="sidebar">
+  <div class="box" id="download-box">
+    <h1>Get it!</h1>
+    <ul>
+      <li><a href="../builds/current/right.js.zip">RightJS v2.3.1</a></li>
+    </ul>
+  </div>
+
+  <div id="api-search" class="box">
+  <input type="text" value="Search API" id="api-search-field" />
+  <script type="text/javascript">
+  // <![CDATA[
+    new Autocompleter($('api-search-field').on({
+      focus: function() { this._v = this.value(); this.value(''); },
+      blur:  function() { this.value(this._v); }
+    }), {
+      url: '/docs/search/%{search}.js',
+      onDone: function() {
+        var current = this.first('.current');
+        if (current) {
+          document.location.href = current.get('title');
+        }
+        this.input.setValue(this.input._v);
+      }
+    });
+  // ]]>
+  </script>
+</div>
+
+  <div class="box">
+    <label>Documentation</label>
+    <ul>
+      <li><a href="getting-started.html">Getting Started</a></li>
+      <li class="current"><a href="top-features.html">Top 12 Features</a></li>
+      <li><a href="../docs.html">API Reference</a></li>
+      <li class="current"><a href="../tutorials.1.html">Tutorials</a></li>
+    </ul>
+  </div>
+
+  <div class="box">
+    <label>Additional</label>
+    <ul>
+      <li><a href="../plugins.html">RightJS Plugins</a></li>
+      
+      <li><a href="../ui.html">RightJS UI</a></li>
+      
+      <li><a href="../showcases.html">Showcases</a></li>
+    </ul>
+  </div>
+
+  <div class="box">
+    <label>Community</label>
+    <ul>
+      <li><a href="http://groups.google.com/group/rightjs">Google Group</a></li>
+      <li><a href="http://rightjs.lighthouseapp.com/projects/31989">Tickets Tracker</a></li>
+      <li><a href="http://github.com/rightjs/rightjs-snippets">Code Snippets</a></li>
+      <li><a href="irc://irc.freenode.net/rightjs">IRC #rightjs</a></li>
+      <li><a href="../participate.html">Participate!</a></li>
+    </ul>
+  </div>
+
+  <div class="box">
+    <a href='http://www.pledgie.com/campaigns/14259'><img alt='Donate!' src='http://www.pledgie.com/campaigns/14259.png?skin_name=chrome' border='0' /></a>
+  </div>
+
+  <div class="box">
+    <ul id="social">
+      <li><a href="../blog.rss" id="rss-link">RSS</a></li>
+      <li><a href="http://twitter.com/rightjs" id="twitter-link">Twitter</a></li>
+      <li><a href="http://github.com/rightjs" id="github-link">GitHub</a></li>
+    </ul>
+  </div>
+</div>
+
+        <div id="info">
+          <h1>Top 12 Features of RightJS</h1>
+
+<p>This article meant to give you a quick overview of 12 most valuable features of RightJS.</p>
+
+<h2>Syntax</h2>
+
+<p>RightJS tries not to invent any new method names, instead of that it uses the naming principles that are already in use. It has a really clean, compact and mostly familiar syntax.</p>
+
+<p>This way RightJS provides a very low entry level, if you already know any other JavaScript frameworks like Prototype, MooTools or jQuery, most principles and names will be familiar to you. And if you also know Ruby and/or Python there will be practically nothing to learn, you&#8217;ll be able to jump in almost immediately.</p>
+<a name='calls-by-name' ></a><h2 class='chapter'>
+  <a href='top-features.html#' class='top-anchor'>top &uarr;</a><a href='top-features.html#calls-by-name'>Calls By Name</a>
+</h2>
+<p>Calls by name is a fancy way of specifying callbacks in RightJS. The idea is pretty simple, instead of writing some dummy function that calls the actual method, you specify the callback method name as a string, for example</p>
+
+<code><i>// usual approach</i><br/>$(<s>'element'</s>).<u class="method">onClick</u>(<b>function</b>() {<br/>  <b class="var">this</b>.<u class="method">hide</u>();<br/>});<br/><br/><i>// the same thing with calling by name</i><br/>$(<s>'element'</s>).<u class="method">onClick</u>(<s>'hide'</s>);<br/><br/><i>// or with some arguments</i><br/>$(<s>'element'</s>).<u class="method">onClick</u>(<s>'addClass'</s>, <s>'clicked'</s>);<br/>$(<s>'element'</s>).<u class="method">onClick</u>(<s>'update'</s>, <s>'with some text'</s>);</code>
+
+<p>This feature also works with <a href='../docs/array.html' class='api-ref'>Array</a> instances and really helpful for example in case of element collections processing.</p>
+
+<code>$$(<s>'#my-form textarea'</s>).<u class="method">each</u>(<s>'disable'</s>);<br/><br/>$$(<s>'div.title'</s>).<u class="method">each</u>(<s>'update'</s>, <s>'with some text'</s>);<br/><br/><i>// filtering and collecting</i><br/><b class="var">var</b> enabled = $$(<s>'input'</s>).<u class="method">filter</u>(<s>'enabled'</s>);<br/><b class="var">var</b> classes = $$(<s>'div'</s>).<u class="method">map</u>(<s>'get'</s>, <s>'className'</s>);<br/><b class="var">var</b> some_id = $$(<s>'div'</s>).<u class="method">map</u>(<s>'get'</s>, <s>'id'</s>).<u class="method">compact</u>().<u class="method">first</u>();<br/><br/><i>// you also can combine this with events processing</i><br/>$$(<s>'ul#todos li'</s>).<u class="method">each</u>(<s>'onClick'</s>, <s>'toggleClass'</s>, <s>'marked'</s>);</code>
+
+<p>Note, the actual interface doesn&#8217;t change, you don&#8217;t need to memorize any new methods, you simply join things together. That make the code much cleaner, compacter and more readable.</p>
+
+<p><a href='call-by-name.html'>Read more about this feature</a></p>
+<a name='wrappers' ></a><h2 class='chapter'>
+  <a href='top-features.html#' class='top-anchor'>top &uarr;</a><a href='top-features.html#wrappers'>OO DOM-Wrappers</a>
+</h2>
+<p>Since version 2.0.0 RightJS uses dom-wrappers to work with dom units. But dom-wrappers in RightJS are not just some passive interface, they are classes, you can define your own if you like</p>
+
+<code><b class="var">var</b> <b class="unit">Table</b> = <b class="var">new</b> <b class="unit">Class</b>(<b class="unit">Element</b>, {<br/>  <s class="key">sort</s>: <b>function</b>(column) {<br/>    <i>// sort the table by the column</i><br/>  }<br/>});</code>
+
+<p>After that all your tables (and only tables) will have this new method. We also support inheritance, functionality-injection, allow you to create any number of your own private types and so on. It is a big and pretty thing</p>
+
+<p><a href='dom-wrappers.html'>Read more about dom-wrappers</a></p>
+<a name='safe-mode' ></a><h2 class='chapter'>
+  <a href='top-features.html#' class='top-anchor'>top &uarr;</a><a href='top-features.html#safe-mode'>Safe-Mode Support</a>
+</h2>
+<p>RightJS 2 also brought the safe-mode support in which RightJS does not extend anything and can be transparently used with any other scripts on the page.</p>
+
+<p>Safe mode in RightJS has all the same features as the normal mode, you just refer to everything via the <tt>RightJS.</tt> object</p>
+
+<code><b class="var">var</b> div = <b class="var">new</b> <b class="unit">RightJS</b>.<b class="unit">Element</b>(<s>'div'</s>, {<s class="key">id</s>: <s>'my-div'</s>});<br/><br/><b class="unit">RightJS</b>.<u class="method">$</u>(<s>'element-id'</s>);<br/><b class="unit">RgihtJS</b>.<u>$</u>$(<s>'div.class'</s>);<br/>...</code>
+
+<p><a href='safe-mode.html'>Read more about safe-mode</a></p>
+<a name='new-js' ></a><h2 class='chapter'>
+  <a href='top-features.html#' class='top-anchor'>top &uarr;</a><a href='top-features.html#new-js'>Later JavaScript Specs Support</a>
+</h2>
+<p>There are several new methods for <a href='../docs/array.html' class='api-ref'>Array</a>, <a href='../docs/string.html' class='api-ref'>String</a> and <a href='../docs/function.html' class='api-ref'>Function</a> classes, that are specified in later JavaScript/ECMAScript version, things like <a href='../docs/array.html#filter' class='api-ref'>Array#filter</a>, <a href='../docs/array.html#map' class='api-ref'>Array#map</a>, <a href='../docs/string.html#trim' class='api-ref'>String#trim</a>, etc. Some browsers already support them, some old don&#8217;t and will not.</p>
+
+<p>RightJS fixes the situation and adds those methods to browsers that don&#8217;t have them, this way you can have all the advantages of the technology advancement without worrying if some browser supports those features.</p>
+<a name='extensions' ></a><h2 class='chapter'>
+  <a href='top-features.html#' class='top-anchor'>top &uarr;</a><a href='top-features.html#extensions'>JavaScript Core Extensions</a>
+</h2>
+<p>Native unit extensions are arguable feature, but as 99% of applications use only one framework and we specifically targeting Ruby/Python folks, those extensions come extremely handy, because most server side developers are already know them and could have a great deal of use out of them.</p>
+
+<p>RightJS tries to find a balance between staying true to the JavaScript roots and adding new features. It adds only standard and commonly used methods, like <a href='../docs/array.html#compact' class='api-ref'>Array#compact</a> or <a href='../docs/string.html#endsWith' class='api-ref'>String#endsWith</a> and it implements them using strictly the original semantic and behavior.</p>
+
+<p>RightJS doesn&#8217;t define any new language over JavaScript, it simply civilizes it and makes it more useful for server side programmers.</p>
+<a name='numbers' ></a><h2 class='chapter'>
+  <a href='top-features.html#' class='top-anchor'>top &uarr;</a><a href='top-features.html#numbers'>Simplified Numbers Handling</a>
+</h2>
+<p>It is the second decade of 21-st century already, but numbers processing in JavaScript still remains like it was designed in 90-th.</p>
+
+<p>RightJS tries to fix the situation by extending <a href='../docs/string.html' class='api-ref'>String</a> and <a href='../docs/number.html' class='api-ref'>Number</a> units so the numbers processing was more comfortable and easy.</p>
+
+<code><i>// strings to numbers conversion</i><br/><s>'123'</s>.<u class="method">toInt</u>();   <i>// -&gt; 123</i><br/><s>'1.3'</s>.<u class="method">toFloat</u>(); <i>// -&gt; 1.3</i><br/><br/><i>// numbers handling</i><br/>1.4.<u class="method">floor</u>(); <i>// -&gt; 1</i><br/>1.4.<u class="method">ceil</u>();  <i>// -&gt; 2</i><br/>1.4.<u class="method">round</u>(); <i>// -&gt; 1</i></code>
+
+<p>It&#8217;s a simple extension but it makes the code much more cleaner and simpler when you need to crank some numbers in your application.</p>
+
+<p><a href='work-with-numbers.html'>Read more about numbers processing in RightJS</a></p>
+<a name='spinners' ></a><h2 class='chapter'>
+  <a href='top-features.html#' class='top-anchor'>top &uarr;</a><a href='top-features.html#spinners'>Baked in Spinners Handling</a>
+</h2>
+<p>Being a task-oriented framework, RightJS tries to get rid of as many routine operations as possible. One of the examples is the built-in spinners handler.</p>
+
+<p>Instead of writing dummy callbacks and write them to AJAX events, you can simply refer your spinner element with any <a href='../docs/xhr.html' class='api-ref'>Xhr</a> request options. RightJS will automatically find them and use as spinners.</p>
+
+<code><b class="unit">Xhr</b>.<u class="method">load</u>(<s>'/url.html'</s>, {<br/>  <s class="key">spinner</s>: <s>'my-spinner'</s><br/>});<br/><br/>$(<s>'my-form'</s>).<u class="method">send</u>({<br/>  <s class="key">spinner</s>: <s>'that-spinner-element'</s><br/>});</code>
+
+<p>In case of AJAX forms you don&#8217;t even need to specify spinners either. Before sending a form via AJAX, RightJS checks if it has an element inside with a class name <tt>'spinner'</tt> and if finds one, it will automatically use it as a spinner while sending that form.</p>
+<a name='forms' ></a><h2 class='chapter'>
+  <a href='top-features.html#' class='top-anchor'>top &uarr;</a><a href='top-features.html#forms'>Forms Uploading Handling</a>
+</h2>
+<p>RightJS also has a built-in AJAX forms support. All you need to do in order to send a form via AJAX is to call the <a href='../docs/form.html#send' class='api-ref'>Form#send</a> method. This will automatically handle all the routine operations, like locking/unlocking form, collecting data, displaying/hiding spinners, and so on.</p>
+
+<p>More of that, if your form has files to upload, RightJS will automatically try to submit your form via a hidden IFrame element. The API in this case won&#8217;t change at all. This way for you as a developer there is no difference if you have or have no files on your form.</p>
+<a name='oop' ></a><h2 class='chapter'>
+  <a href='top-features.html#' class='top-anchor'>top &uarr;</a><a href='top-features.html#oop'>Object Oriented Programming</a>
+</h2>
+<p>RightJS is a multi-paradigm framework with an extensive object-programming features support. <a href='../docs/class.html' class='api-ref'>Class</a> in RightJS supports everything you need to write serious OO applications. It has inheritance, functionality injection, shared modules and so on.</p>
+
+<code><b class="var">var</b> <b class="unit">Klass</b> = <b class="var">new</b> <b class="unit">Class</b>(<b class="unit">AnotherClass</b>, {<br/>  <s class="key">include</s>: <b class="unit">Module1</b>,<br/>  <s class="key">extend</s>:  <b class="unit">Module2</b>,<br/><br/>  <s class="key">initialize</s>: <b>function</b>() {<br/>    <i>//....</i><br/>  }<br/>});</code>
+
+<p><a href='object-oriented-programming.html'>Read more about OOP in RightJS</a></p>
+<a name='openness' ></a><h2 class='chapter'>
+  <a href='top-features.html#' class='top-anchor'>top &uarr;</a><a href='top-features.html#openness'>An Open Sandbox Architecture</a>
+</h2>
+<p>RightJS takes its inspiration in dynamic languages like Ruby and Python, therefore the main target of RightJS is to provide an open and flexible architecture.</p>
+
+<p>The power of languages like Ruby is in their openness and ability to extend and bend things around, in ability to adjust and tune the language by itself to the needs of your task. And this is exactly what we are doing with RightJS.</p>
+
+<p>RightJS is build upon proper OOP design with inheritance and functionality injection features. It has shared modules and provides access to almost all its internal methods. It also provides tools to quickly extend any native units, register new dom-methods, create your own classes and do all sorts of hacking.</p>
+
+<p>If you love Ruby, you will love RightJS as well.</p>
+<a name='uniform' ></a><h2 class='chapter'>
+  <a href='top-features.html#' class='top-anchor'>top &uarr;</a><a href='top-features.html#uniform'>Uniformed Events and Options Handling</a>
+</h2>
+<p>RightJS makes a big deal out of unification. It has unified interfaces to handle events and options all across the framework and its plugins. More of that RightJS provides shared modules that you can use in your applications and make them consistent with RightJS main code and interfaces.</p>
+
+<p>There are few reasons of doing that and all of them are simple. First of all you don&#8217;t need to learn anything and can count on all the same interfaces no matter what are you working with, some third party code, a plugin or a dom-element.</p>
+
+<p>Secondly it makes all the code around consistent with each other, and if you learn one module or a plugin, you will mostly know what to do with all the others.</p>
+
+<p>More of that, providing shared modules that developers can use in their own applications, RightJS vanishes the border between the system and the application. That brings order and similarities in user applications so that the developers could more easily understand and participate in each others work</p>
+
+<p>Read more about <a href='uniformed-events-handling.html'>uniformed events handling</a> and <a href='uniformed-options-handling.html'>uniformed options processing</a></p>
+        </div>
+        <div style="clear:both"></div>
+      </div>
+      <div id="foot">
+        <div id="contacts">
+  <h2>Questions?</h2>
+  <a href="&#x6D;&#x61;i&#x6C;&#x74;&#x6F;:&#105;&#110;&#102;&#111;&#064;&#114;&#105;&#103;&#104;&#116;&#106;&#115;&#046;&#111;&#114;&#103;">&#105;&#110;&#102;&#111;&#064;&#114;&#105;&#103;&#104;&#116;&#106;&#115;&#046;&#111;&#114;&#103;</a>
+</div>
+<div id="bottom-menu">
+  <h2>About the Framework</h2>
+  <a href="../philosophy.html">Philosophy</a> |
+  <a href="../benchmarks.html">Benchmarks</a> |
+  <a href="../browsers.html">Browsers</a> |
+  <a href="../contacts.html">Contacts</a>
+</div>
+        <div id="design">Design by <a href="http://activestylus.com">Steven Garcia</a></div>
+        <div id="copyright">Copyright &copy; 2008-2011 Nikolay Nemshilov</div>
+      </div>
+    </div>
+
+    <script src="http://www.google-analytics.com/ga.js" type="text/javascript"></script>
+    <script type="text/javascript">
+    // <![CDATA[
+      try { _gat._getTracker("UA-10292980-1")._trackPageview(); } catch(err) {}
+    // ]]>
+    </script>
+  </body>
+</html>

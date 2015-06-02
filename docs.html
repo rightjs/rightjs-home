@@ -1,0 +1,175 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <title>RightJS: Documentation</title>
+    <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+    <link href="blog.rss" rel="alternate" title="RightJS News" type="application/rss+xml" />
+    <script src="hotlink/right.js@1333128729" type="text/javascript"></script>
+<script src="javascripts/application.js@1295184937" type="text/javascript"></script>
+    <script src="builds/ui/right-autocompleter.js@1333128730" type="text/javascript"></script>
+    <link href="stylesheets/application.css@1297515667.css" media="screen" rel="stylesheet" type="text/css" />
+    
+    
+    
+  </head>
+  <body>
+    <div id="body">
+      <div id="head">
+        <a href="index.html" id="logo">RightJS</a>
+        <div id="slogan">JavaScript Framework That Feels Right</div>
+
+        <div id="main-menu">
+  <ul>
+    <li><a href="index.html">Home</a></li>
+    <li><a href="download.html">Download</a></li>
+    <li><a href="plugins.html">Plugins</a></li>
+    <li><a href="ui.html">UI</a></li>
+    <li><a href="demos.html">Demos</a></li>
+    <li class="current"><a href="docs.html">Docs</a></li>
+    <li><a href="blog.html">Blog</a></li>
+  </ul>
+  <div id="zing"><!-- the moving thing --></div>
+</div>
+        <div id="lang-switch">
+    <select onchange="document.location.href=this.value;">
+      <option selected="true" value="http://rightjs.org/docs/?c=d">English</option>
+      <option value="http://ru.rightjs.org/docs/?c=d">Русский</option>
+    </select>
+</div>
+      </div>
+      <div id="main">
+        <div id="sidebar">
+
+  <div id="api-search" class="box">
+  <input type="text" value="Search API" id="api-search-field" />
+  <script type="text/javascript">
+  // <![CDATA[
+    new Autocompleter($('api-search-field').on({
+      focus: function() { this._v = this.value(); this.value(''); },
+      blur:  function() { this.value(this._v); }
+    }), {
+      url: '/docs/search/%{search}.js',
+      onDone: function() {
+        var current = this.first('.current');
+        if (current) {
+          document.location.href = current.get('title');
+        }
+        this.input.setValue(this.input._v);
+      }
+    });
+  // ]]>
+  </script>
+</div>
+
+  <div class="box" id="api-lists">
+    <label>Core</label><ul><li><a href="docs/browser.html">Browser</a></li><li><a href="docs/class.html">Class</a></li><li><a href="docs/util.html">Util</a></li></ul>
+<label>Dom</label><ul><li><a href="docs/document.html">Document</a></li><li><a href="docs/element.html">Element</a></li><li><a href="docs/event.html">Event</a></li><li><a href="docs/form.html">Form</a></li><li><a href="docs/input.html">Input</a></li><li><a href="docs/window.html">Window</a></li></ul>
+<label>Fx</label><ul><li><a href="docs/fx.html">Fx</a></li><li><a href="docs/fx/attr.html">Fx.Attr</a></li><li><a href="docs/fx/element.html">Fx.Element</a></li><li><a href="docs/fx/fade.html">Fx.Fade</a></li><li><a href="docs/fx/highlight.html">Fx.Highlight</a></li><li><a href="docs/fx/morph.html">Fx.Morph</a></li><li><a href="docs/fx/scroll.html">Fx.Scroll</a></li><li><a href="docs/fx/slide.html">Fx.Slide</a></li></ul>
+<label>Lang</label><ul><li><a href="docs/array.html">Array</a></li><li><a href="docs/function.html">Function</a></li><li><a href="docs/json.html">Json</a></li><li><a href="docs/math.html">Math</a></li><li><a href="docs/number.html">Number</a></li><li><a href="docs/object.html">Object</a></li><li><a href="docs/regexp.html">Regexp</a></li><li><a href="docs/string.html">String</a></li></ul>
+<label>Util</label><ul><li><a href="docs/cookie.html">Cookie</a></li><li><a href="docs/observer.html">Observer</a></li><li><a href="docs/options.html">Options</a></li><li><a href="docs/xhr.html">Xhr</a></li></ul>
+  </div>
+
+  <div class="box">
+    <a href='http://www.pledgie.com/campaigns/14259'><img alt='Donate!' src='http://www.pledgie.com/campaigns/14259.png?skin_name=chrome' border='0' /></a>
+  </div>
+
+  <div class="box">
+    <ul id="social">
+      <li><a href="blog.rss" id="rss-link">RSS</a></li>
+      <li><a href="http://twitter.com/rightjs" id="twitter-link">Twitter</a></li>
+      <li><a href="http://github.com/rightjs" id="github-link">GitHub</a></li>
+    </ul>
+  </div>
+</div>
+
+        <div id="info">
+          <h1>Documentation</h1>
+
+<p>To browse the API documentation, pick any class on the right or use the search box to find methods by name.</p>
+
+<h1>Tutorials</h1>
+<dl id='tutorials-index'>
+  <dt>RightJS 2 Topics</dt>
+  <ul>
+    <li><a href='tutorials/what-new-in-rjs22.html'>What's New in RightJS 2.2</a></li>
+    <li><a href='tutorials/what-new-in-rjs2.html'>What's New in RightJS 2</a></li>
+    <li><a href='tutorials/what-new-in-rui2.html'>What's New in RightJS UI 2</a></li>
+    <li><a href='tutorials/rjs2-migration.html'>RightJS 2 Migration Guide</a></li>
+  </ul>
+
+  <dt>Beginner Topics</dt>
+  <ul>
+    <li><a href='tutorials/getting-started.html'>Getting Started</a></li>
+    <li><a href='tutorials/top-features.html'>Top 12 Features</a></li>
+    <li><a href='tutorials/jq-rjs-cheatsheet.html'>jQuery - RightJS Cheat Sheet</a></li>
+  </ul>
+
+  <dt>Basic Features</dt>
+  <ul>
+    <li><a href='tutorials/call-by-name.html'>Call By Name</a></li>
+    <li><a href='tutorials/work-with-numbers.html'>Work With Numbers</a></li>
+    <li><a href='tutorials/assignments-and-chains.html'>Assignments And Chains</a></li>
+    <li><a href='tutorials/uniformed-events-handling.html'>Uniformed Events Handling</a></li>
+    <li><a href='tutorials/uniformed-options-handling.html'>Uniformed Options Handling</a></li>
+    <li><a href='tutorials/delays-and-timers.html'>Delays And Timers</a></li>
+  </ul>
+
+  <dt>Advanced Topics</dt>
+  <ul>
+    <li><a href='tutorials/object-oriented-programming.html'>Object Oriented Programming</a></li>
+    <li><a href='tutorials/functional-programming.html'>Functional Programming</a></li>
+    <li><a href='tutorials/rightjs-extending.html'>RightJS Extending Guide</a></li>
+    <li><a href='tutorials/safe-mode.html'>Safe Mode and Normal Mode</a></li>
+    <li><a href='tutorials/visual-effects.html'>Visual Effects</a></li>
+  </ul>
+
+  <dt>Ajax Features</dt>
+  <ul>
+    <li><a href='tutorials/ajax-handling.html'>Ajax Basics</a></li>
+    <li><a href='tutorials/ajax-forms.html'>Ajax Forms</a></li>
+  </ul>
+
+  <dt>DOM Topics</dt>
+  <ul>
+    <li><a href='tutorials/dom-navigation-and-manipulations.html'>DOM Navigation And Manipulations</a></li>
+    <li><a href='tutorials/dom-events-handling.html'>DOM Events Handling</a></li>
+    <li><a href='tutorials/dom-wrappers.html'>DOM-Wrappers in RightJS 2</a></li>
+    <li><a href='tutorials/elements-toggling.html'>Elements Visual State Toggling</a></li>
+    <li><a href='tutorials/events-delegation.html'>Unobtrusive Programming And Events Delegation</a></li>
+  </ul>
+
+  <dt>RightJS UI</dt>
+  <ul>
+    <li><a href='tutorials/rui-styles.html'>RightJS UI Styles</a></li>
+    <li><a href='tutorials/rui-events.html'>RightJS UI Events</a></li>
+    <li><a href='tutorials/rui-advanced.html'>RightJS UI Advanced</a></li>
+  </ul>
+</dl>
+        </div>
+        <div style="clear:both"></div>
+      </div>
+      <div id="foot">
+        <div id="contacts">
+  <h2>Questions?</h2>
+  <a href="&#x6D;&#x61;i&#x6C;&#x74;&#x6F;:&#105;&#110;&#102;&#111;&#064;&#114;&#105;&#103;&#104;&#116;&#106;&#115;&#046;&#111;&#114;&#103;">&#105;&#110;&#102;&#111;&#064;&#114;&#105;&#103;&#104;&#116;&#106;&#115;&#046;&#111;&#114;&#103;</a>
+</div>
+<div id="bottom-menu">
+  <h2>About the Framework</h2>
+  <a href="philosophy.html">Philosophy</a> |
+  <a href="benchmarks.html">Benchmarks</a> |
+  <a href="browsers.html">Browsers</a> |
+  <a href="contacts.html">Contacts</a>
+</div>
+        <div id="design">Design by <a href="http://activestylus.com">Steven Garcia</a></div>
+        <div id="copyright">Copyright &copy; 2008-2011 Nikolay Nemshilov</div>
+      </div>
+    </div>
+
+    <script src="http://www.google-analytics.com/ga.js" type="text/javascript"></script>
+    <script type="text/javascript">
+    // <![CDATA[
+      try { _gat._getTracker("UA-10292980-1")._trackPageview(); } catch(err) {}
+    // ]]>
+    </script>
+  </body>
+</html>

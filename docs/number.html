@@ -1,0 +1,336 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <title>RightJS: Documentation: Number</title>
+    <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+    <link href="http://www.ru.rightjs.org/blog.rss" rel="alternate" title="RightJS News" type="application/rss+xml" />
+    <script src="../hotlink/right.js@1331880836" type="text/javascript"></script>
+<script src="../javascripts/application.js@1295184937" type="text/javascript"></script>
+    <script src="../builds/ui/right-autocompleter.js@1331880836" type="text/javascript"></script>
+    <link href="../stylesheets/application.css@1297515667.css" media="screen" rel="stylesheet" type="text/css" />
+    
+    
+    
+  </head>
+  <body>
+    <div id="body">
+      <div id="head">
+        <a href="../index.html" id="logo">RightJS</a>
+        <div id="slogan">JavaScript Framework That Feels Right</div>
+
+        <div id="main-menu">
+  <ul>
+    <li><a href="../index.html">Home</a></li>
+    <li><a href="../download.html">Download</a></li>
+    <li><a href="../plugins.html">Plugins</a></li>
+    <li><a href="../ui.html">UI</a></li>
+    <li><a href="../demos.html">Demos</a></li>
+    <li class="current"><a href="../docs.html">Docs</a></li>
+    <li><a href="../blog.html">Blog</a></li>
+  </ul>
+  <div id="zing"><!-- the moving thing --></div>
+</div>
+        <div id="lang-switch">
+    <select onchange="document.location.href=this.value;">
+      <option selected="true" value="http://www.rightjs.org/docs/number">English</option>
+      <option value="http://ru.www.rightjs.org/docs/number">Русский</option>
+    </select>
+</div>
+      </div>
+      <div id="main">
+        <div id="sidebar">
+
+  <div id="api-search" class="box">
+  <input type="text" value="Search API" id="api-search-field" />
+  <script type="text/javascript">
+  // <![CDATA[
+    new Autocompleter($('api-search-field').on({
+      focus: function() { this._v = this.value(); this.value(''); },
+      blur:  function() { this.value(this._v); }
+    }), {
+      url: '/docs/search/%{search}.js',
+      onDone: function() {
+        var current = this.first('.current');
+        if (current) {
+          document.location.href = current.get('title');
+        }
+        this.input.setValue(this.input._v);
+      }
+    });
+  // ]]>
+  </script>
+</div>
+
+  <div class="box" id="api-lists">
+    <label>Core</label><ul><li><a href="browser.html">Browser</a></li><li><a href="class.html">Class</a></li><li><a href="util.html">Util</a></li></ul>
+<label>Dom</label><ul><li><a href="document.html">Document</a></li><li><a href="element.html">Element</a></li><li><a href="event.html">Event</a></li><li><a href="form.html">Form</a></li><li><a href="input.html">Input</a></li><li><a href="window.html">Window</a></li></ul>
+<label>Fx</label><ul><li><a href="fx.html">Fx</a></li><li><a href="fx/attr.html">Fx.Attr</a></li><li><a href="fx/element.html">Fx.Element</a></li><li><a href="fx/fade.html">Fx.Fade</a></li><li><a href="fx/highlight.html">Fx.Highlight</a></li><li><a href="fx/morph.html">Fx.Morph</a></li><li><a href="fx/scroll.html">Fx.Scroll</a></li><li><a href="fx/slide.html">Fx.Slide</a></li></ul>
+<label>Lang</label><ul><li><a href="array.html">Array</a></li><li><a href="function.html">Function</a></li><li><a href="json.html">Json</a></li><li><a href="math.html">Math</a></li><li class="current"><a href="number.html">Number</a></li><ul><li><a href="number.html#include">include</a></li><li><a href="number.html#abs">abs</a></li><li><a href="number.html#ceil">ceil</a></li><li><a href="number.html#downto">downto</a></li><li><a href="number.html#floor">floor</a></li><li><a href="number.html#max">max</a></li><li><a href="number.html#min">min</a></li><li><a href="number.html#round">round</a></li><li><a href="number.html#times">times</a></li><li><a href="number.html#to">to</a></li><li><a href="number.html#upto">upto</a></li></ul><li><a href="object.html">Object</a></li><li><a href="regexp.html">Regexp</a></li><li><a href="string.html">String</a></li></ul>
+<label>Util</label><ul><li><a href="cookie.html">Cookie</a></li><li><a href="observer.html">Observer</a></li><li><a href="options.html">Options</a></li><li><a href="xhr.html">Xhr</a></li></ul>
+  </div>
+
+  <div class="box">
+    <a href='http://www.pledgie.com/campaigns/14259'><img alt='Donate!' src='http://www.pledgie.com/campaigns/14259.png?skin_name=chrome' border='0' /></a>
+  </div>
+
+  <div class="box">
+    <ul id="social">
+      <li><a href="../blog.rss" id="rss-link">RSS</a></li>
+      <li><a href="http://twitter.com/rightjs" id="twitter-link">Twitter</a></li>
+      <li><a href="http://github.com/rightjs" id="github-link">GitHub</a></li>
+    </ul>
+  </div>
+</div>
+
+        <div id="info">
+          
+<h1>Number</h1>
+
+<p>RightJS extends the <tt>Number</tt> unit in order to make it support the <a href='math.html' class='api-ref'>Math</a> module methods in a more natural, object-oriented way. And it adds the handy Ruby style loop methods as well.</p>
+
+<h1>Methods</h1>
+<p>
+  <a href="number.html#include">include</a>, <a href="number.html#abs">abs</a>, <a href="number.html#ceil">ceil</a>, <a href="number.html#downto">downto</a>, <a href="number.html#floor">floor</a>, <a href="number.html#max">max</a>, <a href="number.html#min">min</a>, <a href="number.html#round">round</a>, <a href="number.html#times">times</a>, <a href="number.html#to">to</a>, <a href="number.html#upto">upto</a>
+</p>
+
+<div class="method">
+  <a name="include"></a>
+  <h2><a class="top-anchor" href="number.html#">top &uarr;</a><a href="number.html#include">include</a></h2>
+
+  <p class="semantic">
+    <code><b class="unit">Number</b>.<u class="method">include</u>(<b class="unit">Object</b> new_methods[, <b class="unit">Boolean</b> dont_overwrite) -&gt; <b class="unit">Number</b></code>
+  </p>
+
+
+  <h4>Description</h4>
+  <p>Registers new functionality for <tt>Number</tt> instances</p>
+
+<p>If the second argument is <tt>true</tt>, then the method <em>will skip</em> already existing methods</p>
+
+
+
+  <h4>Example</h4>
+  <p>
+    <code><b class="unit">Number</b>.<u class="method">include</u>({<br/>  <s class="key">double</s>: <b>function</b>() {<br/>    <b>return</b> <b class="var">this</b> * <s class="int">2</s>;<br/>  }<br/>});<br/><br/>2..<u class="method">double</u>(); <i>// -&gt; 4</i></code>
+  </p>
+
+</div><div class="method">
+  <a name="abs"></a>
+  <h2><a class="top-anchor" href="number.html#">top &uarr;</a><a href="number.html#abs">abs</a></h2>
+
+  <p class="semantic">
+    <code>abs() -&gt; number absolute value</code>
+  </p>
+
+
+  <h4>Description</h4>
+  <p>Returns the absolute value of the number.</p>
+
+
+
+  <h4>Example</h4>
+  <p>
+    <code>-1..<u class="method">abs</u>(); <i>// -&gt; 1</i><br/>22..<u class="method">abs</u>(); <i>// -&gt; 22</i></code>
+  </p>
+
+</div><div class="method">
+  <a name="ceil"></a>
+  <h2><a class="top-anchor" href="number.html#">top &uarr;</a><a href="number.html#ceil">ceil</a></h2>
+
+  <p class="semantic">
+    <code>ceil() -&gt; number</code>
+  </p>
+
+
+  <h4>Description</h4>
+  <p>Returns the smallest integer bigger than or equal to the current number.</p>
+
+
+
+  <h4>Example</h4>
+  <p>
+    <code>2.2.<u class="method">ceil</u>(); <i>// -&gt; 3</i></code>
+  </p>
+
+</div><div class="method">
+  <a name="downto"></a>
+  <h2><a class="top-anchor" href="number.html#">top &uarr;</a><a href="number.html#downto">downto</a></h2>
+
+  <p class="semantic">
+    <code>downto(number end, <b class="unit">Function</b> lambda[, <b class="unit">Object</b> scope]) -&gt; number <b class="var">self</b></code>
+  </p>
+
+
+  <h4>Description</h4>
+  <p>Iterates the given lambda function from the current number down to the given stop number:</p>
+
+
+
+  <h4>Example</h4>
+  <p>
+    <code><b class="var">var</b> numbers = [];<br/><br/>8..<u class="method">downto</u>(<s class="int">4</s>, <b>function</b>(i) {<br/>  numbers.<u class="method">push</u>(i);<br/>});<br/><br/>numbers; <i>// [8,7,6,5,4]</i></code>
+  </p>
+
+</div><div class="method">
+  <a name="floor"></a>
+  <h2><a class="top-anchor" href="number.html#">top &uarr;</a><a href="number.html#floor">floor</a></h2>
+
+  <p class="semantic">
+    <code>floor() -&gt; number</code>
+  </p>
+
+
+  <h4>Description</h4>
+  <p>Returns the biggest integer smaller than or equal to the current number.</p>
+
+
+
+  <h4>Example</h4>
+  <p>
+    <code>2.2.<u class="method">floor</u>(); <i>// -&gt; 2</i></code>
+  </p>
+
+</div><div class="method">
+  <a name="max"></a>
+  <h2><a class="top-anchor" href="number.html#">top &uarr;</a><a href="number.html#max">max</a></h2>
+
+  <p class="semantic">
+    <code>max(number limit) -&gt; number</code>
+  </p>
+
+
+  <h4>Description</h4>
+  <p>Limits current number but the given one</p>
+
+
+
+  <h4>Example</h4>
+  <p>
+    <code>4..<u class="method">min</u>(<s class="int">6</s>);  <i>// -&gt; 4</i><br/>8..<u class="method">min</u>(<s class="int">6</s>);  <i>// -&gt; 6</i></code>
+  </p>
+
+</div><div class="method">
+  <a name="min"></a>
+  <h2><a class="top-anchor" href="number.html#">top &uarr;</a><a href="number.html#min">min</a></h2>
+
+  <p class="semantic">
+    <code>min(number limit) -&gt; number</code>
+  </p>
+
+
+  <h4>Description</h4>
+  <p>Limits current number but the given one</p>
+
+
+
+  <h4>Example</h4>
+  <p>
+    <code>4..<u class="method">min</u>(<s class="int">2</s>);  <i>// -&gt; 4</i><br/>1..<u class="method">min</u>(<s class="int">2</s>);  <i>// -&gt; 2</i></code>
+  </p>
+
+</div><div class="method">
+  <a name="round"></a>
+  <h2><a class="top-anchor" href="number.html#">top &uarr;</a><a href="number.html#round">round</a></h2>
+
+  <p class="semantic">
+    <code>round([<b class="unit">Integer</b> base]) -&gt; number</code>
+  </p>
+
+
+  <h4>Description</h4>
+  <p>Returns the integer number closest to the current number. The optional argument specifies how many digits after the decimal point should be retained.</p>
+
+
+
+  <h4>Example</h4>
+  <p>
+    <code>2.2.<u class="method">round</u>();    <i>// -&gt; 2</i><br/>8.8.<u class="method">round</u>();    <i>// -&gt; 8</i><br/><br/>4.444.<u class="method">round</u>(<s class="int">1</s>); <i>// -&gt; 4.4</i><br/>4.444.<u class="method">round</u>(<s class="int">2</s>); <i>// -&gt; 4.44</i><br/>4.444.<u class="method">round</u>(<s class="int">3</s>); <i>// -&gt; 4.444</i></code>
+  </p>
+
+</div><div class="method">
+  <a name="times"></a>
+  <h2><a class="top-anchor" href="number.html#">top &uarr;</a><a href="number.html#times">times</a></h2>
+
+  <p class="semantic">
+    <code>times(<b class="unit">Function</b> lambda[, <b class="unit">Object</b> scope]) -&gt; number <b class="var">self</b></code>
+  </p>
+
+
+  <h4>Description</h4>
+  <p>Call the given lambda function as many times times as specified by the current number:</p>
+
+
+
+  <h4>Example</h4>
+  <p>
+    <code><b class="var">var</b> numbers = [];<br/>4..<u class="method">times</u>(<b>function</b>(i) {<br/>  numbers.<u class="method">push</u>(i);<br/>});<br/><br/>numbers; <i>// -&gt; [0,1,2,3]</i></code>
+  </p>
+
+</div><div class="method">
+  <a name="to"></a>
+  <h2><a class="top-anchor" href="number.html#">top &uarr;</a><a href="number.html#to">to</a></h2>
+
+  <p class="semantic">
+    <code>to(number end, <b class="unit">Function</b> lambda[, <b class="unit">Object</b> scope]) -&gt; number <b class="var">self</b></code>
+  </p>
+
+
+  <h4>Description</h4>
+  <p>Same as <a href='number.html#upto' class='api-ref'>upto</a>, <a href='number.html#downto' class='api-ref'>downto</a> but automatically decides which direction to count</p>
+
+
+
+  <h4>Example</h4>
+  <p>
+    <code>1..<u class="method">to</u>(<s class="int">4</s>, <b>function</b>() {}); <i>// -&gt; counts from 1 to 4</i><br/>4..<u class="method">to</u>(<s class="int">1</s>, <b>function</b>() {}); <i>// -&gt; counts from 4 to 1</i></code>
+  </p>
+
+</div><div class="method">
+  <a name="upto"></a>
+  <h2><a class="top-anchor" href="number.html#">top &uarr;</a><a href="number.html#upto">upto</a></h2>
+
+  <p class="semantic">
+    <code>upto(number stop, <b class="unit">Function</b> lambda[, <b class="unit">Object</b> scope]) -&gt; number <b class="var">self</b></code>
+  </p>
+
+
+  <h4>Description</h4>
+  <p>Iterates the given lambda function from the current number up to the given stop number:</p>
+
+
+
+  <h4>Example</h4>
+  <p>
+    <code><b class="var">var</b> numbers = [];<br/><br/>4..<u class="method">upto</u>(<s class="int">8</s>, <b>function</b>(i) {<br/>  numbers.<u class="method">push</u>(i);<br/>});<br/><br/>numbers; <i>// -&gt; [4,5,6,7,8]</i></code>
+  </p>
+
+</div>
+
+        </div>
+        <div style="clear:both"></div>
+      </div>
+      <div id="foot">
+        <div id="contacts">
+  <h2>Questions?</h2>
+  <a href="&#x6D;&#x61;i&#x6C;&#x74;&#x6F;:&#105;&#110;&#102;&#111;&#064;&#114;&#105;&#103;&#104;&#116;&#106;&#115;&#046;&#111;&#114;&#103;">&#105;&#110;&#102;&#111;&#064;&#114;&#105;&#103;&#104;&#116;&#106;&#115;&#046;&#111;&#114;&#103;</a>
+</div>
+<div id="bottom-menu">
+  <h2>About the Framework</h2>
+  <a href="../philosophy.html">Philosophy</a> |
+  <a href="../benchmarks.html">Benchmarks</a> |
+  <a href="../browsers.html">Browsers</a> |
+  <a href="../contacts.html">Contacts</a>
+</div>
+        <div id="design">Design by <a href="http://activestylus.com">Steven Garcia</a></div>
+        <div id="copyright">Copyright &copy; 2008-2011 Nikolay Nemshilov</div>
+      </div>
+    </div>
+
+    <script src="http://www.google-analytics.com/ga.js" type="text/javascript"></script>
+    <script type="text/javascript">
+    // <![CDATA[
+      try { _gat._getTracker("UA-10292980-1")._trackPageview(); } catch(err) {}
+    // ]]>
+    </script>
+  </body>
+</html>

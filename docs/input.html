@@ -1,0 +1,400 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <title>RightJS: Documentation: Input</title>
+    <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+    <link href="../blog.rss" rel="alternate" title="RightJS News" type="application/rss+xml" />
+    <script src="../hotlink/right.js@1333128729" type="text/javascript"></script>
+<script src="../javascripts/application.js@1295184937" type="text/javascript"></script>
+    <script src="../builds/ui/right-autocompleter.js@1333128730" type="text/javascript"></script>
+    <link href="../stylesheets/application.css@1297515667.css" media="screen" rel="stylesheet" type="text/css" />
+    
+    
+    
+  </head>
+  <body>
+    <div id="body">
+      <div id="head">
+        <a href="../index.html" id="logo">RightJS</a>
+        <div id="slogan">JavaScript Framework That Feels Right</div>
+
+        <div id="main-menu">
+  <ul>
+    <li><a href="../index.html">Home</a></li>
+    <li><a href="../download.html">Download</a></li>
+    <li><a href="../plugins.html">Plugins</a></li>
+    <li><a href="../ui.html">UI</a></li>
+    <li><a href="../demos.html">Demos</a></li>
+    <li class="current"><a href="../docs.html">Docs</a></li>
+    <li><a href="../blog.html">Blog</a></li>
+  </ul>
+  <div id="zing"><!-- the moving thing --></div>
+</div>
+        <div id="lang-switch">
+    <select onchange="document.location.href=this.value;">
+      <option selected="true" value="http://rightjs.org/docs/input">English</option>
+      <option value="http://ru.rightjs.org/docs/input">Русский</option>
+    </select>
+</div>
+      </div>
+      <div id="main">
+        <div id="sidebar">
+
+  <div id="api-search" class="box">
+  <input type="text" value="Search API" id="api-search-field" />
+  <script type="text/javascript">
+  // <![CDATA[
+    new Autocompleter($('api-search-field').on({
+      focus: function() { this._v = this.value(); this.value(''); },
+      blur:  function() { this.value(this._v); }
+    }), {
+      url: '/docs/search/%{search}.js',
+      onDone: function() {
+        var current = this.first('.current');
+        if (current) {
+          document.location.href = current.get('title');
+        }
+        this.input.setValue(this.input._v);
+      }
+    });
+  // ]]>
+  </script>
+</div>
+
+  <div class="box" id="api-lists">
+    <label>Core</label><ul><li><a href="browser.html">Browser</a></li><li><a href="class.html">Class</a></li><li><a href="util.html">Util</a></li></ul>
+<label>Dom</label><ul><li><a href="document.html">Document</a></li><li><a href="element.html">Element</a></li><li><a href="event.html">Event</a></li><li><a href="form.html">Form</a></li><li><a href="input.html">Input</a></li><ul><li><a href="input.html#include">include</a></li><li><a href="input.html#initialize">initialize</a></li><li><a href="input.html#blur">blur</a></li><li><a href="input.html#checked">checked</a></li><li><a href="input.html#disable">disable</a></li><li><a href="input.html#disabled">disabled</a></li><li><a href="input.html#enable">enable</a></li><li><a href="input.html#focus">focus</a></li><li><a href="input.html#form">form</a></li><li><a href="input.html#getValue">getValue</a></li><li><a href="input.html#select">select</a></li><li><a href="input.html#setValue">setValue</a></li><li><a href="input.html#value">value</a></li></ul><li><a href="window.html">Window</a></li></ul>
+<label>Fx</label><ul><li><a href="fx.html">Fx</a></li><li><a href="fx/attr.html">Fx.Attr</a></li><li><a href="fx/element.html">Fx.Element</a></li><li><a href="fx/fade.html">Fx.Fade</a></li><li><a href="fx/highlight.html">Fx.Highlight</a></li><li><a href="fx/morph.html">Fx.Morph</a></li><li><a href="fx/scroll.html">Fx.Scroll</a></li><li><a href="fx/slide.html">Fx.Slide</a></li></ul>
+<label>Lang</label><ul><li><a href="array.html">Array</a></li><li><a href="function.html">Function</a></li><li><a href="json.html">Json</a></li><li><a href="math.html">Math</a></li><li><a href="number.html">Number</a></li><li><a href="object.html">Object</a></li><li><a href="regexp.html">Regexp</a></li><li><a href="string.html">String</a></li></ul>
+<label>Util</label><ul><li><a href="cookie.html">Cookie</a></li><li><a href="observer.html">Observer</a></li><li><a href="options.html">Options</a></li><li><a href="xhr.html">Xhr</a></li></ul>
+  </div>
+
+  <div class="box">
+    <a href='http://www.pledgie.com/campaigns/14259'><img alt='Donate!' src='http://www.pledgie.com/campaigns/14259.png?skin_name=chrome' border='0' /></a>
+  </div>
+
+  <div class="box">
+    <ul id="social">
+      <li><a href="../blog.rss" id="rss-link">RSS</a></li>
+      <li><a href="http://twitter.com/rightjs" id="twitter-link">Twitter</a></li>
+      <li><a href="http://github.com/rightjs" id="github-link">GitHub</a></li>
+    </ul>
+  </div>
+</div>
+
+        <div id="info">
+          
+<h1>Input</h1>
+
+<p><a href='input.html' class='api-ref'>Input</a> is a basic dom-wrapper for all the input elements, like text fields, selects, textareas, etc. It inherited from the <a href='element.html' class='api-ref'>Element</a> class and has partly shared interface.</p>
+
+<h2>Events</h2>
+
+<p>Unlike other DOM elements, form elements handle a bunch of additional events:</p>
+
+<ul>
+<li>disable</li>
+
+<li>enable</li>
+
+<li>focus</li>
+
+<li>blur</li>
+
+<li>change</li>
+</ul>
+
+<p>They are handled simultaneously with all the other events. All shortcuts are in place, you can wire and run the events the usual way.</p>
+
+<h1>Methods</h1>
+<p>
+  <a href="input.html#include">include</a>, <a href="input.html#initialize">initialize</a>, <a href="input.html#blur">blur</a>, <a href="input.html#checked">checked</a>, <a href="input.html#disable">disable</a>, <a href="input.html#disabled">disabled</a>, <a href="input.html#enable">enable</a>, <a href="input.html#focus">focus</a>, <a href="input.html#form">form</a>, <a href="input.html#getValue">getValue</a>, <a href="input.html#select">select</a>, <a href="input.html#setValue">setValue</a>, <a href="input.html#value">value</a>
+</p>
+
+<div class="method">
+  <a name="include"></a>
+  <h2><a class="top-anchor" href="input.html#">top &uarr;</a><a href="input.html#include">include</a></h2>
+
+  <p class="semantic">
+    <code>include(<b class="unit">Object</b> methods[, boolean dont_rewrite])</code>
+  </p>
+
+
+  <h4>Description</h4>
+  <p>Registers additional methods for the form input element units, like INPUT, SELECT, TEXTAREA.</p>
+
+
+
+  <h4>Example</h4>
+  <p>
+    <code><b class="unit">Input</b>.<u class="method">include</u>({<br/>  <s class="key">myMethod</s>: <b>function</b>() {....}<br/>});<br/><br/>$(<s>'my_input'</s>).<u class="method">myMethod</u>();</code>
+  </p>
+
+</div><div class="method">
+  <a name="initialize"></a>
+  <h2><a class="top-anchor" href="input.html#">top &uarr;</a><a href="input.html#initialize">initialize</a></h2>
+
+  <p class="semantic">
+    <code>initialize(raw_dom_element) -&gt; <b class="unit">Input</b><br/>initialize(<b class="unit">Object</b> options)  -&gt; <b class="unit">Input</b></code>
+  </p>
+
+
+  <h4>Description</h4>
+  <p>Basic constructor. It might take a raw dom input element or all the standard <a href='element.html' class='api-ref'>Element</a> options, plus an uniformed option of <tt>type</tt>, which can be one of the standard <tt>INPUT</tt> tag types or one of the following</p>
+
+<ul>
+<li><tt>textarea</tt></li>
+
+<li><tt>select</tt></li>
+
+<li><tt>multi-select</tt></li>
+</ul>
+
+<p><tt>text</tt> - is the default value</p>
+
+
+
+  <h4>Example</h4>
+  <p>
+    <code><b class="var">new</b> <b class="unit">Input</b>();                  <i>// -&gt; input#text</i><br/><b class="var">new</b> <b class="unit">Input</b>({<s class="key">type</s>: <s>'radio'</s>})    <i>// -&gt; input#radio</i><br/><b class="var">new</b> <b class="unit">Input</b>({<s class="key">type</s>: <s>'textarea'</s>}) <i>// -&gt; textarea</i><br/><b class="var">new</b> <b class="unit">Input</b>({<s class="key">type</s>: <s>'select'</s>})   <i>// -&gt; selectbox</i></code>
+  </p>
+
+</div><div class="method">
+  <a name="blur"></a>
+  <h2><a class="top-anchor" href="input.html#">top &uarr;</a><a href="input.html#blur">blur</a></h2>
+
+  <p class="semantic">
+    <code>blur() -&gt; <b class="unit">Element</b> <b class="var">self</b></code>
+  </p>
+
+
+  <h4>Description</h4>
+  <p>Looses the focus on the element.</p>
+
+
+
+  <h4>Example</h4>
+  <p>
+    <code>$(<s>'input'</s>).<u class="method">blur</u>();</code>
+  </p>
+
+</div><div class="method">
+  <a name="checked"></a>
+  <h2><a class="top-anchor" href="input.html#">top &uarr;</a><a href="input.html#checked">checked</a></h2>
+
+  <p class="semantic">
+    <code>checked() -&gt; boolean<br/>checked(value) -&gt; <b class="unit">Input</b> <b class="var">self</b></code>
+  </p>
+
+
+  <h4>Description</h4>
+  <p>A bidirectional method to work with the <tt>checked</tt> property</p>
+
+
+
+  <h4>Example</h4>
+  <p>
+    <code>$(input).<u class="method">checked</u>(<b class="rest">true</b>);<br/>$(input).<u class="method">checked</u>(); <i>// -&gt; true</i><br/>$(input).<u class="method">checked</u>(<b class="rest">false</b>);<br/>$(input).<u class="method">checked</u>(); <i>// -&gt; false</i></code>
+  </p>
+
+</div><div class="method">
+  <a name="disable"></a>
+  <h2><a class="top-anchor" href="input.html#">top &uarr;</a><a href="input.html#disable">disable</a></h2>
+
+  <p class="semantic">
+    <code>disable() -&gt; <b class="unit">Element</b> <b class="var">self</b></code>
+  </p>
+
+
+  <h4>Description</h4>
+  <p>Disables the element.</p>
+
+
+
+  <h4>Example</h4>
+  <p>
+    <code>$(<s>'element'</s>).<u class="method">disable</u>();</code>
+  </p>
+
+</div><div class="method">
+  <a name="disabled"></a>
+  <h2><a class="top-anchor" href="input.html#">top &uarr;</a><a href="input.html#disabled">disabled</a></h2>
+
+  <p class="semantic">
+    <code>disabled() -&gt; boolean<br/>disabled(value) -&gt; <b class="unit">Input</b> <b class="var">self</b></code>
+  </p>
+
+
+  <h4>Description</h4>
+  <p>A bidirectional method to work with the <tt>disabled</tt> property</p>
+
+
+
+  <h4>Example</h4>
+  <p>
+    <code>$(input).<u class="method">disabled</u>(<b class="rest">true</b>);<br/>$(input).<u class="method">disabled</u>(); <i>// -&gt; true</i><br/>$(input).<u class="method">disabled</u>(<b class="rest">false</b>);<br/>$(input).<u class="method">disabled</u>(); <i>// -&gt; false</i></code>
+  </p>
+
+</div><div class="method">
+  <a name="enable"></a>
+  <h2><a class="top-anchor" href="input.html#">top &uarr;</a><a href="input.html#enable">enable</a></h2>
+
+  <p class="semantic">
+    <code>enable() -&gt; <b class="unit">Element</b> <b class="var">self</b></code>
+  </p>
+
+
+  <h4>Description</h4>
+  <p>Enables the element.</p>
+
+
+
+  <h4>Example</h4>
+  <p>
+    <code>$(<s>'input'</s>).<u class="method">enable</u>();</code>
+  </p>
+
+</div><div class="method">
+  <a name="focus"></a>
+  <h2><a class="top-anchor" href="input.html#">top &uarr;</a><a href="input.html#focus">focus</a></h2>
+
+  <p class="semantic">
+    <code>focus() -&gt; <b class="unit">Element</b> <b class="var">self</b></code>
+  </p>
+
+
+  <h4>Description</h4>
+  <p>Puts the focus on the element.</p>
+
+
+
+  <h4>Example</h4>
+  <p>
+    <code>$(<s>'input'</s>).<u class="method">focus</u>();</code>
+  </p>
+
+</div><div class="method">
+  <a name="form"></a>
+  <h2><a class="top-anchor" href="input.html#">top &uarr;</a><a href="input.html#form">form</a></h2>
+
+  <p class="semantic">
+    <code>form() -&gt; <b class="unit">Form</b></code>
+  </p>
+
+
+  <h4>Description</h4>
+  <p>Returns a wrapped form object to which this input field belongs to</p>
+
+
+
+  <h4>Example</h4>
+  <p>
+    <code>$(input).<u class="method">form</u>().<u class="method">submit</u>();</code>
+  </p>
+
+</div><div class="method">
+  <a name="getValue"></a>
+  <h2><a class="top-anchor" href="input.html#">top &uarr;</a><a href="input.html#getValue">getValue</a></h2>
+
+  <p class="semantic">
+    <code>getValue() -&gt; mixed value</code>
+  </p>
+
+
+  <h4>Description</h4>
+  <p>Unified access to get a form element value.</p>
+
+
+
+  <h4>Example</h4>
+  <p>
+    <code>$(<s>'input'</s>).<u class="method">getValue</u>();<br/>$(<s>'select'</s>).<u class="method">getValue</u>();<br/>$(<s>'textarea'</s>).<u class="method">getValue</u>();<br/>$(<s>'multi-select'</s>).<u class="method">getValue</u>();</code>
+  </p>
+
+</div><div class="method">
+  <a name="select"></a>
+  <h2><a class="top-anchor" href="input.html#">top &uarr;</a><a href="input.html#select">select</a></h2>
+
+  <p class="semantic">
+    <code>select() -&gt; <b class="unit">Element</b> <b class="var">self</b></code>
+  </p>
+
+
+  <h4>Description</h4>
+  <p>Puts the focus on the element and selects its data.</p>
+
+
+
+  <h4>Example</h4>
+  <p>
+    <code>$(<s>'input'</s>).<u class="method">select</u>();</code>
+  </p>
+
+</div><div class="method">
+  <a name="setValue"></a>
+  <h2><a class="top-anchor" href="input.html#">top &uarr;</a><a href="input.html#setValue">setValue</a></h2>
+
+  <p class="semantic">
+    <code>setValue(mixed value) -&gt; <b class="unit">Element</b> <b class="var">self</b></code>
+  </p>
+
+
+  <h4>Description</h4>
+  <p>Unified value setter for the form elements.</p>
+
+
+
+  <h4>Example</h4>
+  <p>
+    <code>$(<s>'input'</s>).<u class="method">setValue</u>(<s>'text'</s>);<br/>$(<s>'select'</s>).<u class="method">setValue</u>(<s class="int">1</s>);<br/>$(<s>'textarea'</s>).<u class="method">setValue</u>(<s>'text'</s>);<br/>$(<s>'multi-select'</s>).<u class="method">setValue</u>([<s class="int">1</s>,<s class="int">2</s>,<s class="int">3</s>]);</code>
+  </p>
+
+</div><div class="method">
+  <a name="value"></a>
+  <h2><a class="top-anchor" href="input.html#">top &uarr;</a><a href="input.html#value">value</a></h2>
+
+  <p class="semantic">
+    <code>value()      -&gt; mixed the current value<br/>value(value) -&gt; <b class="unit">Input</b> <b class="var">self</b></code>
+  </p>
+
+
+  <h4>Description</h4>
+  <p>A bidirectional method to work with <a href='input.html' class='api-ref'>Input</a> field values</p>
+
+
+
+  <h4>Example</h4>
+  <p>
+    <code>$(input).<u class="method">value</u>(<s>'something'</s>);<br/>$(input).<u class="method">value</u>(); <i>// -&gt; 'something'</i></code>
+  </p>
+
+</div>
+
+        </div>
+        <div style="clear:both"></div>
+      </div>
+      <div id="foot">
+        <div id="contacts">
+  <h2>Questions?</h2>
+  <a href="&#x6D;&#x61;i&#x6C;&#x74;&#x6F;:&#105;&#110;&#102;&#111;&#064;&#114;&#105;&#103;&#104;&#116;&#106;&#115;&#046;&#111;&#114;&#103;">&#105;&#110;&#102;&#111;&#064;&#114;&#105;&#103;&#104;&#116;&#106;&#115;&#046;&#111;&#114;&#103;</a>
+</div>
+<div id="bottom-menu">
+  <h2>About the Framework</h2>
+  <a href="../philosophy.html">Philosophy</a> |
+  <a href="../benchmarks.html">Benchmarks</a> |
+  <a href="../browsers.html">Browsers</a> |
+  <a href="../contacts.html">Contacts</a>
+</div>
+        <div id="design">Design by <a href="http://activestylus.com">Steven Garcia</a></div>
+        <div id="copyright">Copyright &copy; 2008-2011 Nikolay Nemshilov</div>
+      </div>
+    </div>
+
+    <script src="http://www.google-analytics.com/ga.js" type="text/javascript"></script>
+    <script type="text/javascript">
+    // <![CDATA[
+      try { _gat._getTracker("UA-10292980-1")._trackPageview(); } catch(err) {}
+    // ]]>
+    </script>
+  </body>
+</html>

@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>RightJS News</title>
+    <description>Recent updates on the RightJS project</description>
+    <link>http://rightjs.org/blog.rss</link>
+    <item>
+      <title>RightJS 2.3.1 And Other Patches</title>
+      <description>Hey everyone, we have a new set of minor fixes for RightJS core, ui and plugins.
+
+RightJS core was bumped to version 2.3.1  also there is a bunch of bug fixes and updates in the UI and Plugins. See the full news for the changelog</description>
+      <pubDate>Fri, 16 Mar 2012 07:19:03 +0000</pubDate>
+      <link>http://rightjs.org/blog/rightjs-2-3-1-and-other-patches</link>
+      <guid>http://rightjs.org/blog/rightjs-2-3-1-and-other-patches</guid>
+    </item>
+    <item>
+      <title>Touch Screen Support</title>
+      <description>Great news everyone!
+
+I got an iPad for Christmas, so you get the touch-screens support for all UI and Plugins! :)
+
+See the full news for the list of updated modules</description>
+      <pubDate>Fri, 20 Jan 2012 13:19:05 +0000</pubDate>
+      <link>http://rightjs.org/blog/touch-screen-support</link>
+      <guid>http://rightjs.org/blog/touch-screen-support</guid>
+    </item>
+    <item>
+      <title>RightJS 2.3.0 Is Released</title>
+      <description>My dear fellas, it's been a while, but RightJS 2.3.0 is finally here!
+
+RightJS 2.3.0 is the next major update of the framework, there are new features, fixes and all sorts of updates on Plugins and UI modules.
+
+See the full news for the change log.</description>
+      <pubDate>Sun, 06 Nov 2011 16:45:03 +0000</pubDate>
+      <link>http://rightjs.org/blog/rightjs-2-3-0-is-released</link>
+      <guid>http://rightjs.org/blog/rightjs-2-3-0-is-released</guid>
+    </item>
+    <item>
+      <title>RightRails 1.2.1 With RRTE Support</title>
+      <description>&lt;a href=&quot;https://github.com/MadRabbit/right-rails&quot;&gt;RightRails&lt;/a&gt; the RubyOnRails module for RightJS was just updated with the &lt;a href=&quot;/ui/rte&quot;&gt;RightJS RTE&lt;/a&gt; support.
+
+&lt;a href=&quot;https://github.com/MadRabbit/right-rails&quot;&gt;RightRails Demo Application&lt;/a&gt; also was updated with &lt;a href=&quot;https://github.com/MadRabbit/right-rails-demo/blob/master/app/views/articles/_form.html.erb#L10&quot;&gt;an example of usage&lt;/a&gt;</description>
+      <pubDate>Thu, 14 Apr 2011 16:06:10 +0000</pubDate>
+      <link>http://rightjs.org/blog/rightrails-1-2-1-with-rrte-support</link>
+      <guid>http://rightjs.org/blog/rightrails-1-2-1-with-rrte-support</guid>
+    </item>
+    <item>
+      <title>RightJS RTE Released!</title>
+      <description>The RightJS RTE, or as we know it RRTE, has finally been released into the wild!
+
+It is frameless, small (just 10k gzipped) and designed to be used in social networks instead of normal textareas. Don't miss it!
+
+See the &lt;a href=&quot;/ui/rte&quot;&gt;documentation&lt;/a&gt; and &lt;a href=&quot;/ui/rte/demo&quot;&gt;demo&lt;/a&gt;</description>
+      <pubDate>Thu, 14 Apr 2011 11:14:28 +0000</pubDate>
+      <link>http://rightjs.org/blog/rightjs-rte-released</link>
+      <guid>http://rightjs.org/blog/rightjs-rte-released</guid>
+    </item>
+    <item>
+      <title>RightRails 1.2.0 With Tags Support</title>
+      <description>The &lt;a href=&quot;/plugins/rails&quot;&gt;RightRails&lt;/a&gt; plugin (ruby on rails support module) was just updated with all the recent RightJS core and plugin builds, plus now it has the &lt;tt&gt;tags_field&lt;/tt&gt; helper to automatically create fancy tag fields for you.</description>
+      <pubDate>Mon, 04 Apr 2011 10:21:06 +0000</pubDate>
+      <link>http://rightjs.org/blog/rightrails-1-2-0-with-tags-support</link>
+      <guid>http://rightjs.org/blog/rightrails-1-2-0-with-tags-support</guid>
+    </item>
+    <item>
+      <title>Tags Widget</title>
+      <description>We have got a new widget on the list! This time it's a simple&lt;a href=&quot;/ui/tags&quot;&gt;Tags&lt;/a&gt; widget that will help you create fancy looking tags input fields.
+
+Check the &lt;a href=&quot;/ui/tags&quot;&gt;documentation&lt;/a&gt; and a simple &lt;a href=&quot;/ui/tags/demo&quot;&gt;demo&lt;/a&gt;!</description>
+      <pubDate>Sun, 03 Apr 2011 15:16:28 +0000</pubDate>
+      <link>http://rightjs.org/blog/tags-widget</link>
+      <guid>http://rightjs.org/blog/tags-widget</guid>
+    </item>
+    <item>
+      <title>RightJS 2.2.3 IE9 Fixes And UI Update</title>
+      <description>RightJS core was just updated to the version &lt;tt&gt;2.2.3&lt;/tt&gt; some important IE9 fixes in there!
+
+Plus we have a bunch of updates in the UI widgets, see the full news for the changelog.</description>
+      <pubDate>Sat, 02 Apr 2011 10:08:44 +0000</pubDate>
+      <link>http://rightjs.org/blog/rightjs-2-2-3-ie9-fixes-and-ui-update</link>
+      <guid>http://rightjs.org/blog/rightjs-2-2-3-ie9-fixes-and-ui-update</guid>
+    </item>
+  </channel>
+</rss>

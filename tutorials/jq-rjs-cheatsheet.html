@@ -1,0 +1,370 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <title>RightJS: jQuery - RightJS Cheat Sheet</title>
+    <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+    <link href="../blog.rss" rel="alternate" title="RightJS News" type="application/rss+xml" />
+    <script src="../hotlink/right.js@1333128729" type="text/javascript"></script>
+<script src="../javascripts/application.js@1295184937" type="text/javascript"></script>
+    <script src="../builds/ui/right-autocompleter.js@1333128730" type="text/javascript"></script>
+    <link href="../stylesheets/application.css@1297515667.css" media="screen" rel="stylesheet" type="text/css" />
+    
+    
+    
+  </head>
+  <body>
+    <div id="body">
+      <div id="head">
+        <a href="../index.html" id="logo">RightJS</a>
+        <div id="slogan">JavaScript Framework That Feels Right</div>
+
+        <div id="main-menu">
+  <ul>
+    <li><a href="../index.html">Home</a></li>
+    <li><a href="../download.html">Download</a></li>
+    <li><a href="../plugins.html">Plugins</a></li>
+    <li><a href="../ui.html">UI</a></li>
+    <li><a href="../demos.html">Demos</a></li>
+    <li class="current"><a href="../docs.html">Docs</a></li>
+    <li><a href="../blog.html">Blog</a></li>
+  </ul>
+  <div id="zing"><!-- the moving thing --></div>
+</div>
+        <div id="lang-switch">
+    <select onchange="document.location.href=this.value;">
+      <option selected="true" value="http://rightjs.org/tutorials/jq-rjs-cheatsheet">English</option>
+      <option value="http://ru.rightjs.org/tutorials/jq-rjs-cheatsheet">Русский</option>
+    </select>
+</div>
+      </div>
+      <div id="main">
+        <div id="sidebar">
+  <div class="box" id="download-box">
+    <h1>Get it!</h1>
+    <ul>
+      <li><a href="../builds/current/right.js.zip">RightJS v2.3.1</a></li>
+    </ul>
+  </div>
+
+  <div id="api-search" class="box">
+  <input type="text" value="Search API" id="api-search-field" />
+  <script type="text/javascript">
+  // <![CDATA[
+    new Autocompleter($('api-search-field').on({
+      focus: function() { this._v = this.value(); this.value(''); },
+      blur:  function() { this.value(this._v); }
+    }), {
+      url: '/docs/search/%{search}.js',
+      onDone: function() {
+        var current = this.first('.current');
+        if (current) {
+          document.location.href = current.get('title');
+        }
+        this.input.setValue(this.input._v);
+      }
+    });
+  // ]]>
+  </script>
+</div>
+
+  <div class="box">
+    <label>Documentation</label>
+    <ul>
+      <li><a href="getting-started.html">Getting Started</a></li>
+      <li><a href="top-features.html">Top 12 Features</a></li>
+      <li><a href="../docs.html">API Reference</a></li>
+      <li class="current"><a href="../tutorials.1.html">Tutorials</a></li>
+    </ul>
+  </div>
+
+  <div class="box">
+    <label>Additional</label>
+    <ul>
+      <li><a href="../plugins.html">RightJS Plugins</a></li>
+      
+      <li><a href="../ui.html">RightJS UI</a></li>
+      
+      <li><a href="../showcases.html">Showcases</a></li>
+    </ul>
+  </div>
+
+  <div class="box">
+    <label>Community</label>
+    <ul>
+      <li><a href="http://groups.google.com/group/rightjs">Google Group</a></li>
+      <li><a href="http://rightjs.lighthouseapp.com/projects/31989">Tickets Tracker</a></li>
+      <li><a href="http://github.com/rightjs/rightjs-snippets">Code Snippets</a></li>
+      <li><a href="irc://irc.freenode.net/rightjs">IRC #rightjs</a></li>
+      <li><a href="../participate.html">Participate!</a></li>
+    </ul>
+  </div>
+
+  <div class="box">
+    <a href='http://www.pledgie.com/campaigns/14259'><img alt='Donate!' src='http://www.pledgie.com/campaigns/14259.png?skin_name=chrome' border='0' /></a>
+  </div>
+
+  <div class="box">
+    <ul id="social">
+      <li><a href="../blog.rss" id="rss-link">RSS</a></li>
+      <li><a href="http://twitter.com/rightjs" id="twitter-link">Twitter</a></li>
+      <li><a href="http://github.com/rightjs" id="github-link">GitHub</a></li>
+    </ul>
+  </div>
+</div>
+
+        <div id="info">
+          <h1>jQuery - RightJS Cheat Sheet</h1>
+
+<p>A little cheat-sheet to smooth your transition from jQuery to RightJS. Keep in mind that this is not the whole RightJS, because besides of DOM features RightJS also has quite a lot of utility features, OOP, FP, JavaScript core extensions, etc.</p>
+
+<p>In all the following snippets, the top one is a jQuery example and the bottom one is a RightJS equivalent.</p>
+<h2 class="chapter"><a href='jq-rjs-cheatsheet.html#'>Index</a></h2><p><ul><li><a href="jq-rjs-cheatsheet.html#navigation">DOM Navigation</a></li><li><a href="jq-rjs-cheatsheet.html#manipulation">DOM Manipulation</a></li><li><a href="jq-rjs-cheatsheet.html#attributes">DOM Attributes</a></li><li><a href="jq-rjs-cheatsheet.html#classes">DOM Classes</a></li><li><a href="jq-rjs-cheatsheet.html#styles">DOM Styles Handling</a></li><li><a href="jq-rjs-cheatsheet.html#positions">DOM Dimensions And Positions</a></li><li><a href="jq-rjs-cheatsheet.html#events">DOM Events Handling</a></li><li><a href="jq-rjs-cheatsheet.html#ujs">UJS Support</a></li><li><a href="jq-rjs-cheatsheet.html#ajax">Ajax Handling</a></li><li><a href="jq-rjs-cheatsheet.html#effects">Visual Effects</a></li><li><a href="jq-rjs-cheatsheet.html#util">Utility Operations</a></li></ul></p><a name='navigation' ></a><h2 class='chapter'>
+  <a href='jq-rjs-cheatsheet.html#' class='top-anchor'>top &uarr;</a><a href='jq-rjs-cheatsheet.html#navigation'>DOM Navigation</a>
+</h2>
+<p>Find an element by it&#8217;s ID:</p>
+
+<code>$(<s>'#element-id'</s>)<br/><br/>$(<s>'element-id'</s>)</code>
+
+<p>Find a group of elements matching a css-rule</p>
+
+<code>$(<s>'div.css#rule'</s>)<br/><br/>$$(<s>'div.css#rule'</s>)</code>
+
+<p>Find a sub-element</p>
+
+<code>$(<s>'#element-id'</s>).<u class="method">find</u>(<s>'div.something'</s>).<u class="method">first</u>();<br/><br/>$(<s>'element-id'</s>).<u class="method">first</u>(<s>'div.something'</s>);</code>
+
+<p>Find a collection of sub-elements</p>
+
+<code>$(<s>'#element-id'</s>).<u class="method">find</u>(<s>'div.something'</s>);<br/><br/>$(<s>'elment-id'</s>).<u class="method">find</u>(<s>'div.something'</s>);</code>
+
+<p>Neighborhood traversal is mostly all the same</p>
+
+<code>$(<s>'#element-id'</s>).<u class="method">parent</u>(<s>'div.something'</s>);<br/>$(<s>'element-id'</s>).<u class="method">parent</u>(<s>'div.something'</s>);<br/><br/>$(<s>'#element-id'</s>).<u class="method">parents</u>(<s>'div.something'</s>);<br/>$(<s>'element-id'</s>).<u class="method">parents</u>(<s>'div.something'</s>);<br/><br/>$(<s>'#element-id'</s>).<u class="method">children</u>(<s>'div.something'</s>);<br/>$(<s>'element-id'</s>).<u class="method">children</u>(<s>'div.something'</s>);<br/><br/>$(<s>'#element-id'</s>).<u class="method">next</u>(<s>'div.something'</s>);<br/>$(<s>'element-id'</s>).<u class="method">next</u>(<s>'div.something'</s>);<br/><br/>$(<s>'#element-id'</s>).<u class="method">prev</u>(<s>'div.something'</s>);<br/>$(<s>'element-id'</s>).<u class="method">prev</u>(<s>'div.something'</s>);<br/><br/>$(<s>'#element-id'</s>).<u class="method">siblings</u>(<s>'div.something'</s>);<br/>$(<s>'element-id'</s>).<u class="method">siblings</u>(<s>'div.something'</s>);</code>
+<a name='manipulation' ></a><h2 class='chapter'>
+  <a href='jq-rjs-cheatsheet.html#' class='top-anchor'>top &uarr;</a><a href='jq-rjs-cheatsheet.html#manipulation'>DOM Manipulation</a>
+</h2>
+<p>Inserting content at the bottom</p>
+
+<code>$(<s>'#element-id'</s>).<u class="method">append</u>(content);<br/><br/>$(<s>'element-id'</s>).<u class="method">insert</u>(content);<br/><i>// 'append' is also avaliable</i><br/>$(<s>'element-id'</s>).<u class="method">append</u>(el1[, el2, ....]);<br/><br/>$(<s>'#element-id'</s>).<u class="method">appendTo</u>(element);<br/>$(<s>'element-id'</s>).<u class="method">insertTo</u>(element);</code>
+
+<p>Inserting thins on top</p>
+
+<code>$(<s>'#element-id'</s>).<u class="method">prepend</u>(content);<br/>$(<s>'element-id'</s>).<u class="method">insert</u>(content, <s>'top'</s>);<br/><br/>$(<s>'#element-id'</s>).<u class="method">prependTo</u>(element);<br/>$(<s>'element-id'</s>).<u class="method">insertTo</u>(element, <s>'top'</s>);</code>
+
+<p>Inserting things before</p>
+
+<code>$(<s>'#element-id'</s>).<u class="method">before</u>(content);<br/>$(<s>'element-id'</s>).<u class="method">insert</u>(content, <s>'before'</s>);<br/><br/>$(<s>'#element-id'</s>).<u class="method">insertBefore</u>(element);<br/>$(<s>'element-id'</s>).<u class="method">insertTo</u>(element, <s>'before'</s>);</code>
+
+<p>Inserting things after</p>
+
+<code>$(<s>'#element-id'</s>).<u class="method">after</u>(content);<br/>$(<s>'element-id'</s>).<u class="method">insert</u>(content, <s>'after'</s>);<br/><br/>$(<s>'#element-id'</s>).<u class="method">insertAfter</u>(element);<br/>$(<s>'element-id'</s>).<u class="method">insertTo</u>(element, <s>'after'</s>);</code>
+
+<p>Removing, replacing, wrapping cloning are all the same</p>
+
+<code>$(<s>'#element-id'</s>).<u class="method">remove</u>();<br/>$(<s>'element-id'</s>).<u class="method">remove</u>();<br/><br/>$(<s>'#element-id'</s>).<u class="method">replace</u>(element);<br/>$(<s>'element-id'</s>).<u class="method">replace</u>(element);<br/><br/>$(<s>'#element-id'</s>).<u class="method">wrap</u>(element);<br/>$(<s>'element-id'</s>).<u class="method">wrap</u>(element);<br/><br/>$(<s>'#element-id'</s>).<u class="method">clone</u>();<br/>$(<s>'element-id'</s>).<u class="method">clone</u>();</code>
+
+<p>Full content update is also all the same</p>
+
+<code>$(<s>'#element-id'</s>).<u class="method">html</u>(); <i>// -&gt; innerHTML</i><br/>$(<s>'element-id'</s>).<u class="method">html</u>();  <i>// -&gt; innerHTML</i><br/><br/>$(<s>'#element-id'</s>).<u class="method">html</u>(content);<br/>$(<s>'element-id'</s>).<u class="method">html</u>(content);</code>
+<a name='attributes' ></a><h2 class='chapter'>
+  <a href='jq-rjs-cheatsheet.html#' class='top-anchor'>top &uarr;</a><a href='jq-rjs-cheatsheet.html#attributes'>DOM Attributes</a>
+</h2>
+<p>Getting an attribute</p>
+
+<code>$(<s>'#element-id'</s>).<u class="method">attr</u>(<s>'title'</s>);<br/>$(<s>'element-id'</s>).<u class="method">get</u>(<s>'title'</s>);</code>
+
+<p>Setting an attribute</p>
+
+<code>$(<s>'#element-id'</s>).<u class="method">attr</u>(<s>'title'</s>, <s>'Boo hoo!'</s>);<br/>$(<s>'element-id'</s>).<u class="method">set</u>(<s>'title'</s>, <s>'Boo hoo!'</s>);</code>
+
+<p>Removing an attribute</p>
+
+<code>$(<s>'#element-id'</s>).<u class="method">removeAttr</u>(<s>'title'</s>);<br/>$(<s>'element-id'</s>).<u class="method">erase</u>(<s>'title'</s>);</code>
+
+<p>Checking if an attribute is set</p>
+
+<code>$(<s>'#element-id'</s>).<u class="method">attr</u>(<s>'title'</s>) === <b class="rest">undefined</b>;<br/>$(<s>'element-id'</s>).<u class="method">has</u>(<s>'title'</s>);</code>
+<a name='classes' ></a><h2 class='chapter'>
+  <a href='jq-rjs-cheatsheet.html#' class='top-anchor'>top &uarr;</a><a href='jq-rjs-cheatsheet.html#classes'>DOM Classes</a>
+</h2>
+<p>Adding, removing and toggling the css-classes are all the same</p>
+
+<code>$(<s>'#element-id'</s>).<u class="method">addClass</u>(<s>'marked'</s>);<br/>$(<s>'element-id'</s>).<u class="method">addClass</u>(<s>'marked'</s>);<br/><br/>$(<s>'#element-id'</s>).<u class="method">removeClass</u>(<s>'marked'</s>);<br/>$(<s>'element-id'</s>).<u class="method">removeClass</u>(<s>'marked'</s>);<br/><br/>$(<s>'#element-id'</s>).<u class="method">toggleClass</u>(<s>'marked'</s>);<br/>$(<s>'element-id'</s>).<u class="method">toggleClass</u>(<s>'marked'</s>);<br/><br/>$(<s>'#element-id'</s>).<u class="method">hasClass</u>(<s>'marked'</s>);<br/>$(<s>'element-id'</s>).<u class="method">hasClass</u>(<s>'marked'</s>);</code>
+<a name='styles' ></a><h2 class='chapter'>
+  <a href='jq-rjs-cheatsheet.html#' class='top-anchor'>top &uarr;</a><a href='jq-rjs-cheatsheet.html#styles'>DOM Styles Handling</a>
+</h2>
+<p>Getting a style</p>
+
+<code>$(<s>'#element-id'</s>).<u class="method">css</u>(<s>'background-color'</s>);<br/>$(<s>'element-id'</s>).<u class="method">getStyle</u>(<s>'background-color'</s>);</code>
+
+<p>Setting a style</p>
+
+<code>$(<s>'#element-id'</s>).<u class="method">css</u>(<s>'color'</s>, <s>'red'</s>);<br/>$(<s>'element-id'</s>).<u class="method">setStyle</u>(<s>'color'</s>, <s>'red'</s>);<br/><br/>$(<s>'#element-id'</s>).<u class="method">css</u>({<s class="key">color</s>: <s>'red'</s>});<br/>$(<s>'element-id'</s>).<u class="method">setStyle</u>({<s class="key">color</s>: <s>'red'</s>});<br/><br/><i>// also</i><br/>$(<s>'element-id'</s>).<u class="method">setStyle</u>(<s>'color:red;font-size: 10em'</s>);</code>
+<a name='positions' ></a><h2 class='chapter'>
+  <a href='jq-rjs-cheatsheet.html#' class='top-anchor'>top &uarr;</a><a href='jq-rjs-cheatsheet.html#positions'>DOM Dimensions And Positions</a>
+</h2>
+<p>Element absolute position</p>
+
+<code>$(<s>'#element-id'</s>).<u class="method">offset</u>();    <i>// {left: NN, top: NN}</i><br/>$(<s>'element-id'</s>).<u class="method">position</u>();   <i>// {x: NN, y: NN}</i></code>
+
+<p>Element sizes</p>
+
+<code>$(<s>'#element-id'</s>).<u class="method">width</u>();<br/>$(<s>'element-id'</s>).<u class="method">size</u>().<u>x</u>;<br/><br/>$(<s>'#element-id'</s>).<u class="method">height</u>();<br/>$(<s>'element-id'</s>).<u class="method">size</u>().<u>y</u>;</code>
+
+<p>Scrolling positions</p>
+
+<code>$(<s>'#element-id'</s>).<u class="method">scrollLeft</u>();<br/>$(<s>'element-id'</s>).<u class="method">scrolls</u>().<u>x</u>;<br/><br/>$(<s>'#element-id'</s>).<u class="method">scrollTop</u>();<br/>$(<s>'element-id'</s>).<u class="method">scrolls</u>().<u>y</u></code>
+<a name='events' ></a><h2 class='chapter'>
+  <a href='jq-rjs-cheatsheet.html#' class='top-anchor'>top &uarr;</a><a href='jq-rjs-cheatsheet.html#events'>DOM Events Handling</a>
+</h2>
+<p>Adding an event listener</p>
+
+<code>$(<s>'#element-id'</s>).<u class="method">bind</u>(<s>'click'</s>, <b>function</b>() {..});<br/>$(<s>'element-id'</s>).<u class="method">onClick</u>(<b>function</b>() {...});<br/><br/><i>// calls by name are also available</i><br/>$(<s>'element-id'</s>).<u class="method">onClick</u>(<s>'toggleClass'</s>, <s>'marked'</s>);</code>
+
+<p>Adding several event listeners</p>
+
+<code>$(<s>'#element-id'</s>).<u class="method">bind</u>({<s class="key">click</s>: func});<br/>$(<s>'element-id'</s>).<u class="method">on</u>({<s class="key">click</s>: func});</code>
+
+<p>Removing an event listener</p>
+
+<code>$(<s>'#element-id'</s>).<u class="method">unbind</u>(<s>'click'</s>, func);<br/>$(<s>'element-id'</s>).<u class="method">stopObserving</u>(<s>'click'</s>, func);</code>
+
+<p>Stopping an event</p>
+
+<code>$(<s>'#element-id'</s>).<u class="method">bind</u>(<s>'click'</s>, <b>function</b>(event) {<br/>  event.<u class="method">stopPropagation</u>();<br/>  event.<u class="method">preventDefault</u>();<br/>});<br/><br/>$(<s>'element-id'</s>).<u class="method">onClick</u>(<b>function</b>(event) {<br/>  event.<u class="method">stop</u>();<br/>})<br/><br/><i>// or like that</i><br/>$(<s>'element-id'</s>).<u class="method">onClick</u>(<b>function</b>() { <b>return</b> <b class="rest">false</b>; });<br/><i>// or even like that</i><br/>$(<s>'element-id'</s>).<u class="method">onClick</u>(<s>'stopEvent'</s>);</code>
+
+<p>Triggering events manually</p>
+
+<code>$(<s>'#element-id'</s>).<u class="method">trigger</u>(<s>'click'</s>);<br/><br/>$(<s>'element-id'</s>).<u class="method">fire</u>(<s>'click'</s>);</code>
+<a name='ujs' ></a><h2 class='chapter'>
+  <a href='jq-rjs-cheatsheet.html#' class='top-anchor'>top &uarr;</a><a href='jq-rjs-cheatsheet.html#ujs'>UJS Support</a>
+</h2>
+<p>Adding global UJS handlers</p>
+
+<code>$(<s>'div.something'</s>).<u class="method">live</u>(<s>'click'</s>, <b>function</b>() {.. });<br/><br/><s>"div.something"</s>.<u class="method">onClick</u>(<b>function</b>() {});<br/><s>"div.something"</s>.<u class="method">onClick</u>(<s>'toggleClass'</s>, <s>'marked'</s>);</code>
+
+<p>Removing global UJS handlers</p>
+
+<code>$(<s>'div.something'</s>).<u class="method">die</u>(<s>'click'</s>, func);<br/><br/><s>"div.something"</s>.<u class="method">stopObserving</u>(<s>'click'</s>[, ...]);</code>
+
+<p>Adding local UJS handlers</p>
+
+<code>$(<s>'#element-id'</s>).<u class="method">delegate</u>(<s>'div.blue'</s>, <s>'click'</s>, func);<br/><br/>$(<s>'element-id'</s>).<u class="method">delegate</u>(<s>'click'</s>, <s>'div.blue'</s>, func);<br/>$(<s>'element-id'</s>).<u class="method">delegate</u>(<s>'click'</s>, {<br/>  <s>'div.blue'</s>: blues_handler,<br/>  <s>'div.red'</s>:  reds_handler<br/>});<br/>$(<s>'element-id'</s>).<u class="method">delegate</u>(<s>'click'</s>, <s>'div.blue'</s>, <s>'toggleClass'</s>, <s>'marked'</s>);</code>
+
+<p>Removing local UJS handlers</p>
+
+<code>$(<s>'#element-id'</s>).<u class="method">undelegate</u>(<s>'div.blue'</s>, <s>'click'</s>);<br/><br/>$(<s>'element-id'</s>).<u class="method">undelegate</u>(<s>'click'</s>, <s>'div.blue'</s>);</code>
+
+<p>RightJS is also has <a href='../docs/element.html#delegates' class='api-ref'>Element#delegates</a> method to check if some events were delegated.</p>
+<a name='ajax' ></a><h2 class='chapter'>
+  <a href='jq-rjs-cheatsheet.html#' class='top-anchor'>top &uarr;</a><a href='jq-rjs-cheatsheet.html#ajax'>Ajax Handling</a>
+</h2>
+<p>Basic ajax requests</p>
+
+<code>$.<u class="method">ajax</u>({<br/>  <s class="key">url</s>:      <s>'/boo/hoo'</s>,<br/>  <s class="key">type</s>:     <s>'get'</s>,<br/>  <s class="key">data</s>:     <s>'some=data'</s>,<br/>  <s class="key">success</s>:  func1,<br/>  <s class="key">error</s>:    func2,<br/>  <s class="key">complete</s>: func3<br/>});<br/><br/><b class="var">new</b> <b class="unit">Xhr</b>(<s>'/boo/hoo'</s>, {<br/>  <s class="key">method</s>:     <s>'get'</s>,<br/>  <s class="key">onSuccess</s>:  func1,<br/>  <s class="key">onFailure</s>:  func2,<br/>  <s class="key">onComplete</s>: func3<br/>}).<u class="method">send</u>(<s>'some=data'</s>);</code>
+
+<p>Simply getting the data via a GET request</p>
+
+<code>$.<u class="method">get</u>(<s>'/some/url'</s>, <b>function</b>(response_text) {<br/>  <i>// ...</i><br/>});<br/><br/><b class="unit">Xhr</b>.<u class="method">load</u>(<s>'/some/url'</s>, {<br/>  <s class="key">onSuccess</s>: <b>function</b>() {<br/>    <b class="var">this</b>.<u>text</u>; <i>// &lt;- the response text</i><br/>  }<br/>});</code>
+
+<p>Loading data into an element</p>
+
+<code>$(<s>'#element-id'</s>).<u class="method">load</u>(<s>'/some/url'</s>, <b>function</b>() { ... });<br/><br/>$(<s>'element-id'</s>).<u class="method">load</u>(<s>'/some/url'</s>, {<s class="key">any_standard</s>: options});</code>
+
+<p>Requesting JSON data</p>
+
+<code>$.<u class="method">getJSON</u>(<s>'/some/url.json'</s>, <b>function</b>(json) {<br/><br/>});<br/><br/><b class="unit">Xhr</b>.<u class="method">load</u>(<s>'/some/url.json'</s>, {<br/>  <s class="key">onSuccess</s>: <b>function</b>() {<br/>    <b class="var">this</b>.<u>json</u>; <i>// the json data</i><br/>  }<br/>});</code>
+
+<p>Sending generic forms via ajax</p>
+
+<code>$.<u class="method">ajax</u>({<br/>  <s class="key">url</s>:  $(<s>'#my-form'</s>).<u class="method">attr</u>(<s>'action'</s>),<br/>  <s class="key">type</s>: $(<s>'#my-form'</s>).<u class="method">attr</u>(<s>'method'</s>),<br/>  <s class="key">data</s>: $(<s>'#my-form'</s>).<u class="method">serialize</u>(),<br/>  <s class="key">success</s>: function_1<br/>});<br/><br/>$(<s>'my-form'</s>).<u class="method">send</u>({<s class="key">onSuccess</s>: func1});</code>
+<a name='effects' ></a><h2 class='chapter'>
+  <a href='jq-rjs-cheatsheet.html#' class='top-anchor'>top &uarr;</a><a href='jq-rjs-cheatsheet.html#effects'>Visual Effects</a>
+</h2>
+<p>Basic fx interface</p>
+
+<code>$(<s>'#element-id'</s>).<u class="method">animate</u>({<br/>  <s class="key">background</s>: <s>'green'</s><br/>}, <s class="int">400</s>, func_1);<br/><br/>$(<s>'element-id'</s>).<u class="method">morph</u>({<br/>  <s class="key">background</s>: <s>'green'</s><br/>}, {<br/>  <s class="key">duration</s>: <s class="int">400</s>,<br/>  <s class="key">onFinish</s>: func_1<br/>});</code>
+
+<p>Fading and sliding</p>
+
+<code>$(<s>'#element-id'</s>).<u class="method">fadeIn</u>();<br/>$(<s>'element-id'</s>).<u class="method">fade</u>(<s>'in'</s>);<br/><br/>$(<s>'#element-id'</s>).<u class="method">fadeOut</u>();<br/>$(<s>'element-id'</s>).<u class="method">fade</u>(<s>'out'</s>);<br/><br/>$(<s>'#element-id'</s>).<u class="method">slideIn</u>();<br/>$(<s>'element-id'</s>).<u class="method">slide</u>(<s>'in'</s>);<br/><br/>$(<s>'#element-id'</s>).<u class="method">slideOut</u>();<br/>$(<s>'element-id'</s>).<u class="method">slide</u>(<s>'out'</s>);</code>
+
+<p>Show/hide/toggle with effects</p>
+
+<code>$(<s>'#element-id'</s>).<u class="method">show</u>(<s>'slow'</s>);<br/>$(<s>'element-id'</s>).<u class="method">show</u>(<s>'fade'</s>);<br/>$(<s>'element-id'</s>).<u class="method">show</u>(<s>'slide'</s>);<br/><br/>$(<s>'#element-id'</s>).<u class="method">hide</u>(<s>'slow'</s>);<br/>$(<s>'element-id'</s>).<u class="method">hide</u>(<s>'fade'</s>);<br/>$(<s>'element-id'</s>).<u class="method">hide</u>(<s>'slide'</s>);<br/><br/>$(<s>'#element-id'</s>).<u class="method">toggle</u>(<s>'slow'</s>);<br/>$(<s>'element-id'</s>).<u class="method">toggle</u>(<s>'fade'</s>);<br/>$(<s>'element-id'</s>).<u class="method">toggle</u>(<s>'slide'</s>);</code>
+<a name='util' ></a><h2 class='chapter'>
+  <a href='jq-rjs-cheatsheet.html#' class='top-anchor'>top &uarr;</a><a href='jq-rjs-cheatsheet.html#util'>Utility Operations</a>
+</h2>
+<p>Catching the dom-ready event</p>
+
+<code>$(<b>function</b>() {<br/>  <i>// ....</i><br/>});<br/><br/>$(document).<u class="method">onReady</u>(<b>function</b>() {<br/>  <i>// ....</i><br/>});</code>
+
+<p>Checking the current browser type</p>
+
+<code>jQuery.<u>browser</u>.<u>msie</u>;<br/><br/><b class="unit">Browser</b>.<b class="unit">IE</b>;</code>
+
+<p>Collections processing</p>
+
+<code>$(<s>'div.something'</s>).<u class="method">each</u>(<b>function</b>(index) {<br/>  $(<b class="var">this</b>).<u class="method">addClass</u>(<s>'marked'</s>);<br/>});<br/><br/>$$(<s>'div.something'</s>).<u class="method">each</u>(<b>function</b>(item) {<br/>  item.<u class="method">addClass</u>(<s>'marked'</s>);<br/>});<br/><br/><i>// or like that</i><br/>$$(<s>'div.something'</s>).<u class="method">each</u>(<s>'addClass'</s>, <s>'marked'</s>);</code>
+
+<p>Mapping the results of function call on a collection</p>
+
+<code>jQuery.<u class="method">map</u>([<s class="int">1</s>,<s class="int">2</s>,<s class="int">3</s>], <b>function</b>(num) {<br/>  <b>return</b> num * <s class="int">2</s>;<br/>});<br/><br/>[<s class="int">1</s>,<s class="int">2</s>,<s class="int">3</s>].<u class="method">map</u>(<b>function</b>(num) {<br/>  <b>return</b> num * <s class="int">2</s>;<br/>});</code>
+
+<p>Merging arrays</p>
+
+<code>jQuery.<u class="method">merge</u>([<s class="int">1</s>,<s class="int">2</s>], [<s class="int">3</s>,<s class="int">4</s>]);<br/><br/>[<s class="int">1</s>,<s class="int">2</s>].<u class="method">merge</u>([<s class="int">3</s>,<s class="int">4</s>]);</code>
+
+<p>Getting unique elements out of an array</p>
+
+<code>jQuery.<u class="method">unique</u>([<s class="int">1</s>,<s class="int">1</s>,<s class="int">2</s>,<s class="int">2</s>]);<br/><br/>[<s class="int">1</s>,<s class="int">1</s>,<s class="int">2</s>,<s class="int">2</s>].<u class="method">uniq</u>();</code>
+
+<p>Making an array out of an iterable value</p>
+
+<code>jQuery.<u class="method">makeArray</u>(value);<br/>$A(value);</code>
+
+<p>Extending one object with other</p>
+
+<code>jQuery.<u class="method">extend</u>(obj1, obj2);<br/><br/>$ext(obj1, obj2);</code>
+
+<p>Binding functions to predefined contexts</p>
+
+<code>jQuery.<u class="method">proxy</u>(func, context);<br/><br/>func.<u class="method">bind</u>(context);</code>
+
+<p>Variable type checks</p>
+
+<code>jQuery.<u class="method">isFunction</u>(value);<br/>isFunction(value);<br/><br/>jQuery.<u class="method">isArray</u>(value);<br/>isArray(value);<br/><br/>jQuery.<u class="method">isPlainObject</u>(value);<br/>isHash(value);<br/><br/>jQuery.<u class="method">isEmptyObject</u>(value);<br/><b class="unit">Object</b>.<u class="method">empty</u>(value);</code>
+
+<p>Eval a string in the global scope</p>
+
+<code>jQuery.<u class="method">globalEval</u>(string);<br/>$eval(string);</code>
+
+<p>There are more utility features available in RightJS, see the <tt>Util</tt> and <tt>Lang</tt> sections in the <a href='../docs.html'>API Documentation</a></p>
+        </div>
+        <div style="clear:both"></div>
+      </div>
+      <div id="foot">
+        <div id="contacts">
+  <h2>Questions?</h2>
+  <a href="&#x6D;&#x61;i&#x6C;&#x74;&#x6F;:&#105;&#110;&#102;&#111;&#064;&#114;&#105;&#103;&#104;&#116;&#106;&#115;&#046;&#111;&#114;&#103;">&#105;&#110;&#102;&#111;&#064;&#114;&#105;&#103;&#104;&#116;&#106;&#115;&#046;&#111;&#114;&#103;</a>
+</div>
+<div id="bottom-menu">
+  <h2>About the Framework</h2>
+  <a href="../philosophy.html">Philosophy</a> |
+  <a href="../benchmarks.html">Benchmarks</a> |
+  <a href="../browsers.html">Browsers</a> |
+  <a href="../contacts.html">Contacts</a>
+</div>
+        <div id="design">Design by <a href="http://activestylus.com">Steven Garcia</a></div>
+        <div id="copyright">Copyright &copy; 2008-2011 Nikolay Nemshilov</div>
+      </div>
+    </div>
+
+    <script src="http://www.google-analytics.com/ga.js" type="text/javascript"></script>
+    <script type="text/javascript">
+    // <![CDATA[
+      try { _gat._getTracker("UA-10292980-1")._trackPageview(); } catch(err) {}
+    // ]]>
+    </script>
+  </body>
+</html>

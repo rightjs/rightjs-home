@@ -1,0 +1,18 @@
+[submodule "vendor/plugins/acts_as_uri_named"]
+  path = vendor/plugins/acts_as_uri_named
+  url = git://github.com/MadRabbit/acts_as_uri_named.git
+[submodule "vendor/right_js/core"]
+  path = vendor/right_js/core
+  url = git://github.com/rightjs/rightjs-core.git
+[submodule "vendor/right_js/ui"]
+  path = vendor/right_js/ui
+  url = git://github.com/rightjs/rightjs-ui.git
+[submodule "vendor/plugins/frontcompiler"]
+  path = vendor/plugins/frontcompiler
+  url = git://github.com/MadRabbit/frontcompiler.git
+[submodule "vendor/right_js/docs"]
+  path = vendor/right_js/docs
+  url = git://github.com/rightjs/rightjs-docs.git
+[submodule "vendor/right_js/plugins"]
+	path = vendor/right_js/plugins
+	url = git://github.com/rightjs/rightjs-plugins.git

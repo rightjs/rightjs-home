@@ -1,0 +1,178 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <title>RightJS: Participate</title>
+    <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+    <link href="blog.rss" rel="alternate" title="RightJS News" type="application/rss+xml" />
+    <script src="hotlink/right.js@1333128729" type="text/javascript"></script>
+<script src="javascripts/application.js@1295184937" type="text/javascript"></script>
+    <script src="builds/ui/right-autocompleter.js@1333128730" type="text/javascript"></script>
+    <link href="stylesheets/application.css@1297515667.css" media="screen" rel="stylesheet" type="text/css" />
+    
+    
+    
+  </head>
+  <body>
+    <div id="body">
+      <div id="head">
+        <a href="index.html" id="logo">RightJS</a>
+        <div id="slogan">JavaScript Framework That Feels Right</div>
+
+        <div id="main-menu">
+  <ul>
+    <li><a href="index.html">Home</a></li>
+    <li><a href="download.html">Download</a></li>
+    <li><a href="plugins.html">Plugins</a></li>
+    <li><a href="ui.html">UI</a></li>
+    <li><a href="demos.html">Demos</a></li>
+    <li><a href="docs.html">Docs</a></li>
+    <li><a href="blog.html">Blog</a></li>
+  </ul>
+  <div id="zing"><!-- the moving thing --></div>
+</div>
+        <div id="lang-switch">
+    <select onchange="document.location.href=this.value;">
+      <option selected="true" value="http://rightjs.org/participate">English</option>
+      <option value="http://ru.rightjs.org/participate">Русский</option>
+    </select>
+</div>
+      </div>
+      <div id="main">
+        <div id="sidebar">
+  <div class="box" id="download-box">
+    <h1>Get it!</h1>
+    <ul>
+      <li><a href="builds/current/right.js.zip">RightJS v2.3.1</a></li>
+    </ul>
+  </div>
+
+  <div id="api-search" class="box">
+  <input type="text" value="Search API" id="api-search-field" />
+  <script type="text/javascript">
+  // <![CDATA[
+    new Autocompleter($('api-search-field').on({
+      focus: function() { this._v = this.value(); this.value(''); },
+      blur:  function() { this.value(this._v); }
+    }), {
+      url: '/docs/search/%{search}.js',
+      onDone: function() {
+        var current = this.first('.current');
+        if (current) {
+          document.location.href = current.get('title');
+        }
+        this.input.setValue(this.input._v);
+      }
+    });
+  // ]]>
+  </script>
+</div>
+
+  <div class="box">
+    <label>Documentation</label>
+    <ul>
+      <li><a href="tutorials/getting-started.html">Getting Started</a></li>
+      <li><a href="tutorials/top-features.html">Top 12 Features</a></li>
+      <li><a href="docs.html">API Reference</a></li>
+      <li><a href="tutorials.1.html">Tutorials</a></li>
+    </ul>
+  </div>
+
+  <div class="box">
+    <label>Additional</label>
+    <ul>
+      <li><a href="plugins.html">RightJS Plugins</a></li>
+      
+      <li><a href="ui.html">RightJS UI</a></li>
+      
+      <li><a href="showcases.html">Showcases</a></li>
+    </ul>
+  </div>
+
+  <div class="box">
+    <label>Community</label>
+    <ul>
+      <li><a href="http://groups.google.com/group/rightjs">Google Group</a></li>
+      <li><a href="http://rightjs.lighthouseapp.com/projects/31989">Tickets Tracker</a></li>
+      <li><a href="http://github.com/rightjs/rightjs-snippets">Code Snippets</a></li>
+      <li><a href="irc://irc.freenode.net/rightjs">IRC #rightjs</a></li>
+      <li class="current"><a href="participate.html">Participate!</a></li>
+    </ul>
+  </div>
+
+  <div class="box">
+    <a href='http://www.pledgie.com/campaigns/14259'><img alt='Donate!' src='http://www.pledgie.com/campaigns/14259.png?skin_name=chrome' border='0' /></a>
+  </div>
+
+  <div class="box">
+    <ul id="social">
+      <li><a href="blog.rss" id="rss-link">RSS</a></li>
+      <li><a href="http://twitter.com/rightjs" id="twitter-link">Twitter</a></li>
+      <li><a href="http://github.com/rightjs" id="github-link">GitHub</a></li>
+    </ul>
+  </div>
+</div>
+
+        <div id="info">
+          <h1>Participate</h1>
+
+<p>If you are interested in the project development, there are some structure descriptions and suggestions where you might help.</p>
+
+<p>The project by itself is divided on several major blocks, each has its own repository at a github account <a href='http://github.com/rightjs'>http://github.com/rightjs</a> and developed mostly separately from the others.</p>
+
+<h2>RightJS Core</h2>
+
+<p><a href='http://github.com/rightjs/rightjs-core'>Core</a> is the central block and a holly caw of the project. It contains the basic engine and meant to keep the most common functionality, upon which we can grow plugins and other additional features.</p>
+
+<p>You&#8217;re pretty much welcome with bug-fixes and performance optimizations for the block. You also can suggest new features, but keep in mind that all the suggestions will be judged by their size and desire for 99% of users.</p>
+
+<p>If you have a good new feature, you might better suggest it for the RightJS Plugins project</p>
+
+<h2>RightJS Plugins</h2>
+
+<p><a href='http://github.com/rightjs/rightjs-plugins'>Plugins</a> is a collection of officially supported plugins and extensions for RightJS Core. It contains all the standard extensions, like JSON, Dragn&#8217;n&#8217;Drop, etc. Things that most people use but which they don&#8217;t need in 99% of cases.</p>
+
+<p>All the plugins are available as standalone blocks on this list <a href='plugins.html'>RightJS Plugins</a> and you also have them as options at the <a href='builds.1.html'>custom builds page</a></p>
+
+<p>Feel free to suggest and submit new plugins in there. Anything practical is welcome.</p>
+
+<h2>RightJS UI</h2>
+
+<p><a href='http://github.com/rightjs/rightjs-ui'>UI</a> is a collection of user-interface related plugins and widgets. And it also pretty much opened for new stuff.</p>
+
+<p>In this subproject we need help with <a href='http://github.com/rightjs/rightjs-ui/tree/master/i18n/'>internationalization modules</a>. Some of them are incomplete, some need verification and some of them don&#8217;t exist. So if know any language, which is not English or Russian, please check it out, I&#8217;d appreciate help with that.</p>
+
+<p>Another way to participate in the project is to work on visual themes for widgets. Currently widgets have some minimalistic simple styles, but there is a plan to build a collection of standalone visual themes for them. So if you are an artist, or kinda an artist and you are interested in this kind of things, please <a href='contacts.html'>contact</a> me and we will figure out what to do about that.</p>
+
+<h2>RightJS Home</h2>
+
+<p><a href='http://github.com/rightjs/rightjs-home'>Home</a> is a simple ruby-on-rails project that contains basically documentation, tutorials and some demo pages.</p>
+
+<p>I&#8217;m not a native English speaker and still do mistakes here and there. So you could really help with spellchecking of the documentation. And we are also looking for translators to support documentation on other languages.</p>
+        </div>
+        <div style="clear:both"></div>
+      </div>
+      <div id="foot">
+        <div id="contacts">
+  <h2>Questions?</h2>
+  <a href="&#x6D;&#x61;i&#x6C;&#x74;&#x6F;:&#105;&#110;&#102;&#111;&#064;&#114;&#105;&#103;&#104;&#116;&#106;&#115;&#046;&#111;&#114;&#103;">&#105;&#110;&#102;&#111;&#064;&#114;&#105;&#103;&#104;&#116;&#106;&#115;&#046;&#111;&#114;&#103;</a>
+</div>
+<div id="bottom-menu">
+  <h2>About the Framework</h2>
+  <a href="philosophy.html">Philosophy</a> |
+  <a href="benchmarks.html">Benchmarks</a> |
+  <a href="browsers.html">Browsers</a> |
+  <a href="contacts.html">Contacts</a>
+</div>
+        <div id="design">Design by <a href="http://activestylus.com">Steven Garcia</a></div>
+        <div id="copyright">Copyright &copy; 2008-2011 Nikolay Nemshilov</div>
+      </div>
+    </div>
+
+    <script src="http://www.google-analytics.com/ga.js" type="text/javascript"></script>
+    <script type="text/javascript">
+    // <![CDATA[
+      try { _gat._getTracker("UA-10292980-1")._trackPageview(); } catch(err) {}
+    // ]]>
+    </script>
+  </body>
+</html>

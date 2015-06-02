@@ -1,0 +1,373 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <title>RightJS: UI Modules Index</title>
+    <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+    <link href="blog.rss" rel="alternate" title="RightJS News" type="application/rss+xml" />
+    <script src="hotlink/right.js@1333128729" type="text/javascript"></script>
+<script src="javascripts/application.js@1295184937" type="text/javascript"></script>
+    <script src="builds/ui/right-autocompleter.js@1333128730" type="text/javascript"></script>
+    <link href="stylesheets/application.css@1297515667.css" media="screen" rel="stylesheet" type="text/css" />
+    
+    <link href="stylesheets/rightjs-ui-home.css@1295874376.css" media="screen" rel="stylesheet" type="text/css" />
+    
+  </head>
+  <body>
+    <div id="body">
+      <div id="head">
+        <a href="index.html" id="logo">RightJS</a>
+        <div id="slogan">JavaScript Framework That Feels Right</div>
+
+        <div id="main-menu">
+  <ul>
+    <li><a href="index.html">Home</a></li>
+    <li><a href="download.html">Download</a></li>
+    <li><a href="plugins.html">Plugins</a></li>
+    <li class="current"><a href="ui.html">UI</a></li>
+    <li><a href="demos.html">Demos</a></li>
+    <li><a href="docs.html">Docs</a></li>
+    <li><a href="blog.html">Blog</a></li>
+  </ul>
+  <div id="zing"><!-- the moving thing --></div>
+</div>
+        <div id="lang-switch">
+    <select onchange="document.location.href=this.value;">
+      <option selected="true" value="http://rightjs.org/ui">English</option>
+      <option value="http://ru.rightjs.org/ui">Русский</option>
+    </select>
+</div>
+      </div>
+      <div id="main">
+        <div id="sidebar">
+  <div class="box" id="download-box">
+    <h1>Get it!</h1>
+    <ul>
+      <li><a href="builds/current/right.js.zip">RightJS v2.3.1</a></li>
+    </ul>
+  </div>
+
+  <div id="api-search" class="box">
+  <input type="text" value="Search API" id="api-search-field" />
+  <script type="text/javascript">
+  // <![CDATA[
+    new Autocompleter($('api-search-field').on({
+      focus: function() { this._v = this.value(); this.value(''); },
+      blur:  function() { this.value(this._v); }
+    }), {
+      url: '/docs/search/%{search}.js',
+      onDone: function() {
+        var current = this.first('.current');
+        if (current) {
+          document.location.href = current.get('title');
+        }
+        this.input.setValue(this.input._v);
+      }
+    });
+  // ]]>
+  </script>
+</div>
+
+  <div class="box">
+    <label>Documentation</label>
+    <ul>
+      <li><a href="tutorials/getting-started.html">Getting Started</a></li>
+      <li><a href="tutorials/top-features.html">Top 12 Features</a></li>
+      <li><a href="docs.html">API Reference</a></li>
+      <li><a href="tutorials.1.html">Tutorials</a></li>
+    </ul>
+  </div>
+
+  <div class="box">
+    <label>Additional</label>
+    <ul>
+      <li><a href="plugins.html">RightJS Plugins</a></li>
+      
+      <li class="current"><a href="ui.html">RightJS UI</a></li>
+      <ul id="ui-menu"><li><a href="ui/autocompleter.html">Autocompleter</a></li>
+<li><a href="ui/billboard.html">Billboard</a></li>
+<li><a href="ui/calendar.html">Calendar</a></li>
+<li><a href="ui/colorpicker.html">Colorpicker</a></li>
+<li><a href="ui/dialog.html">Dialog</a></li>
+<li><a href="ui/in-edit.html">In Place Edit</a></li>
+<li><a href="ui/lightbox.html">Lightbox</a></li>
+<li><a href="ui/rater.html">Rater</a></li>
+<li><a href="ui/resizable.html">Resizable</a></li>
+<li><a href="ui/rte.html">Rte</a></li>
+<li><a href="ui/selectable.html">Selectable</a></li>
+<li><a href="ui/slider.html">Slider</a></li>
+<li><a href="ui/sortable.html">Sortable</a></li>
+<li><a href="ui/tabs.html">Tabs</a></li>
+<li><a href="ui/tags.html">Tags</a></li>
+<li><a href="ui/tooltips.html">Tooltips</a></li>
+<li><a href="ui/uploader.html">Uploader</a></li></ul>
+      <li><a href="showcases.html">Showcases</a></li>
+    </ul>
+  </div>
+
+  <div class="box">
+    <label>Community</label>
+    <ul>
+      <li><a href="http://groups.google.com/group/rightjs">Google Group</a></li>
+      <li><a href="http://rightjs.lighthouseapp.com/projects/31989">Tickets Tracker</a></li>
+      <li><a href="http://github.com/rightjs/rightjs-snippets">Code Snippets</a></li>
+      <li><a href="irc://irc.freenode.net/rightjs">IRC #rightjs</a></li>
+      <li><a href="participate.html">Participate!</a></li>
+    </ul>
+  </div>
+
+  <div class="box">
+    <a href='http://www.pledgie.com/campaigns/14259'><img alt='Donate!' src='http://www.pledgie.com/campaigns/14259.png?skin_name=chrome' border='0' /></a>
+  </div>
+
+  <div class="box">
+    <ul id="social">
+      <li><a href="blog.rss" id="rss-link">RSS</a></li>
+      <li><a href="http://twitter.com/rightjs" id="twitter-link">Twitter</a></li>
+      <li><a href="http://github.com/rightjs" id="github-link">GitHub</a></li>
+    </ul>
+  </div>
+</div>
+
+        <div id="info">
+          <h1>UI Modules Index</h1>
+
+<p>RightJS UI is a subproject that contains standard user-interface widgets for RightJS</p>
+
+<p>All the source code of the project is available under terms of the MIT license at the github service.</p>
+
+<p><a href='http://github.com/rightjs/rightjs-ui'>http://github.com/rightjs/rightjs-ui</a></p>
+
+<p><tt>git clone git://github.com/rightjs/rightjs-ui.git</tt></p>
+<a name='autocompleter' ></a><h2 class='chapter'>
+  <a href='ui.html#' class='top-anchor'>top &uarr;</a><a href='ui.html#autocompleter'>Autocompleter</a>
+</h2><p>
+  Autocompleter is the standard autocompletion feature for RightJS
+</p><p>
+  Info:
+    <a href='ui/autocompleter.html'>Documentation</a>,
+    <a href='ui/autocompleter/demo.html'>Demo</a> |
+
+  Download:
+    <a href='builds/ui/right-autocompleter.js' target='_blank'>minified</a>,
+    <a href='builds/ui/right-autocompleter-src.js' target='_blank'>source</a>
+</p><a name='billboard' ></a><h2 class='chapter'>
+  <a href='ui.html#' class='top-anchor'>top &uarr;</a><a href='ui.html#billboard'>Billboard</a>
+</h2><p>
+  Standard billboard/slideshow widget for RightJS
+</p><p>
+  Info:
+    <a href='ui/billboard.html'>Documentation</a>,
+    <a href='ui/billboard/demo.html'>Demo</a> |
+
+  Download:
+    <a href='builds/ui/right-billboard.js' target='_blank'>minified</a>,
+    <a href='builds/ui/right-billboard-src.js' target='_blank'>source</a>
+</p><a name='calendar' ></a><h2 class='chapter'>
+  <a href='ui.html#' class='top-anchor'>top &uarr;</a><a href='ui.html#calendar'>Calendar</a>
+</h2><p>
+  Calendar is the standard calendar feature for RightJS. It might work as a standard date-picker widget for input elements, or as an inline calendar widget on the page
+</p><p>
+  Info:
+    <a href='ui/calendar.html'>Documentation</a>,
+    <a href='ui/calendar/demo.html'>Demo</a> |
+
+  Download:
+    <a href='builds/ui/right-calendar.js' target='_blank'>minified</a>,
+    <a href='builds/ui/right-calendar-src.js' target='_blank'>source</a>
+</p><a name='colorpicker' ></a><h2 class='chapter'>
+  <a href='ui.html#' class='top-anchor'>top &uarr;</a><a href='ui.html#colorpicker'>Colorpicker</a>
+</h2><p>
+  The colorpicker widget for RightJS
+</p><p>
+  Info:
+    <a href='ui/colorpicker.html'>Documentation</a>,
+    <a href='ui/colorpicker/demo.html'>Demo</a> |
+
+  Download:
+    <a href='builds/ui/right-colorpicker.js' target='_blank'>minified</a>,
+    <a href='builds/ui/right-colorpicker-src.js' target='_blank'>source</a>
+</p><a name='dialog' ></a><h2 class='chapter'>
+  <a href='ui.html#' class='top-anchor'>top &uarr;</a><a href='ui.html#dialog'>Dialog</a>
+</h2><p>
+  Standard dialog widget solution for RightJS
+</p><p>
+  Info:
+    <a href='ui/dialog.html'>Documentation</a>,
+    <a href='ui/dialog/demo.html'>Demo</a> |
+
+  Download:
+    <a href='builds/ui/right-dialog.js' target='_blank'>minified</a>,
+    <a href='builds/ui/right-dialog-src.js' target='_blank'>source</a>
+</p><a name='in-edit' ></a><h2 class='chapter'>
+  <a href='ui.html#' class='top-anchor'>top &uarr;</a><a href='ui.html#in-edit'>In Place Edit</a>
+</h2><p>
+  A simple in-place editors feature for RightJS
+</p><p>
+  Info:
+    <a href='ui/in-edit.html'>Documentation</a>,
+    <a href='ui/in-edit/demo.html'>Demo</a> |
+
+  Download:
+    <a href='builds/ui/right-in-edit.js' target='_blank'>minified</a>,
+    <a href='builds/ui/right-in-edit-src.js' target='_blank'>source</a>
+</p><a name='lightbox' ></a><h2 class='chapter'>
+  <a href='ui.html#' class='top-anchor'>top &uarr;</a><a href='ui.html#lightbox'>Lightbox</a>
+</h2><p>
+  Lightbox a lightbox popups feature for RightJS, with all the standard functionality, like displaying any html content, ajax load, images browsing, etc.
+</p><p>
+  Info:
+    <a href='ui/lightbox.html'>Documentation</a>,
+    <a href='ui/lightbox/demo.html'>Demo</a> |
+
+  Download:
+    <a href='builds/ui/right-lightbox.js' target='_blank'>minified</a>,
+    <a href='builds/ui/right-lightbox-src.js' target='_blank'>source</a>
+</p><a name='rater' ></a><h2 class='chapter'>
+  <a href='ui.html#' class='top-anchor'>top &uarr;</a><a href='ui.html#rater'>Rater</a>
+</h2><p>
+  A simple rating widget that can work as a part of a form or as a standalone widget
+</p><p>
+  Info:
+    <a href='ui/rater.html'>Documentation</a>,
+    <a href='ui/rater/demo.html'>Demo</a> |
+
+  Download:
+    <a href='builds/ui/right-rater.js' target='_blank'>minified</a>,
+    <a href='builds/ui/right-rater-src.js' target='_blank'>source</a>
+</p><a name='resizable' ></a><h2 class='chapter'>
+  <a href='ui.html#' class='top-anchor'>top &uarr;</a><a href='ui.html#resizable'>Resizable</a>
+</h2><p>
+  Resizable blocks feature for RightJS
+</p><p>
+  Info:
+    <a href='ui/resizable.html'>Documentation</a>,
+    <a href='ui/resizable/demo.html'>Demo</a> |
+
+  Download:
+    <a href='builds/ui/right-resizable.js' target='_blank'>minified</a>,
+    <a href='builds/ui/right-resizable-src.js' target='_blank'>source</a>
+</p><a name='rte' ></a><h2 class='chapter'>
+  <a href='ui.html#' class='top-anchor'>top &uarr;</a><a href='ui.html#rte'>Rte</a>
+</h2><p>
+  Standard Rich Text Editor for RightJS
+</p><p>
+  Info:
+    <a href='ui/rte.html'>Documentation</a>,
+    <a href='ui/rte/demo.html'>Demo</a> |
+
+  Download:
+    <a href='builds/ui/right-rte.js' target='_blank'>minified</a>,
+    <a href='builds/ui/right-rte-src.js' target='_blank'>source</a>
+</p><a name='selectable' ></a><h2 class='chapter'>
+  <a href='ui.html#' class='top-anchor'>top &uarr;</a><a href='ui.html#selectable'>Selectable</a>
+</h2><p>
+  Customizable select-boxes replacement that can hold any html in the options list
+</p><p>
+  Info:
+    <a href='ui/selectable.html'>Documentation</a>,
+    <a href='ui/selectable/demo.html'>Demo</a> |
+
+  Download:
+    <a href='builds/ui/right-selectable.js' target='_blank'>minified</a>,
+    <a href='builds/ui/right-selectable-src.js' target='_blank'>source</a>
+</p><a name='slider' ></a><h2 class='chapter'>
+  <a href='ui.html#' class='top-anchor'>top &uarr;</a><a href='ui.html#slider'>Slider</a>
+</h2><p>
+  Slider is the standard slider widget, it can work as a standalone widget or as a part of a form
+</p><p>
+  Info:
+    <a href='ui/slider.html'>Documentation</a>,
+    <a href='ui/slider/demo.html'>Demo</a> |
+
+  Download:
+    <a href='builds/ui/right-slider.js' target='_blank'>minified</a>,
+    <a href='builds/ui/right-slider-src.js' target='_blank'>source</a>
+</p><a name='sortable' ></a><h2 class='chapter'>
+  <a href='ui.html#' class='top-anchor'>top &uarr;</a><a href='ui.html#sortable'>Sortable</a>
+</h2><p>
+  Sortable is the standard sortable units feature for RightJS
+</p><p>
+  Info:
+    <a href='ui/sortable.html'>Documentation</a>,
+    <a href='ui/sortable/demo.html'>Demo</a> |
+
+  Download:
+    <a href='builds/ui/right-sortable.js' target='_blank'>minified</a>,
+    <a href='builds/ui/right-sortable-src.js' target='_blank'>source</a>
+</p><a name='tabs' ></a><h2 class='chapter'>
+  <a href='ui.html#' class='top-anchor'>top &uarr;</a><a href='ui.html#tabs'>Tabs</a>
+</h2><p>
+  Tabs is the standard three in one (tabs/carousel/harmonica) tabs engine for RightJS
+</p><p>
+  Info:
+    <a href='ui/tabs.html'>Documentation</a>,
+    <a href='ui/tabs/demo.html'>Demo</a> |
+
+  Download:
+    <a href='builds/ui/right-tabs.js' target='_blank'>minified</a>,
+    <a href='builds/ui/right-tabs-src.js' target='_blank'>source</a>
+</p><a name='tags' ></a><h2 class='chapter'>
+  <a href='ui.html#' class='top-anchor'>top &uarr;</a><a href='ui.html#tags'>Tags</a>
+</h2><p>
+  User friendly tags/tokens input field
+</p><p>
+  Info:
+    <a href='ui/tags.html'>Documentation</a>,
+    <a href='ui/tags/demo.html'>Demo</a> |
+
+  Download:
+    <a href='builds/ui/right-tags.js' target='_blank'>minified</a>,
+    <a href='builds/ui/right-tags-src.js' target='_blank'>source</a>
+</p><a name='tooltips' ></a><h2 class='chapter'>
+  <a href='ui.html#' class='top-anchor'>top &uarr;</a><a href='ui.html#tooltips'>Tooltips</a>
+</h2><p>
+  This is the basic custom titles/tooltips feature for RightJS
+</p><p>
+  Info:
+    <a href='ui/tooltips.html'>Documentation</a>,
+    <a href='ui/tooltips/demo.html'>Demo</a> |
+
+  Download:
+    <a href='builds/ui/right-tooltips.js' target='_blank'>minified</a>,
+    <a href='builds/ui/right-tooltips-src.js' target='_blank'>source</a>
+</p><a name='uploader' ></a><h2 class='chapter'>
+  <a href='ui.html#' class='top-anchor'>top &uarr;</a><a href='ui.html#uploader'>Uploader</a>
+</h2><p>
+  Form uploading progress widget for RightJS
+</p><p>
+  Info:
+    <a href='ui/uploader.html'>Documentation</a>,
+    <a href='ui/uploader/demo.html'>Demo</a> |
+
+  Download:
+    <a href='builds/ui/right-uploader.js' target='_blank'>minified</a>,
+    <a href='builds/ui/right-uploader-src.js' target='_blank'>source</a>
+</p>
+        </div>
+        <div style="clear:both"></div>
+      </div>
+      <div id="foot">
+        <div id="contacts">
+  <h2>Questions?</h2>
+  <a href="&#x6D;&#x61;i&#x6C;&#x74;&#x6F;:&#105;&#110;&#102;&#111;&#064;&#114;&#105;&#103;&#104;&#116;&#106;&#115;&#046;&#111;&#114;&#103;">&#105;&#110;&#102;&#111;&#064;&#114;&#105;&#103;&#104;&#116;&#106;&#115;&#046;&#111;&#114;&#103;</a>
+</div>
+<div id="bottom-menu">
+  <h2>About the Framework</h2>
+  <a href="philosophy.html">Philosophy</a> |
+  <a href="benchmarks.html">Benchmarks</a> |
+  <a href="browsers.html">Browsers</a> |
+  <a href="contacts.html">Contacts</a>
+</div>
+        <div id="design">Design by <a href="http://activestylus.com">Steven Garcia</a></div>
+        <div id="copyright">Copyright &copy; 2008-2011 Nikolay Nemshilov</div>
+      </div>
+    </div>
+
+    <script src="http://www.google-analytics.com/ga.js" type="text/javascript"></script>
+    <script type="text/javascript">
+    // <![CDATA[
+      try { _gat._getTracker("UA-10292980-1")._trackPageview(); } catch(err) {}
+    // ]]>
+    </script>
+  </body>
+</html>

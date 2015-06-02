@@ -1,0 +1,238 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <title>RightJS: In Place Editors</title>
+    <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+    <link href="../blog.rss" rel="alternate" title="RightJS News" type="application/rss+xml" />
+    <script src="../hotlink/right.js@1333128729" type="text/javascript"></script>
+<script src="../javascripts/application.js@1295184937" type="text/javascript"></script>
+    <script src="../builds/ui/right-autocompleter.js@1333128730" type="text/javascript"></script>
+    <link href="../stylesheets/application.css@1297515667.css" media="screen" rel="stylesheet" type="text/css" />
+    
+    <link href="../stylesheets/rightjs-ui-home.css@1295874376.css" media="screen" rel="stylesheet" type="text/css" />
+    
+  </head>
+  <body>
+    <div id="body">
+      <div id="head">
+        <a href="../index.html" id="logo">RightJS</a>
+        <div id="slogan">JavaScript Framework That Feels Right</div>
+
+        <div id="main-menu">
+  <ul>
+    <li><a href="../index.html">Home</a></li>
+    <li><a href="../download.html">Download</a></li>
+    <li><a href="../plugins.html">Plugins</a></li>
+    <li class="current"><a href="../ui.html">UI</a></li>
+    <li><a href="../demos.html">Demos</a></li>
+    <li><a href="../docs.html">Docs</a></li>
+    <li><a href="../blog.html">Blog</a></li>
+  </ul>
+  <div id="zing"><!-- the moving thing --></div>
+</div>
+        <div id="lang-switch">
+    <select onchange="document.location.href=this.value;">
+      <option selected="true" value="http://rightjs.org/ui/in-edit">English</option>
+      <option value="http://ru.rightjs.org/ui/in-edit">Русский</option>
+    </select>
+</div>
+      </div>
+      <div id="main">
+        <div id="sidebar">
+  <div class="box" id="download-box">
+    <h1>Get it!</h1>
+    <ul>
+      <li><a href="../builds/current/right.js.zip">RightJS v2.3.1</a></li>
+    </ul>
+  </div>
+
+  <div id="api-search" class="box">
+  <input type="text" value="Search API" id="api-search-field" />
+  <script type="text/javascript">
+  // <![CDATA[
+    new Autocompleter($('api-search-field').on({
+      focus: function() { this._v = this.value(); this.value(''); },
+      blur:  function() { this.value(this._v); }
+    }), {
+      url: '/docs/search/%{search}.js',
+      onDone: function() {
+        var current = this.first('.current');
+        if (current) {
+          document.location.href = current.get('title');
+        }
+        this.input.setValue(this.input._v);
+      }
+    });
+  // ]]>
+  </script>
+</div>
+
+  <div class="box">
+    <label>Documentation</label>
+    <ul>
+      <li><a href="../tutorials/getting-started.html">Getting Started</a></li>
+      <li><a href="../tutorials/top-features.html">Top 12 Features</a></li>
+      <li><a href="../docs.html">API Reference</a></li>
+      <li><a href="../tutorials.1.html">Tutorials</a></li>
+    </ul>
+  </div>
+
+  <div class="box">
+    <label>Additional</label>
+    <ul>
+      <li><a href="../plugins.html">RightJS Plugins</a></li>
+      
+      <li class="current"><a href="../ui.html">RightJS UI</a></li>
+      <ul id="ui-menu"><li><a href="autocompleter.html">Autocompleter</a></li>
+<li><a href="billboard.html">Billboard</a></li>
+<li><a href="calendar.html">Calendar</a></li>
+<li><a href="colorpicker.html">Colorpicker</a></li>
+<li><a href="dialog.html">Dialog</a></li>
+<li class="current"><a href="in-edit.html">In Place Edit</a></li>
+<li><a href="lightbox.html">Lightbox</a></li>
+<li><a href="rater.html">Rater</a></li>
+<li><a href="resizable.html">Resizable</a></li>
+<li><a href="rte.html">Rte</a></li>
+<li><a href="selectable.html">Selectable</a></li>
+<li><a href="slider.html">Slider</a></li>
+<li><a href="sortable.html">Sortable</a></li>
+<li><a href="tabs.html">Tabs</a></li>
+<li><a href="tags.html">Tags</a></li>
+<li><a href="tooltips.html">Tooltips</a></li>
+<li><a href="uploader.html">Uploader</a></li></ul>
+      <li><a href="../showcases.html">Showcases</a></li>
+    </ul>
+  </div>
+
+  <div class="box">
+    <label>Community</label>
+    <ul>
+      <li><a href="http://groups.google.com/group/rightjs">Google Group</a></li>
+      <li><a href="http://rightjs.lighthouseapp.com/projects/31989">Tickets Tracker</a></li>
+      <li><a href="http://github.com/rightjs/rightjs-snippets">Code Snippets</a></li>
+      <li><a href="irc://irc.freenode.net/rightjs">IRC #rightjs</a></li>
+      <li><a href="../participate.html">Participate!</a></li>
+    </ul>
+  </div>
+
+  <div class="box">
+    <a href='http://www.pledgie.com/campaigns/14259'><img alt='Donate!' src='http://www.pledgie.com/campaigns/14259.png?skin_name=chrome' border='0' /></a>
+  </div>
+
+  <div class="box">
+    <ul id="social">
+      <li><a href="../blog.rss" id="rss-link">RSS</a></li>
+      <li><a href="http://twitter.com/rightjs" id="twitter-link">Twitter</a></li>
+      <li><a href="http://github.com/rightjs" id="github-link">GitHub</a></li>
+    </ul>
+  </div>
+</div>
+
+        <div id="info">
+          <h1>In Place Editors</h1>
+
+<p>In place editor is a standard feature, that let you nicely handle the text-editing right in the page</p>
+
+<p>Get the latest version right here</p>
+
+<ul>
+<li><a href='../builds/ui/right-in-edit.js'>right-in-edit.js</a> - minified version</li>
+
+<li><a href='../builds/ui/right-in-edit-src.js'>right-in-edit-src.js</a> - source code</li>
+</ul>
+
+<p>All the source code of the project is available under terms of the MIT license</p>
+
+<p><a href='http://github.com/rightjs/rightjs-ui/tree/master/src/in_edit/'>http://github.com/rightjs/rightjs-ui/tree/master/src/in_edit/</a></p>
+
+<p>For some standard usage examples see the <a href='in-edit/demo.html'>demo page</a></p>
+<h2 class="chapter"><a href='in-edit.html#'>Index</a></h2><p><ul><li><a href="in-edit.html#features">Features List</a></li><li><a href="in-edit.html#usage">Usage basics</a></li><li><a href="in-edit.html#options">Options List</a></li><li><a href="in-edit.html#api">Public API</a></li><li><a href="in-edit.html#events">Events List</a></li><li><a href="in-edit.html#style">Style Alterations</a></li></ul></p><a name='features' ></a><h2 class='chapter'>
+  <a href='in-edit.html#' class='top-anchor'>top &uarr;</a><a href='in-edit.html#features'>Features List</a>
+</h2>
+<p>Our in-place editors plugin has the following features:</p>
+
+<ul>
+<li>Works with text inputs, files, passwords and textarea fields</li>
+
+<li>Can automatically hide/show additional elements, like trigger links</li>
+
+<li>Super easy usage interface</li>
+
+<li>Comes in a single tiny file (just 1.7k gzipped)</li>
+</ul>
+<a name='usage' ></a><h2 class='chapter'>
+  <a href='in-edit.html#' class='top-anchor'>top &uarr;</a><a href='in-edit.html#usage'>Usage basics</a>
+</h2>
+<p>The usage is super-easy. Just call the <tt>inEdit</tt> method on the element, which content you would like to edit, pass your options and you&#8217;re good to go.</p>
+
+<code>&lt;span id=<s>"the-text"</s>&gt;<b class="unit">Click</b> the <s>'Edit'</s> link to edit me right here!&lt;/span&gt;<br/><br/>&lt;a href=<s>"#"</s> onclick=<s>"$('the-text').inEdit({url: '/url'}); return false;"</s>&gt;<b class="unit">Edit</b>&lt;/a&gt;</code>
+
+<p>Or even like that, without an &#8216;edit&#8217; link</p>
+
+<code>&lt;div onclick=<s>"$(this).inEdit({url:'/url'})"</s>&gt;click me to edit!&lt;/div&gt;</code>
+
+<p>You also can use the <tt>InEdit</tt> class to handle in-place forms manually in your code.</p>
+
+<code><b class="var">var</b> editor = <b class="var">new</b> <b class="unit">InEdit</b>(<s>'the-element'</s>, {<br/>  <s class="key">url</s>:    <s>'/the/submit/url'</s>,<br/>  <s class="key">name</s>:   <s>'the_text'</s>,<br/>  <s class="key">method</s>: <s>'post'</s><br/>});<br/><br/>editor.<u class="method">show</u>();</code>
+
+<p>In any case once the user hits the submit button, our script will send all the data via an <a href='../docs/xhr.html' class='api-ref'>Xhr</a> request and update the original element with the content from the response-text</p>
+<a name='options' ></a><h2 class='chapter'>
+  <a href='in-edit.html#' class='top-anchor'>top &uarr;</a><a href='in-edit.html#options'>Options List</a>
+</h2>
+<p>You can use the following options with your inline editors.</p>
+<table><thead><tr><th>Name</th><th>Default</th><th>Description</th></tr></thead><tbody><tr><td>url</td><td>null</td><td>the url address where to send the form</td>
+</tr><tr><td>name</td><td>&#8216;text&#8217;</td><td>the field name to send</td>
+</tr><tr><td>method</td><td>&#8216;put&#8217;</td><td>the method of <a href='../docs/xhr.html' class='api-ref'>Xhr</a> requests</td>
+</tr><tr><td>type</td><td>&#8216;text&#8217;</td><td>the input type, &#8216;text&#8217;, &#8216;file&#8217;, &#8216;password&#8217; or &#8216;textarea&#8217;</td>
+</tr><tr><td>toggle</td><td>null</td><td>a reference to an element that should get hidden when the editor is active</td>
+</tr><tr><td>update</td><td>true</td><td>a marker if the element should be updated with the response-text</td>
+</tr><tr><td>Xhr</td><td>{}</td><td>additional <a href='../docs/xhr.html' class='api-ref'>Xhr</a> options</td>
+</tr></tbody></table><a name='api' ></a><h2 class='chapter'>
+  <a href='in-edit.html#' class='top-anchor'>top &uarr;</a><a href='in-edit.html#api'>Public API</a>
+</h2>
+<p>In case you work with the <tt>InEdit</tt> class directly there are few methods available</p>
+<table><thead><tr><th>Name</th><th>Description</th></tr></thead><tbody><tr><td>show()</td><td>shows the in-place form</td>
+</tr><tr><td>hide()</td><td>hides the form and brings back the original content</td>
+</tr><tr><td>send()</td><td>in case you need to send the form manually</td>
+</tr></tbody></table><a name='events' ></a><h2 class='chapter'>
+  <a href='in-edit.html#' class='top-anchor'>top &uarr;</a><a href='in-edit.html#events'>Events List</a>
+</h2>
+<p>There is also a list of events available which you can observe with the in-form editors</p>
+<table><thead><tr><th>Name</th><th>Description</th></tr></thead><tbody><tr><td>show</td><td>when the form appears in the place</td>
+</tr><tr><td>hide</td><td>when the form gets hidden</td>
+</tr><tr><td>send</td><td>when the form was submitted</td>
+</tr><tr><td>update</td><td>when the script received the server response and updated the element</td>
+</tr></tbody></table><a name='style' ></a><h2 class='chapter'>
+  <a href='in-edit.html#' class='top-anchor'>top &uarr;</a><a href='in-edit.html#style'>Style Alterations</a>
+</h2>
+<p>In case you need to alter the styles on the form, there&#8217;s basic structure of elements we use</p>
+
+<code>&lt;form class=<s>"rui-in-edit"</s>&gt;<br/>  &lt;input class=<s>"rui-in-edit-field"</s> /&gt;<br/>  &lt;input type=<s>"submit"</s> class=<s>"rui-in-edit-submit"</s> /&gt;<br/>  &lt;div class=<s>"rui-in-edit-spinner"</s>&gt;<br/>    &lt;div class=<s>"glow"</s>&gt;&lt;/div&gt;&lt;div&gt;&lt;/div&gt;&lt;div&gt;&lt;/div&gt;&lt;div&gt;&lt;/div&gt;<br/>  &lt;/div&gt;<br/>  &lt;a href=<s>""</s> class=<s>"rui-in-edit-cancel"</s>&gt;<b class="unit">Cancel</b>&lt;/a&gt;<br/>&lt;/form&gt;</code>
+        </div>
+        <div style="clear:both"></div>
+      </div>
+      <div id="foot">
+        <div id="contacts">
+  <h2>Questions?</h2>
+  <a href="&#x6D;&#x61;i&#x6C;&#x74;&#x6F;:&#105;&#110;&#102;&#111;&#064;&#114;&#105;&#103;&#104;&#116;&#106;&#115;&#046;&#111;&#114;&#103;">&#105;&#110;&#102;&#111;&#064;&#114;&#105;&#103;&#104;&#116;&#106;&#115;&#046;&#111;&#114;&#103;</a>
+</div>
+<div id="bottom-menu">
+  <h2>About the Framework</h2>
+  <a href="../philosophy.html">Philosophy</a> |
+  <a href="../benchmarks.html">Benchmarks</a> |
+  <a href="../browsers.html">Browsers</a> |
+  <a href="../contacts.html">Contacts</a>
+</div>
+        <div id="design">Design by <a href="http://activestylus.com">Steven Garcia</a></div>
+        <div id="copyright">Copyright &copy; 2008-2011 Nikolay Nemshilov</div>
+      </div>
+    </div>
+
+    <script src="http://www.google-analytics.com/ga.js" type="text/javascript"></script>
+    <script type="text/javascript">
+    // <![CDATA[
+      try { _gat._getTracker("UA-10292980-1")._trackPageview(); } catch(err) {}
+    // ]]>
+    </script>
+  </body>
+</html>

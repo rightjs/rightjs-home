@@ -1,0 +1,1484 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <title>RightJS: Documentation: Element</title>
+    <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+    <link href="../blog.rss" rel="alternate" title="RightJS News" type="application/rss+xml" />
+    <script src="../hotlink/right.js@1333128729" type="text/javascript"></script>
+<script src="../javascripts/application.js@1295184937" type="text/javascript"></script>
+    <script src="../builds/ui/right-autocompleter.js@1333128730" type="text/javascript"></script>
+    <link href="../stylesheets/application.css@1297515667.css" media="screen" rel="stylesheet" type="text/css" />
+    
+    
+    
+  </head>
+  <body>
+    <div id="body">
+      <div id="head">
+        <a href="../index.html" id="logo">RightJS</a>
+        <div id="slogan">JavaScript Framework That Feels Right</div>
+
+        <div id="main-menu">
+  <ul>
+    <li><a href="../index.html">Home</a></li>
+    <li><a href="../download.html">Download</a></li>
+    <li><a href="../plugins.html">Plugins</a></li>
+    <li><a href="../ui.html">UI</a></li>
+    <li><a href="../demos.html">Demos</a></li>
+    <li class="current"><a href="../docs.html">Docs</a></li>
+    <li><a href="../blog.html">Blog</a></li>
+  </ul>
+  <div id="zing"><!-- the moving thing --></div>
+</div>
+        <div id="lang-switch">
+    <select onchange="document.location.href=this.value;">
+      <option selected="true" value="http://rightjs.org/docs/element/?q=user/register">English</option>
+      <option value="http://ru.rightjs.org/docs/element/?q=user/register">Русский</option>
+    </select>
+</div>
+      </div>
+      <div id="main">
+        <div id="sidebar">
+
+  <div id="api-search" class="box">
+  <input type="text" value="Search API" id="api-search-field" />
+  <script type="text/javascript">
+  // <![CDATA[
+    new Autocompleter($('api-search-field').on({
+      focus: function() { this._v = this.value(); this.value(''); },
+      blur:  function() { this.value(this._v); }
+    }), {
+      url: '/docs/search/%{search}.js',
+      onDone: function() {
+        var current = this.first('.current');
+        if (current) {
+          document.location.href = current.get('title');
+        }
+        this.input.setValue(this.input._v);
+      }
+    });
+  // ]]>
+  </script>
+</div>
+
+  <div class="box" id="api-lists">
+    <label>Core</label><ul><li><a href="browser.html">Browser</a></li><li><a href="class.html">Class</a></li><li><a href="util.html">Util</a></li></ul>
+<label>Dom</label><ul><li><a href="document.html">Document</a></li><li><a href="element.html">Element</a></li><ul><li><a href="element.html#include">include</a></li><li><a href="element.html#initialize">initialize</a></li><li><a href="element.html#addClass">addClass</a></li><li><a href="element.html#append">append</a></li><li><a href="element.html#children">children</a></li><li><a href="element.html#clean">clean</a></li><li><a href="element.html#clone">clone</a></li><li><a href="element.html#data">data</a></li><li><a href="element.html#delegate">delegate</a></li><li><a href="element.html#delegates">delegates</a></li><li><a href="element.html#dimensions">dimensions</a></li><li><a href="element.html#doc">doc</a></li><li><a href="element.html#empty">empty</a></li><li><a href="element.html#erase">erase</a></li><li><a href="element.html#find">find</a></li><li><a href="element.html#first">first</a></li><li><a href="element.html#get">get</a></li><li><a href="element.html#getClass">getClass</a></li><li><a href="element.html#getStyle">getStyle</a></li><li><a href="element.html#has">has</a></li><li><a href="element.html#hasClass">hasClass</a></li><li><a href="element.html#hidden">hidden</a></li><li><a href="element.html#hide">hide</a></li><li><a href="element.html#html">html</a></li><li><a href="element.html#index">index</a></li><li><a href="element.html#insert">insert</a></li><li><a href="element.html#insertTo">insertTo</a></li><li><a href="element.html#listeners">listeners</a></li><li><a href="element.html#load">load</a></li><li><a href="element.html#match">match</a></li><li><a href="element.html#moveTo">moveTo</a></li><li><a href="element.html#next">next</a></li><li><a href="element.html#nextSiblings">nextSiblings</a></li><li><a href="element.html#observes">observes</a></li><li><a href="element.html#on">on</a></li><li><a href="element.html#parent">parent</a></li><li><a href="element.html#parents">parents</a></li><li><a href="element.html#position">position</a></li><li><a href="element.html#prev">prev</a></li><li><a href="element.html#prevSiblings">prevSiblings</a></li><li><a href="element.html#radio">radio</a></li><li><a href="element.html#radioClass">radioClass</a></li><li><a href="element.html#remove">remove</a></li><li><a href="element.html#removeClass">removeClass</a></li><li><a href="element.html#replace">replace</a></li><li><a href="element.html#resize">resize</a></li><li><a href="element.html#scrollThere">scrollThere</a></li><li><a href="element.html#scrollTo">scrollTo</a></li><li><a href="element.html#scrolls">scrolls</a></li><li><a href="element.html#set">set</a></li><li><a href="element.html#setClass">setClass</a></li><li><a href="element.html#setHeight">setHeight</a></li><li><a href="element.html#setStyle">setStyle</a></li><li><a href="element.html#setWidth">setWidth</a></li><li><a href="element.html#show">show</a></li><li><a href="element.html#siblings">siblings</a></li><li><a href="element.html#size">size</a></li><li><a href="element.html#stop">stop</a></li><li><a href="element.html#stopObserving">stopObserving</a></li><li><a href="element.html#text">text</a></li><li><a href="element.html#toggle">toggle</a></li><li><a href="element.html#toggleClass">toggleClass</a></li><li><a href="element.html#undelegate">undelegate</a></li><li><a href="element.html#update">update</a></li><li><a href="element.html#visible">visible</a></li><li><a href="element.html#win">win</a></li><li><a href="element.html#wrap">wrap</a></li></ul><li><a href="event.html">Event</a></li><li><a href="form.html">Form</a></li><li><a href="input.html">Input</a></li><li><a href="window.html">Window</a></li></ul>
+<label>Fx</label><ul><li><a href="fx.html">Fx</a></li><li><a href="fx/attr.html">Fx.Attr</a></li><li><a href="fx/element.html">Fx.Element</a></li><li><a href="fx/fade.html">Fx.Fade</a></li><li><a href="fx/highlight.html">Fx.Highlight</a></li><li><a href="fx/morph.html">Fx.Morph</a></li><li><a href="fx/scroll.html">Fx.Scroll</a></li><li><a href="fx/slide.html">Fx.Slide</a></li></ul>
+<label>Lang</label><ul><li><a href="array.html">Array</a></li><li><a href="function.html">Function</a></li><li><a href="json.html">Json</a></li><li><a href="math.html">Math</a></li><li><a href="number.html">Number</a></li><li><a href="object.html">Object</a></li><li><a href="regexp.html">Regexp</a></li><li><a href="string.html">String</a></li></ul>
+<label>Util</label><ul><li><a href="cookie.html">Cookie</a></li><li><a href="observer.html">Observer</a></li><li><a href="options.html">Options</a></li><li><a href="xhr.html">Xhr</a></li></ul>
+  </div>
+
+  <div class="box">
+    <a href='http://www.pledgie.com/campaigns/14259'><img alt='Donate!' src='http://www.pledgie.com/campaigns/14259.png?skin_name=chrome' border='0' /></a>
+  </div>
+
+  <div class="box">
+    <ul id="social">
+      <li><a href="../blog.rss" id="rss-link">RSS</a></li>
+      <li><a href="http://twitter.com/rightjs" id="twitter-link">Twitter</a></li>
+      <li><a href="http://github.com/rightjs" id="github-link">GitHub</a></li>
+    </ul>
+  </div>
+</div>
+
+        <div id="info">
+          
+<h1>Element</h1>
+
+<p><a href='element.html' class='api-ref'>Element</a> is the basic dom-wrapper for all dom-elements.</p>
+
+<h2>Set Methods and Chains</h2>
+
+<p>All the set-methods in RightJS return a reference to the object they belong to, this way you can easily create chains of calls like:</p>
+
+<code>$(<s>'some-element'</s>).<u class="method">on</u>(<s>"click"</s>, <b>function</b>() {})<br/>  .<u class="method">setStyle</u>({<s class="key">fontSize</s>: <s>'200%'</s>})<br/>  .<u class="method">addClass</u>(<s>'marked'</s>).<u class="method">update</u>(<s>'with text'</s>)<br/>  .<u class="method">toggle</u>().<u class="method">set</u>(<s>'title'</s>, <s>'some-title'</s>) ...;</code>
+
+<h2>Selector Methods</h2>
+
+<p>There are a number of methods like <a href='element.html#parents' class='api-ref'>parents</a>, <a href='element.html#siblings' class='api-ref'>siblings</a> and so on to help you navigate in the neighborhood of an element. All the methods can be used as are, or they can receive an optional CSS selector rule which will filter the result.</p>
+
+<code><b class="var">var</b> element = $(<s>'some-element'</s>);<br/><br/>element.<u class="method">siblings</u>();      <i>// all the siblings</i><br/>element.<u class="method">siblings</u>(<s>'div'</s>); <i>// all the siblings with tag 'div'</i></code>
+
+<p><strong>NOTE</strong>: RightJS doesn&#8217;t use any special interfaces to process node lists but uses simple <a href='array.html' class='api-ref'>Array</a> instances. And as they support calls by name, you can take advantage of them when work with DOM elements:</p>
+
+<code>$(<s>'some-list'</s>).<u class="method">find</u>(<s>'li'</s>)<br/>  .<u class="method">filter</u>(<s>'hasClass'</s>, <s>'marked'</s>)<br/>  .<u class="method">each</u>(<s>'onClick'</s>, <b>function</b>() {...});</code>
+
+<h2>Events Processing</h2>
+
+<p>The <a href='element.html' class='api-ref'>Element</a> unit has all the standard <a href='observer.html' class='api-ref'>Observer</a> unit interface and handles events binding in the same exact way.</p>
+
+<code>$(<s>'some-element'</s>).<u class="method">on</u>(<s>'click'</s>, <b>function</b>() {<br/>  call_that_function();<br/>});<br/><br/>$(<s>'another-element'</s>).<u class="method">on</u>({<br/>  <s class="key">click</s>:     click_handler,<br/>  <s class="key">mouseover</s>: mouseover_handler,<br/>  <s class="key">mouseout</s>:  mouseout_handler<br/>});<br/><br/>$(<s>'that-element'</s>).<u class="method">on</u>(<s>'click'</s>, [<br/>  function1, function2, function3<br/>]);</code>
+
+<p>There are also shortcuts for all the standard DOM events. And you can use the name references for callbacks as well:</p>
+
+<code>$(element).<u class="method">onClick</u>(<s>'addClass'</s>, <s>'marked'</s>);<br/>$(element).<u class="method">onKeypress</u>(<s>'radioClass'</s>, <s>'typing'</s>);</code>
+
+<p>Finally, you can trigger any event handler manually like this:</p>
+
+<code>$(element).<u class="method">fire</u>(<s>'click'</s>,    { <s class="key">button</s>: <s class="int">3</s> });<br/>$(element).<u class="method">fire</u>(<s>'keypress'</s>, { <s class="key">keyCode</s>: <s class="int">12</s> });</code>
+
+<h2>Custom events</h2>
+
+<p>At the interface level, there is no difference between standard and custom events in RightJS. All of them are handled the exact same way:</p>
+
+<code>$(element).<u class="method">on</u>(<s>'my-event'</s>, <b>function</b>() {....});<br/>$(element).<u class="method">fire</u>(<s>'my-event'</s>);</code>
+
+<p><strong>NOTE</strong>: all the events you fire, normal and custom, all of them will bubble up to document object as they do when you a browser triggers them.</p>
+
+<h1>Methods</h1>
+<p>
+  <a href="element.html#include">include</a>, <a href="element.html#initialize">initialize</a>, <a href="element.html#addClass">addClass</a>, <a href="element.html#append">append</a>, <a href="element.html#children">children</a>, <a href="element.html#clean">clean</a>, <a href="element.html#clone">clone</a>, <a href="element.html#data">data</a>, <a href="element.html#delegate">delegate</a>, <a href="element.html#delegates">delegates</a>, <a href="element.html#dimensions">dimensions</a>, <a href="element.html#doc">doc</a>, <a href="element.html#empty">empty</a>, <a href="element.html#erase">erase</a>, <a href="element.html#find">find</a>, <a href="element.html#first">first</a>, <a href="element.html#get">get</a>, <a href="element.html#getClass">getClass</a>, <a href="element.html#getStyle">getStyle</a>, <a href="element.html#has">has</a>, <a href="element.html#hasClass">hasClass</a>, <a href="element.html#hidden">hidden</a>, <a href="element.html#hide">hide</a>, <a href="element.html#html">html</a>, <a href="element.html#index">index</a>, <a href="element.html#insert">insert</a>, <a href="element.html#insertTo">insertTo</a>, <a href="element.html#listeners">listeners</a>, <a href="element.html#load">load</a>, <a href="element.html#match">match</a>, <a href="element.html#moveTo">moveTo</a>, <a href="element.html#next">next</a>, <a href="element.html#nextSiblings">nextSiblings</a>, <a href="element.html#observes">observes</a>, <a href="element.html#on">on</a>, <a href="element.html#parent">parent</a>, <a href="element.html#parents">parents</a>, <a href="element.html#position">position</a>, <a href="element.html#prev">prev</a>, <a href="element.html#prevSiblings">prevSiblings</a>, <a href="element.html#radio">radio</a>, <a href="element.html#radioClass">radioClass</a>, <a href="element.html#remove">remove</a>, <a href="element.html#removeClass">removeClass</a>, <a href="element.html#replace">replace</a>, <a href="element.html#resize">resize</a>, <a href="element.html#scrollThere">scrollThere</a>, <a href="element.html#scrollTo">scrollTo</a>, <a href="element.html#scrolls">scrolls</a>, <a href="element.html#set">set</a>, <a href="element.html#setClass">setClass</a>, <a href="element.html#setHeight">setHeight</a>, <a href="element.html#setStyle">setStyle</a>, <a href="element.html#setWidth">setWidth</a>, <a href="element.html#show">show</a>, <a href="element.html#siblings">siblings</a>, <a href="element.html#size">size</a>, <a href="element.html#stop">stop</a>, <a href="element.html#stopObserving">stopObserving</a>, <a href="element.html#text">text</a>, <a href="element.html#toggle">toggle</a>, <a href="element.html#toggleClass">toggleClass</a>, <a href="element.html#undelegate">undelegate</a>, <a href="element.html#update">update</a>, <a href="element.html#visible">visible</a>, <a href="element.html#win">win</a>, <a href="element.html#wrap">wrap</a>
+</p>
+
+<div class="method">
+  <a name="include"></a>
+  <h2><a class="top-anchor" href="element.html#">top &uarr;</a><a href="element.html#include">include</a></h2>
+
+  <p class="semantic">
+    <code><b class="unit">Element</b>.<u class="method">include</u>(<b class="unit">Object</b> methods[, boolean don_rewrite])</code>
+  </p>
+
+
+  <h4>Description</h4>
+  <p>Registers additional methods for the DOM elements on the page.</p>
+
+
+
+  <h4>Example</h4>
+  <p>
+    <code><b class="unit">Element</b>.<u class="method">include</u>({<br/>  <s class="key">myMethod</s>: <b>function</b>() {....}<br/>});<br/><br/>$(<s>'my_element'</s>).<u class="method">myMethod</u>();</code>
+  </p>
+
+</div><div class="method">
+  <a name="initialize"></a>
+  <h2><a class="top-anchor" href="element.html#">top &uarr;</a><a href="element.html#initialize">initialize</a></h2>
+
+  <p class="semantic">
+    <code>initialize(<b class="unit">String</b> tag_name[, <b class="unit">Object</b> options]) -&gt; <b class="unit">Element</b> <b class="var">new</b></code>
+  </p>
+
+
+  <h4>Description</h4>
+  <p>The standard constructor which takes two arguments, the tag name and options. Options are generally the element attributes and additionally you can send the following keys to preset your element properties on instance:</p>
+
+<ul>
+<li>&#8216;html&#8217; - a source code to fill up the innerHTML property</li>
+
+<li>&#8216;class&#8217; - CSS class name(s) for the element</li>
+
+<li>&#8216;style&#8217; - a hash (or string) of styles to be preset</li>
+
+<li>&#8216;on&#8217; - same as <tt>'observe'</tt></li>
+</ul>
+
+<p>Everything will be handled in one flow.</p>
+
+
+
+  <h4>Example</h4>
+  <p>
+    <code><b class="var">var</b> element = <b class="var">new</b> <b class="unit">Element</b>(<s>'div'</s>);<br/><b class="var">var</b> element = <b class="var">new</b> <b class="unit">Element</b>(<s>'p'</s>, {<br/>  <s class="key">id</s>: <s>'some-paragraph'</s>,<br/>  <s>'class'</s>: <s>'come class'</s>,<br/>  <s class="key">style</s>: {<br/>    <s class="key">padding</s>: <s>'10pt'</s><br/>  },<br/>  <s class="key">on</s>: {<br/>    <s class="key">mouseover</s>: <b>function</b>() { ... }<br/>  }<br/>});</code>
+  </p>
+
+</div><div class="method">
+  <a name="addClass"></a>
+  <h2><a class="top-anchor" href="element.html#">top &uarr;</a><a href="element.html#addClass">addClass</a></h2>
+
+  <p class="semantic">
+    <code>addClass(<b class="unit">String</b> name) -&gt; <b class="unit">Element</b> <b class="var">self</b></code>
+  </p>
+
+
+  <h4>Description</h4>
+  <p>Adds the given CSS class name to the element class names list.</p>
+
+
+
+  <h4>Example</h4>
+  <p>
+    <code><b class="var">var</b> element = document.<u class="method">getElementById</u>(<s>'element'</s>);<br/>element.<u>className</u> = <s>'foo'</s>;<br/><br/>$(element).<u class="method">addClass</u>(<s>'bar'</s>);<br/><br/>element.<u>className</u>; <i>// -&gt; 'foo bar'</i></code>
+  </p>
+
+</div><div class="method">
+  <a name="append"></a>
+  <h2><a class="top-anchor" href="element.html#">top &uarr;</a><a href="element.html#append">append</a></h2>
+
+  <p class="semantic">
+    <code>append(element1[, elment2, ...]) -&gt; <b class="unit">Element</b> <b class="var">self</b></code>
+  </p>
+
+
+  <h4>Description</h4>
+  <p>A shortcut to insert several elements to the bottom of the current one</p>
+
+
+
+  <h4>Example</h4>
+  <p>
+    <code>element.<u class="method">append</u>(<br/>  $(<s>'element-1'</s>), $(<s>'element-2'</s>), $(<s>'element-3'</s>)<br/>);<br/><br/><i>// same as</i><br/>element.<u class="method">insert</u>([<br/>  $(<s>'element-1'</s>), $(<s>'element-2'</s>), $(<s>'element-3'</s>)<br/>], <s>'bottom'</s>);</code>
+  </p>
+
+</div><div class="method">
+  <a name="children"></a>
+  <h2><a class="top-anchor" href="element.html#">top &uarr;</a><a href="element.html#children">children</a></h2>
+
+  <p class="semantic">
+    <code>children([<b class="unit">String</b> css_rule]) -&gt; <b class="unit">Array</b> of elements</code>
+  </p>
+
+
+  <h4>Description</h4>
+  <p>Returns a list of the immediate descendants from the element, optionally filtered by the given CSS rule.</p>
+
+
+
+  <h4>Example</h4>
+  <p>
+    <code><i>/*<br/>  &lt;div id="one"&gt;<br/>    &lt;div id="two"&gt;&lt;/div&gt;<br/>    &lt;div id="three"&gt;&lt;/div&gt;<br/>  &lt;/div&gt;<br/>*/</i><br/><br/>$(<s>'one'</s>).<u class="method">children</u>();       <i>// -&gt; [div#two, div#three]</i><br/>$(<s>'one'</s>).<u class="method">children</u>(<s>'#two'</s>); <i>// -&gt; [div#two]</i></code>
+  </p>
+
+</div><div class="method">
+  <a name="clean"></a>
+  <h2><a class="top-anchor" href="element.html#">top &uarr;</a><a href="element.html#clean">clean</a></h2>
+
+  <p class="semantic">
+    <code>clean() -&gt; <b class="unit">Element</b> <b class="var">self</b></code>
+  </p>
+
+
+  <h4>Description</h4>
+  <p>Removes all child nodes from the element.</p>
+
+
+
+  <h4>Example</h4>
+  <p>
+    <code>$(<s>'element'</s>).<u class="method">clean</u>();<br/>$(<s>'element'</s>).<u class="method">html</u>(); <i>// -&gt; ''</i></code>
+  </p>
+
+</div><div class="method">
+  <a name="clone"></a>
+  <h2><a class="top-anchor" href="element.html#">top &uarr;</a><a href="element.html#clone">clone</a></h2>
+
+  <p class="semantic">
+    <code>clone() -&gt; <b class="unit">Element</b> <b class="var">new</b></code>
+  </p>
+
+
+  <h4>Description</h4>
+  <p>Creates a complete clone of the current element with the same content</p>
+
+
+
+  <h4>Example</h4>
+  <p>
+    <code><b class="var">var</b> element = $(<s>'element'</s>);<br/><b class="var">var</b> clone   = element.<u class="method">clone</u>();<br/><br/>element        != clone;<br/>element.<u>_</u>      != clone.<u>_</u>;<br/>element.<u class="method">html</u>() == clone.<u class="method">html</u>();</code>
+  </p>
+
+</div><div class="method">
+  <a name="data"></a>
+  <h2><a class="top-anchor" href="element.html#">top &uarr;</a><a href="element.html#data">data</a></h2>
+
+  <p class="semantic">
+    <code>data(<b class="unit">String</b> key)              -&gt; mixed data<br/>data(<b class="unit">Object</b> values)           -&gt; <b class="unit">Element</b> <b class="var">self</b><br/>data(<b class="unit">String</b> key, mixed value) -&gt; <b class="unit">Element</b> <b class="var">self</b></code>
+  </p>
+
+
+  <h4>Description</h4>
+  <p>HTML5 datasets access method</p>
+
+
+
+  <h4>Example</h4>
+  <p>
+    <code>element.<u class="method">data</u>(<s>'something'</s>);              <i>// -&gt; the 'data-something' attribute data</i><br/>element.<u class="method">data</u>(<s>'something'</s>, <s>'something'</s>); <i>// -&gt; sets 'data-something' attribute</i><br/>element.<u class="method">data</u>(<s>'something'</s>, <b class="rest">null</b>);        <i>// -&gt; removes 'data-something' attribute</i><br/>element.<u class="method">data</u>({<br/>  <s class="key">one</s>: <s class="int">1</s>, <s class="key">two</s>: <s class="int">2</s><br/>}); <i>// -&gt; sets 'data-one' and 'data-two'</i><br/><br/><i>// HTML5 datasets access</i><br/>element.<u class="method">set</u>(<s>'data-name-one'</s>, <s>'1'</s>);<br/>element.<u class="method">set</u>(<s>'data-name-two'</s>, <s>'2'</s>);<br/>element.<u class="method">data</u>(<s>'name'</s>); <i>// -&gt; {one: 1, two: 2}</i><br/><br/><i>// HTML5 datasets setting</i><br/>element.<u class="method">data</u>(<s>'name'</s>, {<s class="key">one</s>: <s class="int">1</s>, <s class="key">two</s>: <s class="int">2</s>});<br/>element.<u class="method">get</u>(<s>'data-name-one'</s>); <i>// -&gt; '1'</i><br/>element.<u class="method">get</u>(<s>'data-name-two'</s>); <i>// -&gt; '2'</i></code>
+  </p>
+
+</div><div class="method">
+  <a name="delegate"></a>
+  <h2><a class="top-anchor" href="element.html#">top &uarr;</a><a href="element.html#delegate">delegate</a></h2>
+
+  <p class="semantic">
+    <code>delegate(<b class="unit">String</b> event, <b class="unit">String</b> css_rule, <b class="unit">Function</b> callback) -&gt; <b class="unit">Element</b> <b class="var">self</b><br/>delegate(<b class="unit">String</b> event, <b class="unit">String</b> css_rule, <b class="unit">String</b> callback)   -&gt; <b class="unit">Element</b> <b class="var">self</b><br/>delegate(<b class="unit">String</b> event, <b class="unit">Object</b> css_rules_and_callbacks)     -&gt; <b class="unit">Element</b> <b class="var">self</b></code>
+  </p>
+
+
+  <h4>Description</h4>
+  <p>Delegates events handling to subelements that match the given css-rule.</p>
+
+<p><strong>NOTE</strong>: Callbacks will be called in the context of <em>matching</em> elements</p>
+
+
+
+  <h4>Example</h4>
+  <p>
+    <code>$(element).<u class="method">delegate</u>(<s>'click'</s>, <s>'div.blue'</s>,  func_1);<br/>$(element).<u class="method">delegate</u>(<s>'click'</s>, <s>'div.green'</s>, func_2);<br/><br/>$(element).<u class="method">delegate</u>(<s>'click'</s>, <s>'div.blue'</s>,  <s>'addClass'</s>, <s>'was-blue'</s>);<br/>$(element).<u class="method">delegate</u>(<s>'click'</s>, <s>'div.green'</s>, <s>'addClass'</s>, <s>'was-green'</s>);<br/><br/>$(element).<u class="method">delegate</u>(<s>'click'</s>, {<br/>  <s>'div.blue'</s>:  func_1,<br/>  <s>'div.green'</s>: func_2<br/>});</code>
+  </p>
+
+</div><div class="method">
+  <a name="delegates"></a>
+  <h2><a class="top-anchor" href="element.html#">top &uarr;</a><a href="element.html#delegates">delegates</a></h2>
+
+  <p class="semantic">
+    <code>delegates(<b class="unit">String</b> event[, <b class="unit">String</b> css_rule[, <b class="unit">Function</b> callback]]) -&gt; boolean<br/>delegates(<b class="unit">String</b> event[, <b class="unit">Object</b> rules_and_callback])            -&gt; boolean</code>
+  </p>
+
+
+  <h4>Description</h4>
+  <p>Checks if this element delegates certain events to certain types of sub-elements</p>
+
+
+
+  <h4>Example</h4>
+  <p>
+    <code>$(element).<u class="method">delegates</u>(<s>'click'</s>);<br/>$(element).<u class="method">delegates</u>(<s>'click'</s>, <s>'div.red'</s>);<br/>$(element).<u class="method">delegates</u>(<s>'click'</s>, <s>'div.red'</s>, callback);<br/><br/>$(element).<u class="method">delegates</u>(<s>'click'</s>, {<br/>  <s>'div.red'</s>:  callback_1,<br/>  <s>'div.blue'</s>: callback_2<br/>});</code>
+  </p>
+
+</div><div class="method">
+  <a name="dimensions"></a>
+  <h2><a class="top-anchor" href="element.html#">top &uarr;</a><a href="element.html#dimensions">dimensions</a></h2>
+
+  <p class="semantic">
+    <code>dimensions() -&gt; <b class="unit">Object</b></code>
+  </p>
+
+
+  <h4>Description</h4>
+  <p>Returns the dimensions of the element in a single hash. Includes the <tt>width</tt>, <tt>height</tt>, <tt>top</tt> and <tt>left</tt> positions as well as <tt>scrollLeft</tt> and <tt>scrollTop</tt> values.</p>
+
+
+
+  <h4>Example</h4>
+  <p>
+    <code>$(<s>'element'</s>).<u class="method">dimensions</u>();</code>
+  </p>
+
+</div><div class="method">
+  <a name="doc"></a>
+  <h2><a class="top-anchor" href="element.html#">top &uarr;</a><a href="element.html#doc">doc</a></h2>
+
+  <p class="semantic">
+    <code>doc() -&gt; <b class="unit">Document</b> document</code>
+  </p>
+
+
+  <h4>Description</h4>
+  <p>Returns a wrapped <a href='document.html' class='api-ref'>Document</a> object to which this element belongs to</p>
+
+
+
+  <h4>Example</h4>
+  <p>
+    <code>$(element).<u class="method">doc</u>().<u class="method">find</u>(<s>'div.class'</s>);</code>
+  </p>
+
+</div><div class="method">
+  <a name="empty"></a>
+  <h2><a class="top-anchor" href="element.html#">top &uarr;</a><a href="element.html#empty">empty</a></h2>
+
+  <p class="semantic">
+    <code>empty() -&gt; boolean</code>
+  </p>
+
+
+  <h4>Description</h4>
+  <p>Checks if the element has no internal text or elements.</p>
+
+
+
+  <h4>Example</h4>
+  <p>
+    <code>$(<s>'element'</s>).<u class="method">empty</u>();</code>
+  </p>
+
+</div><div class="method">
+  <a name="erase"></a>
+  <h2><a class="top-anchor" href="element.html#">top &uarr;</a><a href="element.html#erase">erase</a></h2>
+
+  <p class="semantic">
+    <code>erase(<b class="unit">String</b> name) -&gt; <b class="unit">Element</b> <b class="var">self</b></code>
+  </p>
+
+
+  <h4>Description</h4>
+  <p>Erases the attribute with the given name from an element.</p>
+
+
+
+  <h4>Example</h4>
+  <p>
+    <code><i>// &lt;div id="div" title="some title"&gt;&lt;/div&gt;</i><br/><br/>$(<s>'div'</s>).<u class="method">has</u>(<s>'title'</s>);   <i>// -&gt; true</i><br/><br/>$(<s>'div'</s>).<u class="method">erase</u>(<s>'title'</s>);<br/><br/>$(<s>'div'</s>).<u class="method">has</u>(<s>'title'</s>);   <i>// -&gt; false</i></code>
+  </p>
+
+</div><div class="method">
+  <a name="find"></a>
+  <h2><a class="top-anchor" href="element.html#">top &uarr;</a><a href="element.html#find">find</a></h2>
+
+  <p class="semantic">
+    <code>find(<b class="unit">String</b> css_rule[, boolean raw]) -&gt; <b class="unit">Array</b> of elements</code>
+  </p>
+
+
+  <h4>Description</h4>
+  <p>Finds all matching elements from the internal structure of the element.</p>
+
+<p><strong>NOTE</strong>: if the second attribute is set to <tt>true</tt>, then the method <em>won&#8217;t wrap</em> the elements into the <a href='element.html' class='api-ref'>Element</a> class instances and returns an array of raw dom-elements instead.</p>
+
+
+
+  <h4>Example</h4>
+  <p>
+    <code><i>/*<br/>  &lt;div id="one"&gt;<br/>    &lt;div id="two"&gt;<br/>      &lt;div id="three"&gt;&lt;/div&gt;<br/>    &lt;/div&gt;<br/>  &lt;/div&gt;<br/>*/</i><br/><br/>$(<s>'one'</s>).<u class="method">find</u>(<s>'div'</s>);    <i>// -&gt; [div#two, div#three]</i><br/>$(<s>'one'</s>).<u class="method">find</u>(<s>'#three'</s>); <i>// -&gt; [div#three]</i></code>
+  </p>
+
+</div><div class="method">
+  <a name="first"></a>
+  <h2><a class="top-anchor" href="element.html#">top &uarr;</a><a href="element.html#first">first</a></h2>
+
+  <p class="semantic">
+    <code>first(<b class="unit">String</b> css_rule) -&gt; <b class="unit">Element</b> or <b class="rest">null</b></code>
+  </p>
+
+
+  <h4>Description</h4>
+  <p>Returns the first node in the internal structure that matches the given CSS rule.</p>
+
+
+
+  <h4>Example</h4>
+  <p>
+    <code><i>/*<br/>  &lt;div id="one"&gt;<br/>    &lt;div id="two"&gt;<br/>      &lt;div id="three"&gt;&lt;/div&gt;<br/>    &lt;/div&gt;<br/>  &lt;/div&gt;<br/>*/</i><br/><br/>$(<s>'one'</s>).<u class="method">first</u>(<s>'div'</s>);    <i>// -&gt; div#two</i><br/>$(<s>'one'</s>).<u class="method">first</u>(<s>'#three'</s>); <i>// -&gt; div#three</i></code>
+  </p>
+
+</div><div class="method">
+  <a name="get"></a>
+  <h2><a class="top-anchor" href="element.html#">top &uarr;</a><a href="element.html#get">get</a></h2>
+
+  <p class="semantic">
+    <code>get(<b class="unit">String</b> name) -&gt; <b class="unit">String</b> value or <b class="rest">null</b> <b>if</b> empty</code>
+  </p>
+
+
+  <h4>Description</h4>
+  <p>Reads an element attribute. Returns null if the attribute is not set.</p>
+
+
+
+  <h4>Example</h4>
+  <p>
+    <code><i>// &lt;div id="div" title="some title"&gt;&lt;/div&gt;</i><br/><br/>$(<s>'div'</s>).<u class="method">get</u>(<s>'title'</s>); <i>// -&gt; 'some title'</i></code>
+  </p>
+
+</div><div class="method">
+  <a name="getClass"></a>
+  <h2><a class="top-anchor" href="element.html#">top &uarr;</a><a href="element.html#getClass">getClass</a></h2>
+
+  <p class="semantic">
+    <code>getClass() -&gt; <b class="unit">String</b> className</code>
+  </p>
+
+
+  <h4>Description</h4>
+  <p>A simple <tt>className</tt> property getter</p>
+
+
+
+  <h4>Example</h4>
+  <p>
+    <code>$(<s>'element'</s>).<u class="method">setClass</u>(<s>'foo bar'</s>);<br/>$(<s>'element'</s>).<u class="method">getClass</u>(); <i>// -&gt; 'foo bar'</i></code>
+  </p>
+
+</div><div class="method">
+  <a name="getStyle"></a>
+  <h2><a class="top-anchor" href="element.html#">top &uarr;</a><a href="element.html#getStyle">getStyle</a></h2>
+
+  <p class="semantic">
+    <code>getStyle(<b class="unit">String</b> name) -&gt; <b class="unit">String</b> value or <b class="rest">null</b></code>
+  </p>
+
+
+  <h4>Description</h4>
+  <p>Requests the element style by name. Supports both camelized and dasherized names.</p>
+
+<p><strong>NOTE</strong>: Checks both element styles as well as the computed (CSS) styles.</p>
+
+
+
+  <h4>Example</h4>
+  <p>
+    <code>$(<s>'element'</s>).<u class="method">hide</u>();<br/><br/>$(<s>'element'</s>).<u class="method">getStyle</u>(<s>'dispaly'</s>); <i>// -&gt; 'none'</i></code>
+  </p>
+
+</div><div class="method">
+  <a name="has"></a>
+  <h2><a class="top-anchor" href="element.html#">top &uarr;</a><a href="element.html#has">has</a></h2>
+
+  <p class="semantic">
+    <code>has(<b class="unit">String</b> name) -&gt; boolean</code>
+  </p>
+
+
+  <h4>Description</h4>
+  <p>Checks if an element has a non-empty attribute with that name.</p>
+
+
+
+  <h4>Example</h4>
+  <p>
+    <code><i>// &lt;div id="div" title="some title"&gt;&lt;/div&gt;</i><br/><br/>$(<s>'div'</s>).<u class="method">has</u>(<s>'title'</s>); <i>// -&gt; true</i><br/>$(<s>'div'</s>).<u class="method">has</u>(<s>'rel'</s>);   <i>// -&gt; false</i></code>
+  </p>
+
+</div><div class="method">
+  <a name="hasClass"></a>
+  <h2><a class="top-anchor" href="element.html#">top &uarr;</a><a href="element.html#hasClass">hasClass</a></h2>
+
+  <p class="semantic">
+    <code>hasClass(<b class="unit">String</b> class) -&gt; boolean</code>
+  </p>
+
+
+  <h4>Description</h4>
+  <p>Checks if the element is assigned to the given CSS class name.</p>
+
+
+
+  <h4>Example</h4>
+  <p>
+    <code>$(element).<u class="method">setClass</u>(<s>'foo bar'</s>);<br/><br/>$(element).<u class="method">hasClass</u>(<s>'foo'</s>); <i>// -&gt; true</i><br/>$(element).<u class="method">hasClass</u>(<s>'bar'</s>); <i>// -&gt; true</i><br/>$(element).<u class="method">hasClass</u>(<s>'boo'</s>); <i>// -&gt; false</i></code>
+  </p>
+
+</div><div class="method">
+  <a name="hidden"></a>
+  <h2><a class="top-anchor" href="element.html#">top &uarr;</a><a href="element.html#hidden">hidden</a></h2>
+
+  <p class="semantic">
+    <code>hidden() -&gt; boolean</code>
+  </p>
+
+
+  <h4>Description</h4>
+  <p>Checks if the element has style &#8216;display&#8217; set to &#8216;none&#8217;.</p>
+
+<p><strong>NOTE</strong>: Checks both element styles as well as the computed (CSS) styles.</p>
+
+
+
+  <h4>Example</h4>
+  <p>
+    <code><i>/*<br/>  &lt;style type="text/css"&gt;<br/>    #second { display: none }<br/>  &lt;/style&gt;<br/><br/>  &lt;div id="first" style="display: none"&gt;&lt;/div&gt;<br/>  &lt;div id="second"&gt;&lt;/div&gt;<br/>  &lt;div id="third"&gt;&lt;/div&gt;<br/>*/</i><br/><br/>$(<s>'first'</s>).<u class="method">hidden</u>();  <i>// -&gt; true</i><br/>$(<s>'second'</s>).<u class="method">hidden</u>(); <i>// -&gt; true</i><br/>$(<s>'third'</s>).<u class="method">hidden</u>();  <i>// -&gt; false</i></code>
+  </p>
+
+</div><div class="method">
+  <a name="hide"></a>
+  <h2><a class="top-anchor" href="element.html#">top &uarr;</a><a href="element.html#hide">hide</a></h2>
+
+  <p class="semantic">
+    <code>hide([<b class="unit">String</b> effect[, <b class="unit">Object</b> options]]) -&gt; <b class="unit">Element</b> <b class="var">self</b></code>
+  </p>
+
+
+  <h4>Description</h4>
+  <p>Hides the element. If a valid effect name was specified and the <a href='fx.html' class='api-ref'>Fx</a> module is available, the effect will be used to perform the hiding.</p>
+
+
+
+  <h4>Example</h4>
+  <p>
+    <code>$(<s>'some-element'</s>).<u class="method">hide</u>();<br/><br/>$(<s>'some-element'</s>).<u class="method">hide</u>(<s>'slide'</s>);<br/>$(<s>'some-element'</s>).<u class="method">hide</u>(<s>'slide'</s>, {<s class="key">duration</s>: <s>'long'</s>});</code>
+  </p>
+
+</div><div class="method">
+  <a name="html"></a>
+  <h2><a class="top-anchor" href="element.html#">top &uarr;</a><a href="element.html#html">html</a></h2>
+
+  <p class="semantic">
+    <code>html()               -&gt; <b class="unit">String</b> innerHTML<br/>html(mixed content); -&gt; <b class="unit">Element</b> <b class="var">self</b></code>
+  </p>
+
+
+  <h4>Description</h4>
+  <p>A bidirectional method to work with the element&#8217;s <tt>innerHTML</tt> property.</p>
+
+
+
+  <h4>Example</h4>
+  <p>
+    <code>$(<s>'element'</s>).<u class="method">html</u>(<s>'bla bla bla'</s>);<br/>$(<s>'element'</s>).<u class="method">html</u>(); <i>// -&gt; 'bla bla bla'</i></code>
+  </p>
+
+</div><div class="method">
+  <a name="index"></a>
+  <h2><a class="top-anchor" href="element.html#">top &uarr;</a><a href="element.html#index">index</a></h2>
+
+  <p class="semantic">
+    <code>index() -&gt; <b class="unit">Integer</b> element's index</code>
+  </p>
+
+
+  <h4>Description</h4>
+  <p>Returns the integer index of the element among his siblings</p>
+
+
+
+  <h4>Example</h4>
+  <p>
+    <code><i>/*<br/> &lt;div&gt;<br/>   &lt;div id="one"&gt;one&lt;/div&gt;<br/>   &lt;div id="two"&gt;two&lt;/div&gt;<br/> &lt;/div&gt;<br/>*/</i><br/><br/>$(<s>'one'</s>).<u class="method">index</u>(); <i>// -&gt; 0</i><br/>$(<s>'two'</s>).<u class="method">index</u>(); <i>// -&gt; 1</i></code>
+  </p>
+
+</div><div class="method">
+  <a name="insert"></a>
+  <h2><a class="top-anchor" href="element.html#">top &uarr;</a><a href="element.html#insert">insert</a></h2>
+
+  <p class="semantic">
+    <code>insert(mixed content[, <b class="unit">String</b> position]) -&gt; <b class="unit">Element</b> <b class="var">self</b></code>
+  </p>
+
+
+  <h4>Description</h4>
+  <p>Inserts the given content into the element at the given position.</p>
+
+<p>The content can be one of the following:</p>
+
+<ul>
+<li>an element instance</li>
+
+<li>a string with HTML code (scripts will be evaluated)</li>
+
+<li>a list of elements (array, or NodeList or something iterable)</li>
+</ul>
+
+<p>Position can be one of the following: top / bottom / before / after / instead</p>
+
+<p>The <tt>bottom</tt> value is used by default.</p>
+
+
+
+  <h4>Example</h4>
+  <p>
+    <code><b class="var">var</b> element = $(<s>'some-element'</s>);<br/><br/>element.<u class="method">insert</u>(<b class="var">new</b> <b class="unit">Element</b>(<s>'div'</s>, {<s class="key">html</s>: <s>'new-div'</s>}));<br/><br/>element.<u class="method">insert</u>(<b class="var">new</b> <b class="unit">Element</b>(<s>'div'</s>), <s>'top'</s>);<br/><br/>element.<u class="method">insert</u>([element1, element2, element3], <s>'before'</s>);</code>
+  </p>
+
+</div><div class="method">
+  <a name="insertTo"></a>
+  <h2><a class="top-anchor" href="element.html#">top &uarr;</a><a href="element.html#insertTo">insertTo</a></h2>
+
+  <p class="semantic">
+    <code>insertTo(<b class="unit">Element</b> destination[, <b class="unit">String</b> position]) -&gt; <b class="unit">Element</b> <b class="var">self</b></code>
+  </p>
+
+
+  <h4>Description</h4>
+  <p>Inserts the current element into the given one, optionally at the given position.</p>
+
+
+
+  <h4>Example</h4>
+  <p>
+    <code><b class="var">var</b> element1 = $(<s>'element1'</s>);<br/><b class="var">var</b> element2 = $(<s>'element2'</s>);<br/><br/>element1.<u class="method">insertTo</u>(element2, <s>'top'</s>);<br/><br/>element2.<u class="method">first</u>() === element1;</code>
+  </p>
+
+</div><div class="method">
+  <a name="listeners"></a>
+  <h2><a class="top-anchor" href="element.html#">top &uarr;</a><a href="element.html#listeners">listeners</a></h2>
+
+  <p class="semantic">
+    <code>listeners()            -&gt; <b class="unit">Array</b> of functions<br/>listeners(<b class="unit">String</b> name) -&gt; <b class="unit">Array</b> of functions</code>
+  </p>
+
+
+  <h4>Description</h4>
+  <p>Returns a list of element event listeners which can optionally be narrowed down by an event name scope.</p>
+
+
+
+  <h4>Example</h4>
+  <p>
+    <code><b class="var">var</b> func = <b>function</b>() {};<br/><br/>element.<u class="method">on</u>(<s>'click'</s>, func);<br/><br/>element.<u class="method">listeners</u>();            <i>// -&gt; [func]</i><br/>element.<u class="method">listeners</u>(<s>'click'</s>);     <i>// -&gt; [func]</i><br/>element.<u class="method">listeners</u>(<s>'mouseover'</s>); <i>// -&gt; []</i></code>
+  </p>
+
+</div><div class="method">
+  <a name="load"></a>
+  <h2><a class="top-anchor" href="element.html#">top &uarr;</a><a href="element.html#load">load</a></h2>
+
+  <p class="semantic">
+    <code>load(<b class="unit">String</b> url[, <b class="unit">Object</b> options]) -&gt; <b class="unit">Element</b> <b class="var">self</b></code>
+  </p>
+
+
+  <h4>Description</h4>
+  <p>This method loads the given URL and updates the innerHTML property of the element with the response body.</p>
+
+<p>Takes all the standard <a href='xhr.html' class='api-ref'>Xhr</a> class options as the second parameter.</p>
+
+<p>If there is any JavaScript code in the response, it will by default be automatically evaluated after the element body was updated.</p>
+
+<p><strong>NOTE</strong>: Will perform a <tt>GET</tt> request by default.</p>
+
+
+
+  <h4>Example</h4>
+  <p>
+    <code>element.<u class="method">load</u>(<s>'/something'</s>);<br/><br/>element.<u class="method">load</u>(<s>'/something'</s>, {<br/>  <s class="key">method</s>: <s>'post'</s>,<br/>  <s class="key">spinner</s>: <s>'spinner-id'</s><br/>});</code>
+  </p>
+
+</div><div class="method">
+  <a name="match"></a>
+  <h2><a class="top-anchor" href="element.html#">top &uarr;</a><a href="element.html#match">match</a></h2>
+
+  <p class="semantic">
+    <code>match(<b class="unit">String</b> css_rule) -&gt; boolean</code>
+  </p>
+
+
+  <h4>Description</h4>
+  <p>Checks if the element matches the given CSS rule.</p>
+
+
+
+  <h4>Example</h4>
+  <p>
+    <code><i>// &lt;div id="some-element"&gt;&lt;/div&gt;</i><br/><br/>$(<s>'some-element'</s>).<u class="method">match</u>(<s>'div'</s>);  <i>// -&gt; true</i><br/>$(<s>'some-element'</s>).<u class="method">match</u>(<s>'span'</s>); <i>// -&gt; false</i></code>
+  </p>
+
+</div><div class="method">
+  <a name="moveTo"></a>
+  <h2><a class="top-anchor" href="element.html#">top &uarr;</a><a href="element.html#moveTo">moveTo</a></h2>
+
+  <p class="semantic">
+    <code>moveTo(number left, number top) -&gt; <b class="unit">Element</b> <b class="var">self</b><br/>moveTo({<s class="key">x</s>: number, <s class="key">y</s>: number})  -&gt; <b class="unit">Element</b> <b class="var">self</b></code>
+  </p>
+
+
+  <h4>Description</h4>
+  <p>Move the element to the given position.</p>
+
+
+
+  <h4>Example</h4>
+  <p>
+    <code>element.<u class="method">moveTo</u>(<s class="int">100</s>, <s class="int">100</s>);<br/>element.<u class="method">moveTo</u>({<s class="key">x</s>: <s class="int">100</s>, <s class="key">y</s>: <s class="int">100</s>});</code>
+  </p>
+
+</div><div class="method">
+  <a name="next"></a>
+  <h2><a class="top-anchor" href="element.html#">top &uarr;</a><a href="element.html#next">next</a></h2>
+
+  <p class="semantic">
+    <code>next([<b class="unit">String</b> css_rule]) -&gt; <b class="unit">Element</b> or <b class="rest">null</b></code>
+  </p>
+
+
+  <h4>Description</h4>
+  <p>Returns the next sibling of the element or if a CSS rule is specified the next sibling that matches the rule.</p>
+
+
+
+  <h4>Example</h4>
+  <p>
+    <code><i>/*<br/>  &lt;div&gt;<br/>    &lt;div id="one"&gt;&lt;/div&gt;<br/>    &lt;div id="two"&gt;&lt;/div&gt;<br/>    &lt;div id="three"&gt;&lt;/div&gt;<br/>  &lt;/div&gt;<br/>*/</i><br/><br/>$(<s>'one'</s>).<u class="method">next</u>();         <i>// -&gt; div#two</i><br/>$(<s>'one'</s>).<u class="method">next</u>(<s>'#three'</s>); <i>// -&gt; div#three</i></code>
+  </p>
+
+</div><div class="method">
+  <a name="nextSiblings"></a>
+  <h2><a class="top-anchor" href="element.html#">top &uarr;</a><a href="element.html#nextSiblings">nextSiblings</a></h2>
+
+  <p class="semantic">
+    <code>nextSiblings([<b class="unit">String</b> css_rule]) -&gt; <b class="unit">Array</b> of elements</code>
+  </p>
+
+
+  <h4>Description</h4>
+  <p>Collects later siblings of the element, optionally filtered by the given CSS rule.</p>
+
+
+
+  <h4>Example</h4>
+  <p>
+    <code><i>/*<br/>  &lt;div&gt;<br/>    &lt;div id="some"&gt;&lt;/div&gt;<br/>    &lt;div id="one"&gt;&lt;/div&gt;<br/>    &lt;div id="two"&gt;&lt;/div&gt;<br/>    &lt;div id="three"&gt;&lt;/div&gt;<br/>  &lt;/div&gt;<br/>*/</i><br/><br/>$(<s>'one'</s>).<u class="method">nextSiblings</u>();         <i>// -&gt; [div#two, div#three]</i><br/>$(<s>'one'</s>).<u class="method">nextSiblings</u>(<s>'#three'</s>); <i>// -&gt; [div#three]</i></code>
+  </p>
+
+</div><div class="method">
+  <a name="observes"></a>
+  <h2><a class="top-anchor" href="element.html#">top &uarr;</a><a href="element.html#observes">observes</a></h2>
+
+  <p class="semantic">
+    <code>observes(<b class="unit">Function</b> listener)              -&gt; boolean<br/>observes(<b class="unit">String</b> name, <b class="unit">Function</b> listener) -&gt; boolean</code>
+  </p>
+
+
+  <h4>Description</h4>
+  <p>Checks if the given listener observers the element events. You can do either a general check or against a specific event name.</p>
+
+
+
+  <h4>Example</h4>
+  <p>
+    <code><b class="var">var</b> func = <b>function</b>() {};<br/><br/>element.<u class="method">on</u>(<s>'click'</s>, func);<br/><br/>element.<u class="method">observes</u>(func);              <i>// -&gt; true</i><br/>element.<u class="method">observes</u>(<s>'mouseover'</s>, func); <i>// -&gt; false</i></code>
+  </p>
+
+</div><div class="method">
+  <a name="on"></a>
+  <h2><a class="top-anchor" href="element.html#">top &uarr;</a><a href="element.html#on">on</a></h2>
+
+  <p class="semantic">
+    <code>on(<b class="unit">String</b> eventName, <b class="unit">Function</b> listener)             -&gt; <b class="unit">Element</b> <b class="var">self</b><br/>on(<b class="unit">String</b> eventName, <b class="unit">String</b> method[, argument,...]) -&gt; <b class="unit">Element</b> <b class="var">self</b><br/>on(<b class="unit">String</b> eventName, <b class="unit">Array</b> list_list_of_callbacks)  -&gt; <b class="unit">Element</b> <b class="var">self</b><br/>on(<b class="unit">Object</b> event_listeners_hash)                     -&gt; <b class="unit">Element</b> <b class="var">self</b></code>
+  </p>
+
+
+  <h4>Description</h4>
+  <p>Binds an event listener to the element.</p>
+
+
+
+  <h4>Example</h4>
+  <p>
+    <code>$(<s>'element'</s>).<u class="method">on</u>(<s>'click'</s>, <b>function</b>() {<br/>  <i>// do something about it</i><br/>});<br/><br/>$(<s>'element'</s>).<u class="method">on</u>(<s>'click'</s>, <s>'addClass'</s>, <s>'clicked'</s>);<br/><br/>$(<s>'element'</s>).<u class="method">on</u>(<s>'click'</s>, [function1, function2]);<br/><br/>$(<s>'element'</s>).<u class="method">on</u>({<br/>  <s class="key">click</s>: function1,<br/>  <s class="key">dblclick</s>: function2<br/>});</code>
+  </p>
+
+</div><div class="method">
+  <a name="parent"></a>
+  <h2><a class="top-anchor" href="element.html#">top &uarr;</a><a href="element.html#parent">parent</a></h2>
+
+  <p class="semantic">
+    <code>parent([<b class="unit">String</b> css_rule]) -&gt; <b class="unit">Element</b> parent or <b class="rest">null</b></code>
+  </p>
+
+
+  <h4>Description</h4>
+  <p>Selects the parent element. The first one if there is no CSS rule or the first one that matches the rule.</p>
+
+
+
+  <h4>Example</h4>
+  <p>
+    <code><i>/*<br/>  &lt;div id="one"&gt;<br/>    &lt;div id="two"&gt;<br/>      &lt;div id="three"&gt;&lt;/div&gt;<br/>    &lt;/div&gt;<br/>  &lt;/div&gt;<br/>*/</i><br/><br/>$(<s>'three'</s>).<u class="method">parent</u>();       <i>// -&gt; div#two</i><br/>$(<s>'three'</s>).<u class="method">parent</u>(<s>'#one'</s>); <i>// -&gt; div#one</i></code>
+  </p>
+
+</div><div class="method">
+  <a name="parents"></a>
+  <h2><a class="top-anchor" href="element.html#">top &uarr;</a><a href="element.html#parents">parents</a></h2>
+
+  <p class="semantic">
+    <code>parents([<b class="unit">String</b> css_rule]) -&gt; <b class="unit">Array</b> of elements</code>
+  </p>
+
+
+  <h4>Description</h4>
+  <p>Returns the list of parent nodes of the element (from bottom up). If a CSS rule was specified, the list will be filtered by that rule</p>
+
+
+
+  <h4>Example</h4>
+  <p>
+    <code><i>/*<br/>  &lt;div id="one"&gt;<br/>    &lt;div id="two"&gt;<br/>      &lt;div id="three"&gt;&lt;/div&gt;<br/>    &lt;/div&gt;<br/>  &lt;/div&gt;<br/>*/</i><br/><br/>$(<s>'three'</s>).<u class="method">parents</u>();       <i>// -&gt; [div#two, div#one]</i><br/>$(<s>'three'</s>).<u class="method">parents</u>(<s>'#one'</s>); <i>// -&gt; [div#one]</i></code>
+  </p>
+
+</div><div class="method">
+  <a name="position"></a>
+  <h2><a class="top-anchor" href="element.html#">top &uarr;</a><a href="element.html#position">position</a></h2>
+
+  <p class="semantic">
+    <code>position() -&gt; <b class="unit">Object</b> {<s class="key">x</s>: <b class="unit">NN</b> , <s class="key">y</s>: <b class="unit">NN</b> }</code>
+  </p>
+
+
+  <h4>Description</h4>
+  <p>Returns the absolute position of the element on the page.</p>
+
+
+
+  <h4>Example</h4>
+  <p>
+    <code><b class="var">var</b> top  = $(<s>'element'</s>).<u class="method">position</u>().<u>y</u>;<br/><b class="var">var</b> left = $(<s>'element'</s>).<u class="method">position</u>().<u>x</u>;</code>
+  </p>
+
+</div><div class="method">
+  <a name="prev"></a>
+  <h2><a class="top-anchor" href="element.html#">top &uarr;</a><a href="element.html#prev">prev</a></h2>
+
+  <p class="semantic">
+    <code>prev([<b class="unit">String</b> css_rule]) -&gt; <b class="unit">Element</b> or <b class="rest">null</b></code>
+  </p>
+
+
+  <h4>Description</h4>
+  <p>Returns the previous sibling of the element or if a CSS rule is specified the previous sibling that matches the rule.</p>
+
+
+
+  <h4>Example</h4>
+  <p>
+    <code><i>/*<br/>  &lt;div&gt;<br/>    &lt;div id="one"&gt;&lt;/div&gt;<br/>    &lt;div id="two"&gt;&lt;/div&gt;<br/>    &lt;div id="three"&gt;&lt;/div&gt;<br/>  &lt;/div&gt;<br/>*/</i><br/><br/>$(<s>'three'</s>).<u class="method">prev</u>();       <i>// -&gt; div#two</i><br/>$(<s>'three'</s>).<u class="method">prev</u>(<s>'#one'</s>); <i>// -&gt; div#one</i></code>
+  </p>
+
+</div><div class="method">
+  <a name="prevSiblings"></a>
+  <h2><a class="top-anchor" href="element.html#">top &uarr;</a><a href="element.html#prevSiblings">prevSiblings</a></h2>
+
+  <p class="semantic">
+    <code>prevSiblings([<b class="unit">String</b> css_rule]) -&gt; <b class="unit">Array</b> of elements</code>
+  </p>
+
+
+  <h4>Description</h4>
+  <p>Returns the element previous siblings. Optionally filtered out by the given css-rule.</p>
+
+
+
+  <h4>Example</h4>
+  <p>
+    <code><i>/*<br/>  &lt;div&gt;<br/>    &lt;div id="one"&gt;&lt;/div&gt;<br/>    &lt;div id="two"&gt;&lt;/div&gt;<br/>    &lt;div id="three"&gt;&lt;/div&gt;<br/>    &lt;div id="some"&gt;&lt;/div&gt;<br/>  &lt;/div&gt;<br/>*/</i><br/><br/>$(<s>'three'</s>).<u class="method">nextSiblings</u>();       <i>// -&gt; [div#two, div#one]</i><br/>$(<s>'three'</s>).<u class="method">nextSiblings</u>(<s>'#one'</s>); <i>// -&gt; [div#one]</i></code>
+  </p>
+
+</div><div class="method">
+  <a name="radio"></a>
+  <h2><a class="top-anchor" href="element.html#">top &uarr;</a><a href="element.html#radio">radio</a></h2>
+
+  <p class="semantic">
+    <code>radio([<b class="unit">String</b> effect[, <b class="unit">Object</b> options]]) -&gt; <b class="unit">Element</b> <b class="var">self</b></code>
+  </p>
+
+
+  <h4>Description</h4>
+  <p>Hides all the sibling elements and shows itself. If a valid effect name was specified, the effect will be used to perform the showing.</p>
+
+
+
+  <h4>Example</h4>
+  <p>
+    <code>$(<s>'some-element'</s>).<u class="method">radio</u>();<br/><br/>$(<s>'some-element'</s>).<u class="method">radio</u>(<s>'slide'</s>);<br/>$(<s>'some-element'</s>).<u class="method">radio</u>(<s>'slide'</s>, {<s class="key">duration</s>: <s>'long'</s>});</code>
+  </p>
+
+</div><div class="method">
+  <a name="radioClass"></a>
+  <h2><a class="top-anchor" href="element.html#">top &uarr;</a><a href="element.html#radioClass">radioClass</a></h2>
+
+  <p class="semantic">
+    <code>radioClass(<b class="unit">String</b> name) -&gt; <b class="unit">Element</b> <b class="var">self</b></code>
+  </p>
+
+
+  <h4>Description</h4>
+  <p>Removes the CSS class name from all siblings of the element and adds it to the element.</p>
+
+
+
+  <h4>Example</h4>
+  <p>
+    <code>$(<s>'element'</s>).<u class="method">radioClass</u>(<s>'boo'</s>);</code>
+  </p>
+
+</div><div class="method">
+  <a name="remove"></a>
+  <h2><a class="top-anchor" href="element.html#">top &uarr;</a><a href="element.html#remove">remove</a></h2>
+
+  <p class="semantic">
+    <code>remove() -&gt; <b class="unit">Element</b> <b class="var">self</b></code>
+  </p>
+
+
+  <h4>Description</h4>
+  <p>Removes the element from its parent element.</p>
+
+
+
+  <h4>Example</h4>
+  <p>
+    <code>$(<s>'some-element'</s>).<u class="method">remove</u>();</code>
+  </p>
+
+</div><div class="method">
+  <a name="removeClass"></a>
+  <h2><a class="top-anchor" href="element.html#">top &uarr;</a><a href="element.html#removeClass">removeClass</a></h2>
+
+  <p class="semantic">
+    <code>removeClass(<b class="unit">String</b> name) -&gt; <b class="unit">Element</b> <b class="var">self</b></code>
+  </p>
+
+
+  <h4>Description</h4>
+  <p>Removes the given CSS class name from the element class names list.</p>
+
+
+
+  <h4>Example</h4>
+  <p>
+    <code><b class="var">var</b> element = document.<u class="method">getElementById</u>(<s>'element'</s>);<br/>element.<u>className</u> = <s>'foo bar'</s>;<br/><br/>$(element).<u class="method">removeClass</u>(<s>'bar'</s>);<br/><br/>element.<u>className</u>; <i>// -&gt; 'foo'</i></code>
+  </p>
+
+</div><div class="method">
+  <a name="replace"></a>
+  <h2><a class="top-anchor" href="element.html#">top &uarr;</a><a href="element.html#replace">replace</a></h2>
+
+  <p class="semantic">
+    <code>replace(mixed content) -&gt; <b class="unit">Element</b> <b class="var">self</b></code>
+  </p>
+
+
+  <h4>Description</h4>
+  <p>Replaces the current element with the given content.</p>
+
+
+
+  <h4>Example</h4>
+  <p>
+    <code><i>// &lt;div id="one"&gt;&lt;div id="two"&gt;&lt;/div&gt;&lt;/div&gt;</i><br/><br/>$(<s>'two'</s>).<u class="method">replace</u>(<s>'boo boo boo'</s>);<br/>$(<s>'one'</s>).<u class="method">html</u>() === <s>'boo boo boo'</s>;</code>
+  </p>
+
+</div><div class="method">
+  <a name="resize"></a>
+  <h2><a class="top-anchor" href="element.html#">top &uarr;</a><a href="element.html#resize">resize</a></h2>
+
+  <p class="semantic">
+    <code>resize(number width, number height) -&gt; <b class="unit">Element</b> <b class="var">self</b><br/>resize({<s class="key">x</s>: number, <s class="key">y</s>: number})      -&gt; <b class="unit">Element</b> <b class="var">self</b></code>
+  </p>
+
+
+  <h4>Description</h4>
+  <p>Sets the size of the element.</p>
+
+<p><strong>NOTE</strong>: This method will automatically adjust the actual style for existing paddings and borders so the end result will be exactly as requested.</p>
+
+
+
+  <h4>Example</h4>
+  <p>
+    <code><b class="var">var</b> element = <b class="var">new</b> <b class="unit">Element</b>(<s>'div'</s>, {<br/>  <s class="key">style</s>: {<br/>    <s class="key">border</s>: <s>'10px solid gray'</s>,<br/>    <s class="key">padding</s>: <s>'10px'</s><br/>  }<br/>});<br/><br/>element.<u class="method">resize</u>(<s class="int">100</s>, <s class="int">100</s>);<br/><br/>element.<u>_</u>.<u>offsetHeight</u>; <i>// -&gt; 100</i><br/>element.<u>_</u>.<u>offsetWidth</u>;  <i>// -&gt; 100</i><br/>element.<u>_</u>.<u>style</u>.<u>width</u>;  <i>// -&gt; 80px</i><br/>element.<u>_</u>.<u>style</u>.<u>height</u>; <i>// -&gt; 80px</i></code>
+  </p>
+
+</div><div class="method">
+  <a name="scrollThere"></a>
+  <h2><a class="top-anchor" href="element.html#">top &uarr;</a><a href="element.html#scrollThere">scrollThere</a></h2>
+
+  <p class="semantic">
+    <code>scrollThere() -&gt; <b class="unit">Element</b> <b class="var">self</b></code>
+  </p>
+
+
+  <h4>Description</h4>
+  <p>Scrolls the window to the element.</p>
+
+
+
+  <h4>Example</h4>
+  <p>
+    <code>element.<u class="method">scrollThere</u>();</code>
+  </p>
+
+</div><div class="method">
+  <a name="scrollTo"></a>
+  <h2><a class="top-anchor" href="element.html#">top &uarr;</a><a href="element.html#scrollTo">scrollTo</a></h2>
+
+  <p class="semantic">
+    <code>scrollTo(number left, number top) -&gt; <b class="unit">Element</b> <b class="var">self</b><br/>scrollTo({<s class="key">x</s>: number, <s class="key">y</s>: number})  -&gt; <b class="unit">Element</b> <b class="var">self</b></code>
+  </p>
+
+
+  <h4>Description</h4>
+  <p>Sets the scrolling position of the element.</p>
+
+
+
+  <h4>Example</h4>
+  <p>
+    <code>element.<u class="method">scrollTo</u>(<s class="int">100</s>, <s class="int">100</s>);<br/>element.<u class="method">scrollTo</u>({<s class="key">x</s>: <s class="int">100</s>, <s class="key">y</s>: <s class="int">100</s>});</code>
+  </p>
+
+</div><div class="method">
+  <a name="scrolls"></a>
+  <h2><a class="top-anchor" href="element.html#">top &uarr;</a><a href="element.html#scrolls">scrolls</a></h2>
+
+  <p class="semantic">
+    <code>scrolls() -&gt; <b class="unit">Object</b> {<s class="key">x</s>: <b class="unit">NN</b> , <s class="key">y</s>: <b class="unit">NN</b> }</code>
+  </p>
+
+
+  <h4>Description</h4>
+  <p>Returns the scroll values of the element in a hash.</p>
+
+
+
+  <h4>Example</h4>
+  <p>
+    <code><b class="var">var</b> scroll_top  = $(<s>'element'</s>).<u class="method">scrolls</u>().<u>y</u>;<br/><b class="var">var</b> scroll_left = $(<s>'element'</s>).<u class="method">scrolls</u>().<u>x</u>;</code>
+  </p>
+
+</div><div class="method">
+  <a name="set"></a>
+  <h2><a class="top-anchor" href="element.html#">top &uarr;</a><a href="element.html#set">set</a></h2>
+
+  <p class="semantic">
+    <code>set(<b class="unit">String</b> name, <b class="unit">String</b> value) -&gt; <b class="unit">Element</b> <b class="var">self</b><br/>set(<b class="unit">Object</b> properties_hash)    -&gt; <b class="unit">Element</b> <b class="var">self</b></code>
+  </p>
+
+
+  <h4>Description</h4>
+  <p>Assigns the given attribute(s) to the element.</p>
+
+
+
+  <h4>Example</h4>
+  <p>
+    <code>$(<s>'element'</s>).<u class="method">set</u>(<s>'title'</s>, <s>'some title'</s>);<br/><br/>$(<s>'element'</s>).<u class="method">set</u>({<br/>  <s class="key">title</s>: <s>'some title'</s>,<br/>  <s class="key">id</s>:    <s>'some-id'</s><br/>});</code>
+  </p>
+
+</div><div class="method">
+  <a name="setClass"></a>
+  <h2><a class="top-anchor" href="element.html#">top &uarr;</a><a href="element.html#setClass">setClass</a></h2>
+
+  <p class="semantic">
+    <code>setClass(<b class="unit">String</b> name) -&gt; <b class="unit">Element</b> <b class="var">self</b></code>
+  </p>
+
+
+  <h4>Description</h4>
+  <p>Replaces all the element CSS class names with the given one.</p>
+
+
+
+  <h4>Example</h4>
+  <p>
+    <code><b class="var">var</b> element = document.<u class="method">getElementById</u>(<s>'element'</s>);<br/>element.<u>className</u> = <s>'foo bar'</s>;<br/><br/>$(element).<u class="method">setClass</u>(<s>'boo'</s>);<br/><br/>element.<u>className</u>; <i>// -&gt; 'boo'</i></code>
+  </p>
+
+</div><div class="method">
+  <a name="setHeight"></a>
+  <h2><a class="top-anchor" href="element.html#">top &uarr;</a><a href="element.html#setHeight">setHeight</a></h2>
+
+  <p class="semantic">
+    <code>setHeight(number pixels) -&gt; <b class="unit">Element</b> <b class="var">self</b></code>
+  </p>
+
+
+  <h4>Description</h4>
+  <p>Sets the height of the element to the given size.</p>
+
+<p><strong>NOTE</strong>: This method will automatically adjust the actual style.height for existing paddings and borders so the end result will be exactly as requested.</p>
+
+
+
+  <h4>Example</h4>
+  <p>
+    <code><b class="var">var</b> element = <b class="var">new</b> <b class="unit">Element</b>(<s>'div'</s>, {<br/>  <s class="key">style</s>: {<br/>    <s class="key">border</s>: <s>'10px solid gray'</s>,<br/>    <s class="key">padding</s>: <s>'10px'</s><br/>  }<br/>});<br/><br/>element.<u class="method">setWidth</u>(<s class="int">100</s>);<br/><br/>element.<u>_</u>.<u>offsetWidth</u>; <i>// -&gt; 100</i><br/>element.<u>_</u>.<u>style</u>.<u>width</u>; <i>// -&gt; 80px</i></code>
+  </p>
+
+</div><div class="method">
+  <a name="setStyle"></a>
+  <h2><a class="top-anchor" href="element.html#">top &uarr;</a><a href="element.html#setStyle">setStyle</a></h2>
+
+  <p class="semantic">
+    <code>setStyle(<b class="unit">String</b> key, <b class="unit">String</b> value) -&gt; <b class="unit">Element</b> <b class="var">self</b><br/>setStyle(<b class="unit">Object</b> styles)            -&gt; <b class="unit">Element</b> <b class="var">self</b><br/>setStyle(<b class="unit">String</b> styles_def)        -&gt; <b class="unit">Element</b> <b class="var">self</b></code>
+  </p>
+
+
+  <h4>Description</h4>
+  <p>Assigns a style to the element.</p>
+
+
+
+  <h4>Example</h4>
+  <p>
+    <code>$(<s>'element'</s>).<u class="method">setStyle</u>(<s>'display'</s>, <s>'block'</s>);<br/><br/>$(<s>'element'</s>).<u class="method">setStyle</u>({<br/>  <s class="key">display</s>: <s>'block'</s>,<br/>  <s class="key">border</s>:  <s>'1px solid gray'</s><br/>});<br/><br/>$(<s>'element'</s>).<u class="method">setStyle</u>(<s>'display:block;color:red'</s>);</code>
+  </p>
+
+</div><div class="method">
+  <a name="setWidth"></a>
+  <h2><a class="top-anchor" href="element.html#">top &uarr;</a><a href="element.html#setWidth">setWidth</a></h2>
+
+  <p class="semantic">
+    <code>setWidth(number pixels) -&gt; <b class="unit">Element</b> <b class="var">self</b></code>
+  </p>
+
+
+  <h4>Description</h4>
+  <p>Sets the element width to the given size.</p>
+
+<p><strong>NOTE</strong>: This method will automatically adjust the actual style.width for existing paddings and borders so the end result will be exactly as requested.</p>
+
+
+
+  <h4>Example</h4>
+  <p>
+    <code><b class="var">var</b> element = <b class="var">new</b> <b class="unit">Element</b>(<s>'div'</s>, {<br/>  <s class="key">style</s>: {<br/>    <s class="key">border</s>: <s>'10px solid gray'</s>,<br/>    <s class="key">padding</s>: <s>'10px'</s><br/>  }<br/>});<br/><br/>element.<u class="method">setWidth</u>(<s class="int">100</s>);<br/><br/>element.<u>_</u>.<u>offsetWidth</u>; <i>// -&gt; 100</i><br/>element.<u>_</u>.<u>style</u>.<u>width</u>; <i>// -&gt; 80px</i></code>
+  </p>
+
+</div><div class="method">
+  <a name="show"></a>
+  <h2><a class="top-anchor" href="element.html#">top &uarr;</a><a href="element.html#show">show</a></h2>
+
+  <p class="semantic">
+    <code>show([<b class="unit">String</b> effect[, <b class="unit">Object</b> options]]) -&gt; <b class="unit">Element</b> <b class="var">self</b></code>
+  </p>
+
+
+  <h4>Description</h4>
+  <p>Shows (un-hides) the element. If a valid effect name was specified and the <a href='fx.html' class='api-ref'>Fx</a> module is available, the effect will be used to perform the showing.</p>
+
+
+
+  <h4>Example</h4>
+  <p>
+    <code>$(<s>'some-element'</s>).<u class="method">show</u>();<br/><br/>$(<s>'some-element'</s>).<u class="method">show</u>(<s>'slide'</s>);<br/>$(<s>'some-element'</s>).<u class="method">show</u>(<s>'slide'</s>, {<s class="key">duration</s>: <s>'long'</s>});</code>
+  </p>
+
+</div><div class="method">
+  <a name="siblings"></a>
+  <h2><a class="top-anchor" href="element.html#">top &uarr;</a><a href="element.html#siblings">siblings</a></h2>
+
+  <p class="semantic">
+    <code>siblings([<b class="unit">String</b> css_rule]) -&gt; <b class="unit">Array</b> of eleemnts</code>
+  </p>
+
+
+  <h4>Description</h4>
+  <p>Returns a list of the siblings, optionally filtered by the given CSS rule.</p>
+
+
+
+  <h4>Example</h4>
+  <p>
+    <code><i>/*<br/>  &lt;div&gt;<br/>    &lt;div id="one"&gt;&lt;/div&gt;<br/>    &lt;div id="two"&gt;&lt;/div&gt;<br/>    &lt;div id="three"&gt;&lt;/div&gt;<br/>  &lt;/div&gt;<br/>*/</i><br/><br/>$(<s>'two'</s>).<u class="method">siblings</u>();       <i>// -&gt; [div#one, div#three]</i><br/>$(<s>'two'</s>).<u class="method">siblings</u>(<s>'#one'</s>); <i>// -&gt; [div#one]</i></code>
+  </p>
+
+</div><div class="method">
+  <a name="size"></a>
+  <h2><a class="top-anchor" href="element.html#">top &uarr;</a><a href="element.html#size">size</a></h2>
+
+  <p class="semantic">
+    <code>size() -&gt; <b class="unit">Object</b> {<s class="key">x</s>: <b class="unit">NN</b> , <s class="key">y</s>: <b class="unit">NN</b>}</code>
+  </p>
+
+
+  <h4>Description</h4>
+  <p>Returns the element sizes hash.</p>
+
+
+
+  <h4>Example</h4>
+  <p>
+    <code><b class="var">var</b> width  = $(<s>'element'</s>).<u class="method">size</u>().<u>x</u>;<br/><b class="var">var</b> height = $(<s>'element'</s>).<u class="method">size</u>().<u>y</u>;</code>
+  </p>
+
+</div><div class="method">
+  <a name="stop"></a>
+  <h2><a class="top-anchor" href="element.html#">top &uarr;</a><a href="element.html#stop">stop</a></h2>
+
+  <p class="semantic">
+    <code>stop() -&gt; <b class="unit">Element</b> <b class="var">self</b></code>
+  </p>
+
+
+  <h4>Description</h4>
+  <p>Immediately stops and cancels all active visual effects on the element</p>
+
+
+
+  <h4>Example</h4>
+  <p>
+    <code>$(<s>'element'</s>).<u class="method">slide</u>().<u class="method">fade</u>().<u class="method">stop</u>();</code>
+  </p>
+
+</div><div class="method">
+  <a name="stopObserving"></a>
+  <h2><a class="top-anchor" href="element.html#">top &uarr;</a><a href="element.html#stopObserving">stopObserving</a></h2>
+
+  <p class="semantic">
+    <code>stopObserving(<b class="unit">Function</b> listener)       -&gt; <b class="unit">Element</b> <b class="var">self</b><br/>stopObserving(<b class="unit">String</b> name[, listener]) -&gt; <b class="unit">Element</b> <b class="var">self</b></code>
+  </p>
+
+
+  <h4>Description</h4>
+  <p>Unsubscribes the event listener. This can be done globally for a particular event name, for some particular listener or for some particular listener and event name.</p>
+
+
+
+  <h4>Example</h4>
+  <p>
+    <code><b class="var">var</b> listener = <b>function</b>() {};<br/><br/>$(<s>'element'</s>).<u class="method">on</u>(<s>'click'</s>, listener);<br/><br/>$(<s>'element'</s>).<u class="method">stopObserving</u>(<s>'click'</s>);<br/><br/>$(<s>'element'</s>).<u class="method">stopObserving</u>(listner);<br/><br/>$(<s>'element'</s>).<u class="method">stopObserving</u>(<s>'click'</s>, listner);</code>
+  </p>
+
+</div><div class="method">
+  <a name="text"></a>
+  <h2><a class="top-anchor" href="element.html#">top &uarr;</a><a href="element.html#text">text</a></h2>
+
+  <p class="semantic">
+    <code>text()               -&gt; <b class="unit">String</b> innerHTML without tags<br/>test(<b class="unit">String</b> content) -&gt; <b class="unit">Element</b> <b class="var">self</b></code>
+  </p>
+
+
+  <h4>Description</h4>
+  <p>A bidirectional method to work with element&#8217;s <tt>innerHTML</tt> property as text</p>
+
+
+
+  <h4>Example</h4>
+  <p>
+    <code>$(<s>'element'</s>).<u class="method">text</u>(<s>'&lt;b&gt;boo hoo!&lt;/b&gt;'</s>);<br/>$(<s>'element'</s>).<u class="method">html</u>(); <i>// -&gt; '&lt;b&gt;boo hoo!&lt;/b&gt;'</i><br/><br/>$(<s>'element'</s>).<u class="method">html</u>(<s>'&lt;b&gt;boo hoo!&lt;/b&gt;'</s>);<br/>$(<s>'element'</s>).<u class="method">text</u>(); <i>// -&gt; 'boo hoo!'</i></code>
+  </p>
+
+</div><div class="method">
+  <a name="toggle"></a>
+  <h2><a class="top-anchor" href="element.html#">top &uarr;</a><a href="element.html#toggle">toggle</a></h2>
+
+  <p class="semantic">
+    <code>toggle([<b class="unit">String</b> effect[, <b class="unit">Object</b> options]]) -&gt; <b class="unit">Element</b> <b class="var">self</b></code>
+  </p>
+
+
+  <h4>Description</h4>
+  <p>Toggles the element&#8217;s visibility status. If a valid effect name was specified, the effect will be used to perform the toggling.</p>
+
+
+
+  <h4>Example</h4>
+  <p>
+    <code>$(<s>'some-element'</s>).<u class="method">toggle</u>();<br/><br/>$(<s>'some-element'</s>).<u class="method">toggle</u>(<s>'slide'</s>);<br/>$(<s>'some-element'</s>).<u class="method">toggle</u>(<s>'slide'</s>, {<s class="key">duration</s>: <s>'long'</s>});</code>
+  </p>
+
+</div><div class="method">
+  <a name="toggleClass"></a>
+  <h2><a class="top-anchor" href="element.html#">top &uarr;</a><a href="element.html#toggleClass">toggleClass</a></h2>
+
+  <p class="semantic">
+    <code>toggleClass(<b class="unit">String</b> name) -&gt; <b class="unit">Element</b> <b class="var">self</b></code>
+  </p>
+
+
+  <h4>Description</h4>
+  <p>Toggles the CSS class name presence on the element class names list.</p>
+
+
+
+  <h4>Example</h4>
+  <p>
+    <code><b class="var">var</b> element = document.<u class="method">getElementById</u>(<s>'element'</s>);<br/>element.<u>className</u> = <s>'foo'</s>;<br/><br/>$(element).<u class="method">toggleClass</u>(<s>'bar'</s>)<br/>element.<u>className</u>; <i>// -&gt; 'foo bar';</i><br/><br/>$(element).<u class="method">toggleClass</u>(<s>'bar'</s>)<br/>element.<u>className</u>; <i>// -&gt; 'foo';</i></code>
+  </p>
+
+</div><div class="method">
+  <a name="undelegate"></a>
+  <h2><a class="top-anchor" href="element.html#">top &uarr;</a><a href="element.html#undelegate">undelegate</a></h2>
+
+  <p class="semantic">
+    <code>undelegate(<b class="unit">String</b> event[, <b class="unit">String</b> css_rule[, <b class="unit">Function</b> callback]]) -&gt; <b class="unit">Element</b><br/>undelegate(<b class="unit">String</b> event[, <b class="unit">Object</b> rules_and_callback])            -&gt; <b class="unit">Element</b></code>
+  </p>
+
+
+  <h4>Description</h4>
+  <p>Switches off events delegation attached by the <a href='element.html#delegate' class='api-ref'>delegate</a> method.</p>
+
+
+
+  <h4>Example</h4>
+  <p>
+    <code>$(element).<u class="method">undelegate</u>(<s>'click'</s>);<br/>$(element).<u class="method">undelegate</u>(<s>'click'</s>, <s>'div.blue'</s>);<br/>$(element).<u class="method">undelegate</u>(<s>'click'</s>, <s>'div.blue'</s>, callback);<br/><br/>$(element).<u class="method">undelegate</u>(<s>'click'</s>, {<br/>  <s>'div.red'</s>:  callback_1,<br/>  <s>'div.blue'</s>: callback_2<br/>});</code>
+  </p>
+
+</div><div class="method">
+  <a name="update"></a>
+  <h2><a class="top-anchor" href="element.html#">top &uarr;</a><a href="element.html#update">update</a></h2>
+
+  <p class="semantic">
+    <code>update(mixed content) -&gt; <b class="unit">Element</b> <b class="var">self</b></code>
+  </p>
+
+
+  <h4>Description</h4>
+  <p>Replaces the internal structure of the element with the given content.</p>
+
+<p><strong>NOTE</strong>: All scripts will be evaluated <em>after</em> the update.</p>
+
+
+
+  <h4>Example</h4>
+  <p>
+    <code><i>// &lt;div id="one"&gt;foo bar&lt;/div&gt;</i><br/><br/>$(<s>'one'</s>).<u class="method">update</u>(<s>'something else'</s>);<br/><br/>$(<s>'one'</s>).<u class="method">html</u>() === <s>'something else'</s>;</code>
+  </p>
+
+</div><div class="method">
+  <a name="visible"></a>
+  <h2><a class="top-anchor" href="element.html#">top &uarr;</a><a href="element.html#visible">visible</a></h2>
+
+  <p class="semantic">
+    <code>visible() -&gt; boolean</code>
+  </p>
+
+
+  <h4>Description</h4>
+  <p>Checks if the element is visible. See the <a href='element.html#hidden' class='api-ref'>hidden</a> method for more details.</p>
+
+
+
+  <h4>Example</h4>
+  <p>
+    <code>$(<s>'some-element'</s>).<u class="method">visible</u>();</code>
+  </p>
+
+</div><div class="method">
+  <a name="win"></a>
+  <h2><a class="top-anchor" href="element.html#">top &uarr;</a><a href="element.html#win">win</a></h2>
+
+  <p class="semantic">
+    <code>win() -&gt; <b class="unit">Window</b> window</code>
+  </p>
+
+
+  <h4>Description</h4>
+  <p>Returns a wrapped <a href='window.html' class='api-ref'>Window</a> object to which this element belongs to</p>
+
+
+
+  <h4>Example</h4>
+  <p>
+    <code>$(element).<u class="method">win</u>().<u class="method">size</u>();</code>
+  </p>
+
+</div><div class="method">
+  <a name="wrap"></a>
+  <h2><a class="top-anchor" href="element.html#">top &uarr;</a><a href="element.html#wrap">wrap</a></h2>
+
+  <p class="semantic">
+    <code>wrap(<b class="unit">Element</b> wrapper) -&gt; <b class="unit">Element</b> <b class="var">self</b></code>
+  </p>
+
+
+  <h4>Description</h4>
+  <p>Wraps the current element with the given one.</p>
+
+
+
+  <h4>Example</h4>
+  <p>
+    <code><i>// &lt;div id="one"&gt;&lt;div id="two"&gt;&lt;/div&gt;&lt;/div&gt;</i><br/><br/>$(<s>'two'</s>).<u class="method">wrap</u>(<b class="var">new</b> <b class="unit">Element</b>(<s>'div'</s>, {<s class="key">id</s>: <s>'three'</s>}));<br/><br/>$(<s>'one'</s>).<u class="method">html</u>() == <s>'&lt;div id="three"&gt;&lt;div id="two"&gt;&lt;/div&gt;&lt;/div&gt;'</s>;</code>
+  </p>
+
+</div>
+
+        </div>
+        <div style="clear:both"></div>
+      </div>
+      <div id="foot">
+        <div id="contacts">
+  <h2>Questions?</h2>
+  <a href="&#x6D;&#x61;i&#x6C;&#x74;&#x6F;:&#105;&#110;&#102;&#111;&#064;&#114;&#105;&#103;&#104;&#116;&#106;&#115;&#046;&#111;&#114;&#103;">&#105;&#110;&#102;&#111;&#064;&#114;&#105;&#103;&#104;&#116;&#106;&#115;&#046;&#111;&#114;&#103;</a>
+</div>
+<div id="bottom-menu">
+  <h2>About the Framework</h2>
+  <a href="../philosophy.html">Philosophy</a> |
+  <a href="../benchmarks.html">Benchmarks</a> |
+  <a href="../browsers.html">Browsers</a> |
+  <a href="../contacts.html">Contacts</a>
+</div>
+        <div id="design">Design by <a href="http://activestylus.com">Steven Garcia</a></div>
+        <div id="copyright">Copyright &copy; 2008-2011 Nikolay Nemshilov</div>
+      </div>
+    </div>
+
+    <script src="http://www.google-analytics.com/ga.js" type="text/javascript"></script>
+    <script type="text/javascript">
+    // <![CDATA[
+      try { _gat._getTracker("UA-10292980-1")._trackPageview(); } catch(err) {}
+    // ]]>
+    </script>
+  </body>
+</html>

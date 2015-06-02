@@ -1,0 +1,216 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <title>RightJS: DOM Events Handling</title>
+    <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+    <link href="../blog.rss" rel="alternate" title="RightJS News" type="application/rss+xml" />
+    <script src="../hotlink/right.js@1331880836" type="text/javascript"></script>
+<script src="../javascripts/application.js@1295184937" type="text/javascript"></script>
+    <script src="../builds/ui/right-autocompleter.js@1331880836" type="text/javascript"></script>
+    <link href="../stylesheets/application.css@1297515667.css" media="screen" rel="stylesheet" type="text/css" />
+    
+    
+    
+  </head>
+  <body>
+    <div id="body">
+      <div id="head">
+        <a href="../index.html" id="logo">RightJS</a>
+        <div id="slogan">JavaScript Framework That Feels Right</div>
+
+        <div id="main-menu">
+  <ul>
+    <li><a href="../index.html">Home</a></li>
+    <li><a href="../download.html">Download</a></li>
+    <li><a href="../plugins.html">Plugins</a></li>
+    <li><a href="../ui.html">UI</a></li>
+    <li><a href="../demos.html">Demos</a></li>
+    <li class="current"><a href="../docs.html">Docs</a></li>
+    <li><a href="../blog.html">Blog</a></li>
+  </ul>
+  <div id="zing"><!-- the moving thing --></div>
+</div>
+        <div id="lang-switch">
+    <select onchange="document.location.href=this.value;">
+      <option selected="true" value="http://rightjs.org/tutorials/dom-events-handling">English</option>
+      <option value="http://ru.rightjs.org/tutorials/dom-events-handling">Русский</option>
+    </select>
+</div>
+      </div>
+      <div id="main">
+        <div id="sidebar">
+  <div class="box" id="download-box">
+    <h1>Get it!</h1>
+    <ul>
+      <li><a href="../builds/current/right.js.zip">RightJS v2.3.1</a></li>
+    </ul>
+  </div>
+
+  <div id="api-search" class="box">
+  <input type="text" value="Search API" id="api-search-field" />
+  <script type="text/javascript">
+  // <![CDATA[
+    new Autocompleter($('api-search-field').on({
+      focus: function() { this._v = this.value(); this.value(''); },
+      blur:  function() { this.value(this._v); }
+    }), {
+      url: '/docs/search/%{search}.js',
+      onDone: function() {
+        var current = this.first('.current');
+        if (current) {
+          document.location.href = current.get('title');
+        }
+        this.input.setValue(this.input._v);
+      }
+    });
+  // ]]>
+  </script>
+</div>
+
+  <div class="box">
+    <label>Documentation</label>
+    <ul>
+      <li><a href="getting-started.html">Getting Started</a></li>
+      <li><a href="top-features.html">Top 12 Features</a></li>
+      <li><a href="../docs.html">API Reference</a></li>
+      <li class="current"><a href="../tutorials.1.html">Tutorials</a></li>
+    </ul>
+  </div>
+
+  <div class="box">
+    <label>Additional</label>
+    <ul>
+      <li><a href="../plugins.html">RightJS Plugins</a></li>
+      
+      <li><a href="../ui.html">RightJS UI</a></li>
+      
+      <li><a href="../showcases.html">Showcases</a></li>
+    </ul>
+  </div>
+
+  <div class="box">
+    <label>Community</label>
+    <ul>
+      <li><a href="http://groups.google.com/group/rightjs">Google Group</a></li>
+      <li><a href="http://rightjs.lighthouseapp.com/projects/31989">Tickets Tracker</a></li>
+      <li><a href="http://github.com/rightjs/rightjs-snippets">Code Snippets</a></li>
+      <li><a href="irc://irc.freenode.net/rightjs">IRC #rightjs</a></li>
+      <li><a href="../participate.html">Participate!</a></li>
+    </ul>
+  </div>
+
+  <div class="box">
+    <a href='http://www.pledgie.com/campaigns/14259'><img alt='Donate!' src='http://www.pledgie.com/campaigns/14259.png?skin_name=chrome' border='0' /></a>
+  </div>
+
+  <div class="box">
+    <ul id="social">
+      <li><a href="../blog.rss" id="rss-link">RSS</a></li>
+      <li><a href="http://twitter.com/rightjs" id="twitter-link">Twitter</a></li>
+      <li><a href="http://github.com/rightjs" id="github-link">GitHub</a></li>
+    </ul>
+  </div>
+</div>
+
+        <div id="info">
+          <h1>DOM Events Handling</h1>
+
+<p>RightJS has one unified events handling interface defined by the <a href='../docs/observer.html' class='api-ref'>Observer</a> module and all the dom-elements use them for dom-events processing. This means you can attach events listeners in the same way as everywhere else</p>
+
+<code>$(<s>'element'</s>).<u class="method">on</u>(<s>'click'</s>, <b>function</b>() {});<br/>$(<s>'element'</s>).<u class="method">on</u>(<s>'click'</s>, [func1, func2, func3,...]);<br/>$(<s>'element'</s>).<u class="method">on</u>({<br/>  <s class="key">click</s>:     func1,<br/>  <s class="key">mouseover</s>: func2,<br/>  <s class="key">mouseout</s>:  func3<br/>});<br/><br/><i>// listeners by name work too</i><br/>$(<s>'element'</s>).<u class="method">on</u>(<s>'click'</s>, <s>'addClass'</s>, <s>'clicked'</s>);</code>
+
+<p>Then for all the standard dom-events there are nice shortcut methods for event listeners attachment</p>
+
+<code>$(<s>'element'</s>).<u class="method">onClick</u>(<b>function</b>() {})<br/>$(<s>'element'</s>).<u class="method">onMouseover</u>(<s>'addClass'</s>, <s>'hovered'</s>);<br/>$(<s>'element'</s>).<u class="method">onMouseout</u>(<s>'removeClass'</s>, <s>'hovered'</s>);<br/><br/>$(<s>'form'</s>).<u class="method">onSubmit</u>(<b>function</b>() {});<br/><br/>$(<s>'input'</s>).<u class="method">onChange</u>(<b>function</b>() {});</code>
+
+<p>And you can check and unsubscribe listeners the same way too</p>
+
+<code>$(<s>'element'</s>).<u class="method">stopObserving</u>(<s>'click'</s>);<br/>$(<s>'element'</s>).<u class="method">stopObserving</u>(function_1);<br/>$(<s>'element'</s>).<u class="method">stopObserving</u>(<s>'click'</s>, function_2);<br/><br/>$(<s>'element'</s>).<u class="method">observes</u>(<s>'click'</s>);<br/>$(<s>'element'</s>).<u class="method">observes</u>(function_1);<br/><br/><i>// ....</i></code>
+
+<p>See the description of the <a href='../docs/observer.html' class='api-ref'>Observer</a> unit and <a href='../docs/element.html' class='api-ref'>Element</a> methods, like <a href='../docs/element.html#on' class='api-ref'>on</a>, <a href='../docs/element.html#stopObserving' class='api-ref'>stopObserving</a>, <a href='../docs/element.html#observes' class='api-ref'>observes</a>, <a href='../docs/element.html#listeners' class='api-ref'>listeners</a> for more information on the standard interface.</p>
+<a name='receiving' ></a><h2 class='chapter'>
+  <a href='dom-events-handling.html#' class='top-anchor'>top &uarr;</a><a href='dom-events-handling.html#receiving'>Event Object Receiving</a>
+</h2>
+<p>There is couple of important moments on how RightJS sends an instance of the dom-event inside the listeners.</p>
+
+<p>When you just attach your listener function in a standard way it naturally called in the context of the element and receive the dom-event instance as the first argument.</p>
+
+<code>$(<s>'element'</s>).<u class="method">onClick</u>(<b>function</b>(event) {<br/>  <b>if</b> (<b class="var">this</b>.<u class="method">hasClass</u>(<s>'marked'</s>))<br/>    event.<u class="method">stop</u>(); <i>// or something</i><br/>});</code>
+
+<p>You also can bind some arguments that should be sent along with the event to your listeners, so that you don&#8217;t have to use any sort of currying/binding manually in such cases</p>
+
+<code>$(<s>'element'</s>).<u class="method">onClick</u>(<b>function</b>(event, one, two, three) {<br/>  <b class="var">this</b>.<u class="method">update</u>(one + two + three);<br/>}, <s>'one'</s>, <s>'two'</s>, <s>'three'</s>);</code>
+
+<p>But, when you attach your event listener by name, in this case RightJS will send in your listeners <em>defined arguments only</em>. The reason is simple, all the methods referred by name expect some data from you, not an event.</p>
+
+<code>$(<s>'element'</s>).<u class="method">onClick</u>(<s>'hide'</s>, <s>'fade'</s>, {<s class="key">duration</s>: <s>'long'</s>});<br/>$(<s>'element'</s>).<u class="method">onMouseover</u>(<s>'addClass'</s>, <s>'hovered'</s>);<br/>$(<s>'element'</s>).<u class="method">onMouseout</u>(<s>'removeClass'</s>, <s>'hovered'</s>);</code>
+<a name='extensions' ></a><h2 class='chapter'>
+  <a href='dom-events-handling.html#' class='top-anchor'>top &uarr;</a><a href='dom-events-handling.html#extensions'>Event Extensions</a>
+</h2>
+<p>RightJS does not create any sort of mediative interface for cross-browser events handling. Instead of that it uses the standard and familiar W3C event model simply mocking this interface on the IE browsers.</p>
+
+<p>This way whichever browser the user uses, you always will have access to the following properties on every event</p>
+
+<ul>
+<li><tt>which</tt> - which mouse button was pressed (1,2,3)</li>
+
+<li><tt>target</tt> - the target element reference</li>
+
+<li><tt>currentTarget</tt> - the bounding (listener) element reference</li>
+
+<li><tt>relatedTarget</tt> - the related element for the over and out mouse events</li>
+
+<li><tt>pageX</tt>, <tt>pageY</tt> - the cursor position relative to the document</li>
+</ul>
+
+<p>Additionally, every event has a few standard methods <a href='../docs/event.html#stop' class='api-ref'>Event#stop</a>, <a href='../docs/event.html#position' class='api-ref'>Event#position</a>, to stop an event and grab it&#8217;s position respectively.</p>
+
+<p>If you use RightJS own interfaces to bind your event listeners, then all the extensions will be available right away</p>
+
+<code>$(<s>'element'</s>).<u class="method">onContextmenu</u>(<b>function</b>(event) {<br/>  event.<u class="method">stop</u>();<br/><br/>  $(<s>'context-menu'</s>).<u class="method">moveTo</u>(event.<u class="method">position</u>()).<u class="method">show</u>(<s>'slide'</s>);<br/>});</code>
+
+<p>But in case if you have attached your event listener via the IE native interfaces, then you can call the Event.ext method to extend your events</p>
+
+<code>element.<u class="method">attachEvent</u>(<s>'onclick'</s>, <b>function</b>(event) {<br/>  <b class="unit">Event</b>.<u class="method">ext</u>(event);<br/><br/>  event.<u class="method">stop</u>();<br/>});</code>
+<a name='triggering' ></a><h2 class='chapter'>
+  <a href='dom-events-handling.html#' class='top-anchor'>top &uarr;</a><a href='dom-events-handling.html#triggering'>Manual Events Triggering</a>
+</h2>
+<p>Every event in RightJS can be triggered manually, which is a bit naughty but sometimes useful. To do so, all you need is to call the <tt>fire</tt> method with the event name and possibly some options</p>
+
+<code>$(<s>'element'</s>).<u class="method">onClick</u>(<b>function</b>() { alert(<s>'boo'</s>); });<br/><br/>$(<s>'element'</s>).<u class="method">fire</u>(<s>'click'</s>); <i>// you'll see the 'boo'</i><br/><br/><br/><i>// or say you can trigger a keyboard event like that</i><br/>$(<s>'element'</s>).<u class="method">fire</u>(<s>'keypress'</s>, {<s class="key">keyCode</s>: <s class="int">27</s>});</code>
+<a name='custom' ></a><h2 class='chapter'>
+  <a href='dom-events-handling.html#' class='top-anchor'>top &uarr;</a><a href='dom-events-handling.html#custom'>Custom Events</a>
+</h2>
+<p>Basically, for RightJS, there is no difference between standard and custom events. It handles all of them the same exact way.</p>
+
+<code>$(<s>'element'</s>).<u class="method">on</u>(<s>'my-event'</s>, <b>function</b>() {...});<br/><br/>$(<s>'element'</s>).<u class="method">onClick</u>(<b>function</b>() {<br/>  <b>if</b> (something)<br/>    <b class="var">this</b>.<u class="method">fire</u>(<s>'my-event'</s>, {<s class="key">with</s>: <s>'options'</s>});<br/>});</code>
+
+<p>The only difference is that your events obviously won&#8217;t have shortcuts.</p>
+        </div>
+        <div style="clear:both"></div>
+      </div>
+      <div id="foot">
+        <div id="contacts">
+  <h2>Questions?</h2>
+  <a href="&#x6D;&#x61;i&#x6C;&#x74;&#x6F;:&#105;&#110;&#102;&#111;&#064;&#114;&#105;&#103;&#104;&#116;&#106;&#115;&#046;&#111;&#114;&#103;">&#105;&#110;&#102;&#111;&#064;&#114;&#105;&#103;&#104;&#116;&#106;&#115;&#046;&#111;&#114;&#103;</a>
+</div>
+<div id="bottom-menu">
+  <h2>About the Framework</h2>
+  <a href="../philosophy.html">Philosophy</a> |
+  <a href="../benchmarks.html">Benchmarks</a> |
+  <a href="../browsers.html">Browsers</a> |
+  <a href="../contacts.html">Contacts</a>
+</div>
+        <div id="design">Design by <a href="http://activestylus.com">Steven Garcia</a></div>
+        <div id="copyright">Copyright &copy; 2008-2011 Nikolay Nemshilov</div>
+      </div>
+    </div>
+
+    <script src="http://www.google-analytics.com/ga.js" type="text/javascript"></script>
+    <script type="text/javascript">
+    // <![CDATA[
+      try { _gat._getTracker("UA-10292980-1")._trackPageview(); } catch(err) {}
+    // ]]>
+    </script>
+  </body>
+</html>
